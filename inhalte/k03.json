@@ -192,7 +192,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Was bedeutet das für dich?**",
+          "titel": "Was bedeutet das für dich?",
           "bloecke": [
             {
               "typ": "absatz",
@@ -598,7 +598,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "**Beispiel 1: Das geplatzte Projekt**",
+              "titel": "Beispiel 1: Das geplatzte Projekt",
               "bloecke": [
                 {
                   "typ": "liste",
@@ -638,7 +638,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "**Beispiel 2: Der ins Wasser gefallene Ausflug**",
+              "titel": "Beispiel 2: Der ins Wasser gefallene Ausflug",
               "bloecke": [
                 {
                   "typ": "liste",
@@ -680,7 +680,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Warum das funktioniert?**",
+          "titel": "Warum das funktioniert?",
           "bloecke": [
             {
               "typ": "absatz",
@@ -707,7 +707,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Medien-Audit (einmalig)**",
+          "titel": "Medien-Audit (einmalig)",
           "bloecke": [
             {
               "typ": "absatz",
@@ -731,7 +731,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Ertappen & Umlenken (täglich)**",
+          "titel": "Ertappen & Umlenken (täglich)",
           "bloecke": [
             {
               "typ": "absatz",
@@ -750,7 +750,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Dankbarkeitstagebuch (täglich, abends)**",
+          "titel": "Dankbarkeitstagebuch (täglich, abends)",
           "bloecke": [
             {
               "typ": "absatz",

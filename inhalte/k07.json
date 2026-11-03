@@ -460,7 +460,7 @@
       "mehr": [
         {
           "typ": "akkordeon",
-          "titel": "**Beispiel 1: Das geplatzte Projekt**",
+          "titel": "Beispiel 1: Das geplatzte Projekt",
           "bloecke": [
             {
               "typ": "liste",
@@ -500,7 +500,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Warum das funktioniert?**",
+          "titel": "Warum das funktioniert?",
           "bloecke": [
             {
               "typ": "absatz",
@@ -721,6 +721,11 @@
         "label": "Telefonseelsorge",
         "nummer": "0800 111 0 111",
         "tel": "08001110111"
+      },
+      {
+        "label": "Nummer gegen Kummer · Mo–Sa 14–20 Uhr",
+        "nummer": "116 111",
+        "tel": "116111"
       },
       {
         "label": "Im Notfall",

@@ -492,7 +492,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**1. Wähle deinen Weg**",
+          "titel": "1. Wähle deinen Weg",
           "bloecke": [
             {
               "typ": "absatz",
@@ -510,7 +510,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**2. Setz dir einen Trigger für diese Woche**",
+          "titel": "2. Setz dir einen Trigger für diese Woche",
           "bloecke": [
             {
               "typ": "absatz",
@@ -524,7 +524,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**3. Abend-Check**",
+          "titel": "3. Abend-Check",
           "bloecke": [
             {
               "typ": "absatz",
@@ -538,7 +538,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Rückblick Kapitel 1 – 4**",
+          "titel": "Rückblick Kapitel 1 – 4",
           "bloecke": [
             {
               "typ": "absatz",
