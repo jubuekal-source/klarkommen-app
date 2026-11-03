@@ -3,12 +3,12 @@
    - Medien-Cache "kk-medien" (ohne Version): alles aus medien.json – cache-first,
      Range-Anfragen werden aus dem Cache als 206 beantwortet (iOS-Audio).
    Bei jedem App-Update VERSION hochzählen (und APP_VERSION in index.html). */
-const VERSION = 'v8';
+const VERSION = 'v9';
 const SHELL = 'kk-shell-' + VERSION;
 const MEDIEN = 'kk-medien';
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'medien.json',
-  'brand/brand.json', 'brand/start.webp', 'brand/icon-192.png', 'brand/icon-512.png', 'brand/icon-maskable-512.png', 'brand/apple-touch-icon.png',
+  'brand/brand.json', 'brand/start.webp', 'brand/rubrik/rubrik-einstieg.webp', 'brand/rubrik/rubrik-brainfact.webp', 'brand/rubrik/rubrik-mindhack.webp', 'brand/rubrik/rubrik-mission.webp', 'brand/rubrik/rubrik-quellen.webp', 'brand/icon-192.png', 'brand/icon-512.png', 'brand/icon-maskable-512.png', 'brand/apple-touch-icon.png',
   'brand/getcon/hero.webp', 'brand/getcon/logo-weiss.png',
   'fonts/fonts.css', 'inhalte/kapitel.json', 'experimente/index.json'
 ];

@@ -189,6 +189,11 @@ svg.i.f{fill:currentColor;stroke:none}
 .slide{padding-top:4px;padding-bottom:10px}
 .rubrik{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-accent-soft);margin:-4px 0 10px}
 .rubrik svg.i{width:18px;height:18px}
+.rubrik img.rbi{width:32px;height:32px;flex:none;display:block}
+.etappe .ic.img{background:var(--brand-card)}
+.etappe.r .ic.img{background:#163834}
+.etappe.next .ic.img{background:var(--brand-card);border-color:var(--brand-accent)}
+.etappe .ic img.rbi{width:36px;height:36px;display:block}
 .slide h1{font-size:clamp(1.7rem,7.4vw,2.5rem);letter-spacing:-.03em;margin-bottom:18px}
 .bl h2{font-size:1.32rem;margin:30px 0 10px}
 .bl>p{margin:0 0 1.05em}
@@ -608,6 +613,17 @@ body.inst-on footer.foot{padding-bottom:calc(300px + var(--sab))}
 .anl-h svg.i{color:var(--brand-accent-soft)}
 .anl-sec>.hint{color:var(--brand-text-2);font-size:.9rem;margin:0 0 6px}
 details.acc.anl{margin:10px 0}
+/* v1.3.3 Einstellungen: Aufklappkarten im Stil der Link-Karten */
+section.card.lk{padding:6px 16px;margin:12px 0}
+section.card.lk .linkrow .k{font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem;line-height:1.25}
+section.card.lk .linkrow small{font-family:inherit;font-weight:400;font-size:.84rem;line-height:1.3;margin-top:1px}
+details.acc.set{margin:12px 0;border-radius:20px}
+details.acc.set>summary{gap:12px;padding:8px 16px;min-height:60px}
+details.acc.set>summary .iconbtn{background:var(--brand-card-2);color:var(--brand-accent-soft)}
+details.acc.set>summary .k{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem;line-height:1.25}
+details.acc.set>summary .k small{display:block;font-family:inherit;font-weight:400;color:var(--brand-text-2);font-size:.86rem;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+details.acc.set>.acb{padding:0 16px 16px}
+details.acc.set>.acb>.hint:first-child{margin-top:0}
 details.acc.anl .acb{padding:0 16px 10px}
 details.acc.anl .acb h3{font-size:1rem;margin:16px 0 6px}
 details.acc.anl .acb h3:first-child{margin-top:2px}
@@ -659,7 +675,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.2';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.3';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -670,6 +686,12 @@ const RUBRIK = {                         /* spec/00 §2.2 Reihenfolge Einstieg �
   mission:{label:'Mission Alltag', icon:'clip'},
   quellen:{label:'Quellen & Hintergrund', icon:'book'}
 };
+const RUBRIK_BILD = ['einstieg','brainfact','mindhack','mission','quellen'];   /* v1.3.3: goldene Illustrationen, brand/rubrik/ */
+function rubIcon(key, px){
+  const rb = RUBRIK[key];
+  if(rb && RUBRIK_BILD.includes(key)) return `<img class="rbi" src="brand/rubrik/rubrik-${key}.webp" width="${px}" height="${px}" alt="" decoding="async">`;
+  return ic(rb ? rb.icon : 'chev');
+}
 const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung'};
 
 /* Linien-Icons (Skill §10.2): stroke currentColor, 1.7 px */
@@ -889,7 +911,7 @@ async function route(){
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
   const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
-  if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ if(o.tagName==='DETAILS') o.open = true; o.scrollIntoView({block:'start'}); } }
+  if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ for(let q=o; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; } o.scrollIntoView({block:'start'}); } }
 }
 function sessionStorageGet(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
 function sessionStorageSet(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
@@ -977,7 +999,7 @@ async function renderKapitel(app, r){
   for(const s of S){
     const rd = !!D.gelesen[sKey(k,s)]; const nx = !rd && ziel && s.id===ziel.id;
     const rb = RUBRIK[s.rubrik] || {label:s.rubrik, icon:'chev'};
-    html += `<li class="etappe${rd?' r':''}${nx?' next':''}"><a href="#/k/${kapRouteId(k)}/${encodeURIComponent(s.id)}"><span class="ic">${ic(rb.icon)}</span><span class="txt"><span class="rb">${esc(rb.label)}</span><div class="tt">${esc(s.titel)}</div></span>${rd?`<span class="ok" aria-label="gelesen">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
+    html += `<li class="etappe${rd?' r':''}${nx?' next':''}"><a href="#/k/${kapRouteId(k)}/${encodeURIComponent(s.id)}"><span class="ic${RUBRIK_BILD.includes(s.rubrik)?' img':''}">${rubIcon(s.rubrik,36)}</span><span class="txt"><span class="rb">${esc(rb.label)}</span><div class="tt">${esc(s.titel)}</div></span>${rd?`<span class="ok" aria-label="gelesen">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
   }
   html += `</ol>${I.fehler?`<div class="call wichtig">${ic('warn')}<p>Der Inhalt dieses Kapitels konnte nicht geladen werden. Bist du offline? Dann einmal mit Internet öffnen.</p></div>`:''}</div>${footer()}</div>`;
   app.innerHTML = html;
@@ -1048,7 +1070,7 @@ async function renderSlide(app, r){
   const ctx = {k, s, path:`${k.id}/${s.id}`};
   let html = `<div class="view">${bar(`<span class="st2"><b>${esc(rb.label)}</b><small>${k.nr?`Kapitel ${k.nr}`:'Bonus'} · Teil ${i+1} von ${S.length}</small></span>`, segs)}
     <div class="shead"><img src="${esc(s.header||k.cover)}" alt=""></div>
-    <article class="wrap slide" id="slide"><div class="rubrik">${ic(rb.icon)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
+    <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
   if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Ausführlich lesen (Leseversion)</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese'})}</div></details>`;
@@ -1105,17 +1127,16 @@ async function renderEinstellungen(app){
   const eigenesBild = !!startbildURL;
   app.innerHTML = `<div class="view">${bar('<b>Einstellungen</b>')}<div class="wrap">
     <div class="pagehead"><h1>Einstellungen</h1><p>Alles hier bleibt nur auf diesem Gerät.</p></div>
-    <section class="card"><h2>${ic('edit')} Titel &amp; Untertitel</h2>
-      <label class="fld"><span>Titel auf der Startseite</span><input id="inTitel" maxlength="40" value="${esc(titel())}" autocomplete="off"></label>
+    <section class="card lk"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
+    <section class="card lk"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
+    ${setk('set-titel','edit','Titel &amp; Untertitel',`<span id="sTitel">${esc(titel())}</span>`,`      <label class="fld"><span>Titel auf der Startseite</span><input id="inTitel" maxlength="40" value="${esc(titel())}" autocomplete="off"></label>
       <label class="fld"><span>Untertitel</span><input id="inUnter" maxlength="90" value="${esc(untertitel())}" autocomplete="off"></label>
       <div class="btns two"><button class="btn" data-act="titel-speichern">${ic('check')} Speichern</button><button class="btn sec" data-act="titel-reset">${ic('reset')} Auf Standard zurücksetzen</button></div>
-    </section>
-    <section class="card"><h2>${ic('img')} Startbild</h2>
-      <div class="prev"><img src="${esc(startbild())}" alt="Aktuelles Startbild" id="prevImg"><span class="lbl glass">${eigenesBild?'Eigenes Bild':'Standardbild'}</span></div>
+`)}
+    ${setk('set-bild','img','Titelbild individualisieren',`<span id="sBild">${eigenesBild?'Eigenes Bild':'Standardbild'}</span>`,`      <div class="prev"><img src="${esc(startbild())}" alt="Aktuelles Startbild" id="prevImg"><span class="lbl glass">${eigenesBild?'Eigenes Bild':'Standardbild'}</span></div>
       <div class="btns two"><button class="btn sec" data-act="bild-waehlen">${ic('ul')} Eigenes Bild wählen</button><button class="btn sec" data-act="bild-reset" ${eigenesBild?'':'disabled style="opacity:.5"'}>${ic('reset')} Standardbild</button></div>
-    </section>
-    <section class="card" id="offline"><h2>${ic('cloud')} Offline nutzen</h2>
-      <p class="hint">Speichert Bilder und Audios auf diesem Gerät, damit Klarkommen auch ohne Internet läuft. Am besten im WLAN.</p>
+`)}
+    ${setk('offline','cloud','Offline nutzen','<span id="sOff">Prüfe …</span>',`      <p class="hint">Speichert Bilder und Audios auf diesem Gerät, damit Klarkommen auch ohne Internet läuft. Am besten im WLAN.</p>
       <div class="ostat"><span id="oStat">Prüfe …</span><span id="oSize"></span></div>
       <div class="bar2"><i id="oBar"></i></div>
       <div class="btns" style="margin-top:12px"><button class="btn block" data-act="offline-laden" id="oBtn">${ic('dl')} Alles offline speichern</button><button class="btn sec block" data-act="offline-abbruch" id="oAbbr" hidden>Abbrechen</button></div>
@@ -1125,19 +1146,27 @@ async function renderEinstellungen(app){
       <div class="sep"></div>
       <p class="hint">Hakt die App, obwohl du online bist? <b>App neu laden</b> leert den gesamten App-Zwischenspeicher (inkl. Offline-Dateien) und lädt Klarkommen neu. Fortschritt und Einstellungen bleiben.</p>
       <button class="btn ghost block" data-act="offline-reset">${ic('reset')} App neu laden (bei Problemen)</button>
-    </section>
-    ${anleitungenHtml()}
-    <section class="card"><h2>${ic('save')} Sichern &amp; Übertragen</h2>
-      <p class="hint">Exportiere deinen Fortschritt und deine Anpassungen als Datei – zum Sichern oder für ein anderes Gerät.</p>
+`)}
+    ${setk('set-sichern','save','Sichern &amp; Übertragen','Exportieren · Importieren',`      <p class="hint">Exportiere deinen Fortschritt und deine Anpassungen als Datei – zum Sichern oder für ein anderes Gerät.</p>
       <div class="btns two"><button class="btn sec" data-act="export">${ic('dl')} Exportieren</button><button class="btn sec" data-act="import">${ic('ul')} Importieren</button></div>
       <div class="sep"></div>
       <button class="btn bad block" data-act="fortschritt-reset">${ic('reset')} Fortschritt zurücksetzen</button>
-    </section>
-    <section class="card"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
-    <section class="card"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
+`)}
+    ${setk('anleitungen','info','Anleitungen','Installieren · iPhone-Tipps',anleitungenHtml())}
     <p style="color:var(--brand-muted);font-size:.8rem;text-align:center">App-Version ${APP_VERSION} · Inhalte v${MED.version||0}</p>
   </div>${footer()}</div>`;
   offlineStatus();
+  let offen = []; try{ offen = (sessionStorage.getItem('kk_set_offen')||'').split(',').filter(Boolean); }catch(e){}
+  app.querySelectorAll('details.set').forEach(d=>{
+    if(offen.includes(d.id)) d.open = true;
+    d.addEventListener('toggle', ()=>{
+      const l = [...app.querySelectorAll('details.set[open]')].map(x=>x.id);
+      try{ sessionStorage.setItem('kk_set_offen', l.join(',')); }catch(e){}
+    });
+  });
+}
+function setk(id, icon, titel, sub, body){
+  return `<details class="acc set" id="${id}"><summary><span class="iconbtn">${ic(icon)}</span><span class="k">${titel}<small>${sub}</small></span>${ic('down','chv')}</summary><div class="acb">${body}</div></details>`;
 }
 /* spec/01 §C.9 + spec/03 – Über-Seite im GetCon-Design (dunkel), Kontakt: E-Mail · WhatsApp · Website */
 function renderUeber(app){
@@ -1474,6 +1503,8 @@ let oAbort = null;
 async function offlineStatus(){
   const st = document.getElementById('oStat'); if(!st) return;
   const z = await offlineZaehlen();
+  const so = document.getElementById('sOff');
+  if(so) so.textContent = (z.gesamt && z.n>=z.gesamt) ? 'Alles gespeichert' : (z.n ? `${z.gesamt-z.n} Dateien fehlen · ca. ${fmtMB(z.totalBytes-z.bytes)}` : 'Noch nicht gespeichert');
   st.innerHTML = `Offline verfügbar: <b>${z.n} von ${z.gesamt}</b> Dateien`;
   document.getElementById('oSize').textContent = `${fmtMB(z.bytes)} / ${fmtMB(z.totalBytes)}`;
   document.getElementById('oBar').style.width = (z.gesamt? z.n/z.gesamt*100 : 0)+'%';
@@ -1601,7 +1632,7 @@ function anleitungenHtml(){
   const tot = offlineListe().reduce((a,f)=>a+(f.bytes||0),0);
   const acc = (id, icon, t, body) => `<details class="acc anl" id="anl-${id}"><summary>${ic(icon)}<span>${t}</span>${ic('down','chv')}</summary><div class="acb">${body}</div></details>`;
   const instBtn = (instPrompt && !istStandalone()) ? `<button class="btn block" data-act="inst-prompt">${ic('dl')} App jetzt installieren</button>` : '';
-  return `<section class="anl-sec" id="anleitungen"><h2 class="anl-h">${ic('info')} Anleitungen</h2><p class="hint">Kurz erklärt – zum Aufklappen.</p>
+  return `<p class="hint" style="margin-top:0">Kurz erklärt – zum Aufklappen.</p>
   ${acc('home','plusbox','App auf den Startbildschirm',
     `<h3>iPhone / iPad</h3><ol><li>Öffne Klarkommen in <strong>Safari</strong>.</li><li>Tippe auf <strong>Teilen</strong> ${sh} – je nach iOS-Version direkt in der Leiste oder erst über „…“.</li><li>Wähle <strong>„Zum Home-Bildschirm“</strong> (evtl. etwas nach unten scrollen).</li><li>Tippe auf <strong>„Hinzufügen“</strong>.</li></ol>
     <p class="anl-n">In anderen Browsern auf dem iPhone geht das teils auch über „Teilen“. Klappt es nicht, öffne den Link in Safari.</p>
@@ -1609,7 +1640,7 @@ function anleitungenHtml(){
     <p class="anl-n">Andere Browser (z. B. Samsung Internet) haben einen ähnlichen Menüpunkt.</p>
     <p>Danach startest du Klarkommen über das Icon – ohne Adressleiste, wie eine App.</p>`)}
   ${acc('offline','cloud','Offline speichern',
-    `<ol><li>Verbinde dich mit dem <strong>WLAN</strong> (insgesamt ca. ${fmtMB(tot)}).</li><li>Tippe oben unter <strong>Offline nutzen</strong> auf „Alles offline speichern“.</li><li>Warte, bis dort „Offline verfügbar: ${offlineListe().length} von ${offlineListe().length}“ steht.</li></ol>
+    `<ol><li>Verbinde dich mit dem <strong>WLAN</strong> (insgesamt ca. ${fmtMB(tot)}).</li><li>Tippe unter <strong>Offline nutzen</strong> auf „Alles offline speichern“.</li><li>Warte, bis dort „Offline verfügbar: ${offlineListe().length} von ${offlineListe().length}“ steht.</li></ol>
     <h3>Wichtig fürs iPhone</h3><p>Die App auf dem Home-Bildschirm hat einen <strong>eigenen Speicher</strong>, getrennt von Safari. Füge Klarkommen deshalb <strong>zuerst</strong> zum Home-Bildschirm hinzu, öffne es über das Icon und speichere <strong>dort</strong> offline. Was du vorher in Safari gespeichert hast, ist in der App nicht da – auch dein Fortschritt nicht.</p>
     <p class="anl-n">Prüfe vor dem Workshop oder unterwegs kurz den Offline-Status. Wird der Speicher knapp, kann das Handy gespeicherte Dateien selbst wieder entfernen.</p>`)}
   ${acc('loeschen','trash','Offline-Dateien löschen',
@@ -1625,8 +1656,7 @@ function anleitungenHtml(){
   ${acc('entfernen','x','App entfernen',
     `<h3>iPhone / iPad</h3><ol><li>Icon auf dem Home-Bildschirm <strong>lange drücken</strong>.</li><li><strong>„App entfernen“</strong> wählen (je nach iOS-Version z. B. auch „Lesezeichen löschen“) und bestätigen.</li></ol>
     <h3>Android</h3><ol><li>Icon <strong>lange drücken</strong>.</li><li><strong>„Deinstallieren“</strong> bzw. <strong>„Entfernen“</strong> wählen (je nach Gerät z. B. auch durch Ziehen auf „Deinstallieren“) und bestätigen.</li></ol>
-    <p class="anl-n">Fortschritt behalten? Vorher unter „Sichern &amp; Übertragen“ exportieren. Speicher freigeben? Vorher die Offline-Dateien löschen – je nach Gerät bleiben sie sonst im Browser liegen.</p>`)}
-  </section>`;
+    <p class="anl-n">Fortschritt behalten? Vorher unter „Sichern &amp; Übertragen“ exportieren. Speicher freigeben? Vorher die Offline-Dateien löschen – je nach Gerät bleiben sie sonst im Browser liegen.</p>`)}`;
 }
 /* ================================================================
    7. Sperre, Dialoge, Toast – spec/01 §C.3, §D
@@ -1709,9 +1739,9 @@ document.addEventListener('click', async e=>{
   else if(act==='zu-offline'){ sessionStorageSet('kk_scroll','offline'); location.hash = '#/einstellungen'; }
   else if(act==='titel-speichern'){
     const t = document.getElementById('inTitel').value.trim(), u = document.getElementById('inUnter').value.trim();
-    D.anpassung.titel = (t && t!==BRAND.titelStandard) ? t : null; D.anpassung.untertitel = (u && u!==BRAND.untertitelStandard) ? u : null; saveData(); toast('Gespeichert.');
+    D.anpassung.titel = (t && t!==BRAND.titelStandard) ? t : null; D.anpassung.untertitel = (u && u!==BRAND.untertitelStandard) ? u : null; saveData(); { const e=document.getElementById('sTitel'); if(e) e.textContent = titel(); } toast('Gespeichert.');
   }
-  else if(act==='titel-reset'){ D.anpassung.titel = null; D.anpassung.untertitel = null; saveData(); document.getElementById('inTitel').value = BRAND.titelStandard; document.getElementById('inUnter').value = BRAND.untertitelStandard; toast('Auf Standard zurückgesetzt.'); }
+  else if(act==='titel-reset'){ D.anpassung.titel = null; D.anpassung.untertitel = null; saveData(); document.getElementById('inTitel').value = BRAND.titelStandard; document.getElementById('inUnter').value = BRAND.untertitelStandard; { const e=document.getElementById('sTitel'); if(e) e.textContent = titel(); } toast('Auf Standard zurückgesetzt.'); }
   else if(act==='bild-waehlen'){ document.getElementById('fileBild').click(); }
   else if(act==='bild-reset'){ await imgDel('startbild'); D.anpassung.startbildId = null; saveData(); await ladeStartbild(); toast('Standardbild wiederhergestellt.'); route(); }
   else if(act==='offline-laden'){ offlineLaden(); }
