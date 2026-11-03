@@ -44,147 +44,89 @@
   ],
   "schnellhilfe": [
     "sigh",
-    "mini-reset",
-    "anker"
+    "mini-reset"
   ],
-  "usecases": [
+  "uebungen": [
     {
-      "id": "akut",
-      "titel": "Ich bin gerade gestresst",
-      "untertitel": null,
-      "icon": "puls",
-      "tools": [
-        "mini-reset",
-        "sigh",
-        "anker",
-        "5-sinne"
+      "id": "mini-reset",
+      "punkte": [
+        "Sofort-Reset in zehn Sekunden",
+        "Wenn du gerade gestresst bist",
+        "Wenn alles gerade zu viel ist"
       ]
     },
     {
-      "id": "karussell",
-      "titel": "Gedankenkarussell – ich grüble",
-      "untertitel": null,
-      "icon": "karussell",
-      "tools": [
-        "478",
-        "einstein",
-        "5-sinne"
+      "id": "sigh",
+      "punkte": [
+        "Baut akuten Stress und Frust ab",
+        "Löst innere Anspannung",
+        "Vor einer Prüfung oder einem Auftritt"
       ]
     },
     {
-      "id": "schlafen",
-      "titel": "Zum Abschalten & Einschlafen",
-      "untertitel": null,
-      "icon": "mond",
-      "tools": [
-        "478",
-        "einstein",
-        "5-sinne",
-        "safe-place",
-        "dankbarkeit"
+      "id": "5-sinne",
+      "punkte": [
+        "Wenn dein Stresspegel steigt",
+        "Wenn das Gedankenkarussell dreht",
+        "Wenn du an einem Problem feststeckst"
       ]
     },
     {
-      "id": "pruefung",
-      "titel": "Vor einer Prüfung oder einem Auftritt",
-      "untertitel": null,
-      "icon": "ziel",
-      "tools": [
-        "sigh",
-        "anker",
-        "pitching",
-        "einstein",
-        "5-sinne"
+      "id": "478",
+      "punkte": [
+        "Für tiefe Beruhigung",
+        "Stoppt das Gedankenkarussell",
+        "Zur Vorbereitung auf den Schlaf"
       ]
     },
     {
-      "id": "kritiker",
-      "titel": "Meine innere Stimme macht mich runter",
-      "untertitel": null,
-      "icon": "stimme",
-      "tools": [
-        "pitching",
-        "einstein"
+      "id": "safe-place",
+      "punkte": [
+        "Innerer Ort, an dem du dich sicher fühlst",
+        "Zum Auftanken und zur Ruhe kommen",
+        "Zum Abschalten und Einschlafen"
       ]
     },
     {
-      "id": "rueckschlag",
-      "titel": "Rückschlag, Frust, Vergleichen",
-      "untertitel": null,
-      "icon": "regen",
-      "tools": [
-        "leitfragen",
-        "dankbarkeit"
+      "id": "anker",
+      "punkte": [
+        "Ruhe per Daumen und Zeigefinger",
+        "Vor einer Prüfung, in stressigen Momenten",
+        "Baut auf „Dein sicherer Ort“ auf"
       ]
     },
     {
-      "id": "zuviel",
-      "titel": "Alles ist gerade zu viel",
-      "untertitel": null,
-      "icon": "welle",
-      "tools": [
-        "mini-reset",
-        "sigh",
-        "5-sinne"
+      "id": "einstein",
+      "punkte": [
+        "Dem Grübeln einen Namen geben",
+        "Viele Gedanken gleichzeitig, kein klarer Anfang"
       ]
     },
     {
-      "id": "auftanken",
-      "titel": "Ich will auftanken & zur Ruhe kommen",
-      "untertitel": null,
-      "icon": "akku",
-      "tools": [
-        "anker",
-        "478",
-        "safe-place"
+      "id": "pitching",
+      "punkte": [
+        "Wenn eine innere Stimme dich runtermacht",
+        "Die innere Stimme lächerlich machen",
+        "Vor einer Prüfung oder einem Auftritt"
+      ]
+    },
+    {
+      "id": "leitfragen",
+      "punkte": [
+        "Bei Rückschlag, Frust oder Vergleichen",
+        "Zwei lösungsorientierte Fragen",
+        "Lenkt den Blick vom Problem auf Chancen"
+      ]
+    },
+    {
+      "id": "dankbarkeit",
+      "punkte": [
+        "Drei Dinge am Abend",
+        "Programmiert deinen Fokus dauerhaft um",
+        "Einfach und gut erforscht"
       ]
     }
   ],
-  "filter": {
-    "dauer": [
-      {
-        "id": "1",
-        "label": "bis 1 min",
-        "max": 1
-      },
-      {
-        "id": "5",
-        "label": "bis 5 min",
-        "max": 5
-      },
-      {
-        "id": "15",
-        "label": "bis 15 min",
-        "max": 15
-      },
-      {
-        "id": "routine",
-        "label": "Routine"
-      }
-    ],
-    "art": [
-      {
-        "id": "atem",
-        "label": "Atem"
-      },
-      {
-        "id": "sinne",
-        "label": "Körper & Sinne"
-      },
-      {
-        "id": "audio",
-        "label": "Hören"
-      },
-      {
-        "id": "denken",
-        "label": "Kopf"
-      },
-      {
-        "id": "reflexion",
-        "label": "Schreiben & Reflexion"
-      }
-    ]
-  },
   "tools": [
     {
       "id": "sigh",
@@ -196,11 +138,6 @@
       "dauerQuelle": "notion",
       "routine": false,
       "art": "atem",
-      "usecases": [
-        "akut",
-        "pruefung",
-        "zuviel"
-      ],
       "herkunft": "k07",
       "herkunftSlide": null,
       "header": null,
@@ -229,11 +166,6 @@
       "dauerQuelle": "notion",
       "routine": false,
       "art": "atem",
-      "usecases": [
-        "karussell",
-        "schlafen",
-        "auftanken"
-      ],
       "herkunft": "k07",
       "herkunftSlide": null,
       "header": null,
@@ -262,10 +194,6 @@
       "dauerQuelle": null,
       "routine": false,
       "art": "audio",
-      "usecases": [
-        "schlafen",
-        "auftanken"
-      ],
       "herkunft": "k07",
       "herkunftSlide": null,
       "header": null,
@@ -348,11 +276,6 @@
       "dauerQuelle": null,
       "routine": false,
       "art": "sinne",
-      "usecases": [
-        "akut",
-        "pruefung",
-        "auftanken"
-      ],
       "herkunft": "k07",
       "herkunftSlide": null,
       "header": null,
@@ -386,13 +309,6 @@
       "dauerQuelle": "notion",
       "routine": false,
       "art": "sinne",
-      "usecases": [
-        "akut",
-        "karussell",
-        "schlafen",
-        "pruefung",
-        "zuviel"
-      ],
       "herkunft": "k01",
       "herkunftSlide": "mindhack",
       "header": null,
@@ -495,10 +411,6 @@
       "dauerQuelle": "notion",
       "routine": true,
       "art": "sinne",
-      "usecases": [
-        "akut",
-        "zuviel"
-      ],
       "herkunft": "k01",
       "herkunftSlide": "mindhack",
       "header": null,
@@ -540,9 +452,6 @@
       "dauerQuelle": null,
       "routine": false,
       "art": "denken",
-      "usecases": [
-        "rueckschlag"
-      ],
       "herkunft": "k03",
       "herkunftSlide": "mindhack",
       "header": null,
@@ -631,10 +540,6 @@
       "dauerQuelle": "notion",
       "routine": true,
       "art": "reflexion",
-      "usecases": [
-        "schlafen",
-        "rueckschlag"
-      ],
       "herkunft": "k03",
       "herkunftSlide": "mission",
       "header": null,
@@ -676,10 +581,6 @@
       "dauerQuelle": null,
       "routine": false,
       "art": "denken",
-      "usecases": [
-        "pruefung",
-        "kritiker"
-      ],
       "herkunft": "k04",
       "herkunftSlide": "mindhack",
       "header": null,
@@ -734,12 +635,6 @@
       "dauerQuelle": null,
       "routine": false,
       "art": "denken",
-      "usecases": [
-        "karussell",
-        "schlafen",
-        "pruefung",
-        "kritiker"
-      ],
       "herkunft": "k04",
       "herkunftSlide": "mindhack",
       "header": null,
@@ -826,20 +721,15 @@
     }
   ],
   "hilfe": {
-    "titel": "Noch ein Wort, falls du mehr brauchst",
+    "titel": "Wenn’s mehr ist: Telefonseelsorge & Hilfe",
     "bloecke": [
       {
         "typ": "absatz",
-        "text": "Die Tools in diesem Kapitel sind für deinen Alltag gemacht – für Momente, in denen es stressig wird, der Kopf nicht abschalten will oder du einfach mal durchatmen musst."
+        "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da – auch per Chat oder Mail. **Im Notfall: 112.**"
       },
       {
         "typ": "absatz",
-        "text": "Falls du merkst, dass Ängste dich regelmäßig begleiten – nicht nur in einzelnen Stressmomenten, sondern als ständiger Begleiter, der dich einschränkt – dann bist du damit nicht allein. Dann lohnt es sich, dir professionelle Unterstützung zu holen, zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Nicht weil etwas mit dir nicht stimmt, sondern weil es für unterschiedliche Herausforderungen unterschiedlich starke Werkzeuge braucht."
-      },
-      {
-        "typ": "callout",
-        "art": "wichtig",
-        "text": "Falls du gerade das Gefühl hast, dass es dir wirklich nicht gut geht, sprich mit jemandem. Eine Vertrauensperson, ein Arzt oder die Telefonseelsorge: **0800 111 0 111**, **0800 111 0 222** oder **116 123** – rund um die Uhr, kostenlos. Auch per Chat oder Mail: [telefonseelsorge.de](https://www.telefonseelsorge.de). **Im Notfall: 112.** Stärke zeigt sich auch darin, sich Unterstützung zu holen."
+        "text": "Begleiten dich Ängste oder Druck dauerhaft, hol dir professionelle Unterstützung – zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Stärke zeigt sich auch darin, sich Unterstützung zu holen."
       }
     ],
     "kontakte": [

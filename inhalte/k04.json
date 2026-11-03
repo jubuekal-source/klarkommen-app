@@ -293,40 +293,6 @@
               "text": "Auf der nächsten Slide bekommst du zwei konkrete Werkzeuge, um genau das in Echtzeit zu tun: die **Pitching-Technik** (für eine klar hörbare innere Stimme) und die **Einstein-Technik** (für diffuses Grübeln). Beide bauen auf genau der Wissenschaft auf, die du gerade gelesen hast."
             }
           ]
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Quellenverzeichnis"
-        },
-        {
-          "typ": "quelle",
-          "text": "Baumeister, R. F. et al. (2001) Bad is stronger than good. *Review of General Psychology*, 5(4), 323–370.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "Killingsworth, M. A. & Gilbert, D. T. (2010) A wandering mind is an unhappy mind. *Science*, 330(6006), 932.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "Wegner, D. M. et al. (1987) Paradoxical effects of thought suppression. *Journal of Personality and Social Psychology*, 53(1), 5–13.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "Masuda, A., Hayes, S. C. et al. (2004) Cognitive defusion and self-relevant negative thoughts: Examining the impact of a ninety year old technique. *Behaviour Research and Therapy*, 42(4), 477–485.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "Kross, E. et al. (2014) Self-talk as a regulatory mechanism: How you do it matters. *Journal of Personality and Social Psychology*, 106(2), 304–324.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "Hayes, S. C. (2004) Acceptance and Commitment Therapy, Relational Frame Theory, and the Third Wave of Behavioral and Cognitive Therapies. *Behavior Therapy*, 35(4), 639–665.",
-          "url": null
         }
       ]
     },
@@ -603,6 +569,35 @@
       "titel": "Quellen & Hintergrund",
       "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Brain Fact: Gedankenflut & Warnsystem:"
+        },
+        {
+          "typ": "quelle",
+          "text": "Baumeister, R. F. et al. (2001) Bad is stronger than good. *Review of General Psychology*, 5(4), 323–370.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Killingsworth, M. A. & Gilbert, D. T. (2010) A wandering mind is an unhappy mind. *Science*, 330(6006), 932.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Wegner, D. M. et al. (1987) Paradoxical effects of thought suppression. *Journal of Personality and Social Psychology*, 53(1), 5–13.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Masuda, A., Hayes, S. C. et al. (2004) Cognitive defusion and self-relevant negative thoughts: Examining the impact of a ninety year old technique. *Behaviour Research and Therapy*, 42(4), 477–485.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Kross, E. et al. (2014) Self-talk as a regulatory mechanism: How you do it matters. *Journal of Personality and Social Psychology*, 106(2), 304–324.",
+          "url": null
+        },
         {
           "typ": "ueberschrift",
           "text": "Kognitive Defusion (Einstein-Technik):"
