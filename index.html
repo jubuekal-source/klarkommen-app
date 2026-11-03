@@ -455,6 +455,14 @@ details.acc.hilfe{padding:0;margin:30px 0 10px;border-radius:16px}
 details.acc.hilfe>summary>svg.i:first-child{color:var(--brand-ok)}
 details.acc.hilfe .acb{padding:0 16px 14px}
 details.acc.hilfe .btn{margin-top:8px}
+/* v1.3.4: Hilfe-Buttons – gleich breit, gleich hoch, sauber untereinander, nichts abgeschnitten (auch 360 px) */
+details.acc.hilfe .hbs{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:14px}
+details.acc.hilfe .hbs .btn{margin:0;width:100%;min-width:0;min-height:64px;padding:10px 16px;justify-content:flex-start;text-align:left;gap:14px}
+details.acc.hilfe .hbs .btn svg.i{flex:none}
+.hbt{display:flex;flex-direction:column;min-width:0;gap:1px}
+.hbt small{font-size:.8rem;font-weight:500;color:var(--brand-text-2)}
+.hbt b{font-size:1.06rem;line-height:1.25;overflow-wrap:anywhere;word-break:break-word}
+.hbt b.nw{white-space:nowrap}
 /* spec/05 C3: Übungsliste – Titel + kurze Statements, ruhig, ohne Filter */
 .trow.ub{align-items:flex-start}
 .trow.ub .ti{margin-top:2px}
@@ -675,7 +683,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.3';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.4';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -868,7 +876,7 @@ function parse(h){
   if(p[0]==='k' && p[1]){
     /* spec/02 §3 – Toolbox-Routen: u/<usecase> · tool/<id> (Alias t/<id>) · alle?dauer=&art= */
     if(p[2]==='u' && p[3]) return {name:'tbuc', kap:p[1], uc:p[3]};
-    if((p[2]==='tool'||p[2]==='t') && p[3]) return {name:'tbtool', kap:p[1], tool:p[3], von:q.u||q.von||null};
+    if((p[2]==='tool'||p[2]==='t') && p[3]) return {name:'tbtool', kap:p[1], tool:p[3], von:q.u||q.von||null, anker:q.a||null};
     if(p[2]==='alle') return {name:'tballe', kap:p[1], q};
     return p[2] ? {name:'slide', kap:p[1], slide:p[2]} : {name:'kap', kap:p[1]};
   }
@@ -910,6 +918,7 @@ async function route(){
     else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
+  if(r.name==='tbtool' && r.anker){ const el = document.getElementById('h-'+r.anker); if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 14)); } }   /* v1.3.4 */
   const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
   if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ for(let q=o; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; } o.scrollIntoView({block:'start'}); } }
 }
@@ -1018,7 +1027,7 @@ function blocks(arr, ctx){
     const path = ctx.path+'/'+bi;
     switch(b.typ){
       case 'absatz': h += `<p>${inl(b.text)}</p>`; break;
-      case 'ueberschrift': h += `<h2>${inl(b.text)}</h2>`; break;
+      case 'ueberschrift': h += `<h2${b.id?` id="h-${esc(b.id)}"`:''}>${inl(b.text)}</h2>`; break;   /* v1.3.4: optionale id → Sprungziel (z. B. #/k/07/tool/safe-place?a=anker) */
       case 'liste': { const t = b.geordnet?'ol':'ul'; h += `<${t}>${(b.punkte||[]).map(p=>`<li>${inl(p)}</li>`).join('')}</${t}>`; break; }
       case 'checkliste': h += `<ul class="check">${(b.punkte||[]).map((p,i)=>{ const key=path+'/'+i; return `<li><label><input type="checkbox" data-check="${esc(key)}" ${D.checks[key]?'checked':''}><span class="bx">${ic('check')}</span><span>${inl(p)}</span></label></li>`; }).join('')}</ul>`; break;
       case 'zitat': h += `<blockquote>${inl(b.text)}${b.quelle?`<cite>– ${inl(b.quelle)}</cite>`:''}</blockquote>`; break;
@@ -1256,12 +1265,13 @@ function tbHilfe(T){
   const bl = (H.bloecke && H.bloecke.length) ? H.bloecke.map(b=>b.typ==='callout'?{typ:'absatz',text:b.text}:b)
     : [{typ:'absatz', text:'Falls du gerade das Gefühl hast, dass es dir wirklich nicht gut geht: Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist kostenlos und rund um die Uhr für dich da: **0800 111 0 111**.'}];
   const tel = H.telefon || (H.bloecke && H.bloecke.length ? null : '0800 111 0 111');
-  /* spec/02 §6: kontakte[] → tel:-Buttons, link → Website-Button */
-  const kt = Array.isArray(H.kontakte) && H.kontakte.length ? H.kontakte.map(c=>`<a class="btn sec block" href="tel:${esc(String(c.tel||c.nummer||'').replace(/[^\d+]/g,''))}">${ic('phone')} ${esc(c.label||'Anrufen')} · <span style="white-space:nowrap">${esc(c.nummer||c.tel||'')}</span></a>`).join('')
-    : (tel?`<a class="btn sec block" href="tel:${esc(tel.replace(/[^\d+]/g,''))}">${ic('phone')} Telefonseelsorge anrufen · <span style="white-space:nowrap">${esc(tel)}</span></a>`:'');
-  const lk = H.link && H.link.url ? `<a class="btn sec block" href="${esc(H.link.url)}" target="_blank" rel="noopener">${ic('ext')} ${esc(H.link.text||H.link.url)}</a>` : '';
+  /* spec/02 §6 / v1.3.4: kontakte[] → tel:-Buttons, link → Website-Button; alle gleich breit/hoch, zweizeilig (Beschriftung klein, Nummer/Adresse fett) */
+  const hb = (icon, label, main, href, ext, nw) => `<a class="btn sec block hb" href="${esc(href)}"${ext?' target="_blank" rel="noopener"':''}>${ic(icon)}<span class="hbt"><small>${esc(label)}</small><b${nw?' class="nw"':''}>${esc(main)}</b></span></a>`;
+  const kt = Array.isArray(H.kontakte) && H.kontakte.length ? H.kontakte.map(c=>hb('phone', c.label||'Anrufen', c.nummer||c.tel||'', 'tel:'+String(c.tel||c.nummer||'').replace(/[^\d+]/g,''), false, true)).join('')
+    : (tel?hb('phone','Telefonseelsorge anrufen', tel, 'tel:'+tel.replace(/[^\d+]/g,''), false, true):'');
+  const lk = H.link && H.link.url ? hb('ext', H.link.label||'Website', H.link.text||H.link.url, H.link.url, true, false) : '';
   /* spec/05 C2: zugeklapptes Akkordeon, Telefonseelsorge im Titel */
-  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:'k07/hilfe'})}</div>${kt}${lk}</div></details>`;
+  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}</div></details>`;
 }
 /* Tool-Zeile (Listen) */
 function tbZeile(k, T, t, von){
@@ -1328,6 +1338,8 @@ async function renderToolboxSub(app, r){
   const zurTb = `<a class="zurueck" href="#/k/${R}">${ic('up')} Zur Toolbox</a>`;
   /* spec/05 C3: Use-Case-Seiten und Filterseite „Alle Tools“ entfallen – alte Links führen zur Toolbox */
   if(r.name==='tbuc' || r.name==='tballe'){ location.replace('#/k/'+R); return; }
+  /* v1.3.4: „Dein Anker für den Alltag“ ist Teil von „Dein sicherer Ort“ – alte Route #/k/07/tool/anker springt zum Anker-Abschnitt */
+  if(r.tool==='anker' && !tbTool(T,'anker') && tbTool(T,'safe-place')){ location.replace(`#/k/${R}/tool/safe-place?a=anker`); return; }
   /* Toolkarte – spec/02 §2 „Toolkarte (Detailansicht)“ */
   const t = tbTool(T, r.tool);
   if(!t){ const g = (T.tools||[]).find(x=>x.id===r.tool); location.replace('#/k/'+R); if(g){ const gk=kapById(g.herkunft); if(gk) setTimeout(()=>openSperre(gk,g.titel),50); } return; }

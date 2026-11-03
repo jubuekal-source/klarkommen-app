@@ -566,12 +566,12 @@
     {
       "id": "quellen",
       "rubrik": "quellen",
-      "titel": "Quellen & Hintergrund",
+      "titel": "Quellen & Hintergrund: Der innere Kritiker",
       "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
-          "text": "Brain Fact: Gedankenflut & Warnsystem:"
+          "text": "Gedankenflut & Warnsystem:"
         },
         {
           "typ": "quelle",

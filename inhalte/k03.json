@@ -15,50 +15,12 @@
         {
           "typ": "experiment",
           "id": "gedanken-reframing",
-          "titel": "Zitrone, Luftballon & Gedanken-Klima-Check",
+          "titel": "Dein Körperexperiment",
           "text": ""
         },
         {
           "typ": "ueberschrift",
           "text": "Nochmal gezielt ausprobieren"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Zitronen-Experiment"
-        },
-        {
-          "typ": "absatz",
-          "text": "Kann ein reiner Gedanke deinen Körper steuern? Finde es heraus!"
-        },
-        {
-          "typ": "experiment",
-          "id": "gedanken-reframing",
-          "anker": "zitrone",
-          "titel": "Zitronen-Experiment",
-          "text": ""
-        },
-        {
-          "typ": "absatz",
-          "text": "**Zusammenfassung** Eine audio-geführte Visualisierung, die zeigt: Dein Gehirn unterscheidet nicht zwischen Vorstellung und Realität. Der Effekt (Speichelfluss durch bloße Vorstellung) ist bei 94% der Menschen messbar."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Luftballon-Experiment"
-        },
-        {
-          "typ": "absatz",
-          "text": "Deine Gedanken bewegen deinen Körper. Stell dich hin und erlebe es selbst."
-        },
-        {
-          "typ": "experiment",
-          "id": "gedanken-reframing",
-          "anker": "luftballon",
-          "titel": "Luftballon-Experiment",
-          "text": ""
-        },
-        {
-          "typ": "absatz",
-          "text": "**Zusammenfassung** Der ideomotorische Effekt: Allein durch Vorstellung hebt sich ein Arm und senkt sich der andere. Einfach nur durch Kopfkino. Das gleiche Prinzip, das bei Sorgen und Grübeln deinen ganzen Körper in den Stressmodus versetzt."
         },
         {
           "typ": "ueberschrift",
@@ -821,7 +783,7 @@
     {
       "id": "quellen",
       "rubrik": "quellen",
-      "titel": "Quellen & Hintergrund",
+      "titel": "Quellen & Hintergrund: Macht der Gedanken",
       "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {

@@ -75,7 +75,7 @@
       "id": "478",
       "punkte": [
         "Für tiefe Beruhigung",
-        "Stoppt das Gedankenkarussell",
+        "Hilft gegen das Gedankenkarussell",
         "Zur Vorbereitung auf den Schlaf"
       ]
     },
@@ -83,16 +83,8 @@
       "id": "safe-place",
       "punkte": [
         "Innerer Ort, an dem du dich sicher fühlst",
-        "Zum Auftanken und zur Ruhe kommen",
-        "Zum Abschalten und Einschlafen"
-      ]
-    },
-    {
-      "id": "anker",
-      "punkte": [
-        "Ruhe per Daumen und Zeigefinger",
-        "Vor einer Prüfung, in stressigen Momenten",
-        "Baut auf „Dein sicherer Ort“ auf"
+        "Zum Auftanken, Abschalten und Einschlafen",
+        "Inklusive Anker: Ruhe per Daumen und Zeigefinger"
       ]
     },
     {
@@ -232,6 +224,31 @@
           "titel": "Audio: Dein sicherer Ort",
           "art": "meditation",
           "status": "fertig"
+        },
+        {
+          "typ": "ueberschrift",
+          "id": "anker",
+          "text": "Dein Anker für den Alltag"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du hast gerade etwas Wichtiges getan: Dein Gehirn hat das Gefühl von Sicherheit und Ruhe mit einer einfachen Bewegung verknüpft – Daumen und Zeigefinger zusammendrücken."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Wichtig:** Je öfter du die Meditation wiederholst, desto stärker wird der Anker. In den ersten Tagen lohnt es sich, die Übung abends vor dem Einschlafen zu machen – auch nur 5 Minuten reichen. Dein Gehirn baut mit jeder Wiederholung eine stärkere Verbindung auf."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und noch etwas: Den sicheren Ort kannst du auch ohne Audio besuchen. Sobald du die Übung ein paar Mal gemacht hast, kennst du den Weg. Augen schließen, Atem vertiefen, ankommen. Dein Ort wartet."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Im Alltag nutzen:** Immer wenn du einen Moment der Ruhe brauchst – vor einer Prüfung, in einer stressigen Situation, wenn der Kopf nicht aufhört zu rattern – drücke einfach Daumen und Zeigefinger zusammen. Dein Körper erinnert sich an das Gefühl."
+        },
+        {
+          "typ": "absatz",
+          "text": "Den Anker **setzt** du immer in Ruhe, zusammen mit deinem sicheren Ort – nicht mitten im Stress. Im stressigen Moment **rufst** du ihn nur noch **ab**. Das wirkt, weil er mit dem Gefühl von Ruhe verknüpft ist; ohne diese Verbindung würde er den Stress mit abspeichern."
         }
       ],
       "mehr": [
@@ -264,39 +281,6 @@
       "audio": "k07-sicherer-ort",
       "experiment": null,
       "voraussetzung": null,
-      "status": "frei"
-    },
-    {
-      "id": "anker",
-      "titel": "Dein Anker für den Alltag",
-      "kurztitel": "Daumen und Zeigefinger",
-      "wofuer": "Immer wenn du einen Moment der Ruhe brauchst – vor einer Prüfung, in einer stressigen Situation, wenn der Kopf nicht aufhört zu rattern – drücke einfach Daumen und Zeigefinger zusammen. Dein Körper erinnert sich an das Gefühl.",
-      "dauerMin": null,
-      "dauerText": null,
-      "dauerQuelle": null,
-      "routine": false,
-      "art": "sinne",
-      "herkunft": "k07",
-      "herkunftSlide": null,
-      "header": null,
-      "bloecke": [
-        {
-          "typ": "absatz",
-          "text": "Du hast gerade etwas Wichtiges getan: Dein Gehirn hat das Gefühl von Sicherheit und Ruhe mit einer einfachen Bewegung verknüpft – Daumen und Zeigefinger zusammendrücken."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Wichtig:** Je öfter du die Meditation wiederholst, desto stärker wird der Anker. In den ersten Tagen lohnt es sich, die Übung abends vor dem Einschlafen zu machen – auch nur 5 Minuten reichen. Dein Gehirn baut mit jeder Wiederholung eine stärkere Verbindung auf."
-        },
-        {
-          "typ": "absatz",
-          "text": "Und noch etwas: Den sicheren Ort kannst du auch ohne Audio besuchen. Sobald du die Übung ein paar Mal gemacht hast, kennst du den Weg. Augen schließen, Atem vertiefen, ankommen. Dein Ort wartet."
-        }
-      ],
-      "mehr": [],
-      "audio": null,
-      "experiment": null,
-      "voraussetzung": "safe-place",
       "status": "frei"
     },
     {
@@ -739,23 +723,14 @@
         "tel": "08001110111"
       },
       {
-        "label": "Telefonseelsorge",
-        "nummer": "0800 111 0 222",
-        "tel": "08001110222"
-      },
-      {
-        "label": "Telefonseelsorge",
-        "nummer": "116 123",
-        "tel": "116123"
-      },
-      {
-        "label": "Notruf",
+        "label": "Im Notfall",
         "nummer": "112",
         "tel": "112"
       }
     ],
     "link": {
-      "text": "telefonseelsorge.de (Chat & Mail)",
+      "label": "Chat & Mail",
+      "text": "telefonseelsorge.de",
       "url": "https://www.telefonseelsorge.de"
     }
   },
