@@ -559,6 +559,66 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
 .getcon .back2{display:inline-flex;align-items:center;gap:8px;color:var(--gc-muted);text-decoration:none;min-height:44px;margin-top:6px}
 .getcon footer.foot{color:var(--gc-muted)}
 .getcon footer.foot a{color:var(--gc-muted)}
+
+/* ===== spec/06 ===== */
+/* §1 Kap. 7: „schon mal gemacht“ – neutrale Info, per Tipp umschaltbar */
+.gem{display:inline-flex;align-items:center;gap:4px;color:var(--brand-ok);white-space:nowrap}
+.trow small .gem svg.i{width:13px;height:13px;stroke-width:2.2}
+.trow.ub small.gemz{margin-top:2px}
+.tchip.gem{min-height:44px;background:transparent;border-style:dashed;color:var(--brand-text-2)}
+.tchip.gem.on{border-style:solid;border-color:rgba(125,211,192,.5);background:#163834;color:var(--brand-ok)}
+.tchip.gem svg.i{width:16px;height:16px}
+/* §5 Slide-Leiste: Rubrik + Position, Wisch-Hinweis (absolut, kein Layout-Sprung) */
+.bar .t .st2{display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:0}
+.bar .t .st2 b{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:1rem}
+.bar .t .st2 small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:.76rem;font-weight:500;color:var(--brand-text-2);margin-top:1px}
+.bar{position:sticky}
+.wisch{position:absolute;left:50%;top:calc(100% + 12px);transform:translate(-50%,-6px);opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none;
+  display:inline-flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);width:max-content;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(27,43,61,.94);border:1px solid var(--brand-line-2);
+  color:var(--brand-text);font-size:.86rem;font-weight:600;box-shadow:0 10px 26px -10px rgba(0,0,0,.8)}
+.wisch.on{opacity:1;transform:translate(-50%,0)}
+.wisch svg.i{width:18px;height:18px;flex:none}
+.wisch .wh{display:inline-flex;color:var(--brand-accent-soft);animation:wnudge 1.3s var(--ease) infinite}
+@keyframes wnudge{0%,100%{transform:translateX(4px)}50%{transform:translateX(-6px)}}
+/* §2 Hinweis „Als App auf den Startbildschirm“ – Bottom-Sheet, nicht modal */
+.inst{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 10px calc(10px + var(--sab));transform:translateY(110%);transition:transform .35s var(--ease);pointer-events:none}
+.inst.on{transform:none}
+.inst.on .in{pointer-events:auto}
+.inst[hidden]{display:none}
+.inst .in{position:relative;max-width:520px;margin:0 auto;background:#1b2b3d;border:1px solid var(--brand-line-2);border-radius:20px;padding:14px 14px 10px;box-shadow:0 -10px 40px -12px rgba(0,0,0,.85)}
+.inst .ix{position:absolute;top:4px;right:4px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--brand-text-2);border-radius:50%}
+.inst .ih{display:flex;gap:12px;align-items:center;padding-right:38px}
+.inst .ih .ti{width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(249,115,22,.14);color:var(--brand-accent-soft)}
+.inst .ih b{display:block;font-family:var(--brand-font-head);font-size:1.02rem;line-height:1.25}
+.inst .ih small{display:block;color:var(--brand-text-2);font-size:.82rem;line-height:1.3}
+.inst ol.ist{margin:10px 0 4px;padding-left:22px;font-size:.92rem;line-height:1.45}
+.inst ol.ist li{margin:4px 0}
+.inst .btn.block{margin:10px 0 2px;min-height:48px}
+.kbd{display:inline-flex;align-items:center;justify-content:center;width:26px;height:24px;border-radius:7px;background:var(--brand-card-2);border:1px solid var(--brand-line-2);vertical-align:-6px;color:var(--brand-text)}
+.kbd svg.i{width:16px;height:16px}
+.inst .inote{font-size:.82rem;color:var(--brand-text-2);margin:4px 0 0;line-height:1.4}
+.inst .ib{display:flex;gap:6px;align-items:center;justify-content:space-between;margin-top:6px;flex-wrap:wrap}
+.inst .ib button{white-space:nowrap}
+.inst .ib button{min-height:44px;padding:0 6px;font-size:.88rem;font-weight:600;color:var(--brand-text-2)}
+.inst .ib .lnk{color:var(--brand-accent-soft);text-decoration:underline;text-underline-offset:3px}
+body.inst-on footer.foot{padding-bottom:calc(300px + var(--sab))}
+/* §3 Anleitungen (Einstellungen) */
+.anl-sec{margin:26px 0 8px}
+.anl-h{font-size:1.18rem;display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.anl-h svg.i{color:var(--brand-accent-soft)}
+.anl-sec>.hint{color:var(--brand-text-2);font-size:.9rem;margin:0 0 6px}
+details.acc.anl{margin:10px 0}
+details.acc.anl .acb{padding:0 16px 10px}
+details.acc.anl .acb h3{font-size:1rem;margin:16px 0 6px}
+details.acc.anl .acb h3:first-child{margin-top:2px}
+details.acc.anl .acb ol,details.acc.anl .acb ul{font-size:.96rem;margin:0 0 .8em;padding-left:1.35em}
+details.acc.anl .acb li{margin:3px 0}
+details.acc.anl .acb p{font-size:.96rem}
+details.acc.anl .acb .anl-n{font-size:.88rem;color:var(--brand-text-2)}
+details.acc.anl .acb .btn{margin:4px 0 10px}
+/* §4 Offline-Dateien löschen */
+#offline .hint.odel{margin:8px 0 0;font-size:.86rem}
+#offline button[disabled]{opacity:.5;cursor:default}
 </style>
 </head>
 <body class="sv-b">
@@ -588,6 +648,7 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
   </div>
 </dialog>
 <div class="toast" id="toast" role="status"></div>
+<aside class="inst" id="inst" hidden aria-label="Als App auf den Startbildschirm"></aside>   <!-- spec/06 §2 -->
 <!-- spec/04 §4: Lightbox -->
 <div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bild in Vollansicht"><img id="lbImg" alt=""><button class="lbx" id="lbX" aria-label="Schließen"></button><div class="lbh">Mit zwei Fingern zoomen · Doppeltipp vergrößert</div></div>
 <input type="file" id="fileBild" accept="image/*" hidden>
@@ -598,7 +659,7 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.1';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.2';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -666,7 +727,13 @@ const IC = {
   phone:'<path d="M5 3.5h3.5l2 5-2.5 1.5a11 11 0 0 0 6 6l1.5-2.5 5 2V19a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/>',
   grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
   x:'<path d="M6 6l12 12M18 6 6 18"/>',   /* spec/04 §4 */
-  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9z"/>'
+  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9z"/>',
+  /* spec/06 */
+  share:'<path d="M12 14.5v-11M8 7.5l4-4 4 4"/><path d="M8 10.5H6v10h12v-10h-2"/>',
+  dots:'<circle cx="12" cy="5.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="18.5" r="1.4"/>',
+  plusbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/>',
+  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>',
+  circ:'<circle cx="12" cy="12" r="8"/>'
 };
 /* spec/01 §C.8 – Icon-Helfer */
 function ic(n, cls){ const fill = (n==='play'||n==='pause'); return `<svg class="i${fill?' f':''}${cls?' '+cls:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]||''}</svg>`; }
@@ -802,6 +869,7 @@ let curRoute = {name:'start'}, prevHash = null, lastStartScroll = 0;
 async function route(){
   const r = parse(location.hash);
   lbVerstecken();   /* spec/04 §4: Routenwechsel schließt die Lightbox */
+  instVerstecken();   /* spec/06 §2 */
   if(curRoute.name==='start') lastStartScroll = window.scrollY;
   const from = curRoute; curRoute = r;
   stopAudio();
@@ -820,7 +888,8 @@ async function route(){
     else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
-  if(r.name==='einstellungen' && sessionStorageGet('kk_scroll')==='offline'){ sessionStorageSet('kk_scroll',''); const o=document.getElementById('offline'); if(o) o.scrollIntoView({block:'start'}); }
+  const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
+  if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ if(o.tagName==='DETAILS') o.open = true; o.scrollIntoView({block:'start'}); } }
 }
 function sessionStorageGet(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
 function sessionStorageSet(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
@@ -832,11 +901,11 @@ function sessionStorageSet(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
 function footer(){ return `<footer class="foot"><a href="#/ueber"><b>Klarkommen</b> – ${esc(BRAND && BRAND.untertitelStandard || 'Mentale Stärke. Klare Richtung.')} · herausgegeben von <b>GetCon</b></a></footer>`; }
 /* App-Leiste für Unterseiten */
 function bar(titleHtml, extra=''){ return `<header class="bar"><div class="in"><a class="iconbtn" href="#/" aria-label="Startseite">${ic('home')}</a><div class="t">${titleHtml}</div><a class="iconbtn" href="#/einstellungen" aria-label="Einstellungen">${ic('sliders')}</a></div>${extra}</header>`; }
-function ringSvg(f){
+function ringSvg(f, wort='gelesen'){
   const C = 2*Math.PI*19; const p = f && f.n ? f.r/f.n : 0;
   const done = f && f.n && f.r===f.n;
   /* spec/04 §3: auch bei vollem Kapitel Text „n/n“ statt gefüllter Fläche; bei 0 kein Strich (sonst Punkt durch linecap) */
-  return `<div class="ring${done?' done':''}" aria-label="${f?`${f.r} von ${f.n} gelesen`:''}"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5"/>${p>0?`<circle class="pr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5" stroke-linecap="${done?'butt':'round'}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p)).toFixed(1)}"/>`:''}</svg><span>${f?`${f.r}/${f.n}`:''}</span></div>`;
+  return `<div class="ring${done?' done':''}" aria-label="${f?`${f.r} von ${f.n} ${wort}`:''}"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5"/>${p>0?`<circle class="pr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5" stroke-linecap="${done?'butt':'round'}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p)).toFixed(1)}"/>`:''}</svg><span>${f?`${f.r}/${f.n}`:''}</span></div>`;
 }
 /* spec/04 §9: optionaler Bildausschnitt je Kapitel aus kapitel.json (coverPos = Kachel, coverPosKopf = Kapitelkopf) */
 function coverPos(k, wo){ const v = (wo==='kopf' && k.coverPosKopf) || k.coverPos; return (typeof v==='string' && /^[\d.% a-z-]{1,40}$/.test(v)) ? ` style="object-position:${v}"` : ''; }
@@ -850,7 +919,7 @@ function tile(k){
   return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
     <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
     ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
-    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked)?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
+    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked)?`<span data-ring="${k.id}">${ringSvg(f, k.typ==='toolbox'?'schon gemacht':'gelesen')}</span>`:''}</span>
   </button>`;
 }
 /* spec/01 §C.2 – Startseite */
@@ -876,9 +945,10 @@ async function renderStart(app){
   html += `</div></section>${footer()}</div>`;
   app.innerHTML = html;
   offlinePill();
+  setTimeout(instZeigen, 900);   /* spec/06 §2 */
   /* Fortschrittsringe nachladen */
   for(const k of KAP.filter(k=>k.status==='frei')){
-    inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
+    inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k), k.typ==='toolbox'?'schon gemacht':'gelesen'); });
   }
 }
 /* spec/00 §2.2 – nächstes freies Kapitel */
@@ -976,7 +1046,7 @@ async function renderSlide(app, r){
   document.title = `${s.titel} · ${titel()}`;
   const segs = `<nav class="segs" aria-label="Etappen">${S.map((x,j)=>`<a href="#/k/${kapRouteId(k)}/${encodeURIComponent(x.id)}" data-rep="1" data-sid="${esc(x.id)}" class="${j===i?'cur':(D.gelesen[sKey(k,x)]?'r':'')}" aria-label="${esc(x.titel)}"></a>`).join('')}</nav>`;
   const ctx = {k, s, path:`${k.id}/${s.id}`};
-  let html = `<div class="view">${bar(`<b>${k.nr?`Kapitel ${k.nr}`:'Bonus'}</b> · ${i+1}/${S.length}`, segs)}
+  let html = `<div class="view">${bar(`<span class="st2"><b>${esc(rb.label)}</b><small>${k.nr?`Kapitel ${k.nr}`:'Bonus'} · Teil ${i+1} von ${S.length}</small></span>`, segs)}
     <div class="shead"><img src="${esc(s.header||k.cover)}" alt=""></div>
     <article class="wrap slide" id="slide"><div class="rubrik">${ic(rb.icon)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
@@ -992,7 +1062,22 @@ async function renderSlide(app, r){
   const end = app.querySelector('[data-endcard]');
   if(end && 'IntersectionObserver' in window){ const io = new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ markRead(k,s); io.disconnect(); } },{threshold:.6}); io.observe(end); }
   initAudios(app);
+  wischHinweis(app, !!next);   /* spec/06 §5 */
 }
+/* spec/06 §5: dezenter Wisch-Hinweis – max. 2× angezeigt, nach dem ersten echten Wischen nie wieder; verschwindet nach 4 s */
+const WISCH_KEY = 'klarkommen_wisch';
+function wischHinweis(app, hatNext){
+  if(!hatNext) return;
+  const v = lsGet(WISCH_KEY); if(v==='ok') return; const n = parseInt(v,10) || 0; if(n >= 2) return;
+  if(!(('ontouchstart' in window) || (navigator.maxTouchPoints||0) > 0)) return;
+  const b = app.querySelector('.bar'); if(!b) return;
+  lsSet(WISCH_KEY, String(n+1));
+  const h = document.createElement('div'); h.className = 'wisch'; h.setAttribute('aria-hidden','true');
+  h.innerHTML = `<span class="wh">${ic('hand')}</span><span>Nach links wischen: nächster Teil</span>`;
+  b.appendChild(h); requestAnimationFrame(()=>requestAnimationFrame(()=>h.classList.add('on')));
+  setTimeout(()=>wischWeg(false), 4000);
+}
+function wischWeg(ok){ if(ok) lsSet(WISCH_KEY,'ok'); document.querySelectorAll('.wisch').forEach(h=>{ h.classList.remove('on'); setTimeout(()=>h.remove(), 400); }); }
 /* spec/01 §C.1 – Experiment im Vollbild-iframe mit sticky Leiste */
 function renderExperiment(app, r){
   const t = sessionStorageGet('kk_xtitel') || ('Experiment: ' + r.id.replace(/[-_]/g,' ').replace(/^./,c=>c.toUpperCase()));
@@ -1005,7 +1090,7 @@ function renderExperiment(app, r){
 }
 /* Overlay schließen (Zurück-Button oder postMessage aus dem iframe) */
 function xSchliessen(){
-  const key = sessionStorageGet('kk_xkey'); if(key){ D.checks[key] = true; saveData(); }
+  const key = sessionStorageGet('kk_xkey'); if(key){ D.checks[key] = true; const tm = /^k\d+\/tool\/([^/]+)\//.exec(key); if(tm) D.toolbox.ausprobiert[tm[1]] = true; saveData(); }   /* spec/06 §1 */
   if(prevHash!==null && history.length>1) history.back(); else location.hash = sessionStorageGet('kk_xback') || '#/';
 }
 /* nach Rückkehr aus dem Experiment zur Karte scrollen statt nach oben */
@@ -1035,8 +1120,13 @@ async function renderEinstellungen(app){
       <div class="bar2"><i id="oBar"></i></div>
       <div class="btns" style="margin-top:12px"><button class="btn block" data-act="offline-laden" id="oBtn">${ic('dl')} Alles offline speichern</button><button class="btn sec block" data-act="offline-abbruch" id="oAbbr" hidden>Abbrechen</button></div>
       <div class="kv" id="oKv"></div>
-      <button class="btn bad block" data-act="offline-reset">${ic('reset')} Offline-Daten zurücksetzen</button>
+      <button class="btn bad block" data-act="offline-loeschen" id="oDel">${ic('trash')} Offline-Dateien löschen (Speicher freigeben)</button>
+      <p class="hint odel" id="oDelH"></p>
+      <div class="sep"></div>
+      <p class="hint">Hakt die App, obwohl du online bist? <b>App neu laden</b> leert den gesamten App-Zwischenspeicher (inkl. Offline-Dateien) und lädt Klarkommen neu. Fortschritt und Einstellungen bleiben.</p>
+      <button class="btn ghost block" data-act="offline-reset">${ic('reset')} App neu laden (bei Problemen)</button>
     </section>
+    ${anleitungenHtml()}
     <section class="card"><h2>${ic('save')} Sichern &amp; Übertragen</h2>
       <p class="hint">Exportiere deinen Fortschritt und deine Anpassungen als Datei – zum Sichern oder für ein anderes Gerät.</p>
       <div class="btns two"><button class="btn sec" data-act="export">${ic('dl')} Exportieren</button><button class="btn sec" data-act="import">${ic('ul')} Importieren</button></div>
@@ -1099,7 +1189,7 @@ function expKarte(b, path, L){
   L = L || expLabel(b, path);
   const key = `${path}/x/${b.id}`; const done = !!D.checks[key];
   const btn = expDa(b.id) ? `<a class="btn pulse" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}">${done?'Nochmal starten':L.start} ${ic('right')}</a>` : `<span class="btn sec" aria-disabled="true">${ic('clock')} ${esc(L.art)} folgt in Kürze</span>`;
-  return `<div class="exp" data-xk="${esc(key)}"><div class="art">${ic(L.icon)} ${esc(L.art)}${done?`<span class="xdone">${ic('check')} gemacht</span>`:''}</div><h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}${btn}</div>`;
+  return `<div class="exp" data-xk="${esc(key)}"><div class="art">${ic(L.icon)} ${esc(L.art)}${done && !/\/tool\//.test(path)?`<span class="xdone">${ic('check')} gemacht</span>`:''}</div><h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}${btn}</div>`;
 }
 /* mehrere Experimente nacheinander in einer Slide – spec/03 (Kap. 1 Einstieg) */
 function expSerie(serie, path){
@@ -1151,8 +1241,8 @@ function tbZeile(k, T, t, von){
     return `<li><button class="trow locked" data-act="sperre-tool" data-kap="${esc(t.herkunft||'')}" data-titel="${esc(t.titel)}"><span class="ti">${ic('lock')}</span><span class="tt"><b>${esc(t.titel)}</b><small>${hk&&hk.nr?`Kapitel ${hk.nr} · `:''}Vollversion</small></span></button></li>`;
   }
   const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null, ok = !!D.toolbox.ausprobiert[t.id];
-  const meta = [d?`${ic('clock')} ${esc(d)}`:'', esc(a.label), hk&&hk.nr?`Kap. ${hk.nr}`:'', t.audio?ic('head'):'', t.experiment?ic('flask'):''].filter(Boolean).join('<i>·</i>');
-  return `<li><a class="trow${ok?' ok':''}" href="${tbHref(k,t,von)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${tbKurz(t)?`<span class="kz">${esc(tbKurz(t))}</span>`:''}<small>${meta}</small></span>${ok?`<span class="tok" aria-label="ausprobiert">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
+  const meta = [d?`${ic('clock')} ${esc(d)}`:'', esc(a.label), hk&&hk.nr?`Kap. ${hk.nr}`:'', t.audio?ic('head'):'', t.experiment?ic('flask'):'', ok?`<span class="gem">${ic('check')} schon gemacht</span>`:''].filter(Boolean).join('<i>·</i>');
+  return `<li><a class="trow" href="${tbHref(k,t,von)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${tbKurz(t)?`<span class="kz">${esc(tbKurz(t))}</span>`:''}<small>${meta}</small></span><span class="chev">${ic('chev')}</span></a></li>`;   /* spec/06 §1 */
 }
 /* spec/05 C3: Reihenfolge aus T.uebungen (fehlende freie Tools hinten anhängen) + Übungskarte mit Statements */
 function tbReihe(T){
@@ -1163,7 +1253,8 @@ function tbReihe(T){
 function tbKarte(k, T, t){
   const u = (T.uebungen||[]).find(x=>x && x.id===t.id) || {}, a = tbArt(t), d = tbDauer(t), ok = !!D.toolbox.ausprobiert[t.id];
   const pk = (Array.isArray(u.punkte) && u.punkte.length) ? u.punkte : (tbKurz(t) ? [tbKurz(t)] : []);
-  return `<li><a class="trow ub${ok?' ok':''}" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}</span>${ok?`<span class="tok" aria-label="ausprobiert">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
+  /* spec/06 §1: Übungen sind wiederholbar – immer Pfeil, „schon gemacht“ nur als kleine neutrale Info */
+  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}${ok?`<small class="gemz"><span class="gem">${ic('check')} schon gemacht</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
 }
 const tbBeispiel = I => I.beispiel ? `<div class="beispiel">${ic('info')}<span>Beispielinhalt – die echten Tools folgen.</span></div>` : '';
 const tbFehler = I => I.fehler ? `<div class="call wichtig">${ic('warn')}<p>${navigator.onLine===false?'Die Toolsammlung konnte nicht geladen werden. Du bist offline – öffne Klarkommen einmal mit Internet.':'Die Toolsammlung wird gerade vorbereitet und folgt in Kürze.'}</p></div>` : '';
@@ -1173,7 +1264,7 @@ async function renderToolbox(app, k, head, eyebrow){
   const I = await tbDaten(k), T = I.data, fr = tbFrei(T), f = fortschritt(k) || {n:fr.length, r:0};
   const R = kapRouteId(k);
   let h = `<div class="view tb">${bar(`<b>${eyebrow}</b> · ${esc(k.titel)}`)}${head}<div class="wrap">${tbBeispiel(I)}${tbFehler(I)}`;
-  if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span><span>${ic('check')} ${f.r} ausprobiert</span></div>`;
+  if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span><span>${ic('check')} ${f.r} davon schon gemacht</span></div>`;
   if(T.intro && T.intro.length) h += `<div class="bl tbintro">${blocks(T.intro,{path:`${k.id}/intro`})}</div>`;
   /* Schnell-Hilfe */
   const sh = (T.schnellhilfe||[]).map(id=>tbTool(T,id)).filter(Boolean);
@@ -1228,13 +1319,12 @@ async function renderToolboxSub(app, r){
   let h = `<div class="view tb">${bar(`<b>Kapitel ${k.nr}</b> · Tool`)}${t.header?`<div class="shead"><img src="${esc(t.header)}" alt="" onerror="this.closest('.shead').remove()"></div>`:''}
     <article class="wrap slide tool">${tbBeispiel(I)}
     <div class="rubrik">${ic(a.icon)} Tool · ${esc(a.label)}</div><h1>${esc(t.titel)}</h1>${tbKurz(t)?`<p class="tkurz">${esc(tbKurz(t))}</p>`:''}
-    <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}</div>
+    <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}${gemChip(t.id, ok)}</div>
     ${t.wofuer?`<div class="wofuer"><span>Wofür</span><p>${inl(t.wofuer)}</p></div>`:''}
     <div class="bl">${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
     ${t.bloecke && t.bloecke.length?`<h2 class="soh">So geht’s</h2><div class="bl">${blocks(t.bloecke, ctx)}</div>`:''}
     ${t.mehr && t.mehr.length?`<div class="bl">${blocks(t.mehr, {...ctx, path:ctx.path+'/mehr'})}</div>`:''}
 
-    <button class="btn block probiert${ok?' on':''}" data-act="tb-probiert" data-tool="${esc(t.id)}" aria-pressed="${ok}">${ok?`${ic('check')} Ausprobiert`:`${ic('check')} Als „ausprobiert“ markieren`}</button>
     ${next?`<a class="weiter" href="${tbHref(k,next)}" data-rep="1"><span class="k"><span class="l">Nächstes Tool</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`:''}
     ${prev?`<a class="zurueck" href="${tbHref(k,prev)}" data-rep="1">${ic('up')} Vorheriges: ${esc(prev.titel)}</a>`:''}
     <a class="zurueck" href="#/k/${R}">${ic('up')} Zur Toolbox</a>
@@ -1244,13 +1334,14 @@ async function renderToolboxSub(app, r){
   initAudios(app);
 }
 /* „Ausprobiert“ umschalten – Fortschritt Kap. 7 (spec/02 §2) */
+/* spec/06 §1: ein einziger, kleiner Umschalter „Schon mal gemacht“ (neutral, kein „erledigt“) */
+const gemChip = (id, ok) => `<button class="tchip gem${ok?' on':''}" data-act="tb-probiert" data-tool="${esc(id)}" aria-pressed="${ok}">${ic(ok?'check':'circ')} Schon mal gemacht</button>`;
 function tbProbiert(el){
   const id = el.dataset.tool; const on = !D.toolbox.ausprobiert[id];
   if(on) D.toolbox.ausprobiert[id] = true; else delete D.toolbox.ausprobiert[id];
   saveData();
-  el.classList.toggle('on', on); el.setAttribute('aria-pressed', on);
-  el.innerHTML = on ? `${ic('check')} Ausprobiert` : `${ic('check')} Als „ausprobiert“ markieren`;
-  toast(on ? 'Als ausprobiert markiert.' : 'Markierung entfernt.');
+  el.outerHTML = gemChip(id, on);
+  toast(on ? 'Gemerkt. Wiederholen lohnt sich – jederzeit.' : 'Markierung entfernt.');
 }
 
 /* ================================================================
@@ -1386,6 +1477,8 @@ async function offlineStatus(){
   st.innerHTML = `Offline verfügbar: <b>${z.n} von ${z.gesamt}</b> Dateien`;
   document.getElementById('oSize').textContent = `${fmtMB(z.bytes)} / ${fmtMB(z.totalBytes)}`;
   document.getElementById('oBar').style.width = (z.gesamt? z.n/z.gesamt*100 : 0)+'%';
+  const del = document.getElementById('oDel'), delH = document.getElementById('oDelH');   /* spec/06 §4 */
+  if(del){ del.disabled = !z.n || !!oAbort; delH.textContent = z.n ? `Belegt: ca. ${fmtMB(z.bytes)} in ${z.n} Dateien.` : 'Zurzeit sind keine Offline-Dateien gespeichert.'; }
   const btn = document.getElementById('oBtn');
   if(!oAbort){
     const rest = z.gesamt - z.n, restB = z.totalBytes - z.bytes;
@@ -1404,6 +1497,7 @@ async function offlineLaden(){
   try{ if(navigator.storage && navigator.storage.persist) await navigator.storage.persist(); }catch(e){}
   const btn = document.getElementById('oBtn'), ab = document.getElementById('oAbbr'), st = document.getElementById('oStat'), barEl = document.getElementById('oBar');
   oAbort = new AbortController(); btn.disabled = true; btn.classList.remove('pulse'); ab.hidden = false;
+  const del = document.getElementById('oDel'); if(del) del.disabled = true;   /* spec/06 §4 */
   const F = offlineListe(); const c = await caches.open(MEDIEN_CACHE);
   let fertig = 0, fehler = 0;
   for(const f of F){
@@ -1424,13 +1518,116 @@ async function offlineLaden(){
   await offlineStatus();
   toast(abgebrochen ? 'Abgebrochen. Bereits Gespeichertes bleibt erhalten.' : (fehler ? `${fehler} Datei(en) konnten nicht geladen werden – bitte erneut versuchen.` : 'Fertig – Klarkommen ist jetzt offline verfügbar.'));
 }
+/* spec/06 §4: nur die Offline-Dateien löschen (Medien-Cache + Experiment-Dateien im Shell-Cache).
+   Fortschritt/Einstellungen (localStorage, IndexedDB), Service Worker und App-Grundgerüst bleiben. */
+async function offlineLoeschen(){
+  if(oAbort){ toast('Bitte warte, bis das Speichern fertig ist – oder brich es ab.'); return; }
+  if(!('caches' in window)) return;
+  const z = await offlineZaehlen();
+  if(!z.n){ toast('Es sind keine Offline-Dateien gespeichert.'); await offlineStatus(); return; }
+  if(!(await ask('Offline-Dateien löschen?', `Gibt ca. ${fmtMB(z.bytes)} frei (${z.n} Dateien: Audios, Bilder, Experimente). Dein Fortschritt und deine Einstellungen bleiben erhalten. Mit Internet läuft Klarkommen normal weiter; ohne Internet fehlen danach Audios und Bilder.`, 'Löschen'))) return;
+  try{
+    await caches.delete(MEDIEN_CACHE);
+    const ex = EXPF.map(f=>absURL(f.pfad));
+    for(const n of await caches.keys()){ if(!n.startsWith('kk-')) continue; const c = await caches.open(n); for(const u of ex) await c.delete(u, {ignoreSearch:true}); }
+  }catch(e){ console.warn('Löschen fehlgeschlagen', e); }
+  await offlineStatus();
+  const z2 = await offlineZaehlen();
+  toast(z2.n ? `Gelöscht. ${z2.n} Datei(en) konnten nicht entfernt werden.` : 'Offline-Dateien gelöscht – Speicher freigegeben.');
+}
 async function offlineReset(){
-  if(!(await ask('Offline-Daten zurücksetzen?','Gespeicherte Bilder und Audios werden von diesem Gerät gelöscht und die App wird neu geladen. Dein Fortschritt bleibt erhalten.','Zurücksetzen'))) return;
+  if(!(await ask('App neu laden?','Alle Offline-Dateien und der App-Zwischenspeicher werden von diesem Gerät gelöscht, danach lädt Klarkommen neu (Internet nötig). Dein Fortschritt und deine Einstellungen bleiben erhalten.','Neu laden'))) return;
   try{ for(const n of await caches.keys()) if(n.startsWith('kk-')) await caches.delete(n); }catch(e){}
   try{ if(navigator.serviceWorker) for(const r of await navigator.serviceWorker.getRegistrations()) await r.unregister(); }catch(e){}
   location.reload();
 }
 
+
+/* ================================================================
+   6b. spec/06 §2+§3 – „Als App auf den Startbildschirm“ + Anleitungen
+   ================================================================ */
+const INST_KEY = 'klarkommen_install_hinweis';
+let instPrompt = null;   /* Android/Chrome: beforeinstallprompt */
+window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); instPrompt = e; const el = document.getElementById('inst'); if(el && !el.hidden) el.innerHTML = instSheet(plattform()); });
+window.addEventListener('appinstalled', ()=>{ instPrompt = null; lsSet(INST_KEY,'aus'); instVerstecken(); });
+function istStandalone(){
+  try{ if(window.matchMedia && (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches)) return true; }catch(e){}
+  return window.navigator.standalone === true;
+}
+function plattform(){
+  const ua = navigator.userAgent || '';
+  const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform==='MacIntel' && (navigator.maxTouchPoints||0) > 1);
+  if(ios) return {os:'ios', safari: !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|DuckDuckGo|Instagram|FBAN|FBAV|Line\//.test(ua)};
+  if(/Android/i.test(ua)) return {os:'android'};
+  return {os:'andere'};
+}
+function instSheet(P){
+  let body = '';
+  if(P.os==='ios'){
+    body = `<ol class="ist"><li>Tippe auf <b>Teilen</b> <span class="kbd">${ic('share')}</span> – je nach iOS-Version direkt in der Leiste oder über „…“.</li><li>Wähle <b>„Zum Home-Bildschirm“</b> (evtl. etwas nach unten scrollen).</li><li>Tippe auf <b>„Hinzufügen“</b>.</li></ol>`
+      + (P.safari ? '' : `<p class="inote">Klappt das in diesem Browser nicht, öffne den Link in Safari.</p>`)
+      + `<p class="inote">Offline speichern danach in der App – sie hat einen eigenen Speicher.</p>`;
+  } else if(instPrompt){
+    body = `<button class="btn block" data-act="inst-prompt">${ic('dl')} App installieren</button><p class="inote">Oder über das Browser-Menü <span class="kbd">${ic('dots')}</span> → „App installieren“.</p>`;
+  } else {
+    body = `<ol class="ist"><li>Tippe auf das Browser-Menü <span class="kbd">${ic('dots')}</span> (z. B. oben rechts).</li><li>Wähle <b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b>.</li><li>Bestätigen – fertig.</li></ol>`;
+  }
+  return `<div class="in"><button class="ix" data-act="inst-zu" aria-label="Hinweis schließen">${ic('x')}</button>
+    <div class="ih"><span class="ti">${ic('plusbox')}</span><div><b>Als App auf den Startbildschirm</b><small>Schneller da, ohne Adressleiste.</small></div></div>
+    ${body}
+    <div class="ib"><button data-act="inst-aus">Nicht mehr anzeigen</button><button class="lnk" data-act="inst-mehr">Ganze Anleitung</button></div></div>`;
+}
+function instZeigen(){
+  if(curRoute.name!=='start' || istStandalone() || lsGet(INST_KEY)==='aus' || sessionStorageGet(INST_KEY)==='zu') return;
+  const P = plattform(); if(P.os==='andere') return;   /* Desktop: nur unter Einstellungen → Anleitungen */
+  const el = document.getElementById('inst'); if(!el) return;
+  el.innerHTML = instSheet(P); el.hidden = false; document.body.classList.add('inst-on');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('on')));
+}
+function instVerstecken(){
+  const el = document.getElementById('inst'); if(!el || el.hidden) return;
+  el.classList.remove('on'); document.body.classList.remove('inst-on');
+  setTimeout(()=>{ if(!el.classList.contains('on')) el.hidden = true; }, 380);
+}
+function instZu(dauerhaft){ if(dauerhaft) lsSet(INST_KEY,'aus'); else sessionStorageSet(INST_KEY,'zu'); instVerstecken(); }
+async function instInstallieren(){
+  if(!instPrompt){ toast('Bitte über das Browser-Menü installieren – siehe Anleitung.'); return; }
+  const p = instPrompt; instPrompt = null;
+  try{ p.prompt(); const r = await p.userChoice; if(r && r.outcome==='accepted'){ lsSet(INST_KEY,'aus'); instVerstecken(); } }catch(e){}
+}
+/* spec/06 §3: Anleitungen als Akkordeons (Einstellungen) – nur gesicherte Schritte, abweichende Bezeichnungen mit „z. B.“ */
+function anleitungenHtml(){
+  const sh = `<span class="kbd">${ic('share')}</span>`, dots = `<span class="kbd">${ic('dots')}</span>`;
+  const tot = offlineListe().reduce((a,f)=>a+(f.bytes||0),0);
+  const acc = (id, icon, t, body) => `<details class="acc anl" id="anl-${id}"><summary>${ic(icon)}<span>${t}</span>${ic('down','chv')}</summary><div class="acb">${body}</div></details>`;
+  const instBtn = (instPrompt && !istStandalone()) ? `<button class="btn block" data-act="inst-prompt">${ic('dl')} App jetzt installieren</button>` : '';
+  return `<section class="anl-sec" id="anleitungen"><h2 class="anl-h">${ic('info')} Anleitungen</h2><p class="hint">Kurz erklärt – zum Aufklappen.</p>
+  ${acc('home','plusbox','App auf den Startbildschirm',
+    `<h3>iPhone / iPad</h3><ol><li>Öffne Klarkommen in <strong>Safari</strong>.</li><li>Tippe auf <strong>Teilen</strong> ${sh} – je nach iOS-Version direkt in der Leiste oder erst über „…“.</li><li>Wähle <strong>„Zum Home-Bildschirm“</strong> (evtl. etwas nach unten scrollen).</li><li>Tippe auf <strong>„Hinzufügen“</strong>.</li></ol>
+    <p class="anl-n">In anderen Browsern auf dem iPhone geht das teils auch über „Teilen“. Klappt es nicht, öffne den Link in Safari.</p>
+    <h3>Android</h3>${instBtn}<ol><li>Öffne Klarkommen in <strong>Chrome</strong>.</li><li>Tippe auf das Menü ${dots} (oben rechts).</li><li>Wähle <strong>„App installieren“</strong> oder <strong>„Zum Startbildschirm hinzufügen“</strong> – die Bezeichnung hängt von der Version ab.</li><li>Bestätige mit <strong>„Installieren“</strong> bzw. <strong>„Hinzufügen“</strong>.</li></ol>
+    <p class="anl-n">Andere Browser (z. B. Samsung Internet) haben einen ähnlichen Menüpunkt.</p>
+    <p>Danach startest du Klarkommen über das Icon – ohne Adressleiste, wie eine App.</p>`)}
+  ${acc('offline','cloud','Offline speichern',
+    `<ol><li>Verbinde dich mit dem <strong>WLAN</strong> (insgesamt ca. ${fmtMB(tot)}).</li><li>Tippe oben unter <strong>Offline nutzen</strong> auf „Alles offline speichern“.</li><li>Warte, bis dort „Offline verfügbar: ${offlineListe().length} von ${offlineListe().length}“ steht.</li></ol>
+    <h3>Wichtig fürs iPhone</h3><p>Die App auf dem Home-Bildschirm hat einen <strong>eigenen Speicher</strong>, getrennt von Safari. Füge Klarkommen deshalb <strong>zuerst</strong> zum Home-Bildschirm hinzu, öffne es über das Icon und speichere <strong>dort</strong> offline. Was du vorher in Safari gespeichert hast, ist in der App nicht da – auch dein Fortschritt nicht.</p>
+    <p class="anl-n">Prüfe vor dem Workshop oder unterwegs kurz den Offline-Status. Wird der Speicher knapp, kann das Handy gespeicherte Dateien selbst wieder entfernen.</p>`)}
+  ${acc('loeschen','trash','Offline-Dateien löschen',
+    `<p>Unter <strong>Offline nutzen</strong> → „Offline-Dateien löschen (Speicher freigeben)“.</p>
+    <ul><li><strong>Gelöscht werden:</strong> gespeicherte Audios, Bilder und Experimente.</li><li><strong>Bleibt erhalten:</strong> dein Fortschritt, Häkchen, Titel und Startbild.</li></ul>
+    <p>Mit Internet läuft Klarkommen danach ganz normal weiter. Du kannst jederzeit wieder offline speichern.</p>
+    <p class="anl-n">iPhone: Safari und Home-Bildschirm-App haben getrennten Speicher – lösche dort, wo du gespeichert hast. Bitte nicht die Browserdaten löschen: Dabei geht auch dein Fortschritt verloren.</p>`)}
+  ${acc('update','repeat','App aktualisieren',
+    `<p>Neue Inhalte und Verbesserungen kommen <strong>automatisch</strong>, wenn du Klarkommen mit Internet öffnest. Dein Fortschritt bleibt dabei erhalten.</p>
+    <p>Siehst du noch die alte Version?</p>
+    <ol><li><strong>App ganz schließen</strong> (in der App-Übersicht wegwischen).</li><li><strong>Neu öffnen</strong> – mit Internet.</li><li>Im Browser: Seite neu laden (z. B. nach unten ziehen oder Neu-laden-Symbol).</li></ol>
+    <p class="anl-n">Die aktuelle Version steht ganz unten in den Einstellungen. Das Icon musst du dafür nicht neu anlegen.</p>`)}
+  ${acc('entfernen','x','App entfernen',
+    `<h3>iPhone / iPad</h3><ol><li>Icon auf dem Home-Bildschirm <strong>lange drücken</strong>.</li><li><strong>„App entfernen“</strong> wählen (je nach iOS-Version z. B. auch „Lesezeichen löschen“) und bestätigen.</li></ol>
+    <h3>Android</h3><ol><li>Icon <strong>lange drücken</strong>.</li><li><strong>„Deinstallieren“</strong> bzw. <strong>„Entfernen“</strong> wählen (je nach Gerät z. B. auch durch Ziehen auf „Deinstallieren“) und bestätigen.</li></ol>
+    <p class="anl-n">Fortschritt behalten? Vorher unter „Sichern &amp; Übertragen“ exportieren. Speicher freigeben? Vorher die Offline-Dateien löschen – je nach Gerät bleiben sie sonst im Browser liegen.</p>`)}
+  </section>`;
+}
 /* ================================================================
    7. Sperre, Dialoge, Toast – spec/01 §C.3, §D
    ================================================================ */
@@ -1520,10 +1717,15 @@ document.addEventListener('click', async e=>{
   else if(act==='offline-laden'){ offlineLaden(); }
   else if(act==='offline-abbruch'){ if(oAbort) oAbort.abort(); }
   else if(act==='offline-reset'){ offlineReset(); }
+  else if(act==='offline-loeschen'){ offlineLoeschen(); }   /* spec/06 §4 */
+  else if(act==='inst-zu'){ instZu(false); }   /* spec/06 §2 */
+  else if(act==='inst-aus'){ instZu(true); toast('Okay. Die Anleitung findest du unter Einstellungen → Anleitungen.'); }
+  else if(act==='inst-mehr'){ sessionStorageSet(INST_KEY,'zu'); sessionStorageSet('kk_scroll','anl-home'); location.hash = '#/einstellungen'; }
+  else if(act==='inst-prompt'){ instInstallieren(); }
   else if(act==='export'){ exportieren(); }
   else if(act==='import'){ document.getElementById('fileImport').click(); }
   else if(act==='fortschritt-reset'){
-    if(await ask('Fortschritt zurücksetzen?','Alle Häkchen, „gelesen“- und „ausprobiert“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
+    if(await ask('Fortschritt zurücksetzen?','Alle Häkchen, „gelesen“- und „schon gemacht“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
       D.gelesen = {}; D.checks = {}; D.letzte = {}; D.toolbox = {ausprobiert:{}}; saveData(); toast('Fortschritt zurückgesetzt.');
     }
   }
@@ -1551,6 +1753,7 @@ document.addEventListener('touchend', e=>{
   const S = I.data.slides, i = S.findIndex(s=>s.id===curRoute.slide);
   const t = dx < 0 ? S[i+1] : S[i-1];
   if(dx < 0 && S[i]) markRead(k, S[i]);
+  if(t) wischWeg(true);   /* spec/06 §5 */
   if(t) location.replace(`#/k/${kapRouteId(k)}/${encodeURIComponent(t.id)}`);
 }, {passive:true});
 /* spec/04 §4: Lightbox – Tipp auf Inhaltsbild (figure in .bl; nicht Cover/Header/Icons) → Vollbild.
