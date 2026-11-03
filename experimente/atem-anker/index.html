@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atem-Anker | Klarkommen</title>
+  <link rel="stylesheet" href="../../fonts/fonts.css">
+  <style>
+    :root {
+      --bg-deep: #0f1923;
+      --bg-card: #162230;
+      --bg-input: #1c2e40;
+      --accent: #f97316;
+      --accent-glow: rgba(249, 115, 22, 0.25);
+      --accent-soft: #fb923c;
+      --teal: #14b8a6;
+      --teal-glow: rgba(20, 184, 166, 0.25);
+      --teal-soft: #5eead4;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --border: rgba(148, 163, 184, 0.12);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 3rem;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container { position: relative; z-index: 1; width: 100%; max-width: 480px; }
+
+    .header { text-align: center; margin-bottom: 1.75rem; }
+    .header-icon { font-size: 2.2rem; margin-bottom: 0.5rem; display: block; }
+    .header h1 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.6rem; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 0.4rem;
+      background: linear-gradient(135deg, var(--text-primary), var(--teal-soft));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .header p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+    .mode-selector { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+    .mode-btn {
+      flex: 1; background: var(--bg-card); border: 2px solid var(--border);
+      border-radius: 14px; padding: 0.9rem 0.6rem; cursor: pointer;
+      text-align: center; transition: all 0.3s;
+    }
+    .mode-btn:hover { border-color: rgba(148, 163, 184, 0.25); }
+    .mode-btn.active-sigh { border-color: var(--accent); background: rgba(249, 115, 22, 0.08); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .mode-btn.active-478 { border-color: var(--teal); background: rgba(20, 184, 166, 0.08); box-shadow: 0 0 0 3px var(--teal-glow); }
+    .mode-emoji { font-size: 1.4rem; display: block; margin-bottom: 0.35rem; }
+    .mode-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--text-primary); display: block; margin-bottom: 0.15rem; }
+    .mode-sub { font-size: 0.72rem; color: var(--text-muted); }
+
+    .info-panel {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem;
+      animation: fadeSlideIn 0.4s ease;
+    }
+    @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .info-panel img { width: 100%; display: block; border-bottom: 1px solid var(--border); }
+    .info-panel-body { padding: 1rem 1.25rem; }
+    .info-panel-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.6rem; }
+    .info-panel-title.sigh-color { color: var(--accent-soft); }
+    .info-panel-title.teal-color { color: var(--teal-soft); }
+    .info-bullets { list-style: none; padding: 0; }
+    .info-bullets li { color: var(--text-secondary); font-size: 0.82rem; line-height: 1.5; padding: 0.25rem 0; padding-left: 1.4rem; position: relative; }
+    .info-bullets li::before { content: ''; position: absolute; left: 0; top: 0.55rem; width: 6px; height: 6px; border-radius: 50%; }
+    .info-bullets.sigh li::before { background: var(--accent); }
+    .info-bullets.teal li::before { background: var(--teal); }
+    .info-bullets li strong { color: var(--text-primary); }
+
+    .breath-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 2rem 1.5rem; text-align: center; margin-bottom: 1rem;
+      min-height: 360px; flex-direction: column; align-items: center; justify-content: center;
+      display: none;
+    }
+    .breath-card.active { display: flex; }
+    .circle-area { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+    .circle-ring { position: absolute; width: 100%; height: 100%; border-radius: 50%; border: 2px solid rgba(148, 163, 184, 0.08); -webkit-transform: translateZ(0); transform: translateZ(0); }
+    .circle-ring-2 { position: absolute; width: 75%; height: 75%; border-radius: 50%; border: 1px solid rgba(148, 163, 184, 0.05); -webkit-transform: translateZ(0); transform: translateZ(0); }
+    .breath-circle {
+      width: 50px; height: 50px; border-radius: 50%; transition: all linear; position: relative; z-index: 2;
+      -webkit-transform: translateZ(0); transform: translateZ(0);
+      -webkit-backface-visibility: hidden; backface-visibility: hidden;
+      will-change: transform, box-shadow;
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+    .breath-circle.sigh-mode { background: radial-gradient(circle, var(--accent-soft), var(--accent)); box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(249, 115, 22, 0.1); }
+    .breath-circle.mode-478 { background: radial-gradient(circle, #5eead4, var(--teal)); box-shadow: 0 0 30px var(--teal-glow), 0 0 60px rgba(20, 184, 166, 0.1); }
+    .instruction-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; min-height: 2rem; transition: color 0.3s; }
+    .instruction-text.sigh-color { color: var(--accent-soft); }
+    .instruction-text.teal-color { color: var(--teal-soft); }
+    .instruction-text.neutral { color: var(--text-secondary); }
+    .timer-display { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 700; color: var(--text-primary); opacity: 0.3; min-height: 3.5rem; line-height: 1; }
+    .timer-display.active { opacity: 1; }
+    .cycle-counter { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; min-height: 1.2rem; }
+
+    .start-btn {
+      width: 100%; padding: 1rem; border: none; border-radius: 14px;
+      font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
+      cursor: pointer; transition: all 0.3s; letter-spacing: 0.02em;
+    }
+    .start-btn.sigh-style { background: linear-gradient(135deg, var(--accent), #ea580c); color: white; box-shadow: 0 4px 20px var(--accent-glow); }
+    .start-btn.sigh-style:hover { box-shadow: 0 6px 30px rgba(249, 115, 22, 0.35); transform: translateY(-1px); }
+    .start-btn.teal-style { background: linear-gradient(135deg, var(--teal), #0d9488); color: white; box-shadow: 0 4px 20px var(--teal-glow); }
+    .start-btn.teal-style:hover { box-shadow: 0 6px 30px rgba(20, 184, 166, 0.35); transform: translateY(-1px); }
+    .start-btn.stop { background: var(--bg-input); color: var(--text-secondary); box-shadow: none; border: 2px solid var(--border); }
+    .start-btn.stop:hover { border-color: rgba(148, 163, 184, 0.3); transform: none; }
+
+    .science-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-top: 1rem; }
+    .science-header { display: flex; align-items: center; gap: 0.5rem; cursor: pointer; user-select: none; }
+    .science-header span:first-child { font-size: 1rem; }
+    .science-header-text { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; flex: 1; }
+    .science-toggle { color: var(--text-muted); font-size: 0.75rem; transition: transform 0.3s; }
+    .science-toggle.open { transform: rotate(180deg); }
+    .science-body { color: var(--text-secondary); font-size: 0.85rem; line-height: 1.65; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, margin-top 0.3s ease; margin-top: 0; }
+    .science-body.open { max-height: 500px; margin-top: 0.75rem; }
+    .science-body p { margin-bottom: 0.5rem; }
+    .science-body p:last-child { margin-bottom: 0; }
+    .science-body strong { color: var(--text-primary); }
+
+    .footer { margin-top: 2rem; text-align: center; color: var(--text-muted); font-size: 0.72rem; }
+
+    @media (max-width: 400px) {
+      body { padding: 1.25rem 0.75rem 2rem; }
+      .breath-card { padding: 1.5rem 1rem; min-height: 320px; }
+      .circle-area { width: 160px; height: 160px; }
+      .mode-title { font-size: 0.78rem; }
+      .mode-sub { font-size: 0.68rem; }
+      .instruction-text { font-size: 1.15rem; }
+      .timer-display { font-size: 2.5rem; }
+      .info-panel-body { padding: 0.85rem 1rem; }
+    }
+  </style>
+<style id="kk-bar-css">
+:root{--kk-h:calc(44px + env(safe-area-inset-top,0px))}
+html{padding-top:var(--kk-h)}
+#kk-bar{position:fixed;top:0;left:0;right:0;z-index:2147483000;box-sizing:border-box;height:var(--kk-h);padding:env(safe-area-inset-top,0px) 8px 0;display:flex;align-items:center;background:#0f1923;border-bottom:1px solid rgba(241,245,249,.12);font-family:'DM Sans',system-ui,sans-serif}
+#kk-bar button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;color:#f1f5f9;font:600 15px/1 'DM Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+#kk-bar button:hover,#kk-bar button:focus-visible{color:#f97316}
+#kk-bar button:focus-visible{outline:2px solid #f97316;outline-offset:-2px;border-radius:8px}
+</style>
+</head>
+<body>
+<div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button></div>
+
+<div class="container">
+
+  <div class="header">
+    <span class="header-icon">🫁</span>
+    <h1>Dein Atem-Anker</h1>
+    <p>Zwei Techniken. Ein ruhiges Nervensystem.</p>
+  </div>
+
+  <div class="mode-selector">
+    <div class="mode-btn active-sigh" id="btnSigh" onclick="selectMode('sigh')">
+      <span class="mode-emoji">⚡</span>
+      <span class="mode-title">Physiological Sigh</span>
+      <span class="mode-sub">Akut-Reset (10 Sek.)</span>
+    </div>
+    <div class="mode-btn" id="btn478" onclick="selectMode('478')">
+      <span class="mode-emoji">🌙</span>
+      <span class="mode-title">4-7-8 Atmung</span>
+      <span class="mode-sub">Tiefe Ruhe (4 Zyklen)</span>
+    </div>
+  </div>
+
+  <div class="info-panel" id="panelSigh">
+    <img src="sigh.jpg" alt="1-Atemzug-Reset: Physiological Sigh – Anleitung in 3 Schritten">
+    <div class="info-panel-body">
+      <div class="info-panel-title sigh-color">⚡ Dein Notfall-Werkzeug</div>
+      <ul class="info-bullets sigh">
+        <li><strong>1–3 Atemzüge</strong> reichen – wirkt in unter 30 Sekunden</li>
+        <li>Vor stressigen Gesprächen, bei Frust oder wenn der Kopf explodiert</li>
+        <li>Funktioniert überall – niemand um dich herum merkt es</li>
+        <li>Stärker als Meditation bei 5 Min./Tag (Stanford, 2023)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-panel" id="panel478" style="display:none;">
+    <img src="478.jpg" alt="4-7-8 Atmung – Anleitung in 3 Schritten">
+    <div class="info-panel-body">
+      <div class="info-panel-title teal-color">🌙 Dein Feierabend-Werkzeug</div>
+      <ul class="info-bullets teal">
+        <li><strong>4 Zyklen</strong> à 19 Sekunden – ca. 3 Minuten insgesamt</li>
+        <li>Stoppt Gedankenkarusselle durch erzwungene Fokussierung</li>
+        <li>Stark beruhigend – perfekt nach einem langen Tag oder vor dem Einschlafen</li>
+        <li>Klinisch eingesetzt bei Schlafstörungen (Dr. Andrew Weil)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="breath-card" id="breathCard">
+    <div class="circle-area">
+      <div class="circle-ring"></div>
+      <div class="circle-ring-2"></div>
+      <div class="breath-circle sigh-mode" id="breathCircle"></div>
+    </div>
+    <div class="instruction-text neutral" id="instructionText">Bereit?</div>
+    <div class="timer-display" id="timerText">&nbsp;</div>
+    <div class="cycle-counter" id="cycleCounter">&nbsp;</div>
+  </div>
+
+  <button class="start-btn sigh-style" id="startBtn" onclick="toggleStart()">Übung starten</button>
+
+  <div class="science-card" id="scienceSigh">
+    <div class="science-header" onclick="toggleScience('scienceSighBody','scienceSighToggle')">
+      <span>🔬</span>
+      <span class="science-header-text">Wie wirkt der Physiological Sigh?</span>
+      <span class="science-toggle" id="scienceSighToggle">▼</span>
+    </div>
+    <div class="science-body" id="scienceSighBody">
+      <p>Das doppelte Einatmen bläht zusammengefallene Lungenbläschen (Alveolen) auf. Dadurch wird schlagartig mehr CO₂ aus dem Blut abtransportiert. Das lange Ausatmen stimuliert den <strong>Vagusnerv</strong>. Dein Gehirn bekommt das mechanische Signal: <strong>„Alles sicher."</strong></p>
+      <p>Die Stanford-Studie (Balban et al., 2023) zeigte: 5 Min. täglich Physiological Sighs verbesserten Stimmung und Herzratenvariabilität <strong>stärker als Meditation</strong>.</p>
+    </div>
+  </div>
+
+  <div class="science-card" id="science478" style="display:none;">
+    <div class="science-header" onclick="toggleScience('science478Body','science478Toggle')">
+      <span>🔬</span>
+      <span class="science-header-text">Wie wirkt die 4-7-8 Atmung?</span>
+      <span class="science-toggle" id="science478Toggle">▼</span>
+    </div>
+    <div class="science-body" id="science478Body">
+      <p>Durch das lange Anhalten steigt der CO₂-Gehalt im Blut leicht an, was die <strong>Blutgefäße weitet</strong> und beruhigend wirkt. Das strikte Zählen zwingt das Gehirn in den Fokus – <strong>Grübeleien werden unterbrochen</strong>.</p>
+      <p>Entwickelt von <strong>Dr. Andrew Weil</strong>, basierend auf der Pranayama-Atemtradition. Klinisch eingesetzt bei Schlafstörungen und Angstmanagement.</p>
+    </div>
+  </div>
+
+  <div class="footer">Klarkommen – Das Update, das dir fehlt</div>
+</div>
+
+<script>
+  const circle = document.getElementById('breathCircle');
+  const instruction = document.getElementById('instructionText');
+  const timerText = document.getElementById('timerText');
+  const cycleCounter = document.getElementById('cycleCounter');
+  const startBtn = document.getElementById('startBtn');
+  const breathCard = document.getElementById('breathCard');
+
+  let mode = 'sigh';
+  let isRunning = false;
+  let currentTimeout, currentInterval, cycleCount = 0;
+
+  function selectMode(m) {
+    if (isRunning) stopAnimation();
+    mode = m;
+    document.getElementById('btnSigh').className = 'mode-btn' + (m === 'sigh' ? ' active-sigh' : '');
+    document.getElementById('btn478').className = 'mode-btn' + (m === '478' ? ' active-478' : '');
+    document.getElementById('panelSigh').style.display = m === 'sigh' ? 'block' : 'none';
+    document.getElementById('panel478').style.display = m === '478' ? 'block' : 'none';
+    const p = document.getElementById(m === 'sigh' ? 'panelSigh' : 'panel478');
+    p.style.animation = 'none'; p.offsetHeight; p.style.animation = 'fadeSlideIn 0.4s ease';
+    document.getElementById('scienceSigh').style.display = m === 'sigh' ? 'block' : 'none';
+    document.getElementById('science478').style.display = m === '478' ? 'block' : 'none';
+    circle.className = 'breath-circle ' + (m === 'sigh' ? 'sigh-mode' : 'mode-478');
+    startBtn.className = 'start-btn ' + (m === 'sigh' ? 'sigh-style' : 'teal-style');
+    startBtn.textContent = 'Übung starten';
+    breathCard.classList.remove('active');
+    instruction.textContent = 'Bereit?'; instruction.className = 'instruction-text neutral';
+    timerText.innerHTML = '&nbsp;'; cycleCounter.innerHTML = '&nbsp;';
+  }
+
+  function toggleScience(bId, tId) {
+    document.getElementById(bId).classList.toggle('open');
+    document.getElementById(tId).classList.toggle('open');
+  }
+
+  function toggleStart() {
+    if (isRunning) { stopAnimation(); return; }
+    isRunning = true; cycleCount = 0;
+    document.getElementById('panelSigh').style.display = 'none';
+    document.getElementById('panel478').style.display = 'none';
+    breathCard.classList.add('active');
+    // Reset circle to scale(1) and force browser to render before animating
+    circle.style.transition = 'none';
+    circle.style.transform = 'scale(1)';
+    circle.style.boxShadow = mode === 'sigh'
+      ? '0 0 30px rgba(249,115,22,.25),0 0 60px rgba(249,115,22,.1)'
+      : '0 0 30px rgba(20,184,166,.25),0 0 60px rgba(20,184,166,.1)';
+    circle.offsetHeight; // force reflow so scale(1) is rendered
+    startBtn.textContent = 'Stopp'; startBtn.className = 'start-btn stop';
+    // Small delay to ensure initial state is painted before first transition
+    setTimeout(() => {
+      if (!isRunning) return;
+      mode === 'sigh' ? runSigh() : run478();
+    }, 50);
+  }
+
+  const runPhase = (text, colorClass, dur, scale, trans) => new Promise(resolve => {
+    instruction.textContent = text; instruction.className = 'instruction-text ' + colorClass;
+    circle.style.transition = `all ${trans}s ease-in-out`;
+    circle.style.transform = `scale(${scale})`;
+    circle.style.boxShadow = scale > 2
+      ? (mode === 'sigh' ? '0 0 50px rgba(249,115,22,.35),0 0 80px rgba(249,115,22,.15)' : '0 0 50px rgba(20,184,166,.35),0 0 80px rgba(20,184,166,.15)')
+      : (mode === 'sigh' ? '0 0 30px rgba(249,115,22,.25),0 0 60px rgba(249,115,22,.1)' : '0 0 30px rgba(20,184,166,.25),0 0 60px rgba(20,184,166,.1)');
+    let t = dur; timerText.textContent = t; timerText.classList.add('active');
+    clearInterval(currentInterval);
+    if (dur > 0) currentInterval = setInterval(() => { t--; if (t >= 0) timerText.textContent = t; }, 1000);
+    currentTimeout = setTimeout(() => { clearInterval(currentInterval); resolve(); }, dur * 1000);
+  });
+
+  function stopAnimation() {
+    isRunning = false; clearTimeout(currentTimeout); clearInterval(currentInterval);
+    startBtn.textContent = 'Übung starten';
+    startBtn.className = 'start-btn ' + (mode === 'sigh' ? 'sigh-style' : 'teal-style');
+    instruction.textContent = 'Pausiert'; instruction.className = 'instruction-text neutral';
+    circle.style.transition = 'all 0.5s ease'; circle.style.transform = 'scale(1)';
+    timerText.innerHTML = '&nbsp;'; timerText.classList.remove('active');
+    cycleCounter.innerHTML = '&nbsp;'; breathCard.classList.remove('active');
+    document.getElementById(mode === 'sigh' ? 'panelSigh' : 'panel478').style.display = 'block';
+  }
+
+  async function runSigh() {
+    while (isRunning) {
+      cycleCount++; cycleCounter.textContent = `Atemzug ${cycleCount}`;
+      await runPhase('Tief einatmen …', 'sigh-color', 3, 3.2, 3); if (!isRunning) break;
+      await runPhase('Nachschnappen!', 'sigh-color', 1, 3.8, 0.4); if (!isRunning) break;
+      await runPhase('Langsam ausatmen …', 'neutral', 7, 1, 7); if (!isRunning) break;
+      await runPhase('', 'neutral', 1, 1, 0.5); if (!isRunning) break;
+    }
+  }
+
+  async function run478() {
+    const total = 4;
+    while (isRunning && cycleCount < total) {
+      cycleCount++; cycleCounter.textContent = `Zyklus ${cycleCount} von ${total}`;
+      await runPhase('Einatmen …', 'teal-color', 4, 3.5, 4); if (!isRunning) break;
+      await runPhase('Atem halten …', 'teal-color', 7, 3.5, 0); if (!isRunning) break;
+      await runPhase('Ausatmen …', 'neutral', 8, 1, 8); if (!isRunning) break;
+      if (cycleCount < total) { await runPhase('', 'neutral', 1, 1, 0.5); if (!isRunning) break; }
+    }
+    if (isRunning && cycleCount >= total) {
+      instruction.textContent = 'Geschafft ✓'; instruction.className = 'instruction-text teal-color';
+      timerText.innerHTML = '&nbsp;'; cycleCounter.textContent = '4 Zyklen abgeschlossen';
+      circle.style.transition = 'all 1s ease'; circle.style.transform = 'scale(1.5)';
+      circle.style.boxShadow = '0 0 60px rgba(20,184,166,.4)';
+      setTimeout(() => { if (!isRunning) return; stopAnimation(); instruction.textContent = 'Bereit für mehr?'; }, 3000);
+    }
+  }
+  // Deep-Links: #sigh, #478 (waehlt die Technik direkt vor)
+  (function(){function h(){var x=location.hash.replace('#','');if(x==='sigh'||x==='478')selectMode(x)}window.addEventListener('hashchange',h);h()})();
+</script>
+<script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});</script>
+</body>
+</html>

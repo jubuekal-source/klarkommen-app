@@ -1,0 +1,360 @@
+{
+  "schemaVersion": 1,
+  "id": "k02",
+  "slides": [
+    {
+      "id": "einstieg",
+      "rubrik": "einstieg",
+      "titel": "Dein Einstieg - ein Experiment",
+      "header": "medien/bilder/rubrik/einstieg.webp",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Ein kurzes Gedankenexperiment"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k02/einstieg-ich-bin.webp",
+          "alt": "Ich bin … (Gedankenexperiment Identität)",
+          "unterschrift": null,
+          "notion": "Identitt-Einstieg.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Nimm dir 60 Sekunden. **Schreib 5 Sätze über dich auf, die mit „Ich bin…\" anfangen**."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Aber**: Ohne deinen Namen, dein Alter und deinen Beruf oder was du sonst machst!"
+        },
+        {
+          "typ": "absatz",
+          "text": "Also nicht „Ich bin Lisa, 22, Studentin.\" Sondern: Wer bist du, wenn das alles wegfällt?"
+        },
+        {
+          "typ": "absatz",
+          "text": "*Ich bin … / Ich bin … / Ich bin … / Ich bin … / Ich bin …*"
+        },
+        {
+          "typ": "absatz",
+          "text": "Fertig? Leg die Liste kurz zur Seite – wir kommen später darauf zurück."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Jetzt schau dir dieses kurze Video an"
+        },
+        {
+          "typ": "absatz",
+          "text": "*Kleine Warnung: Das Video nimmt sich kreative Freiheiten mit dem Ende. Die echte Geschichte geht anders aus – dazu gleich mehr im Podcast.*"
+        },
+        {
+          "typ": "link",
+          "url": "https://www.youtube.com/watch?v=3oBcfM9Yi_g",
+          "art": "Video",
+          "titel": "Erkenne dein Potential – Die Geschichte vom Adler und dem Huhn",
+          "label": "Video auf YouTube ansehen",
+          "hinweis": "Dieses Video ist nicht von Klarkommen, sondern von Dany Danza.",
+          "online": "nur online verfügbar"
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "brainfact",
+      "rubrik": "brainfact",
+      "titel": "Brain-Fact: Dein Selbstbild ist programmiert",
+      "header": "medien/bilder/rubrik/brainfact.webp",
+      "bloecke": [
+        {
+          "typ": "audio",
+          "id": "k02-podcast",
+          "titel": "Podcast: Episode 2 – Alex & Jonas über Identität, Prägungen und den Adler",
+          "art": "podcast",
+          "status": "fertig"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Das Wichtigste auf einen Blick"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Die Illusion des Hühnerstalls"
+        },
+        {
+          "typ": "absatz",
+          "text": "Wir kommen mit dem Potenzial eines Adlers auf die Welt, doch Umfeld und fremde Erwartungen kleben uns oft das Label *\"Huhn\"* auf. Wenn du diese Fremdbilder als Wahrheit akzeptierst, nimmst du unweigerlich das Selbstbild eines Huhns an – und deine Ergebnisse am Boden bestätigen das scheinbar (selbsterfüllende Prophezeiung)."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Der Durchbruch zur wahren Natur"
+        },
+        {
+          "typ": "absatz",
+          "text": "Labels sind nur Papier, keine Naturgesetze. Prüfe deine Labels daher genau, ob sie dich beflügeln oder auf dem Boden halten. Dein Selbstbild bestimmt dein Verhalten und dein Verhalten, bringt die dazugehörigen Ergebnisse. Die Kette deines Lebens lautet:"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k02/kette-kurz.webp",
+          "alt": "Kette: Selbstbild, Verhalten, Ergebnisse",
+          "unterschrift": null,
+          "notion": "image.png"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Selbstbild → Verhalten → Ergebnisse**."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Der Selbstcheck"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht ist: Du musst dein Selbstbild nicht über Nacht umkrempeln. Es reicht, die Labels jetzt einmal bewusst anzuschauen – und zu prüfen, welche davon wirklich deine sind. Lass uns genau das jetzt tun und gehe zur Slide “Mind-Hack”!"
+        }
+      ],
+      "lese": [
+        {
+          "typ": "ueberschrift",
+          "text": "Warum du glaubst, wer du bist"
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Adler aus dem Video wurde als Brathähnchen serviert. In der **Originalgeschichte von James Aggrey** endet es anders: Ein Naturforscher nimmt den Adler auf einen Berg – und dort breitet er seine Flügel aus und **fliegt**. Die Pointe ist dieselbe: **Er hatte immer die Fähigkeit zu fliegen.** Er wusste es nur nicht, weil alle um ihn herum nur pickten."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Das Rosenthal-Experiment: Der wissenschaftliche Beweis"
+        },
+        {
+          "typ": "absatz",
+          "text": "1968 sagten Psychologen Lehrern, bestimmte Schüler seien „Überflieger\" – in Wahrheit waren sie zufällig ausgewählt. Nach einem Jahr hatten diese Kinder tatsächlich bessere Leistungen. Nicht weil sie schlauer waren, sondern weil die Lehrer sie unbewusst anders behandelten – mehr Aufmerksamkeit, mehr Ermutigung, höhere Erwartungen. Und die Kinder? Die spürten das, übernahmen das neue Bild von sich selbst – und wuchsen hinein. Das ist der sogenannte Pygmalion-Effekt: Labels von außen werden zu Labels von innen. Und umgekehrt gilt das genauso."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Labels kleben – auch heute noch"
+        },
+        {
+          "typ": "absatz",
+          "text": "Manche Labels trägst du schon seit der Kindheit mit dir herum: „Du **bist** legasthenisch\", „Du **hast** ADHS”. Andere bekommst du als Erwachsener draufgedrückt: „Du **bist** fruktoseintolerant\", „Du **bist** unfruchtbar\", „Du **bist** beziehungsunfähig.\" Oder subtiler, aber genauso wirksam: „Du bist halt kompliziert\", „Du bist nicht belastbar\", „Du bist hochsensibel.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "**Mächtige Worte** – „Du bist.\" Und es geht hier nicht darum, medizinische Diagnosen zu ignorieren. Wer eine Diagnose bekommt, sollte die ernst nehmen. Aber es gibt einen wichtigen Unterschied zwischen „ich habe gerade diese Einschränkung\" und „ich BIN das für immer.\" Viele übernehmen so ein Label als dauerhafte Identität, obwohl es vielleicht nur eine Momentaufnahme war."
+        },
+        {
+          "typ": "absatz",
+          "text": "Es gibt genug Menschen, denen mehrere Fachärzte bestätigt haben: Du wirst keine Kinder bekommen können – und heute haben sie Kinder, ohne medizinisch nachgeholfen zu haben. Andere bekamen das Label Fruktoseintoleranz oder Glutenunverträglichkeit und essen heute alles, worauf sie Lust haben – ohne Probleme."
+        },
+        {
+          "typ": "absatz",
+          "text": "Die Diagnose war damals vielleicht nicht falsch. Sie war aber nur eine Momentaufnahme – kein Urteil für die Ewigkeit. Sei dir über die Macht dieser Worte bewusst: Nicht alles, was dir jemand über dich sagt – selbst in einem weißen Kittel – muss für immer in Stein gemeißelt sein. Das darf und solltest du im Hinterkopf behalten."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und selbst wenn ein Label dauerhaft ist: Es definiert nicht, was du erreichen kannst. Richard Branson hat Legasthenie – und trotzdem ein Milliarden-Imperium aufgebaut. Er sagt, sein Anderssein sei seine größte Stärke. Barbara Corcoran, die Investorin aus Shark Tank, hat ADHS – und nennt es ihren unternehmerischen Raketentreibstoff. David Neeleman hat mit ADHS JetBlue Airways gegründet. **Das Label beschreibt eine Eigenschaft. Es definiert nicht dein Potenzial.**"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Die selbsterfüllende Prophezeiung"
+        },
+        {
+          "typ": "absatz",
+          "text": "Und es geht noch weiter: Diese Labels sind nicht nur passive Etiketten – sie füttern aktiv den Türsteher aus Folge 1. Jedes „Ich bin halt so\" wird zur Autobahn, die sich jeden Tag selbst bestätigt. Im Grunde die klassische selbsterfüllende Prophezeiung: Du glaubst etwas über dich, verhältst dich entsprechend, und am Ende beweist dir die Realität genau das, was du sowieso schon geglaubt hast. Das Rosenthal-Experiment, der Türsteher (RAS-Filter), die selbsterfüllende Prophezeiung – das ist alles derselbe Mechanismus."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Dein Hühnerstall formt dich – ob du willst oder nicht"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die **Framingham-Studie** (Christakis & Fowler, 2007) zeigt: Übergewicht, Rauchverhalten und sogar Glücklichsein breiten sich über dein persönliches Umfeld aus – also die Menschen, mit denen du wirklich Zeit verbringst: Familie, Freunde, Kollegen. Bis zu drei Kontaktebenen weit."
+        },
+        {
+          "typ": "absatz",
+          "text": "Jim Rohn formulierte es vereinfacht so:"
+        },
+        {
+          "typ": "absatz",
+          "text": "**„Du bist der Durchschnitt der fünf Menschen, mit denen du die meiste Zeit verbringst.\"**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Das ist kein Studienergebnis, aber ein starkes Bild. Und es ist genau der Hühnerstall aus der Geschichte: Der Adler konnte nicht fliegen, nicht weil ihm die Flügel fehlten, sondern weil alle um ihn herum nur pickten."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Die Kette: Selbstbild → Verhalten → Ergebnisse"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k02/kette.webp",
+          "alt": "Kette: Selbstbild, Verhalten, Ergebnisse",
+          "unterschrift": null,
+          "notion": "Identitt-Selbstbild-Ergebniskette.jpeg"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Die entscheidende Frage ist nicht: Wer bin ich?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Sondern: **Wer hat entschieden, wer ich bin? Stimmt das? Und muss das für immer so bleiben?**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht: Du musst dein Selbstbild nicht über Nacht umkrempeln. Es reicht, die Labels einmal bewusst anzuschauen – und zu prüfen, welche davon wirklich deine sind. Genau das machen wir jetzt."
+        }
+      ]
+    },
+    {
+      "id": "mindhack",
+      "rubrik": "mindhack",
+      "titel": "Dein Mind-Hack: Der Identitäts-Check",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Erinnerst du dich an deine 5 „Ich bin…\"-Sätze vom Anfang? **Hol sie raus.**"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Falls dir wenig eingefallen ist – das ist normal.** Den meisten geht es so. Und genau das ist die erste Erkenntnis: Wir definieren uns fast ausschließlich über äußere Rollen – Name, Beruf, Status. Wenn die wegfallen, wird es oft still. Diese Stille ist kein Versagen. Sie zeigt dir, wie wenig du dich bisher bewusst mit deinem Selbstbild beschäftigt hast. Und das ist okay – dafür sind wir jetzt hier."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Falls du fünf Sätze hattest** – umso besser. Dann schauen wir jetzt, woher sie wirklich kommen."
+        },
+        {
+          "typ": "callout",
+          "art": "wichtig",
+          "text": "**Lies jeden Satz und stell dir drei Fragen:**"
+        },
+        {
+          "typ": "liste",
+          "geordnet": true,
+          "punkte": [
+            "Hab ICH das entschieden – oder jemand anderes?",
+            "Seit WANN glaube ich das?",
+            "Was wäre, wenn es nicht stimmt – was ändert sich?"
+          ]
+        },
+        {
+          "typ": "absatz",
+          "text": "Möglicherweise entlarvst du manche Sätze, die überhaupt nicht von dir selbst stammen. Sie kommen aus deinem Hühnerstall – dem Umfeld, in dem du aufgewachsen bist und in dem du dich heute befindest."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Die Brücke zu Folge 1"
+        },
+        {
+          "typ": "absatz",
+          "text": "Deine „Ich bin…\"-Sätze stehen ganz oben auf der Gästeliste deines Türstehers. Glaubst du „Ich bin unsicher\", lässt dein Filter den ganzen Tag nur Beweise durch, die das bestätigen. Die Autobahn „Ich bin unsicher\" wird jeden Tag breiter – nicht weil du unsicher bist, sondern weil dein Filter nur Unsicherheit durchlässt und dies zu deiner Wahrheit werden lässt."
+        },
+        {
+          "typ": "absatz",
+          "text": "Erster Schritt: **Erkennen, dass du eine Wahl hast.** Du kannst deinen Hühnerstall hinterfragen – und mitgestalten: Wer darf in dein Leben hineinsprechen? Wer ist Vorbild?"
+        },
+        {
+          "typ": "zitat",
+          "text": "Der Adler musste nicht lernen zu fliegen. Er musste nur aufhören zu glauben, dass er ein Huhn ist.",
+          "quelle": null
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "mission",
+      "rubrik": "mission",
+      "titel": "Mission Alltag: Fang den Autopiloten",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Achte diese Woche darauf, wenn du denkst oder sagst:"
+        },
+        {
+          "typ": "liste",
+          "geordnet": false,
+          "punkte": [
+            "„Ich bin ...\"",
+            "„Ich kann ... nicht.\"",
+            "„Das liegt mir einfach nicht.\"",
+            "„So bin ich eben.\""
+          ]
+        },
+        {
+          "typ": "absatz",
+          "text": "Also alle Zuschreibungen, die du dir gibst! Frage dich: Ist das der Adler – oder das Huhn?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du musst nichts sofort ändern. Es reicht, es zu bemerken. Bewusstsein ist der erste Schritt."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "WARNUNG!"
+        },
+        {
+          "typ": "absatz",
+          "text": "Deine „Ich bin...\"-Sätze stehen ganz oben auf der Gästeliste deines Türstehers. Sie entscheiden nicht nur, was du siehst – sondern wer du zu sein glaubst."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Reflexionsfrage"
+        },
+        {
+          "typ": "absatz",
+          "text": "Wer sind deine 5 engsten Menschen – stärken sie den Adler oder füttern sie das Huhn?"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Ausblick"
+        },
+        {
+          "typ": "absatz",
+          "text": "Wie du solche Überzeugungen nicht nur erkennst, sondern auch gezielt verändern kannst – dazu kommen wir in den späteren Folgen zu Glaubenssätzen. Hier geht es erstmal darum, deinen Autopiloten zu erwischen."
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "quellen",
+      "rubrik": "quellen",
+      "titel": "Quellen & Hintergrund",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "quelle",
+          "text": "Pygmalion-Effekt (Rosenthal & Jacobson, 1968)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Selbsterfüllende Prophezeiung (Merton, 1948)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Framingham-Studie – Soziale Ansteckung (Christakis & Fowler, 2007, *New England Journal of Medicine*)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Adler-Geschichte: James Aggrey (1875–1927)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Identitätstheorie (Erik Erikson)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Selbstkonzept-Forschung (Markus, 1977, *Journal of Personality and Social Psychology*)",
+          "url": null
+        }
+      ],
+      "lese": null
+    }
+  ]
+}

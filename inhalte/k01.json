@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 1,
+  "id": "k01",
+  "slides": [
+    {
+      "id": "einstieg",
+      "rubrik": "einstieg",
+      "titel": "Dein Einstieg - ein Experiment",
+      "header": "medien/bilder/rubrik/einstieg.webp",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Bevor wir starten: Ein kleines, spielerisches Experiment."
+        },
+        {
+          "typ": "experiment",
+          "reihe": [
+            {
+              "id": "focus",
+              "titel": "Wahrnehmungsexperiment",
+              "text": "⏱️ *30 Sekunden. Danach siehst du die Welt vielleicht schon ein kleines bisschen anders.*"
+            },
+            {
+              "id": "farbensuche",
+              "titel": "Zweite Chance",
+              "text": "Wenn du magst, hier deine zweite Chance, diesmal aber ganz anders: ⏱️ *20 Sekunden.*"
+            }
+          ]
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "brainfact",
+      "rubrik": "brainfact",
+      "titel": "Brain-Fact: Der Türsteher in deinem Kopf",
+      "header": "medien/bilder/rubrik/brainfact.webp",
+      "bloecke": [
+        {
+          "typ": "audio",
+          "id": "k01-podcast",
+          "titel": "Podcast: Alex & Lena erklären, was gerade in deinem Kopf passiert ist",
+          "art": "podcast",
+          "status": "fertig"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Das Wichtigste auf einen Blick"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein Gehirn nimmt nicht alles wahr – es filtert. Ein System namens RAS (dein „Türsteher\") entscheidet, was du bewusst siehst. Sein Auswahlkriterium? Deine Erwartungen und Überzeugungen."
+        },
+        {
+          "typ": "zitat",
+          "text": "Wer Probleme erwartet, findet Probleme.\nWer Chancen sucht, entdeckt Chancen.",
+          "quelle": null
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht: Dein Gehirn ist formbar, dein Leben lang (Neuroplastizität). Alte Denkmuster sind wie Autobahnen – breit und schnell. Neue Gedanken starten als Trampelpfad, aber jede bewusste Wiederholung macht ihn breiter."
+        },
+        {
+          "typ": "zitat",
+          "text": "Worauf du deinen Fokus legst, das wächst.",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/wolf.webp",
+          "alt": "Welchen Wolf fütterst du?",
+          "unterschrift": null,
+          "notion": "WelchenWolfFuetterstDu.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die bekannte Parabel der zwei Wölfe – einer steht für Sorge, der andere für Hoffnung – bringt es auf den Punkt:"
+        },
+        {
+          "typ": "zitat",
+          "text": "Der Wolf, den du fütterst, gewinnt.",
+          "quelle": null
+        },
+        {
+          "typ": "absatz",
+          "text": "*(Populäre Parabel unbekannten Ursprungs, häufig den Cherokee zugeschrieben.)*"
+        }
+      ],
+      "lese": [
+        {
+          "typ": "absatz",
+          "text": "Dein Gehirn filtert permanent Millionen von Sinneseindrücken. Der Filter heißt **RAS** (Retikuläres Aktivierungssystem) – stell ihn dir vor wie einen **Türsteher** vor einem Club. Der Türsteher lässt nur rein, wer auf der **Gästeliste** steht. Und diese Liste schreibst du – meistens ohne es zu merken."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Neue Sneaker gekauft?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Plötzlich siehst du sie überall. Bei Sneakern ist das harmlos. Aber der gleiche Mechanismus läuft auch bei Menschen."
+        },
+        {
+          "typ": "absatz",
+          "text": "Stell dir vor, du ziehst in eine neue Wohnung. Am ersten Tag läufst du deiner Nachbarin im Treppenhaus über den Weg – sie schaut auf ihr Handy und grüßt nicht. Dein erster Gedanke: *„Unfreundlich.\"* Ab diesem Moment hat dein Türsteher „unfreundliche Nachbarin\" auf die Liste gesetzt. Von nun an fällt dir jedes Mal auf, wenn sie wortlos am Briefkasten vorbeigeht. Dass sie dir letzte Woche die Tür aufgehalten hat? Rausgefiltert. Dass sie deinen vollen Einkaufsbeutel angeschaut und gelächelt hat? Nicht auf der Liste – also nicht wahrgenommen."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Psychologen nennen das **Confirmation Bias**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein Gehirn sucht permanent nach Beweisen für das, was du sowieso schon glaubst – und findet sie. Immer."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Und es kommt noch krasser"
+        },
+        {
+          "typ": "absatz",
+          "text": "Laut Hirnforschern laufen 80–95 % unserer täglichen Entscheidungen komplett automatisch ab (Kahneman, 2011). Dein bewusster Wille ist wie ein **Reiter auf einem Elefanten**: Der Reiter gibt die Richtung vor, aber wenn der Elefant anders will, zieht er dich einfach mit. „Ich denke jetzt einfach positiv!\" reicht also nicht – der Elefant ignoriert das."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/elefant.webp",
+          "alt": "Reiter auf einem Elefanten",
+          "unterschrift": null,
+          "notion": "Elefant.jpeg"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Aber hier kommt die gute Nachricht:"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du kannst den Elefanten trainieren. Die Wissenschaft nennt das **Neuroplastizität** – dein Gehirn ist formbar, dein Leben lang. Stell dir deine alten Denkmuster vor wie **Autobahnen im Kopf** – breite Nervenbahnen, über die Gedanken blitzschnell rasen. Ein neuer Gedanke? Ein schmaler Trampelpfad. Dein Gehirn nimmt natürlich die Autobahn. Aber: Jedes Mal, wenn du bewusst den Trampelpfad wählst, wird er ein Stück breiter. Über Wochen wird daraus eine Straße. Irgendwann eine neue Autobahn."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Dein Türsteher ist neutral."
+        },
+        {
+          "typ": "absatz",
+          "text": "Er wertet nicht – er filtert einfach stur nach dem, was auf deiner Liste steht. Und das bedeutet: Du kannst die Liste umschreiben. Wer morgens mit dem Gedanken aufwacht *„Heute wird ein schlechter Tag\"*, dessen Türsteher wird den ganzen Tag jeden Beweis dafür durchlassen – und alles Gute rausfiltern. Aber wer sich morgens fragt *„Wofür bin ich gerade eigentlich dankbar?\"*, der setzt einen komplett anderen Filter. Plötzlich fallen dir Dinge auf, die vorher unsichtbar waren."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Worauf du deinen Fokus legst, das wächst."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Fokus auf Probleme → du siehst mehr Probleme**\n**Fokus auf Chancen → du siehst mehr Möglichkeiten**\n**Fokus auf das, was du schon hast → du erlebst mehr Fülle**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dafür brauchst du aber ein konkretes Werkzeug – einen „Cut\", der den Filter in Echtzeit umstellt. Keinen guten Vorsatz, sondern einen neurologischen Reset."
+        }
+      ]
+    },
+    {
+      "id": "mindhack",
+      "rubrik": "mindhack",
+      "titel": "Dein Mind-Hack: Der 5-Sinne-Shift",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "callout",
+          "art": "info",
+          "text": "Wenn dein Stresspegel steigt, das Gedankenkarussell dreht oder dein Fokus komplett auf einem Problem feststeckt – **hier ist dein Reset-Button**. Er funktioniert überall: am Schreibtisch, in der Bahn, vor einer Prüfung, mitten im Streit. Niemand wird es merken."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "So drückst du deinen Reset-Button"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/5-4-3-2-1.webp",
+          "alt": "5-4-3-2-1-Übung",
+          "unterschrift": null,
+          "notion": "4-4-3-2-1-bung.jpeg"
+        },
+        {
+          "typ": "audio",
+          "id": "k01-5sinne-shift",
+          "titel": "Geführter 5-Sinne-Shift (ca. 5 Min)",
+          "art": "meditation",
+          "status": "fertig"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Dein Mini-Reset für unterwegs (10 Sekunden)"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die volle 5-4-3-2-1-Version ist dein Hauptwerkzeug. Aber manchmal hast du keine zwei Minuten – du brauchst einen Sofort-Reset in zehn Sekunden. Hier ist die Kurzfassung:"
+        },
+        {
+          "typ": "zitat",
+          "text": "3 × sehen – 2 × fühlen – 1 × hören.",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/notaus.webp",
+          "alt": "10-Sekunden-Notaus",
+          "unterschrift": null,
+          "notion": "10-Sekunden-Notaus.jpg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Das reicht oft schon, um den Autopiloten zu unterbrechen und dich zurück ins Hier und Jetzt zu holen. Diese Kurzversion ist dein Werkzeug für die Alltagsmission."
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Wofür ist diese Übung noch perfekt geeignet?",
+          "bloecke": [
+            {
+              "typ": "zitat",
+              "text": "\"Wenn der Kopf im Gestern (Reue/Ärger/Trauma) oder im Morgen (Angst/Sorgen) feststeckt, holt die 5-4-3-2-1-Methode dich zurück ins Heute.\"",
+              "quelle": null
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**Prüfungsangst & Blackouts:** Wenn vor einer Klausur die Panik steigt und das Gelernte „weg“ scheint, holt die Übung den Fokus zurück ins Hier und Jetzt.",
+                "**Einschlafprobleme:** Wenn das Gedankenkarussell (Grübeln über den Tag oder Sorgen vor morgen) das Einschlafen verhindert, beruhigt die sensorische Fokussierung das Nervensystem.",
+                "**Akute Wut oder Konflikte:** Bevor man im Streit etwas sagt, das man bereut, dient die Übung als „Notbremse“, um die emotionale Spannung zu senken.",
+                "**Panikattacken & starke Angst:** Sie ist eine der effektivsten Techniken, um eine beginnende Panikattacke zu stoppen, da sie die Dissoziation (das Gefühl, „neben sich zu stehen“) unterbricht.",
+                "**Flashbacks oder Trigger:** Falls du durch ein bestimmtes Wort, Bild oder Geräusch an ein negatives Erlebnis erinnert wirst, hilft dir die Übung, dich wieder sicher in der Gegenwart zu fühlen.",
+                "**Überreizung (Sensory Overload):** Wenn auf einem Konzert, in der vollen Bahn oder in einer großen Gruppe alles „zu viel“ wird, hilft sie, die Reize zu sortieren."
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Warum das so stark funktioniert?",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Du hast das vermutlich schon bei einem Kind erleben können: Es fällt hin und weint, plötzlich entdeckt es einen Schmetterling – und sofort ist alles vergessen. Das ist derselbe Mechanismus. Dein Gehirn kann nicht gleichzeitig in einer Stressspirale stecken und hochkonzentriert Sinneseindrücke zählen. Der 5-Sinne-Shift zwingt dein Gehirn durch den ständigen Wechsel zwischen den Sinneskanälen in den analytischen Modus. Dein Alarm-System (Amygdala) fährt runter, dein logisches Denken (präfrontaler Cortex) übernimmt. Das passiert nicht, weil du es dir „vornimmst\", sondern weil die Übung dein Gehirn dazu zwingt."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Detaillierte Beschreibung: Der 5-Sinne-Shift",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Diese Technik wird in der Fachwelt auch die 5-4-3-2-1-Methode genannt und gehört zu den sogenannten Erdungstechniken (Grounding Techniques)."
+            },
+            {
+              "typ": "absatz",
+              "text": "Das Ziel ist es, jemanden aus einer akuten Stressspirale, einer Panikattacke oder einem „Flashback“ zurück in das Hier und Jetzt zu holen."
+            },
+            {
+              "typ": "ueberschrift",
+              "text": "👉🏽 So funktioniert's"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**5 ×** 👀 **SEHEN**: Benenne fünf Dinge, die du gerade siehst. So spezifisch wie möglich – nicht „ein Tisch\", sondern „die Kratzer auf der Tischplatte links von meiner Hand\".",
+                "**4 ×** 🤌🏽 **FÜHLEN**: Spüre vier Dinge physisch. Den Stoff deines Shirts auf der Schulter. Den Kontakt deiner Füße mit dem Boden. Das Gewicht deines Handys in der Tasche. Die Temperatur der Luft auf deiner Haut.",
+                "**3 ×** 👂🏽 **HÖREN**: Identifiziere drei Geräusche. Das Flugzeug am Himmel. Schritte im Flur. Deinen eigenen Atem.",
+                "**2 ×** 👃🏽 **RIECHEN**: Achte auf zwei Gerüche. Kaffee? Frische Luft? Dein eigenes Deo?",
+                "**1 ×** 👅 **SCHMECKEN**: Nimm einen Geschmack in deinem Mund wahr. Auch wenn es „nichts Besonderes\" ist – das zählt."
+              ]
+            }
+          ]
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "mission",
+      "rubrik": "mission",
+      "titel": "Mission Alltag: Dein Fokus-Reflex",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Das Ziel"
+        },
+        {
+          "typ": "absatz",
+          "text": "Hier geht es um den ersten und wichtigsten Schritt: **den Autopiloten stoppen.** Bevor du deinen Fokus bewusst neu ausrichten kannst, musst du erst merken, dass du im Autopiloten steckst – und den Reset-Button drücken. Worauf du dich danach konkret fokussieren kannst, erarbeiten wir Schritt für Schritt in den nächsten Topics. Denn erst müssen wir noch ein paar entscheidende Dinge über dein Gehirn verstehen, bevor die Neuausrichtung richtig sitzt. Aber keine Sorge – das kommt. Jetzt geht's darum, den Reset-Reflex zu trainieren."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Deine Mission für diese Woche"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Warum täglich üben?** Dein Gehirn kann den Reset-Button nur dann drücken, wenn es ihn im Schlaf kennt. Wenn Stress kommt, schaltet dein Gehirn auf Autopilot – und greift nur auf das zurück, was es vorher oft genug geübt hat. Ein Feuerwehrmann übt den Einsatz auch nicht erst beim Brand."
+        },
+        {
+          "typ": "absatz",
+          "text": "Das Gute: Schon eine Woche tägliches Üben reicht, damit der Shift zur Gewohnheit wird."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "So geht's – kopple deinen Mini-Reset an zwei Dinge:"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "1. Eine Alltagssituation"
+        },
+        {
+          "typ": "absatz",
+          "text": "Jedes Mal, wenn du an einer roten Ampel stehst, auf den Wasserkocher wartest, dir die Zähne putzt oder dich abends auf die Couch setzt → Mini-Reset (3 × sehen, 2 × fühlen, 1 × hören)."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "2. Einen Erinnerungsanker"
+        },
+        {
+          "typ": "absatz",
+          "text": "Such dir einen Gegenstand, der dich an deinen neuen Fokus erinnert."
+        },
+        {
+          "typ": "liste",
+          "geordnet": false,
+          "punkte": [
+            "**Brillenträger:** Jedes Mal, wenn du deine Brille aufsetzt, frag dich kurz: *„Mit welcher Brille schaue ich gerade auf die Welt?\"*",
+            "**Alle anderen:** Ein kleiner Sticker auf dem Handy, ein bestimmtes Armband, ein Post-it am Spiegel – egal was, Hauptsache es unterbricht deinen Autopiloten für eine Sekunde."
+          ]
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/trigger.webp",
+          "alt": "3-2-1-Trigger",
+          "unterschrift": null,
+          "notion": "3-2-1-Trigger.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "🔄 Je öfter du deinem Gehirn im entspannten Zustand zeigst, dass DU entscheidest, wann der Autopilot gestoppt wird, desto schneller ist dieser Reflex abrufbar, wenn es wirklich zählt – in der Prüfung, im Streitgespräch oder in der schlaflosen Nacht."
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "quellen",
+      "rubrik": "quellen",
+      "titel": "Quellen & Hintergrund",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "quelle",
+          "text": "**Gorilla-Experiment** (Simons & Chabris, 1999): Probanden zählten Basketballpässe und übersahen dabei einen Menschen im Gorillakostüm, der durchs Bild lief. Unser Pizza-Spiel nutzt exakt denselben Mechanismus – nur interaktiver.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Retikuläres Aktivierungssystem (RAS):** Der Gehirnfilter, der bestimmt, welche der Millionen Sinneseindrücke pro Sekunde ins Bewusstsein gelangen.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Confirmation Bias:** Eine der am besten erforschten kognitiven Verzerrungen – beschrieben u.a. von Daniel Kahneman in „Thinking, Fast and Slow\" (2011).",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Neuroplastizität:** Die Fähigkeit des Gehirns, sich durch Erfahrung und Wiederholung strukturell umzubauen – belegt durch Forschung von Michael Merzenich, Norman Doidge u.a.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Automatische Entscheidungen (80–95%):** Kahneman (2011) beschreibt das Dual-Process-Modell – System 1 (schnell, automatisch) vs. System 2 (langsam, bewusst). Der Großteil unserer täglichen Entscheidungen läuft über System 1.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**5-Sinne-Shift / Grounding:** Basiert auf evidenzbasierten Grounding-Techniken der klinischen Psychologie, u.a. eingesetzt in der Stressreduktion und Achtsamkeitsforschung.",
+          "url": null
+        }
+      ],
+      "lese": null
+    }
+  ]
+}

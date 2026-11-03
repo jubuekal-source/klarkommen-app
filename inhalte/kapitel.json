@@ -1,0 +1,154 @@
+{
+ "schemaVersion": 1,
+ "_hinweis": "Feld 'inhalt' = Inhaltsdatei des Kapitels (von quelle/einspielen.py gesetzt). 'phase' = Notion-Phase (Zwischenüberschrift auf der Startseite).",
+ "kapitel": [
+  {
+   "id": "k01",
+   "nr": 1,
+   "titel": "Fokus",
+   "untertitel": "Deine wahrgenommene Realität",
+   "block": 1,
+   "phase": "Augen öffnen",
+   "status": "frei",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k01.webp",
+   "inhalt": "inhalte/k01.json"
+  },
+  {
+   "id": "k02",
+   "nr": 2,
+   "titel": "Identität",
+   "untertitel": "Wer bist du wirklich?",
+   "block": 1,
+   "phase": "Augen öffnen",
+   "status": "frei",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k02.webp",
+   "inhalt": "inhalte/k02.json"
+  },
+  {
+   "id": "k03",
+   "nr": 3,
+   "titel": "Gedankenkontrolle",
+   "untertitel": "Die Macht deiner Gedanken",
+   "block": 1,
+   "phase": "Augen öffnen",
+   "status": "frei",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k03.webp",
+   "inhalt": "inhalte/k03.json"
+  },
+  {
+   "id": "k04",
+   "nr": 4,
+   "titel": "Der innere Kritiker",
+   "untertitel": "Gedanken-Spiralen stoppen",
+   "block": 1,
+   "phase": "Blockaden lösen",
+   "status": "frei",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k04.webp",
+   "inhalt": "inhalte/k04.json"
+  },
+  {
+   "id": "k05",
+   "nr": 5,
+   "titel": "Überzeugungen",
+   "untertitel": "Limitierende Glaubenssätze aufspüren",
+   "block": 2,
+   "phase": "Blockaden lösen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k05.webp"
+  },
+  {
+   "id": "k06",
+   "nr": 6,
+   "titel": "Überzeugungen",
+   "untertitel": "Limitierende Glaubenssätze verändern",
+   "block": 2,
+   "phase": "Blockaden lösen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k06.webp"
+  },
+  {
+   "id": "k07",
+   "nr": 7,
+   "titel": "Dein sicherer Ort",
+   "untertitel": "Resilienz-Tools für den Alltag",
+   "block": 2,
+   "phase": "Durchatmen & Auftanken",
+   "status": "frei",
+   "typ": "toolbox",
+   "cover": "medien/bilder/cover/k07.webp",
+   "inhalt": "inhalte/k07.json"
+  },
+  {
+   "id": "k08",
+   "nr": 8,
+   "titel": "4 Ebenen",
+   "untertitel": "Gedanken > Überzeugungen > Werte > Warum",
+   "block": 3,
+   "phase": "Klarheit aufbauen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k08.webp"
+  },
+  {
+   "id": "k09",
+   "nr": 9,
+   "titel": "Dein Warum",
+   "untertitel": "Der Treibstoff für deine Motivation",
+   "block": 3,
+   "phase": "Klarheit aufbauen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k09.webp"
+  },
+  {
+   "id": "k10",
+   "nr": 10,
+   "titel": "Werte",
+   "untertitel": "Dein innerer Kompass",
+   "block": 3,
+   "phase": "Klarheit aufbauen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k10.webp"
+  },
+  {
+   "id": "k11",
+   "nr": 11,
+   "titel": "Entscheide selbst",
+   "untertitel": "Oder andere übernehmen dein Steuer!",
+   "block": 3,
+   "phase": "Klarheit aufbauen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k11.webp"
+  },
+  {
+   "id": "k12",
+   "nr": 12,
+   "titel": "Von der Vision über das Warum zum Ziel",
+   "untertitel": null,
+   "block": 3,
+   "phase": "Kurs setzen",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/k12.webp"
+  },
+  {
+   "id": "bonus",
+   "nr": null,
+   "titel": "Bonus",
+   "untertitel": "Wusstest du, dass die meisten dieser Themen absolut mit den Aussagen der Bibel matchen? Zufall?",
+   "block": 3,
+   "phase": "Bonus",
+   "status": "gesperrt",
+   "typ": "slides",
+   "cover": "medien/bilder/cover/bonus.webp"
+  }
+ ]
+}

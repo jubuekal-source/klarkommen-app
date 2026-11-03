@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Focus-Experiment: Farbensuche</title>
+    <link rel="stylesheet" href="../../fonts/fonts.css">
+    <style>
+        :root {
+            --accent: #ff6b35;
+            --red: #e63946;
+            --green: #52b788;
+            --gold: #ffd166;
+            --text: #fffffe;
+            --muted: #c9b99a;
+            --bg: #1a0e05;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html, body {
+            width: 100%; min-height: 100vh; min-height: -webkit-fill-available;
+            background: var(--bg); font-family: 'DM Sans', sans-serif; color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════ SHARED ═══════════════════ */
+        .screen {
+            min-height: 100vh; min-height: -webkit-fill-available;
+            display: flex; flex-direction: column; align-items: center;
+            justify-content: center; text-align: center;
+            padding: 2rem 1.5rem;
+            position: relative;
+        }
+        .screen.hidden { display: none; }
+
+        h1 {
+            font-family: 'Syne', sans-serif; font-weight: 800;
+            font-size: clamp(1.8rem, 6vw, 2.6rem);
+            margin-bottom: 0.8rem; line-height: 1.15;
+        }
+
+        p { color: var(--muted); font-size: clamp(0.88rem, 2.5vw, 1rem); line-height: 1.65; max-width: 440px; margin-bottom: 0.8rem; }
+
+        .btn {
+            font-family: 'DM Sans', sans-serif; font-weight: 700;
+            padding: 0.9rem 2.4rem; border-radius: 100px; border: none;
+            cursor: pointer; font-size: clamp(1rem, 3vw, 1.1rem);
+            transition: transform 0.15s, box-shadow 0.15s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+        }
+        .btn:hover { transform: scale(1.04); }
+        .btn:active { transform: scale(0.97); }
+
+        .btn-play {
+            background: var(--green); color: #fff;
+            box-shadow: 0 0 35px rgba(82,183,136,0.5);
+            font-size: clamp(1.1rem, 3.2vw, 1.25rem);
+            padding: 1rem 2.8rem;
+        }
+
+        /* ═══════════════════ START SCREEN ═══════════════════ */
+        #startScreen {
+            background:
+                radial-gradient(ellipse at 20% 80%, rgba(255,107,53,0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(82,183,136,0.06) 0%, transparent 50%),
+                var(--bg);
+        }
+
+        .start-emoji {
+            font-size: 3.5rem; margin-bottom: 0.5rem;
+            animation: bob 1.8s ease-in-out infinite;
+        }
+        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+        .task-card {
+            background: rgba(255,255,255,0.04);
+            border: 1.5px solid rgba(230,57,70,0.35);
+            border-radius: 16px; padding: 1.1rem 1.4rem;
+            max-width: 400px; margin: 0.6rem 0 1rem; text-align: left;
+        }
+        .task-card p { margin-bottom: 0.4rem; color: var(--text); font-weight: 500; }
+        .task-card .highlight-red { color: var(--red); font-weight: 700; }
+        .task-card .time-info {
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--gold); font-weight: 600; margin-top: 0.3rem;
+            font-size: 0.92rem;
+        }
+
+        /* ═══════════════════ GAME SCREEN ═══════════════════ */
+        #gameScreen { padding: 0; justify-content: flex-start; }
+
+        .progress-bar-wrap {
+            position: fixed; top: 0; left: 0; right: 0; height: 6px;
+            background: rgba(255,255,255,0.07); z-index: 100;
+        }
+        .progress-bar {
+            height: 100%; width: 100%;
+            background: linear-gradient(90deg, var(--green), var(--gold));
+            transition: width 0.3s linear;
+            border-radius: 0 3px 3px 0;
+        }
+        .progress-bar.danger {
+            background: linear-gradient(90deg, var(--red), var(--accent));
+        }
+
+        .timer-display {
+            position: fixed; top: 14px; right: 16px; z-index: 101;
+            background: rgba(20,10,2,0.82); border: 1.5px solid rgba(255,200,80,0.3);
+            border-radius: 100px; padding: 0.3rem 0.9rem;
+            font-family: 'Syne', sans-serif; font-weight: 700;
+            font-size: 0.95rem; color: var(--gold);
+            backdrop-filter: blur(4px);
+        }
+
+        .image-container {
+            width: 100%; flex: 1; display: flex; align-items: center;
+            justify-content: center; padding: 2.5rem 0.8rem 1.5rem;
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .image-container.visible { opacity: 1; }
+        .image-container img {
+            max-width: 100%; max-height: 82vh;
+            border-radius: 12px;
+            box-shadow: 0 4px 40px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        /* ═══════════════════ QUESTION SCREEN ═══════════════════ */
+        #questionScreen {
+            background:
+                radial-gradient(ellipse at 50% 30%, rgba(82,183,136,0.1) 0%, transparent 60%),
+                var(--bg);
+        }
+
+        .big-question {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.6rem, 5.5vw, 2.4rem);
+            font-weight: 800; color: #fff;
+            max-width: 420px; line-height: 1.2;
+            margin: 0.5rem 0 0.3rem;
+        }
+
+        .question-emoji { font-size: 4rem; margin-bottom: 0.4rem; }
+
+        .green-highlight {
+            color: var(--green);
+            text-shadow: 0 0 20px rgba(82,183,136,0.5);
+        }
+
+        /* ═══════════════════ CLICK-ME BUTTON ═══════════════════ */
+        .btn-clickme {
+            background: var(--accent); color: #fff;
+            box-shadow: 0 0 30px rgba(255,107,53,0.5);
+            font-size: clamp(1.05rem, 3vw, 1.15rem);
+            padding: 0.95rem 2.6rem;
+            opacity: 0; transform: scale(0.7);
+            transition: opacity 0.5s ease, transform 0.5s cubic-bezier(.34,1.56,.64,1);
+            pointer-events: none;
+        }
+        .btn-clickme.show {
+            opacity: 1; transform: scale(1); pointer-events: all;
+            animation: glowPulse 1.4s ease-in-out infinite, wiggle 0.4s ease-in-out 3;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 25px rgba(255,107,53,0.4), 0 0 60px rgba(255,107,53,0.15); }
+            50% { box-shadow: 0 0 40px rgba(255,107,53,0.7), 0 0 80px rgba(255,107,53,0.3); }
+        }
+        @keyframes wiggle {
+            0%   { transform: translateX(0); }
+            20%  { transform: translateX(-4px) rotate(-1.5deg); }
+            40%  { transform: translateX(4px) rotate(1.5deg); }
+            60%  { transform: translateX(-3px) rotate(-1deg); }
+            80%  { transform: translateX(3px) rotate(1deg); }
+            100% { transform: translateX(0); }
+        }
+
+        /* ═══════════════════ REVEAL SCREEN ═══════════════════ */
+        #revealScreen {
+            background:
+                radial-gradient(ellipse at 30% 70%, rgba(255,107,53,0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 30%, rgba(255,209,102,0.05) 0%, transparent 50%),
+                var(--bg);
+            justify-content: flex-start; padding-top: 3rem;
+            overflow-y: auto;
+        }
+
+        .reveal-party {
+            font-size: 3rem; margin-bottom: 0.4rem;
+            animation: partyBounce 0.6s cubic-bezier(.34,1.56,.64,1);
+        }
+        @keyframes partyBounce { 0%{transform:scale(0) rotate(-20deg)} 100%{transform:scale(1) rotate(0)} }
+
+        .reveal-card {
+            background: rgba(255,255,255,0.04);
+            border: 1.5px solid rgba(255,200,80,0.2);
+            border-radius: 16px; padding: 1.2rem 1.4rem;
+            max-width: 420px; margin: 0.6rem 0; text-align: left;
+        }
+        .reveal-card p { text-align: left; }
+
+        /* Delete Button Visual */
+        .delete-btn-visual {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: linear-gradient(135deg, #e63946 0%, #c1121f 100%);
+            color: #fff; padding: 0.5rem 1.2rem; border-radius: 10px;
+            font-family: 'Syne', sans-serif; font-weight: 700;
+            font-size: 0.9rem; margin: 0.3rem 0;
+            box-shadow: 0 2px 15px rgba(230,57,70,0.4);
+            animation: deletePress 2.5s ease-in-out infinite;
+            cursor: default;
+        }
+        .delete-icon {
+            width: 18px; height: 18px; position: relative;
+        }
+        .delete-icon::before, .delete-icon::after {
+            content: ''; position: absolute;
+            width: 16px; height: 2.5px;
+            background: #fff; top: 50%; left: 50%;
+            border-radius: 2px;
+        }
+        .delete-icon::before { transform: translate(-50%, -50%) rotate(45deg); }
+        .delete-icon::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+
+        @keyframes deletePress {
+            0%, 100% { transform: scale(1); box-shadow: 0 2px 15px rgba(230,57,70,0.4); }
+            15% { transform: scale(0.92); box-shadow: 0 1px 8px rgba(230,57,70,0.3); }
+            30% { transform: scale(1.02); box-shadow: 0 3px 20px rgba(230,57,70,0.5); }
+        }
+
+        .brainfact-card {
+            background: linear-gradient(135deg, rgba(255,209,102,0.08) 0%, rgba(255,107,53,0.06) 100%);
+            border: 1.5px solid rgba(255,209,102,0.3);
+            border-radius: 16px; padding: 1.2rem 1.4rem;
+            max-width: 420px; margin: 0.8rem 0; text-align: center;
+        }
+        .brainfact-card p { text-align: center; color: var(--text); font-weight: 500; }
+
+        .btn-back {
+            background: rgba(255,255,255,0.08); color: var(--text);
+            border: 1px solid rgba(255,255,255,0.2);
+            margin-top: 1rem; margin-bottom: 2rem;
+        }
+
+        /* ═══════════════════ CONFETTI ═══════════════════ */
+        .confetti-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 200; overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute; width: 10px; height: 10px;
+            border-radius: 2px; top: -20px;
+            animation: confettiFall linear forwards;
+        }
+        @keyframes confettiFall {
+            0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+            85%  { opacity: 1; }
+            100% { transform: translateY(105vh) rotate(720deg) scale(0.5); opacity: 0; }
+        }
+
+        /* ═══════════════════ SCREEN TRANSITIONS ═══════════════════ */
+        .screen { animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { 0%{opacity:0;transform:translateY(15px)} 100%{opacity:1;transform:translateY(0)} }
+    </style>
+<style id="kk-bar-css">
+:root{--kk-h:calc(44px + env(safe-area-inset-top,0px))}
+html{padding-top:var(--kk-h)}
+#kk-bar{position:fixed;top:0;left:0;right:0;z-index:2147483000;box-sizing:border-box;height:var(--kk-h);padding:env(safe-area-inset-top,0px) 8px 0;display:flex;align-items:center;background:#0f1923;border-bottom:1px solid rgba(241,245,249,.12);font-family:'DM Sans',system-ui,sans-serif}
+#kk-bar button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;color:#f1f5f9;font:600 15px/1 'DM Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+#kk-bar button:hover,#kk-bar button:focus-visible{color:#f97316}
+#kk-bar button:focus-visible{outline:2px solid #f97316;outline-offset:-2px;border-radius:8px}
+.progress-bar-wrap{top:var(--kk-h)!important}.timer-display{top:calc(var(--kk-h) + 14px)!important}.screen{min-height:calc(100dvh - var(--kk-h))!important}</style>
+</head>
+<body>
+<div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button></div>
+
+
+<!-- ═══════════════════ SCREEN 1: START ═══════════════════ -->
+<div class="screen" id="startScreen">
+    <div class="start-emoji">🎯</div>
+    <h1>Es geht um Zeit...</h1>
+
+    <div class="task-card">
+        <p>👉🏽 <strong>DEIN JOB:</strong> Merke dir alles im Bild, was <span class="highlight-red">ROT</span> ist 🍎!</p>
+        <p>Jedes Detail zählt!</p>
+        <div class="time-info">
+            <span>⏱️</span>
+            <span>Du hast ca. 18 Sekunden Zeit.</span>
+        </div>
+    </div>
+
+    <button class="btn btn-play" id="playBtn">▶️ Bereit? Los geht's!</button>
+</div>
+
+<!-- ═══════════════════ SCREEN 2: IMAGE + MUSIC ═══════════════════ -->
+<div class="screen hidden" id="gameScreen">
+    <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <div class="timer-display">⏱ <span id="timerText">18</span>s</div>
+
+    <div class="image-container" id="imageContainer">
+        <img src="Focus-Experiment_Farbensuche.jpeg" alt="Stadtszene" id="focusImage">
+    </div>
+</div>
+
+<!-- ═══════════════════ SCREEN 3: QUESTION ═══════════════════ -->
+<div class="screen hidden" id="questionScreen">
+    <div class="question-emoji">🔎</div>
+    <p style="color: var(--text); font-weight: 600; font-size: clamp(0.95rem, 2.8vw, 1.08rem);">
+        Gut, nun überprüfe wie stark dein Fokus wirklich ist!
+    </p>
+    <div class="big-question">
+        👉🏽 Zähle jetzt im Kopf alles auf, was <span class="green-highlight">grün</span> war 🍏
+    </div>
+    <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.6;">Nimm dir einen Moment...</p>
+
+    <button class="btn btn-clickme" id="clickMeBtn">👉🏽 Klick mich!</button>
+</div>
+
+<!-- ═══════════════════ SCREEN 4: REVEAL ═══════════════════ -->
+<div class="screen hidden" id="revealScreen">
+    <div class="reveal-party">🎉</div>
+    <h1 style="font-size: clamp(1.4rem, 4.5vw, 1.9rem);">Willkommen im Club!</h1>
+
+    <div class="reveal-card">
+        <p style="color: var(--text); font-weight: 500;">
+            Wenn du deutlich weniger <span class="green-highlight">grüne</span> als
+            <span class="highlight-red" style="color: var(--red);">rote</span> Elemente gesehen hast –
+            keine Sorge, so geht es fast allen.
+        </p>
+        <p style="margin-top: 0.6rem;">
+            Dein Gehirn hat das meiste Grüne ausgeblendet, weil es nicht auf deinem Radar war.
+        </p>
+        <p style="margin-top: 0.8rem; display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap;">
+            <span>Es drückt einfach den</span>
+            <span class="delete-btn-visual">
+                <span class="delete-icon"></span>
+                Löschen
+            </span>
+        </p>
+        <p style="margin-top: 0.4rem;">
+            ...ständig. Und das <strong style="color: var(--gold);">jeden Tag</strong>.
+        </p>
+    </div>
+
+    <div class="brainfact-card">
+        <p>🤔 Vielleicht hat dich das Ergebnis wenig überrascht.</p>
+        <p style="margin-top: 0.5rem;">
+            Aber bist du dir über die <strong style="color: var(--gold);">Tragweite</strong> dessen wirklich bewusst?
+        </p>
+        <p style="margin-top: 0.8rem; font-size: 0.95rem;">
+            ✨ Mehr dazu erfährst du in unserem <strong style="color: var(--accent);">Brain-Fact</strong>!
+        </p>
+    </div>
+
+    <button class="btn btn-back" id="restartBtn">🔄 Nochmal spielen</button>
+</div>
+
+<!-- ═══════════════════ CONFETTI CONTAINER ═══════════════════ -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<!-- ═══════════════════ AUDIO ═══════════════════ -->
+<audio id="bgMusic" preload="auto">
+    <source src="synclabmusic-funny-music-478625.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    // ═══════════════════ ELEMENTS ═══════════════════
+    const startScreen    = document.getElementById('startScreen');
+    const gameScreen     = document.getElementById('gameScreen');
+    const questionScreen = document.getElementById('questionScreen');
+    const revealScreen   = document.getElementById('revealScreen');
+    const playBtn        = document.getElementById('playBtn');
+    const clickMeBtn     = document.getElementById('clickMeBtn');
+    const restartBtn     = document.getElementById('restartBtn');
+    const progressBar    = document.getElementById('progressBar');
+    const timerText      = document.getElementById('timerText');
+    const imageContainer = document.getElementById('imageContainer');
+    const bgMusic        = document.getElementById('bgMusic');
+    const confettiEl     = document.getElementById('confettiContainer');
+
+    const DURATION = 18.7; // Music duration in seconds
+
+    // ═══════════════════ SCREEN MANAGEMENT ═══════════════════
+    function showScreen(screen) {
+        [startScreen, gameScreen, questionScreen, revealScreen].forEach(s => s.classList.add('hidden'));
+        screen.classList.remove('hidden');
+        // Re-trigger animation
+        screen.style.animation = 'none';
+        screen.offsetHeight; // reflow
+        screen.style.animation = '';
+    }
+
+    // ═══════════════════ PHASE 1: START → GAME ═══════════════════
+    playBtn.addEventListener('click', () => {
+        showScreen(gameScreen);
+
+        // Small delay for smooth transition, then start
+        setTimeout(() => {
+            imageContainer.classList.add('visible');
+            bgMusic.currentTime = 0;
+            bgMusic.play().catch(() => {
+                // Autoplay blocked — still continue the timer
+                console.log('Audio autoplay blocked');
+            });
+            startTimer();
+        }, 300);
+    });
+
+    // ═══════════════════ TIMER ═══════════════════
+    let timerInterval;
+    let startTime;
+
+    function startTimer() {
+        startTime = Date.now();
+        timerInterval = setInterval(() => {
+            const elapsed = (Date.now() - startTime) / 1000;
+            const remaining = Math.max(0, DURATION - elapsed);
+            const pct = (remaining / DURATION) * 100;
+
+            timerText.textContent = Math.ceil(remaining);
+            progressBar.style.width = pct + '%';
+
+            // Danger color when < 30%
+            if (pct < 30) {
+                progressBar.classList.add('danger');
+            } else {
+                progressBar.classList.remove('danger');
+            }
+
+            if (remaining <= 0) {
+                clearInterval(timerInterval);
+                endImagePhase();
+            }
+        }, 100);
+
+        // Also listen for music end as backup
+        bgMusic.addEventListener('ended', () => {
+            clearInterval(timerInterval);
+            endImagePhase();
+        }, { once: true });
+    }
+
+    // ═══════════════════ PHASE 2: GAME → QUESTION ═══════════════════
+    function endImagePhase() {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+        imageContainer.classList.remove('visible');
+
+        setTimeout(() => {
+            showScreen(questionScreen);
+            clickMeBtn.classList.remove('show');
+
+            // Show the click-me button after 7 seconds
+            setTimeout(() => {
+                clickMeBtn.classList.add('show');
+                // Vibration if available
+                if (navigator.vibrate) {
+                    navigator.vibrate([80, 50, 80, 50, 120]);
+                }
+            }, 7000);
+        }, 600);
+    }
+
+    // ═══════════════════ PHASE 3: QUESTION → REVEAL ═══════════════════
+    clickMeBtn.addEventListener('click', () => {
+        showScreen(revealScreen);
+        launchConfetti();
+    });
+
+    // ═══════════════════ RESTART ═══════════════════
+    restartBtn.addEventListener('click', () => {
+        progressBar.style.width = '100%';
+        progressBar.classList.remove('danger');
+        timerText.textContent = Math.ceil(DURATION);
+        imageContainer.classList.remove('visible');
+        showScreen(startScreen);
+    });
+
+    // ═══════════════════ CONFETTI ═══════════════════
+    function launchConfetti() {
+        confettiEl.innerHTML = '';
+        const colors = ['#52b788', '#ffd166', '#ff6b35', '#e63946', '#a8dadc', '#fff', '#f4a261'];
+
+        for (let i = 0; i < 55; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'confetti-piece';
+            piece.style.left = Math.random() * 100 + '%';
+            piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+            piece.style.width  = (5 + Math.random() * 8) + 'px';
+            piece.style.height = (5 + Math.random() * 8) + 'px';
+            piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+            piece.style.animationDuration = (1.8 + Math.random() * 2) + 's';
+            piece.style.animationDelay = (Math.random() * 0.8) + 's';
+            confettiEl.appendChild(piece);
+        }
+
+        // Clean up after animation
+        setTimeout(() => { confettiEl.innerHTML = ''; }, 5000);
+    }
+</script>
+<script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});</script>
+</body>
+</html>

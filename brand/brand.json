@@ -1,0 +1,52 @@
+{
+ "schemaVersion": 1,
+ "_hinweis": "Herausgeber-Ebene (Skill §10.6). Rebranding = nur diese Datei + Dateien in brand/ tauschen.",
+ "name": "Klarkommen",
+ "titelStandard": "Klarkommen",
+ "untertitelStandard": "Mentale Stärke. Klare Richtung.",
+ "startbild": "brand/start.webp",
+ "sperrVariante": "b",
+ "features": {
+  "einfuehrung": false
+ },
+ "sperrDialog": {
+  "titel": "Noch nicht freigeschaltet",
+  "text": "Dieses Kapitel gehört zur Vollversion von Klarkommen. In deinem Workshop-Zugang ist es nicht enthalten – aber du siehst schon, wohin die Reise geht.",
+  "button": "Vollversion anfragen",
+  "schliessen": "Schließen"
+ },
+ "herausgeber": {
+  "name": "GetCon",
+  "url": "https://www.getcon-ep.de",
+  "logo": "brand/getcon/logo-weiss.png",
+  "header": "brand/getcon/hero.webp",
+  "mail": "info@getcon-ep.de",
+  "mailBetreff": "Klarkommen Vollversion",
+  "whatsapp": "4917697318191",
+  "whatsappText": "Hallo Marco, ich interessiere mich für die Klarkommen-Vollversion."
+ },
+ "ueber": {
+  "titel": "Über Klarkommen",
+  "unterzeile": "herausgegeben von GetCon",
+  "abschnitte": [
+   {
+    "titel": "Wer steckt hinter Klarkommen?",
+    "text": "Hinter Klarkommen steht Marco von GetCon. Als Sozialpädagoge, Trainer und Dozent begleitet er seit vielen Jahren junge Menschen, Teams und Gruppen – in Workshops, Trainings und Freizeiten. Klarkommen bündelt diese Erfahrung mit Erkenntnissen aus Psychologie und Hirnforschung: alltagsnah, ehrlich und ohne erhobenen Zeigefinger."
+   },
+   {
+    "titel": "Klarkommen ist im Bau",
+    "text": "Klarkommen wächst gerade Kapitel für Kapitel. Die Vollversion mit allen 12 Kapiteln, Bonus-Kapitel, Podcasts und Meditationen kannst du schon jetzt vorbestellen."
+   },
+   {
+    "titel": "Starter-Angebot für die Ersten",
+    "text": "Du bekommst die Vollversion zum Starter-Preis von 9,99 €. Im Gegenzug bitten wir dich um ehrliches Feedback und – wenn dir Klarkommen hilft – um ein kurzes Testimonial.",
+    "hervorheben": true
+   }
+  ],
+  "kontaktTitel": "Kontakt",
+  "buttonWebsite": "Zur Website",
+  "kontaktText": "Du willst die Vollversion vorbestellen oder hast eine Frage? Schreib uns – per E-Mail oder WhatsApp.",
+  "buttonMail": "Per E-Mail anfragen",
+  "buttonWhatsapp": "Per WhatsApp schreiben"
+ }
+}
