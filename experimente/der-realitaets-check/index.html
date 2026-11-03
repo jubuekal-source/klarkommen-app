@@ -306,23 +306,7 @@
       text-transform: uppercase;
     }
 
-    /* Particle thoughts floating up */
-    .thought-particle {
-      position: absolute;
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      opacity: 0;
-      pointer-events: none;
-      animation: floatUp 4s ease-in forwards;
-      font-style: italic;
-    }
-
-    @keyframes floatUp {
-      0%   { opacity: 0; transform: translateY(0) scale(0.8); }
-      15%  { opacity: 0.6; transform: translateY(-20px) scale(1); }
-      80%  { opacity: 0.3; transform: translateY(-80px) scale(0.9); }
-      100% { opacity: 0;   transform: translateY(-120px) scale(0.8); }
-    }
+    /* spec/04 §5: eingeblendete Gedanken-Wörter entfernt (CSS) */
 
     /* ====== BUTTONS ====== */
     .btn-primary {
@@ -608,19 +592,8 @@ html{padding-top:var(--kk-h)}
   let remaining = 120;
   let isRunning = false;
   let audioCtx = null;
-  let thoughtInterval = null;
 
   const CIRCUMFERENCE = 2 * Math.PI * 85; // ~534
-  const THOUGHTS = [
-    'nicht denken…',
-    'Hunger.',
-    'Hat mein Handy vibriert?',
-    'Was koche ich heute?',
-    'STOPP!',
-    'Wie lange noch?',
-    '…an nichts…',
-    'Oh nein.',
-  ];
 
   // ============================================================
   // INIT
@@ -714,9 +687,6 @@ html{padding-top:var(--kk-h)}
     document.getElementById('statusText').classList.add('active-msg');
     document.getElementById('timeLabel').textContent = 'Läuft';
 
-    // Thought particles
-    thoughtInterval = setInterval(spawnThought, 3500);
-
     interval = setInterval(() => {
       remaining--;
       updateDisplay(remaining);
@@ -724,7 +694,6 @@ html{padding-top:var(--kk-h)}
 
       if (remaining <= 0) {
         clearInterval(interval);
-        clearInterval(thoughtInterval);
         interval = null;
         isRunning = false;
         onComplete();
@@ -740,15 +709,13 @@ html{padding-top:var(--kk-h)}
       // Resume
       isRunning = true;
       document.getElementById('startBtn').textContent = '⏸ Pause';
-      thoughtInterval = setInterval(spawnThought, 3500);
       interval = setInterval(() => {
         remaining--;
         updateDisplay(remaining);
         updateRing(timerDuration - remaining, timerDuration);
         if (remaining <= 0) {
           clearInterval(interval);
-          clearInterval(thoughtInterval);
-          interval = null;
+            interval = null;
           isRunning = false;
           onComplete();
         }
@@ -757,7 +724,6 @@ html{padding-top:var(--kk-h)}
       // Pause
       isRunning = false;
       clearInterval(interval);
-      clearInterval(thoughtInterval);
       interval = null;
       document.getElementById('startBtn').textContent = '▶ Weiter';
       document.getElementById('startBtn').onclick = pauseTimer;
@@ -770,7 +736,6 @@ html{padding-top:var(--kk-h)}
   // ============================================================
   function resetTimer() {
     clearInterval(interval);
-    clearInterval(thoughtInterval);
     interval = null;
     isRunning = false;
     remaining = timerDuration;
@@ -825,22 +790,7 @@ html{padding-top:var(--kk-h)}
     }, 800);
   }
 
-  // ============================================================
-  // THOUGHT PARTICLES
-  // ============================================================
-  function spawnThought() {
-    if (!isRunning) return;
-    const wrap = document.getElementById('ringWrap');
-    const txt = THOUGHTS[Math.floor(Math.random() * THOUGHTS.length)];
-    const el = document.createElement('div');
-    el.className = 'thought-particle';
-    el.textContent = txt;
-    el.style.left = (20 + Math.random() * 60) + '%';
-    el.style.top = (30 + Math.random() * 40) + '%';
-    el.style.animationDuration = (3 + Math.random() * 2) + 's';
-    wrap.appendChild(el);
-    setTimeout(() => el.remove(), 5000);
-  }
+  /* spec/04 §5: Gedanken-Einblendung während der Zeit entfernt – Gedanken sollen von allein kommen */
 
   // ============================================================
   // CONFETTI

@@ -109,7 +109,7 @@ svg.i.f{fill:currentColor;stroke:none}
 .phase::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--brand-line-2),transparent)}
 .phase b{color:var(--brand-accent-soft);font-weight:700}
 .tile .ph{display:none;color:#d5dde6;font-weight:500;letter-spacing:.08em}
-@media(min-width:700px){.reise{grid-template-columns:1fr 1fr;gap:18px}.reise .phase{display:none}.tile .ph{display:inline}.tile.wide{grid-column:1/-1;aspect-ratio:auto;height:clamp(230px,30vw,320px)}}
+@media(min-width:700px){.reise{grid-template-columns:1fr 1fr;gap:18px}.reise .phase{display:none}.tile .ph{display:inline}.tile.wide{grid-column:1/-1;aspect-ratio:auto;min-height:clamp(230px,30vw,320px)}}
 @media(min-width:1100px){.reise{grid-template-columns:1fr 1fr 1fr}}
 .tile{position:relative;display:block;width:100%;text-align:left;border-radius:var(--brand-radius-lg);overflow:hidden;background:var(--brand-card);aspect-ratio:16/10;
   box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 18px 40px -22px rgba(0,0,0,.8);isolation:isolate;transition:transform .25s var(--ease)}
@@ -123,12 +123,17 @@ svg.i.f{fill:currentColor;stroke:none}
 .tile .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-accent-soft);margin-bottom:3px}
 .tile h3{font-size:1.32rem;margin:0;line-height:1.12;color:#fff}
 .tile .u{color:#d5dde6;font-size:.92rem;line-height:1.35;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* spec/04 §8: Bonus-Kachel – Untertitel vollständig (kein line-clamp), Kachel wächst mit dem Text */
+.tile.wide{display:flex;align-items:flex-end}
+@media(max-width:699px){.tile.wide{aspect-ratio:auto;min-height:clamp(210px,62vw,320px)}}
+.tile.wide .tx{position:relative;flex:1;min-width:0;padding-top:64px}
+@media(max-width:699px){.tile.wide::before,.sv-b .tile.wide.locked::before{background:linear-gradient(180deg,rgba(10,18,26,.05) 0%,rgba(10,18,26,.45) 30%,rgba(10,18,26,.85) 60%,rgba(10,18,26,.97) 100%)}}
+.tile.wide .u{display:block;-webkit-line-clamp:unset;overflow:visible;max-width:34em}
 .ring{width:46px;height:46px;flex:none;position:relative;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;font-family:var(--brand-font-head)}
 .ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
-.ring .tr{stroke:rgba(255,255,255,.18)} .ring .pr{stroke:var(--brand-ok);transition:stroke-dashoffset .6s var(--ease)}
-.ring.done{color:#0f1923}
-.ring.done::before{content:"";position:absolute;inset:6px;border-radius:50%;background:var(--brand-ok)}
-.ring.done span{position:relative}
+.ring .tr{stroke:rgba(255,255,255,.18)} .ring .pr{stroke:var(--brand-accent);transition:stroke-dashoffset .6s var(--ease)}   /* spec/04 §3: Ring Orange */
+.ring span{position:relative}
+.ring.done{color:#fff}   /* spec/04 §3: voll = nur äußerer Ring, innen transparent, Text „5/5“ bleibt */
 .lockb{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
 .lockb svg.i{width:19px;height:19px;stroke-width:2}
 .tile .tag{display:inline-block;margin-top:7px;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:#fff;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18)}
@@ -335,16 +340,21 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 .tbh2{margin-top:30px}
 .ti{width:44px;height:44px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.25);color:var(--brand-ok)}
 .ti svg.i{width:22px;height:22px}
+/* Abnahme K2: Offline-Pill Tap-Ziel */
+.hero .pill{min-height:44px}
 /* Schnell-Hilfe: gleich breite Kacheln */
-.schnell{display:grid;grid-template-columns:1fr;gap:8px}
+.schnell{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
 .schnell a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;text-decoration:none;color:var(--brand-text);min-height:62px;
   background:linear-gradient(100deg,rgba(249,115,22,.16),rgba(249,115,22,0) 70%),var(--brand-card);border:1px solid rgba(249,115,22,.3)}
 .schnell a .ti{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft);width:40px;height:40px;border-radius:12px}
-.schnell b{flex:1;min-width:0;font-family:var(--brand-font-head);font-size:1rem;line-height:1.22}
-.schnell small{color:var(--brand-text-2);font-size:.82rem;white-space:nowrap}
-.schnell .go{color:var(--brand-accent-soft);display:flex}
+/* spec/04 §6: Titel + Dauer untereinander in einer schrumpfbaren Spalte → nichts läuft über den Rand (auch bei großer Systemschrift) */
+.schnell a{min-width:0;max-width:100%}
+.schnell .stx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.schnell b{min-width:0;font-family:var(--brand-font-head);font-size:1rem;line-height:1.22;overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
+.schnell small{color:var(--brand-text-2);font-size:.82rem;line-height:1.3;overflow-wrap:anywhere}
+.schnell .go{color:var(--brand-accent-soft);display:flex;flex:none}
 .schnell .go svg.i{width:18px;height:18px}
-@media(min-width:560px){.schnell{grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}.schnell a{flex-direction:column;align-items:flex-start;min-height:128px;padding:14px}.schnell small{margin-top:auto;white-space:normal}.schnell .go{display:none}}
+@media(min-width:560px){.schnell{grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}.schnell a{flex-direction:column;align-items:flex-start;min-height:128px;padding:14px}.schnell .stx{flex:1 1 auto;width:100%}.schnell small{margin-top:auto;white-space:normal}.schnell .go{display:none}}
 /* Use-Case-Kacheln */
 .ucgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media(min-width:820px){.ucgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -427,6 +437,37 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 .getcon .btns.kontakt{margin-top:14px}
 @media(min-width:700px){.getcon .btns.kontakt{grid-template-columns:repeat(3,1fr)}}
 
+/* ===== Feedback „Titel-Test“ – spec/04 P1-Zusatz (§10) ===== */
+.fbk{display:flex;align-items:center;gap:14px;margin:4px 0 8px;padding:14px 14px;border-radius:18px;text-decoration:none;color:var(--brand-text);min-height:64px;
+  background:linear-gradient(100deg,rgba(249,115,22,.12),rgba(249,115,22,0) 65%),var(--brand-card);border:1px solid rgba(249,115,22,.28)}
+.fbk .ti{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
+.fbk .k{flex:1;min-width:0}
+.fbk b{display:block;font-family:var(--brand-font-head);font-size:1rem;line-height:1.28}
+.fbk small{display:block;color:var(--brand-text-2);font-size:.84rem;margin-top:2px}
+.fbk small.ok{color:var(--brand-ok)}
+.fbk .chev{color:var(--brand-accent-soft);display:flex;flex:none}
+.fb .card h2{font-size:1.12rem;line-height:1.3;hyphens:manual;-webkit-hyphens:manual}
+.fb .qn{color:var(--brand-accent-soft);margin-right:2px}
+.fopts{display:grid;gap:10px}
+.fopt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 14px;border-radius:14px;text-align:left;background:var(--brand-card-2);border:1.5px solid var(--brand-line-2);color:var(--brand-text);transition:background .15s,border-color .15s}
+.fopt .lt{width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;font-size:1.1rem;background:rgba(148,163,184,.14);color:var(--brand-text)}
+.fopt .tx2{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:500;font-size:1.02rem;line-height:1.3;overflow-wrap:break-word}
+.fopt .tx2 span{display:block;font-size:.8rem;color:var(--brand-text-2);font-weight:500}
+.fopt .mk{width:26px;height:26px;border-radius:50%;flex:none;border:2px solid var(--brand-line-2);display:flex;align-items:center;justify-content:center;color:transparent}
+.fopt .mk svg.i{width:16px;height:16px;stroke-width:2.6}
+.fopt[aria-checked="true"]{background:rgba(249,115,22,.12);border-color:var(--brand-accent)}
+.fopt[aria-checked="true"] .lt{background:var(--brand-accent);color:#1a0d03}
+.fopt[aria-checked="true"] .mk{background:var(--brand-accent);border-color:var(--brand-accent);color:#1a0d03}
+.fld textarea{width:100%;min-height:96px;padding:12px 14px;border-radius:12px;border:1px solid var(--brand-line-2);background:var(--brand-input);outline:none;font-size:16px;line-height:1.45;resize:vertical}
+.fld textarea:focus{border-color:var(--brand-accent);box-shadow:0 0 0 3px var(--brand-accent-glow)}
+.fb .btn[aria-disabled="true"]{opacity:.45;box-shadow:none;animation:none}
+.fb .transp{display:flex;gap:10px;font-size:.88rem;line-height:1.45;color:#cdd6df;margin:10px 0 14px;padding:10px 12px;border-radius:12px;background:rgba(148,163,184,.07);border:1px solid var(--brand-line-2)}
+.fb .transp svg.i{width:18px;height:18px;color:var(--brand-text-2);margin-top:1px}
+.fb .fehlt{color:var(--brand-text-2);font-size:.9rem;margin:0 0 10px;min-height:1.4em}
+.fbdank{background:linear-gradient(135deg,rgba(125,211,192,.14),rgba(125,211,192,0) 70%),var(--brand-card);border-color:rgba(125,211,192,.35)}
+.fbdank h2 svg.i{color:var(--brand-ok)!important}
+.getcon .fblink{color:var(--gc-navy)}
+
 /* ===== FAB & Footer – Skill §10.3, spec/01 §C.10 ===== */
 .fab{position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(18px + var(--sab));width:56px;height:56px;border-radius:50%;z-index:50;
   display:flex;align-items:center;justify-content:center;color:var(--brand-text);background:rgba(28,46,64,.86);border:1px solid var(--brand-line-2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 26px -6px rgba(0,0,0,.7)}
@@ -437,6 +478,16 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 footer.foot{text-align:center;color:var(--brand-muted);font-size:.8rem;line-height:1.6;padding:34px 16px calc(96px + var(--sab))}
 footer.foot a{color:var(--brand-text-2);text-decoration:none}
 footer.foot a b{color:var(--brand-text-2);font-weight:700}
+
+/* ===== Lightbox für Inhaltsbilder – spec/04 §4 ===== */
+.bl figure img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:95;background:rgba(5,10,15,.96);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;animation:enter .2s var(--ease) both}
+.lb[hidden]{display:none}
+.lb img{max-width:100vw;max-height:100dvh;width:auto;height:auto;object-fit:contain;transform-origin:0 0;will-change:transform;-webkit-user-drag:none;pointer-events:none}
+.lb .lbx{position:absolute;top:calc(10px + var(--sat));right:calc(10px + env(safe-area-inset-right));width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(28,46,64,.85);border:1px solid rgba(255,255,255,.22);z-index:2}
+.lb .lbx svg.i{width:24px;height:24px;stroke-width:2.2}
+.lb .lbh{position:absolute;left:0;right:0;bottom:calc(14px + var(--sab));text-align:center;color:var(--brand-text-2);font-size:.82rem;pointer-events:none;padding:0 16px}
+body.lbmode{overflow:hidden}
 
 /* ===== Dialoge & Toast ===== */
 dialog.dlg{border:none;padding:0;background:transparent;color:var(--brand-text);max-width:min(440px,calc(100vw - 32px));width:100%}
@@ -509,6 +560,8 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
   </div>
 </dialog>
 <div class="toast" id="toast" role="status"></div>
+<!-- spec/04 §4: Lightbox -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bild in Vollansicht"><img id="lbImg" alt=""><button class="lbx" id="lbX" aria-label="Schließen"></button><div class="lbh">Mit zwei Fingern zoomen · Doppeltipp vergrößert</div></div>
 <input type="file" id="fileBild" accept="image/*" hidden>
 <input type="file" id="fileImport" accept="application/json,.json" hidden>
 
@@ -517,7 +570,7 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.2.1';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.0';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -584,6 +637,7 @@ const IC = {
   heart:'<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>',
   phone:'<path d="M5 3.5h3.5l2 5-2.5 1.5a11 11 0 0 0 6 6l1.5-2.5 5 2V19a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/>',
   grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',   /* spec/04 §4 */
   star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9z"/>'
 };
 /* spec/01 §C.8 – Icon-Helfer */
@@ -606,6 +660,7 @@ const SECTIONS = {     /* Skill §4: Bereiche für Export/Import */
   fortschritt:{label:'Fortschritt (gelesene Slides, Häkchen, ausprobierte Tools)', keys:['gelesen','checks','letzte','toolbox']}
 };
 let D = null, BRAND = null, KAP = [], MED = {version:0, dateien:[]};
+let EXPF = [];         /* Abnahme S3: Experiment-Dateien für den Offline-Button {pfad, bytes} */
 let EXP = null;        /* Set vorhandener Experiment-Ordner (experimente/index.json); null = unbekannt → alle annehmen */
 const INH = {};        /* Kapitelinhalte-Cache: id → {data, beispiel} */
 let startbildURL = null;
@@ -703,6 +758,7 @@ function parse(h){
   if(p[0]==='x' && p[1]) return {name:'x', id:p[1], anker:p[2]||null};
   if(p[0]==='einstellungen') return {name:'einstellungen'};
   if(p[0]==='ueber') return {name:'ueber'};
+  if(p[0]==='feedback') return {name:'feedback'};   /* spec/04 §10 */
   return {name:'start'};
 }
 /* Skill §10.3 – FAB = eine Ebene nach oben */
@@ -710,13 +766,14 @@ function parentOf(r){
   switch(r.name){
     case 'slide': case 'tbuc': case 'tballe': return '#/k/'+r.kap;
     case 'tbtool': return r.von==='alle' ? `#/k/${r.kap}/alle` : (r.von ? `#/k/${r.kap}/u/${encodeURIComponent(r.von)}` : '#/k/'+r.kap);
-    case 'kap': case 'einstellungen': case 'ueber': return '#/';
+    case 'kap': case 'einstellungen': case 'ueber': case 'feedback': return '#/';
     default: return null;
   }
 }
 let curRoute = {name:'start'}, prevHash = null, lastStartScroll = 0;
 async function route(){
   const r = parse(location.hash);
+  lbVerstecken();   /* spec/04 §4: Routenwechsel schließt die Lightbox */
   if(curRoute.name==='start') lastStartScroll = window.scrollY;
   const from = curRoute; curRoute = r;
   stopAudio();
@@ -732,6 +789,7 @@ async function route(){
     else if(r.name==='x') renderExperiment(app, r);
     else if(r.name==='einstellungen') await renderEinstellungen(app);
     else if(r.name==='ueber') renderUeber(app);
+    else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
   if(r.name==='einstellungen' && sessionStorageGet('kk_scroll')==='offline'){ sessionStorageSet('kk_scroll',''); const o=document.getElementById('offline'); if(o) o.scrollIntoView({block:'start'}); }
@@ -749,8 +807,11 @@ function bar(titleHtml, extra=''){ return `<header class="bar"><div class="in"><
 function ringSvg(f){
   const C = 2*Math.PI*19; const p = f && f.n ? f.r/f.n : 0;
   const done = f && f.n && f.r===f.n;
-  return `<div class="ring${done?' done':''}" aria-label="${f?`${f.r} von ${f.n} gelesen`:''}"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5"/><circle class="pr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p)).toFixed(1)}"/></svg><span>${done?ic('check'):(f?`${f.r}/${f.n}`:'')}</span></div>`;
+  /* spec/04 §3: auch bei vollem Kapitel Text „n/n“ statt gefüllter Fläche; bei 0 kein Strich (sonst Punkt durch linecap) */
+  return `<div class="ring${done?' done':''}" aria-label="${f?`${f.r} von ${f.n} gelesen`:''}"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5"/>${p>0?`<circle class="pr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5" stroke-linecap="${done?'butt':'round'}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p)).toFixed(1)}"/>`:''}</svg><span>${f?`${f.r}/${f.n}`:''}</span></div>`;
 }
+/* spec/04 §9: optionaler Bildausschnitt je Kapitel aus kapitel.json (coverPos = Kachel, coverPosKopf = Kapitelkopf) */
+function coverPos(k, wo){ const v = (wo==='kopf' && k.coverPosKopf) || k.coverPos; return (typeof v==='string' && /^[\d.% a-z-]{1,40}$/.test(v)) ? ` style="object-position:${v}"` : ''; }
 /* spec/01 §C.2 + §C.3 – Kachel */
 function tile(k){
   const locked = k.status!=='frei';
@@ -759,7 +820,7 @@ function tile(k){
   const tag = locked ? `<span class="tag">Vollversion</span>` : (k.typ==='toolbox' ? `<span class="tag">Toolsammlung</span>` : '');
   const attrs = locked ? `data-act="sperre" data-kap="${k.id}"` : `data-go="#/k/${kapRouteId(k)}"`;
   return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
-    <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async">
+    <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
     ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
     <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked)?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
   </button>`;
@@ -777,6 +838,7 @@ async function renderStart(app){
   <section class="wrap wide" aria-labelledby="reiseH">
     <div class="lead"><h2 id="reiseH">Deine Reise</h2><span class="meta">${KAP.filter(k=>k.nr).length} Kapitel + Bonus</span></div>
     <p class="introtxt">Kapitel für Kapitel zu mehr Klarheit. Tippe ein Kapitel an, um loszulegen.</p>
+    ${fbKarte()}<!-- spec/04 §10 -->
     <div class="reise">`;
   let phase = null;
   for(const k of KAP){
@@ -800,7 +862,7 @@ async function renderKapitel(app, r){
   if(k.status!=='frei'){ location.replace('#/'); setTimeout(()=>openSperre(k),50); return; }
   document.title = `${k.titel} · ${titel()}`;
   const eyebrow = k.nr ? `Kapitel ${k.nr}` : 'Bonus';
-  const head = `<section class="khead"><img src="${esc(k.cover)}" alt=""><div class="wrap"><div class="eyebrow">${eyebrow}${k.phase?` · ${esc(k.phase)}`:''}</div><h1>${esc(k.titel)}</h1>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}</div></section>`;
+  const head = `<section class="khead"><img src="${esc(k.cover)}" alt=""${coverPos(k,'kopf')}><div class="wrap"><div class="eyebrow">${eyebrow}${k.phase?` · ${esc(k.phase)}`:''}</div><h1>${esc(k.titel)}</h1>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}</div></section>`;
   if(k.typ==='toolbox'){ await renderToolbox(app, k, head, eyebrow); return; }
   const I = await inhalt(k);
   const S = I.data.slides;
@@ -953,6 +1015,7 @@ async function renderEinstellungen(app){
       <div class="sep"></div>
       <button class="btn bad block" data-act="fortschritt-reset">${ic('reset')} Fortschritt zurücksetzen</button>
     </section>
+    <section class="card"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
     <section class="card"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
     <p style="color:var(--brand-muted);font-size:.8rem;text-align:center">App-Version ${APP_VERSION} · Inhalte v${MED.version||0}</p>
   </div>${footer()}</div>`;
@@ -975,6 +1038,7 @@ function renderUeber(app){
     <div class="wrap2">
       <a class="back2" href="#/">${ic('back')} Zurück zu Klarkommen</a>
       ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p></section>`).join('')}
+      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p></section>   <!-- spec/04 §10 -->
       <section class="sec" id="kontakt"><h2>${esc(U.kontaktTitel)}</h2>${U.kontaktText?`<p>${inl(U.kontaktText)}</p>`:''}
         <div class="btns kontakt">${kbtn}</div>
       </section>
@@ -988,8 +1052,23 @@ function renderUeber(app){
 const expHref = b => `#/x/${encodeURIComponent(b.id)}${b.anker?'/'+encodeURIComponent(b.anker):''}`;
 const expDa = id => !EXP || EXP.has(id);
 /* einzelne Experiment-Karte – spec/01 §C.5 */
+/* spec/04 §7: Button-Beschriftung nach Typ. Vorrang: Feld im Block (label/button/start) → atem-anker = Atemtool → Toolsammlung = Übung → sonst echtes Experiment */
+const EXP_TYPEN = {
+  experiment:{art:'Experiment', icon:'flask', start:'Experiment starten'},
+  uebung:{art:'Übung', icon:'play', start:'Übung starten'},
+  atemtool:{art:'Atemtool', icon:'wind', start:'Atemtool starten'}
+};
+function expLabel(b, path){
+  const typ = (b && typeof b.expTyp==='string' && EXP_TYPEN[b.expTyp]) ? b.expTyp
+    : (b && b.id==='atem-anker') ? 'atemtool'
+    : ((kapById(String(path||'').split('/')[0])||{}).typ==='toolbox') ? 'uebung' : 'experiment';
+  const L = {...EXP_TYPEN[typ]};
+  const eig = b && [b.label, b.button, b.start].find(x=>typeof x==='string' && x.trim());
+  if(eig) L.start = eig.trim();
+  return L;
+}
 function expKarte(b, path, L){
-  L = L || {art:'Experiment', icon:'flask', start:'Experiment starten'};
+  L = L || expLabel(b, path);
   const key = `${path}/x/${b.id}`; const done = !!D.checks[key];
   const btn = expDa(b.id) ? `<a class="btn pulse" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}">${done?'Nochmal starten':L.start} ${ic('right')}</a>` : `<span class="btn sec" aria-disabled="true">${ic('clock')} ${esc(L.art)} folgt in Kürze</span>`;
   return `<div class="exp" data-xk="${esc(key)}"><div class="art">${ic(L.icon)} ${esc(L.art)}${done?`<span class="xdone">${ic('check')} gemacht</span>`:''}</div><h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}${btn}</div>`;
@@ -1059,7 +1138,7 @@ async function renderToolbox(app, k, head, eyebrow){
   if(T.intro && T.intro.length) h += `<div class="bl tbintro">${blocks(T.intro,{path:`${k.id}/intro`})}</div>`;
   /* Schnell-Hilfe */
   const sh = (T.schnellhilfe||[]).map(id=>tbTool(T,id)).filter(Boolean);
-  if(sh.length) h += `<section class="tbsec"><div class="tbh"><h2>${ic('bolt')} Schnell-Hilfe</h2><span>Wenn’s sofort gehen muss</span></div><div class="schnell" style="--n:${sh.length}">${sh.map(t=>{ const d=tbDauer(t); return `<a href="${tbHref(k,t)}"><span class="ti">${ic(tbArt(t).icon)}</span><b>${esc(t.titel)}</b>${d?`<small>${esc(d)}</small>`:''}<span class="go">${ic('right')}</span></a>`; }).join('')}</div></section>`;
+  if(sh.length) h += `<section class="tbsec"><div class="tbh"><h2>${ic('bolt')} Schnell-Hilfe</h2><span>Wenn’s sofort gehen muss</span></div><div class="schnell" style="--n:${sh.length}">${sh.map(t=>{ const d=tbDauer(t); return `<a href="${tbHref(k,t)}"><span class="ti">${ic(tbArt(t).icon)}</span><span class="stx"><b>${esc(t.titel)}</b>${d?`<small>${esc(d)}</small>`:''}</span><span class="go">${ic('right')}</span></a>`; }).join('')}</div></section>`;   /* spec/04 §6 */
   /* Was brauchst du gerade? */
   const ucs = (T.usecases||[]).map(u=>({...u, n:(u.tools||[]).filter(id=>tbTool(T,id)).length})).filter(u=>u.n);
   if(ucs.length) h += `<section class="tbsec"><div class="tbh"><h2>Was brauchst du gerade?</h2></div><div class="ucgrid">${ucs.map(u=>`<a class="uc" href="#/k/${R}/u/${encodeURIComponent(u.id)}"><span class="ui">${ic(TB_UCICON[u.icon]||TB_UCICON[u.id]||'compass')}</span><b>${esc(u.titel)}</b>${u.untertitel?`<small>${esc(u.untertitel)}</small>`:''}<span class="un">${u.n} ${u.n===1?'Tool':'Tools'}</span></a>`).join('')}</div></section>`;
@@ -1075,9 +1154,19 @@ async function renderToolbox(app, k, head, eyebrow){
   if(T.quellen && T.quellen.length) h += `<details class="acc"><summary>${ic('book')}<span>Quellen &amp; Hintergrund</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(T.quellen,{path:`${k.id}/quellen`})}</div></details>`;
   h += tbHilfe(T) + naechstWeiter(k) + `</div>${footer()}</div>`;
   app.innerHTML = h;
+  leereWeg(app);   /* spec/04 §7 */
   initAudios(app);
 }
 
+/* spec/04 §7: Inhalt von k07.json wird gekürzt – leere Blöcke/Akkordeons und Überschriften ohne Inhalt nach dem Rendern entfernen */
+function leereWeg(root){
+  const hatInhalt = el => !!(el && (el.textContent.trim() || el.querySelector('img,audio,iframe,.exp,.audio,a,button,input')));
+  root.querySelectorAll('details.acc').forEach(d=>{ if(!hatInhalt(d.querySelector('.acb'))) d.remove(); });
+  root.querySelectorAll('.bl').forEach(b=>{ if(!hatInhalt(b)) b.remove(); });
+  root.querySelectorAll('.tbh2, h2.soh').forEach(h=>{ const n = h.nextElementSibling; if(!n || !n.classList.contains('bl')) h.remove(); });
+  root.querySelectorAll('.bl h2').forEach(h=>{ let n = h.nextElementSibling; if(!n || /^H[1-3]$/.test(n.tagName)) h.remove(); });
+  root.querySelectorAll('.tbsec').forEach(s=>{ const kids = [...s.children].filter(c=>!c.classList.contains('tbh')); if(!kids.some(hatInhalt)) s.remove(); });
+}
 /* Unterseiten: Use-Case · Alle Tools · Toolkarte */
 async function renderToolboxSub(app, r){
   const k = kapFromRoute(r.kap);
@@ -1138,16 +1227,18 @@ async function renderToolboxSub(app, r){
     <div class="rubrik">${ic(a.icon)} Tool · ${esc(a.label)}</div><h1>${esc(t.titel)}</h1>${tbKurz(t)?`<p class="tkurz">${esc(tbKurz(t))}</p>`:''}
     <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}</div>
     ${t.wofuer?`<div class="wofuer"><span>Wofür</span><p>${inl(t.wofuer)}</p></div>`:''}
-    <div class="bl">${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i, {art:'Geführte Übung', icon:'play', start:'Übung starten'})).join('')}</div>
+    <div class="bl">${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
     ${t.bloecke && t.bloecke.length?`<h2 class="soh">So geht’s</h2><div class="bl">${blocks(t.bloecke, ctx)}</div>`:''}
     ${t.mehr && t.mehr.length?`<div class="bl">${blocks(t.mehr, {...ctx, path:ctx.path+'/mehr'})}</div>`:''}
-    ${passt.length?`<div class="passt"><span>Passt bei</span>${passt.map(u=>`<a class="tchip link" href="#/k/${R}/u/${encodeURIComponent(u.id)}">${esc(u.titel)}</a>`).join('')}</div>`:''}
+    ${passt.length?`<div class="passt"><span>Passt bei</span>${passt.map(u=>`<span class="tchip">${esc(u.titel)}</span>`).join('')}</div>`:''}   <!-- spec/04 §7: reine Info, kein Link -->
+
     <button class="btn block probiert${ok?' on':''}" data-act="tb-probiert" data-tool="${esc(t.id)}" aria-pressed="${ok}">${ok?`${ic('check')} Ausprobiert`:`${ic('check')} Als „ausprobiert“ markieren`}</button>
     ${next?`<a class="weiter" href="${tbHref(k,next,r.von)}" data-rep="1"><span class="k"><span class="l">Nächstes Tool</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`:''}
     ${prev?`<a class="zurueck" href="${tbHref(k,prev,r.von)}" data-rep="1">${ic('up')} Vorheriges: ${esc(prev.titel)}</a>`:''}
     <a class="zurueck" href="${uc?`#/k/${R}/u/${encodeURIComponent(uc.id)}`:(r.von==='alle'?`#/k/${R}/alle`:`#/k/${R}`)}">${ic('up')} ${uc?`Zurück zu „${esc(uc.titel)}“`:(r.von==='alle'?'Zurück zu allen Tools':'Zur Toolbox')}</a>
     ${tbHilfe(T)}</article>${footer()}</div>`;
   app.innerHTML = h;
+  leereWeg(app);   /* spec/04 §7 */
   initAudios(app);
 }
 /* „Ausprobiert“ umschalten – Fortschritt Kap. 7 (spec/02 §2) */
@@ -1165,6 +1256,82 @@ function tbFilter(el){
   if(q[g]===v) delete q[g]; else q[g] = v;
   const qs = new URLSearchParams(q).toString();
   location.replace(`#/k/${curRoute.kap}/alle${qs?'?'+qs:''}`);
+}
+
+/* ================================================================
+   4c. Feedback „Titel-Test“ – spec/04 P1-Zusatz (§10)
+   ================================================================ */
+const FB_KEY = 'klarkommen_titeltest';
+const FB_TITEL = {A:'Klarkommen – Finde raus, was du willst', B:'Klarkommen – Mit dir, deinem Kopf und deinem Weg', C:'Klarkommen – Mentale Stärke. Klare Richtung.'};
+const FB_WA = '4917697318191', FB_MAIL = 'info@getcon-ep.de';
+const FB_FRAGEN = [{id:'q1', text:'Welchen Link würdest du anklicken?', kurz:'Anklicken'}, {id:'q2', text:'Welchen würdest du einer Freundin/einem Freund schicken?', kurz:'Weiterschicken'}];
+const FB_TRANSPARENZ = 'Du schickst eine normale WhatsApp-Nachricht an Marco (GetCon). Dabei sieht er deine Nummer und darf dich ggf. persönlich zum Projekt ansprechen. Freiwillig – du kannst auch per E-Mail antworten.';
+let FB = null;
+/* Zustand pro Gerät: feste Buchstaben, zufällige (gespeicherte) Reihenfolge gegen Positionseffekt */
+function fbLaden(){
+  if(FB) return FB;
+  let o = null; try{ o = JSON.parse(lsGet(FB_KEY)||'null'); }catch(e){ o = null; }
+  const ok = o && Array.isArray(o.reihenfolge) && o.reihenfolge.length===3 && ['A','B','C'].every(x=>o.reihenfolge.includes(x));
+  let rf = ok ? o.reihenfolge : null;
+  if(!rf){ rf = ['A','B','C']; for(let i=rf.length-1;i>0;i--){ let r; try{ r = crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296; }catch(e){ r = Math.random(); } const j = Math.floor(r*(i+1)); [rf[i],rf[j]] = [rf[j],rf[i]]; } }
+  const val = v => (v==='A'||v==='B'||v==='C') ? v : null;
+  FB = {reihenfolge:rf, q1:val(o&&o.q1), q2:val(o&&o.q2), kommentar:(o && typeof o.kommentar==='string') ? o.kommentar : '', abgestimmt:(o && typeof o.abgestimmt==='string') ? o.abgestimmt : null, nochmal:false};
+  fbSpeichern();
+  return FB;
+}
+function fbSpeichern(){ if(!FB) return; const {nochmal, ...rest} = FB; lsSet(FB_KEY, JSON.stringify(rest)); }
+function fbText(){
+  const t = `Klarkommen Titel-Test: Anklicken: ${FB.q1} (${FB_TITEL[FB.q1]}) · Weiterschicken: ${FB.q2} (${FB_TITEL[FB.q2]})`;
+  const k = (FB.kommentar||'').trim();
+  return k ? `${t} · Kommentar: ${k}` : t;
+}
+const fbWaURL = () => `https://wa.me/${FB_WA}?text=${encodeURIComponent(fbText())}`;
+const fbMailURL = () => `mailto:${FB_MAIL}?subject=${encodeURIComponent('Klarkommen Titel-Test')}&body=${encodeURIComponent(fbText())}`;
+/* Startseiten-Karte unter „Deine Reise“ */
+function fbKarte(){
+  const F = fbLaden();
+  return `<a class="fbk" href="#/feedback"><span class="ti">${ic('chat')}</span><span class="k"><b>Hilf mit: Welcher Titel passt? – 30 Sekunden</b>${F.abgestimmt?`<small class="ok">${ic('check').replace('class="i"','class="i" style="width:15px;height:15px;vertical-align:-3px"')} Danke, schon abgestimmt</small>`:`<small>Drei Titel-Ideen – deine Meinung zählt.</small>`}</span><span class="chev">${ic('chev')}</span></a>`;
+}
+function fbOption(q, L){
+  const an = FB[q]===L;
+  return `<button type="button" class="fopt" role="radio" aria-checked="${an}" data-act="fb-wahl" data-q="${q}" data-v="${L}"><span class="lt">${L}</span><span class="tx2">${esc(FB_TITEL[L])}</span><span class="mk">${ic('check')}</span></button>`;
+}
+function renderFeedback(app){
+  const F = fbLaden();
+  document.title = `Hilf mit · ${titel()}`;
+  const formZeigen = !F.abgestimmt || F.nochmal;
+  let h = `<div class="view fb">${bar('<b>Hilf mit</b> · Titel-Test')}<div class="wrap">
+    <div class="pagehead"><div class="eyebrow">Hilf mit · 30 Sekunden</div><h1>Welcher Titel passt?</h1><p>Drei Ideen für den Namen dieser App. Wähle bei beiden Fragen spontan aus dem Bauch heraus.</p></div>`;
+  if(F.abgestimmt) h += `<section class="card fbdank" id="fbDank"><h2>${ic('check')} Danke, schon abgestimmt</h2><p class="hint">Deine Antwort ist auf diesem Gerät vermerkt. Du kannst jederzeit erneut abstimmen.</p>${F.nochmal?'':`<button class="btn sec block" data-act="fb-nochmal">${ic('repeat')} Erneut abstimmen</button>`}</section>`;
+  if(formZeigen){
+    h += FB_FRAGEN.map((q,i)=>`<section class="card"><h2 id="fbH${i}"><span class="qn">${i+1}.</span> ${esc(q.text)}</h2><div class="fopts" role="radiogroup" aria-labelledby="fbH${i}">${F.reihenfolge.map(L=>fbOption(q.id, L)).join('')}</div></section>`).join('');
+    h += `<section class="card"><label class="fld" style="margin:0"><span>Dein Vorschlag/Kommentar (optional)</span><textarea id="fbKom" maxlength="500" rows="3" autocomplete="off" placeholder="z. B. eigener Titel-Vorschlag">${esc(F.kommentar)}</textarea></label></section>
+      <section class="card"><h2>${ic('chat')} Absenden</h2>
+        <p class="fehlt" id="fbFehlt"></p>
+        <div class="btns">
+          <a class="btn block" id="fbWa" data-act="fb-senden" data-weg="wa" target="_blank" rel="noopener">${ic('chat')} Per WhatsApp an Marco senden</a>
+        </div>
+        <p class="transp">${ic('info')}<span>${esc(FB_TRANSPARENZ)}</span></p>
+        <div class="btns"><a class="btn sec block" id="fbMail" data-act="fb-senden" data-weg="mail">${ic('mail')} Per E-Mail senden</a></div>
+      </section>`;
+  }
+  h += `<a class="zurueck" href="#/">${ic('up')} Zur Startseite</a></div>${footer()}</div>`;
+  app.innerHTML = h;
+  fbUpdate();
+}
+/* Senden erst aktiv, wenn beide Fragen beantwortet sind; Links immer aus dem aktuellen Stand */
+function fbUpdate(){
+  const wa = document.getElementById('fbWa'), ml = document.getElementById('fbMail'), fe = document.getElementById('fbFehlt'); if(!wa) return;
+  const fertig = !!(FB.q1 && FB.q2);
+  for(const [a,u] of [[wa, fertig?fbWaURL():null],[ml, fertig?fbMailURL():null]]){ if(u){ a.href = u; a.removeAttribute('aria-disabled'); } else { a.removeAttribute('href'); a.setAttribute('aria-disabled','true'); } }
+  wa.classList.toggle('pulse', fertig);
+  const off = FB_FRAGEN.filter(q=>!FB[q.id]).map((q,i)=>FB_FRAGEN.indexOf(q)+1);
+  fe.textContent = fertig ? 'Bereit – wähle, wie du senden möchtest.' : `Bitte beantworte noch Frage ${off.join(' und ')}.`;
+}
+function fbWahl(el){
+  const q = el.dataset.q, v = el.dataset.v; FB[q] = v; fbSpeichern();
+  el.closest('.fopts').querySelectorAll('.fopt').forEach(b=>b.setAttribute('aria-checked', String(b===el)));
+  fbUpdate();
 }
 
 /* ================================================================
@@ -1202,9 +1369,10 @@ function audioAct(card, act){
    6. Offline – spec/01 §C.7, Skill §5a
    ================================================================ */
 const absURL = p => new URL(p, location.href.split('#')[0]).href;
-async function istOffline(pfad){ try{ if(!('caches' in window)) return false; const c = await caches.open(MEDIEN_CACHE); return !!(await c.match(absURL(pfad))); }catch(e){ return false; } }
+async function istOffline(pfad){ try{ if(!('caches' in window)) return false; return !!(await caches.match(absURL(pfad), {ignoreSearch:true})); }catch(e){ return false; } }   /* Abnahme S3: alle Caches (Medien + Shell/Experimente) */
+const offlineListe = () => [...(MED.dateien||[]), ...EXPF];
 async function offlineZaehlen(){
-  const F = MED.dateien||[]; let n=0, b=0, tb=0;
+  const F = offlineListe(); let n=0, b=0, tb=0;
   for(const f of F){ tb += f.bytes; if(await istOffline(f.pfad)){ n++; b += f.bytes; } }
   return {n, gesamt:F.length, bytes:b, totalBytes:tb};
 }
@@ -1241,13 +1409,13 @@ async function offlineLaden(){
   try{ if(navigator.storage && navigator.storage.persist) await navigator.storage.persist(); }catch(e){}
   const btn = document.getElementById('oBtn'), ab = document.getElementById('oAbbr'), st = document.getElementById('oStat'), barEl = document.getElementById('oBar');
   oAbort = new AbortController(); btn.disabled = true; btn.classList.remove('pulse'); ab.hidden = false;
-  const F = MED.dateien||[]; const c = await caches.open(MEDIEN_CACHE);
+  const F = offlineListe(); const c = await caches.open(MEDIEN_CACHE);
   let fertig = 0, fehler = 0;
   for(const f of F){
     if(oAbort.signal.aborted) break;
     const u = absURL(f.pfad);
     try{
-      if(!(await c.match(u))){
+      if(!(await caches.match(u, {ignoreSearch:true}))){
         btn.innerHTML = `Lade ${fertig+1} von ${F.length} …`;
         const r = await fetch(u, {signal:oAbort.signal, cache:'no-cache'});
         if(!r.ok) throw new Error(r.status);
@@ -1322,9 +1490,11 @@ async function importieren(file){
    ================================================================ */
 document.addEventListener('click', async e=>{
   const go = e.target.closest('[data-go]');
-  if(go && go.dataset.go){ e.preventDefault(); location.hash = go.dataset.go; return; }
+  if(go && go.dataset.go){ e.preventDefault(); if(go.id==='fab') location.replace(go.dataset.go); else location.hash = go.dataset.go; return; }   /* Abnahme K4 */
   const rep = e.target.closest('a[data-rep]');
   if(rep){ e.preventDefault(); location.replace(rep.getAttribute('href')); return; }  /* Skill §10.3: Blättern ohne Verlauf */
+  const fig = e.target.closest('#app .bl figure img');   /* spec/04 §4: nur Inhaltsbilder */
+  if(fig && !fig.closest('a')){ e.preventDefault(); lbAuf(fig.currentSrc || fig.src, fig.alt); return; }
   const xa = e.target.closest('a[href^="#/x/"]');
   if(xa){ sessionStorageSet('kk_xtitel', xa.dataset.xtitel||''); sessionStorageSet('kk_xkey', xa.dataset.xkey||''); sessionStorageSet('kk_xback', location.hash||'#/'); prevHash = location.hash; }
   const el = e.target.closest('[data-act]'); if(!el) return;
@@ -1336,6 +1506,14 @@ document.addEventListener('click', async e=>{
   else if(act==='x-zurueck'){ xSchliessen(); }
   else if(act==='tb-probiert'){ tbProbiert(el); }
   else if(act==='tb-filter'){ tbFilter(el); }
+  /* spec/04 §10: Titel-Test */
+  else if(act==='fb-wahl'){ fbWahl(el); }
+  else if(act==='fb-nochmal'){ FB.nochmal = true; FB.q1 = null; FB.q2 = null; fbSpeichern(); route(); }
+  else if(act==='fb-senden'){
+    if(el.getAttribute('aria-disabled')==='true' || !el.getAttribute('href')){ e.preventDefault(); toast('Bitte beantworte zuerst beide Fragen.'); fbUpdate(); return; }
+    FB.abgestimmt = new Date().toISOString(); FB.nochmal = false; fbSpeichern();
+    setTimeout(()=>{ if(curRoute.name==='feedback'){ route(); toast('Danke fürs Mitmachen!'); } }, 400);
+  }
   else if(act==='sperre-tool'){ const k = kapById(el.dataset.kap); if(k) openSperre(k, el.dataset.titel); }
   else if(act==='zu-offline'){ sessionStorageSet('kk_scroll','offline'); location.hash = '#/einstellungen'; }
   else if(act==='titel-speichern'){
@@ -1356,6 +1534,8 @@ document.addEventListener('click', async e=>{
     }
   }
 });
+/* spec/04 §10: Kommentar live mitschreiben (Link-Text aktuell halten) */
+document.addEventListener('input', e=>{ if(e.target.id==='fbKom' && FB){ FB.kommentar = e.target.value; fbSpeichern(); fbUpdate(); } });
 document.addEventListener('change', async e=>{
   const cb = e.target.closest('input[data-check]');
   if(cb){ if(cb.checked) D.checks[cb.dataset.check] = true; else delete D.checks[cb.dataset.check]; saveData(); return; }
@@ -1369,7 +1549,7 @@ document.addEventListener('change', async e=>{
 document.getElementById('dlgSperre').addEventListener('click', e=>{ if(e.target.id==='dlgSperre') closeDlg(e.target); });  /* Tipp auf Hintergrund schließt */
 /* Wischen zwischen Slides (location.replace) – spec/00 §2.3 */
 let tStart = null;
-document.addEventListener('touchstart', e=>{ if(curRoute.name!=='slide' || e.touches.length!==1 || e.target.closest('input,.audio,details summary')) { tStart=null; return; } tStart = {x:e.touches[0].clientX, y:e.touches[0].clientY, t:Date.now()}; }, {passive:true});
+document.addEventListener('touchstart', e=>{ if(curRoute.name!=='slide' || e.touches.length!==1 || e.target.closest('input,.audio,details summary,#lb')) { tStart=null; return; } tStart = {x:e.touches[0].clientX, y:e.touches[0].clientY, t:Date.now()}; }, {passive:true});
 document.addEventListener('touchend', e=>{
   if(!tStart) return; const dx = e.changedTouches[0].clientX - tStart.x, dy = e.changedTouches[0].clientY - tStart.y; const dt = Date.now()-tStart.t; tStart = null;
   if(Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy)*1.6 || dt > 700) return;
@@ -1379,6 +1559,92 @@ document.addEventListener('touchend', e=>{
   if(dx < 0 && S[i]) markRead(k, S[i]);
   if(t) location.replace(`#/k/${kapRouteId(k)}/${encodeURIComponent(t.id)}`);
 }, {passive:true});
+/* spec/04 §4: Lightbox – Tipp auf Inhaltsbild (figure in .bl; nicht Cover/Header/Icons) → Vollbild.
+   Eigener Pinch-Zoom (touch-action:none, keine Bibliothek), Doppeltipp 1×/2,5×, Schließen per X, Tipp auf Hintergrund, Handy-Zurück (history state). */
+const LB = {s:1, tx:0, ty:0, r0:null, t:null, moved:false, lastTap:0};
+function lbEl(){ return document.getElementById('lb'); }
+function lbApply(){ document.getElementById('lbImg').style.transform = `translate(${LB.tx}px,${LB.ty}px) scale(${LB.s})`; }
+function lbBase(){ const im = document.getElementById('lbImg'); const t = im.style.transform; im.style.transform = 'none'; LB.r0 = im.getBoundingClientRect(); im.style.transform = t; }
+function lbClamp(){
+  if(!LB.r0) return; if(LB.s <= 1.01){ LB.s = 1; LB.tx = 0; LB.ty = 0; return; }
+  const r = LB.r0, vw = innerWidth, vh = innerHeight, sw = r.width*LB.s, sh = r.height*LB.s;
+  LB.tx = sw <= vw ? (vw-sw)/2 - r.left : Math.min(-r.left, Math.max(vw - r.left - sw, LB.tx));
+  LB.ty = sh <= vh ? (vh-sh)/2 - r.top : Math.min(-r.top, Math.max(vh - r.top - sh, LB.ty));
+}
+function lbZoomAt(x, y, s){ const r = LB.r0; const u = (x - r.left - LB.tx)/LB.s, v = (y - r.top - LB.ty)/LB.s; LB.s = s; LB.tx = x - r.left - s*u; LB.ty = y - r.top - s*v; lbClamp(); lbApply(); }
+function lbAufBild(x, y){ const r = document.getElementById('lbImg').getBoundingClientRect(); return x>=r.left && x<=r.right && y>=r.top && y<=r.bottom; }
+function lbAuf(src, alt){
+  const lb = lbEl(), im = document.getElementById('lbImg');
+  document.getElementById('lbX').innerHTML = ic('x');
+  LB.s = 1; LB.tx = 0; LB.ty = 0; im.style.transform = 'none'; im.alt = alt || '';
+  im.onload = ()=>lbBase(); im.src = src;
+  lb.hidden = false; document.body.classList.add('lbmode');
+  if(im.complete) lbBase();
+  try{ history.pushState({kkLb:1}, ''); }catch(e){}
+  document.getElementById('lbX').focus({preventScroll:true});
+}
+function lbVerstecken(){ const lb = lbEl(); if(!lb || lb.hidden) return; lb.hidden = true; document.body.classList.remove('lbmode'); document.getElementById('lbImg').removeAttribute('src'); }
+function lbZu(){ if(lbEl().hidden) return; if(history.state && history.state.kkLb) history.back(); else lbVerstecken(); }
+window.addEventListener('popstate', ()=>{ if(!lbEl().hidden) lbVerstecken(); });
+window.addEventListener('resize', ()=>{ if(!lbEl().hidden){ LB.s = 1; LB.tx = 0; LB.ty = 0; lbApply(); lbBase(); } });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !lbEl().hidden) lbZu(); });
+(function(){
+  const lb = document.getElementById('lb');
+  const pts = t => [...t].map(p=>({x:p.clientX, y:p.clientY}));
+  const dist = (a,b) => Math.hypot(a.x-b.x, a.y-b.y);
+  lb.addEventListener('touchstart', e=>{
+    if(e.target.closest('.lbx')) return;
+    if(!LB.r0) lbBase();
+    const P = pts(e.touches);
+    LB.t = {P, s:LB.s, tx:LB.tx, ty:LB.ty, d:P.length>1?dist(P[0],P[1]):0, m:P.length>1?{x:(P[0].x+P[1].x)/2, y:(P[0].y+P[1].y)/2}:P[0]};
+    if(P.length===1) LB.moved = false; else LB.moved = true;
+  }, {passive:true});
+  lb.addEventListener('touchmove', e=>{
+    if(!LB.t) return; e.preventDefault();
+    const P = pts(e.touches), T = LB.t, r = LB.r0;
+    if(P.length>1 && T.d){
+      const m = {x:(P[0].x+P[1].x)/2, y:(P[0].y+P[1].y)/2};
+      const s = Math.min(5, Math.max(1, T.s * dist(P[0],P[1]) / T.d));
+      const u = (T.m.x - r.left - T.tx)/T.s, v = (T.m.y - r.top - T.ty)/T.s;
+      LB.s = s; LB.tx = m.x - r.left - s*u; LB.ty = m.y - r.top - s*v; LB.moved = true; lbApply();
+    } else if(P.length===1){
+      const dx = P[0].x - T.P[0].x, dy = P[0].y - T.P[0].y;
+      if(Math.abs(dx)+Math.abs(dy) > 8) LB.moved = true;
+      if(LB.s > 1){ LB.tx = T.tx + dx; LB.ty = T.ty + dy; lbApply(); }
+    }
+  }, {passive:false});
+  lb.addEventListener('touchend', e=>{
+    if(!LB.t) return;
+    if(e.touches.length){ const P = pts(e.touches); LB.t = {P, s:LB.s, tx:LB.tx, ty:LB.ty, d:0, m:P[0]}; return; }
+    LB.t = null; lbClamp(); lbApply();
+  });
+  lb.addEventListener('click', e=>{
+    if(e.target.closest('.lbx')){ lbZu(); return; }
+    if(LB.moved){ LB.moved = false; return; }
+    if(!lbAufBild(e.clientX, e.clientY)){ lbZu(); return; }
+    const now = Date.now();
+    if(now - LB.lastTap < 350){ LB.lastTap = 0; lbZoomAt(e.clientX, e.clientY, LB.s > 1 ? 1 : 2.5); } else LB.lastTap = now;
+  });
+  lb.addEventListener('wheel', e=>{ e.preventDefault(); if(!LB.r0) lbBase(); lbZoomAt(e.clientX, e.clientY, Math.min(5, Math.max(1, LB.s * (e.deltaY<0 ? 1.15 : 1/1.15)))); }, {passive:false});
+})();
+/* spec/04 §1: Akkordeons – immer nur EINER offen (verschachtelte: Vorfahren bleiben offen).
+   Erst die anderen schließen, dann im nächsten Frame (Layout steht) den geöffneten unter Leiste/Segmentleiste an die Oberkante scrollen. */
+let accZu = false;
+document.addEventListener('toggle', e=>{
+  const d = e.target;
+  if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('acc') || !d.open || accZu) return;
+  accZu = true;
+  document.querySelectorAll('#app details.acc[open]').forEach(o=>{ if(o!==d && !o.contains(d) && !d.contains(o)) o.open = false; });
+  accZu = false;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(!d.isConnected || !d.open) return;
+    const bar = document.querySelector('#app .bar');
+    const off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
+    const top = d.getBoundingClientRect().top + window.scrollY - off;
+    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
+  }));
+}, true);
 window.addEventListener('hashchange', route);
 /* Experiment-iframe: postMessage {kk:'zurueck'} schließt das Overlay */
 window.addEventListener('message', e=>{ if(e.origin!==location.origin) return; if(e.data && e.data.kk==='zurueck' && curRoute.name==='x') xSchliessen(); });
@@ -1397,7 +1663,8 @@ async function init(){
   try{
     const [b, kj, mj, xj] = await Promise.all([getJSON('brand/brand.json'), getJSON('inhalte/kapitel.json'), getJSON('medien.json').catch(()=>({version:0, dateien:[]})), getJSON('experimente/index.json').catch(()=>null)]);
     BRAND = b; KAP = (kj.kapitel||[]); MED = mj;
-    if(xj){ const arr = Array.isArray(xj) ? xj : (xj.experimente||[]); EXP = new Set(arr.map(e=>typeof e==='string'?e:(e&&e.id)).filter(Boolean)); }
+    if(xj){ const arr = Array.isArray(xj) ? xj : (xj.experimente||[]); EXP = new Set(arr.map(e=>typeof e==='string'?e:(e&&e.id)).filter(Boolean));
+      EXPF = arr.flatMap(e=>{ const d=(e&&e.dateien)||[]; return d.map(f=>({pfad:f, bytes:Math.round((e.bytes||0)/(d.length||1))})); }); }
   }catch(e){
     document.getElementById('app').innerHTML = `<div class="wrap" style="padding-top:60px"><h1>Klarkommen</h1><p>Die App konnte nicht geladen werden. Bitte einmal mit Internetverbindung öffnen.</p><p style="color:var(--brand-text-2);font-size:.9rem">${esc(e.message)}</p></div>`;
     return;

@@ -6,19 +6,11 @@
   "intro": [
     {
       "typ": "absatz",
-      "text": "Vier Kapitel liegen hinter dir. Du hast gelernt, wie dein Gehirn Realität filtert, wie Identität funktioniert, wie deine Gedanken deinen Körper beeinflussen und wie du Gedanken-Spiralen stoppst. Das war intensiv."
+      "text": "Dein persönlicher **Werkzeugkasten** – zum Runterkommen. Zum Auftanken. Zum Weitermachen."
     },
     {
       "typ": "absatz",
-      "text": "Dieses Kapitel ist anders. Kein neues Konzept, kein Aha-Moment, der dein Weltbild auf den Kopf stellen soll. Stattdessen bekommst du hier deinen persönlichen **Werkzeugkasten** – eine Sammlung von Techniken, die du ab jetzt immer griffbereit hast. Zum Runterkommen. Zum Auftanken. Zum Weitermachen."
-    },
-    {
-      "typ": "absatz",
-      "text": "Drei neue Tools lernst du hier kennen. Plus die Übungen aus den Kapiteln 1 bis 4 – sortiert danach, was du gerade brauchst."
-    },
-    {
-      "typ": "absatz",
-      "text": "**Dein Werkzeugkasten wächst mit dir.** Du musst nicht alle Tools nutzen. Probier aus, was sich für dich richtig anfühlt – und mach das zu deinem Go-to."
+      "text": "Du musst nicht alle Tools nutzen. Probier aus, was sich für dich richtig anfühlt – und mach das zu deinem Go-to."
     }
   ],
   "hintergrund": [
@@ -43,27 +35,12 @@
           "text": "Die gute Nachricht: Du kannst dein Nervensystem über die Atmung **direkt ansteuern**. Nicht über den Umweg eines Gedankens (*„Ich muss jetzt ruhig werden\"*), sondern rein über Körpermechanik. Wie eine Fernbedienung."
         }
       ]
-    },
-    {
-      "typ": "akkordeon",
-      "titel": "Welches Tool wann?",
-      "bloecke": [
-        {
-          "typ": "absatz",
-          "text": "**Akuter Stress / Tagsüber / Mitten in der Situation:**\n→ **Physiological Sigh.** Kein Zählen nötig, wirkt nach wenigen Sekunden. Niemand merkt es."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Gedankenkarussell / Abends / Zum Einschlafen:**\n→ **4-7-8 Atmung.** Erfordert Konzentration durchs Zählen, wirkt stark beruhigend nach ein paar Minuten."
-        }
-      ]
     }
   ],
   "neu": [
     "sigh",
     "478",
-    "safe-place",
-    "atem-anker"
+    "safe-place"
   ],
   "schnellhilfe": [
     "sigh",
@@ -80,7 +57,6 @@
         "mini-reset",
         "sigh",
         "anker",
-        "atem-anker",
         "5-sinne"
       ]
     },
@@ -90,7 +66,6 @@
       "untertitel": null,
       "icon": "karussell",
       "tools": [
-        "ertappen",
         "478",
         "einstein",
         "5-sinne"
@@ -104,9 +79,9 @@
       "tools": [
         "478",
         "einstein",
-        "dankbarkeit",
         "5-sinne",
-        "safe-place"
+        "safe-place",
+        "dankbarkeit"
       ]
     },
     {
@@ -129,8 +104,7 @@
       "icon": "stimme",
       "tools": [
         "pitching",
-        "einstein",
-        "fokus-fallen"
+        "einstein"
       ]
     },
     {
@@ -140,9 +114,7 @@
       "icon": "regen",
       "tools": [
         "leitfragen",
-        "fokus-fallen",
-        "dankbarkeit",
-        "medien-audit"
+        "dankbarkeit"
       ]
     },
     {
@@ -234,92 +206,14 @@
       "header": null,
       "bloecke": [
         {
-          "typ": "absatz",
-          "text": "Der Physiological Sigh ist die aktuell schnellste wissenschaftlich belegte Methode, um das Nervensystem in Echtzeit herunterzufahren. Keine App, kein Raum, keine Vorbereitung. 1 bis 3 Atemzüge reichen."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "So funktioniert's – 3 Schritte, 1 Atemzug:"
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k07/sigh.webp",
-          "alt": "Physiological Sigh – 1-Atemzug-Reset",
-          "unterschrift": null,
-          "notion": "PhysiologicalSigh-1-Atemzug-Reset.jpg"
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 1 – Einatmen (~3 Sek., durch die Nase)**\nAtme tief durch die Nase ein, bis du das Gefühl hast, deine Lungen sind voll."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 2 – Nachschnappen (~1 Sek., durch die Nase)**\nObwohl die Lunge schon voll scheint, sofort nochmal kurz und kräftig durch die Nase nachatmen. Du spürst, wie sich der Brustkorb nochmal ein Stück weitet."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 3 – Lang ausatmen (~6–8 Sek., durch den Mund)**\nDie gesamte Luft langsam und vollständig durch den Mund ausströmen lassen. Deutlich länger ausatmen als einatmen. Lass alles raus."
-        },
-        {
-          "typ": "zitat",
-          "text": "**Zusammengefasst:** Einatmen … nachschnappen … laaaaang ausatmen.",
-          "quelle": null
-        },
-        {
           "typ": "experiment",
           "id": "atem-anker",
-          "titel": "Jetzt ausprobieren",
-          "text": "⇒ Öffne die Übung und wähle Tool 1 oder Tool 2",
+          "titel": "Dein Atem-Anker",
+          "text": "Begleitet dich und zählt vor – ideal am Anfang.",
           "anker": "sigh"
         }
       ],
-      "mehr": [
-        {
-          "typ": "akkordeon",
-          "titel": "Warum funktioniert das so gut?",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Das zweite, kurze Nachschnappen bläht Millionen von mikroskopisch kleinen Lungenbläschen (Alveolen) auf, die bei Stress zusammengefallen sind. Dadurch wird schlagartig mehr CO₂ aus dem Blut abtransportiert. Das lange Ausatmen stimuliert den **Vagusnerv** – die wichtigste Verbindung zwischen Gehirn und Körper für den Ruhemodus. Dein Gehirn bekommt das sofortige, mechanische Signal: *„Wir sind sicher.\"*"
-            },
-            {
-              "typ": "absatz",
-              "text": "Übrigens: Dein Körper kennt dieses Atemmuster bereits – du machst es unbewusst im Schlaf und beim Weinen. Die Entdeckung der Stanford-Forscher war, dass du es auch bewusst auslösen kannst."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Was sagt die Forschung?",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Eine kontrollierte Studie an der Stanford University verglich den Physiological Sigh mit Box Breathing, einer Hyperventilationsübung und klassischer Achtsamkeitsmeditation. Die Probanden übten jeweils 5 Minuten täglich über mehrere Wochen."
-            },
-            {
-              "typ": "absatz",
-              "text": "**Ergebnis:** Der Physiological Sigh zeigte die stärksten Verbesserungen bei Stimmung, Ruheherzfrequenz und Stressreduktion – stärker als alle anderen Techniken, einschließlich Meditation."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Wann einsetzen?",
-          "bloecke": [
-            {
-              "typ": "liste",
-              "geordnet": false,
-              "punkte": [
-                "**Im Akut-Moment:** 1–3 Atemzüge reichen (unter 30 Sekunden)",
-                "**Vor einer Prüfung oder einem Bewerbungsgespräch** – kurzer Reset, bevor du reingehst",
-                "**Wenn du merkst, dass du innerlich hochfährst** – ein Atemzug, bevor du reagierst",
-                "**Zwischen zwei stressigen Phasen**, um die Anspannung nicht mitzunehmen",
-                "**Als tägliche Routine (5 Min.)** – baut langfristig eine stabilere Grundruhe auf"
-              ]
-            }
-          ]
-        }
-      ],
+      "mehr": [],
       "audio": null,
       "experiment": "atem-anker",
       "voraussetzung": null,
@@ -345,115 +239,11 @@
       "header": null,
       "bloecke": [
         {
-          "typ": "absatz",
-          "text": "Während der Physiological Sigh dein Schnellschalter für den Tag ist, ist die 4-7-8 Technik dein **„Dimmer\" für den Feierabend**. Sie nutzt einen festen Rhythmus und eine längere Atempause, um stark beruhigend zu wirken und kreisende Gedanken zu stoppen."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "So funktioniert's – 3 Schritte, 4 Zyklen:"
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k07/atmung-4-7-8.webp",
-          "alt": "4-7-8-Atmung: einatmen, anhalten, ausatmen",
-          "unterschrift": null,
-          "notion": "4-7-8_Atmung.jpeg"
-        },
-        {
-          "typ": "absatz",
-          "text": "Schließe gerne die Augen und achte auf eine entspannte Haltung (sitzend oder liegend):"
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 1 – Einatmen (4 Sek.)**\nRuhig durch die Nase einatmen, während du innerlich bis 4 zählst."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 2 – Halten (7 Sek.)**\nDen Atem anhalten und bis 7 zählen."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Schritt 3 – Ausatmen (8 Sek.)**\nLangsam und hörbar (mit einem sanften „Pfff\"-Laut) durch den Mund ausatmen und bis 8 zählen."
-        },
-        {
-          "typ": "zitat",
-          "text": "**4 Durchgänge. Das Ganze dauert insgesamt ca. 3 Minuten.**",
-          "quelle": null
-        },
-        {
           "typ": "experiment",
           "id": "atem-anker",
-          "titel": "Jetzt ausprobieren",
-          "text": "⇒ Öffne die Übung und wähle Tool 1 oder Tool 2",
+          "titel": "Dein Atem-Anker",
+          "text": "Begleitet dich und zählt vor – ideal am Anfang.",
           "anker": "478"
-        }
-      ],
-      "mehr": [
-        {
-          "typ": "akkordeon",
-          "titel": "Was passiert dabei in deinem Körper?",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Durch das lange Anhalten steigt der CO₂-Gehalt im Blut leicht an, was die Blutgefäße weitet und einen beruhigenden, fast sedierenden Effekt auf den Körper hat. Das strikte Zählen zwingt dein Gehirn in den analytischen Fokus – Grübeleien werden effektiv unterbrochen. Die 8-Sekunden-Ausatmung aktiviert den Parasympathikus noch intensiver als beim Physiological Sigh, braucht dafür aber mehr Zeit und Konzentration."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Wann einsetzen?",
-          "bloecke": [
-            {
-              "typ": "liste",
-              "geordnet": false,
-              "punkte": [
-                "**Vor dem Einschlafen**, wenn der Kopf noch keine Ruhe gibt",
-                "**Nach einem aufreibenden Tag**, um wirklich abzuschalten",
-                "**In einer Pause**, wenn du dich bewusst regenerieren willst"
-              ]
-            }
-          ]
-        }
-      ],
-      "audio": null,
-      "experiment": "atem-anker",
-      "voraussetzung": null,
-      "status": "frei"
-    },
-    {
-      "id": "atem-anker",
-      "titel": "Atem-Übung: Sigh oder 4-7-8",
-      "kurztitel": "Jetzt ausprobieren",
-      "wofuer": "Öffne die Übung und wähle Tool 1 oder Tool 2.",
-      "dauerMin": null,
-      "dauerText": null,
-      "dauerQuelle": null,
-      "routine": false,
-      "art": "atem",
-      "usecases": [
-        "akut"
-      ],
-      "herkunft": "k07",
-      "herkunftSlide": null,
-      "header": null,
-      "bloecke": [
-        {
-          "typ": "experiment",
-          "id": "atem-anker",
-          "titel": "Jetzt ausprobieren",
-          "text": "⇒ Öffne die Übung und wähle Tool 1 oder Tool 2"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Welches Tool wann?"
-        },
-        {
-          "typ": "absatz",
-          "text": "**Akuter Stress / Tagsüber / Mitten in der Situation:**\n→ **Physiological Sigh.** Kein Zählen nötig, wirkt nach wenigen Sekunden. Niemand merkt es."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Gedankenkarussell / Abends / Zum Einschlafen:**\n→ **4-7-8 Atmung.** Erfordert Konzentration durchs Zählen, wirkt stark beruhigend nach ein paar Minuten."
         }
       ],
       "mehr": [],
@@ -483,10 +273,6 @@
         {
           "typ": "ueberschrift",
           "text": "Bevor du startest – lies das kurz durch"
-        },
-        {
-          "typ": "absatz",
-          "text": "Das klingt vielleicht erstmal ungewöhnlich – aber du weißt aus den bisherigen Kapiteln bereits, dass dein Gehirn kaum unterscheidet, ob du etwas wirklich erlebst oder es dir nur vorstellst. Genau das nutzt diese Übung."
         },
         {
           "typ": "absatz",
@@ -612,11 +398,6 @@
       "header": null,
       "bloecke": [
         {
-          "typ": "callout",
-          "art": "info",
-          "text": "Wenn dein Stresspegel steigt, das Gedankenkarussell dreht oder dein Fokus komplett auf einem Problem feststeckt – **hier ist dein Reset-Button**. Er funktioniert überall: am Schreibtisch, in der Bahn, vor einer Prüfung, mitten im Streit. Niemand wird es merken."
-        },
-        {
           "typ": "ueberschrift",
           "text": "So drückst du deinen Reset-Button"
         },
@@ -740,143 +521,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Das reicht oft schon, um den Autopiloten zu unterbrechen und dich zurück ins Hier und Jetzt zu holen. Diese Kurzversion ist dein Werkzeug für die Alltagsmission."
-        }
-      ],
-      "mehr": [
-        {
-          "typ": "akkordeon",
-          "titel": "Mission Alltag: Dein Fokus-Reflex",
-          "bloecke": [
-            {
-              "typ": "ueberschrift",
-              "text": "Deine Mission für diese Woche"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Warum täglich üben?** Dein Gehirn kann den Reset-Button nur dann drücken, wenn es ihn im Schlaf kennt. Wenn Stress kommt, schaltet dein Gehirn auf Autopilot – und greift nur auf das zurück, was es vorher oft genug geübt hat. Ein Feuerwehrmann übt den Einsatz auch nicht erst beim Brand."
-            },
-            {
-              "typ": "absatz",
-              "text": "Das Gute: Schon eine Woche tägliches Üben reicht, damit der Shift zur Gewohnheit wird."
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "So geht's – kopple deinen Mini-Reset an zwei Dinge:"
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "1. Eine Alltagssituation"
-            },
-            {
-              "typ": "absatz",
-              "text": "Jedes Mal, wenn du an einer roten Ampel stehst, auf den Wasserkocher wartest, dir die Zähne putzt oder dich abends auf die Couch setzt → Mini-Reset (3 × sehen, 2 × fühlen, 1 × hören)."
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "2. Einen Erinnerungsanker"
-            },
-            {
-              "typ": "absatz",
-              "text": "Such dir einen Gegenstand, der dich an deinen neuen Fokus erinnert."
-            },
-            {
-              "typ": "liste",
-              "geordnet": false,
-              "punkte": [
-                "**Brillenträger:** Jedes Mal, wenn du deine Brille aufsetzt, frag dich kurz: *„Mit welcher Brille schaue ich gerade auf die Welt?\"*",
-                "**Alle anderen:** Ein kleiner Sticker auf dem Handy, ein bestimmtes Armband, ein Post-it am Spiegel – egal was, Hauptsache es unterbricht deinen Autopiloten für eine Sekunde."
-              ]
-            },
-            {
-              "typ": "bild",
-              "src": "medien/bilder/k01/trigger.webp",
-              "alt": "3-2-1-Trigger",
-              "unterschrift": null,
-              "notion": "3-2-1-Trigger.jpeg"
-            },
-            {
-              "typ": "absatz",
-              "text": "🔄 Je öfter du deinem Gehirn im entspannten Zustand zeigst, dass DU entscheidest, wann der Autopilot gestoppt wird, desto schneller ist dieser Reflex abrufbar, wenn es wirklich zählt – in der Prüfung, im Streitgespräch oder in der schlaflosen Nacht."
-            }
-          ]
-        }
-      ],
-      "audio": null,
-      "experiment": null,
-      "voraussetzung": null,
-      "status": "frei"
-    },
-    {
-      "id": "fokus-fallen",
-      "titel": "Die drei Fokus-Fallen",
-      "kurztitel": "Mangel → Fülle · Ohnmacht → Handlung · Fehler → Fortschritt",
-      "wofuer": "Nach dem Reset steht dein Gehirn kurz auf „Standby“ – und in diesem Moment entscheidest du, welchen Wolf du fütterst.",
-      "dauerMin": null,
-      "dauerText": null,
-      "dauerQuelle": null,
-      "routine": false,
-      "art": "denken",
-      "usecases": [
-        "kritiker",
-        "rueckschlag"
-      ],
-      "herkunft": "k03",
-      "herkunftSlide": "mindhack",
-      "header": null,
-      "bloecke": [
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k03/fokus-fallen.webp",
-          "alt": "Die drei Fokus-Fallen",
-          "unterschrift": null,
-          "notion": "3Fallen-2.jpg"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "1️⃣ Die Vergleichsfalle (Mangel → Fülle)"
-        },
-        {
-          "typ": "absatz",
-          "text": "Du scrollst durch Instagram oder hörst von den Erfolgen anderer – und fühlst dich klein. Dein Fokus heftet sich automatisch an das, was dir fehlt."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Der Ausweg:** Wofür bist du heute dankbar? Wer nichts findet, hier ein kurzer Realitätscheck: Bist du heute Morgen in einem Bett aufgewacht? Hattest du etwas zu essen? Bist du ohne fremde Hilfe aufgestanden? Dann gehörst du, verglichen mit der Weltbevölkerung, zu den privilegiertesten Menschen. Du vergleichst dich nur mit den 0,1 % über dir."
-        },
-        {
-          "typ": "zitat",
-          "text": "„Das Vergleichen ist das Ende des Glücks und der Anfang der Unzufriedenheit.“",
-          "quelle": "Søren Kierkegaard"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "2️⃣ Die Zukunftspanik (Ohnmacht → Handlung)"
-        },
-        {
-          "typ": "absatz",
-          "text": "Klimakrise, Kriege, wirtschaftliche Unsicherheit – dein Kopf dreht sich um Dinge, die du nicht kontrollieren kannst. Die Zeitzonen-Falle: Du steckst in der giftigen Zukunft fest."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Der Ausweg:** Wenn du nicht aktiv politischen Einfluss nehmen kannst, verschwende deine Energie nicht dort. Lenke deinen Fokus auf das, was du in der Hand hast: deine Gesundheit, deine Finanzen, deine Beziehungen, dein persönliches Wachstum. Dort macht deine Energie einen echten Unterschied."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "3️⃣ Die Perfektionsfalle (Fehler → Fortschritt)"
-        },
-        {
-          "typ": "absatz",
-          "text": "Dein Kopf kreist um das, was du falsch gemacht hast. Was nicht gut genug war. Die Zeitzonen-Falle: Du steckst in der giftigen Vergangenheit fest."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Der Ausweg:** Wo hast du in den letzten Wochen Fortschritt gemacht? Welche Fähigkeit hast du verbessert, die du vor einem Jahr noch nicht hattest? Perfektionismus lähmt – Fortschrittsfokus motiviert."
-        },
-        {
-          "typ": "zitat",
-          "text": "**Wer Mangel denkt, findet Mangel. Wer Fülle denkt, findet Fülle. Du triffst die Entscheidung.**",
-          "quelle": null
+          "text": "Das reicht oft schon, um den Autopiloten zu unterbrechen und dich zurück ins Hier und Jetzt zu holen."
         }
       ],
       "mehr": [],
@@ -962,46 +607,6 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Beispiel 2: Der ins Wasser gefallene Ausflug**",
-          "bloecke": [
-            {
-              "typ": "liste",
-              "geordnet": false,
-              "punkte": [
-                "**Die Situation:** Ihr habt euch seit Wochen auf einen großen gemeinsamen Ausflug in den Freizeitpark gefreut. Am Samstagmorgen schüttet es wie aus Eimern und der Park meldet wegen Sturmwarnung geschlossen. Alle sind bitter enttäuscht, der Tag scheint komplett gelaufen zu sein.",
-                "**Der alte Weg (Autopilot):** *„Warum haben wir immer so ein Pech? Das ganze Wochenende ist ruiniert, jetzt hocken wir hier nur frustriert herum!“* → Das Resultat: Miese Stimmung, Gereiztheit und ein verlorener Tag für alle."
-              ]
-            },
-            {
-              "typ": "absatz",
-              "text": "**Der neue Weg (Bewusster Perspektivenwechsel):** Erlaube dir (und allen Beteiligten) kurz den Frust und die Enttäuschung – und dann wechsle bewusst die Perspektive mit deinen Leitfragen:"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Was ist das Gute daran?**"
-            },
-            {
-              "typ": "zitat",
-              "text": "*„Wir haben plötzlich einen komplett leeren Kalender ohne Zeitdruck. Keinen Stress beim Packen, keine Staus auf der Autobahn, kein stundenlanges Anstehen an den Fahrgeschäften. Wir können stattdessen ohne schlechtes Gewissen auf dem Sofa versacken, mittags Pizza bestellen und einen genialen Film-Marathon oder Spiele-Tag starten, wozu wir im Alltag sonst nie Zeit haben.“*",
-              "quelle": null
-            },
-            {
-              "typ": "absatz",
-              "text": "**Was lerne ich daraus?**"
-            },
-            {
-              "typ": "zitat",
-              "text": "*„Beim nächsten Mal überlegen wir uns bei Outdoor-Ausflügen von vornherein einen starken „Plan B“ für schlechtes Wetter, auf den wir genauso viel Lust hätten. So fällt die Enttäuschung gar nicht erst so tief aus.“*",
-              "quelle": null
-            },
-            {
-              "typ": "absatz",
-              "text": "**Fazit:** Der Tag wird gerettet und bekommt eine völlig neue, entspannte Dynamik. Anstatt passiv in der Opferrolle zu bleiben („Das Wetter hat uns den Tag versaut“), übernehmt ihr **gemeinsam** wieder aktiv die Kontrolle über eure Stimmung und eure Zeit."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
           "titel": "**Warum das funktioniert?**",
           "bloecke": [
             {
@@ -1011,39 +616,6 @@
           ]
         }
       ],
-      "audio": null,
-      "experiment": null,
-      "voraussetzung": null,
-      "status": "frei"
-    },
-    {
-      "id": "ertappen",
-      "titel": "Ertappen & Umlenken",
-      "kurztitel": "Stopp → Mini-Reset → Fokus wählen",
-      "wofuer": "Achte bewusst darauf, wenn dein Kopf in die giftige Vergangenheit oder die giftige Zukunft abdriftet.",
-      "dauerMin": null,
-      "dauerText": "täglich",
-      "dauerQuelle": "notion",
-      "routine": true,
-      "art": "denken",
-      "usecases": [
-        "karussell"
-      ],
-      "herkunft": "k03",
-      "herkunftSlide": "mission",
-      "header": null,
-      "bloecke": [
-        {
-          "typ": "liste",
-          "geordnet": true,
-          "punkte": [
-            "**Stopp** – erkenne den Moment („Ah, ich grüble wieder / ich male mir Horrorszenarien aus“)",
-            "**Mini-Reset (3-2-1)** – 3 Dinge sehen, 2 Dinge fühlen, 1 Ding hören → zurück im Hier und Jetzt",
-            "**Fokus bewusst wählen** – Nutze die Fokus-Fallen als Kompass: Mangel → Fülle, Ohnmacht → Handlung, Fehler → Fortschritt"
-          ]
-        }
-      ],
-      "mehr": [],
       "audio": null,
       "experiment": null,
       "voraussetzung": null,
@@ -1086,48 +658,6 @@
         {
           "typ": "absatz",
           "text": "*(Die Wirksamkeit ist belegt durch die Studie von Emmons & McCullough, 2003 – eine der meistzitierten Studien der Positiven Psychologie.)*"
-        }
-      ],
-      "mehr": [],
-      "audio": null,
-      "experiment": null,
-      "voraussetzung": null,
-      "status": "frei"
-    },
-    {
-      "id": "medien-audit",
-      "titel": "Medien-Audit",
-      "kurztitel": "Was lässt du rein?",
-      "wofuer": "Sei dir bewusst, was du reinlässt – denn du weißt jetzt, was es mit deinem Körper macht.",
-      "dauerMin": 5,
-      "dauerText": "5 Minuten, einmalig",
-      "dauerQuelle": "notion",
-      "routine": false,
-      "art": "reflexion",
-      "usecases": [
-        "rueckschlag"
-      ],
-      "herkunft": "k03",
-      "herkunftSlide": "mission",
-      "header": null,
-      "bloecke": [
-        {
-          "typ": "absatz",
-          "text": "Nimm dir 5 Minuten und beantworte ehrlich:"
-        },
-        {
-          "typ": "liste",
-          "geordnet": false,
-          "punkte": [
-            "Was ist das Erste, das du morgens auf deinem Handy siehst?",
-            "Was ist das Letzte, das du abends vor dem Einschlafen konsumierst?",
-            "Wie viel Zeit verbringst du täglich mit Nachrichten, Social Media und Serien?",
-            "Wie fühlst du dich typischerweise *nach* 30 Minuten Scrollen?"
-          ]
-        },
-        {
-          "typ": "absatz",
-          "text": "Du musst deswegen nicht alles löschen oder dein Handy wegwerfen. Aber sei dir bewusst, was du reinlässt – denn du weißt jetzt, was es mit deinem Körper macht."
         }
       ],
       "mehr": [],
@@ -1188,112 +718,7 @@
           "text": "**Profi-Tipp:** Manche stellen sich die Figur nicht nur im Kopf vor, sondern lassen sie aus dem Kopf herausspringen und wild gestikulierend vor sich auf und ab laufen. Je alberner, desto besser."
         }
       ],
-      "mehr": [
-        {
-          "typ": "akkordeon",
-          "titel": "Eine kurze Frage vorweg",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "**Wenn negative Gedanken kommen – wie zeigen sie sich bei dir?**"
-            },
-            {
-              "typ": "absatz",
-              "text": "**A)** **Du hörst eine klar erkennbare innere Stimme**, die dich runtermacht. Konkrete Sätze wie: *„Das schaffst du nie“* oder *„Du bist nicht gut genug.“*"
-            },
-            {
-              "typ": "absatz",
-              "text": "Geh zu Weg 1: Die Pitching-Technik"
-            },
-            {
-              "typ": "absatz",
-              "text": "**B)** **Es ist eher ein diffuses Grübeln** – ein Hin-und-Her-Denken, viele Gedanken gleichzeitig, kein klarer Anfang und kein klares Ende. Das Gedankenkarussell dreht sich einfach."
-            },
-            {
-              "typ": "absatz",
-              "text": "Geh zu Weg 2: Die Einstein-Technik"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Unsicher?** Beides ausprobieren. Du wirst spüren, welcher Weg besser wirkt."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Abgrenzung zum Mini-Reset (Kapitel 1)",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Vielleicht fragst du dich: „Was ist der Unterschied zum 5-Sinne-Shift aus Kapitel 1?“"
-            },
-            {
-              "typ": "absatz",
-              "text": "Gute Frage. Der Mini-Reset (3-2-1) holt dich über deine Sinne zurück ins Hier und Jetzt – er unterbricht die Stressreaktion über den **Körper**."
-            },
-            {
-              "typ": "absatz",
-              "text": "Die Pitching- und Einstein-Technik arbeiten direkt an der **inneren Stimme** – sie verändern dein Verhältnis zu deinen Gedanken."
-            },
-            {
-              "typ": "absatz",
-              "text": "Beides ergänzt sich. Der Mini-Reset ist dein Notfall-Stopp-Knopf. Pitching und Einstein sind deine Werkzeuge, um den inneren Kritiker langfristig zu entwaffnen."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Mission Alltag: Dein innerer Kritiker bekommt einen Namen",
-          "bloecke": [
-            {
-              "typ": "akkordeon",
-              "titel": "**1. Wähle deinen Weg**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "**(Pitching oder Einstein) und gib deinem inneren Kritiker eine Identität.**"
-                },
-                {
-                  "typ": "liste",
-                  "geordnet": false,
-                  "punkte": [
-                    "**Pitching-Weg:** Wähle deine Cartoon-Figur. Wer wird ab jetzt stellvertretend für deinen inneren Kritiker sprechen? Donald Duck? Ein Minion? Spongebob? Such dir die Figur aus, die dich am zuverlässigsten zum Grinsen bringt.",
-                    "**Einstein-Weg:** Wähle den Namen für deinen internen Assistenten. Einstein? Günther? Herbert? Gib ihm einen Namen, den du nicht ernst nehmen kannst."
-                  ]
-                }
-              ]
-            },
-            {
-              "typ": "akkordeon",
-              "titel": "**2. Setz dir einen Trigger für diese Woche**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "**„Wenn ich merke, dass mein innerer Kritiker anfängt zu reden, dann _______________ .“**"
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Beispiele:** *…dann stelle ich mir vor, dass Spongebob das sagt. …dann sage ich innerlich: Danke, Einstein. Hab ich gehört.*"
-                }
-              ]
-            },
-            {
-              "typ": "akkordeon",
-              "titel": "**3. Abend-Check**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "Bevor du einschläfst, eine kurze Reflexion: Hast du deinen inneren Kritiker heute erwischt? Was hat er gesagt? Wie hast du reagiert?"
-                },
-                {
-                  "typ": "absatz",
-                  "text": "30 Sekunden 7 Abende reichen aus,  damit dein Gehirn den neuen Weg anfängt zu bahnen."
-                }
-              ]
-            }
-          ]
-        }
-      ],
+      "mehr": [],
       "audio": null,
       "experiment": null,
       "voraussetzung": null,
@@ -1380,110 +805,6 @@
               "text": "Kein Kampf, kein Widerstand. Und ohne Widerstand hat dein Grübel-Assistent nichts, woran er sich reiben kann. Er beruhigt sich – und du kannst einschlafen."
             }
           ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Eine kurze Frage vorweg",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "**Wenn negative Gedanken kommen – wie zeigen sie sich bei dir?**"
-            },
-            {
-              "typ": "absatz",
-              "text": "**A)** **Du hörst eine klar erkennbare innere Stimme**, die dich runtermacht. Konkrete Sätze wie: *„Das schaffst du nie“* oder *„Du bist nicht gut genug.“*"
-            },
-            {
-              "typ": "absatz",
-              "text": "Geh zu Weg 1: Die Pitching-Technik"
-            },
-            {
-              "typ": "absatz",
-              "text": "**B)** **Es ist eher ein diffuses Grübeln** – ein Hin-und-Her-Denken, viele Gedanken gleichzeitig, kein klarer Anfang und kein klares Ende. Das Gedankenkarussell dreht sich einfach."
-            },
-            {
-              "typ": "absatz",
-              "text": "Geh zu Weg 2: Die Einstein-Technik"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Unsicher?** Beides ausprobieren. Du wirst spüren, welcher Weg besser wirkt."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Abgrenzung zum Mini-Reset (Kapitel 1)",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Vielleicht fragst du dich: „Was ist der Unterschied zum 5-Sinne-Shift aus Kapitel 1?“"
-            },
-            {
-              "typ": "absatz",
-              "text": "Gute Frage. Der Mini-Reset (3-2-1) holt dich über deine Sinne zurück ins Hier und Jetzt – er unterbricht die Stressreaktion über den **Körper**."
-            },
-            {
-              "typ": "absatz",
-              "text": "Die Pitching- und Einstein-Technik arbeiten direkt an der **inneren Stimme** – sie verändern dein Verhältnis zu deinen Gedanken."
-            },
-            {
-              "typ": "absatz",
-              "text": "Beides ergänzt sich. Der Mini-Reset ist dein Notfall-Stopp-Knopf. Pitching und Einstein sind deine Werkzeuge, um den inneren Kritiker langfristig zu entwaffnen."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Mission Alltag: Dein innerer Kritiker bekommt einen Namen",
-          "bloecke": [
-            {
-              "typ": "akkordeon",
-              "titel": "**1. Wähle deinen Weg**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "**(Pitching oder Einstein) und gib deinem inneren Kritiker eine Identität.**"
-                },
-                {
-                  "typ": "liste",
-                  "geordnet": false,
-                  "punkte": [
-                    "**Pitching-Weg:** Wähle deine Cartoon-Figur. Wer wird ab jetzt stellvertretend für deinen inneren Kritiker sprechen? Donald Duck? Ein Minion? Spongebob? Such dir die Figur aus, die dich am zuverlässigsten zum Grinsen bringt.",
-                    "**Einstein-Weg:** Wähle den Namen für deinen internen Assistenten. Einstein? Günther? Herbert? Gib ihm einen Namen, den du nicht ernst nehmen kannst."
-                  ]
-                }
-              ]
-            },
-            {
-              "typ": "akkordeon",
-              "titel": "**2. Setz dir einen Trigger für diese Woche**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "**„Wenn ich merke, dass mein innerer Kritiker anfängt zu reden, dann _______________ .“**"
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Beispiele:** *…dann stelle ich mir vor, dass Spongebob das sagt. …dann sage ich innerlich: Danke, Einstein. Hab ich gehört.*"
-                }
-              ]
-            },
-            {
-              "typ": "akkordeon",
-              "titel": "**3. Abend-Check**",
-              "bloecke": [
-                {
-                  "typ": "absatz",
-                  "text": "Bevor du einschläfst, eine kurze Reflexion: Hast du deinen inneren Kritiker heute erwischt? Was hat er gesagt? Wie hast du reagiert?"
-                },
-                {
-                  "typ": "absatz",
-                  "text": "30 Sekunden 7 Abende reichen aus,  damit dein Gehirn den neuen Weg anfängt zu bahnen."
-                }
-              ]
-            }
-          ]
         }
       ],
       "audio": null,
@@ -1504,32 +825,6 @@
       "status": "gesperrt"
     }
   ],
-  "mission": {
-    "titel": "Mission Alltag",
-    "bloecke": [
-      {
-        "typ": "absatz",
-        "text": "Drei neue Tools. **Ein Commitment für diese Woche:**"
-      },
-      {
-        "typ": "checkliste",
-        "punkte": [
-          "**Setz dir einen Trigger für den Physiological Sigh:** Wähle eine konkrete, wiederkehrende Situation, in der du den 1-Atemzug-Reset diese Woche bewusst einsetzt.",
-          "**Teste die 4-7-8 Atmung heute Abend:** Nimm dir heute vor dem Einschlafen 3 Minuten für 4 Zyklen. Spüre den Unterschied.",
-          "**Hör dir die Safe-Place-Meditation mindestens einmal an.** Wenn sie dir guttut, wiederhole sie in den nächsten Tagen abends. Der Anker wird mit jeder Wiederholung stärker."
-        ]
-      },
-      {
-        "typ": "zitat",
-        "text": "**„Wenn ich _________________ , dann mache ich einen Physiological Sigh, bevor ich reagiere.\"**\nBeispiele: *„…merke, dass ich innerlich hochfahre\" / „…vor einer Prüfung oder einem wichtigen Gespräch sitze\" / „…abends noch angespannt vom Tag bin\"*",
-        "quelle": null
-      },
-      {
-        "typ": "absatz",
-        "text": "Nicht alles auf einmal. **Eins davon** reicht für den Anfang. Das hier ist kein Sprint, sondern dein Werkzeugkasten – er ist immer da, wenn du ihn brauchst."
-      }
-    ]
-  },
   "hilfe": {
     "titel": "Noch ein Wort, falls du mehr brauchst",
     "bloecke": [

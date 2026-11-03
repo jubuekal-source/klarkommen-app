@@ -365,6 +365,18 @@ html{padding-top:var(--kk-h)}
   // Deep-Links: #sigh, #478 (waehlt die Technik direkt vor)
   (function(){function h(){var x=location.hash.replace('#','');if(x==='sigh'||x==='478')selectMode(x)}window.addEventListener('hashchange',h);h()})();
 </script>
-<script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});</script>
+<script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});
+  /* spec/04 §7 (Marco 03.11.): Direkteinstieg per #sigh / #478 – Auswahl ausblenden, da in Kap. 7 schon gewählt */
+  (function f(){
+    if(!f.on){f.on=1;window.addEventListener('hashchange',f);}
+    var h=(location.hash||'').replace('#','');
+    if(h!=='sigh'&&h!=='478') return;
+    selectMode(h);
+    var sel=document.querySelector('.mode-selector'); if(sel) sel.style.display='none';
+    var t=document.querySelector('.header h1'), sub=document.querySelector('.header p');
+    if(t) t.textContent = h==='sigh' ? 'Physiological Sigh' : '4-7-8 Atmung';
+    if(sub) sub.textContent = h==='sigh' ? 'Dein 1-Atemzug-Reset' : 'Dein Ruhe-Dimmer';
+  })();
+</script>
 </body>
 </html>

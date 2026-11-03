@@ -316,7 +316,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Wie du zurück ins „Hier und Jetzt“ kommst, weißt du bereits aus Topic 1: Nutze den **Mini-Reset (3-2-1)** oder den vollen **5-Sinne-Shift!**"
+              "text": "Wie du zurück ins „Hier und Jetzt“ kommst, weißt du bereits aus Kapitel 1: Nutze den **Mini-Reset (3-2-1)** oder den vollen **5-Sinne-Shift!**"
             },
             {
               "typ": "ueberschrift",
@@ -536,7 +536,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Du hast in Topic 1 den Reset gelernt. Jetzt weißt du, warum er so wichtig ist. Im nächsten Schritt zeigen wir dir, worauf du deinen Fokus nach dem Reset bewusst richten kannst."
+              "text": "Du hast in Kapitel 1 den Reset gelernt. Jetzt weißt du, warum er so wichtig ist. Im nächsten Schritt zeigen wir dir, worauf du deinen Fokus nach dem Reset bewusst richten kannst."
             }
           ]
         }
@@ -546,11 +546,11 @@
       "id": "mindhack",
       "rubrik": "mindhack",
       "titel": "Dein Mind-Hack: Fokus bewusst ausrichten",
-      "header": null,
+      "header": "medien/bilder/rubrik/mindhack.webp",
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "In Topic 1 hast du gelernt, deinen Autopiloten zu stoppen. Jetzt kommt der zweite Schritt: bewusst wählen, worauf du deinen Fokus richtest. Denn nach dem Reset steht dein Gehirn kurz auf „Standby“ – und in diesem Moment entscheidest du, welchen Wolf du fütterst."
+          "text": "In Kapitel 1 hast du gelernt, deinen Autopiloten zu stoppen. Jetzt kommt der zweite Schritt: bewusst wählen, worauf du deinen Fokus richtest. Denn nach dem Reset steht dein Gehirn kurz auf „Standby“ – und in diesem Moment entscheidest du, welchen Wolf du fütterst."
         },
         {
           "typ": "akkordeon",
@@ -733,7 +733,7 @@
       "id": "mission",
       "rubrik": "mission",
       "titel": "Mission Alltag: Der Gedanken-Check",
-      "header": null,
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -807,7 +807,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Klingt simpel – verändert aber messbar deine Wahrnehmung innerhalb von drei Wochen. Dein Türsteher aus Topic 1 lernt, die guten Dinge auf die Gästeliste zu setzen."
+              "text": "Klingt simpel – verändert aber messbar deine Wahrnehmung innerhalb von drei Wochen. Dein Türsteher aus Kapitel 1 lernt, die guten Dinge auf die Gästeliste zu setzen."
             },
             {
               "typ": "absatz",
@@ -822,7 +822,7 @@
       "id": "quellen",
       "rubrik": "quellen",
       "titel": "Quellen & Hintergrund",
-      "header": null,
+      "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {
           "typ": "quelle",

@@ -210,7 +210,7 @@
       "id": "mindhack",
       "rubrik": "mindhack",
       "titel": "Dein Mind-Hack: Der Identitäts-Check",
-      "header": null,
+      "header": "medien/bilder/rubrik/mindhack.webp",
       "bloecke": [
         {
           "typ": "absatz",
@@ -266,7 +266,7 @@
       "id": "mission",
       "rubrik": "mission",
       "titel": "Mission Alltag: Fang den Autopiloten",
-      "header": null,
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -321,7 +321,7 @@
       "id": "quellen",
       "rubrik": "quellen",
       "titel": "Quellen & Hintergrund",
-      "header": null,
+      "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {
           "typ": "quelle",

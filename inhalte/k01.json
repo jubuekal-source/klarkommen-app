@@ -160,7 +160,7 @@
       "id": "mindhack",
       "rubrik": "mindhack",
       "titel": "Dein Mind-Hack: Der 5-Sinne-Shift",
-      "header": null,
+      "header": "medien/bilder/rubrik/mindhack.webp",
       "bloecke": [
         {
           "typ": "callout",
@@ -278,7 +278,7 @@
       "id": "mission",
       "rubrik": "mission",
       "titel": "Mission Alltag: Dein Fokus-Reflex",
-      "header": null,
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -286,7 +286,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Hier geht es um den ersten und wichtigsten Schritt: **den Autopiloten stoppen.** Bevor du deinen Fokus bewusst neu ausrichten kannst, musst du erst merken, dass du im Autopiloten steckst – und den Reset-Button drücken. Worauf du dich danach konkret fokussieren kannst, erarbeiten wir Schritt für Schritt in den nächsten Topics. Denn erst müssen wir noch ein paar entscheidende Dinge über dein Gehirn verstehen, bevor die Neuausrichtung richtig sitzt. Aber keine Sorge – das kommt. Jetzt geht's darum, den Reset-Reflex zu trainieren."
+          "text": "Hier geht es um den ersten und wichtigsten Schritt: **den Autopiloten stoppen.** Bevor du deinen Fokus bewusst neu ausrichten kannst, musst du erst merken, dass du im Autopiloten steckst – und den Reset-Button drücken. Worauf du dich danach konkret fokussieren kannst, erarbeiten wir Schritt für Schritt in den nächsten Kapiteln. Denn erst müssen wir noch ein paar entscheidende Dinge über dein Gehirn verstehen, bevor die Neuausrichtung richtig sitzt. Aber keine Sorge – das kommt. Jetzt geht's darum, den Reset-Reflex zu trainieren."
         },
         {
           "typ": "ueberschrift",
@@ -346,7 +346,7 @@
       "id": "quellen",
       "rubrik": "quellen",
       "titel": "Quellen & Hintergrund",
-      "header": null,
+      "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {
           "typ": "quelle",

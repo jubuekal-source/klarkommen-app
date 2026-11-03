@@ -1,5 +1,5 @@
 {
- "version": 7,
+ "version": 9,
  "dateien": [
   {
    "id": "k01-5sinne-shift",
@@ -44,10 +44,18 @@
   {
    "id": "k07-song",
    "pfad": "medien/audio/k07-song.mp3",
-   "bytes": 1769579,
+   "bytes": 1775381,
    "typ": "audio",
    "kapitel": "k07",
    "dauer": "2:27"
+  },
+  {
+   "id": "bilder/Titel-Slide",
+   "pfad": "medien/bilder/Titel-Slide.png",
+   "bytes": 2126703,
+   "typ": "bild",
+   "kapitel": null,
+   "dauer": null
   },
   {
    "id": "bilder/cover/bonus",
@@ -300,7 +308,7 @@
   {
    "id": "bilder/k07/sigh",
    "pfad": "medien/bilder/k07/sigh.webp",
-   "bytes": 238154,
+   "bytes": 243922,
    "typ": "bild",
    "kapitel": "k07",
    "dauer": null
@@ -317,6 +325,30 @@
    "id": "bilder/rubrik/einstieg",
    "pfad": "medien/bilder/rubrik/einstieg.webp",
    "bytes": 27480,
+   "typ": "bild",
+   "kapitel": null,
+   "dauer": null
+  },
+  {
+   "id": "bilder/rubrik/mindhack",
+   "pfad": "medien/bilder/rubrik/mindhack.webp",
+   "bytes": 98930,
+   "typ": "bild",
+   "kapitel": null,
+   "dauer": null
+  },
+  {
+   "id": "bilder/rubrik/mission-alltag",
+   "pfad": "medien/bilder/rubrik/mission-alltag.webp",
+   "bytes": 76364,
+   "typ": "bild",
+   "kapitel": null,
+   "dauer": null
+  },
+  {
+   "id": "bilder/rubrik/quellen",
+   "pfad": "medien/bilder/rubrik/quellen.webp",
+   "bytes": 124614,
    "typ": "bild",
    "kapitel": null,
    "dauer": null

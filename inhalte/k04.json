@@ -334,7 +334,7 @@
       "id": "mindhack",
       "rubrik": "mindhack",
       "titel": "Dein Mind-Hack: Den inneren Kritiker entwaffnen",
-      "header": null,
+      "header": "medien/bilder/rubrik/mindhack.webp",
       "bloecke": [
         {
           "typ": "absatz",
@@ -491,11 +491,11 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "Abgrenzung zum Mini-Reset (Topic 1)",
+          "titel": "Abgrenzung zum Mini-Reset (Kapitel 1)",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Vielleicht fragst du dich: „Was ist der Unterschied zum 5-Sinne-Shift aus Topic 1?“"
+              "text": "Vielleicht fragst du dich: „Was ist der Unterschied zum 5-Sinne-Shift aus Kapitel 1?“"
             },
             {
               "typ": "absatz",
@@ -518,7 +518,7 @@
       "id": "mission",
       "rubrik": "mission",
       "titel": "Mission Alltag: Dein innerer Kritiker bekommt einen Namen",
-      "header": null,
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -572,7 +572,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "**Rückblick Topic 1 – 4**",
+          "titel": "**Rückblick Kapitel 1 – 4**",
           "bloecke": [
             {
               "typ": "absatz",
@@ -590,7 +590,7 @@
             },
             {
               "typ": "absatz",
-              "text": "In den nächsten Topics gehen wir tiefer: an die Überzeugungen, die hinter deinem inneren Kritiker stecken. Denn der Kritiker ist nur die Stimme – die eigentliche Frage ist: Wer hat ihm beigebracht, was er sagt?"
+              "text": "In den nächsten Kapiteln gehen wir tiefer: an die Überzeugungen, die hinter deinem inneren Kritiker stecken. Denn der Kritiker ist nur die Stimme – die eigentliche Frage ist: Wer hat ihm beigebracht, was er sagt?"
             }
           ]
         }
@@ -601,7 +601,7 @@
       "id": "quellen",
       "rubrik": "quellen",
       "titel": "Quellen & Hintergrund",
-      "header": null,
+      "header": "medien/bilder/rubrik/quellen.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
