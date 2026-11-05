@@ -120,6 +120,12 @@
         {
           "typ": "absatz",
           "text": "Du kannst nicht kontrollieren, was in der Welt passiert. Aber du kannst entscheiden, was du reinlässt – und damit, welche Gedanken dein Gehirn füttert und welche Biochemie dein Körper produziert."
+        },
+        {
+          "typ": "experiment",
+          "id": "kausalkette",
+          "titel": "Kette verstehen",
+          "text": "Sieh dir an, wie alles zusammenhängt – 1 Minute."
         }
       ],
       "lese": [
@@ -445,19 +451,6 @@
               "typ": "zitat",
               "text": "**Dein Konsum formt deinen körperlichen und mentalen Zustand. Jeden Tag. Ob du es willst oder nicht.**",
               "quelle": null
-            },
-            {
-              "typ": "liste",
-              "geordnet": false,
-              "punkte": [
-                "Du bist **nicht** undiszipliniert, wenn du stundenlang hängenbleibst. Du trittst an gegen tausende Ingenieure und KI-Systeme, die darauf trainiert sind, dein Belohnungssystem zu aktivieren.",
-                "Das Ziel dieser Systeme ist nicht dein Wohlbefinden. Das Ziel ist Bildschirmzeit."
-              ]
-            },
-            {
-              "typ": "zitat",
-              "text": "**Es gibt zwei mächtige Kräfte, die mitbestimmen wollen, worauf du deinen Fokus richtest: Eine, die deine Aufmerksamkeit zu Geld machen will, und eine, die deine Meinung formen will. Beide profitieren davon, wenn du auf Autopilot schaltest.** Die Frage ist: Lässt du sie gewähren?",
-              "quelle": null
             }
           ]
         },
@@ -576,6 +569,12 @@
           "typ": "akkordeon",
           "titel": "Dein Werkzeug bei Rückschlägen: Reframing - Die zwei Leitfragen",
           "bloecke": [
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k03/leitfragen.webp",
+              "alt": "Zwei Leitfragen: Links sitzt eine junge Frau nach einem Rückschlag in roten Fragezeichen-Schleifen fest, rechts geht sie mit einem leuchtenden Stein in der Hand nach vorn – zwei ruhige türkise Fragezeichen zeigen den Weg.",
+              "unterschrift": null
+            },
             {
               "typ": "absatz",
               "text": "Wenn dir ein Rückschlag passiert, verfällt dein Gehirn schnell in einen automatischen Schutzmechanismus: Es stellt blockierende Fragen. *„Warum passiert das ausgerechnet mir?“* oder *„Warum ist das so unfair?“* – diese Fragen zwingen dein Gehirn, Beweise für dein Unglück zu suchen. Sie rauben dir Energie, fördern die Ausschüttung von Stresshormonen und machen dich handlungsunfähig."

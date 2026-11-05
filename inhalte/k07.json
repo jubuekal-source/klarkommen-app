@@ -20,7 +20,6 @@
       "untertitel": "Wenn es sofort gehen muss",
       "icon": "bolt",
       "ton": "akzent",
-      "offen": true,
       "tools": [
         "mini-reset",
         "sigh"
@@ -314,6 +313,12 @@
           "text": "So geht's"
         },
         {
+          "typ": "bild",
+          "src": "medien/bilder/k07/sicherer-ort.webp",
+          "alt": "Dein sicherer Ort: Ein junger Mann sitzt mit geschlossenen Augen im Schneidersitz, Daumen und Zeigefinger als Anker zusammengelegt – um ihn herum öffnet sich eine warm leuchtende Waldlichtung wie ein Traumbild.",
+          "unterschrift": null
+        },
+        {
           "typ": "liste",
           "geordnet": true,
           "punkte": [
@@ -531,11 +536,11 @@
               "typ": "liste",
               "geordnet": false,
               "punkte": [
-                "**5 ×** 👀 **SEHEN**: Benenne fünf Dinge, die du gerade siehst. So spezifisch wie möglich – nicht „ein Tisch\", sondern „die Kratzer auf der Tischplatte links von meiner Hand\".",
-                "**4 ×** 🤌🏽 **FÜHLEN**: Spüre vier Dinge physisch. Den Stoff deines Shirts auf der Schulter. Den Kontakt deiner Füße mit dem Boden. Das Gewicht deines Handys in der Tasche. Die Temperatur der Luft auf deiner Haut.",
-                "**3 ×** 👂🏽 **HÖREN**: Identifiziere drei Geräusche. Das Flugzeug am Himmel. Schritte im Flur. Deinen eigenen Atem.",
-                "**2 ×** 👃🏽 **RIECHEN**: Achte auf zwei Gerüche. Kaffee? Frische Luft? Dein eigenes Deo?",
-                "**1 ×** 👅 **SCHMECKEN**: Nimm einen Geschmack in deinem Mund wahr. Auch wenn es „nichts Besonderes\" ist – das zählt."
+                "**5 ×** **SEHEN**: Benenne fünf Dinge, die du gerade siehst. So spezifisch wie möglich – nicht „ein Tisch\", sondern „die Kratzer auf der Tischplatte links von meiner Hand\".",
+                "**4 ×** **FÜHLEN**: Spüre vier Dinge physisch. Den Stoff deines Shirts auf der Schulter. Den Kontakt deiner Füße mit dem Boden. Das Gewicht deines Handys in der Tasche. Die Temperatur der Luft auf deiner Haut.",
+                "**3 ×** **HÖREN**: Identifiziere drei Geräusche. Das Flugzeug am Himmel. Schritte im Flur. Deinen eigenen Atem.",
+                "**2 ×** **RIECHEN**: Achte auf zwei Gerüche. Kaffee? Frische Luft? Dein eigenes Deo?",
+                "**1 ×** **SCHMECKEN**: Nimm einen Geschmack in deinem Mund wahr. Auch wenn es „nichts Besonderes\" ist – das zählt."
               ]
             }
           ]
@@ -622,6 +627,12 @@
         {
           "typ": "absatz",
           "text": "Wenn dir ein Rückschlag passiert, verfällt dein Gehirn schnell in einen automatischen Schutzmechanismus: Es stellt blockierende Fragen. *„Warum passiert das ausgerechnet mir?“* oder *„Warum ist das so unfair?“* – diese Fragen zwingen dein Gehirn, Beweise für dein Unglück zu suchen. Sie rauben dir Energie, fördern die Ausschüttung von Stresshormonen und machen dich handlungsunfähig."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k03/leitfragen.webp",
+          "alt": "Zwei Leitfragen: Links sitzt eine junge Frau nach einem Rückschlag in roten Fragezeichen-Schleifen fest, rechts geht sie mit einem leuchtenden Stein in der Hand nach vorn – zwei ruhige türkise Fragezeichen zeigen den Weg.",
+          "unterschrift": null
         },
         {
           "typ": "ueberschrift",

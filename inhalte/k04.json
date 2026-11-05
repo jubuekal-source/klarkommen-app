@@ -14,13 +14,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Bevor du gleich den Realitäts-Check machst, schaue dir vorher noch die Kette an, die zeigt wie alles zusammenhängt."
-        },
-        {
-          "typ": "experiment",
-          "id": "kausalkette",
-          "titel": "Kette anschauen",
-          "text": ""
+          "text": "Du hast in Kapitel 3 gesehen, wie die Kette auf Autopilot immer schneller läuft. Jetzt testest du, ob du sie für zwei Minuten anhalten kannst."
         },
         {
           "typ": "ueberschrift",
@@ -103,8 +97,8 @@
         },
         {
           "typ": "bild",
-          "src": "medien/bilder/k04/kritiker.webp",
-          "alt": "Der innere Kritiker",
+          "src": "medien/bilder/k04/kritiker-einstein.webp",
+          "alt": "Der innere Kritiker: Ein übereifriger kleiner Assistent schleppt einen wackelnden Memo-Stapel heran – auf zwei Zetteln steht „DU BIST NICHT GUT GENUG!“ und „DAS SCHAFFST DU NIE!“. Der junge Mann auf der Bettkante schaut gelassen zu.",
           "unterschrift": null
         },
         {

@@ -225,6 +225,12 @@
           "text": "**Falls du fünf Sätze hattest** – umso besser. Dann schauen wir jetzt, woher sie wirklich kommen."
         },
         {
+          "typ": "bild",
+          "src": "medien/bilder/k02/identitaets-check.webp",
+          "alt": "Identitäts-Check: Ein junger Mann voller Etiketten zieht vor dem Spiegel eines davon ab und prüft es. Sein Spiegelbild trägt weniger Etiketten und steht aufrecht.",
+          "unterschrift": null
+        },
+        {
           "typ": "callout",
           "art": "wichtig",
           "text": "**Lies jeden Satz und stell dir drei Fragen:**"

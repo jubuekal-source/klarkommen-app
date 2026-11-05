@@ -66,15 +66,18 @@
     },
     {
       "id": "kausalkette",
-      "titel": "Die Kette (Kausalkette)",
+      "titel": "Kette verstehen",
       "dateien": [
         "experimente/kausalkette/index.html",
-        "experimente/kausalkette/huehnerstall.jpeg",
-        "experimente/kausalkette/Negativity_Bias_und_RAS-Filter.jpeg",
-        "experimente/kausalkette/Placebo-Nocebo-modern.png"
+        "experimente/kausalkette/kette-stufe-0.webp",
+        "experimente/kausalkette/kette-stufe-1.webp",
+        "experimente/kausalkette/kette-stufe-2.webp",
+        "experimente/kausalkette/kette-stufe-3.webp",
+        "experimente/kausalkette/kette-stufe-4.webp",
+        "experimente/kausalkette/kette-stufe-5.webp"
       ],
-      "bytes": 1583972,
-      "kapitel": 4,
+      "bytes": 252304,
+      "kapitel": 3,
       "deeplinks": {}
     }
   ]

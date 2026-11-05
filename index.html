@@ -349,11 +349,9 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 
 /* ===== Toolbox Kap. 7 – spec/07: Kategorien, Badge „Neu“, „Kommt in Kapitel N“, Zurück zur Toolbox ===== */
 .kats{margin:22px 0 6px}
-.kat.akz{margin:0 0 18px}
 .kath{display:flex;align-items:center;gap:12px;margin:0 0 10px}
 .ki{width:44px;height:44px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.25);color:var(--brand-ok)}
 .ki svg.i{width:22px;height:22px}
-.kat.akz .ki{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
 .kt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .kt b{font-family:var(--brand-font-head);font-size:1.08rem;line-height:1.25;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
 .kt small{font-family:var(--brand-font-body,inherit);font-weight:400;color:var(--brand-text-2);font-size:.86rem;line-height:1.3}
@@ -365,6 +363,9 @@ details.acc.kat[open]{border-color:rgba(125,211,192,.3)}
 details.acc.kat .acb{padding:0 10px 2px}
 details.acc.kat .tlist{margin:0 0 8px}
 details.acc.kat .trow{background:var(--brand-card-2)}
+/* v1.3.8: „Schnelle Hilfe“ – Orange nur als Wegweiser an der Kategorie-Karte (Rahmen + Blitz), Übungen darin wie überall */
+details.acc.kat.akz,details.acc.kat.akz[open]{margin:0 0 18px;border-color:rgba(249,115,22,.45)}
+details.acc.kat.akz>summary>.ki{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
 .bneu{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-family:var(--brand-font-body,inherit);font-size:.68rem;font-weight:700;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;vertical-align:2px;color:var(--brand-ok);background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.35);white-space:nowrap}
 .tbkommt{display:flex;align-items:flex-start;gap:10px;margin:14px 2px 6px;color:var(--brand-muted);font-size:.86rem;line-height:1.4}
 .tbkommt svg.i{width:16px;height:16px;flex:none;margin-top:2px}
@@ -386,19 +387,6 @@ details.acc.tbtheo>summary>svg.i:first-child{color:var(--brand-ok)}
 .ti svg.i{width:22px;height:22px}
 /* Abnahme K2: Offline-Pill Tap-Ziel */
 .hero .pill{min-height:44px}
-/* Schnell-Hilfe: gleich breite Kacheln */
-.schnell{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
-.schnell a{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;text-decoration:none;color:var(--brand-text);min-height:62px;
-  background:linear-gradient(100deg,rgba(249,115,22,.16),rgba(249,115,22,0) 70%),var(--brand-card);border:1px solid rgba(249,115,22,.3)}
-.schnell a .ti{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft);width:40px;height:40px;border-radius:12px}
-/* spec/04 §6: Titel + Dauer untereinander in einer schrumpfbaren Spalte → nichts läuft über den Rand (auch bei großer Systemschrift) */
-.schnell a{min-width:0;max-width:100%}
-.schnell .stx{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.schnell b{min-width:0;font-family:var(--brand-font-head);font-size:1rem;line-height:1.22;overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
-.schnell small{color:var(--brand-text-2);font-size:.82rem;line-height:1.3;overflow-wrap:anywhere}
-.schnell .go{color:var(--brand-accent-soft);display:flex;flex:none}
-.schnell .go svg.i{width:18px;height:18px}
-@media(min-width:560px){.schnell{grid-template-columns:repeat(var(--n,3),minmax(0,1fr))}.schnell a{flex-direction:column;align-items:flex-start;min-height:128px;padding:14px}.schnell .stx{flex:1 1 auto;width:100%}.schnell small{margin-top:auto;white-space:normal}.schnell .go{display:none}}
 /* Use-Case-Kacheln */
 .ucgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 @media(min-width:820px){.ucgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -467,9 +455,6 @@ details.acc.tbtheo>summary>svg.i:first-child{color:var(--brand-ok)}
 .tool .bl ol li{font-size:1.06rem}
 .passt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:24px 0 16px}
 .passt>span{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text-2);margin-right:4px}
-.probiert{margin:14px 0 4px;background:var(--brand-card-2);color:var(--brand-text);border:1px solid var(--brand-line-2);box-shadow:none}
-.probiert:hover{background:#223650}
-.probiert.on{background:#163834;border-color:rgba(125,211,192,.5);color:var(--brand-ok)}
 /* Hilfe-Karte */
 .hilfe{margin:30px 0 10px;padding:18px 16px 16px;border-radius:20px;background:linear-gradient(135deg,rgba(125,211,192,.1),rgba(125,211,192,0) 70%),var(--brand-card);border:1px solid rgba(125,211,192,.3)}
 .hilfe .hk{display:flex;align-items:center;gap:10px;margin-bottom:8px}
@@ -601,13 +586,6 @@ dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-fa
 .getcon footer.foot a{color:var(--gc-muted)}
 
 /* ===== spec/06 ===== */
-/* §1 Kap. 7: „schon mal gemacht“ – neutrale Info, per Tipp umschaltbar */
-.gem{display:inline-flex;align-items:center;gap:4px;color:var(--brand-ok);white-space:nowrap}
-.trow small .gem svg.i{width:13px;height:13px;stroke-width:2.2}
-.trow.ub small.gemz{margin-top:2px}
-.tchip.gem{min-height:44px;background:transparent;border-style:dashed;color:var(--brand-text-2)}
-.tchip.gem.on{border-style:solid;border-color:rgba(125,211,192,.5);background:#163834;color:var(--brand-ok)}
-.tchip.gem svg.i{width:16px;height:16px}
 /* §5 Slide-Leiste: Rubrik + Position, Wisch-Hinweis (absolut, kein Layout-Sprung) */
 .bar .t .st2{display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:0}
 .bar .t .st2 b{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:1rem}
@@ -710,7 +688,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.7';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.8';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -789,8 +767,7 @@ const IC = {
   share:'<path d="M12 14.5v-11M8 7.5l4-4 4 4"/><path d="M8 10.5H6v10h12v-10h-2"/>',
   dots:'<circle cx="12" cy="5.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="18.5" r="1.4"/>',
   plusbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/>',
-  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>',
-  circ:'<circle cx="12" cy="12" r="8"/>'
+  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>'
 };
 /* spec/01 §C.8 – Icon-Helfer */
 function ic(n, cls){ const fill = (n==='play'||n==='pause'); return `<svg class="i${fill?' f':''}${cls?' '+cls:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]||''}</svg>`; }
@@ -804,12 +781,11 @@ const DEFAULT_DATA = {
   checks:{},           /* "k01/mission/1/0": true */
   letzte:{},           /* "k01": "brainfact" */
   anpassung:{titel:null, untertitel:null, startbildId:null},
-  toolbox:{ausprobiert:{}},   /* spec/02 §2: "sigh": true */
   theme:'dunkel'       /* spec/00 §9: nur dunkel */
 };
 const SECTIONS = {     /* Skill §4: Bereiche für Export/Import */
   anpassung:{label:'Anpassung (Titel, Untertitel, Startbild)', keys:['anpassung']},
-  fortschritt:{label:'Fortschritt (gelesene Slides, Häkchen, ausprobierte Tools)', keys:['gelesen','checks','letzte','toolbox']}
+  fortschritt:{label:'Fortschritt (gelesene Slides, Häkchen)', keys:['gelesen','checks','letzte']}
 };
 let D = null, BRAND = null, KAP = [], MED = {version:0, dateien:[]};
 let EXPF = [];         /* Abnahme S3: Experiment-Dateien für den Offline-Button {pfad, bytes} */
@@ -825,7 +801,6 @@ function normalizeData(o){
   const d = JSON.parse(JSON.stringify(DEFAULT_DATA));
   if(!o || typeof o!=='object') return d;
   for(const k of ['gelesen','checks','letzte']) if(o[k] && typeof o[k]==='object') d[k] = Object.assign({}, o[k]);
-  if(o.toolbox && typeof o.toolbox==='object' && o.toolbox.ausprobiert && typeof o.toolbox.ausprobiert==='object') d.toolbox.ausprobiert = Object.assign({}, o.toolbox.ausprobiert);
   if(o.anpassung && typeof o.anpassung==='object'){
     for(const k of ['titel','untertitel','startbildId']) if(typeof o.anpassung[k]==='string' && o.anpassung[k].trim()) d.anpassung[k] = o.anpassung[k];
   }
@@ -888,7 +863,7 @@ const startbild = () => startbildURL || BRAND.startbild;
 /* Fortschritt – spec/01 §C.2/§C.5 */
 const sKey = (k,s) => `${k.id}/${s.id}`;
 function fortschritt(k){ const I=INH[k.id]; if(!I) return null;
-  if(k.typ==='toolbox'){ const fr=I.data.tools.filter(t=>t.status!=='gesperrt'); if(!fr.length) return null; return {n:fr.length, r:fr.filter(t=>D.toolbox.ausprobiert[t.id]).length}; }
+  if(k.typ==='toolbox') return null;   /* v1.3.8: Toolbox ohne Fortschrittsring (Markierung entfällt) */
   if(!I.data.slides.length) return null; const n=I.data.slides.length; const r=I.data.slides.filter(s=>D.gelesen[sKey(k,s)]).length; return {n,r}; }
 function markRead(k,s){ const key=sKey(k,s); if(!D.gelesen[key]){ D.gelesen[key]=true; saveData(); const sg=document.querySelector(`.segs a[data-sid="${s.id}"]`); if(sg) sg.classList.add('r'); } }
 
@@ -981,7 +956,7 @@ function tile(k){
   return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
     <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
     ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
-    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked)?`<span data-ring="${k.id}">${ringSvg(f, k.typ==='toolbox'?'schon gemacht':'gelesen')}</span>`:''}</span>
+    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
   </button>`;
 }
 /* spec/01 §C.2 – Startseite */
@@ -1010,7 +985,7 @@ async function renderStart(app){
   setTimeout(instZeigen, 900);   /* spec/06 §2 */
   /* Fortschrittsringe nachladen */
   for(const k of KAP.filter(k=>k.status==='frei')){
-    inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k), k.typ==='toolbox'?'schon gemacht':'gelesen'); });
+    inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
   }
 }
 /* spec/00 §2.2 – nächstes freies Kapitel */
@@ -1171,7 +1146,7 @@ function atemNurUebung(fr, r){
 }
 /* Overlay schließen (Zurück-Button oder postMessage aus dem iframe) */
 function xSchliessen(){
-  const key = sessionStorageGet('kk_xkey'); if(key){ D.checks[key] = true; const tm = /^k\d+\/tool\/([^/]+)\//.exec(key); if(tm) D.toolbox.ausprobiert[tm[1]] = true; saveData(); }   /* spec/06 §1 */
+  const key = sessionStorageGet('kk_xkey'); if(key){ D.checks[key] = true; saveData(); }
   if(prevHash!==null && history.length>1) history.back(); else location.hash = sessionStorageGet('kk_xback') || '#/';
 }
 /* nach Rückkehr aus dem Experiment zur Karte scrollen statt nach oben */
@@ -1331,8 +1306,8 @@ function tbZeile(k, T, t, von){
     const hk = kapById(t.herkunft);
     return `<li><button class="trow locked" data-act="sperre-tool" data-kap="${esc(t.herkunft||'')}" data-titel="${esc(t.titel)}"><span class="ti">${ic('lock')}</span><span class="tt"><b>${esc(t.titel)}</b><small>${hk&&hk.nr?`Kapitel ${hk.nr} · `:''}Vollversion</small></span></button></li>`;
   }
-  const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null, ok = !!D.toolbox.ausprobiert[t.id];
-  const meta = [d?`${ic('clock')} ${esc(d)}`:'', esc(a.label), hk&&hk.nr?`Kap. ${hk.nr}`:'', t.audio?ic('head'):'', t.experiment?ic('flask'):'', ok?`<span class="gem">${ic('check')} schon gemacht</span>`:''].filter(Boolean).join('<i>·</i>');
+  const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null;
+  const meta = [d?`${ic('clock')} ${esc(d)}`:'', esc(a.label), hk&&hk.nr?`Kap. ${hk.nr}`:'', t.audio?ic('head'):'', t.experiment?ic('flask'):''].filter(Boolean).join('<i>·</i>');
   return `<li><a class="trow" href="${tbHref(k,t,von)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${tbKurz(t)?`<span class="kz">${esc(tbKurz(t))}</span>`:''}<small>${meta}</small></span><span class="chev">${ic('chev')}</span></a></li>`;   /* spec/06 §1 */
 }
 /* spec/05 C3: Reihenfolge aus T.uebungen (fehlende freie Tools hinten anhängen) + Übungskarte mit Statements */
@@ -1344,16 +1319,16 @@ function tbReihe(T){
 /* spec/07 T15: Badge „Neu“ (Daten: T.neu) */
 const tbNeu = (T,t) => Array.isArray(T.neu) && T.neu.includes(t.id) ? `<span class="bneu">Neu</span>` : '';
 function tbKarte(k, T, t){
-  const u = (T.uebungen||[]).find(x=>x && x.id===t.id) || {}, a = tbArt(t), d = tbDauer(t), ok = !!D.toolbox.ausprobiert[t.id];
+  const u = (T.uebungen||[]).find(x=>x && x.id===t.id) || {}, a = tbArt(t), d = tbDauer(t);
   const pk = (Array.isArray(u.punkte) && u.punkte.length) ? u.punkte : (tbKurz(t) ? [tbKurz(t)] : []);
-  /* spec/06 §1: Übungen sind wiederholbar – immer Pfeil, „schon gemacht“ nur als kleine neutrale Info */
-  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}${ok?`<small class="gemz"><span class="gem">${ic('check')} schon gemacht</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
+  /* spec/06 §1: Übungen sind wiederholbar – immer Pfeil */
+  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
 }
 const tbBeispiel = I => I.beispiel ? `<div class="beispiel">${ic('info')}<span>Beispielinhalt – die echten Tools folgen.</span></div>` : '';
 const tbFehler = I => I.fehler ? `<div class="call wichtig">${ic('warn')}<p>${navigator.onLine===false?'Die Toolsammlung konnte nicht geladen werden. Du bist offline – öffne Klarkommen einmal mit Internet.':'Die Toolsammlung wird gerade vorbereitet und folgt in Kürze.'}</p></div>` : '';
 
-/* spec/07 T1–T3: Kategorien aus T.kategorien (Schema spec/07 §2.1). Die Akzent-Kategorie („Schnelle Hilfe“) ist immer offen,
-   alle anderen sind Akkordeons (nutzen den Ein-offen-Handler). Fallback ohne kategorien: Schnellhilfe + alle übrigen freien Tools als eine Liste. */
+/* spec/07 T1–T3: Kategorien aus T.kategorien (Schema spec/07 §2.1). Alle Kategorien sind Akkordeons (Ein-offen-Handler), beim Öffnen zu;
+   die Akzent-Kategorie („Schnelle Hilfe“) ist nur farblich hervorgehoben (v1.3.8). Fallback ohne kategorien: Schnellhilfe + alle übrigen freien Tools als eine Liste. */
 function tbKategorien(T){
   const frei = tbFrei(T), gesehen = new Set();
   const nimm = ids => (Array.isArray(ids)?ids:[]).map(id=>tbTool(T,id)).filter(t=>t && !gesehen.has(t.id) && gesehen.add(t.id));
@@ -1379,24 +1354,19 @@ function tbKommt(T){
 
 /* #/k/07 – Toolbox-Übersicht – spec/07 §2.2: Intro → Meta → Kategorien → „Kommt in Kapitel N“ → Hilfe (einziges Vorkommen) → Weiter */
 async function renderToolbox(app, k, head, eyebrow){
-  const I = await tbDaten(k), T = I.data, fr = tbFrei(T), f = fortschritt(k) || {n:fr.length, r:0};
+  const I = await tbDaten(k), T = I.data, fr = tbFrei(T);
   const r = curRoute || {};
   const K = tbKategorien(T);
   /* Herkunftskategorie: ?kat= (Button „Zurück zur Toolbox“) oder Browser-Zurück von einer Übung */
   let auf = r.kat || (routeFrom && routeFrom.name==='tbtool' ? sessionStorageGet('kk_tbkat') : null) || null;
-  if(!K.some(c=>c.id===auf && !c.akzent)) auf = null;
+  if(!K.some(c=>c.id===auf)) auf = null;
   if(r.kat){ try{ history.replaceState(history.state, '', '#/k/'+kapRouteId(k)); }catch(e){} }   /* ?kat nicht dauerhaft in der Adresse lassen */
   let h = `<div class="view tb">${bar(`<b>${eyebrow}</b> · ${esc(k.titel)}`)}${head}<div class="wrap">${tbBeispiel(I)}${tbFehler(I)}`;
-  if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span><span>${ic('check')} ${f.r} davon schon gemacht</span></div>`;
+  if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span></div>`;
   if(T.intro && T.intro.length) h += `<div class="bl tbintro">${blocks(T.intro,{path:`${k.id}/intro`})}</div>`;
   h += `<div class="kats">`;
   for(const c of K){
-    if(c.akzent){
-      h += `<section class="kat akz" id="kat-${esc(c.id)}"><div class="kath"><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}</span></div>
-        <div class="schnell" style="--n:${c.tools.length}">${c.tools.map(t=>{ const d=tbDauer(t); return `<a href="${tbHref(k,t)}"><span class="ti">${ic(tbArt(t).icon)}</span><span class="stx"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${d?`<small>${esc(d)}</small>`:''}</span><span class="go">${ic('right')}</span></a>`; }).join('')}</div></section>`;
-    } else {
-      h += `<details class="acc kat" id="kat-${esc(c.id)}"${c.id===auf?' open':''}><summary><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}<small class="kn">${tbAnz(c.tools.length)}</small></span>${ic('down','chv')}</summary><div class="acb"><ul class="tlist">${c.tools.map(t=>tbKarte(k,T,t)).join('')}</ul></div></details>`;
-    }
+      h += `<details class="acc kat${c.akzent?' akz':''}" id="kat-${esc(c.id)}"${c.id===auf?' open':''}><summary><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}<small class="kn">${tbAnz(c.tools.length)}</small></span>${ic('down','chv')}</summary><div class="acb"><ul class="tlist">${c.tools.map(t=>tbKarte(k,T,t)).join('')}</ul></div></details>`;
   }
   h += `</div>${tbKommt(T)}`;
   /* spec/07 T9: kein „Warum das wirkt“, keine Quellen, keine Mission in der Übersicht – Theorie steht auf den Detailseiten */
@@ -1451,12 +1421,11 @@ async function renderToolboxSub(app, r){
   let ei = si; while(ei<B.length && tbIstStart(B[ei])) ei++;
   const vor = B.slice(0,si), start = B.slice(si,ei), nach = B.slice(ei);
   const hg = Array.isArray(t.hintergrund) ? t.hintergrund : [], qu = tbQuellen(t.quellen);
-  const ok = !!D.toolbox.ausprobiert[t.id];
   /* bloecke-Pfade bleiben wie bisher (ctx.path + '/' + Index), damit „gemacht“-Schlüssel erhalten bleiben → tbBl() */
   let h = `<div class="view tb">${bar(`<b>Kapitel ${k.nr}</b> · Tool`)}${t.header?`<div class="shead"><img src="${esc(t.header)}" alt="" onerror="this.closest('.shead').remove()"></div>`:''}
     <article class="wrap slide tool">${tbBeispiel(I)}
     <div class="rubrik">${ic(a.icon)} Tool · ${esc(a.label)}</div><h1>${esc(t.titel)}</h1>${tbKurz(t)?`<p class="tkurz">${esc(tbKurz(t))}</p>`:''}
-    <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}${gemChip(t.id, ok)}</div>
+    <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}</div>
     ${t.wofuer?`<div class="wofuer"><span>Wofür</span><p>${inl(t.wofuer)}</p></div>`:''}
     ${vor.length?`${tbEigeneSoh(vor)?'':`<h2 class="soh">So geht’s</h2>`}<div class="bl">${tbBl(vor, ctx, 0)}</div>`:''}
     <div class="bl tbstart">${tbBl(start, ctx, si)}${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
@@ -1478,16 +1447,6 @@ function tbBl(arr, ctx, off){
   if(!arr.length) return '';
   const voll = new Array(off).fill(null).concat(arr);   /* null-Einträge überspringt blocks() */
   return blocks(voll, ctx);
-}
-/* „Ausprobiert“ umschalten – Fortschritt Kap. 7 (spec/02 §2) */
-/* spec/06 §1: ein einziger, kleiner Umschalter „Schon mal gemacht“ (neutral, kein „erledigt“) */
-const gemChip = (id, ok) => `<button class="tchip gem${ok?' on':''}" data-act="tb-probiert" data-tool="${esc(id)}" aria-pressed="${ok}">${ic(ok?'check':'circ')} Schon mal gemacht</button>`;
-function tbProbiert(el){
-  const id = el.dataset.tool; const on = !D.toolbox.ausprobiert[id];
-  if(on) D.toolbox.ausprobiert[id] = true; else delete D.toolbox.ausprobiert[id];
-  saveData();
-  el.outerHTML = gemChip(id, on);
-  toast(on ? 'Gemerkt. Wiederholen lohnt sich – jederzeit.' : 'Markierung entfernt.');
 }
 
 /* ================================================================
@@ -1803,7 +1762,7 @@ function toast(msg){ const t = document.getElementById('toast'); t.textContent =
    8. Export / Import – Skill §4, spec/00 §4
    ================================================================ */
 async function exportieren(){
-  const out = {app:'klarkommen', schemaVersion:1, exportiert:new Date().toISOString(), anpassung:{...D.anpassung}, fortschritt:{gelesen:D.gelesen, checks:D.checks, letzte:D.letzte, toolbox:D.toolbox}};
+  const out = {app:'klarkommen', schemaVersion:1, exportiert:new Date().toISOString(), anpassung:{...D.anpassung}, fortschritt:{gelesen:D.gelesen, checks:D.checks, letzte:D.letzte}};
   if(D.anpassung.startbildId){ const b = await imgGet(D.anpassung.startbildId); if(b) out._images = {startbild: await new Promise(r=>{ const fr=new FileReader(); fr.onload=()=>r(fr.result); fr.readAsDataURL(b); })}; }
   const blob = new Blob([JSON.stringify(out,null,1)], {type:'application/json'});
   const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `klarkommen-sicherung-${new Date().toISOString().slice(0,10)}.json`;
@@ -1814,10 +1773,9 @@ async function importieren(file){
   let j; try{ j = JSON.parse(await file.text()); }catch(e){ toast('Diese Datei ist keine gültige Klarkommen-Sicherung.'); return; }
   if(!j || j.app!=='klarkommen'){ toast('Diese Datei ist keine Klarkommen-Sicherung.'); return; }
   const fs = j.fortschritt||{}; const nG = Object.keys(fs.gelesen||{}).length, nC = Object.keys(fs.checks||{}).length;
-  const nT = Object.keys((fs.toolbox&&fs.toolbox.ausprobiert)||{}).length;
-  const vorschau = `${nG} gelesene Slides · ${nC} Häkchen · ${nT} ausprobierte Tools${j.anpassung && j.anpassung.titel?` · Titel „${j.anpassung.titel}“`:''}${j._images&&j._images.startbild?' · eigenes Startbild':''}. Dein aktueller Stand auf diesem Gerät wird dabei ersetzt.`;
+  const vorschau = `${nG} gelesene Slides · ${nC} Häkchen${j.anpassung && j.anpassung.titel?` · Titel „${j.anpassung.titel}“`:''}${j._images&&j._images.startbild?' · eigenes Startbild':''}. Dein aktueller Stand auf diesem Gerät wird dabei ersetzt.`;
   if(!(await ask('Sicherung importieren?', vorschau, 'Importieren'))) return;
-  const neu = normalizeData({gelesen:fs.gelesen, checks:fs.checks, letzte:fs.letzte, toolbox:fs.toolbox, anpassung:j.anpassung});
+  const neu = normalizeData({gelesen:fs.gelesen, checks:fs.checks, letzte:fs.letzte, anpassung:j.anpassung});
   neu.anpassung.startbildId = null;
   if(j._images && j._images.startbild){ try{ const b = await (await fetch(j._images.startbild)).blob(); await imgPut('startbild', b); neu.anpassung.startbildId = 'startbild'; }catch(e){} }
   else await imgDel('startbild');
@@ -1843,7 +1801,6 @@ document.addEventListener('click', async e=>{
   else if(act==='dlg-zu'){ closeDlg(el.closest('dialog')); }
   else if(act==='play'||act==='rw'||act==='ff'){ audioAct(el.closest('.audio'), act); }
   else if(act==='x-zurueck'){ xSchliessen(); }
-  else if(act==='tb-probiert'){ tbProbiert(el); }
   else if(act==='tb-zurueck'){ e.preventDefault(); if(tbVonUebersicht && history.length>1) history.back(); else location.hash = el.getAttribute('href'); }   /* spec/07 T6: kein doppelter Verlaufseintrag */
   /* spec/04 §10: Titel-Test */
   else if(act==='fb-wahl'){ fbWahl(el); }
@@ -1873,8 +1830,8 @@ document.addEventListener('click', async e=>{
   else if(act==='export'){ exportieren(); }
   else if(act==='import'){ document.getElementById('fileImport').click(); }
   else if(act==='fortschritt-reset'){
-    if(await ask('Fortschritt zurücksetzen?','Alle Häkchen, „gelesen“- und „schon gemacht“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
-      D.gelesen = {}; D.checks = {}; D.letzte = {}; D.toolbox = {ausprobiert:{}}; saveData(); toast('Fortschritt zurückgesetzt.');
+    if(await ask('Fortschritt zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
+      D.gelesen = {}; D.checks = {}; D.letzte = {}; saveData(); toast('Fortschritt zurückgesetzt.');
     }
   }
 });

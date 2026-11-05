@@ -1,5 +1,5 @@
 {
- "version": 10,
+ "version": 11,
  "dateien": [
   {
    "id": "k01-5sinne-shift",
@@ -397,6 +397,38 @@
    "id": "bilder/k07/fernbedienung",
    "pfad": "medien/bilder/k07/fernbedienung.webp",
    "bytes": 92890,
+   "typ": "bild",
+   "kapitel": "k07",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k02/identitaets-check",
+   "pfad": "medien/bilder/k02/identitaets-check.webp",
+   "bytes": 77558,
+   "typ": "bild",
+   "kapitel": "k02",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k03/leitfragen",
+   "pfad": "medien/bilder/k03/leitfragen.webp",
+   "bytes": 57342,
+   "typ": "bild",
+   "kapitel": "k03",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k04/kritiker-einstein",
+   "pfad": "medien/bilder/k04/kritiker-einstein.webp",
+   "bytes": 78734,
+   "typ": "bild",
+   "kapitel": "k04",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k07/sicherer-ort",
+   "pfad": "medien/bilder/k07/sicherer-ort.webp",
+   "bytes": 76316,
    "typ": "bild",
    "kapitel": "k07",
    "dauer": null
