@@ -1,5 +1,5 @@
 {
- "version": 9,
+ "version": 10,
  "dateien": [
   {
    "id": "k01-5sinne-shift",
@@ -351,6 +351,54 @@
    "bytes": 124614,
    "typ": "bild",
    "kapitel": null,
+   "dauer": null
+  },
+  {
+   "id": "bilder/k01/confirmation-bias",
+   "pfad": "medien/bilder/k01/confirmation-bias.webp",
+   "bytes": 104630,
+   "typ": "bild",
+   "kapitel": "k01",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k01/tuersteher",
+   "pfad": "medien/bilder/k01/tuersteher.webp",
+   "bytes": 62072,
+   "typ": "bild",
+   "kapitel": "k01",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k03/wer-bestimmt",
+   "pfad": "medien/bilder/k03/wer-bestimmt.webp",
+   "bytes": 80104,
+   "typ": "bild",
+   "kapitel": "k03",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k04/einstein-technik",
+   "pfad": "medien/bilder/k04/einstein-technik.webp",
+   "bytes": 83764,
+   "typ": "bild",
+   "kapitel": "k04",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k04/pitching-technik",
+   "pfad": "medien/bilder/k04/pitching-technik.webp",
+   "bytes": 77254,
+   "typ": "bild",
+   "kapitel": "k04",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k07/fernbedienung",
+   "pfad": "medien/bilder/k07/fernbedienung.webp",
+   "bytes": 92890,
+   "typ": "bild",
+   "kapitel": "k07",
    "dauer": null
   }
  ]

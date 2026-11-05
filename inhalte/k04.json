@@ -370,6 +370,12 @@
               "text": "**Schritt 3: Lass die Figur den Satz sprechen.** Dieselben Worte. Derselbe Satz. Aber jetzt in dieser piepsigen, komischen Stimme: *„Du wirst dich total blamieren!“* – gesprochen von einem aufgeregten Donald Duck, der wild mit den Armen fuchtelt."
             },
             {
+              "typ": "bild",
+              "src": "medien/bilder/k04/pitching-technik.webp",
+              "alt": "Pitching-Technik: Eine kleine alberne Figur mit Partyhut sagt auf deiner Hand den Satz des inneren Kritikers. Gleiche Worte, keine Wucht.",
+              "unterschrift": null
+            },
+            {
               "typ": "absatz",
               "text": "**Was passiert?** Du fängst an zu grinsen. Vielleicht sogar zu lachen. Und genau in diesem Moment ist die emotionale Wucht des Gedankens gebrochen. Die Worte sind dieselben – aber sie haben keine Macht mehr über dich."
             },
@@ -412,6 +418,12 @@
             {
               "typ": "absatz",
               "text": "**Schritt 3: Quittieren und stehen lassen.** Höre dem Gedanken zu. Bewerte ihn nicht. Diskutiere nicht. Sag einfach innerlich: *„Ah, interessant. Danke für den Hinweis, Einstein.“* Dann lass den Gedanken wie eine Wolke am Himmel stehen und warte auf den nächsten."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k04/einstein-technik.webp",
+              "alt": "Einstein-Technik: Ein gestresster kleiner Assistent schleppt einen Papierstapel mit Sorgen, während ein junger Mann entspannt im Bett liegt.",
+              "unterschrift": "Danke, Einstein. Hab ich gehört."
             },
             {
               "typ": "absatz",

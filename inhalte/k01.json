@@ -52,6 +52,12 @@
           "text": "Dein Gehirn nimmt nicht alles wahr – es filtert. Ein System namens RAS (dein „Türsteher\") entscheidet, was du bewusst siehst. Sein Auswahlkriterium? Deine Erwartungen und Überzeugungen."
         },
         {
+          "typ": "bild",
+          "src": "medien/bilder/k01/tuersteher.webp",
+          "alt": "Der Türsteher in deinem Kopf: Ein Türsteher mit Gästeliste lässt nur einen Gedanken durch die Tür, andere bleiben draußen.",
+          "unterschrift": null
+        },
+        {
           "typ": "zitat",
           "text": "Wer Probleme erwartet, findet Probleme.\nWer Chancen sucht, entdeckt Chancen.",
           "quelle": null
@@ -110,6 +116,12 @@
         {
           "typ": "absatz",
           "text": "Dein Gehirn sucht permanent nach Beweisen für das, was du sowieso schon glaubst – und findet sie. Immer."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/confirmation-bias.webp",
+          "alt": "Mann mit Lupe vor einer Wand voller Bilder: Die Lupe hebt nur die Warnsignale hervor. Nicht die Wahrheit, unsere Wahrheit.",
+          "unterschrift": null
         },
         {
           "typ": "ueberschrift",

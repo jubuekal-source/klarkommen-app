@@ -347,6 +347,33 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 .xstep .soon svg.i{width:17px;height:17px}
 .xview.eigenbar .xbar{display:none}
 
+/* ===== Toolbox Kap. 7 – spec/07: Kategorien, Badge „Neu“, „Kommt in Kapitel N“, Zurück zur Toolbox ===== */
+.kats{margin:22px 0 6px}
+.kat.akz{margin:0 0 18px}
+.kath{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.ki{width:44px;height:44px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.25);color:var(--brand-ok)}
+.ki svg.i{width:22px;height:22px}
+.kat.akz .ki{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
+.kt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.kt b{font-family:var(--brand-font-head);font-size:1.08rem;line-height:1.25;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+.kt small{font-family:var(--brand-font-body,inherit);font-weight:400;color:var(--brand-text-2);font-size:.86rem;line-height:1.3}
+.kt small.kn{font-size:.76rem;color:var(--brand-muted);margin-top:2px}
+details.acc.kat{margin:0 0 10px}
+details.acc.kat>summary{padding:12px 14px;min-height:72px}
+details.acc.kat>summary>.ki{color:var(--brand-ok)}
+details.acc.kat[open]{border-color:rgba(125,211,192,.3)}
+details.acc.kat .acb{padding:0 10px 2px}
+details.acc.kat .tlist{margin:0 0 8px}
+details.acc.kat .trow{background:var(--brand-card-2)}
+.bneu{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-family:var(--brand-font-body,inherit);font-size:.68rem;font-weight:700;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;vertical-align:2px;color:var(--brand-ok);background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.35);white-space:nowrap}
+.tbkommt{display:flex;align-items:flex-start;gap:10px;margin:14px 2px 6px;color:var(--brand-muted);font-size:.86rem;line-height:1.4}
+.tbkommt svg.i{width:16px;height:16px;flex:none;margin-top:2px}
+.tbkommt b{font-weight:500;color:var(--brand-text-2)}
+.tbbackw{text-align:center;margin:30px 0 8px}
+.tbback{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;background:rgba(125,211,192,.08);border:1px solid rgba(125,211,192,.3);color:var(--brand-ok);font:500 .95rem var(--brand-font-body,inherit);text-decoration:none}
+.tbback:active{background:rgba(125,211,192,.16)}
+.tbback svg.i{width:18px;height:18px}
+details.acc.tbtheo>summary>svg.i:first-child{color:var(--brand-ok)}
 /* ===== Toolbox Kap. 7 – spec/02 §2–4 ===== */
 .tb .tbintro{margin-top:4px}
 .tbsec{margin:28px 0 6px}
@@ -683,7 +710,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.5';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.7';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -878,7 +905,7 @@ function parse(h){
     if(p[2]==='u' && p[3]) return {name:'tbuc', kap:p[1], uc:p[3]};
     if((p[2]==='tool'||p[2]==='t') && p[3]) return {name:'tbtool', kap:p[1], tool:p[3], von:q.u||q.von||null, anker:q.a||null};
     if(p[2]==='alle') return {name:'tballe', kap:p[1], q};
-    return p[2] ? {name:'slide', kap:p[1], slide:p[2]} : {name:'kap', kap:p[1]};
+    return p[2] ? {name:'slide', kap:p[1], slide:p[2]} : {name:'kap', kap:p[1], kat:q.kat||null};   /* spec/07 T6: #/k/07?kat=<id> öffnet diese Kategorie */
   }
   if(p[0]==='x' && p[1]) return {name:'x', id:p[1], anker:p[2]||null};
   if(p[0]==='einstellungen') return {name:'einstellungen'};
@@ -896,16 +923,19 @@ function parentOf(r){
   }
 }
 let curRoute = {name:'start'}, prevHash = null, lastStartScroll = 0;
+let routeFrom = {name:'start'}, tbFokus = null, tbVonUebersicht = false;   /* spec/07 T6: Rückkehr zur Herkunftskategorie */
 async function route(){
   const r = parse(location.hash);
   lbVerstecken();   /* spec/04 §4: Routenwechsel schließt die Lightbox */
   instVerstecken();   /* spec/06 §2 */
   if(curRoute.name==='start') lastStartScroll = window.scrollY;
-  const from = curRoute; curRoute = r;
+  const from = curRoute; curRoute = r; routeFrom = from; tbFokus = null;
+  if(r.name==='tbtool') tbVonUebersicht = from.name==='kap' ? true : (from.name==='x' || (from.name==='tbtool' && from.tool===r.tool)) ? tbVonUebersicht : false;   /* spec/07 T6 */
   stopAudio();
   document.body.classList.toggle('xmode', r.name==='x');
   const fab = document.getElementById('fab'); const par = parentOf(r);
   fab.classList.remove('away'); fab.hidden = !par; fab.innerHTML = ic('back'); fab.dataset.go = par||'';
+  { const kk = r.name==='kap' ? kapFromRoute(r.kap) : null; if(kk && kk.typ==='toolbox') fab.hidden = true; }   /* v1.3.7: Toolbox-Übersicht ohne schwebenden Zurück-Button (verdeckte Kachel-Pfeile; Start über Home-Icon der Leiste) */
   const app = document.getElementById('app');
   try{
     if(r.name==='start') await renderStart(app);
@@ -918,7 +948,8 @@ async function route(){
     else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
-  if(r.name==='tbtool' && r.anker){ const el = document.getElementById('h-'+r.anker); if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 14)); } }   /* v1.3.4 */
+  if(tbFokus){ const el = document.getElementById(tbFokus); tbFokus = null; if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 10)); } }   /* spec/07 T6 */
+  if(r.name==='tbtool' && r.anker){ const el = document.getElementById('h-'+r.anker); if(el){ for(let q=el; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; }   /* spec/07 F9: Anker kann in einem Akkordeon liegen */ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 14)); } }   /* v1.3.4 */
   const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
   if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ for(let q=o; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; } o.scrollIntoView({block:'start'}); } }
 }
@@ -1040,7 +1071,7 @@ function blocks(arr, ctx){
         for(let j=bi+1; j<arr.length && arr[j] && arr[j].typ==='experiment' && !Array.isArray(arr[j].reihe); j++){ serie.push(arr[j]); skip.add(j); }
         h += serie.length>1 ? expSerie(serie, path) : expKarte(serie[0], path);
         break; }
-      case 'akkordeon': h += `<details class="acc"><summary>${ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
+      case 'akkordeon': h += `<details class="acc"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
       case 'link': { /* Nachtrag 04.11.: externe Link-Karte (nur Link, nichts wird vorgeladen) */
         if(!/^https:\/\//.test(b.url||'')) break;
         h += `<div class="exp lnk"><div class="art">${ic('play')} ${esc(b.art||'Link')}</div><h3>${esc(b.titel||b.url)}</h3>${b.hinweis?`<p>${inl(b.hinweis)}</p>`:''}<a class="btn sec block" href="${esc(b.url)}" target="_blank" rel="noopener noreferrer">${ic('ext')} ${esc(b.label||'Link öffnen')}</a>${b.online?`<p class="hint lnk-on">${ic('info')} ${esc(b.online)}</p>`:''}</div>`; break; }
@@ -1117,7 +1148,26 @@ function renderExperiment(app, r){
   app.innerHTML = `<div class="xview" id="xview"><div class="xbar"><div class="in"><button class="back" data-act="x-zurueck">${ic('back')} Zurück</button><div class="t">${esc(t)}</div></div></div><iframe id="xframe" src="${src}" title="${esc(t)}" allow="autoplay; fullscreen"></iframe></div>`;
   const fr = document.getElementById('xframe');
   /* Experimente mit eigener „Zurück zur App“-Leiste (#kk-bar, sendet postMessage {kk:'zurueck'}) → App-Leiste ausblenden, sonst doppelt */
-  fr.addEventListener('load', ()=>{ try{ if(fr.contentDocument && fr.contentDocument.getElementById('kk-bar')) document.getElementById('xview').classList.add('eigenbar'); }catch(e){} });
+  fr.addEventListener('load', ()=>{ try{ if(fr.contentDocument && fr.contentDocument.getElementById('kk-bar')) document.getElementById('xview').classList.add('eigenbar'); }catch(e){} atemNurUebung(fr, r); });
+}
+/* spec/07 F7 (Entscheidung A1): Pro Atemübung genau EINE Erklärung – die steht auf der Toolbox-Detailseite
+   (Wofür · So geht’s · Dauer vor dem Start, „Hintergrund“ + „Quellen“ aufklappbar dahinter).
+   Wird das Atemtool aus der Toolbox gestartet (#sigh/#478, Schlüssel …/tool/…), zeigt es nur noch die Übung selbst:
+   Info-Panel (Anleitungsbild + Stichpunkte mit Studienhinweis) und „Wie wirkt …?“-Karte werden ausgeblendet.
+   Umsetzung ohne Änderung an experimente/atem-anker (same-origin, Style in das iframe). Ohne Toolbox-Kontext bleibt das Atemtool unverändert. */
+function atemNurUebung(fr, r){
+  if(r.id!=='atem-anker' || !/^(sigh|478)$/.test(r.anker||'')) return;
+  if(!/\/tool\//.test(sessionStorageGet('kk_xkey')||'')) return;
+  try{
+    const d = fr.contentDocument; if(!d || d.getElementById('kk-nur-uebung')) return;
+    const st = d.createElement('style'); st.id = 'kk-nur-uebung';
+    st.textContent = '.info-panel,.science-card{display:none!important}';
+    d.head.appendChild(st);
+    /* spec/07 Z (UX-Fix): Tap auf „Übung starten“ der Detailseite startet die Übung direkt (kein zweiter Tap im Atemtool).
+       Atemtool nutzt weder Audio noch Vibration → kein iOS-Nutzer-Tap-Zwang. Einmalig je Seitenaufruf; „Stopp“/„Übung starten“ im Tool bleiben. */
+    const w = fr.contentWindow;
+    if(w && typeof w.toggleStart==='function' && !w.__kkAuto){ w.__kkAuto = 1; setTimeout(()=>{ try{ w.toggleStart(); }catch(e){} }, 350); }
+  }catch(e){ console.warn('Atemtool: Erklärung nicht ausblendbar', e); }
 }
 /* Overlay schließen (Zurück-Button oder postMessage aus dem iframe) */
 function xSchliessen(){
@@ -1226,7 +1276,9 @@ function expLabel(b, path){
 function expKarte(b, path, L){
   L = L || expLabel(b, path);
   const key = `${path}/x/${b.id}`; const done = !!D.checks[key];
-  const btn = expDa(b.id) ? `<a class="btn pulse" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}">${done?'Nochmal starten':L.start} ${ic('right')}</a>` : `<span class="btn sec" aria-disabled="true">${ic('clock')} ${esc(L.art)} folgt in Kürze</span>`;
+  const tbK = /\/tool\//.test(path);   /* spec/07 T4 + F4: in der Toolbox immer „Übung starten“, nie „Nochmal starten“ (Kap. 1–4 unverändert) */
+  const lab = tbK ? 'Übung starten' : (done?'Nochmal starten':L.start);
+  const btn = expDa(b.id) ? `<a class="btn pulse" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}">${lab} ${ic('right')}</a>` : `<span class="btn sec" aria-disabled="true">${ic('clock')} ${esc(L.art)} folgt in Kürze</span>`;
   return `<div class="exp" data-xk="${esc(key)}"><div class="art">${ic(L.icon)} ${esc(L.art)}${done && !/\/tool\//.test(path)?`<span class="xdone">${ic('check')} gemacht</span>`:''}</div><h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}${btn}</div>`;
 }
 /* mehrere Experimente nacheinander in einer Slide – spec/03 (Kap. 1 Einstieg) */
@@ -1289,34 +1341,68 @@ function tbReihe(T){
   const r = ids.map(id=>tbTool(T,id)).filter(Boolean);
   return r.concat(tbFrei(T).filter(t=>!ids.includes(t.id)));
 }
+/* spec/07 T15: Badge „Neu“ (Daten: T.neu) */
+const tbNeu = (T,t) => Array.isArray(T.neu) && T.neu.includes(t.id) ? `<span class="bneu">Neu</span>` : '';
 function tbKarte(k, T, t){
   const u = (T.uebungen||[]).find(x=>x && x.id===t.id) || {}, a = tbArt(t), d = tbDauer(t), ok = !!D.toolbox.ausprobiert[t.id];
   const pk = (Array.isArray(u.punkte) && u.punkte.length) ? u.punkte : (tbKurz(t) ? [tbKurz(t)] : []);
   /* spec/06 §1: Übungen sind wiederholbar – immer Pfeil, „schon gemacht“ nur als kleine neutrale Info */
-  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}${ok?`<small class="gemz"><span class="gem">${ic('check')} schon gemacht</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
+  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}${ok?`<small class="gemz"><span class="gem">${ic('check')} schon gemacht</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
 }
 const tbBeispiel = I => I.beispiel ? `<div class="beispiel">${ic('info')}<span>Beispielinhalt – die echten Tools folgen.</span></div>` : '';
 const tbFehler = I => I.fehler ? `<div class="call wichtig">${ic('warn')}<p>${navigator.onLine===false?'Die Toolsammlung konnte nicht geladen werden. Du bist offline – öffne Klarkommen einmal mit Internet.':'Die Toolsammlung wird gerade vorbereitet und folgt in Kürze.'}</p></div>` : '';
 
-/* #/k/07 – Toolbox-Start (spec/02 §2 Empfehlung A+B, §4 Wireframe) */
+/* spec/07 T1–T3: Kategorien aus T.kategorien (Schema spec/07 §2.1). Die Akzent-Kategorie („Schnelle Hilfe“) ist immer offen,
+   alle anderen sind Akkordeons (nutzen den Ein-offen-Handler). Fallback ohne kategorien: Schnellhilfe + alle übrigen freien Tools als eine Liste. */
+function tbKategorien(T){
+  const frei = tbFrei(T), gesehen = new Set();
+  const nimm = ids => (Array.isArray(ids)?ids:[]).map(id=>tbTool(T,id)).filter(t=>t && !gesehen.has(t.id) && gesehen.add(t.id));
+  let K;
+  if(Array.isArray(T.kategorien) && T.kategorien.length){
+    K = T.kategorien.filter(c=>c && c.id).map((c,i)=>({id:String(c.id), titel:c.titel||'Übungen', untertitel:c.untertitel||'', icon:c.icon||'wrench', akzent:c.ton==='akzent' || (i===0 && c.id==='schnell'), tools:nimm(c.tools)}));
+    const rest = frei.filter(t=>!gesehen.has(t.id));
+    if(rest.length){ console.warn('spec/07: Tools ohne Kategorie', rest.map(t=>t.id)); K.push({id:'weitere', titel:'Weitere Übungen', untertitel:'', icon:'wrench', akzent:false, tools:rest}); }
+  } else {
+    const sh = nimm(T.schnellhilfe);
+    K = [{id:'schnell', titel:'Schnelle Hilfe', untertitel:'Wenn es sofort gehen muss', icon:'bolt', akzent:true, tools:sh}, {id:'alle', titel:'Alle Übungen', untertitel:'', icon:'wrench', akzent:false, tools:nimm(tbReihe(T).map(t=>t.id))}];
+  }
+  return K.filter(c=>c.tools.length);
+}
+const tbKatVon = (T,id) => (tbKategorien(T).find(c=>c.tools.some(t=>t.id===id))||{}).id || null;
+const tbAnz = n => `${n} ${n===1?'Übung':'Übungen'}`;
+/* spec/07 T16 + F10: gesperrte Übungen als eine dezente, nicht antippbare Zeile je Kapitel */
+function tbKommt(T){
+  const g = (T.tools||[]).filter(t=>t.status==='gesperrt'), by = new Map();
+  for(const t of g){ const hk = kapById(t.herkunft); const key = hk && hk.nr ? hk.nr : 0; if(!by.has(key)) by.set(key, []); by.get(key).push(t.titel); }
+  return [...by.entries()].sort((a,b)=>a[0]-b[0]).map(([nr,ts])=>`<p class="tbkommt">${ic('lock')}<span><b>${nr?`Kommt in Kapitel ${nr}`:'Kommt in der Vollversion'}:</b> ${ts.map(esc).join(' · ')}</span></p>`).join('');
+}
+
+/* #/k/07 – Toolbox-Übersicht – spec/07 §2.2: Intro → Meta → Kategorien → „Kommt in Kapitel N“ → Hilfe (einziges Vorkommen) → Weiter */
 async function renderToolbox(app, k, head, eyebrow){
   const I = await tbDaten(k), T = I.data, fr = tbFrei(T), f = fortschritt(k) || {n:fr.length, r:0};
-  const R = kapRouteId(k);
+  const r = curRoute || {};
+  const K = tbKategorien(T);
+  /* Herkunftskategorie: ?kat= (Button „Zurück zur Toolbox“) oder Browser-Zurück von einer Übung */
+  let auf = r.kat || (routeFrom && routeFrom.name==='tbtool' ? sessionStorageGet('kk_tbkat') : null) || null;
+  if(!K.some(c=>c.id===auf && !c.akzent)) auf = null;
+  if(r.kat){ try{ history.replaceState(history.state, '', '#/k/'+kapRouteId(k)); }catch(e){} }   /* ?kat nicht dauerhaft in der Adresse lassen */
   let h = `<div class="view tb">${bar(`<b>${eyebrow}</b> · ${esc(k.titel)}`)}${head}<div class="wrap">${tbBeispiel(I)}${tbFehler(I)}`;
   if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span><span>${ic('check')} ${f.r} davon schon gemacht</span></div>`;
   if(T.intro && T.intro.length) h += `<div class="bl tbintro">${blocks(T.intro,{path:`${k.id}/intro`})}</div>`;
-  /* Schnell-Hilfe */
-  const sh = (T.schnellhilfe||[]).map(id=>tbTool(T,id)).filter(Boolean);
-  if(sh.length) h += `<section class="tbsec"><div class="tbh"><h2>${ic('bolt')} Schnell-Hilfe</h2><span>Wenn’s sofort gehen muss</span></div><div class="schnell" style="--n:${sh.length}">${sh.map(t=>{ const d=tbDauer(t); return `<a href="${tbHref(k,t)}"><span class="ti">${ic(tbArt(t).icon)}</span><span class="stx"><b>${esc(t.titel)}</b>${d?`<small>${esc(d)}</small>`:''}</span><span class="go">${ic('right')}</span></a>`; }).join('')}</div></section>`;   /* spec/04 §6 */
-  /* spec/05 C3: „Was brauchst du gerade?“ = alle Übungen der Reihe nach (schnell → ruhig → Reflexion), je Titel + 2–3 Statements; kein Filter, keine Use-Case-Seiten */
-  const reihe = tbReihe(T), gs = (T.tools||[]).filter(t=>t.status==='gesperrt');
-  if(reihe.length) h += `<section class="tbsec"><div class="tbh"><h2>Was brauchst du gerade?</h2><span>Nimm, was gerade passt.</span></div><ul class="tlist">${reihe.map(t=>tbKarte(k,T,t)).join('')}</ul>${gs.length?`<div class="flabel gs">${ic('lock')} In der Vollversion</div><ul class="tlist">${gs.map(t=>tbZeile(k,T,t)).join('')}</ul>`:''}</section>`;
-  /* Hintergrund, Mission, Quellen */
-  if(T.hintergrund && T.hintergrund.length) h += `<div class="tbh tbh2"><h2>Warum das wirkt</h2></div><div class="bl">${blocks(T.hintergrund,{path:`${k.id}/hintergrund`})}</div>`;
-  if(T.mission && T.mission.bloecke && T.mission.bloecke.length) h += `<details class="acc"><summary>${ic('clip')}<span>${esc(T.mission.titel||'Mission Alltag')}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(T.mission.bloecke,{path:`${k.id}/mission`})}</div></details>`;
-  if(T.quellen && T.quellen.length) h += `<details class="acc"><summary>${ic('book')}<span>Quellen &amp; Hintergrund</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(T.quellen,{path:`${k.id}/quellen`})}</div></details>`;
+  h += `<div class="kats">`;
+  for(const c of K){
+    if(c.akzent){
+      h += `<section class="kat akz" id="kat-${esc(c.id)}"><div class="kath"><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}</span></div>
+        <div class="schnell" style="--n:${c.tools.length}">${c.tools.map(t=>{ const d=tbDauer(t); return `<a href="${tbHref(k,t)}"><span class="ti">${ic(tbArt(t).icon)}</span><span class="stx"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${d?`<small>${esc(d)}</small>`:''}</span><span class="go">${ic('right')}</span></a>`; }).join('')}</div></section>`;
+    } else {
+      h += `<details class="acc kat" id="kat-${esc(c.id)}"${c.id===auf?' open':''}><summary><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}<small class="kn">${tbAnz(c.tools.length)}</small></span>${ic('down','chv')}</summary><div class="acb"><ul class="tlist">${c.tools.map(t=>tbKarte(k,T,t)).join('')}</ul></div></details>`;
+    }
+  }
+  h += `</div>${tbKommt(T)}`;
+  /* spec/07 T9: kein „Warum das wirkt“, keine Quellen, keine Mission in der Übersicht – Theorie steht auf den Detailseiten */
   h += tbHilfe(T) + naechstWeiter(k) + `</div>${footer()}</div>`;
   app.innerHTML = h;
+  if(auf) tbFokus = 'kat-'+auf;
   leereWeg(app);   /* spec/04 §7 */
   initAudios(app);
 }
@@ -1330,49 +1416,68 @@ function leereWeg(root){
   root.querySelectorAll('.bl h2').forEach(h=>{ let n = h.nextElementSibling; if(!n || /^H[1-3]$/.test(n.tagName)) h.remove(); });
   root.querySelectorAll('.tbsec').forEach(s=>{ const kids = [...s.children].filter(c=>!c.classList.contains('tbh')); if(!kids.some(hatInhalt)) s.remove(); });
 }
-/* Unterseiten: Use-Case · Alle Tools · Toolkarte */
+/* spec/07 T10: Bausteine zum Starten (Atemtool-/Experiment-Karte, Audio) – alles davor ist „So geht’s“, alles danach folgt unter dem Start */
+const tbIstStart = b => b && (b.typ==='experiment' || b.typ==='audio');
+/* Quellen tolerant: Block {typ:'quelle',…} oder reiner Text */
+const tbQuellen = q => (Array.isArray(q)?q:[]).map(x=>typeof x==='string' ? {typ:'quelle', text:x, url:null} : (x && !x.typ ? {typ:'quelle', ...x} : x)).filter(Boolean);
+/* Unterseiten: Toolkarte (alte Use-Case-/Alle-Routen → Toolbox) */
 async function renderToolboxSub(app, r){
   const k = kapFromRoute(r.kap);
   if(!k || k.status!=='frei' || k.typ!=='toolbox'){ location.replace(k?'#/k/'+kapRouteId(k):'#/'); return; }
   const I = await tbDaten(k), T = I.data, R = kapRouteId(k);
-  const zurTb = `<a class="zurueck" href="#/k/${R}">${ic('up')} Zur Toolbox</a>`;
   /* spec/05 C3: Use-Case-Seiten und Filterseite „Alle Tools“ entfallen – alte Links führen zur Toolbox */
   if(r.name==='tbuc' || r.name==='tballe'){ location.replace('#/k/'+R); return; }
   /* v1.3.4: „Dein Anker für den Alltag“ ist Teil von „Dein sicherer Ort“ – alte Route #/k/07/tool/anker springt zum Anker-Abschnitt */
   if(r.tool==='anker' && !tbTool(T,'anker') && tbTool(T,'safe-place')){ location.replace(`#/k/${R}/tool/safe-place?a=anker`); return; }
-  /* Toolkarte – spec/02 §2 „Toolkarte (Detailansicht)“ */
+  /* Toolkarte – spec/07 §2.3 */
   const t = tbTool(T, r.tool);
   if(!t){ const g = (T.tools||[]).find(x=>x.id===r.tool); location.replace('#/k/'+R); if(g){ const gk=kapById(g.herkunft); if(gk) setTimeout(()=>openSperre(gk,g.titel),50); } return; }
   document.title = `${t.titel} · ${titel()}`;
+  const kat = tbKatVon(T, t.id); sessionStorageSet('kk_tbkat', kat||'');
+  const zurueckHref = `#/k/${R}${kat?`?kat=${encodeURIComponent(kat)}`:''}`;
   const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null;
   const herk = hk ? `<span class="tchip">aus Kapitel ${hk.nr}${hk.status==='frei'?` · ${esc(hk.titel)}`:''}</span>` : '';   /* spec/05 C4: reine Info, kein Link */
-  /* Kontextliste für Blättern */
-  const liste = tbReihe(T);   /* spec/05 C3: Blättern in der Reihenfolge der Übungsliste */
-  const li = liste.findIndex(x=>x.id===t.id), prev = li>0 ? liste[li-1] : null, next = li>=0 && li<liste.length-1 ? liste[li+1] : null;
   const ctx = {path:`${k.id}/tool/${t.id}`};
   const auds = (Array.isArray(t.audio) ? t.audio : (t.audio ? [t.audio] : [])).map((x,i,arr)=>typeof x==='string' ? {typ:'audio', id:x, titel:arr.length>1?`${t.titel} (${i+1})`:t.titel, art:t.art==='audio'?'meditation':'uebung', status:'fertig'} : {typ:'audio', ...x});
   const exps = (Array.isArray(t.experiment) ? t.experiment : (t.experiment ? [t.experiment] : [])).map(x=>typeof x==='string' ? {typ:'experiment', id:x, titel:`${t.titel} – geführt`, text:t.experimentText||null} : {typ:'experiment', ...x});
   /* spec/02 §6: t.audio / t.experiment sind nur Kennzeichen – nicht doppelt rendern, wenn die Blöcke den Player/Button schon enthalten */
-  const inBl = (typ,id) => JSON.stringify([t.bloecke||[], t.mehr||[]]).includes(`"typ":"${typ}"`) && JSON.stringify([t.bloecke||[], t.mehr||[]]).includes(`"id":"${id}"`);
+  const alle = JSON.stringify([t.bloecke||[], t.mehr||[]]);
+  const inBl = (typ,id) => alle.includes(`"typ":"${typ}"`) && alle.includes(`"id":"${id}"`);
   for(let i=auds.length-1;i>=0;i--) if(inBl('audio',auds[i].id)) auds.splice(i,1);
   for(let i=exps.length-1;i>=0;i--) if(inBl('experiment',exps[i].id)) exps.splice(i,1);
+  /* spec/07 T10: bloecke an der ersten Start-Karte teilen → So geht’s | Start | Rest (z. B. Anker/Song-Akkordeons beim sicheren Ort) */
+  const B = Array.isArray(t.bloecke) ? t.bloecke : [];
+  let si = B.findIndex(tbIstStart); if(si<0) si = B.length;
+  let ei = si; while(ei<B.length && tbIstStart(B[ei])) ei++;
+  const vor = B.slice(0,si), start = B.slice(si,ei), nach = B.slice(ei);
+  const hg = Array.isArray(t.hintergrund) ? t.hintergrund : [], qu = tbQuellen(t.quellen);
   const ok = !!D.toolbox.ausprobiert[t.id];
+  /* bloecke-Pfade bleiben wie bisher (ctx.path + '/' + Index), damit „gemacht“-Schlüssel erhalten bleiben → tbBl() */
   let h = `<div class="view tb">${bar(`<b>Kapitel ${k.nr}</b> · Tool`)}${t.header?`<div class="shead"><img src="${esc(t.header)}" alt="" onerror="this.closest('.shead').remove()"></div>`:''}
     <article class="wrap slide tool">${tbBeispiel(I)}
     <div class="rubrik">${ic(a.icon)} Tool · ${esc(a.label)}</div><h1>${esc(t.titel)}</h1>${tbKurz(t)?`<p class="tkurz">${esc(tbKurz(t))}</p>`:''}
     <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}${gemChip(t.id, ok)}</div>
     ${t.wofuer?`<div class="wofuer"><span>Wofür</span><p>${inl(t.wofuer)}</p></div>`:''}
-    <div class="bl">${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
-    ${t.bloecke && t.bloecke.length?`<h2 class="soh">So geht’s</h2><div class="bl">${blocks(t.bloecke, ctx)}</div>`:''}
+    ${vor.length?`${tbEigeneSoh(vor)?'':`<h2 class="soh">So geht’s</h2>`}<div class="bl">${tbBl(vor, ctx, 0)}</div>`:''}
+    <div class="bl tbstart">${tbBl(start, ctx, si)}${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
+    ${nach.length?`<div class="bl">${tbBl(nach, ctx, ei)}</div>`:''}
     ${t.mehr && t.mehr.length?`<div class="bl">${blocks(t.mehr, {...ctx, path:ctx.path+'/mehr'})}</div>`:''}
-
-    ${next?`<a class="weiter" href="${tbHref(k,next)}" data-rep="1"><span class="k"><span class="l">Nächstes Tool</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`:''}
-    ${prev?`<a class="zurueck" href="${tbHref(k,prev)}" data-rep="1">${ic('up')} Vorheriges: ${esc(prev.titel)}</a>`:''}
-    <a class="zurueck" href="#/k/${R}">${ic('up')} Zur Toolbox</a>
-    ${tbHilfe(T)}</article>${footer()}</div>`;
+    ${hg.length?`<details class="acc tbtheo"><summary>${ic('spark')}<span>Hintergrund: Warum das wirkt</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(hg, {...ctx, path:ctx.path+'/hintergrund'})}</div></details>`:''}
+    ${qu.length?`<details class="acc tbtheo"><summary>${ic('book')}<span>Quellen</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(qu, {...ctx, path:ctx.path+'/quellen'})}</div></details>`:''}
+    <div class="tbbackw"><a class="tbback" href="${esc(zurueckHref)}" data-act="tb-zurueck">${ic('back')} Zurück zur Toolbox</a></div>
+    </article>${footer()}</div>`;   /* spec/07 T5/T7/T8: kein Vor/Zurück zu anderen Tools, kein Textlink, keine Hilfe-Karte */
   app.innerHTML = h;
+  const fab = document.getElementById('fab'); if(fab) fab.dataset.go = zurueckHref;   /* FAB = eine Ebene hoch, in die Herkunftskategorie */
   leereWeg(app);   /* spec/04 §7 */
   initAudios(app);
+}
+/* spec/07 T10: bringt der Inhalt eine eigene Überschrift mit, keine zweite „So geht’s“ davorsetzen */
+const tbEigeneSoh = arr => !!(arr[0] && arr[0].typ==='ueberschrift');   /* Inhalt beginnt mit eigener Überschrift (z. B. „So geht’s“, „So drückst du …“) */
+/* spec/07 T10: Teilstück der bloecke mit den Original-Indizes rendern (Pfade/Schlüssel wie vor spec/07) */
+function tbBl(arr, ctx, off){
+  if(!arr.length) return '';
+  const voll = new Array(off).fill(null).concat(arr);   /* null-Einträge überspringt blocks() */
+  return blocks(voll, ctx);
 }
 /* „Ausprobiert“ umschalten – Fortschritt Kap. 7 (spec/02 §2) */
 /* spec/06 §1: ein einziger, kleiner Umschalter „Schon mal gemacht“ (neutral, kein „erledigt“) */
@@ -1739,6 +1844,7 @@ document.addEventListener('click', async e=>{
   else if(act==='play'||act==='rw'||act==='ff'){ audioAct(el.closest('.audio'), act); }
   else if(act==='x-zurueck'){ xSchliessen(); }
   else if(act==='tb-probiert'){ tbProbiert(el); }
+  else if(act==='tb-zurueck'){ e.preventDefault(); if(tbVonUebersicht && history.length>1) history.back(); else location.hash = el.getAttribute('href'); }   /* spec/07 T6: kein doppelter Verlaufseintrag */
   /* spec/04 §10: Titel-Test */
   else if(act==='fb-wahl'){ fbWahl(el); }
   else if(act==='fb-nochmal'){ FB.nochmal = true; FB.q1 = null; FB.q2 = null; fbSpeichern(); route(); }

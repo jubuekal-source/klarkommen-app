@@ -218,12 +218,6 @@
               "quelle": null
             },
             {
-              "typ": "bild",
-              "src": "medien/bilder/k03/koerper.webp",
-              "alt": "Dein Körper glaubt deinen Gedanken",
-              "unterschrift": null
-            },
-            {
               "typ": "absatz",
               "text": "In der Wissenschaft heißt dieses Zusammenspiel von Psyche, Nervensystem und Immunsystem **Psychoneuroimmunologie:** Ein sperriges Wort für eine einfache Wahrheit:"
             },
@@ -318,6 +312,12 @@
               "text": "Die Antwort ist unbequem: Zu einem großen Teil bist es nicht du – sondern die Inhalte, die du konsumierst."
             },
             {
+              "typ": "bild",
+              "src": "medien/bilder/k03/wer-bestimmt.webp",
+              "alt": "Wer bestimmt, woran ich denke? Eine junge Frau mit einer Gedankenwolke, deren Fäden zu Handy, News und Warnmeldungen führen und von dunklen Händen gezogen werden.",
+              "unterschrift": null
+            },
+            {
               "typ": "ueberschrift",
               "text": "Dein Gehirn im Empfangsmodus"
             },
@@ -328,6 +328,12 @@
             {
               "typ": "absatz",
               "text": "Krugmans Studie war methodisch begrenzt, aber die Grundbeobachtung wurde in neueren EEG-Studien bestätigt: Beim passiven Konsum von Bildschirminhalten befindet sich das Gehirn in einem empfangsbereiten Zustand. Und dieser Effekt ist nicht an den Fernseher gebunden – eine Pilotstudie der Swinburne University (Gaillard, 2025) zeigte: Schon nach drei Minuten Social-Media-Nutzung sank die Aktivität im präfrontalen Kortex – dem Bereich, der für kritisches Denken und Entscheidungen zuständig ist."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k03/you-decide.webp",
+              "alt": "You decide",
+              "unterschrift": null
             },
             {
               "typ": "absatz",
@@ -372,12 +378,6 @@
             {
               "typ": "absatz",
               "text": "Wer abends im Bett durch negative Nachrichten scrollt, hält seinen Cortisolspiegel auf einem Level, der eigentlich für akute Gefahrensituationen gedacht ist. Schlechterer Schlaf, höhere Reizbarkeit, mehr Ängste am nächsten Tag – ein Teufelskreis, der sich selbst verstärkt."
-            },
-            {
-              "typ": "bild",
-              "src": "medien/bilder/k03/you-decide.webp",
-              "alt": "You decide",
-              "unterschrift": null
             }
           ]
         },
