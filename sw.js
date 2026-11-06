@@ -1,11 +1,11 @@
 /* Klarkommen – Service Worker (spec/01 §C.7, Skill §5a)
    - Shell-Cache "kk-shell-<VERSION>": index, JSON, Fonts, brand/, Experimente – network-first
-   - Medien-Cache "kk-medien" (ohne Version): alles aus medien.json – cache-first,
+   - Medien-Cache "kk-medien-r<N>" (Revision, nicht App-Version): alles aus medien.json – cache-first,
      Range-Anfragen werden aus dem Cache als 206 beantwortet (iOS-Audio).
    Bei jedem App-Update VERSION hochzählen (und APP_VERSION in index.html). */
-const VERSION = 'v18';
+const VERSION = 'v19';
 const SHELL = 'kk-shell-' + VERSION;
-const MEDIEN = 'kk-medien';
+const MEDIEN = 'kk-medien-r2';   /* Revision hochzählen, wenn Bilder/Audios mit GLEICHEM Dateinamen ersetzt werden (cache-first!) */
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'medien.json',
   'brand/brand.json', 'brand/start.webp', 'brand/rubrik/rubrik-einstieg.webp', 'brand/rubrik/rubrik-brainfact.webp', 'brand/rubrik/rubrik-mindhack.webp', 'brand/rubrik/rubrik-mission.webp', 'brand/rubrik/rubrik-quellen.webp', 'brand/icons/zw-kettenglied.webp', 'brand/icons/zw-anker.webp', 'brand/icons/zw-wegweiser.webp', 'brand/icons/bonus-schatztruhe.webp', 'brand/icons/zzz.webp', 'brand/icon-192.png', 'brand/icon-512.png', 'brand/icon-maskable-512.png', 'brand/apple-touch-icon.png',
@@ -63,6 +63,7 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil((async () => {
     for (const n of await caches.keys()) if (n.startsWith('kk-shell-') && n !== SHELL) await caches.delete(n);
+    for (const n of await caches.keys()) if (n.startsWith('kk-medien') && n !== MEDIEN) await caches.delete(n);
     await self.clients.claim();
   })());
 });
