@@ -713,7 +713,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.13';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.14';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r2';   /* muss zu MEDIEN in sw.js passen */
@@ -732,7 +732,6 @@ function rubIcon(key, px){
 }
 /* v1.3.10: Zwischenüberschrift-Icons (Akkordeon-Feld "icon"), goldene WebP 56 px für 28 px Anzeige */
 const ZW_ICON = {kette:'brand/icons/zw-kettenglied.webp', anker:'brand/icons/zw-anker.webp', wegweiser:'brand/icons/zw-wegweiser.webp'};
-const BONUS_ICON = 'brand/icons/bonus-schatztruhe.webp';   /* silberblau, 72 px für 36 px */
 const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung'};
 
 /* Linien-Icons (Skill §10.2): stroke currentColor, 1.7 px */
@@ -993,7 +992,7 @@ function tile(k){
   return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
     <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
     ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
-    <span class="tx">${k.nr?'':`<img class="bci" src="${BONUS_ICON}" width="36" height="36" alt="" decoding="async">`}<div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
+    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
   </button>`;
 }
 /* spec/01 §C.2 – Startseite */
@@ -2077,8 +2076,9 @@ async function init(){
   await ladeStartbild();
   route();
   if('serviceWorker' in navigator){
-    navigator.serviceWorker.register('sw.js').then(()=>{}).catch(e=>console.warn('SW-Registrierung fehlgeschlagen', e));
-    navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(curRoute.name==='start') offlinePill(); if(curRoute.name==='einstellungen') offlineStatus(); });
+    const hadSW = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('sw.js').then(r=>{ try{ r.update(); }catch(e){} }).catch(e=>console.warn('SW-Registrierung fehlgeschlagen', e));
+    navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(hadSW && curRoute.name==='start' && !sessionStorage.getItem('kkSwReload')){ try{ sessionStorage.setItem('kkSwReload','1'); }catch(e){} location.reload(); return; } if(curRoute.name==='start') offlinePill(); if(curRoute.name==='einstellungen') offlineStatus(); });
   }
 }
 init();
