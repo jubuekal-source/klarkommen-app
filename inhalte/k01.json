@@ -18,12 +18,12 @@
             {
               "id": "focus",
               "titel": "Wahrnehmungsexperiment",
-              "text": "⏱️ *30 Sekunden. Danach siehst du die Welt vielleicht schon ein kleines bisschen anders.*"
+              "text": "*30 Sekunden. Danach siehst du die Welt vielleicht schon ein kleines bisschen anders.*"
             },
             {
               "id": "farbensuche",
               "titel": "Zweite Chance",
-              "text": "Wenn du magst, hier deine zweite Chance, diesmal aber ganz anders: ⏱️ *20 Sekunden.*"
+              "text": "Wenn du magst, hier deine zweite Chance, diesmal aber ganz anders: *20 Sekunden.*"
             }
           ]
         }
@@ -268,7 +268,7 @@
             },
             {
               "typ": "ueberschrift",
-              "text": "👉🏽 So funktioniert's"
+              "text": "So funktioniert's"
             },
             {
               "typ": "liste",
@@ -349,7 +349,7 @@
         },
         {
           "typ": "absatz",
-          "text": "🔄 Je öfter du deinem Gehirn im entspannten Zustand zeigst, dass DU entscheidest, wann der Autopilot gestoppt wird, desto schneller ist dieser Reflex abrufbar, wenn es wirklich zählt – in der Prüfung, im Streitgespräch oder in der schlaflosen Nacht."
+          "text": "Je öfter du deinem Gehirn im entspannten Zustand zeigst, dass DU entscheidest, wann der Autopilot gestoppt wird, desto schneller ist dieser Reflex abrufbar, wenn es wirklich zählt – in der Prüfung, im Streitgespräch oder in der schlaflosen Nacht."
         }
       ],
       "lese": null

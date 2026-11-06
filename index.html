@@ -197,8 +197,17 @@ svg.i.f{fill:currentColor;stroke:none}
 .slide h1{font-size:clamp(1.7rem,7.4vw,2.5rem);letter-spacing:-.03em;margin-bottom:18px}
 .bl h2{font-size:1.32rem;margin:30px 0 10px}
 .bl>p{margin:0 0 1.05em}
+/* v1.3.11: Leseversion = durchgehender Text. Ehemalige Akkordeon-Titel (Daten unverändert) werden im Lese-Modus zu Zwischenüberschriften: Ebene 1 = h2.lzh mit feiner Linie (+ optionales Icon, 28 px), Ebene 2 und Überschriften darin = h3.lzs */
+.bl h2.lzh{display:flex;align-items:center;gap:10px;margin:40px 0 12px;padding-top:22px;border-top:1px solid var(--brand-line)}
+.bl h2.lzh:first-child{margin-top:8px;padding-top:0;border-top:0}
+.bl h2.lzh>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.bl h2.lzh>span,.bl h3.lzs>span{min-width:0}
+.bl h3.lzs{display:flex;align-items:center;gap:10px;font-size:1.12rem;margin:26px 0 8px}
+.bl h3.lzs>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.bl .btn.lese-zu{margin:30px 0 8px}
 .bl ul,.bl ol{margin:0 0 1.2em;padding-left:1.35em}
 .bl li{margin:.35em 0;padding-left:.2em}
+img.ti{height:1.2em;width:auto;vertical-align:-.28em;display:inline-block}
 .bl li::marker{color:var(--brand-accent-soft);font-weight:700}
 .bl blockquote{margin:22px 0;padding:2px 0 2px 18px;border-left:3px solid var(--brand-accent);font-family:var(--brand-font-head);font-size:1.22rem;font-weight:500;line-height:1.4;color:#fff}
 .bl blockquote cite{display:block;margin-top:8px;font-family:var(--brand-font-body);font-style:normal;font-size:.88rem;font-weight:400;color:var(--brand-text-2)}
@@ -224,6 +233,9 @@ details.acc>summary::-webkit-details-marker{display:none}
 details.acc>summary .chv{margin-left:auto;transition:transform .25s;color:var(--brand-text-2)}
 details.acc[open]>summary .chv{transform:rotate(180deg)}
 details.acc>summary>svg.i:first-child{color:var(--brand-accent-soft)}
+details.acc>summary>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.tile img.bci{position:static;inset:auto;z-index:auto;width:36px;height:36px;flex:none;object-fit:contain;align-self:flex-start;margin-top:1px;transform:none;filter:drop-shadow(0 1px 6px rgba(0,0,0,.5))}
+.introtxt a{color:var(--brand-accent-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 details.acc .acb{padding:0 16px 8px}
 details.acc.lese{background:linear-gradient(180deg,rgba(249,115,22,.07),rgba(249,115,22,0) 70%),var(--brand-card);border-color:rgba(249,115,22,.25)}
 /* spec/05 A: Keine Karte in der Karte (Skill §10.4) – innerhalb eines geöffneten Akkordeons sind verschachtelte Akkordeons nur Zwischenüberschrift mit dünner Linie, ohne Rahmen/Hintergrund/Einzug; Kästen werden flach */
@@ -701,7 +713,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.9';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.12';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -718,6 +730,9 @@ function rubIcon(key, px){
   if(rb && RUBRIK_BILD.includes(key)) return `<img class="rbi" src="brand/rubrik/rubrik-${key}.webp" width="${px}" height="${px}" alt="" decoding="async">`;
   return ic(rb ? rb.icon : 'chev');
 }
+/* v1.3.10: Zwischenüberschrift-Icons (Akkordeon-Feld "icon"), goldene WebP 56 px für 28 px Anzeige */
+const ZW_ICON = {kette:'brand/icons/zw-kettenglied.webp', anker:'brand/icons/zw-anker.webp', wegweiser:'brand/icons/zw-wegweiser.webp'};
+const BONUS_ICON = 'brand/icons/bonus-schatztruhe.webp';   /* silberblau, 72 px für 36 px */
 const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung'};
 
 /* Linien-Icons (Skill §10.2): stroke currentColor, 1.7 px */
@@ -726,6 +741,7 @@ const IC = {
   sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
   back:'<path d="M19 12H5M11 18l-6-6 6-6"/>',
   up:'<path d="M15 18l-6-6 6-6"/>',
+  arrowup:'<path d="M12 19V5M5 12l7-7 7 7"/>',   /* v1.3.11: echter Pfeil nach oben (up = Zurück-Chevron) */
   lock:'<rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>',
   check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
   play:'<path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l11-6.8a.8.8 0 0 0 0-1.4l-11-6.8A.8.8 0 0 0 8 5.2z"/>',
@@ -851,8 +867,11 @@ const fmtT = s => { if(!isFinite(s)||s<0) s=0; s=Math.floor(s); const m=Math.flo
 
 /* HTML-Escape + Inline-Markup (**fett**, *kursiv*, [Text](url)) – spec/01 §B */
 function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+/* Inline-Icons im Text: Platzhalter {icon:name} in den Daten -> <img> in Texthöhe (1.2em). Neues Icon = Eintrag hier + Datei in brand/icons/ */
+const INL_ICON = {zzz:{src:'brand/icons/zzz.webp', w:44, h:56, alt:'schläft'}};
 function inl(s){
   let t = esc(s);
+  t = t.replace(/\{icon:([a-z0-9-]+)\}/g,(m,n)=>{ const i=INL_ICON[n]; return i?`<img class="ti" src="${i.src}" width="${i.w}" height="${i.h}" alt="${i.alt}" decoding="async">`:''; });
   t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#)[^)\s]+)\)/g,(m,a,u)=>`<a href="${u}"${u[0]==='#'?'':' target="_blank" rel="noopener"'}>${a}</a>`);
   t = t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g,'$1<em>$2</em>');
   return t;
@@ -974,7 +993,7 @@ function tile(k){
   return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
     <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
     ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
-    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
+    <span class="tx">${k.nr?'':`<img class="bci" src="${BONUS_ICON}" width="36" height="36" alt="" decoding="async">`}<div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
   </button>`;
 }
 /* spec/01 §C.2 – Startseite */
@@ -989,7 +1008,7 @@ async function renderStart(app){
   <section id="einfuehrung" ${BRAND.features && BRAND.features.einfuehrung ? '' : 'hidden'} class="wrap wide"><!-- Platz für spätere Einführung (Feature-Flag brand.json features.einfuehrung) --></section>
   <section class="wrap wide" aria-labelledby="reiseH">
     <div class="lead"><h2 id="reiseH">Deine Reise</h2><span class="meta">${KAP.filter(k=>k.nr).length} Kapitel + Bonus</span></div>
-    <p class="introtxt">Kapitel für Kapitel zu mehr innerer Stärke und Klarheit. Tippe Kapitel 1 an, um loszulegen.</p>
+    <p class="introtxt" id="intro">${introHtml()}</p>
     ${fbKarte()}<!-- spec/04 §10 -->
     ${progHtml()}
     <div class="reise">`;
@@ -1006,7 +1025,19 @@ async function renderStart(app){
   for(const k of KAP.filter(k=>k.status==='frei')){
     inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
   }
-  Promise.all(KAP.filter(k=>k.status==='frei' && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); });
+  Promise.all(KAP.filter(k=>k.status==='frei' && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); const it=document.getElementById('intro'); if(it && curRoute.name==='start') it.innerHTML = introHtml(); });
+}
+/* v1.3.10: Einstiegstext – zweiter Satz je nach Fortschritt. N = erstes freies, begonnenes, nicht abgeschlossenes Kapitel, sonst erstes freies nicht abgeschlossenes (Toolbox übersprungen); alles erledigt = nur erster Satz */
+function introHtml(){
+  const S1 = 'Kapitel für Kapitel zu mehr innerer Stärke und Klarheit.';
+  const fr = KAP.filter(k=>k.nr && k.status==='frei' && k.typ!=='toolbox');
+  if(fr.some(k=>!INH[k.id])){ return (Object.keys(D.gelesen||{}).length || Object.keys(D.letzte||{}).length) ? S1 : S1+' Tippe Kapitel 1 an, um loszulegen.'; }   /* Inhalte noch nicht geladen: nichts Falsches behaupten */
+  const st = fr.map(k=>{ const f=fortschritt(k); return {k, done: !!(f && f.n && f.r===f.n), beg: !!(f && (f.r>0 || D.letzte[k.id]))}; });
+  const any = st.some(x=>x.done || x.beg);
+  if(!any) return S1+' Tippe Kapitel 1 an, um loszulegen.';
+  const t = st.find(x=>x.beg && !x.done) || st.find(x=>!x.done);
+  if(!t) return S1;
+  return `${S1} Mach weiter mit <a href="#/k/${kapRouteId(t.k)}">Kapitel ${t.k.nr}</a>.`;
 }
 /* v1.3.9: Gesamtfortschritt auf der Startseite – 12 Segmente (ein Segment je Kapitel), Daten aus der vorhandenen Fortschrittslogik */
 function progHtml(){
@@ -1068,7 +1099,8 @@ function blocks(arr, ctx){
     const path = ctx.path+'/'+bi;
     switch(b.typ){
       case 'absatz': h += `<p>${inl(b.text)}</p>`; break;
-      case 'ueberschrift': h += `<h2${b.id?` id="h-${esc(b.id)}"`:''}>${inl(b.text)}</h2>`; break;   /* v1.3.4: optionale id → Sprungziel (z. B. #/k/07/tool/safe-place?a=anker) */
+      case 'ueberschrift': if(ctx.lz){ h += `<h3 class="lzs"${b.id?` id="h-${esc(b.id)}"`:''}><span>${inl(b.text)}</span></h3>`; break; }   /* v1.3.11: Überschrift innerhalb eines Lese-Abschnitts eine Stufe tiefer */
+        h += `<h2${b.id?` id="h-${esc(b.id)}"`:''}>${inl(b.text)}</h2>`; break;   /* v1.3.4: optionale id → Sprungziel (z. B. #/k/07/tool/safe-place?a=anker) */
       case 'liste': { const t = b.geordnet?'ol':'ul'; h += `<${t}>${(b.punkte||[]).map(p=>`<li>${inl(p)}</li>`).join('')}</${t}>`; break; }
       case 'checkliste': h += `<ul class="check">${(b.punkte||[]).map((p,i)=>{ const key=path+'/'+i; return `<li><label><input type="checkbox" data-check="${esc(key)}" ${D.checks[key]?'checked':''}><span class="bx">${ic('check')}</span><span>${inl(p)}</span></label></li>`; }).join('')}</ul>`; break;
       case 'zitat': h += `<blockquote>${inl(b.text)}${b.quelle?`<cite>– ${inl(b.quelle)}</cite>`:''}</blockquote>`; break;
@@ -1081,7 +1113,11 @@ function blocks(arr, ctx){
         for(let j=bi+1; j<arr.length && arr[j] && arr[j].typ==='experiment' && !Array.isArray(arr[j].reihe); j++){ serie.push(arr[j]); skip.add(j); }
         h += serie.length>1 ? expSerie(serie, path) : expKarte(serie[0], path);
         break; }
-      case 'akkordeon': h += `<details class="acc"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
+      case 'akkordeon': if(ctx.lese){   /* v1.3.11: Lese-Modus – Akkordeon-Titel wird Zwischenüberschrift, Inhalt steht direkt darunter (Daten unverändert, gilt für alle Kapitel) */
+          const lz = (ctx.lz||0)+1, ico = ZW_ICON[b.icon]?`<img class="zbi" src="${ZW_ICON[b.icon]}" width="28" height="28" alt="" decoding="async">`:'', tg = lz===1?'h2':'h3';
+          h += `<${tg} class="${lz===1?'lzh':'lzs'}"${b.id?` id="h-${esc(b.id)}"`:''}>${ico}<span>${esc(b.titel)}</span></${tg}>` + blocks(b.bloecke, {...ctx, path, lz});
+          break; }
+        h += `<details class="acc"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ZW_ICON[b.icon]?`<img class="zbi" src="${ZW_ICON[b.icon]}" width="28" height="28" alt="" decoding="async">`:ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
       case 'link': { /* Nachtrag 04.11.: externe Link-Karte (nur Link, nichts wird vorgeladen) */
         if(!/^https:\/\//.test(b.url||'')) break;
         h += `<div class="exp lnk"><div class="art">${ic('play')} ${esc(b.art||'Link')}</div><h3>${esc(b.titel||b.url)}</h3>${b.hinweis?`<p>${inl(b.hinweis)}</p>`:''}<a class="btn sec block" href="${esc(b.url)}" target="_blank" rel="noopener noreferrer">${ic('ext')} ${esc(b.label||'Link öffnen')}</a>${b.online?`<p class="hint lnk-on">${ic('info')} ${esc(b.online)}</p>`:''}</div>`; break; }
@@ -1123,7 +1159,7 @@ async function renderSlide(app, r){
     <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
-  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Ausführlich lesen (Leseversion)</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese'})}</div></details>`;
+  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Ausführlich lesen (Leseversion)</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Leseversion schließen</button></div></details>`;
   if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
     html += naechstWeiter(k, true);
     html += `<a class="btn ghost block sek" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1">Zu den ${esc((RUBRIK[next.rubrik]||{}).label||next.titel)} ${ic('right')}</a>`;
@@ -2000,6 +2036,19 @@ document.addEventListener('toggle', e=>{
     window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
   }));
 }, true);
+/* v1.3.11: „Leseversion schließen“ am Ende des Lesetextes – wie der Schalter oben: zuklappen, sanft zum Schalter zurück */
+document.addEventListener('click', e=>{
+  const b = e.target.closest && e.target.closest('[data-lese-zu]'); if(!b) return;
+  const d = b.closest('details.acc.lese'); if(!d) return;
+  d.open = false;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const bar = document.querySelector('#app .bar'), off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
+    const top = d.getBoundingClientRect().top + window.scrollY - off;
+    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
+    const sm = d.querySelector(':scope>summary'); if(sm) sm.focus({preventScroll:true});
+  }));
+});
 window.addEventListener('hashchange', route);
 /* Experiment-iframe: postMessage {kk:'zurueck'} schließt das Overlay */
 window.addEventListener('message', e=>{ if(e.origin!==location.origin) return; if(e.data && e.data.kk==='zurueck' && curRoute.name==='x') xSchliessen(); });

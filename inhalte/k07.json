@@ -351,6 +351,7 @@
         {
           "typ": "akkordeon",
           "id": "anker",
+          "icon": "anker",
           "titel": "Dein Anker für den Alltag",
           "bloecke": [
             {
@@ -856,7 +857,7 @@
                 "*Einstein:* „Du wirst den Faden verlieren!“",
                 "*Du:* „Danke. Noch was?“",
                 "*Einstein:* „…“",
-                "*Du:* 😴"
+                "*Du:* {icon:zzz}"
               ]
             },
             {

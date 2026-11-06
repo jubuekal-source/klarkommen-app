@@ -110,7 +110,7 @@
       "lese": [
         {
           "typ": "akkordeon",
-          "titel": "🔬 Die wissenschaftlichen Belege",
+          "titel": "Die wissenschaftlichen Belege",
           "bloecke": [
             {
               "typ": "absatz",
@@ -122,7 +122,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "🧠 Dein Gehirn ist ein Warnsystem, kein neutraler Berater",
+              "titel": "Dein Gehirn ist ein Warnsystem, kein neutraler Berater",
               "bloecke": [
                 {
                   "typ": "absatz",
@@ -140,7 +140,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "🌊 Warum „an nichts denken“ unmöglich ist",
+              "titel": "Warum „an nichts denken“ unmöglich ist",
               "bloecke": [
                 {
                   "typ": "absatz",
@@ -163,7 +163,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "🐻 Der weiße Bär: Warum Bekämpfen die Stimme lauter macht",
+              "titel": "Der weiße Bär: Warum Bekämpfen die Stimme lauter macht",
               "bloecke": [
                 {
                   "typ": "absatz",
@@ -188,7 +188,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "💡 Was bedeutet das für dich? Du bist der Beobachter",
+          "titel": "Was bedeutet das für dich? Du bist der Beobachter",
           "bloecke": [
             {
               "typ": "absatz",
@@ -217,7 +217,7 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "🎭 Distanz durch Sprache: Gib der Stimme einen Namen",
+              "titel": "Distanz durch Sprache: Gib der Stimme einen Namen",
               "bloecke": [
                 {
                   "typ": "absatz",
@@ -238,7 +238,8 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "🔗 Zieh die Kette",
+          "icon": "kette",
+          "titel": "Zieh die Kette",
           "bloecke": [
             {
               "typ": "absatz",
@@ -260,14 +261,14 @@
             },
             {
               "typ": "zitat",
-              "text": "👉 **Du musst deinen inneren Kritiker nicht besiegen. Du musst nur aufhören, ihn für dich selbst zu halten.**",
+              "text": "**Du musst deinen inneren Kritiker nicht besiegen. Du musst nur aufhören, ihn für dich selbst zu halten.**",
               "quelle": null
             }
           ]
         },
         {
           "typ": "akkordeon",
-          "titel": "💎 Warum das eine gute Nachricht ist",
+          "titel": "Warum das eine gute Nachricht ist",
           "bloecke": [
             {
               "typ": "absatz",
@@ -279,7 +280,7 @@
             },
             {
               "typ": "zitat",
-              "text": "**🎧 Dein Gehirn ist ein Radio, das permanent sendet. Du entscheidest nur eines: ob du jedes Wort für bare Münze nimmst – oder ob du dir aussuchst, wem du zuhörst.**",
+              "text": "**Dein Gehirn ist ein Radio, das permanent sendet. Du entscheidest nur eines: ob du jedes Wort für bare Münze nimmst – oder ob du dir aussuchst, wem du zuhörst.**",
               "quelle": null
             },
             {
@@ -306,6 +307,7 @@
         },
         {
           "typ": "akkordeon",
+          "icon": "wegweiser",
           "titel": "Eine kurze Frage vorweg",
           "bloecke": [
             {
@@ -452,7 +454,7 @@
                 "*Einstein:* „Du wirst den Faden verlieren!“",
                 "*Du:* „Danke. Noch was?“",
                 "*Einstein:* „…“",
-                "*Du:* 😴"
+                "*Du:* {icon:zzz}"
               ]
             },
             {
