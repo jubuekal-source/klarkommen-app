@@ -289,6 +289,19 @@ input[type=range].seek::-moz-range-thumb{width:18px;height:18px;border-radius:50
 .weiter.end .go{background:var(--brand-ok)}
 .zurueck{display:flex;align-items:center;gap:8px;color:var(--brand-text-2);text-decoration:none;font-size:.92rem;padding:12px 0;min-height:44px}
 .zurueck svg.i{width:18px;height:18px}
+.btn.sek{margin:6px 0 4px}
+/* v1.3.9: Gesamtfortschritt (Start) + Kapitel-Reset-Link */
+.prog{margin:16px 0 4px}
+.pbar{display:flex;gap:3px}
+.pbar i{position:relative;flex:1;height:6px;border-radius:3px;background:rgba(148,163,184,.16);overflow:hidden}
+.pbar i b{position:absolute;left:0;top:0;bottom:0;background:var(--brand-ok);border-radius:3px}
+.pbar i.beg b{opacity:.5}
+.prog .pt{margin-top:8px;font-size:.84rem;color:var(--brand-text-2)}
+.prog.leer .pbar i{background:rgba(148,163,184,.12)}
+.prog.leer .pt{color:var(--brand-muted)}
+.kreset{margin:18px 0 6px;text-align:center}
+.kreset button{background:none;border:0;padding:12px 8px;min-height:44px;color:var(--brand-muted);font:inherit;font-size:.84rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.kreset button:hover{color:var(--brand-text-2)}
 .beispiel{display:flex;gap:10px;align-items:center;font-size:.84rem;color:#f6c9a4;background:rgba(249,115,22,.08);border:1px dashed rgba(249,115,22,.4);border-radius:12px;padding:8px 12px;margin:14px 0 0}
 
 /* ===== Experiment-Vollbild – spec/01 §C.1 ===== */
@@ -688,7 +701,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.8';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.9';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien';
@@ -864,7 +877,11 @@ const startbild = () => startbildURL || BRAND.startbild;
 const sKey = (k,s) => `${k.id}/${s.id}`;
 function fortschritt(k){ const I=INH[k.id]; if(!I) return null;
   if(k.typ==='toolbox') return null;   /* v1.3.8: Toolbox ohne Fortschrittsring (Markierung entfällt) */
-  if(!I.data.slides.length) return null; const n=I.data.slides.length; const r=I.data.slides.filter(s=>D.gelesen[sKey(k,s)]).length; return {n,r}; }
+  /* v1.3.9: Quellen-Slides zählen nicht mit (Nachschlagen, kein Pflichtteil) – ein Kapitel ist fertig, wenn alle übrigen Slides inkl. „Mission Alltag“ gelesen sind */
+  const Z = I.data.slides.filter(s=>s.rubrik!=='quellen'); if(!Z.length) return null; const n=Z.length; const r=Z.filter(s=>D.gelesen[sKey(k,s)]).length; return {n,r}; }
+/* v1.3.9: „gelesen“ erst, wenn das Slide-Ende ca. 2 s im Blick war (bloßes Reinschauen/Durchwischen zählt nicht) */
+let readT = null, readIO = null;
+function readStop(){ clearTimeout(readT); readT = null; if(readIO){ readIO.disconnect(); readIO = null; } }
 function markRead(k,s){ const key=sKey(k,s); if(!D.gelesen[key]){ D.gelesen[key]=true; saveData(); const sg=document.querySelector(`.segs a[data-sid="${s.id}"]`); if(sg) sg.classList.add('r'); } }
 
 /* ================================================================
@@ -901,6 +918,7 @@ let curRoute = {name:'start'}, prevHash = null, lastStartScroll = 0;
 let routeFrom = {name:'start'}, tbFokus = null, tbVonUebersicht = false;   /* spec/07 T6: Rückkehr zur Herkunftskategorie */
 async function route(){
   const r = parse(location.hash);
+  readStop();
   lbVerstecken();   /* spec/04 §4: Routenwechsel schließt die Lightbox */
   instVerstecken();   /* spec/06 §2 */
   if(curRoute.name==='start') lastStartScroll = window.scrollY;
@@ -971,8 +989,9 @@ async function renderStart(app){
   <section id="einfuehrung" ${BRAND.features && BRAND.features.einfuehrung ? '' : 'hidden'} class="wrap wide"><!-- Platz für spätere Einführung (Feature-Flag brand.json features.einfuehrung) --></section>
   <section class="wrap wide" aria-labelledby="reiseH">
     <div class="lead"><h2 id="reiseH">Deine Reise</h2><span class="meta">${KAP.filter(k=>k.nr).length} Kapitel + Bonus</span></div>
-    <p class="introtxt">Kapitel für Kapitel zu mehr Klarheit. Tippe ein Kapitel an, um loszulegen.</p>
+    <p class="introtxt">Kapitel für Kapitel zu mehr innerer Stärke und Klarheit. Tippe Kapitel 1 an, um loszulegen.</p>
     ${fbKarte()}<!-- spec/04 §10 -->
+    ${progHtml()}
     <div class="reise">`;
   let phase = null;
   for(const k of KAP){
@@ -987,6 +1006,20 @@ async function renderStart(app){
   for(const k of KAP.filter(k=>k.status==='frei')){
     inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
   }
+  Promise.all(KAP.filter(k=>k.status==='frei' && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); });
+}
+/* v1.3.9: Gesamtfortschritt auf der Startseite – 12 Segmente (ein Segment je Kapitel), Daten aus der vorhandenen Fortschrittslogik */
+function progHtml(){
+  const Kn = KAP.filter(k=>k.nr); let fertig = 0, beg = 0;
+  const seg = Kn.map(k=>{
+    const f = (k.status==='frei' && k.typ!=='toolbox') ? fortschritt(k) : null;
+    if(!f) return '<i></i>';
+    if(f.n && f.r===f.n){ fertig++; return '<i class="ok"><b style="width:100%"></b></i>'; }
+    if(f.r>0 || D.letzte[k.id]){ beg++; return `<i class="beg"><b style="width:${Math.max(22, Math.round(100*f.r/f.n))}%"></b></i>`; }
+    return '<i></i>';
+  }).join('');
+  const txt = `Dein Fortschritt · ${fertig} von ${Kn.length} Kapiteln${beg?` · ${beg} begonnen`:''}`;
+  return `<div class="prog${fertig||beg?'':' leer'}" id="prog" role="img" aria-label="${txt}"><div class="pbar">${seg}</div><div class="pt">${txt}</div></div>`;
 }
 /* spec/00 §2.2 – nächstes freies Kapitel */
 function naechstesKapitel(k){ const i = KAP.indexOf(k); return KAP.slice(i+1).find(x=>x.status==='frei') || null; }
@@ -1016,14 +1049,16 @@ async function renderKapitel(app, r){
     const rb = RUBRIK[s.rubrik] || {label:s.rubrik, icon:'chev'};
     html += `<li class="etappe${rd?' r':''}${nx?' next':''}"><a href="#/k/${kapRouteId(k)}/${encodeURIComponent(s.id)}"><span class="ic${RUBRIK_BILD.includes(s.rubrik)?' img':''}">${rubIcon(s.rubrik,36)}</span><span class="txt"><span class="rb">${esc(rb.label)}</span><div class="tt">${esc(s.titel)}</div></span>${rd?`<span class="ok" aria-label="gelesen">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
   }
-  html += `</ol>${I.fehler?`<div class="call wichtig">${ic('warn')}<p>Der Inhalt dieses Kapitels konnte nicht geladen werden. Bist du offline? Dann einmal mit Internet öffnen.</p></div>`:''}</div>${footer()}</div>`;
+  html += `</ol>`;
+  if(f.r>0 || D.letzte[k.id] || Object.keys(D.checks).some(x=>x.startsWith(k.id+'/'))) html += `<p class="kreset"><button type="button" data-act="kap-reset" data-kap="${k.id}">Fortschritt dieses Kapitels zurücksetzen</button></p>`;
+  html += `${I.fehler?`<div class="call wichtig">${ic('warn')}<p>Der Inhalt dieses Kapitels konnte nicht geladen werden. Bist du offline? Dann einmal mit Internet öffnen.</p></div>`:''}</div>${footer()}</div>`;
   app.innerHTML = html;
 }
 /* Weiter-Karte am Kapitelende */
-function naechstWeiter(k){
-  const n = naechstesKapitel(k);
-  if(!n) return `<a class="weiter end" href="#/" data-endcard><span class="k"><span class="l">Geschafft</span><div class="n">Zurück zu deiner Reise</div></span><span class="go">${ic('home')}</span></a>`;
-  return `<a class="weiter end" href="#/k/${kapRouteId(n)}" data-endcard><span class="k"><span class="l">Nächstes Kapitel</span><div class="n">${n.nr?`Kapitel ${n.nr}: `:''}${esc(n.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
+function naechstWeiter(k, fertig){
+  const n = naechstesKapitel(k); const fa = fertig ? ' data-fertig' : '';
+  if(!n) return `<a class="weiter end" href="#/" data-endcard${fa}><span class="k"><span class="l">Geschafft</span><div class="n">Zurück zu deiner Reise</div></span><span class="go">${ic('home')}</span></a>`;
+  return `<a class="weiter end" href="#/k/${kapRouteId(n)}" data-endcard${fa}><span class="k"><span class="l">Nächstes Kapitel</span><div class="n">${n.nr?`Kapitel ${n.nr}: `:''}${esc(n.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
 }
 /* spec/01 §B – Blöcke rendern */
 function blocks(arr, ctx){
@@ -1089,7 +1124,11 @@ async function renderSlide(app, r){
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
   if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Ausführlich lesen (Leseversion)</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese'})}</div></details>`;
-  if(next) html += `<a class="weiter" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1" data-endcard><span class="k"><span class="l">Weiter: ${esc((RUBRIK[next.rubrik]||{}).label||'')}</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
+  if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
+    html += naechstWeiter(k, true);
+    html += `<a class="btn ghost block sek" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1">Zu den ${esc((RUBRIK[next.rubrik]||{}).label||next.titel)} ${ic('right')}</a>`;
+  }
+  else if(next) html += `<a class="weiter" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1" data-endcard><span class="k"><span class="l">Weiter: ${esc((RUBRIK[next.rubrik]||{}).label||'')}</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
   else html += naechstWeiter(k);
   if(prev) html += `<a class="zurueck" href="#/k/${kapRouteId(k)}/${encodeURIComponent(prev.id)}" data-rep="1">${ic('up')} Zurück: ${esc(prev.titel)}</a>`;
   else html += `<a class="zurueck" href="#/k/${kapRouteId(k)}">${ic('up')} Zur Kapitelübersicht</a>`;
@@ -1097,7 +1136,14 @@ async function renderSlide(app, r){
   app.innerHTML = html;
   /* gelesen beim Erreichen des Endes */
   const end = app.querySelector('[data-endcard]');
-  if(end && 'IntersectionObserver' in window){ const io = new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ markRead(k,s); io.disconnect(); } },{threshold:.6}); io.observe(end); }
+  if(end && 'IntersectionObserver' in window){
+    readIO = new IntersectionObserver(es=>{
+      if(es.some(e=>e.isIntersecting)){ if(readT===null) readT = setTimeout(()=>{ if(curRoute.name==='slide' && curRoute.slide===s.id){ markRead(k,s); } readStop(); }, 2000); }
+      else { clearTimeout(readT); readT = null; }
+    },{threshold:.6}); readIO.observe(end);
+  }
+  /* v1.3.9: Weiter-Button am Ende von „Mission Alltag“ = bewusstes Weitergehen → Mission gilt als gelesen */
+  const fw = app.querySelector('[data-fertig]'); if(fw) fw.addEventListener('click', ()=>markRead(k,s));
   initAudios(app);
   wischHinweis(app, !!next);   /* spec/06 §5 */
 }
@@ -1829,6 +1875,14 @@ document.addEventListener('click', async e=>{
   else if(act==='inst-prompt'){ instInstallieren(); }
   else if(act==='export'){ exportieren(); }
   else if(act==='import'){ document.getElementById('fileImport').click(); }
+  else if(act==='kap-reset'){
+    const k = kapById(el.dataset.kap); if(!k || k.status!=='frei') return;
+    if(await ask('Fortschritt dieses Kapitels zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen in „'+k.titel+'“ werden gelöscht. Andere Kapitel bleiben unverändert.','Ja, zurücksetzen')){
+      const pre = k.id+'/';
+      for(const o of [D.gelesen, D.checks]) for(const key of Object.keys(o)) if(key.startsWith(pre)) delete o[key];
+      delete D.letzte[k.id]; saveData(); toast('Fortschritt des Kapitels zurückgesetzt.'); route();
+    }
+  }
   else if(act==='fortschritt-reset'){
     if(await ask('Fortschritt zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
       D.gelesen = {}; D.checks = {}; D.letzte = {}; saveData(); toast('Fortschritt zurückgesetzt.');
@@ -1857,7 +1911,6 @@ document.addEventListener('touchend', e=>{
   const k = kapFromRoute(curRoute.kap); const I = INH[k && k.id]; if(!I) return;
   const S = I.data.slides, i = S.findIndex(s=>s.id===curRoute.slide);
   const t = dx < 0 ? S[i+1] : S[i-1];
-  if(dx < 0 && S[i]) markRead(k, S[i]);
   if(t) wischWeg(true);   /* spec/06 §5 */
   if(t) location.replace(`#/k/${kapRouteId(k)}/${encodeURIComponent(t.id)}`);
 }, {passive:true});

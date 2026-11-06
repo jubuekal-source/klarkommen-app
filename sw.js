@@ -3,7 +3,7 @@
    - Medien-Cache "kk-medien" (ohne Version): alles aus medien.json – cache-first,
      Range-Anfragen werden aus dem Cache als 206 beantwortet (iOS-Audio).
    Bei jedem App-Update VERSION hochzählen (und APP_VERSION in index.html). */
-const VERSION = 'v14';
+const VERSION = 'v15';
 const SHELL = 'kk-shell-' + VERSION;
 const MEDIEN = 'kk-medien';
 const CORE = [
