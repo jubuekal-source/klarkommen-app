@@ -10,11 +10,11 @@
       --bg-deep: #0f1923;
       --bg-card: #162230;
       --bg-input: #1c2e40;
-      --accent: #f97316;
-      --accent-glow: rgba(249, 115, 22, 0.25);
-      --accent-soft: #fb923c;
-      --teal: #14b8a6;
-      --teal-glow: rgba(20, 184, 166, 0.25);
+      --accent: #5eead4;
+      --accent-glow: rgba(94, 234, 212, 0.25);
+      --accent-soft: #5eead4;
+      --teal: #5eead4;
+      --teal-glow: rgba(94, 234, 212, 0.25);
       --teal-soft: #5eead4;
       --text-primary: #f1f5f9;
       --text-secondary: #94a3b8;
@@ -43,7 +43,7 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background:
         radial-gradient(ellipse at 20% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(20, 184, 166, 0.06) 0%, transparent 50%);
+        radial-gradient(ellipse at 80% 100%, rgba(94,234,212, 0.06) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
@@ -67,8 +67,8 @@
       text-align: center; transition: all 0.3s;
     }
     .mode-btn:hover { border-color: rgba(148, 163, 184, 0.25); }
-    .mode-btn.active-sigh { border-color: var(--accent); background: rgba(249, 115, 22, 0.08); box-shadow: 0 0 0 3px var(--accent-glow); }
-    .mode-btn.active-478 { border-color: var(--teal); background: rgba(20, 184, 166, 0.08); box-shadow: 0 0 0 3px var(--teal-glow); }
+    .mode-btn.active-sigh { border-color: var(--accent); background: rgba(94,234,212, 0.08); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .mode-btn.active-478 { border-color: var(--teal); background: rgba(94,234,212, 0.08); box-shadow: 0 0 0 3px var(--teal-glow); }
     .mode-emoji { font-size: 1.4rem; display: block; margin-bottom: 0.35rem; }
     .mode-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; color: var(--text-primary); display: block; margin-bottom: 0.15rem; }
     .mode-sub { font-size: 0.72rem; color: var(--text-muted); }
@@ -108,8 +108,8 @@
       will-change: transform, box-shadow;
       -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
-    .breath-circle.sigh-mode { background: radial-gradient(circle, var(--accent-soft), var(--accent)); box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(249, 115, 22, 0.1); }
-    .breath-circle.mode-478 { background: radial-gradient(circle, #5eead4, var(--teal)); box-shadow: 0 0 30px var(--teal-glow), 0 0 60px rgba(20, 184, 166, 0.1); }
+    .breath-circle.sigh-mode { background: radial-gradient(circle, #99f6e4, var(--accent)); box-shadow: 0 0 30px var(--accent-glow), 0 0 60px rgba(94,234,212, 0.1); }
+    .breath-circle.mode-478 { background: radial-gradient(circle, #99f6e4, var(--teal)); box-shadow: 0 0 30px var(--teal-glow), 0 0 60px rgba(94,234,212, 0.1); }
     .instruction-text { font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; min-height: 2rem; transition: color 0.3s; }
     .instruction-text.sigh-color { color: var(--accent-soft); }
     .instruction-text.teal-color { color: var(--teal-soft); }
@@ -123,10 +123,10 @@
       font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700;
       cursor: pointer; transition: all 0.3s; letter-spacing: 0.02em;
     }
-    .start-btn.sigh-style { background: linear-gradient(135deg, var(--accent), #ea580c); color: white; box-shadow: 0 4px 20px var(--accent-glow); }
-    .start-btn.sigh-style:hover { box-shadow: 0 6px 30px rgba(249, 115, 22, 0.35); transform: translateY(-1px); }
-    .start-btn.teal-style { background: linear-gradient(135deg, var(--teal), #0d9488); color: white; box-shadow: 0 4px 20px var(--teal-glow); }
-    .start-btn.teal-style:hover { box-shadow: 0 6px 30px rgba(20, 184, 166, 0.35); transform: translateY(-1px); }
+    .start-btn.sigh-style { background: linear-gradient(135deg, var(--accent), #2dd4bf); color: #0f1923; box-shadow: 0 4px 20px var(--accent-glow); }
+    .start-btn.sigh-style:hover { box-shadow: 0 6px 30px rgba(94,234,212, 0.35); transform: translateY(-1px); }
+    .start-btn.teal-style { background: linear-gradient(135deg, var(--teal), #2dd4bf); color: #0f1923; box-shadow: 0 4px 20px var(--teal-glow); }
+    .start-btn.teal-style:hover { box-shadow: 0 6px 30px rgba(94,234,212, 0.35); transform: translateY(-1px); }
     .start-btn.stop { background: var(--bg-input); color: var(--text-secondary); box-shadow: none; border: 2px solid var(--border); }
     .start-btn.stop:hover { border-color: rgba(148, 163, 184, 0.3); transform: none; }
 
@@ -300,8 +300,8 @@ html{padding-top:var(--kk-h)}
     circle.style.transition = 'none';
     circle.style.transform = 'scale(1)';
     circle.style.boxShadow = mode === 'sigh'
-      ? '0 0 30px rgba(249,115,22,.25),0 0 60px rgba(249,115,22,.1)'
-      : '0 0 30px rgba(20,184,166,.25),0 0 60px rgba(20,184,166,.1)';
+      ? '0 0 30px rgba(94,234,212,.25),0 0 60px rgba(94,234,212,.1)'
+      : '0 0 30px rgba(94,234,212,.25),0 0 60px rgba(94,234,212,.1)';
     circle.offsetHeight; // force reflow so scale(1) is rendered
     startBtn.textContent = 'Stopp'; startBtn.className = 'start-btn stop';
     // Small delay to ensure initial state is painted before first transition
@@ -316,8 +316,8 @@ html{padding-top:var(--kk-h)}
     circle.style.transition = `all ${trans}s ease-in-out`;
     circle.style.transform = `scale(${scale})`;
     circle.style.boxShadow = scale > 2
-      ? (mode === 'sigh' ? '0 0 50px rgba(249,115,22,.35),0 0 80px rgba(249,115,22,.15)' : '0 0 50px rgba(20,184,166,.35),0 0 80px rgba(20,184,166,.15)')
-      : (mode === 'sigh' ? '0 0 30px rgba(249,115,22,.25),0 0 60px rgba(249,115,22,.1)' : '0 0 30px rgba(20,184,166,.25),0 0 60px rgba(20,184,166,.1)');
+      ? (mode === 'sigh' ? '0 0 50px rgba(94,234,212,.35),0 0 80px rgba(94,234,212,.15)' : '0 0 50px rgba(94,234,212,.35),0 0 80px rgba(94,234,212,.15)')
+      : (mode === 'sigh' ? '0 0 30px rgba(94,234,212,.25),0 0 60px rgba(94,234,212,.1)' : '0 0 30px rgba(94,234,212,.25),0 0 60px rgba(94,234,212,.1)');
     let t = dur; timerText.textContent = t; timerText.classList.add('active');
     clearInterval(currentInterval);
     if (dur > 0) currentInterval = setInterval(() => { t--; if (t >= 0) timerText.textContent = t; }, 1000);
@@ -358,7 +358,7 @@ html{padding-top:var(--kk-h)}
       instruction.textContent = 'Geschafft ✓'; instruction.className = 'instruction-text teal-color';
       timerText.innerHTML = '&nbsp;'; cycleCounter.textContent = '4 Zyklen abgeschlossen';
       circle.style.transition = 'all 1s ease'; circle.style.transform = 'scale(1.5)';
-      circle.style.boxShadow = '0 0 60px rgba(20,184,166,.4)';
+      circle.style.boxShadow = '0 0 60px rgba(94,234,212,.4)';
       setTimeout(() => { if (!isRunning) return; stopAnimation(); instruction.textContent = 'Bereit für mehr?'; }, 3000);
     }
   }
