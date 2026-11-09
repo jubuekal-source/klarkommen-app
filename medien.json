@@ -1,5 +1,5 @@
 {
- "version": 14,
+ "version": 15,
  "dateien": [
   {
    "id": "k01-5sinne-shift",
@@ -314,9 +314,9 @@
    "dauer": null
   },
   {
-   "id": "bilder/rubrik/einstieg-hell",
-   "pfad": "medien/bilder/rubrik/einstieg-hell.webp",
-   "bytes": 14980,
+   "id": "bilder/rubrik/einstieg-portal",
+   "pfad": "medien/bilder/rubrik/einstieg-portal.webp",
+   "bytes": 85762,
    "typ": "bild",
    "kapitel": null,
    "dauer": null

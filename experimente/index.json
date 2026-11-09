@@ -66,7 +66,7 @@
     },
     {
       "id": "kausalkette",
-      "titel": "Kette verstehen",
+      "titel": "Der Kreislauf",
       "dateien": [
         "experimente/kausalkette/index.html",
         "experimente/kausalkette/kette-stufe-0.webp",
@@ -74,9 +74,11 @@
         "experimente/kausalkette/kette-stufe-2.webp",
         "experimente/kausalkette/kette-stufe-3.webp",
         "experimente/kausalkette/kette-stufe-4.webp",
-        "experimente/kausalkette/kette-stufe-5.webp"
+        "experimente/kausalkette/kette-stufe-5.webp",
+        "experimente/kausalkette/kette-tuersteher.webp",
+        "experimente/kausalkette/kette-reset.webp"
       ],
-      "bytes": 252304,
+      "bytes": 302244,
       "kapitel": 3,
       "deeplinks": {}
     }

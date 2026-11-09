@@ -6,7 +6,7 @@
       "id": "einstieg",
       "rubrik": "einstieg",
       "titel": "Der Realitäts-Check: 120 Sekunden Stille",
-      "header": "medien/bilder/rubrik/einstieg-hell.webp",
+      "header": "medien/bilder/rubrik/einstieg-portal.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -14,7 +14,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Du hast in Kapitel 3 gesehen, wie die Kette auf Autopilot immer schneller läuft. Jetzt testest du, ob du sie für zwei Minuten anhalten kannst."
+          "text": "Du hast in Kapitel 3 gesehen, wie der Kreislauf auf Autopilot immer schneller läuft. Jetzt testest du, ob du ihn für zwei Minuten anhalten kannst."
         },
         {
           "typ": "ueberschrift",

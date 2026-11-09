@@ -6,7 +6,7 @@
       "id": "einstieg",
       "rubrik": "einstieg",
       "titel": "Dein Einstieg - ein Gedankenexperiment",
-      "header": "medien/bilder/rubrik/einstieg-hell.webp",
+      "header": "medien/bilder/rubrik/einstieg-portal.webp",
       "bloecke": [
         {
           "typ": "ueberschrift",
@@ -124,8 +124,9 @@
         {
           "typ": "experiment",
           "id": "kausalkette",
-          "titel": "Kette verstehen",
-          "text": "Sieh dir an, wie alles zusammenhängt – 1 Minute."
+          "expTyp": "schaubild",
+          "titel": "Der Kreislauf",
+          "text": "Kapitel 1 bis 3 in einem Bild: Wie Hühnerstall, Feed, Türsteher, Gedanken und Körper zusammenspielen – und wie du rauskommst. Zum Durchspielen, ca. 2 Minuten."
         }
       ],
       "lese": [
@@ -348,6 +349,44 @@
             {
               "typ": "absatz",
               "text": "**Glaubst du wirklich, zwei bis drei Stunden tägliche „Meditation“ über Angst, Drama, Konflikte und negative Nachrichten ziehen an deinem Gehirn vorbei wie weiße Wölkchen?**"
+            },
+            {
+              "typ": "einwand",
+              "titel": "„Aber ich muss doch informiert bleiben?“",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Dann stell dir ehrlich diese Fragen:"
+                },
+                {
+                  "typ": "absatz",
+                  "text": "Wie oft hast du aufgrund einer Nachricht **tatsächlich gehandelt?** Deine Geldanlage geändert? Dein Land gewechselt? Jemandem konkret geholfen?"
+                },
+                {
+                  "typ": "absatz",
+                  "text": "Oder hast du die News konsumiert, dich schlecht gefühlt – und dann weitergescrollt?"
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Sei ehrlich: Meistens ist es das Zweite, oder?**"
+                },
+                {
+                  "typ": "absatz",
+                  "text": "Das ist so, als würdest du an einem Unfall vorbeifahren, langsamer werden, hinschauen – aber nicht anhalten und helfen. Du nimmst die negativen Bilder mit. Und dein Körper zahlt die Rechnung."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Informiert sein ist wichtig.** Aber es gibt einen fundamentalen Unterschied:"
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Bewusstes Informieren** = Du wählst gezielt, *was* du liest, *wann* du es liest, *wie lange* und *wie häufig*."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Passives Berieseln** = Der Algorithmus entscheidet für dich – und dein Türsteher übernimmt alles ungefiltert auf die Gästeliste."
+                }
+              ]
             },
             {
               "typ": "absatz",

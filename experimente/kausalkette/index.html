@@ -4,125 +4,155 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>Die Kette – Klarkommen</title>
+<title>Der Kreislauf – Klarkommen</title>
 <link rel="stylesheet" href="../../fonts/fonts.css">
-<!-- Experiment „Kette verstehen“ (id kausalkette) – Variante A „Körper im Autopilot“
-     Konzept: berichte/konzept-kette-bilder-2026-11-05.md §1.3 · Bilder: kette-stufe-0 … -5 (deckungsgleich, Crossfade per opacity)
-     Ablauf: Start → Runde 1 (5 Taps) → Runde 2 (halbautomatisch) → Runden 3–5 (automatisch, schneller) → STOP (2 s halten) → 5-Sinne-Shift → Gesamtbild.
-     Regel: Jedes Mal, wenn das Glied „Körper“ aufleuchtet, kippt das Körperbild eine Stufe weiter (max. Stufe 4); nach STOP → Stufe 5. -->
+<!-- Schaubild „Der Kreislauf“ (id kausalkette, v1.3.17, überarbeitet v1.3.18 – berichte/code-v1318-kreislauf-runde2.md) – ersetzt Variante A „Kette verstehen“.
+     Bericht: berichte/code-v1317-schaubild-kreislauf.md · Analyse: berichte/analyse-kette-verstehen-2026-11-09.md
+     Modell: Netz statt Linie. Hühnerstall + Feed wirken parallel auf Türsteher (Fokus) und Gedanken; Gedanken ↔ Körper ↔ Zustand wechselseitig; Zustand → Handy → Feed.
+     Ablauf (v1.3.18): Start → Runde 1 (4 Karten, Tap) → Runden 2–4 automatisch (Lesebalken, Tippen = weiter) → Halten (2 s) → STOP →
+             3 bewusste Runden (je: Mini-Reset 3-2-1 = 1 Tap → „Fokus bewusst neu ausrichten“ = 1 Tap → grüne Runde → alter Kreislauf meldet sich) → Gesamtbild (Abwärts · Der bewusste Moment · Aufwärts).
+     Körperbild: 6 deckungsgleiche Stufen, Zwischenzustände per Mischung zweier Stufen (opacity). -->
 <style>
-:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--bg-input:#1c2e40;--accent:#f97316;--accent-glow:rgba(249,115,22,.25);--accent-soft:#fb923c;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,.12);--healthy:#7DD3C0;--healthy-dark:#5BB8A5;--toxic:#1F0508;--toxic-mid:#380A10;--toxic-glow:rgba(180,25,40,.45);--toxic-red:#B41928;--radius:16px;
-  --pulse-c:var(--healthy);--beat:2.4s;--fade:600ms}
+:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--bg-input:#1c2e40;--accent:#f97316;--accent-glow:rgba(249,115,22,.25);--accent-soft:#fb923c;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,.12);--healthy:#7DD3C0;--healthy-dark:#5BB8A5;--toxic-red:#B41928;--radius:16px;
+  --pulse-c:var(--healthy);--beat:2.4s;--fade:700ms;--flow:1.1s}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{overflow-x:clip;max-width:100%}
 body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-deep);color:var(--text-primary);min-height:100dvh;overflow:hidden;-webkit-tap-highlight-color:transparent}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(249,115,22,.06),transparent 50%);pointer-events:none;z-index:0}
-.app{position:relative;z-index:1;height:100dvh;display:flex;flex-direction:column;align-items:center;padding:10px 16px calc(12px + env(safe-area-inset-bottom,0px));gap:8px}
+.app{position:relative;z-index:1;height:100dvh;display:flex;flex-direction:column;align-items:center;padding:8px 14px calc(10px + env(safe-area-inset-bottom,0px));gap:4px}
 
-/* Körperbild: zwei deckungsgleich gestapelte <img>, oben wird eingeblendet */
-.stage{width:var(--sz);flex:0 0 auto;--sz:min(100%,40dvh,380px)}
-.koerper{position:relative;width:var(--sz);aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;background:var(--bg-card);box-shadow:0 0 0 1px var(--border),0 0 28px var(--glow,rgba(125,211,192,.18));transition:box-shadow var(--fade) ease}
-.koerper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none}
-.koerper img.top{opacity:0;transition:opacity var(--fade) ease}
-.koerper img.top.show{opacity:1}
-.runde{position:absolute;top:8px;left:8px;font:700 .68rem/1 'Space Grotesk',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-soft);background:rgba(15,25,35,.72);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:.3rem .6rem;opacity:0;transition:opacity .3s}
-.runde.show{opacity:1}
-/* Atemkreis (Ausstieg) */
-.atem{position:absolute;left:50%;top:50%;width:56%;aspect-ratio:1/1;border-radius:50%;border:2px solid var(--healthy);box-shadow:0 0 30px rgba(125,211,192,.35),inset 0 0 30px rgba(125,211,192,.15);transform:translate(-50%,-50%) scale(.45);opacity:0;pointer-events:none}
-.atem.on{animation:atem 4s ease-in-out forwards}
-@keyframes atem{0%{opacity:0;transform:translate(-50%,-50%) scale(.45)}12%{opacity:.9}50%{opacity:.9;transform:translate(-50%,-50%) scale(1)}90%{opacity:.6}100%{opacity:0;transform:translate(-50%,-50%) scale(.45)}}
-
-/* Puls-Linie – illustrativ, keine Messung */
-.puls{width:100%;height:26px;margin-top:6px;overflow:hidden;opacity:.9}
+/* Körperbild: 6 deckungsgleiche Ebenen, Mischung per opacity */
+.stage{width:var(--sz);flex:0 0 auto;--sz:min(100%,27dvh,280px)}
+.koerper{position:relative;width:var(--sz);aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;background:#13202d;box-shadow:0 0 0 1px var(--border),0 0 28px var(--glow,rgba(125,211,192,.18));transition:box-shadow var(--fade) ease}
+.koerper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;opacity:0;transition:opacity var(--fade) ease}
+.badge{position:absolute;top:7px;left:7px;font:700 .64rem/1 'Space Grotesk',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-soft);background:rgba(15,25,35,.78);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:.3rem .55rem;opacity:0;transition:opacity .3s}
+.badge.show{opacity:1}
+body.bewusst .badge{color:var(--healthy);border-color:rgba(125,211,192,.35)}
+.puls{width:100%;height:16px;margin-top:4px;overflow:hidden;opacity:.85}
 .puls svg{width:200%;height:100%;display:block;animation:puls var(--beat) linear infinite}
 .puls path{stroke:var(--pulse-c);transition:stroke var(--fade) ease}
 @keyframes puls{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* Kettenglieder als Leiste */
-.kette{list-style:none;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;width:100%;max-width:420px;flex:0 0 auto}
-.kette li{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0;color:var(--text-muted);position:relative}
-.kette li+li::before{content:'';position:absolute;top:17px;right:calc(50% + 17px);width:calc(100% - 30px);height:1.5px;background:var(--border);transition:background .25s}
-.kette li.done+li.done::before,.kette li.done+li.on::before{background:var(--accent)}
-.kette .ring{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg-card);border:1.5px solid var(--border);transition:border-color .2s,background .2s,box-shadow .2s,color .2s}
-.kette svg{width:16px;height:16px}
-.kette .lb{font:600 .64rem/1.15 'Space Grotesk',sans-serif;text-align:center;max-width:100%;overflow-wrap:anywhere}
-.kette li.done{color:var(--text-secondary)}
-.kette li.done .ring{border-color:rgba(249,115,22,.55);background:rgba(249,115,22,.1);color:var(--accent-soft)}
-.kette li.on{color:var(--text-primary)}
-.kette li.on .ring{border-color:var(--accent);background:rgba(249,115,22,.22);color:var(--accent);box-shadow:0 0 14px var(--accent-glow)}
-body.ruhig .kette li.done .ring,body.ruhig .kette li.on .ring{border-color:var(--healthy);background:rgba(125,211,192,.12);color:var(--healthy);box-shadow:none}
+/* Netz */
+.netz{width:100%;max-width:400px;flex:0 0 auto;height:min(178px,23dvh);display:block;overflow:visible}
+.netz .kante{fill:none;stroke:rgba(148,163,184,.18);stroke-width:1.6;stroke-linecap:round;transition:stroke .35s,opacity .35s,stroke-width .5s}
+.netz .kante.an{stroke:var(--accent);stroke-dasharray:5 6;animation:fluss var(--flow) linear infinite}
+.netz .kante.an.still{animation:none}
+.netz .kante.gr{stroke:var(--healthy);stroke-dasharray:none;animation:none}
+.netz .kante.gr.zieh{stroke-dasharray:5 6;animation:fluss var(--flow) linear infinite}
+.netz .kante.leise{opacity:.45}
+.netz .kante.bruch{stroke:rgba(148,163,184,.4);stroke-dasharray:2 7;animation:none}
+@keyframes fluss{to{stroke-dashoffset:-22}}
+.netz .knoten circle.r{fill:var(--bg-card);stroke:rgba(148,163,184,.25);stroke-width:1.5;transition:stroke .3s,fill .3s}
+.netz .knoten .ic{fill:none;stroke:var(--text-muted);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.netz .knoten text{font:600 12.5px 'Space Grotesk',sans-serif;fill:var(--text-muted);transition:fill .3s}
+.netz .knoten.an circle.r{stroke:var(--accent);fill:rgba(249,115,22,.16)}
+.netz .knoten.an .ic{stroke:var(--accent-soft)}
+.netz .knoten.an text{fill:var(--text-primary)}
+.netz .knoten.blitz circle.r{fill:rgba(249,115,22,.4)}
+.netz .knoten.gr circle.r{stroke:var(--healthy);fill:rgba(125,211,192,.14)}
+.netz .knoten.gr .ic{stroke:var(--healthy)}
+.netz .knoten.gr text{fill:var(--text-primary)}
+.netz .knoten.gr.blitz circle.r{fill:rgba(125,211,192,.38)}
+.netz .knoten .ring{fill:none;stroke:rgba(148,163,184,.25);stroke-width:1.5;transition:stroke .3s}
+.netz .knoten.an .ring{stroke:var(--accent)}
+.netz .knoten.gr .ring{stroke:var(--healthy)}
+.netz #k-fokus image{opacity:.55;transition:opacity .3s}
+.netz #k-fokus.an image,.netz #k-fokus.gr image{opacity:1}
+.netz .handy{transition:opacity .3s}
+.netz .handy rect{fill:var(--bg-card);stroke:var(--text-muted);stroke-width:1.5}
+.netz .handy.an rect{stroke:var(--accent);fill:rgba(249,115,22,.22)}
+.netz .handy.aus{opacity:.35}
 
 /* Text + Buttons */
-.panel{width:100%;max-width:440px;text-align:center;flex:1 1 auto;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:4px}
-.panel .lbl{font:700 .68rem/1.2 'Space Grotesk',sans-serif;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem}
-.panel h2{font:700 clamp(1.2rem,5vw,1.5rem)/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;margin-bottom:.4rem;min-height:1.2em}
+.panel{width:100%;max-width:440px;text-align:center;flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;padding:2px 2px 4px}
+.panel .lbl{font:700 .66rem/1.2 'Space Grotesk',sans-serif;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.panel h2{font:700 clamp(1.1rem,4.8vw,1.4rem)/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;margin-bottom:.3rem}
 .panel h2 .a{color:var(--accent)}
 .panel h2 .g{color:var(--healthy)}
-.panel h2.big{font-size:clamp(2.2rem,11vw,3.2rem);color:var(--accent)}
-.panel p{color:var(--text-secondary);font-size:.97rem;line-height:1.55;max-width:400px;min-height:1.55em}
+.panel h2.big{font-size:clamp(2rem,10vw,2.8rem);color:var(--accent)}
+.panel p{color:var(--text-secondary);font-size:.93rem;line-height:1.5;max-width:400px}
 .panel p strong{color:var(--text-primary)}
+.panel p.mini{font-size:.78rem;color:var(--text-muted);margin-top:.4rem}
 .panel .fade{animation:ein .35s ease}
 @keyframes ein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;padding:.8rem 1.6rem;margin-top:.9rem;border:2px solid var(--accent);border-radius:12px;background:rgba(249,115,22,.12);color:var(--text-primary);font:700 1rem/1 'Space Grotesk',sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;transition:background .2s,box-shadow .2s,transform .1s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.75rem 1.4rem;margin-top:.7rem;border:2px solid var(--accent);border-radius:12px;background:rgba(249,115,22,.12);color:var(--text-primary);font:700 .98rem/1 'Space Grotesk',sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;transition:background .2s,box-shadow .2s,transform .1s;flex:0 0 auto}
 .btn:active{transform:scale(.97)}
-.btn:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
+.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
 .btn.pulse{animation:cta 2s ease-in-out infinite}
 @keyframes cta{0%,100%{box-shadow:0 0 0 0 var(--accent-glow)}50%{box-shadow:0 0 16px 3px var(--accent-glow)}}
 .btn.gruen{border-color:var(--healthy);background:rgba(125,211,192,.12);color:var(--healthy)}
 .btn.sek{border-color:var(--border);background:transparent;color:var(--text-secondary);font-weight:600}
-/* Halten-Button mit Füllstand */
 .halten{position:relative;overflow:hidden;border-color:var(--toxic-red);background:rgba(180,25,40,.18)}
 .halten .fill{position:absolute;inset:0;background:rgba(125,211,192,.35);transform-origin:left center;transform:scaleX(0);pointer-events:none}
 .halten.aktiv .fill{transition:transform 2s linear;transform:scaleX(1)}
 .halten span{position:relative}
+/* Mini-Reset 3-2-1 */
+.sinne{display:flex;gap:6px;justify-content:center;margin-top:.55rem}
+.sinn{width:68px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text-muted);font:700 .62rem/1.1 'Space Grotesk',sans-serif}
+.sinn .kr{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--bg-card);transition:all .3s}
+.sinn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sinn.ok{color:var(--healthy)}
+.sinn.ok .kr{border-color:var(--healthy);background:rgba(125,211,192,.14);box-shadow:0 0 10px rgba(125,211,192,.25)}
+.sinn.jetzt{color:var(--text-primary)}
+.sinn.jetzt .kr{border-color:var(--healthy)}
+/* Fokus-Chips */
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:400px;margin-top:.55rem}
+.chip{min-height:44px;padding:.5rem .6rem;border-radius:12px;border:1.5px solid rgba(125,211,192,.35);background:rgba(125,211,192,.06);color:var(--text-primary);font:600 .84rem/1.25 'DM Sans',sans-serif;cursor:pointer;touch-action:manipulation}
+.chip:active{transform:scale(.97)}
+.chip.gewaehlt{border-color:var(--healthy);background:rgba(125,211,192,.2)}
+.chip .n{display:block;font-size:.66rem;color:var(--healthy);margin-top:2px}
+/* Auto-Karte: Balken + Hinweis „läuft von selbst“ */
+.lauf{width:100%;max-width:300px;margin-top:.7rem;display:flex;flex-direction:column;align-items:center;gap:4px}
+.lauf .bar{display:block;width:100%;height:4px;border-radius:4px;background:rgba(148,163,184,.18);overflow:hidden}
+.lauf .bar i{display:block;height:100%;width:0;background:var(--accent-soft);border-radius:4px}
+body.bewusst .lauf .bar i{background:var(--healthy)}
+.lauf .lt{font-size:.72rem;color:var(--text-muted)}
+.panel.tippbar{cursor:pointer}
+.btn.aus{opacity:.5}
+.btn.gruen.pulse-g{animation:ctag 2s ease-in-out infinite}
+@keyframes ctag{0%,100%{box-shadow:0 0 0 0 rgba(125,211,192,.3)}50%{box-shadow:0 0 16px 3px rgba(125,211,192,.3)}}
 [hidden]{display:none!important}
 
 /* Gesamtbild */
 .ende{position:absolute;inset:0;z-index:2;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:14px 16px calc(24px + env(safe-area-inset-bottom,0px));background:var(--bg-deep)}
 .ende .in{max-width:460px;margin:0 auto;text-align:center}
-.ende .mini{width:112px;height:112px;border-radius:14px;object-fit:cover;display:block;margin:0 auto 10px;box-shadow:0 0 22px rgba(125,211,192,.3)}
 .ende h2{font:700 1.3rem/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;margin-bottom:.8rem}
-.ende h2 .a{color:var(--accent)}
-.spiralen{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;text-align:left}
-.spirale{border-radius:14px;padding:.75rem .7rem;min-width:0}
+.ende h2 .a{color:var(--healthy)}
+.spiralen{display:grid;gap:8px;text-align:left}
+@media (min-width:620px){.ende .in{max-width:900px}.spiralen{grid-template-columns:1fr 1fr 1fr;align-items:stretch}.spirale.moment{flex-direction:column;align-items:center;text-align:center}}
+.spirale.moment{display:flex;gap:10px;align-items:center;background:rgba(148,163,184,.06);border:1.5px solid rgba(148,163,184,.25)}
+.spirale.moment img{width:76px;height:auto;aspect-ratio:300/521;object-fit:cover;border-radius:10px;flex:0 0 auto;box-shadow:0 0 16px rgba(249,115,22,.25)}
+.spirale.moment h3{color:var(--text-primary)}
+.spirale.moment p{font-size:.82rem;line-height:1.45;color:var(--text-secondary);margin-top:.3rem}
+.spirale.moment p.leise{font-size:.78rem}
+.spirale.moment .g{color:var(--healthy)}
+.spirale.moment .o{color:var(--accent-soft)}
+.spirale li strong{color:var(--text-primary);font-weight:600}
+.spirale{border-radius:14px;padding:.7rem .8rem;min-width:0}
 .spirale.ab{background:rgba(180,25,40,.12);border:1.5px solid rgba(180,25,40,.45)}
-.spirale.auf{background:rgba(125,211,192,.07);border:1.5px solid rgba(125,211,192,.35)}
-.spirale h3{font:700 .9rem/1.2 'Space Grotesk',sans-serif;margin-bottom:.45rem}
+.spirale.auf{background:rgba(125,211,192,.08);border:1.5px solid rgba(125,211,192,.4)}
+.spirale h3{font:700 .92rem/1.2 'Space Grotesk',sans-serif;margin-bottom:.35rem}
 .spirale.ab h3{color:var(--accent-soft)}
 .spirale.auf h3{color:var(--healthy)}
-.spirale ol{list-style:none;counter-reset:s}
-.spirale li{font-size:.82rem;line-height:1.35;color:var(--text-secondary);padding:.22rem 0 .22rem 1rem;position:relative;overflow-wrap:break-word;hyphens:manual}
+.spirale ol{list-style:none}
+.spirale li{font-size:.84rem;line-height:1.38;color:var(--text-secondary);padding:.18rem 0 .18rem 1rem;position:relative;overflow-wrap:break-word}
 .spirale li::before{content:'→';position:absolute;left:0;font-weight:700}
 .spirale.ab li::before{color:var(--accent-soft)}
 .spirale.auf li::before{color:var(--healthy)}
-.spirale .zyk{font-size:.78rem;margin-top:.3rem;text-align:center}
+.spirale .zyk{font-size:.78rem;margin-top:.3rem}
 .spirale.ab .zyk{color:var(--accent-soft)}
 .spirale.auf .zyk{color:var(--healthy)}
-.klar{color:var(--text-secondary);font-size:.92rem;line-height:1.55;margin:.9rem auto 0;max-width:420px}
+.klar{color:var(--text-secondary);font-size:.9rem;line-height:1.55;margin:.9rem auto 0;max-width:420px}
 .klar strong{color:var(--text-primary)}
-details.frage{margin:1rem auto 0;max-width:440px;text-align:left;border:1px solid rgba(249,115,22,.2);border-radius:12px;background:rgba(249,115,22,.04)}
-details.frage summary{list-style:none;cursor:pointer;min-height:48px;display:flex;align-items:center;gap:.5rem;padding:.6rem .9rem;font:700 .9rem/1.3 'Space Grotesk',sans-serif;color:var(--text-secondary)}
-details.frage summary::-webkit-details-marker{display:none}
-details.frage summary::after{content:'▾';margin-left:auto;color:var(--text-muted);transition:transform .2s}
-details.frage[open] summary{color:var(--accent-soft)}
-details.frage[open] summary::after{transform:rotate(180deg)}
-details.frage .body{padding:0 .9rem .9rem;font-size:.88rem;line-height:1.6;color:var(--text-secondary)}
-details.frage .body p+p{margin-top:.6rem}
-details.frage strong{color:var(--text-primary)}
-details.frage .hl{color:var(--accent-soft);font-weight:600}
-details.frage .pos{color:var(--healthy);font-weight:600}
 .ende .btns{display:grid;gap:8px;margin-top:1.1rem}
 .ende .btns .btn{margin-top:0;width:100%}
 .fuss{margin-top:1.2rem;font-size:.72rem;color:var(--text-muted)}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-@media (max-height:600px){.stage{--sz:min(100%,34dvh,380px)}.panel p{font-size:.9rem}.btn{margin-top:.6rem}}
+@media (max-height:700px){.stage{--sz:min(100%,22dvh,280px)}.netz{height:min(178px,24dvh)}.panel p{font-size:.88rem}.btn{margin-top:.5rem;min-height:44px}.puls{height:12px}}
 @media (min-width:560px){.ende .btns{grid-template-columns:1fr 1fr}}
 @media (prefers-reduced-motion:reduce){
-  .puls svg{animation:none}
-  .btn.pulse{animation:none}
-  .panel .fade{animation:none}
-  .atem.on{animation-duration:4s}
+  .puls svg,.btn.pulse,.btn.pulse-g,.panel .fade,.netz .kante.an,.netz .kante.gr.zieh{animation:none}
 }
 </style>
 <style id="kk-bar-css">
@@ -140,75 +170,80 @@ html{padding-top:var(--kk-h)}
 
 <main class="app" id="app">
   <div class="stage">
-    <div class="koerper" id="koerper">
-      <img id="imgBase" src="kette-stufe-0.webp" alt="Junge Frau im Hoodie, ruhig – Gehirn und Herz leuchten türkis." width="1024" height="1024" decoding="async">
-      <img id="imgTop" class="top" src="kette-stufe-0.webp" alt="" aria-hidden="true" width="1024" height="1024" decoding="async">
-      <div class="atem" id="atem" aria-hidden="true"></div>
-      <div class="runde" id="runde" aria-hidden="true"></div>
+    <div class="koerper" id="koerper" role="img" aria-label="">
+      <img src="kette-stufe-0.webp" alt="" width="1024" height="1024" decoding="async">
+      <img src="kette-stufe-1.webp" alt="" width="1024" height="1024" decoding="async">
+      <img src="kette-stufe-2.webp" alt="" width="1024" height="1024" decoding="async">
+      <img src="kette-stufe-3.webp" alt="" width="1024" height="1024" decoding="async">
+      <img src="kette-stufe-4.webp" alt="" width="1024" height="1024" decoding="async">
+      <img src="kette-stufe-5.webp" alt="" width="1024" height="1024" decoding="async">
+      <div class="badge" id="badge" aria-hidden="true"></div>
     </div>
     <div class="puls" aria-hidden="true" title="Illustration, keine Messung">
       <svg viewBox="0 0 400 26" preserveAspectRatio="none"><path fill="none" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" d="M0 15 H40 l6 -2 l5 2 H70 l4 -11 l5 20 l4 -9 H110 l6 -3 l6 3 H200 H240 l6 -2 l5 2 H270 l4 -11 l5 20 l4 -9 H310 l6 -3 l6 3 H400"/></svg>
     </div>
   </div>
 
-  <ol class="kette" id="kette" aria-label="Die fünf Kettenglieder"></ol>
+  <svg class="netz" id="netz" viewBox="0 0 360 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <defs>
+      <marker id="pf-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#3b4a5c"/></marker>
+      <marker id="pf-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#f97316"/></marker>
+      <marker id="pf-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#7DD3C0"/></marker>
+      <clipPath id="clipT"><circle cx="0" cy="0" r="17"/></clipPath>
+    </defs>
+    <g id="kanten"></g>
+    <g id="knoten"></g>
+  </svg>
 
   <section class="panel" id="panel" aria-live="polite"></section>
 </main>
 
 <section class="ende" id="ende" hidden aria-labelledby="endeTitel">
   <div class="in">
-    <img class="mini" src="kette-stufe-5.webp" alt="Erholt: Augen geschlossen, ruhiges Lächeln – alles leuchtet wieder türkis." width="1024" height="1024">
-    <h2 id="endeTitel">Die Kette — <span class="a">das Gesamtbild</span></h2>
+    <h2 id="endeTitel">Der Kreislauf – <span class="a">das Gesamtbild</span></h2>
     <div class="spiralen">
       <div class="spirale ab">
         <h3>Abwärtsspirale</h3>
         <ol>
-          <li>Prägung + Feed schreiben die Gästeliste</li>
-          <li>Fokus sucht Beweise</li>
-          <li>Stress: Cortisol ↑</li>
-          <li>Zustand ↓ – Dopamin-Jagd</li>
+          <li><strong>Hühnerstall + Feed</strong> schreiben die Gästeliste</li>
+          <li>Dein <strong>Türsteher</strong> filtert unbewusst und sucht Beweise</li>
+          <li><strong>Gedanken</strong> lösen Stress aus: Cortisol ↑, Immunsystem fährt runter</li>
+          <li><strong>Zustand</strong> sinkt – Griff zum Handy, Jagd nach schnellen Kicks</li>
         </ol>
         <div class="zyk">↻ Teufelskreis</div>
+      </div>
+      <div class="spirale moment">
+        <img src="kette-reset.webp" alt="Junge Frau im Hoodie vor einem leuchtenden Reset-Knopf." width="300" height="521">
+        <div>
+          <h3>Der bewusste Moment</h3>
+          <p><strong class="g">Mini-Reset (3-2-1)</strong><br>Stopp das Abdriften. Komm zurück ins Hier und Jetzt.</p>
+          <p><strong class="o">Bewusster Fokus</strong><br>Entscheide, worauf du deine Aufmerksamkeit richtest.</p>
+          <p class="leise">Anfangs brauchst du den Mini-Reset bewusst. <strong>Später läuft auch die neue Richtung auf Autopilot.</strong></p>
+        </div>
       </div>
       <div class="spirale auf">
         <h3>Aufwärtsspirale</h3>
         <ol>
-          <li>Bewusst wählen – neue Gästeliste</li>
-          <li>Fokus findet Chancen</li>
-          <li>Entspannung: Endorphine ↑</li>
-          <li>Mehr Energie, besserer Schlaf</li>
+          <li><strong>Bewusstes Wählen</strong> – neue Einträge auf der Gästeliste</li>
+          <li>Dein <strong>Türsteher</strong> findet Chancen, Stärken, Lösungen</li>
+          <li><strong>Gedanken</strong> entspannen: Endorphine ↑, dein Körper kann regenerieren</li>
+          <li>Jede Wiederholung macht den <strong>neuen Weg</strong> breiter</li>
         </ol>
-        <div class="zyk">↻ für dich</div>
+        <div class="zyk">↻ Aufwärtsspirale</div>
       </div>
     </div>
-    <p class="klar">Das heißt nicht, dass du nur Negatives konsumierst. <strong>Aber wegen des Negativity Bias rutschst du leichter in diesen Kreislauf.</strong></p>
-
-    <details class="frage">
-      <summary>„Aber ich muss doch informiert bleiben?“</summary>
-      <div class="body">
-        <p>Dann stell dir ehrlich diese Fragen:</p>
-        <p>Wie oft hast du aufgrund einer Nachricht <strong>tatsächlich gehandelt?</strong> Deine Geldanlage geändert? Dein Land gewechselt? Jemandem konkret geholfen?</p>
-        <p>Oder hast du die News konsumiert, dich schlecht gefühlt — und dann weitergescrollt?</p>
-        <p><span class="hl">Sei ehrlich: Zu 99% ist es das Zweite.</span></p>
-        <p>Das ist so, als würdest du an einem Unfall vorbeifahren, langsamer werden, hinschauen — aber nicht anhalten und helfen. Du nimmst die negativen Bilder mit. Und dein Körper zahlt die Rechnung.</p>
-        <p><strong>Informiert sein ist wichtig.</strong> Aber es gibt einen fundamentalen Unterschied:</p>
-        <p><span class="pos">Bewusstes Informieren</span> = Du wählst gezielt, <em>was</em> du liest, <em>wann</em> du es liest, <em>wie lange</em> und <em>wie häufig</em>.</p>
-        <p><span class="hl">Passives Berieseln</span> = Der Algorithmus entscheidet für dich — und dein Fokus übernimmt alles ungefiltert auf die Gästeliste.</p>
-      </div>
-    </details>
-
+    <p class="klar">Wenn die neuen Gedanken zu Autobahnen werden, läuft dieser Kreislauf von selbst – <strong>für dich, nicht gegen dich.</strong></p>
+    <p class="klar">Das heißt nicht, dass du nur Negatives konsumierst. <strong>Aber wegen des Negativity Bias rutschst du leichter in den Teufelskreis.</strong></p>
     <div class="btns">
       <button type="button" class="btn gruen" id="fertig">Fertig – zurück zur App</button>
-      <button type="button" class="btn sek" id="nochmal">Nochmal ansehen</button>
+      <button type="button" class="btn sek" id="nochmal">Nochmal durchspielen</button>
     </div>
     <p class="fuss">Klarkommen – Das Update, das dir fehlt</p>
   </div>
 </section>
 
 <script>
-/* ---------- Daten ---------- */
-const STUFEN = [0,1,2,3,4,5].map(n => `kette-stufe-${n}.webp`);
+/* ---------- Körperbild ---------- */
 const ALT = [
   'Junge Frau im Hoodie, ruhig – Gehirn und Herz leuchten türkis.',
   'Dieselbe Frau, leicht besorgt – das Gehirn glüht orange.',
@@ -217,7 +252,6 @@ const ALT = [
   'Erschöpft – gedämpftes Rot, Augenringe, fahles Bildschirmlicht.',
   'Erholt – Augen geschlossen, ruhiges Lächeln, alles leuchtet wieder türkis.'
 ];
-/* Puls (illustrativ) und Glow je Stufe */
 const LOOK = [
   {c:'#7DD3C0', beat:'2.4s', glow:'rgba(125,211,192,.18)'},
   {c:'#fb923c', beat:'1.8s', glow:'rgba(249,115,22,.22)'},
@@ -226,117 +260,178 @@ const LOOK = [
   {c:'#B41928', beat:'.6s',  glow:'rgba(180,25,40,.35)'},
   {c:'#7DD3C0', beat:'2.8s', glow:'rgba(125,211,192,.35)'}
 ];
-const GLIEDER = [
-  {k:'stall',  lb:'Hühnerstall', titel:'Dein <span class="a">Hühnerstall</span>', zeile:'Dein Umfeld hat die erste Gästeliste geschrieben.',
-   ic:'<path d="M4 11l8-6 8 6"/><rect x="6" y="11" width="12" height="9" rx="1"/>'},
-  {k:'feed',   lb:'Feed', titel:'Dein <span class="a">Feed</span>', zeile:'Algorithmen schreiben täglich Negatives dazu.',
-   ic:'<rect x="7" y="3" width="10" height="18" rx="2.5"/><path d="M10 8h4M10 11h4M10 14h4"/>'},
-  {k:'fokus',  lb:'Fokus', titel:'Dein <span class="a">Fokus</span>', zeile:'Dein Türsteher lässt nur durch, was draufsteht.',
-   ic:'<circle cx="11" cy="11" r="6"/><path d="M15.5 15.5L20 20"/>'},
-  {k:'koerper',lb:'Körper', titel:'Dein <span class="a">Körper</span>', zeile:'Dein Körper glaubt es: Cortisol, Adrenalin.',
-   ic:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'},
-  {k:'zustand',lb:'Zustand', titel:'Dein <span class="a">Zustand</span>', zeile:'Müde, gereizt – und ab zum nächsten Scroll.',
-   ic:'<rect x="8" y="4" width="8" height="17" rx="2"/><path d="M10 2.5h4"/><rect x="10" y="15" width="4" height="4" fill="currentColor" stroke="none" opacity=".5"/>'}
-];
-const KOERPER_IDX = 3;
 const REDUZIERT = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* ---------- Elemente ---------- */
 const $ = id => document.getElementById(id);
-const base = $('imgBase'), top_ = $('imgTop'), panel = $('panel'), kette = $('kette'), runde = $('runde');
-let stufe = 0, fadeKette = Promise.resolve(), lauf = 0;   /* lauf: Token, um Auto-Runden abzubrechen */
-const wait = ms => new Promise(r => setTimeout(r, ms));
-
-/* Bilder vorladen, damit die Überblendung nie auf das Netz wartet */
-const VORLADEN = STUFEN.map(s => { const i = new Image(); i.decoding = 'async'; i.src = s; return i; });
-
-/* ---------- Kette ---------- */
-kette.innerHTML = GLIEDER.map(g => `<li data-k="${g.k}"><span class="ring"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${g.ic}</svg></span><span class="lb">${g.lb}</span></li>`).join('');
-const LI = [...kette.children];
-function ketteReset(){ LI.forEach(li => li.classList.remove('on','done')); }
-function glied(i){
-  LI.forEach((li, j) => { li.classList.toggle('on', j === i); if (j < i) li.classList.add('done'); });
-  if (i === KOERPER_IDX) zuStufe(Math.min(stufe + 1, 4));
-}
-function ketteFertig(){ LI.forEach(li => { li.classList.remove('on'); li.classList.add('done'); }); }
-
-/* ---------- Überblendung (zwei gestapelte <img>, oben opacity 0 → 1) ---------- */
-function zuStufe(n, dauer){
-  fadeKette = fadeKette.then(() => blende(n, dauer || (REDUZIERT ? 250 : 600))).catch(() => {});
-  return fadeKette;
-}
-async function blende(n, dauer){
-  if (n === stufe) return;
-  const L = LOOK[n], r = document.documentElement.style;
-  r.setProperty('--fade', dauer + 'ms');
+const IMGS = [...document.querySelectorAll('#koerper img')];
+const koerper = $('koerper');
+/* zeigeMix(a, b, x): Stufe a, darüber Anteil x von Stufe b (0 … 1) */
+function zeigeMix(a, b, x){
+  if (b === undefined || a === b) { b = a; x = 0; }
+  const unten = Math.min(a, b), oben = Math.max(a, b);
+  const xOben = (oben === b) ? x : 1 - x;
+  IMGS.forEach((im, i) => { im.style.opacity = i === unten ? 1 : (i === oben && oben !== unten ? xOben : 0); });
+  const n = x >= .5 ? b : a, L = LOOK[n], r = document.documentElement.style;
   r.setProperty('--pulse-c', L.c); r.setProperty('--beat', L.beat); r.setProperty('--glow', L.glow);
-  top_.src = STUFEN[n];
-  try { await top_.decode(); } catch (e) {}
-  void top_.offsetWidth;
-  top_.classList.add('show');
-  await wait(dauer + 40);
-  base.src = STUFEN[n]; base.alt = ALT[n];
-  try { await base.decode(); } catch (e) {}
-  top_.style.transition = 'none';
-  top_.classList.remove('show');
-  void top_.offsetWidth;
-  top_.style.transition = '';
-  stufe = n; document.body.dataset.stufe = n;
+  koerper.setAttribute('aria-label', ALT[n]);
 }
+const stufe = n => zeigeMix(n);
+/* Erholungsweg (bewusste Runden): Wert v 0 … 3 auf der Stufenfolge 4 → 1 → 0 → 5 */
+const WEG = [4, 1, 0, 5];
+function weg(v){ const f = Math.floor(v), c = Math.min(3, Math.ceil(v)); zeigeMix(WEG[f], WEG[c], v - f); }
+
+/* ---------- Netz ---------- */
+const ICONS = {
+  stall:'<path d="M-7 -1 L0 -7 L7 -1"/><rect x="-5" y="-1" width="10" height="7" rx="1"/>',
+  feed:'<rect x="-4.5" y="-7" width="9" height="14" rx="2"/><path d="M-2 -3h4M-2 0h4M-2 3h4"/>',
+  ged:'<g transform="translate(-11.6 -12) scale(.96)" stroke-width="1.75"><path d="M12.6 17.2C11 18.6 8.2 18.4 7 16.8C4.6 17 2.9 15 3.4 12.9C2.2 11.6 2.6 9.4 4.2 8.8C4.2 6.4 6.4 4.8 8.6 5.4C9.8 3.8 12.6 3.4 14.2 4.8C16.6 4.2 19.2 5.8 19.6 8.2C21.4 9 21.8 11.6 20.6 13C20.8 15.2 18.8 16.8 16.8 16.4C15.8 17.6 13.8 17.8 12.6 17.2Z"/><path d="M13.6 17.4L14.4 20.6M8.6 5.4C8 7 8.8 8.6 10.4 8.8M14.2 4.8C13.4 6.4 14.2 8 15.8 8.2M4.2 8.8C5.4 9.6 7 9.4 7.8 8.4M3.4 12.9C5 12.6 6.4 13.4 6.8 14.8M10 11.6C11.4 10.8 13.4 11.4 13.8 13M16.4 11C17.6 11.4 18.2 12.6 17.8 13.8"/></g>',
+  koerper:'<path d="M0 6.5s-6.5-3.8-6.5-8.4A3.5 3.5 0 0 1 0 -4a3.5 3.5 0 0 1 6.5 2.1C6.5 2.7 0 6.5 0 6.5z"/>',
+  zustand:'<rect x="-6" y="-4" width="11" height="8" rx="1.6"/><path d="M6.5 -1.5v3M-3.5 -1.5v3"/>'
+};
+const K = {
+  stall:  {x:44,  y:30,  lb:'Hühnerstall', lx:44,  ly:62,  a:'middle'},
+  feed:   {x:316, y:30,  lb:'Feed',        lx:316, ly:62,  a:'middle'},
+  fokus:  {x:180, y:30,  lb:'Türsteher',   lx:204, ly:22,  a:'start'},
+  ged:    {x:180, y:104, lb:'Gedanken',    lx:204, ly:108, a:'start'},
+  koerper:{x:64,  y:154, lb:'Körper',      lx:64,  ly:186, a:'middle'},
+  zustand:{x:296, y:154, lb:'Zustand',     lx:296, ly:186, a:'middle'}
+};
+const R = 17;
+/* Kanten: [id, von, nach, beidseitig] */
+const KANTEN = [
+  ['sf','stall','fokus',0], ['sg','stall','ged',0],
+  ['ff','feed','fokus',0],  ['fg','feed','ged',0],
+  ['fo','fokus','ged',0],
+  ['gk','ged','koerper',1], ['gz','ged','zustand',1], ['kz','koerper','zustand',1]
+];
+const NS = 'http://www.w3.org/2000/svg';
+const gK = $('kanten'), gN = $('knoten');
+function linie(a, b, beid){
+  const A = K[a], B = K[b], dx = B.x - A.x, dy = B.y - A.y, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
+  const o = R + 3;
+  return `M${(A.x + ux * o).toFixed(1)} ${(A.y + uy * o).toFixed(1)} L${(B.x - ux * o).toFixed(1)} ${(B.y - uy * o).toFixed(1)}`;
+}
+const KE = {};
+for (const [id, a, b, beid] of KANTEN){
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', linie(a, b)); p.setAttribute('class', 'kante'); p.dataset.beid = beid ? '1' : '';
+  gK.appendChild(p); KE[id] = p;
+}
+/* Rückweg Zustand → Handy → Feed (rechts außen) */
+(() => {
+  const p = document.createElementNS(NS, 'path');
+  p.setAttribute('d', 'M311 141 C 350 118, 352 74, 324 49');
+  p.setAttribute('class', 'kante');
+  gK.appendChild(p); KE.zf = p;
+  const h = document.createElementNS(NS, 'g');
+  h.setAttribute('class', 'handy'); h.setAttribute('transform', 'translate(345 96)');
+  h.innerHTML = '<rect x="-6" y="-10" width="12" height="20" rx="2.6"/><path d="M-2 6.5h4" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>';
+  gK.appendChild(h); KE.handy = h;
+})();
+const KN = {};
+for (const [id, k] of Object.entries(K)){
+  const g = document.createElementNS(NS, 'g');
+  g.setAttribute('class', 'knoten'); g.setAttribute('id', 'k-' + id);
+  let inner = `<g transform="translate(${k.x} ${k.y})"><circle class="r" r="${R}"/>`;
+  inner += id === 'fokus'
+    ? `<image href="kette-tuersteher.webp" x="-17" y="-17" width="34" height="34" clip-path="url(#clipT)" preserveAspectRatio="xMidYMid slice"/><circle class="ring" r="${R}"/>`
+    : `<g class="ic">${ICONS[id]}</g>`;
+  inner += `</g><text x="${k.lx}" y="${k.ly}" text-anchor="${k.a}">${k.lb}</text>`;
+  g.innerHTML = inner; gN.appendChild(g); KN[id] = g;
+}
+function kn(id, cls){ KN[id].classList.remove('an','gr'); if (cls) KN[id].classList.add(cls); }
+function ka(id, ...cls){
+  const e = KE[id]; e.classList.remove('an','gr','zieh','leise','bruch','still'); if (cls.length) e.classList.add(...cls.filter(Boolean));
+  const m = `url(#pf-${cls.includes('an') ? 'o' : cls.includes('gr') ? 'gr' : 'g'})`;
+  if (cls.includes('bruch')) e.removeAttribute('marker-end'); else e.setAttribute('marker-end', m);
+  if (e.dataset.beid) e.setAttribute('marker-start', m);
+}
+function netzReset(){ Object.keys(KN).forEach(id => kn(id)); Object.keys(KE).forEach(id => { if (id !== 'handy') ka(id); }); KE.handy.setAttribute('class', 'handy'); }
+function blitz(ids){ ids.forEach(id => { KN[id].classList.add('blitz'); setTimeout(() => KN[id].classList.remove('blitz'), 260); }); }
+/* Prägung wird mit jeder Runde dicker */
+let praegung = 1.6;
+function praegeStaerke(w){ praegung = w; ['sf','sg'].forEach(id => KE[id].style.strokeWidth = w); }
+function gruenStaerke(w){ ['fo','gk','gz','kz'].forEach(id => KE[id].style.strokeWidth = w); }
 
 /* ---------- Panel ---------- */
-function zeige({lbl = '', h = '', hKlasse = '', p = '', btn = null, btnKlasse = '', onBtn = null}){
-  panel.innerHTML = `${lbl ? `<div class="lbl fade">${lbl}</div>` : ''}<h2 class="fade ${hKlasse}">${h}</h2><p class="fade">${p}</p>${btn ? `<button type="button" class="btn ${btnKlasse}">${btn}</button>` : ''}`;
-  const b = panel.querySelector('button');
-  if (b && onBtn) { b.addEventListener('click', onBtn, {once:true}); }
+const panel = $('panel'), badge = $('badge');
+let lauf = 0;   /* Token, um laufende Abläufe abzubrechen */
+const wait = ms => new Promise(r => setTimeout(r, REDUZIERT ? Math.min(ms, 700) : ms));
+function zeige({lbl = '', h = '', hKlasse = '', p = '', extra = '', btn = null, btnKlasse = '', onBtn = null, mini = ''}){
+  panel.innerHTML = `${lbl ? `<div class="lbl fade">${lbl}</div>` : ''}${h ? `<h2 class="fade ${hKlasse}">${h}</h2>` : ''}${p ? `<p class="fade">${p}</p>` : ''}${extra}${btn ? `<button type="button" class="btn ${btnKlasse}">${btn}</button>` : ''}${mini ? `<p class="mini fade">${mini}</p>` : ''}`;
+  panel.scrollTop = 0; panel.classList.remove('tippbar');
+  const b = panel.querySelector('button.btn');
+  if (b && onBtn) b.addEventListener('click', onBtn, {once:true});
   return b;
 }
-function rundeZeigen(n){ runde.textContent = n ? `Runde ${n}` : ''; runde.classList.toggle('show', !!n); }
+function zeigeBadge(t){ badge.textContent = t || ''; badge.classList.toggle('show', !!t); }
+/* Lesedauer: 300 ms pro Wort, mindestens 3,5 s (Marco: ≥ 250 ms/Wort, mind. 3 s) */
+function leseMs(...t){ const w = t.join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length; return Math.max(3500, w * 300); }
+/* Text-Karte, die von selbst weiterläuft: Fortschrittsbalken + Hinweis; Tippen auf die Karte = sofort weiter */
+function zeigeAuto(o){
+  const ms = leseMs(o.h || '', o.p || '');
+  zeige({...o, extra:(o.extra || '') + '<div class="lauf" aria-hidden="true"><span class="bar"><i></i></span><span class="lt">läuft von selbst · tippen = weiter</span></div>'});
+  panel.classList.add('tippbar');
+  const i = panel.querySelector('.lauf i');
+  return new Promise(res => {
+    let fertig = false, to = null;
+    const weiter = () => { if (fertig) return; fertig = true; clearTimeout(to); panel.removeEventListener('click', weiter); panel.classList.remove('tippbar'); res(); };
+    requestAnimationFrame(() => requestAnimationFrame(() => { i.style.transition = `width ${ms}ms linear`; i.style.width = '100%'; }));
+    to = setTimeout(weiter, ms);
+    setTimeout(() => { if (!fertig) panel.addEventListener('click', weiter); }, 60);   /* erst nach dem auslösenden Klick lauschen */
+  });
+}
 
-/* ---------- Ablauf ---------- */
+/* ---------- Teil 1: negativ, Runde 1 von Hand (4 Karten) ---------- */
+const R1 = [
+  {h:'Wer schreibt deine <span class="a">Gästeliste?</span>', p:'<strong>Dein Hühnerstall:</strong> Eltern und Umfeld haben deine erste Gästeliste geschrieben – lange vor deinem ersten Feed. Und sie schreiben bis heute mit. <strong>Dein Feed:</strong> Heute schreibt auch der Algorithmus mit. Dein Gehirn springt auf Negatives stärker an – also bekommst du mehr davon.',
+   async tu(t){ kn('stall','an'); ka('sf','an'); ka('sg','an'); blitz(['stall']); await wait(700); if (t !== lauf) return; kn('feed','an'); ka('ff','an'); ka('fg','an'); blitz(['feed']); }},
+  {h:'Dein <span class="a">Türsteher</span> und deine <span class="a">Gedanken</span>', p:'Der Türsteher lässt nur durch, was auf der Gästeliste steht – und sucht Beweise dafür. Daraus werden Gedanken: Sorgen, Vergleiche, Worst Case. Hühnerstall und Feed wirken dabei gleichzeitig mit.',
+   async tu(t){ kn('fokus','an'); blitz(['fokus']); ka('fo','an'); await wait(700); if (t !== lauf) return; kn('ged','an'); blitz(['ged']); }},
+  {h:'Dein <span class="a">Körper</span> glaubt es', p:'Cortisol und Adrenalin steigen – obwohl du nur auf dem Sofa sitzt. Dein Zustand: müde, gereizt, leer. Gedanken, Körper und Zustand schaukeln sich gegenseitig hoch.',
+   async tu(t){ ka('gk','an'); kn('koerper','an'); blitz(['koerper']); stufe(1); await wait(800); if (t !== lauf) return; ka('gz','an'); ka('kz','an'); kn('zustand','an'); blitz(['zustand']); stufe(2); }},
+  {h:'Und warum greifst du <span class="a">jetzt zum Handy?</span>', p:'Dein Gehirn ist auf schnelle Kicks trainiert. Alles, was Geduld braucht, fühlt sich anstrengend an. Wenn du müde und gereizt bist, ist der nächste Scroll der bequemste Weg – <strong>und er füttert deine Gästeliste von vorn.</strong>',
+   async tu(){ ka('zf','an'); KE.handy.setAttribute('class','handy an'); blitz(['feed']); }}
+];
 function start(){
-  lauf++; ketteReset(); rundeZeigen(0); document.body.classList.remove('ruhig');
+  lauf++; netzReset(); praegeStaerke(1.6); gruenStaerke(1.6); zeigeBadge(''); stufe(0);
+  document.body.classList.remove('bewusst');
+  document.documentElement.style.setProperty('--flow', '1.1s');
   $('ende').hidden = true; $('app').hidden = false;
-  if (stufe !== 0) zuStufe(0, 1);
-  zeige({lbl:'Kurze Wiederholung — das große Ganze', h:'Die <span class="a">Kette</span>', p:'Fünf Glieder. Ein Kreislauf. Sieh zu, was er mit deinem Körper macht.', btn:'Kette starten →', btnKlasse:'pulse', onBtn:() => runde1(0)});
+  zeige({lbl:'Kapitel 1 bis 3 in einem Bild', h:'Der <span class="a">Kreislauf</span>', p:'Was du reinlässt, was du denkst, wie es dir geht – alles hängt zusammen. Und vieles läuft gleichzeitig. Spiel es einmal durch.', btn:'Los geht’s →', btnKlasse:'pulse', onBtn:() => runde1(0)});
 }
 function runde1(i){
-  rundeZeigen(1); glied(i);
-  const g = GLIEDER[i];
-  zeige({h:g.titel, p:g.zeile, btn:'Weiter →', onBtn:() => i < 4 ? runde1(i + 1) : nachRunde1()});
+  const t = ++lauf;
+  zeigeBadge('Runde 1'); R1[i].tu(t);
+  zeige({h:R1[i].h, p:R1[i].p, btn: i < R1.length - 1 ? 'Weiter →' : 'Nächste Runde →', onBtn:() => i < R1.length - 1 ? runde1(i + 1) : autoRunden()});
 }
-function nachRunde1(){
-  ketteFertig();
-  zeige({h:'Und es geht <span class="a">von vorne los.</span>', p:'', btn:'Nächste Runde →', onBtn:autoRunden});
-}
+
+/* ---------- Runden 2–4 automatisch (Text bleibt stehen, Balken zeigt Weiterlauf), dann endlos ---------- */
+const WELLE = [['stall','feed'], ['fokus','ged'], ['koerper','zustand'], ['feed']];
+let tempo = 520;
+async function welle(t){ for (const g of WELLE){ if (t !== lauf) return; blitz(g); await wait(tempo); } }
+async function wellen(t){ while (t === lauf){ await welle(t); await wait(REDUZIERT ? 400 : 120); } }
 async function autoRunden(){
   const t = ++lauf;
-  /* Runde 2 halbautomatisch, Runden 3–5 automatisch und immer schneller (ohne Flackern) */
-  const tempo = REDUZIERT ? [600,600,600,600] : [500,380,260,170];
-  for (let r = 0; r < tempo.length; r++){
+  Object.keys(KN).forEach(id => kn(id,'an')); Object.keys(KE).forEach(id => { if (id !== 'handy') ka(id,'an'); }); KE.handy.setAttribute('class','handy an');
+  const TEXT = [
+    {h:'Alles läuft <span class="a">gleichzeitig</span>', p:'Hühnerstall und Feed schreiben weiter mit. Gedanken, Körper und Zustand schaukeln sich hoch – und der nächste Scroll füttert die Gästeliste.'},
+    {h:'<span class="a">Autopilot …</span>', p:'Du musst nichts mehr tun. Der Kreislauf läuft von allein.'},
+    {h:'<span class="a">Immer schneller …</span>', p:'Und jede Runde bestätigt die Gästeliste ein bisschen mehr.'}
+  ];
+  const TEMPO = [520, 360, 230], FLOW = ['.9s', '.6s', '.4s'];
+  tempo = TEMPO[0]; wellen(t);
+  for (let r = 0; r < 3; r++){
     if (t !== lauf) return;
-    ketteReset(); rundeZeigen(r + 2);
-    if (r === 0) zeige({h:'', p:''});
-    if (r === 1) zeige({h:'<span class="a">Erkennst du das Muster?</span>', p:'Autopilot …'});
-    if (r === 3) zeige({h:'<span class="a">Erkennst du das Muster?</span>', p:'Immer schneller …'});
-    for (let i = 0; i < 5; i++){
-      if (t !== lauf) return;
-      glied(i);
-      if (r === 0) panel.querySelector('h2').innerHTML = GLIEDER[i].lb;
-      await wait(tempo[r]);
-    }
-    ketteFertig();
-    await wait(r === 0 ? 900 : 120);
+    zeigeBadge(`Runde ${r + 2}`);
+    tempo = TEMPO[r];
+    document.documentElement.style.setProperty('--flow', REDUZIERT ? '1.1s' : FLOW[r]);
+    praegeStaerke(1.6 + (r + 1) * 0.6);
+    stufe(Math.min(3 + r, 4));
+    await zeigeAuto(TEXT[r]);
   }
   if (t !== lauf) return;
-  endlos(t, REDUZIERT ? 600 : 150);
+  zeigeBadge(''); tempo = REDUZIERT ? 600 : 180;
   haltenAnbieten();
-}
-/* Die Kette läuft weiter, bis gestoppt wird */
-async function endlos(t, ms){
-  rundeZeigen(0);
-  let i = 0;
-  while (t === lauf){ if (i === 0) ketteReset(); glied(i); i = (i + 1) % 5; await wait(ms); }
 }
 function haltenAnbieten(){
   const b = zeige({h:'Stopp den <span class="a">Autopiloten</span>', p:'Halt den Button 2 Sekunden gedrückt.', btn:'<span class="fill"></span><span>Halt gedrückt, um zu stoppen</span>', btnKlasse:'halten'});
@@ -349,27 +444,101 @@ function haltenAnbieten(){
   b.addEventListener('keydown', los);
   b.addEventListener('contextmenu', e => e.preventDefault());
 }
-async function stopp(){
-  lauf++; ketteReset(); rundeZeigen(0);
-  document.documentElement.style.setProperty('--beat', '3.2s');
-  zeige({h:'STOP', hKlasse:'big', p:'Genau so läuft es: <strong>Tag für Tag, auf Autopilot.</strong>', btn:'Wie komme ich raus? →', btnKlasse:'gruen', onBtn:raus});
+function stopp(){
+  lauf++; zeigeBadge('');
+  Object.keys(KE).forEach(id => { if (id !== 'handy') KE[id].classList.add('still'); });
+  zeige({h:'STOP', hKlasse:'big', p:'Genau so läuft es: <strong>Tag für Tag, auf Autopilot.</strong>', btn:'Wie komme ich raus? →', btnKlasse:'gruen', onBtn:() => resetKarte(1)});
 }
-async function raus(){
+
+/* ---------- Teil 2: drei bewusste Runden – je Mini-Reset (1 Tap) + Fokus (1 Tap) ---------- */
+/* Wortlaut wie k01 Mind-Hack: „Mini-Reset“, „3 × sehen – 2 × fühlen – 1 × hören.“ */
+const SINNE = [
+  {lb:'3 × sehen', ic:'<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/>'},
+  {lb:'2 × fühlen', ic:'<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5a6.5 6.5 0 0 1-6.5 6.5h-.6a6 6 0 0 1-4.6-2.2L3.6 15a1.6 1.6 0 0 1 2.4-2l2 2"/>'},
+  {lb:'1 × hören', ic:'<path d="M6 9.5a6 6 0 1 1 12 0c0 3.5-3 4.2-3 7a3 3 0 0 1-5.2 2"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0"/>'}
+];
+const sinneHTML = () => `<div class="sinne" id="sinne">${SINNE.map(s => `<div class="sinn"><span class="kr"><svg viewBox="0 0 24 24" aria-hidden="true">${s.ic}</svg></span>${s.lb}</div>`).join('')}</div>`;
+const STAND = [null, {nachReset:0.45, nachRunde:1.0, rueck:0.75}, {nachReset:1.25, nachRunde:2.0, rueck:1.8}, {nachReset:2.25, nachRunde:3.0}];
+let wv = 0;
+function unterbrochen(){
+  Object.keys(KN).forEach(id => kn(id));
+  ['sf','sg','ff','fg','fo','gk','gz','kz'].forEach(id => ka(id, 'leise'));
+  ka('zf', 'bruch'); KE.handy.setAttribute('class','handy aus');
+}
+const RUECK = {
+  2:{h:'Der alte Kreislauf <span class="a">meldet sich</span>', p:'Eine Nachricht, ein Reiz, ein müder Moment – und der Autopilot will wieder übernehmen. Das ist normal. Unterbrich ihn wieder.'},
+  3:{h:'Schon wieder <span class="a">der Feed</span>', p:'Er zieht noch. Aber diesmal bist du schneller dran. Noch einmal unterbrechen.'}
+};
+/* Karte mit Mini-Reset-Knopf (p = Nummer der bewussten Runde, die damit beginnt) */
+function resetKarte(p){
+  lauf++;
+  document.body.classList.add('bewusst');
+  zeigeBadge(`Bewusst ${p}/3`);
+  if (p === 1) { wv = 0; unterbrochen(); }
+  const txt = p === 1
+    ? {h:'Unterbrich den <span class="g">Kreislauf</span>', p:'Mit dem Mini-Reset aus Kapitel 1: 3 × sehen – 2 × fühlen – 1 × hören. Mach ihn kurz wirklich mit.'}
+    : RUECK[p];
+  const b = zeige({...txt, extra:sinneHTML(), btn:'Mini-Reset starten', btnKlasse:'gruen'});
+  b.addEventListener('click', () => miniReset(p, b), {once:true});
+}
+async function miniReset(p, b){
   const t = ++lauf;
-  document.body.classList.add('ruhig');
-  zeige({h:'Der <span class="g">5-Sinne-Shift</span>', p:'Atme einmal tief durch: zurück ins Jetzt. Dann wähle bewusst, wohin dein Fokus geht.'});
-  const a = $('atem'); a.classList.remove('on'); void a.offsetWidth; a.classList.add('on');
-  await wait(1200);
+  b.disabled = true; b.classList.add('aus');
+  unterbrochen();
+  document.documentElement.style.setProperty('--flow', '1.4s');
+  const S = [...document.querySelectorAll('#sinne .sinn')];
+  for (let i = 0; i < 3; i++){
+    if (t !== lauf) return;
+    S.forEach((s, j) => { s.classList.toggle('ok', j < i); s.classList.toggle('jetzt', j === i); });
+    await wait(p === 1 ? 1600 : 1000);
+  }
   if (t !== lauf) return;
-  await zuStufe(5, REDUZIERT ? 400 : 1800);
-  await wait(1100);
-  if (t !== lauf) return;
-  ketteFertig();
-  const b = document.createElement('button');
-  b.type = 'button'; b.className = 'btn gruen'; b.textContent = 'Gesamtbild zeigen →';
-  b.addEventListener('click', ende, {once:true});
-  panel.appendChild(b);
+  S.forEach(s => { s.classList.add('ok'); s.classList.remove('jetzt'); });
+  wv = STAND[p].nachReset; weg(wv);
+  await wait(500);
+  if (t === lauf) fokusKarte(p);
 }
+function fokusKarte(p){
+  const txt = {
+    1:{h:'Kurz <span class="g">Ruhe</span>', p:'Der Autopilot ist unterbrochen – noch nicht ausgeschaltet. Jetzt entscheidest du, was auf deine Gästeliste kommt: Richte deinen Fokus bewusst auf Chancen statt auf Probleme.'},
+    2:{h:'Wieder ein <span class="g">Moment</span>', p:'Und wieder entscheidest du: Fokus bewusst auf Chancen statt auf Probleme.'},
+    3:{h:'Noch ein <span class="g">Moment</span>', p:'Langsam wird es vertrauter. Fokus bewusst neu ausrichten.'}
+  }[p];
+  zeige({...txt, btn:'Fokus bewusst neu ausrichten →', btnKlasse:'gruen pulse-g', onBtn:() => bewussteRunde(p), mini: p === 1 ? 'Wie das im Alltag konkret geht, zeigt dir gleich der Mind-Hack.' : ''});
+}
+async function bewussteRunde(p){
+  const t = ++lauf;
+  gruenStaerke(1.6 + p * 0.8);
+  ka('sf','an','leise'); ka('sg','an','leise'); kn('stall','an');
+  kn('fokus','gr'); blitz(['fokus']);
+  const anim = (async () => {
+    await wait(600); if (t !== lauf) return;
+    ka('fo','gr','zieh'); kn('ged','gr'); blitz(['ged']); await wait(600); if (t !== lauf) return;
+    ka('gk','gr','zieh'); ka('gz','gr','zieh'); ka('kz','gr','zieh'); kn('koerper','gr'); kn('zustand','gr'); blitz(['koerper','zustand']);
+    wv = STAND[p].nachRunde; weg(wv);
+  })();
+  if (p < 3){
+    const txt = p === 1
+      ? {h:'Ein Stück <span class="g">leichter</span>', p:'Dein Türsteher lässt jetzt auch Chancen durch, nicht nur Probleme. Dein Hühnerstall schreibt weiter mit – aber jetzt schreibst du auch.'}
+      : {h:'Schon <span class="g">leichter</span>', p:'Der neue Weg ist noch ein Trampelpfad. Mit jeder bewussten Runde wird er breiter.'};
+    await zeigeAuto(txt); await anim;
+    if (t !== lauf) return;
+    rueckfall(p);
+  } else {
+    await anim;
+    if (t !== lauf) return;
+    zeigeBadge('');
+    zeige({h:'Aus dem Trampelpfad wird eine <span class="g">Straße</span>', p:'In echt dauert das Wochen, nicht drei Runden. Der alte Kreislauf ist auch nicht in ein paar Tagen entstanden. <strong>Aber jede bewusste Wiederholung zählt.</strong>', btn:'Gesamtbild zeigen →', btnKlasse:'gruen', onBtn:ende});
+  }
+}
+function rueckfall(p){
+  /* der alte Kreislauf meldet sich: Feed + Handy ziehen, Zustand rutscht etwas zurück */
+  ka('zf','an'); KE.handy.setAttribute('class','handy an'); ka('ff','an'); ka('fg','an'); kn('feed','an'); blitz(['feed']);
+  wv = STAND[p].rueck; weg(wv);
+  resetKarte(p + 1);
+}
+
+/* ---------- Ende ---------- */
 function ende(){
   lauf++;
   $('app').hidden = true;
@@ -379,7 +548,6 @@ function ende(){
 function zurueck(){ if (window.parent !== window) parent.postMessage({kk:'zurueck'}, '*'); else location.href = '../../#/'; }
 $('fertig').addEventListener('click', zurueck);
 $('nochmal').addEventListener('click', start);
-
 start();
 </script>
 <script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});</script>
