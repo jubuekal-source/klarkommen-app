@@ -6,153 +6,139 @@
 <meta name="color-scheme" content="dark">
 <title>Der Kreislauf – Klarkommen</title>
 <link rel="stylesheet" href="../../fonts/fonts.css">
-<!-- Schaubild „Der Kreislauf“ (id kausalkette, v1.3.17, überarbeitet v1.3.18 – berichte/code-v1318-kreislauf-runde2.md) – ersetzt Variante A „Kette verstehen“.
-     Bericht: berichte/code-v1317-schaubild-kreislauf.md · Analyse: berichte/analyse-kette-verstehen-2026-11-09.md
-     Modell: Netz statt Linie. Hühnerstall + Feed wirken parallel auf Türsteher (Fokus) und Gedanken; Gedanken ↔ Körper ↔ Zustand wechselseitig; Zustand → Handy → Feed.
-     Ablauf (v1.3.18): Start → Runde 1 (4 Karten, Tap) → Runden 2–4 automatisch (Lesebalken, Tippen = weiter) → Halten (2 s) → STOP →
-             3 bewusste Runden (je: Mini-Reset 3-2-1 = 1 Tap → „Fokus bewusst neu ausrichten“ = 1 Tap → grüne Runde → alter Kreislauf meldet sich) → Gesamtbild (Abwärts · Der bewusste Moment · Aufwärts).
-     Körperbild: 6 deckungsgleiche Stufen, Zwischenzustände per Mischung zweier Stufen (opacity). -->
+<!-- Schaubild „Der Kreislauf“ (id kausalkette, v1.3.19, Fassung v3) – berichte/code-v1319-kreislauf-v3.md · Texte: spec/09a_schaubild-kreislauf-v3-texte.md
+     Modell: Einflussfeld statt Ring. Hühnerstall + Social Media wirken gleichzeitig und dauerhaft → Türsteher → Gedanken ↔ Körper & Energie;
+     Rückweg Körper & Energie → Handy-Griff → Social Media. Kern: Energieanzeige + Körperbild.
+     Körperbild: 6 deckungsgleiche Stufen (0 ruhig, 1 leicht besorgt, 2 angespannt, 3 Alarm, 4 erschöpft, 5 erholt), Mischung per opacity.
+     Abwärts: 0 → 1 → 2 → 3 → 4 · Aufwärts (bewusst): 4 → 1 → 0 → 5. -->
 <style>
-:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--bg-input:#1c2e40;--accent:#f97316;--accent-glow:rgba(249,115,22,.25);--accent-soft:#fb923c;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,.12);--healthy:#7DD3C0;--healthy-dark:#5BB8A5;--toxic-red:#B41928;--radius:16px;
-  --pulse-c:var(--healthy);--beat:2.4s;--fade:700ms;--flow:1.1s}
+:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--accent:#f97316;--accent-glow:rgba(249,115,22,.25);--accent-soft:#fb923c;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,.12);--healthy:#7DD3C0;--toxic-red:#B41928;--radius:16px;--flow:1.1s;
+  --font-h:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;--font-t:'DM Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{overflow-x:clip;max-width:100%}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-deep);color:var(--text-primary);min-height:100dvh;overflow:hidden;-webkit-tap-highlight-color:transparent}
+body{font-family:var(--font-t);background:var(--bg-deep);color:var(--text-primary);min-height:100dvh;-webkit-tap-highlight-color:transparent}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,rgba(249,115,22,.06),transparent 50%);pointer-events:none;z-index:0}
-.app{position:relative;z-index:1;height:100dvh;display:flex;flex-direction:column;align-items:center;padding:8px 14px calc(10px + env(safe-area-inset-bottom,0px));gap:4px}
+.app{position:relative;z-index:1;height:calc(100vh - var(--kk-h));height:calc(100dvh - var(--kk-h));display:flex;flex-direction:column;align-items:center;padding:6px 14px calc(10px + env(safe-area-inset-bottom,0px));gap:6px}
+.grafik{flex:1 1 auto;min-height:0;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:6px}
 
-/* Körperbild: 6 deckungsgleiche Ebenen, Mischung per opacity */
-.stage{width:var(--sz);flex:0 0 auto;--sz:min(100%,27dvh,280px)}
-.koerper{position:relative;width:var(--sz);aspect-ratio:1/1;border-radius:var(--radius);overflow:hidden;background:#13202d;box-shadow:0 0 0 1px var(--border),0 0 28px var(--glow,rgba(125,211,192,.18));transition:box-shadow var(--fade) ease}
-.koerper img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;user-select:none;-webkit-user-drag:none;opacity:0;transition:opacity var(--fade) ease}
-.badge{position:absolute;top:7px;left:7px;font:700 .64rem/1 'Space Grotesk',sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-soft);background:rgba(15,25,35,.78);border:1px solid rgba(249,115,22,.3);border-radius:20px;padding:.3rem .55rem;opacity:0;transition:opacity .3s}
-.badge.show{opacity:1}
-body.bewusst .badge{color:var(--healthy);border-color:rgba(125,211,192,.35)}
-.puls{width:100%;height:16px;margin-top:4px;overflow:hidden;opacity:.85}
-.puls svg{width:200%;height:100%;display:block;animation:puls var(--beat) linear infinite}
-.puls path{stroke:var(--pulse-c);transition:stroke var(--fade) ease}
-@keyframes puls{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* Umschalter Gesamtbild */
+.schalter{display:flex;flex:0 0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:3px;gap:3px}
+.schalter button{all:unset;box-sizing:border-box;cursor:pointer;min-height:38px;padding:0 1.1rem;border-radius:9px;font:700 .9rem/38px var(--font-h);color:var(--text-secondary);touch-action:manipulation}
+.schalter button[aria-pressed="true"]#s-auto{background:rgba(249,115,22,.18);color:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
+.schalter button[aria-pressed="true"]#s-bew{background:rgba(125,211,192,.16);color:var(--healthy);box-shadow:inset 0 0 0 1.5px var(--healthy)}
+.schalter button:focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
 
 /* Netz */
-.netz{width:100%;max-width:400px;flex:0 0 auto;height:min(178px,23dvh);display:block;overflow:visible}
-.netz .kante{fill:none;stroke:rgba(148,163,184,.18);stroke-width:1.6;stroke-linecap:round;transition:stroke .35s,opacity .35s,stroke-width .5s}
-.netz .kante.an{stroke:var(--accent);stroke-dasharray:5 6;animation:fluss var(--flow) linear infinite}
-.netz .kante.an.still{animation:none}
-.netz .kante.gr{stroke:var(--healthy);stroke-dasharray:none;animation:none}
-.netz .kante.gr.zieh{stroke-dasharray:5 6;animation:fluss var(--flow) linear infinite}
-.netz .kante.leise{opacity:.45}
-.netz .kante.bruch{stroke:rgba(148,163,184,.4);stroke-dasharray:2 7;animation:none}
+.netz{flex:1 1 auto;min-height:0;width:100%;height:100%;display:block;overflow:visible}
+.kante{fill:none;stroke:rgba(148,163,184,.22);stroke-width:1.8;stroke-linecap:round;transition:stroke .35s,opacity .35s,stroke-width .5s}
+.kante.an{stroke:var(--accent);stroke-dasharray:5 6;animation:fluss var(--flow) linear infinite}
+.kante.gr{stroke:var(--healthy);stroke-dasharray:5 6;animation:fluss 1.6s linear infinite}
+.kante.leise{opacity:.45}
+.kante.bruch{stroke:rgba(148,163,184,.4);stroke-dasharray:2 7;animation:none}
+.still .kante{animation:none!important}
 @keyframes fluss{to{stroke-dashoffset:-22}}
-.netz .knoten circle.r{fill:var(--bg-card);stroke:rgba(148,163,184,.25);stroke-width:1.5;transition:stroke .3s,fill .3s}
-.netz .knoten .ic{fill:none;stroke:var(--text-muted);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
-.netz .knoten text{font:600 12.5px 'Space Grotesk',sans-serif;fill:var(--text-muted);transition:fill .3s}
-.netz .knoten.an circle.r{stroke:var(--accent);fill:rgba(249,115,22,.16)}
-.netz .knoten.an .ic{stroke:var(--accent-soft)}
-.netz .knoten.an text{fill:var(--text-primary)}
-.netz .knoten.blitz circle.r{fill:rgba(249,115,22,.4)}
-.netz .knoten.gr circle.r{stroke:var(--healthy);fill:rgba(125,211,192,.14)}
-.netz .knoten.gr .ic{stroke:var(--healthy)}
-.netz .knoten.gr text{fill:var(--text-primary)}
-.netz .knoten.gr.blitz circle.r{fill:rgba(125,211,192,.38)}
-.netz .knoten .ring{fill:none;stroke:rgba(148,163,184,.25);stroke-width:1.5;transition:stroke .3s}
-.netz .knoten.an .ring{stroke:var(--accent)}
-.netz .knoten.gr .ring{stroke:var(--healthy)}
-.netz #k-fokus image{opacity:.55;transition:opacity .3s}
-.netz #k-fokus.an image,.netz #k-fokus.gr image{opacity:1}
-.netz .handy{transition:opacity .3s}
-.netz .handy rect{fill:var(--bg-card);stroke:var(--text-muted);stroke-width:1.5}
-.netz .handy.an rect{stroke:var(--accent);fill:rgba(249,115,22,.22)}
-.netz .handy.aus{opacity:.35}
+.knoten .r{fill:var(--bg-card);stroke:rgba(148,163,184,.28);stroke-width:1.6;transition:stroke .3s,fill .3s}
+.knoten .ic{fill:none;stroke:var(--text-muted);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;transition:stroke .3s}
+.knoten .t{font:600 12.5px var(--font-h);fill:var(--text-secondary);transition:fill .3s}
+.knoten .u{font:500 10.5px var(--font-t);fill:var(--text-muted);transition:fill .3s}
+.knoten{transition:opacity .4s}
+.knoten.an .r{stroke:var(--accent);fill:rgba(249,115,22,.16)}
+.knoten.an .ic{stroke:var(--accent-soft)}
+.knoten.an .t{fill:var(--text-primary)}
+.knoten.an .u{fill:var(--accent-soft)}
+.knoten.gr .r{stroke:var(--healthy);fill:rgba(125,211,192,.14)}
+.knoten.gr .ic{stroke:var(--healthy)}
+.knoten.gr .t{fill:var(--text-primary)}
+.knoten.gr .u{fill:var(--healthy)}
+.knoten.leise{opacity:.6}
+.knoten.dim{opacity:.35}
+.knoten.blitz .r{fill:rgba(249,115,22,.45)}
+.knoten.gr.blitz .r{fill:rgba(125,211,192,.4)}
+#k-tuer image{opacity:.6;transition:opacity .3s}
+#k-tuer.an image,#k-tuer.gr image{opacity:1}
+/* „wirkt immer“: leiser Dauerpuls */
+.immer{fill:none;stroke:var(--accent-soft);stroke-width:1.4;opacity:0;transform-box:fill-box;transform-origin:center;animation:immer 2.6s ease-out infinite}
+.knoten.gr .immer{stroke:var(--healthy)}
+.knoten.leise .immer{animation-duration:4.2s}
+.knoten.dim .immer,.knoten.ohnepuls .immer{animation:none;opacity:0}
+@keyframes immer{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.55);opacity:0}}
+/* Körper & Energie */
+.ring-k{fill:none;stroke-width:3.2;transition:stroke .7s}
+.glow-k{fill:none;stroke-width:10;opacity:.18;transition:stroke .7s}
+.koerperbild image{transition:opacity .7s ease}
+.seg-bg{fill:rgba(148,163,184,.1);stroke:rgba(148,163,184,.25);stroke-width:1}
+.seg{transform-box:fill-box;transform-origin:center bottom;transition:transform .7s ease,fill .7s}
+.e-t{font:700 11px var(--font-h);fill:var(--text-secondary);letter-spacing:.04em}
+#k-koerper .t{font-size:14px}
+.knoten.weg{opacity:0;pointer-events:none}
+#k-buch .r{fill:var(--bg-deep)}
+/* EKG */
+.ekg-lauf{animation:ekg 2.4s linear infinite}
+@keyframes ekg{from{transform:translateX(0)}to{transform:translateX(-200px)}}
+.ekg-linie{fill:none;stroke:#7DD3C0;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round;transition:stroke 1.4s ease}
+.ekg-schatten{fill:none;stroke:rgba(15,25,35,.75);stroke-width:4.5;stroke-linejoin:round;stroke-linecap:round}
 
-/* Text + Buttons */
-.panel{width:100%;max-width:440px;text-align:center;flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;align-items:center;padding:2px 2px 4px}
-.panel .lbl{font:700 .66rem/1.2 'Space Grotesk',sans-serif;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
-.panel h2{font:700 clamp(1.1rem,4.8vw,1.4rem)/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;margin-bottom:.3rem}
-.panel h2 .a{color:var(--accent)}
-.panel h2 .g{color:var(--healthy)}
-.panel h2.big{font-size:clamp(2rem,10vw,2.8rem);color:var(--accent)}
-.panel p{color:var(--text-secondary);font-size:.93rem;line-height:1.5;max-width:400px}
-.panel p strong{color:var(--text-primary)}
-.panel p.mini{font-size:.78rem;color:var(--text-muted);margin-top:.4rem}
-.panel .fade{animation:ein .35s ease}
+/* Textkarte */
+.karte{flex:0 0 auto;width:100%;max-width:440px;min-height:236px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;overflow-y:auto;max-height:52dvh}
+.karte .lbl{font:700 .7rem/1.2 var(--font-h);color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.karte h2{font:700 clamp(1.12rem,4.8vw,1.35rem)/1.2 var(--font-h);letter-spacing:-.02em;margin-bottom:.35rem}
+.karte h2 .a{color:var(--accent)}
+.karte h2 .g{color:var(--healthy)}
+.karte h2.big{font-size:2.4rem;color:var(--accent)}
+.karte p{color:var(--text-secondary);font-size:15px;line-height:1.5;max-width:400px}
+.karte p+p{margin-top:.45rem}
+.karte p strong{color:var(--text-primary)}
+.karte p.mini{font-size:13px;color:var(--text-muted);margin-top:.45rem}
+.fade{animation:ein .35s ease}
 @keyframes ein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;padding:.75rem 1.4rem;margin-top:.7rem;border:2px solid var(--accent);border-radius:12px;background:rgba(249,115,22,.12);color:var(--text-primary);font:700 .98rem/1 'Space Grotesk',sans-serif;cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;transition:background .2s,box-shadow .2s,transform .1s;flex:0 0 auto}
+.btns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:auto;padding-top:.7rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:.75rem 1.3rem;border:2px solid var(--accent);border-radius:12px;background:rgba(249,115,22,.12);color:var(--text-primary);font:700 1rem/1 var(--font-h);cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:manipulation;transition:background .2s,box-shadow .2s,transform .1s}
 .btn:active{transform:scale(.97)}
-.btn:focus-visible,.chip:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
+.btn:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
 .btn.pulse{animation:cta 2s ease-in-out infinite}
 @keyframes cta{0%,100%{box-shadow:0 0 0 0 var(--accent-glow)}50%{box-shadow:0 0 16px 3px var(--accent-glow)}}
 .btn.gruen{border-color:var(--healthy);background:rgba(125,211,192,.12);color:var(--healthy)}
-.btn.sek{border-color:var(--border);background:transparent;color:var(--text-secondary);font-weight:600}
+.btn.gruen.pulse{animation:ctag 2s ease-in-out infinite}
+@keyframes ctag{0%,100%{box-shadow:0 0 0 0 rgba(125,211,192,.3)}50%{box-shadow:0 0 16px 3px rgba(125,211,192,.3)}}
+.btn.sek{border-color:rgba(148,163,184,.3);background:transparent;color:var(--text-secondary);font-weight:600}
+.btn.aus{opacity:.45;pointer-events:none}
 .halten{position:relative;overflow:hidden;border-color:var(--toxic-red);background:rgba(180,25,40,.18)}
 .halten .fill{position:absolute;inset:0;background:rgba(125,211,192,.35);transform-origin:left center;transform:scaleX(0);pointer-events:none}
 .halten.aktiv .fill{transition:transform 2s linear;transform:scaleX(1)}
 .halten span{position:relative}
 /* Mini-Reset 3-2-1 */
 .sinne{display:flex;gap:6px;justify-content:center;margin-top:.55rem}
-.sinn{width:68px;display:flex;flex-direction:column;align-items:center;gap:2px;color:var(--text-muted);font:700 .62rem/1.1 'Space Grotesk',sans-serif}
-.sinn .kr{width:36px;height:36px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--bg-card);transition:all .3s}
-.sinn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.sinn{width:72px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--text-muted);font:700 .72rem/1.1 var(--font-h)}
+.sinn .kr{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--bg-deep);transition:all .3s}
+.sinn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .sinn.ok{color:var(--healthy)}
 .sinn.ok .kr{border-color:var(--healthy);background:rgba(125,211,192,.14);box-shadow:0 0 10px rgba(125,211,192,.25)}
 .sinn.jetzt{color:var(--text-primary)}
-.sinn.jetzt .kr{border-color:var(--healthy)}
-/* Fokus-Chips */
-.chips{display:grid;grid-template-columns:1fr 1fr;gap:6px;width:100%;max-width:400px;margin-top:.55rem}
-.chip{min-height:44px;padding:.5rem .6rem;border-radius:12px;border:1.5px solid rgba(125,211,192,.35);background:rgba(125,211,192,.06);color:var(--text-primary);font:600 .84rem/1.25 'DM Sans',sans-serif;cursor:pointer;touch-action:manipulation}
-.chip:active{transform:scale(.97)}
-.chip.gewaehlt{border-color:var(--healthy);background:rgba(125,211,192,.2)}
-.chip .n{display:block;font-size:.66rem;color:var(--healthy);margin-top:2px}
-/* Auto-Karte: Balken + Hinweis „läuft von selbst“ */
-.lauf{width:100%;max-width:300px;margin-top:.7rem;display:flex;flex-direction:column;align-items:center;gap:4px}
+.sinn.jetzt .kr{border-color:var(--healthy);transform:scale(1.12)}
+/* Auto-Karte */
+.lauf{width:100%;max-width:300px;margin-top:auto;padding-top:.7rem;display:flex;flex-direction:column;align-items:center;gap:5px}
 .lauf .bar{display:block;width:100%;height:4px;border-radius:4px;background:rgba(148,163,184,.18);overflow:hidden}
 .lauf .bar i{display:block;height:100%;width:0;background:var(--accent-soft);border-radius:4px}
 body.bewusst .lauf .bar i{background:var(--healthy)}
-.lauf .lt{font-size:.72rem;color:var(--text-muted)}
-.panel.tippbar{cursor:pointer}
-.btn.aus{opacity:.5}
-.btn.gruen.pulse-g{animation:ctag 2s ease-in-out infinite}
-@keyframes ctag{0%,100%{box-shadow:0 0 0 0 rgba(125,211,192,.3)}50%{box-shadow:0 0 16px 3px rgba(125,211,192,.3)}}
+.lauf .lt{font-size:.75rem;color:var(--text-muted)}
+.karte.tippbar{cursor:pointer}
 [hidden]{display:none!important}
+@media (max-height:560px) and (orientation:portrait){.app{height:auto;min-height:calc(100dvh - var(--kk-h))}.grafik{flex:0 0 auto;height:300px}.karte{position:sticky;bottom:0;max-height:none}}
+.karte.ende .btns{flex-wrap:nowrap}
+.karte.ende .btn{padding:.7rem .95rem}
+@media (max-height:680px){.schalter button{min-height:34px;line-height:34px}}
 
-/* Gesamtbild */
-.ende{position:absolute;inset:0;z-index:2;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;padding:14px 16px calc(24px + env(safe-area-inset-bottom,0px));background:var(--bg-deep)}
-.ende .in{max-width:460px;margin:0 auto;text-align:center}
-.ende h2{font:700 1.3rem/1.2 'Space Grotesk',sans-serif;letter-spacing:-.02em;margin-bottom:.8rem}
-.ende h2 .a{color:var(--healthy)}
-.spiralen{display:grid;gap:8px;text-align:left}
-@media (min-width:620px){.ende .in{max-width:900px}.spiralen{grid-template-columns:1fr 1fr 1fr;align-items:stretch}.spirale.moment{flex-direction:column;align-items:center;text-align:center}}
-.spirale.moment{display:flex;gap:10px;align-items:center;background:rgba(148,163,184,.06);border:1.5px solid rgba(148,163,184,.25)}
-.spirale.moment img{width:76px;height:auto;aspect-ratio:300/521;object-fit:cover;border-radius:10px;flex:0 0 auto;box-shadow:0 0 16px rgba(249,115,22,.25)}
-.spirale.moment h3{color:var(--text-primary)}
-.spirale.moment p{font-size:.82rem;line-height:1.45;color:var(--text-secondary);margin-top:.3rem}
-.spirale.moment p.leise{font-size:.78rem}
-.spirale.moment .g{color:var(--healthy)}
-.spirale.moment .o{color:var(--accent-soft)}
-.spirale li strong{color:var(--text-primary);font-weight:600}
-.spirale{border-radius:14px;padding:.7rem .8rem;min-width:0}
-.spirale.ab{background:rgba(180,25,40,.12);border:1.5px solid rgba(180,25,40,.45)}
-.spirale.auf{background:rgba(125,211,192,.08);border:1.5px solid rgba(125,211,192,.4)}
-.spirale h3{font:700 .92rem/1.2 'Space Grotesk',sans-serif;margin-bottom:.35rem}
-.spirale.ab h3{color:var(--accent-soft)}
-.spirale.auf h3{color:var(--healthy)}
-.spirale ol{list-style:none}
-.spirale li{font-size:.84rem;line-height:1.38;color:var(--text-secondary);padding:.18rem 0 .18rem 1rem;position:relative;overflow-wrap:break-word}
-.spirale li::before{content:'→';position:absolute;left:0;font-weight:700}
-.spirale.ab li::before{color:var(--accent-soft)}
-.spirale.auf li::before{color:var(--healthy)}
-.spirale .zyk{font-size:.78rem;margin-top:.3rem}
-.spirale.ab .zyk{color:var(--accent-soft)}
-.spirale.auf .zyk{color:var(--healthy)}
-.klar{color:var(--text-secondary);font-size:.9rem;line-height:1.55;margin:.9rem auto 0;max-width:420px}
-.klar strong{color:var(--text-primary)}
-.ende .btns{display:grid;gap:8px;margin-top:1.1rem}
-.ende .btns .btn{margin-top:0;width:100%}
-.fuss{margin-top:1.2rem;font-size:.72rem;color:var(--text-muted)}
-
-@media (max-height:700px){.stage{--sz:min(100%,22dvh,280px)}.netz{height:min(178px,24dvh)}.panel p{font-size:.88rem}.btn{margin-top:.5rem;min-height:44px}.puls{height:12px}}
-@media (min-width:560px){.ende .btns{grid-template-columns:1fr 1fr}}
+@media (orientation:landscape) and (min-width:900px){
+  .app{flex-direction:row;justify-content:center;align-items:center;gap:20px;padding:14px 20px}
+  .grafik{max-width:440px;height:100%}
+  .karte{max-width:380px;min-height:300px;max-height:calc(100dvh - var(--kk-h) - 28px)}
+}
+@media (max-height:680px){.karte{min-height:224px;padding:10px 12px}.karte h2{margin-bottom:.25rem}.btn{min-height:44px;padding:.65rem 1.1rem}.sinne{margin-top:.35rem}}
 @media (prefers-reduced-motion:reduce){
-  .puls svg,.btn.pulse,.btn.pulse-g,.panel .fade,.netz .kante.an,.netz .kante.gr.zieh{animation:none}
+  .kante.an,.kante.gr,.immer,.btn.pulse,.btn.gruen.pulse,.fade{animation:none!important}
+  .immer{opacity:0}
+  .ekg-lauf{animation:none!important}
+  .koerperbild image,.seg,.ring-k,.glow-k{transition-duration:.2s}
 }
 </style>
 <style id="kk-bar-css">
@@ -162,392 +148,505 @@ html{padding-top:var(--kk-h)}
 #kk-bar button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;color:#f1f5f9;font:600 15px/1 'DM Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
 #kk-bar button:hover,#kk-bar button:focus-visible{color:#f97316}
 #kk-bar button:focus-visible{outline:2px solid #f97316;outline-offset:-2px;border-radius:8px}
-.app{height:calc(100vh - var(--kk-h))!important;height:calc(100dvh - var(--kk-h))!important}body{min-height:calc(100dvh - var(--kk-h))!important}
-.ende{top:var(--kk-h)!important;position:fixed!important}</style>
+body{min-height:calc(100dvh - var(--kk-h))!important}</style>
 </head>
 <body>
 <div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button></div>
-
 <main class="app" id="app">
-  <div class="stage">
-    <div class="koerper" id="koerper" role="img" aria-label="">
-      <img src="kette-stufe-0.webp" alt="" width="1024" height="1024" decoding="async">
-      <img src="kette-stufe-1.webp" alt="" width="1024" height="1024" decoding="async">
-      <img src="kette-stufe-2.webp" alt="" width="1024" height="1024" decoding="async">
-      <img src="kette-stufe-3.webp" alt="" width="1024" height="1024" decoding="async">
-      <img src="kette-stufe-4.webp" alt="" width="1024" height="1024" decoding="async">
-      <img src="kette-stufe-5.webp" alt="" width="1024" height="1024" decoding="async">
-      <div class="badge" id="badge" aria-hidden="true"></div>
+  <div class="grafik">
+    <div class="schalter" id="schalter" role="group" aria-label="Ansicht wählen" hidden>
+      <button type="button" id="s-auto" aria-pressed="false">Autopilot</button>
+      <button type="button" id="s-bew" aria-pressed="true">Bewusst</button>
     </div>
-    <div class="puls" aria-hidden="true" title="Illustration, keine Messung">
-      <svg viewBox="0 0 400 26" preserveAspectRatio="none"><path fill="none" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" d="M0 15 H40 l6 -2 l5 2 H70 l4 -11 l5 20 l4 -9 H110 l6 -3 l6 3 H200 H240 l6 -2 l5 2 H270 l4 -11 l5 20 l4 -9 H310 l6 -3 l6 3 H400"/></svg>
-    </div>
+    <svg class="netz" id="netz" viewBox="0 0 360 414" preserveAspectRatio="xMidYMid meet" role="img" aria-label="">
+      <defs>
+        <marker id="pf-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#3b4a5c"/></marker>
+        <marker id="pf-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#f97316"/></marker>
+        <marker id="pf-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#7DD3C0"/></marker>
+        <clipPath id="clipT"><circle cx="0" cy="0" r="22"/></clipPath>
+        <clipPath id="clipK"><circle cx="160" cy="306" r="64"/></clipPath>
+        <clipPath id="clipE"><rect x="104" y="326" width="112" height="34"/></clipPath>
+      </defs>
+      <g id="kanten"></g>
+      <g id="knoten"></g>
+    </svg>
   </div>
-
-  <svg class="netz" id="netz" viewBox="0 0 360 190" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-    <defs>
-      <marker id="pf-g" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#3b4a5c"/></marker>
-      <marker id="pf-o" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#f97316"/></marker>
-      <marker id="pf-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9z" fill="#7DD3C0"/></marker>
-      <clipPath id="clipT"><circle cx="0" cy="0" r="17"/></clipPath>
-    </defs>
-    <g id="kanten"></g>
-    <g id="knoten"></g>
-  </svg>
-
-  <section class="panel" id="panel" aria-live="polite"></section>
+  <section class="karte" id="karte" aria-live="polite"></section>
 </main>
 
-<section class="ende" id="ende" hidden aria-labelledby="endeTitel">
-  <div class="in">
-    <h2 id="endeTitel">Der Kreislauf – <span class="a">das Gesamtbild</span></h2>
-    <div class="spiralen">
-      <div class="spirale ab">
-        <h3>Abwärtsspirale</h3>
-        <ol>
-          <li><strong>Hühnerstall + Feed</strong> schreiben die Gästeliste</li>
-          <li>Dein <strong>Türsteher</strong> filtert unbewusst und sucht Beweise</li>
-          <li><strong>Gedanken</strong> lösen Stress aus: Cortisol ↑, Immunsystem fährt runter</li>
-          <li><strong>Zustand</strong> sinkt – Griff zum Handy, Jagd nach schnellen Kicks</li>
-        </ol>
-        <div class="zyk">↻ Teufelskreis</div>
-      </div>
-      <div class="spirale moment">
-        <img src="kette-reset.webp" alt="Junge Frau im Hoodie vor einem leuchtenden Reset-Knopf." width="300" height="521">
-        <div>
-          <h3>Der bewusste Moment</h3>
-          <p><strong class="g">Mini-Reset (3-2-1)</strong><br>Stopp das Abdriften. Komm zurück ins Hier und Jetzt.</p>
-          <p><strong class="o">Bewusster Fokus</strong><br>Entscheide, worauf du deine Aufmerksamkeit richtest.</p>
-          <p class="leise">Anfangs brauchst du den Mini-Reset bewusst. <strong>Später läuft auch die neue Richtung auf Autopilot.</strong></p>
-        </div>
-      </div>
-      <div class="spirale auf">
-        <h3>Aufwärtsspirale</h3>
-        <ol>
-          <li><strong>Bewusstes Wählen</strong> – neue Einträge auf der Gästeliste</li>
-          <li>Dein <strong>Türsteher</strong> findet Chancen, Stärken, Lösungen</li>
-          <li><strong>Gedanken</strong> entspannen: Endorphine ↑, dein Körper kann regenerieren</li>
-          <li>Jede Wiederholung macht den <strong>neuen Weg</strong> breiter</li>
-        </ol>
-        <div class="zyk">↻ Aufwärtsspirale</div>
-      </div>
-    </div>
-    <p class="klar">Wenn die neuen Gedanken zu Autobahnen werden, läuft dieser Kreislauf von selbst – <strong>für dich, nicht gegen dich.</strong></p>
-    <p class="klar">Das heißt nicht, dass du nur Negatives konsumierst. <strong>Aber wegen des Negativity Bias rutschst du leichter in den Teufelskreis.</strong></p>
-    <div class="btns">
-      <button type="button" class="btn gruen" id="fertig">Fertig – zurück zur App</button>
-      <button type="button" class="btn sek" id="nochmal">Nochmal durchspielen</button>
-    </div>
-    <p class="fuss">Klarkommen – Das Update, das dir fehlt</p>
-  </div>
-</section>
-
 <script>
-/* ---------- Körperbild ---------- */
-const ALT = [
-  'Junge Frau im Hoodie, ruhig – Gehirn und Herz leuchten türkis.',
-  'Dieselbe Frau, leicht besorgt – das Gehirn glüht orange.',
-  'Angespannt – Gehirn und Herz glühen orange-rot, Funken am Kopf.',
-  'Alarmmodus – rote Aura, Blitze und Spiralen um den Kopf.',
-  'Erschöpft – gedämpftes Rot, Augenringe, fahles Bildschirmlicht.',
-  'Erholt – Augen geschlossen, ruhiges Lächeln, alles leuchtet wieder türkis.'
-];
-const LOOK = [
-  {c:'#7DD3C0', beat:'2.4s', glow:'rgba(125,211,192,.18)'},
-  {c:'#fb923c', beat:'1.8s', glow:'rgba(249,115,22,.22)'},
-  {c:'#f97316', beat:'1.3s', glow:'rgba(249,115,22,.3)'},
-  {c:'#e0414f', beat:'.8s',  glow:'rgba(180,25,40,.5)'},
-  {c:'#B41928', beat:'.6s',  glow:'rgba(180,25,40,.35)'},
-  {c:'#7DD3C0', beat:'2.8s', glow:'rgba(125,211,192,.35)'}
-];
+/* =================== TEXTE (alle Texte zentral) =================== */
+const TEXTE = {
+  start:{lbl:'Kapitel 1 und 3 in einem Bild', h:'Der <span class="a">Kreislauf</span>',
+    p:'Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen. Und vieles läuft gleichzeitig. Spiel es einmal durch, mit Lea, zwei Wochen vor ihrer Prüfung.',
+    btn:'Los geht’s →'},
+  runde1:[
+    {lbl:'Runde 1 · Was auf Lea einwirkt', h:'<span class="a">Hühnerstall</span> und <span class="a">Social Media</span>',
+     p:'Zu Hause hieß es oft: „Mathe ist halt nicht deins.“ Auf Social Media: Krisen-News, Ragebait und Leute mit 1,0-Schnitt. <strong>Beides wirkt gleichzeitig. Jeden Tag.</strong>'},
+    {lbl:'Runde 1 · Was Lea denkt', h:'<span class="a">Türsteher</span> und <span class="a">Gedanken</span>',
+     p:'Ihr Türsteher findet überall Beweise: jede schwere Aufgabe, jede bessere Kommilitonin. Der Gedanke: <strong>„Ich fall eh durch.“</strong>'},
+    {lbl:'Runde 1 · Wie es Lea geht', h:'<span class="a">Körper & Energie</span>',
+     p:'Herzklopfen am Schreibtisch, nachts wach. <strong>Dein Körper glaubt deinen Gedanken.</strong> Die Energie sinkt.'},
+    {lbl:'Runde 1 · Der Rückweg', h:'Der Griff zum <span class="a">Handy</span>',
+     p:'Die Konzentration ist weg, Lernen fühlt sich zäh an. Klassische Prokrastination: Eine kurze Handypause verspricht einen schnellen Dopamin-Kick. Kurz ein schöner Ausweg, danach mehr Vergleich, mehr Negatives, weniger Zeit. <strong>Die Energie sinkt noch tiefer.</strong>'}
+  ],
+  weiter:'Weiter →', weiterLetzt:'Und dann? →',
+  auto:[
+    {lbl:'Autopilot', h:'Alles läuft <span class="a">gleichzeitig</span>', p:'Der Hühnerstall wirkt weiter. Social Media liefert Nachschub.'},
+    {lbl:'Autopilot', h:'Immer <span class="a">schneller</span>', p:'Je weniger Energie, desto schneller der Griff zum Handy. Aus einem kurzen Blick wird Doomscrolling.'},
+    {lbl:'Autopilot', h:'<span class="a">Dauerstress</span>', p:'Bei Dauerstress fährt sogar dein Immunsystem runter.'},
+    {lbl:'Autopilot', h:'Es läuft <span class="a">von allein</span>', p:'Du merkst es kaum noch. Der Kreislauf dreht sich ohne dich.'}
+  ],
+  autoHinweis:'läuft von selbst · tippen = weiter',
+  halten:{h:'Stopp den <span class="a">Autopiloten</span>', p:'Halt den Knopf 2 Sekunden gedrückt.', btn:'Gedrückt halten zum Stoppen', aria:'Gedrückt halten, um zu stoppen (Leertaste halten geht auch)'},
+  stopp:{h:'STOPP.', p:'So läuft es oft. <strong>Tag für Tag, auf Autopilot.</strong> Der Autopilot sind Muster, die du über Jahre eingeübt hast. Sie sind zur Autobahn im Kopf geworden und laufen ab, ohne dass du es merkst.', btn:'Wie komme ich raus? →'},
+  reset:{
+    1:{lbl:'Bewusst 1/3', h:'Raus aus dem <span class="g">Autopiloten</span>', p:'Mini-Reset aus Kapitel 1: <strong>3 × sehen – 2 × fühlen – 1 × hören.</strong> Mach ihn kurz wirklich mit.'},
+    2:{lbl:'Bewusst 2/3', h:'Abends: schon wieder <span class="a">Social Media</span>', p:'Doomscrolling durch Krisen-News, Ragebait, Trash-TV, dazwischen der perfekte Lernplan von jemand anderem.'},
+    3:{lbl:'Bewusst 3/3', h:'Der <span class="a">Hühnerstall</span> meldet sich', p:'„Mathe ist halt nicht deins.“ Das ist normal, er wirkt weiter. Diesmal bist du schneller dran.'}
+  },
+  resetBtn:'Mini-Reset starten',
+  sinne:['3 × sehen','2 × fühlen','1 × hören'],
+  sinnSchritte:[
+    {h:'3 Dinge <span class="g">sehen</span>', p:'Schau dich um. Nenn dir drei Dinge, die du siehst.'},
+    {h:'2 Dinge <span class="g">fühlen</span>', p:'Spür zwei Dinge: z. B. deine Füße am Boden, den Stoff deiner Kleidung.'},
+    {h:'1 Geräusch <span class="g">hören</span>', p:'Hör hin: Welches Geräusch nimmst du gerade wahr?'}
+  ],
+  sinnLbl:'Mini-Reset', sinnBtn:'Erledigt →',
+  nachReset:{
+    1:{h:'Kurz <span class="g">im Jetzt</span>', p:'Der Autopilot ist unterbrochen. Jetzt richtest du deinen Fokus bewusst neu aus.'},
+    2:{h:'Wieder <span class="g">im Jetzt</span>', p:'Und wieder entscheidest du, worauf du schaust.'},
+    3:{h:'Schon <span class="g">schneller</span> im Jetzt', p:'Es wird vertrauter. Fokus bewusst neu ausrichten.'}
+  },
+  fokusBtn:'Fokus bewusst neu ausrichten →',
+  /* je bewusste Runde 4 Schritte: Türsteher, Gedanken, Körper & Energie, Social-Media-Weg */
+  fokus:{
+    1:[   /* Rückblick auf frühere Erfolge */
+      {h:'Der Türsteher sucht <span class="g">neu</span>', p:'Lea fragt sich: „Was hab ich schon mal geschafft?“ Die Statistik-Klausur letztes Semester zum Beispiel.'},
+      {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Ich hab das schon mal geschafft.“</strong>', mini:'Wie du deinen Fokus neu ausrichtest, zeigt dir gleich der Mind-Hack.'},
+      {h:'<span class="g">Körper & Energie</span>', p:'Das Herz wird ruhiger. Dein Körper glaubt auch diesem Gedanken. Die Energie steigt ein Stück.'},
+      {h:'Bewusst <span class="g">gewählt</span>', p:'Aber jetzt wählst du bewusst, was du reinlässt.'}
+    ],
+    2:[   /* Blick in die Zukunft */
+      {h:'Ein Blick nach <span class="g">vorn</span>', p:'Nächster Tag. Lea stellt sich vor, wie sie ihr Abschlusszeugnis in der Hand hält und mit Freunden feiert.'},
+      {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Ich schaff das.“</strong>'},
+      {h:'Mehr <span class="g">Energie</span>', p:'Die Energie steigt weiter. Der neue Weg wird breiter.'},
+      {h:'Bewusst <span class="g">gewählt</span>', p:'Social Media gehört dazu. Du entscheidest, wie viel und was genau du dir anschaust.'}
+    ],
+    3:[   /* abends: Dankbarkeit */
+      {h:'Abends: <span class="g">Dankbarkeit</span>', p:'Lea fragt sich: „Wofür bin ich heute dankbar?“'},
+      {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Heute war auch Gutes dabei.“</strong>'},
+      {h:'Volle <span class="g">Energie</span>', p:'Ruhiger Puls, mehr Energie.'},
+      {h:'Bewusst <span class="g">gewählt</span>', p:'Gerade die letzten Gedanken vor dem Schlafen und die ersten am Morgen zählen. Du entscheidest, womit du einschläfst.'}
+    ]
+  },
+  /* Unterzeilen Türsteher/Gedanken je bewusste Runde */
+  fokusUnter:{
+    1:{tuer:'findet Erfolge', ged:'„Schon mal geschafft.“'},
+    2:{tuer:'sieht das Ziel', ged:'„Ich schaff das.“'},
+    3:{tuer:'sucht Gutes', ged:'„Heute war Gutes dabei.“'}
+  },
+  fokusLbl:['Türsteher','Gedanken','Körper & Energie','Social Media'],
+  schluss:{h:'Aus dem Trampelpfad wird eine <span class="g">Straße</span>', p:'In echt dauert das Wochen, nicht drei Runden. Der Autopilot ist auch nicht in ein paar Tagen entstanden. <strong>Aber jede bewusste Wiederholung zählt.</strong>', btn:'Gesamtbild zeigen →'},
+  ende:{lbl:'Das Gesamtbild',
+    p1:'Wenn die neuen Gedanken zu Autobahnen werden, läuft es von selbst: <strong>für dich, nicht gegen dich.</strong>',
+    p2:'Wegen des Negativity Bias rutschst du leichter in den Autopiloten. Deshalb braucht die neue Richtung am Anfang deine bewusste Entscheidung.',
+    nochmal:'Nochmal durchspielen', fertig:'Fertig'},
+  /* kleine Unterzeilen an den Elementen */
+  unter:{
+    start:{stall:'wirkt immer', sm:'wirkt immer', tuer:'sucht Beweise', ged:'', koerper:'', handy:'kurzer Kick', buch:'was dich stärkt'},
+    reset:{handy:''},
+    bewusst:{stall:'wirkt weiter, leiser', sm:'bewusst gewählt', tuer:'findet Fortschritte', ged:'„Ich bin weiter.“', handy:'bewusst genutzt', buch:'was dich stärkt'}
+  },
+  gesamt:{
+    auto:{stall:'wirkt immer', sm:'Dauer-Negativ', tuer:'sucht Probleme', ged:'„Ich schaff das nicht.“', koerper:'Stress, leer', handy:'schneller Kick', buch:''},
+    bewusst:{stall:'wirkt weiter, leiser', sm:'bewusst gewählt', tuer:'findet Stärken', ged:'„Ich schaff das.“', koerper:'ruhiger, mehr Energie', handy:'bewusst genutzt', buch:'was dich stärkt'}
+  },
+  namen:{stall:'Hühnerstall', sm:'Social Media', tuer:'Türsteher', ged:'Gedanken', koerper:'Körper & Energie', handy:'Handy-Griff', buch:''},
+  energieWort:['leer','fast leer','niedrig','mittel','gut','voll'],
+  koerperAlt:[
+    'Lea im Hoodie, ruhig: Gehirn und Herz leuchten türkis.',
+    'Lea, leicht besorgt: das Gehirn glüht orange.',
+    'Lea, angespannt: Gehirn und Herz glühen orange-rot.',
+    'Lea im Alarmmodus: rote Aura, Blitze um den Kopf.',
+    'Lea erschöpft: gedämpftes Rot, Augenringe.',
+    'Lea erholt: Augen geschlossen, ruhiges Lächeln, alles türkis.'
+  ]
+};
+
+/* =================== Grundlagen =================== */
+const IMG = {stufen:['kette-stufe-0.webp','kette-stufe-1.webp','kette-stufe-2.webp','kette-stufe-3.webp','kette-stufe-4.webp','kette-stufe-5.webp'], tuer:'kette-tuersteher.webp'};
 const REDUZIERT = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
-const IMGS = [...document.querySelectorAll('#koerper img')];
-const koerper = $('koerper');
-/* zeigeMix(a, b, x): Stufe a, darüber Anteil x von Stufe b (0 … 1) */
-function zeigeMix(a, b, x){
-  if (b === undefined || a === b) { b = a; x = 0; }
-  const unten = Math.min(a, b), oben = Math.max(a, b);
-  const xOben = (oben === b) ? x : 1 - x;
-  IMGS.forEach((im, i) => { im.style.opacity = i === unten ? 1 : (i === oben && oben !== unten ? xOben : 0); });
-  const n = x >= .5 ? b : a, L = LOOK[n], r = document.documentElement.style;
-  r.setProperty('--pulse-c', L.c); r.setProperty('--beat', L.beat); r.setProperty('--glow', L.glow);
-  koerper.setAttribute('aria-label', ALT[n]);
-}
-const stufe = n => zeigeMix(n);
-/* Erholungsweg (bewusste Runden): Wert v 0 … 3 auf der Stufenfolge 4 → 1 → 0 → 5 */
-const WEG = [4, 1, 0, 5];
-function weg(v){ const f = Math.floor(v), c = Math.min(3, Math.ceil(v)); zeigeMix(WEG[f], WEG[c], v - f); }
-
-/* ---------- Netz ---------- */
-const ICONS = {
-  stall:'<path d="M-7 -1 L0 -7 L7 -1"/><rect x="-5" y="-1" width="10" height="7" rx="1"/>',
-  feed:'<rect x="-4.5" y="-7" width="9" height="14" rx="2"/><path d="M-2 -3h4M-2 0h4M-2 3h4"/>',
-  ged:'<g transform="translate(-11.6 -12) scale(.96)" stroke-width="1.75"><path d="M12.6 17.2C11 18.6 8.2 18.4 7 16.8C4.6 17 2.9 15 3.4 12.9C2.2 11.6 2.6 9.4 4.2 8.8C4.2 6.4 6.4 4.8 8.6 5.4C9.8 3.8 12.6 3.4 14.2 4.8C16.6 4.2 19.2 5.8 19.6 8.2C21.4 9 21.8 11.6 20.6 13C20.8 15.2 18.8 16.8 16.8 16.4C15.8 17.6 13.8 17.8 12.6 17.2Z"/><path d="M13.6 17.4L14.4 20.6M8.6 5.4C8 7 8.8 8.6 10.4 8.8M14.2 4.8C13.4 6.4 14.2 8 15.8 8.2M4.2 8.8C5.4 9.6 7 9.4 7.8 8.4M3.4 12.9C5 12.6 6.4 13.4 6.8 14.8M10 11.6C11.4 10.8 13.4 11.4 13.8 13M16.4 11C17.6 11.4 18.2 12.6 17.8 13.8"/></g>',
-  koerper:'<path d="M0 6.5s-6.5-3.8-6.5-8.4A3.5 3.5 0 0 1 0 -4a3.5 3.5 0 0 1 6.5 2.1C6.5 2.7 0 6.5 0 6.5z"/>',
-  zustand:'<rect x="-6" y="-4" width="11" height="8" rx="1.6"/><path d="M6.5 -1.5v3M-3.5 -1.5v3"/>'
-};
-const K = {
-  stall:  {x:44,  y:30,  lb:'Hühnerstall', lx:44,  ly:62,  a:'middle'},
-  feed:   {x:316, y:30,  lb:'Feed',        lx:316, ly:62,  a:'middle'},
-  fokus:  {x:180, y:30,  lb:'Türsteher',   lx:204, ly:22,  a:'start'},
-  ged:    {x:180, y:104, lb:'Gedanken',    lx:204, ly:108, a:'start'},
-  koerper:{x:64,  y:154, lb:'Körper',      lx:64,  ly:186, a:'middle'},
-  zustand:{x:296, y:154, lb:'Zustand',     lx:296, ly:186, a:'middle'}
-};
-const R = 17;
-/* Kanten: [id, von, nach, beidseitig] */
-const KANTEN = [
-  ['sf','stall','fokus',0], ['sg','stall','ged',0],
-  ['ff','feed','fokus',0],  ['fg','feed','ged',0],
-  ['fo','fokus','ged',0],
-  ['gk','ged','koerper',1], ['gz','ged','zustand',1], ['kz','koerper','zustand',1]
-];
 const NS = 'http://www.w3.org/2000/svg';
+const wait = ms => new Promise(r => setTimeout(r, REDUZIERT ? Math.min(ms, 700) : ms));
+const root = document.documentElement.style;
+let lauf = 0;           /* Token: laufende Abläufe abbrechen */
+
+/* =================== Grafik aufbauen =================== */
+const K = {
+  stall:  {x:58,  y:32,  r:19, ic:'<path d="M-8.5 -0.5 L0 -8 L8.5 -0.5"/><rect x="-6" y="-0.5" width="12" height="8.5" rx="1.2"/><path d="M-1.8 8v-4h3.6v4"/>', tx:58, ty:68, a:'middle'},
+  sm:     {x:250, y:32,  r:19, ic:'<rect x="-5.5" y="-9" width="11" height="18" rx="2.4"/><path d="M-2.5 -4.5h5M-2.5 -1h5M-2.5 2.5h3.5"/>', tx:250, ty:68, a:'middle'},
+  tuer:   {x:160, y:116, r:22, img:true, tx:190, ty:113, a:'start'},
+  ged:    {x:160, y:192, r:20, ic:'<g transform="translate(-11.6 -12) scale(.96)" stroke-width="1.75"><path d="M12.6 17.2C11 18.6 8.2 18.4 7 16.8C4.6 17 2.9 15 3.4 12.9C2.2 11.6 2.6 9.4 4.2 8.8C4.2 6.4 6.4 4.8 8.6 5.4C9.8 3.8 12.6 3.4 14.2 4.8C16.6 4.2 19.2 5.8 19.6 8.2C21.4 9 21.8 11.6 20.6 13C20.8 15.2 18.8 16.8 16.8 16.4C15.8 17.6 13.8 17.8 12.6 17.2Z"/><path d="M13.6 17.4L14.4 20.6M8.6 5.4C8 7 8.8 8.6 10.4 8.8M14.2 4.8C13.4 6.4 14.2 8 15.8 8.2M4.2 8.8C5.4 9.6 7 9.4 7.8 8.4M3.4 12.9C5 12.6 6.4 13.4 6.8 14.8M10 11.6C11.4 10.8 13.4 11.4 13.8 13M16.4 11C17.6 11.4 18.2 12.6 17.8 13.8"/></g>', tx:188, ty:189, a:'start'},
+  koerper:{x:160, y:306, r:64, tx:160, ty:392, a:'middle'},
+  handy:  {x:308, y:274, r:17, ic:'<rect x="-5" y="-8.5" width="10" height="17" rx="2.2"/><path d="M-1.8 5.5h3.6"/><path d="M8 -6l3 -3M9 -1.5h4"/>', tx:308, ty:308, a:'middle'},
+  /* Buch sitzt auf dem Rückweg Handy → Social Media (nur im bewussten Zustand sichtbar) */
+  buch:   {x:337, y:148, r:17, ic:'<path d="M0 -5.6C-2.2 -7.3 -5.1 -7.5 -7.8 -6.8V6.1C-5.1 5.4 -2.2 5.6 0 7.3C2.2 5.6 5.1 5.4 7.8 6.1V-6.8C5.1 -7.5 2.2 -7.3 0 -5.6z"/><path d="M0 -5.6V7.3"/>', tx:313, ty:152, a:'end'}
+};
 const gK = $('kanten'), gN = $('knoten');
-function linie(a, b, beid){
+function gerade(a, b, oa, ob){
   const A = K[a], B = K[b], dx = B.x - A.x, dy = B.y - A.y, l = Math.hypot(dx, dy), ux = dx / l, uy = dy / l;
-  const o = R + 3;
-  return `M${(A.x + ux * o).toFixed(1)} ${(A.y + uy * o).toFixed(1)} L${(B.x - ux * o).toFixed(1)} ${(B.y - uy * o).toFixed(1)}`;
+  oa = oa ?? A.r + 4; ob = ob ?? B.r + 5;
+  return `M${(A.x + ux * oa).toFixed(1)} ${(A.y + uy * oa).toFixed(1)} L${(B.x - ux * ob).toFixed(1)} ${(B.y - uy * ob).toFixed(1)}`;
 }
+/* Kanten: id → [Pfad, beidseitig] */
+const KANTEN = {
+  sT:['M80 34 C 122 36, 150 58, 156 89', 0],
+  mT:['M228 34 C 196 36, 170 58, 164 89', 0],
+  tG:[gerade('tuer','ged'), 0],
+  gK:[gerade('ged','koerper', 25, 70), 1],
+  kH:[gerade('koerper','handy', 69, 22), 0],
+  hM:['M316 255 C 350 200, 352 96, 274 42', 0]
+};
 const KE = {};
-for (const [id, a, b, beid] of KANTEN){
+for (const [id, [d, beid]] of Object.entries(KANTEN)){
   const p = document.createElementNS(NS, 'path');
-  p.setAttribute('d', linie(a, b)); p.setAttribute('class', 'kante'); p.dataset.beid = beid ? '1' : '';
+  p.setAttribute('d', d); p.setAttribute('class', 'kante'); if (beid) p.dataset.beid = '1';
   gK.appendChild(p); KE[id] = p;
 }
-/* Rückweg Zustand → Handy → Feed (rechts außen) */
-(() => {
-  const p = document.createElementNS(NS, 'path');
-  p.setAttribute('d', 'M311 141 C 350 118, 352 74, 324 49');
-  p.setAttribute('class', 'kante');
-  gK.appendChild(p); KE.zf = p;
-  const h = document.createElementNS(NS, 'g');
-  h.setAttribute('class', 'handy'); h.setAttribute('transform', 'translate(345 96)');
-  h.innerHTML = '<rect x="-6" y="-10" width="12" height="20" rx="2.6"/><path d="M-2 6.5h4" stroke="#94a3b8" stroke-width="1.4" stroke-linecap="round"/>';
-  gK.appendChild(h); KE.handy = h;
-})();
-const KN = {};
+/* EKG-Kurve (wie App-Version): eine Periode = 200 Einheiten, Grundlinie y = 0 */
+const EKG_D = 'M0 0 H40 l6 -2 l5 2 H70 l4 -11 l5 20 l4 -9 H110 l6 -3 l6 3 H200 H240 l6 -2 l5 2 H270 l4 -11 l5 20 l4 -9 H310 l6 -3 l6 3 H400';
+const EKG = {x:108, y:343, w:104};   /* knapp über dem Ärmelansatz im Körperbild */
+const KN = {}, UNTER = {};
 for (const [id, k] of Object.entries(K)){
   const g = document.createElementNS(NS, 'g');
   g.setAttribute('class', 'knoten'); g.setAttribute('id', 'k-' + id);
-  let inner = `<g transform="translate(${k.x} ${k.y})"><circle class="r" r="${R}"/>`;
-  inner += id === 'fokus'
-    ? `<image href="kette-tuersteher.webp" x="-17" y="-17" width="34" height="34" clip-path="url(#clipT)" preserveAspectRatio="xMidYMid slice"/><circle class="ring" r="${R}"/>`
-    : `<g class="ic">${ICONS[id]}</g>`;
-  inner += `</g><text x="${k.lx}" y="${k.ly}" text-anchor="${k.a}">${k.lb}</text>`;
-  g.innerHTML = inner; gN.appendChild(g); KN[id] = g;
+  let s = '';
+  if (id === 'koerper'){
+    s += `<circle class="glow-k" cx="${k.x}" cy="${k.y}" r="${k.r + 3}"/><circle cx="${k.x}" cy="${k.y}" r="${k.r}" fill="#13202d"/>`;
+    s += `<g class="koerperbild" clip-path="url(#clipK)">${IMG.stufen.map(src => `<image href="${src}" x="${k.x - k.r}" y="${k.y - k.r - 4}" width="${k.r * 2}" height="${k.r * 2}" preserveAspectRatio="xMidYMid slice" opacity="0"/>`).join('')}</g>`;
+    s += `<g class="ekg" clip-path="url(#clipE)" aria-hidden="true"><g id="ekg-skala" transform="translate(${EKG.x} ${EKG.y}) scale(${EKG.w / 200} .6)"><g class="ekg-lauf" id="ekg-lauf"><path class="ekg-schatten" d="${EKG_D}" vector-effect="non-scaling-stroke"/><path class="ekg-linie" id="ekg-linie" d="${EKG_D}" vector-effect="non-scaling-stroke"/></g></g></g>`;
+    s += `<circle class="ring-k" cx="${k.x}" cy="${k.y}" r="${k.r + 1}"/>`;
+    /* Energieanzeige: 5 Segmente links */
+    s += `<g id="energie" aria-hidden="true"><rect x="46" y="256" width="10" height="5" rx="1.5" fill="rgba(148,163,184,.35)"/>`;
+    for (let i = 0; i < 5; i++){
+      const y = 344 - i * 17;
+      s += `<rect class="seg-bg" x="38" y="${y - 14}" width="26" height="14" rx="3"/><rect class="seg" data-i="${i}" x="39" y="${y - 13}" width="24" height="12" rx="2.4" fill="#7DD3C0"/>`;
+    }
+    s += `<text class="e-t" x="51" y="362" text-anchor="middle">ENERGIE</text></g>`;
+  } else {
+    s += `<g transform="translate(${k.x} ${k.y})">`;
+    if (id === 'stall' || id === 'sm') s += `<circle class="immer" r="${k.r}"/>`;
+    s += `<circle class="r" r="${k.r}"/>`;
+    s += k.img
+      ? `<image href="${IMG.tuer}" x="-${k.r}" y="-${k.r}" width="${k.r * 2}" height="${k.r * 2}" clip-path="url(#clipT)" preserveAspectRatio="xMidYMid slice"/><circle class="r" r="${k.r}" style="fill:none"/>`
+      : `<g class="ic">${k.ic}</g>`;
+    s += `</g>`;
+  }
+  s += `<text class="t" x="${k.tx}" y="${k.ty}" text-anchor="${k.a}">${TEXTE.namen[id]}</text>`;
+  const uy = id === 'buch' ? k.ty : k.ty + 14;
+  s += `<text class="u" x="${k.tx}" y="${uy}" text-anchor="${k.a}"></text><text class="u u2" x="${k.tx}" y="${uy + 13}" text-anchor="${k.a}"></text>`;
+  g.innerHTML = s; gN.appendChild(g); KN[id] = g;
+  UNTER[id] = [g.querySelector('.u'), g.querySelector('.u2')];
 }
-function kn(id, cls){ KN[id].classList.remove('an','gr'); if (cls) KN[id].classList.add(cls); }
-function ka(id, ...cls){
-  const e = KE[id]; e.classList.remove('an','gr','zieh','leise','bruch','still'); if (cls.length) e.classList.add(...cls.filter(Boolean));
-  const m = `url(#pf-${cls.includes('an') ? 'o' : cls.includes('gr') ? 'gr' : 'g'})`;
-  if (cls.includes('bruch')) e.removeAttribute('marker-end'); else e.setAttribute('marker-end', m);
-  if (e.dataset.beid) e.setAttribute('marker-start', m);
-}
-function netzReset(){ Object.keys(KN).forEach(id => kn(id)); Object.keys(KE).forEach(id => { if (id !== 'handy') ka(id); }); KE.handy.setAttribute('class', 'handy'); }
-function blitz(ids){ ids.forEach(id => { KN[id].classList.add('blitz'); setTimeout(() => KN[id].classList.remove('blitz'), 260); }); }
-/* Prägung wird mit jeder Runde dicker */
-let praegung = 1.6;
-function praegeStaerke(w){ praegung = w; ['sf','sg'].forEach(id => KE[id].style.strokeWidth = w); }
-function gruenStaerke(w){ ['fo','gk','gz','kz'].forEach(id => KE[id].style.strokeWidth = w); }
+const KIMGS = [...KN.koerper.querySelectorAll('.koerperbild image')];
+const SEGS = [...KN.koerper.querySelectorAll('.seg')];
 
-/* ---------- Panel ---------- */
-const panel = $('panel'), badge = $('badge');
-let lauf = 0;   /* Token, um laufende Abläufe abzubrechen */
-const wait = ms => new Promise(r => setTimeout(r, REDUZIERT ? Math.min(ms, 700) : ms));
-function zeige({lbl = '', h = '', hKlasse = '', p = '', extra = '', btn = null, btnKlasse = '', onBtn = null, mini = ''}){
-  panel.innerHTML = `${lbl ? `<div class="lbl fade">${lbl}</div>` : ''}${h ? `<h2 class="fade ${hKlasse}">${h}</h2>` : ''}${p ? `<p class="fade">${p}</p>` : ''}${extra}${btn ? `<button type="button" class="btn ${btnKlasse}">${btn}</button>` : ''}${mini ? `<p class="mini fade">${mini}</p>` : ''}`;
-  panel.scrollTop = 0; panel.classList.remove('tippbar');
-  const b = panel.querySelector('button.btn');
-  if (b && onBtn) b.addEventListener('click', onBtn, {once:true});
-  return b;
+function unter(id, t){
+  const z = Array.isArray(t) ? t : [t || ''];
+  UNTER[id][0].textContent = z[0] || ''; UNTER[id][1].textContent = z[1] || '';
 }
-function zeigeBadge(t){ badge.textContent = t || ''; badge.classList.toggle('show', !!t); }
-/* Lesedauer: 300 ms pro Wort, mindestens 3,5 s (Marco: ≥ 250 ms/Wort, mind. 3 s) */
-function leseMs(...t){ const w = t.join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length; return Math.max(3500, w * 300); }
-/* Text-Karte, die von selbst weiterläuft: Fortschrittsbalken + Hinweis; Tippen auf die Karte = sofort weiter */
-function zeigeAuto(o){
-  const ms = leseMs(o.h || '', o.p || '');
-  zeige({...o, extra:(o.extra || '') + '<div class="lauf" aria-hidden="true"><span class="bar"><i></i></span><span class="lt">läuft von selbst · tippen = weiter</span></div>'});
-  panel.classList.add('tippbar');
-  const i = panel.querySelector('.lauf i');
+function unterAlle(o){ for (const id in o) unter(id, o[id]); }
+function kn(id, ...cls){ KN[id].classList.remove('an','gr','leise','dim','ohnepuls','weg'); cls.filter(Boolean).forEach(c => KN[id].classList.add(c)); }
+function ka(id, ...cls){
+  const e = KE[id]; e.classList.remove('an','gr','leise','bruch'); cls = cls.filter(Boolean); if (cls.length) e.classList.add(...cls);
+  const m = `url(#pf-${cls.includes('an') ? 'o' : cls.includes('gr') ? 'gr' : 'g'})`;
+  if (cls.includes('bruch')) { e.removeAttribute('marker-end'); e.removeAttribute('marker-start'); return; }
+  e.setAttribute('marker-end', m); if (e.dataset.beid) e.setAttribute('marker-start', m);
+}
+function netzReset(){ Object.keys(KN).forEach(id => kn(id)); kn('buch', 'weg'); Object.keys(KE).forEach(id => ka(id)); $('netz').classList.remove('still'); }
+function blitz(ids){ ids.forEach(id => { KN[id].classList.add('blitz'); setTimeout(() => KN[id].classList.remove('blitz'), 280); }); }
+/* Rückweg Körper & Energie → Handy → Social Media ehrlich in Teal, mit Buch „was dich stärkt“ */
+function tealWeg(){
+  ka('kH', 'gr'); ka('hM', 'gr'); kn('handy', 'gr'); kn('buch', 'gr');
+  kn('sm', 'gr', 'ohnepuls'); ka('mT', 'gr', 'leise');
+  unter('handy', TEXTE.unter.bewusst.handy); unter('sm', TEXTE.unter.bewusst.sm); unter('buch', TEXTE.unter.bewusst.buch);
+}
+
+/* =================== Körper & Energie (Bild, Anzeige, EKG) =================== */
+function zeigeMix(a, b, x){
+  if (b === undefined || a === b) { b = a; x = 0; }
+  const unten = Math.min(a, b), oben = Math.max(a, b), xOben = (oben === b) ? x : 1 - x;
+  KIMGS.forEach((im, i) => im.setAttribute('opacity', i === unten ? 1 : (i === oben && oben !== unten ? xOben : 0)));
+  return x >= .5 ? b : a;
+}
+/* Aufwärtsweg (bewusst): Energie → Stufe; 4 → 1 → 0 → 5 wie App-Version */
+const AUF = [[0.5, 4], [2.5, 1], [4, 0], [5, 5]];
+let E = 5, RICHTUNG = 'ab', ZUG = false;   /* ZUG = Autopilot zieht gerade wieder (Rückfall) */
+const VERLAUF = [[0.8, [224,65,79]], [1.6, [249,115,22]], [3, [251,146,60]], [4.2, [125,211,192]]];
+function farbeWeich(e){
+  if (e <= VERLAUF[0][0]) return `rgb(${VERLAUF[0][1]})`;
+  for (let i = 0; i < VERLAUF.length - 1; i++){
+    const [a, ca] = VERLAUF[i], [b, cb] = VERLAUF[i + 1];
+    if (e <= b){ const x = (e - a) / (b - a); return `rgb(${ca.map((v, k) => Math.round(v + (cb[k] - v) * x)).join(',')})`; }
+  }
+  return `rgb(${VERLAUF[VERLAUF.length - 1][1]})`;
+}
+function farbe(e){ return e >= 3.8 ? '#7DD3C0' : e >= 2.6 ? '#fb923c' : e >= 1.6 ? '#f97316' : '#e0414f'; }
+function ekg(){
+  const lauf = $('ekg-lauf'), linie = $('ekg-linie'), skala = $('ekg-skala');
+  let beat, amp;
+  if (RICHTUNG === 'ab' || ZUG){
+    const t = (5 - E) / 5;
+    beat = 2.4 - 1.8 * t; amp = .55 + .5 * t;
+  } else {
+    const t = E / 5;
+    beat = 1.4 + 1.4 * t; amp = .7 - .15 * t;
+  }
+  lauf.style.animationDuration = beat.toFixed(2) + 's';
+  skala.setAttribute('transform', `translate(${EKG.x} ${EKG.y}) scale(${EKG.w / 200} ${amp.toFixed(2)})`);
+  linie.style.stroke = farbeWeich(E);   /* Farbe folgt dem Zustand: Teal → Orange → Rot und zurück */
+}
+function energie(e, richtung = 'ab'){
+  E = Math.max(0, Math.min(5, e)); RICHTUNG = richtung;
+  let st;
+  if (richtung === 'ab'){
+    const s = Math.max(0, Math.min(4, 5 - E)), f = Math.floor(s), c = Math.ceil(s);
+    st = zeigeMix(f, c, s - f);
+  } else if (E <= AUF[0][0]) st = zeigeMix(4);
+  else {
+    let i = 0; while (i < AUF.length - 2 && E > AUF[i + 1][0]) i++;
+    const [e0, s0] = AUF[i], [e1, s1] = AUF[i + 1], x = Math.min(1, (E - e0) / (e1 - e0));
+    st = zeigeMix(s0, s1, x);
+  }
+  const c = farbe(E);
+  SEGS.forEach((r, i) => { const f = Math.max(0, Math.min(1, E - i)); r.style.transform = `scaleY(${f})`; r.setAttribute('fill', c); });
+  KN.koerper.querySelector('.ring-k').setAttribute('stroke', c);
+  KN.koerper.querySelector('.glow-k').setAttribute('stroke', c);
+  ekg();
+  $('netz').setAttribute('aria-label', `Schaubild Der Kreislauf. Energie: ${wortE()}. ${TEXTE.koerperAlt[st]}`);
+}
+const wortE = () => TEXTE.energieWort[Math.max(0, Math.min(5, Math.ceil(E - 0.25)))];
+const energieUnter = () => unter('koerper', 'Energie: ' + wortE());
+
+/* =================== Textkarte =================== */
+const karte = $('karte');
+function zeige({lbl = '', h = '', hKlasse = '', p = '', p2 = '', extra = '', mini = '', btns = []}){
+  karte.innerHTML = `${lbl ? `<div class="lbl fade">${lbl}</div>` : ''}${h ? `<h2 class="fade ${hKlasse}">${h}</h2>` : ''}${p ? `<p class="fade">${p}</p>` : ''}${p2 ? `<p class="fade">${p2}</p>` : ''}${extra}${mini ? `<p class="mini fade">${mini}</p>` : ''}${btns.length ? `<div class="btns">${btns.map((b, i) => `<button type="button" class="btn ${b.k || ''}" data-i="${i}">${b.t}</button>`).join('')}</div>` : ''}`;
+  karte.scrollTop = 0; karte.classList.remove('tippbar');
+  const el = [...karte.querySelectorAll('.btns .btn')];
+  el.forEach((b, i) => { if (btns[i].on) b.addEventListener('click', btns[i].on, {once:true}); });
+  return el;
+}
+/* Karte mit einem Knopf, wartet auf Tap */
+const zeigeTap = (o, t, k = 'gruen') => new Promise(res => zeige({...o, btns:[{t, k, on:res}]}));
+/* Lesedauer: 450 ms pro Wort, mindestens 5 s */
+function leseMs(...t){ const w = t.join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length; return Math.max(5000, w * 450); }
+function zeigeAuto(o, msFix){
+  const ms = msFix ?? leseMs(o.h || '', o.p || '');
+  zeige({...o, extra:(o.extra || '') + `<div class="lauf" aria-hidden="true"><span class="bar"><i></i></span><span class="lt">${TEXTE.autoHinweis}</span></div>`});
+  karte.classList.add('tippbar');
+  const i = karte.querySelector('.lauf i');
   return new Promise(res => {
     let fertig = false, to = null;
-    const weiter = () => { if (fertig) return; fertig = true; clearTimeout(to); panel.removeEventListener('click', weiter); panel.classList.remove('tippbar'); res(); };
+    const weiter = () => { if (fertig) return; fertig = true; clearTimeout(to); karte.removeEventListener('click', weiter); karte.classList.remove('tippbar'); res(); };
     requestAnimationFrame(() => requestAnimationFrame(() => { i.style.transition = `width ${ms}ms linear`; i.style.width = '100%'; }));
     to = setTimeout(weiter, ms);
-    setTimeout(() => { if (!fertig) panel.addEventListener('click', weiter); }, 60);   /* erst nach dem auslösenden Klick lauschen */
+    setTimeout(() => { if (!fertig) karte.addEventListener('click', weiter); }, 60);
   });
 }
 
-/* ---------- Teil 1: negativ, Runde 1 von Hand (4 Karten) ---------- */
-const R1 = [
-  {h:'Wer schreibt deine <span class="a">Gästeliste?</span>', p:'<strong>Dein Hühnerstall:</strong> Eltern und Umfeld haben deine erste Gästeliste geschrieben – lange vor deinem ersten Feed. Und sie schreiben bis heute mit. <strong>Dein Feed:</strong> Heute schreibt auch der Algorithmus mit. Dein Gehirn springt auf Negatives stärker an – also bekommst du mehr davon.',
-   async tu(t){ kn('stall','an'); ka('sf','an'); ka('sg','an'); blitz(['stall']); await wait(700); if (t !== lauf) return; kn('feed','an'); ka('ff','an'); ka('fg','an'); blitz(['feed']); }},
-  {h:'Dein <span class="a">Türsteher</span> und deine <span class="a">Gedanken</span>', p:'Der Türsteher lässt nur durch, was auf der Gästeliste steht – und sucht Beweise dafür. Daraus werden Gedanken: Sorgen, Vergleiche, Worst Case. Hühnerstall und Feed wirken dabei gleichzeitig mit.',
-   async tu(t){ kn('fokus','an'); blitz(['fokus']); ka('fo','an'); await wait(700); if (t !== lauf) return; kn('ged','an'); blitz(['ged']); }},
-  {h:'Dein <span class="a">Körper</span> glaubt es', p:'Cortisol und Adrenalin steigen – obwohl du nur auf dem Sofa sitzt. Dein Zustand: müde, gereizt, leer. Gedanken, Körper und Zustand schaukeln sich gegenseitig hoch.',
-   async tu(t){ ka('gk','an'); kn('koerper','an'); blitz(['koerper']); stufe(1); await wait(800); if (t !== lauf) return; ka('gz','an'); ka('kz','an'); kn('zustand','an'); blitz(['zustand']); stufe(2); }},
-  {h:'Und warum greifst du <span class="a">jetzt zum Handy?</span>', p:'Dein Gehirn ist auf schnelle Kicks trainiert. Alles, was Geduld braucht, fühlt sich anstrengend an. Wenn du müde und gereizt bist, ist der nächste Scroll der bequemste Weg – <strong>und er füttert deine Gästeliste von vorn.</strong>',
-   async tu(){ ka('zf','an'); KE.handy.setAttribute('class','handy an'); blitz(['feed']); }}
-];
+/* =================== Phase 0: Start =================== */
 function start(){
-  lauf++; netzReset(); praegeStaerke(1.6); gruenStaerke(1.6); zeigeBadge(''); stufe(0);
+  lauf++; ZUG = false;
   document.body.classList.remove('bewusst');
-  document.documentElement.style.setProperty('--flow', '1.1s');
-  $('ende').hidden = true; $('app').hidden = false;
-  zeige({lbl:'Kapitel 1 bis 3 in einem Bild', h:'Der <span class="a">Kreislauf</span>', p:'Was du reinlässt, was du denkst, wie es dir geht – alles hängt zusammen. Und vieles läuft gleichzeitig. Spiel es einmal durch.', btn:'Los geht’s →', btnKlasse:'pulse', onBtn:() => runde1(0)});
-}
-function runde1(i){
-  const t = ++lauf;
-  zeigeBadge('Runde 1'); R1[i].tu(t);
-  zeige({h:R1[i].h, p:R1[i].p, btn: i < R1.length - 1 ? 'Weiter →' : 'Nächste Runde →', onBtn:() => i < R1.length - 1 ? runde1(i + 1) : autoRunden()});
+  $('schalter').hidden = true; karte.classList.remove('ende');
+  root.setProperty('--flow', '1.8s');
+  ['kH','hM'].forEach(id => KE[id].style.strokeWidth = '');
+  netzReset(); unterAlle(TEXTE.unter.start);
+  kn('stall', 'leise'); kn('sm', 'leise');
+  energie(5); energieUnter();
+  zeige({...TEXTE.start, btns:[{t:TEXTE.start.btn, k:'pulse', on:() => runde1(0)}]});
+  window.scrollTo(0, 0);
 }
 
-/* ---------- Runden 2–4 automatisch (Text bleibt stehen, Balken zeigt Weiterlauf), dann endlos ---------- */
-const WELLE = [['stall','feed'], ['fokus','ged'], ['koerper','zustand'], ['feed']];
-let tempo = 520;
-async function welle(t){ for (const g of WELLE){ if (t !== lauf) return; blitz(g); await wait(tempo); } }
-async function wellen(t){ while (t === lauf){ await welle(t); await wait(REDUZIERT ? 400 : 120); } }
-async function autoRunden(){
+/* =================== Phase 1: Runde 1 (4 Taps) =================== */
+const SCHRITT1 = [
+  async t => { kn('stall','an'); kn('sm','an'); ka('sT','an'); ka('mT','an'); blitz(['stall','sm']); },
+  async t => { kn('tuer','an'); blitz(['tuer']); energie(4.5); energieUnter(); await wait(650); if (t !== lauf) return; ka('tG','an'); kn('ged','an'); blitz(['ged']); unter('ged', '„Ich fall eh durch.“'); },
+  async t => { ka('gK','an'); kn('koerper','an'); energie(4); await wait(700); if (t !== lauf) return; energie(3); energieUnter(); },
+  async t => { ka('kH','an'); kn('handy','an'); blitz(['handy']); await wait(650); if (t !== lauf) return; ka('hM','an'); blitz(['sm']); energie(2); energieUnter(); }
+];
+function runde1(i){
   const t = ++lauf;
-  Object.keys(KN).forEach(id => kn(id,'an')); Object.keys(KE).forEach(id => { if (id !== 'handy') ka(id,'an'); }); KE.handy.setAttribute('class','handy an');
-  const TEXT = [
-    {h:'Alles läuft <span class="a">gleichzeitig</span>', p:'Hühnerstall und Feed schreiben weiter mit. Gedanken, Körper und Zustand schaukeln sich hoch – und der nächste Scroll füttert die Gästeliste.'},
-    {h:'<span class="a">Autopilot …</span>', p:'Du musst nichts mehr tun. Der Kreislauf läuft von allein.'},
-    {h:'<span class="a">Immer schneller …</span>', p:'Und jede Runde bestätigt die Gästeliste ein bisschen mehr.'}
-  ];
-  const TEMPO = [520, 360, 230], FLOW = ['.9s', '.6s', '.4s'];
+  SCHRITT1[i](t);
+  const letzt = i === SCHRITT1.length - 1;
+  zeige({...TEXTE.runde1[i], btns:[{t: letzt ? TEXTE.weiterLetzt : TEXTE.weiter, on:() => letzt ? autopilot() : runde1(i + 1)}]});
+}
+
+/* =================== Phase 2: Autopilot (ruhig starten, dann schneller) =================== */
+const WELLE = [['stall','sm'], ['tuer'], ['ged'], ['koerper'], ['handy']];
+let tempo = 900;
+async function wellen(t){ while (t === lauf){ for (const g of WELLE){ if (t !== lauf) return; blitz(g); await wait(tempo); } await wait(REDUZIERT ? 400 : 200); } }
+async function autopilot(){
+  const t = ++lauf;
+  Object.keys(KN).forEach(id => { if (id !== 'buch') kn(id, 'an'); }); Object.keys(KE).forEach(id => ka(id, 'an'));
+  const TEMPO = [950, 700, 500, 360], FLOW = ['1.8s', '1.3s', '.95s', '.7s'], EN = [1.5, 1, 0.6, 0.4];
   tempo = TEMPO[0]; wellen(t);
-  for (let r = 0; r < 3; r++){
+  for (let r = 0; r < TEXTE.auto.length; r++){
     if (t !== lauf) return;
-    zeigeBadge(`Runde ${r + 2}`);
     tempo = TEMPO[r];
-    document.documentElement.style.setProperty('--flow', REDUZIERT ? '1.1s' : FLOW[r]);
-    praegeStaerke(1.6 + (r + 1) * 0.6);
-    stufe(Math.min(3 + r, 4));
-    await zeigeAuto(TEXT[r]);
+    root.setProperty('--flow', REDUZIERT ? '1.8s' : FLOW[r]);
+    ['kH','hM'].forEach(id => KE[id].style.strokeWidth = 1.8 + r * 0.55);   /* Rückweg wird breiter + schneller */
+    energie(EN[r]); energieUnter();
+    if (r === 2) unter('koerper', 'Dauerstress');
+    await zeigeAuto(TEXTE.auto[r]);
   }
   if (t !== lauf) return;
-  zeigeBadge(''); tempo = REDUZIERT ? 600 : 180;
+  tempo = REDUZIERT ? 600 : 300;
   haltenAnbieten();
 }
 function haltenAnbieten(){
-  const b = zeige({h:'Stopp den <span class="a">Autopiloten</span>', p:'Halt den Button 2 Sekunden gedrückt.', btn:'<span class="fill"></span><span>Halt gedrückt, um zu stoppen</span>', btnKlasse:'halten'});
-  b.setAttribute('aria-label', 'Gedrückt halten, um zu stoppen');
+  const [b] = zeige({h:TEXTE.halten.h, p:TEXTE.halten.p, btns:[{t:`<span class="fill"></span><span>${TEXTE.halten.btn}</span>`, k:'halten'}]});
+  b.setAttribute('aria-label', TEXTE.halten.aria);
   let timer = null;
-  const los = e => { if (timer) return; if (e && e.type === 'keydown' && !/^( |Enter)$/.test(e.key)) return; if (e && e.cancelable) e.preventDefault(); b.classList.add('aktiv'); timer = setTimeout(stopp, 2000); };
-  const ab = () => { if (!timer) return; clearTimeout(timer); timer = null; b.classList.remove('aktiv'); };
+  const taste = e => /^( |Enter|Spacebar)$/.test(e.key);
+  const los = e => {
+    if (timer) return;
+    if (e.type === 'keydown' && !taste(e)) return;
+    if (e.cancelable) e.preventDefault();
+    b.classList.add('aktiv'); timer = setTimeout(() => { timer = null; stopp(); }, 2000);
+  };
+  const ab = e => { if (!timer) return; if (e && e.type === 'keyup' && !taste(e)) return; clearTimeout(timer); timer = null; b.classList.remove('aktiv'); };
   b.addEventListener('pointerdown', los);
   ['pointerup','pointerleave','pointercancel','blur','keyup'].forEach(ev => b.addEventListener(ev, ab));
   b.addEventListener('keydown', los);
+  b.addEventListener('click', e => e.preventDefault());
   b.addEventListener('contextmenu', e => e.preventDefault());
 }
 function stopp(){
-  lauf++; zeigeBadge('');
-  Object.keys(KE).forEach(id => { if (id !== 'handy') KE[id].classList.add('still'); });
-  zeige({h:'STOP', hKlasse:'big', p:'Genau so läuft es: <strong>Tag für Tag, auf Autopilot.</strong>', btn:'Wie komme ich raus? →', btnKlasse:'gruen', onBtn:() => resetKarte(1)});
+  lauf++;
+  $('netz').classList.add('still');
+  const [b] = zeige({h:TEXTE.stopp.h, hKlasse:'big', p:TEXTE.stopp.p, btns:[{t:TEXTE.stopp.btn, k:'gruen', on:() => resetKarte(1)}]});
+  b.focus({preventScroll:true});
 }
 
-/* ---------- Teil 2: drei bewusste Runden – je Mini-Reset (1 Tap) + Fokus (1 Tap) ---------- */
-/* Wortlaut wie k01 Mind-Hack: „Mini-Reset“, „3 × sehen – 2 × fühlen – 1 × hören.“ */
-const SINNE = [
-  {lb:'3 × sehen', ic:'<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/>'},
-  {lb:'2 × fühlen', ic:'<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5a6.5 6.5 0 0 1-6.5 6.5h-.6a6 6 0 0 1-4.6-2.2L3.6 15a1.6 1.6 0 0 1 2.4-2l2 2"/>'},
-  {lb:'1 × hören', ic:'<path d="M6 9.5a6 6 0 1 1 12 0c0 3.5-3 4.2-3 7a3 3 0 0 1-5.2 2"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0"/>'}
+/* =================== Phase 3: bewusste Runden =================== */
+const SINN_IC = [
+  '<path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.8"/>',
+  '<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5a6.5 6.5 0 0 1-6.5 6.5h-.6a6 6 0 0 1-4.6-2.2L3.6 15a1.6 1.6 0 0 1 2.4-2l2 2"/>',
+  '<path d="M6 9.5a6 6 0 1 1 12 0c0 3.5-3 4.2-3 7a3 3 0 0 1-5.2 2"/><path d="M9.5 9.5a2.5 2.5 0 0 1 5 0"/>'
 ];
-const sinneHTML = () => `<div class="sinne" id="sinne">${SINNE.map(s => `<div class="sinn"><span class="kr"><svg viewBox="0 0 24 24" aria-hidden="true">${s.ic}</svg></span>${s.lb}</div>`).join('')}</div>`;
-const STAND = [null, {nachReset:0.45, nachRunde:1.0, rueck:0.75}, {nachReset:1.25, nachRunde:2.0, rueck:1.8}, {nachReset:2.25, nachRunde:3.0}];
-let wv = 0;
-function unterbrochen(){
-  Object.keys(KN).forEach(id => kn(id));
-  ['sf','sg','ff','fg','fo','gk','gz','kz'].forEach(id => ka(id, 'leise'));
-  ka('zf', 'bruch'); KE.handy.setAttribute('class','handy aus');
+/* jetzt = aktueller Sinn (−1 = keiner, 3 = alle erledigt) */
+const sinneHTML = (jetzt = -1) => `<div class="sinne" aria-hidden="true">${TEXTE.sinne.map((lb, i) => `<div class="sinn${i < jetzt ? ' ok' : i === jetzt ? ' jetzt' : ''}"><span class="kr"><svg viewBox="0 0 24 24">${SINN_IC[i]}</svg></span>${lb}</div>`).join('')}</div>`;
+/* Energieverlauf: nach Mini-Reset / nach Körper-Schritt / nach Rückfall */
+const STAND = {1:{reset:1.1, fokus:2.1, rueck:1.7}, 2:{reset:2.3, fokus:3.3, rueck:2.9}, 3:{reset:3.6, fokus:5}};
+/* Während des Mini-Resets: alles grau und still */
+function grauStill(){
+  $('netz').classList.add('still');
+  Object.keys(KN).forEach(id => kn(id, 'leise'));
+  kn('buch', 'weg');
+  Object.keys(KE).forEach(id => ka(id, 'leise'));
+  ka('kH', 'bruch'); ka('hM', 'bruch'); kn('handy', 'dim');
+  unter('handy', TEXTE.unter.reset.handy);
 }
-const RUECK = {
-  2:{h:'Der alte Kreislauf <span class="a">meldet sich</span>', p:'Eine Nachricht, ein Reiz, ein müder Moment – und der Autopilot will wieder übernehmen. Das ist normal. Unterbrich ihn wieder.'},
-  3:{h:'Schon wieder <span class="a">der Feed</span>', p:'Er zieht noch. Aber diesmal bist du schneller dran. Noch einmal unterbrechen.'}
-};
-/* Karte mit Mini-Reset-Knopf (p = Nummer der bewussten Runde, die damit beginnt) */
 function resetKarte(p){
   lauf++;
   document.body.classList.add('bewusst');
-  zeigeBadge(`Bewusst ${p}/3`);
-  if (p === 1) { wv = 0; unterbrochen(); }
-  const txt = p === 1
-    ? {h:'Unterbrich den <span class="g">Kreislauf</span>', p:'Mit dem Mini-Reset aus Kapitel 1: 3 × sehen – 2 × fühlen – 1 × hören. Mach ihn kurz wirklich mit.'}
-    : RUECK[p];
-  const b = zeige({...txt, extra:sinneHTML(), btn:'Mini-Reset starten', btnKlasse:'gruen'});
-  b.addEventListener('click', () => miniReset(p, b), {once:true});
+  if (p === 1){
+    ['kH','hM'].forEach(id => KE[id].style.strokeWidth = '');
+    root.setProperty('--flow', '1.8s');
+  }
+  zeige({...TEXTE.reset[p], extra:sinneHTML(), btns:[{t:TEXTE.resetBtn, k:'gruen pulse', on:() => miniReset(p)}]});
 }
-async function miniReset(p, b){
+async function miniReset(p){
   const t = ++lauf;
-  b.disabled = true; b.classList.add('aus');
-  unterbrochen();
-  document.documentElement.style.setProperty('--flow', '1.4s');
-  const S = [...document.querySelectorAll('#sinne .sinn')];
+  ZUG = false;
+  grauStill(); ekg();
   for (let i = 0; i < 3; i++){
+    const o = {lbl:`${TEXTE.sinnLbl} ${i + 1}/3`, ...TEXTE.sinnSchritte[i], extra:sinneHTML(i)};
+    if (p === 1) await zeigeTap(o, TEXTE.sinnBtn);      /* Runde 1: jeden Sinn selbst bestätigen */
+    else await zeigeAuto(o, 3000);                      /* Runden 2 + 3: je 3 s, tippen = weiter */
     if (t !== lauf) return;
-    S.forEach((s, j) => { s.classList.toggle('ok', j < i); s.classList.toggle('jetzt', j === i); });
-    await wait(p === 1 ? 1600 : 1000);
   }
-  if (t !== lauf) return;
-  S.forEach(s => { s.classList.add('ok'); s.classList.remove('jetzt'); });
-  wv = STAND[p].nachReset; weg(wv);
-  await wait(500);
-  if (t === lauf) fokusKarte(p);
+  energie(STAND[p].reset, 'auf'); energieUnter();
+  zeige({...TEXTE.nachReset[p], extra:sinneHTML(3), btns:[{t:TEXTE.fokusBtn, k:'gruen pulse', on:() => fokus(p, 0)}]});
 }
-function fokusKarte(p){
-  const txt = {
-    1:{h:'Kurz <span class="g">Ruhe</span>', p:'Der Autopilot ist unterbrochen – noch nicht ausgeschaltet. Jetzt entscheidest du, was auf deine Gästeliste kommt: Richte deinen Fokus bewusst auf Chancen statt auf Probleme.'},
-    2:{h:'Wieder ein <span class="g">Moment</span>', p:'Und wieder entscheidest du: Fokus bewusst auf Chancen statt auf Probleme.'},
-    3:{h:'Noch ein <span class="g">Moment</span>', p:'Langsam wird es vertrauter. Fokus bewusst neu ausrichten.'}
-  }[p];
-  zeige({...txt, btn:'Fokus bewusst neu ausrichten →', btnKlasse:'gruen pulse-g', onBtn:() => bewussteRunde(p), mini: p === 1 ? 'Wie das im Alltag konkret geht, zeigt dir gleich der Mind-Hack.' : ''});
-}
-async function bewussteRunde(p){
+/* Fokus bewusst neu ausrichten: 4 Schritte, jeder mit eigenem Tap */
+function fokus(p, s){
   const t = ++lauf;
-  gruenStaerke(1.6 + p * 0.8);
-  ka('sf','an','leise'); ka('sg','an','leise'); kn('stall','an');
-  kn('fokus','gr'); blitz(['fokus']);
-  const anim = (async () => {
-    await wait(600); if (t !== lauf) return;
-    ka('fo','gr','zieh'); kn('ged','gr'); blitz(['ged']); await wait(600); if (t !== lauf) return;
-    ka('gk','gr','zieh'); ka('gz','gr','zieh'); ka('kz','gr','zieh'); kn('koerper','gr'); kn('zustand','gr'); blitz(['koerper','zustand']);
-    wv = STAND[p].nachRunde; weg(wv);
-  })();
-  if (p < 3){
-    const txt = p === 1
-      ? {h:'Ein Stück <span class="g">leichter</span>', p:'Dein Türsteher lässt jetzt auch Chancen durch, nicht nur Probleme. Dein Hühnerstall schreibt weiter mit – aber jetzt schreibst du auch.'}
-      : {h:'Schon <span class="g">leichter</span>', p:'Der neue Weg ist noch ein Trampelpfad. Mit jeder bewussten Runde wird er breiter.'};
-    await zeigeAuto(txt); await anim;
-    if (t !== lauf) return;
-    rueckfall(p);
+  if (s === 0){
+    $('netz').classList.remove('still');
+    kn('stall', 'an', 'leise'); ka('sT', 'an', 'leise'); unter('stall', TEXTE.unter.bewusst.stall);
+    kn('tuer', 'gr'); blitz(['tuer']); unter('tuer', TEXTE.fokusUnter[p].tuer);
+  } else if (s === 1){
+    ka('tG', 'gr'); kn('ged', 'gr'); blitz(['ged']); unter('ged', TEXTE.fokusUnter[p].ged);
+  } else if (s === 2){
+    ka('gK', 'gr'); kn('koerper', 'gr'); blitz(['koerper']);
+    energie(STAND[p].fokus, 'auf'); energieUnter();
   } else {
-    await anim;
-    if (t !== lauf) return;
-    zeigeBadge('');
-    zeige({h:'Aus dem Trampelpfad wird eine <span class="g">Straße</span>', p:'In echt dauert das Wochen, nicht drei Runden. Der alte Kreislauf ist auch nicht in ein paar Tagen entstanden. <strong>Aber jede bewusste Wiederholung zählt.</strong>', btn:'Gesamtbild zeigen →', btnKlasse:'gruen', onBtn:ende});
+    tealWeg(); blitz(['handy', 'buch', 'sm']);
   }
+  const txt = TEXTE.fokus[p][s];
+  const weiter = s < 3 ? () => fokus(p, s + 1) : (p < 3 ? () => rueckfall(p) : schluss);
+  zeige({lbl:`Bewusst ${p}/3 · ${TEXTE.fokusLbl[s]}`, ...txt, btns:[{t:TEXTE.weiter, k:'gruen', on:weiter}]});
+}
+function schluss(){
+  lauf++;
+  zeige({...TEXTE.schluss, btns:[{t:TEXTE.schluss.btn, k:'gruen', on:gesamtbild}]});
 }
 function rueckfall(p){
-  /* der alte Kreislauf meldet sich: Feed + Handy ziehen, Zustand rutscht etwas zurück */
-  ka('zf','an'); KE.handy.setAttribute('class','handy an'); ka('ff','an'); ka('fg','an'); kn('feed','an'); blitz(['feed']);
-  wv = STAND[p].rueck; weg(wv);
+  /* der Autopilot zieht wieder: Social Media / Handy-Weg orange, Energie sinkt etwas */
+  ZUG = true;
+  kn('buch', 'weg');
+  kn('sm', 'an'); ka('mT', 'an'); ka('hM', 'an'); ka('kH', 'an'); kn('handy', 'an');
+  unter('sm', 'wirkt immer'); unter('handy', TEXTE.unter.start.handy);
+  if (p === 1){
+    blitz(['sm', 'handy']);
+  } else {
+    kn('sm', 'an', 'leise'); ka('mT', 'an', 'leise'); ka('hM', 'an', 'leise'); ka('kH', 'an', 'leise');
+    kn('stall', 'an'); ka('sT', 'an'); unter('stall', 'wirkt immer');
+    kn('tuer', 'an'); ka('tG', 'an'); unter('tuer', TEXTE.unter.start.tuer); blitz(['stall', 'tuer']);
+  }
+  energie(STAND[p].rueck, 'auf'); energieUnter();
   resetKarte(p + 1);
 }
 
-/* ---------- Ende ---------- */
-function ende(){
+/* =================== Phase 4: Gesamtbild =================== */
+function ansicht(modus){
+  $('s-auto').setAttribute('aria-pressed', modus === 'auto');
+  $('s-bew').setAttribute('aria-pressed', modus === 'bewusst');
+  netzReset(); ZUG = false;
+  if (modus === 'auto'){
+    document.body.classList.remove('bewusst');
+    root.setProperty('--flow', REDUZIERT ? '1.8s' : '.8s');
+    Object.keys(KN).forEach(id => { if (id !== 'buch') kn(id, 'an'); }); Object.keys(KE).forEach(id => ka(id, 'an'));
+    energie(0.4, 'ab');
+  } else {
+    document.body.classList.add('bewusst');
+    root.setProperty('--flow', '1.8s');
+    kn('stall', 'an', 'leise'); ka('sT', 'an', 'leise');
+    kn('tuer', 'gr'); ka('tG', 'gr'); kn('ged', 'gr'); ka('gK', 'gr'); kn('koerper', 'gr');
+    tealWeg();
+    energie(5, 'auf');
+  }
+  unterAlle(TEXTE.gesamt[modus]);
+}
+function gesamtbild(){
   lauf++;
-  $('app').hidden = true;
-  const e = $('ende'); e.hidden = false; e.scrollTop = 0;
-  const h = $('endeTitel'); h.setAttribute('tabindex', '-1'); h.focus({preventScroll:true});
+  $('schalter').hidden = false; karte.classList.add('ende');
+  ansicht('bewusst');
+  const E2 = TEXTE.ende;
+  zeige({lbl:E2.lbl, p:E2.p1, p2:E2.p2, btns:[
+    {t:E2.nochmal, k:'gruen', on:start},
+    {t:E2.fertig, k:'sek', on:zurueck}
+  ]});
 }
 function zurueck(){ if (window.parent !== window) parent.postMessage({kk:'zurueck'}, '*'); else location.href = '../../#/'; }
-$('fertig').addEventListener('click', zurueck);
-$('nochmal').addEventListener('click', start);
+$('s-auto').addEventListener('click', () => ansicht('auto'));
+$('s-bew').addEventListener('click', () => ansicht('bewusst'));
+
 start();
 </script>
 <script>document.getElementById('kk-back').addEventListener('click',function(){if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}});</script>
