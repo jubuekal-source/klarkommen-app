@@ -474,8 +474,8 @@
           "bloecke": [
             {
               "typ": "bild",
-              "src": "medien/bilder/k03/zeitzonen-header.webp",
-              "alt": "Die drei Zeitzonen: links Vergangenheit mit Grübeln und bestärkendem Pokal, in der Mitte das Gehirn als Hier-und-Jetzt-Reset-Punkt, rechts Zukunftsangst und Visualisierung.",
+              "src": "medien/bilder/k03/zeitzonen.webp",
+              "alt": "Die drei Zeitzonen: Vergangenheit, Hier und Jetzt und Zukunft, jeweils mit giftiger und bestärkender Seite.",
               "unterschrift": null
             },
             {
@@ -497,8 +497,8 @@
             },
             {
               "typ": "bild",
-              "src": "medien/bilder/k03/zeitzonen-klein.webp",
-              "alt": "Übersicht der drei Zeitzonen: Vergangenheit und Zukunft oben mit Grübelei und Worst-Case-Szenarien, in der Mitte Hier und Jetzt, unten die bestärkenden Seiten mit Stolz, Erfolgen, Dankbarkeit, kreativer Vision, Zielen und positiver Vorstellungskraft.",
+              "src": "medien/bilder/k03/zeitzonen-ueberblick.webp",
+              "alt": "Übersicht der drei Zeitzonen: Vergangenheit und Zukunft oben, in der Mitte Hier und Jetzt, unten die bestärkenden Seiten.",
               "unterschrift": null
             }
           ]

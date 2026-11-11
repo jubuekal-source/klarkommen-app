@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -453,22 +453,6 @@
       "id": "bilder/k03/tuersteher-bekannte-duerfen-rein",
       "pfad": "medien/bilder/k03/tuersteher-bekannte-duerfen-rein.webp",
       "bytes": 253698,
-      "typ": "bild",
-      "kapitel": "k03",
-      "dauer": null
-    },
-    {
-      "id": "bilder/k03/zeitzonen-header",
-      "pfad": "medien/bilder/k03/zeitzonen-header.webp",
-      "bytes": 91588,
-      "typ": "bild",
-      "kapitel": "k03",
-      "dauer": null
-    },
-    {
-      "id": "bilder/k03/zeitzonen-klein",
-      "pfad": "medien/bilder/k03/zeitzonen-klein.webp",
-      "bytes": 112138,
       "typ": "bild",
       "kapitel": "k03",
       "dauer": null
