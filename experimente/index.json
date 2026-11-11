@@ -19,9 +19,10 @@
       "id": "der-realitaets-check",
       "titel": "Der Realitäts-Check",
       "dateien": [
-        "experimente/der-realitaets-check/index.html"
+        "experimente/der-realitaets-check/index.html",
+        "experimente/der-realitaets-check/beobachter.webp"
       ],
-      "bytes": 30320,
+      "bytes": 45885,
       "kapitel": 4,
       "deeplinks": {}
     },
@@ -33,7 +34,7 @@
         "experimente/farbensuche/Focus-Experiment_Farbensuche.jpeg",
         "experimente/farbensuche/synclabmusic-funny-music-478625.mp3"
       ],
-      "bytes": 799881,
+      "bytes": 800235,
       "kapitel": 1,
       "deeplinks": {}
     },
@@ -43,7 +44,7 @@
       "dateien": [
         "experimente/focus/index.html"
       ],
-      "bytes": 34905,
+      "bytes": 38812,
       "kapitel": 1,
       "deeplinks": {}
     },

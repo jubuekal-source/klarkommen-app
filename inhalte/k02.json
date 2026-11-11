@@ -72,7 +72,7 @@
         {
           "typ": "audio",
           "id": "k02-podcast",
-          "titel": "Podcast: Episode 2 – Alex & Jonas über Identität, Prägungen und den Adler",
+          "titel": "Episode 2: Alex & Jonas über Identität, Prägungen und den Adler",
           "art": "podcast",
           "status": "fertig"
         }
@@ -252,7 +252,7 @@
         },
         {
           "typ": "ueberschrift",
-          "text": "Die Brücke zu Folge 1"
+          "text": "Die Brücke zu Kapitel 1"
         },
         {
           "typ": "absatz",

@@ -17,17 +17,9 @@
           "text": "Du hast in Kapitel 3 gesehen, wie der Kreislauf auf Autopilot immer schneller läuft. Jetzt testest du, ob du ihn für zwei Minuten anhalten kannst."
         },
         {
-          "typ": "ueberschrift",
-          "text": "Starte jetzt deinen Realitäts-Check"
-        },
-        {
-          "typ": "absatz",
-          "text": "Nur 2 Minuten…"
-        },
-        {
           "typ": "experiment",
           "id": "der-realitaets-check",
-          "titel": "Realitäts-Check starten",
+          "titel": "Nur 2 Minuten…",
           "text": ""
         }
       ],
@@ -44,13 +36,9 @@
           "text": "Du verhaust eine Kleinigkeit, und im Kopf läuft plötzlich ein Dauerkommentar, der kein gutes Haar an dir lässt. Woher kommt diese Stimme, und warum klingt sie so überzeugend?"
         },
         {
-          "typ": "ueberschrift",
-          "text": "Podcast: Episode 4"
-        },
-        {
           "typ": "audio",
           "id": "k04-podcast",
-          "titel": "Podcast: Episode 4",
+          "titel": "Episode 4",
           "art": "podcast",
           "status": "in-produktion"
         }

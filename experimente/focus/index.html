@@ -7,70 +7,73 @@
     <link rel="stylesheet" href="../../fonts/fonts.css">
     <style>
         :root {
-            --accent: #ff6b35;
-            --sab: env(safe-area-inset-bottom, 0px);
-            --good: #52b788;
-            --bad: #e63946;
-            --text: #fffffe;
-            --muted: #c9b99a;
+            --bg: #0f1923; --card: #162230; --card2: #1c2e40;
+            --accent: #f97316; --accent-soft: #fb923c; --accent-glow: rgba(249,115,22,.25);
+            --good: #7DD3C0; --good-dark: #5BB8A5; --bad: #e0414f;
+            --text: #f1f5f9; --muted: #94a3b8; --line: rgba(148,163,184,.12); --line2: rgba(148,163,184,.22);
+            --radius: 16px; --sab: env(safe-area-inset-bottom, 0px);
+            --fh: 'Space Grotesk', system-ui, sans-serif;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        html, body { width: 100%; height: 100%; overflow: hidden; background: #1a0e05; font-family: 'DM Sans', sans-serif; color: var(--text); }
-
+        html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); font-family: 'DM Sans', system-ui, sans-serif; color: var(--text); color-scheme: dark; }
         #gameCanvas { display: block; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; touch-action: none; }
         html { height: -webkit-fill-available; }
         body { min-height: -webkit-fill-available; }
-
         #ui { position: fixed; inset: 0; pointer-events: none; z-index: 10; }
+        .ic { width: 1.05em; height: 1.05em; flex: none; vertical-align: -0.16em; }
 
         /* HUD */
         #hud { display: none; position: absolute; top: max(env(safe-area-inset-top, 0px), 12px); left: 12px; right: 12px; flex-direction: row; justify-content: space-between; align-items: center; }
-        .hud-pill { background: rgba(20,10,2,0.78); border: 1.5px solid rgba(255,180,80,0.3); border-radius: 100px; padding: 0.35rem 1rem; font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; backdrop-filter: blur(4px); }
+        .hud-pill { display: inline-flex; align-items: center; gap: .45rem; background: rgba(15,25,35,.82); border: 1px solid var(--line2); border-radius: 100px; padding: 0.35rem 0.95rem; font-family: var(--fh); font-size: 1rem; font-weight: 700; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
         .hud-score { color: var(--good); }
-        .hud-time  { color: #ffd166; }
+        .hud-time  { color: var(--accent-soft); }
+        .hud-chili { color: var(--bad); }
 
         /* Timer bar */
-        #timerBarWrap { position: absolute; bottom: 0; left: 0; right: 0; height: 5px; background: rgba(255,255,255,0.07); }
-        #timerBar { height: 100%; background: linear-gradient(90deg, var(--good), var(--accent)); width: 100%; transition: width 0.9s linear, background 0.5s; }
+        #timerBarWrap { position: absolute; bottom: 0; left: 0; right: 0; height: 6px; background: rgba(148,163,184,.14); }
+        #timerBar { height: 100%; background: linear-gradient(90deg, var(--good), var(--accent)); width: 100%; transition: width 0.9s linear, background 0.5s; border-radius: 0 3px 3px 0; }
 
         /* Overlays */
-        .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem 1.5rem; pointer-events: all; }
-        #startOverlay { background: rgba(15,7,2,0.88); backdrop-filter: blur(6px); }
-        #endOverlay   { background: rgba(15,7,2,0.93); backdrop-filter: blur(8px); display: none; overflow-y: auto; }
+        .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; justify-content: safe center; text-align: center; padding: 1.5rem 1.25rem; pointer-events: all; }
+        #startOverlay { background: rgba(15,25,35,.9) radial-gradient(ellipse at 20% 0%, rgba(249,115,22,.08), transparent 55%); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+        #endOverlay   { background: rgba(15,25,35,.94) radial-gradient(ellipse at 20% 0%, rgba(249,115,22,.07), transparent 55%); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); display: none; overflow-y: auto; }
 
-        .overlay-emoji { font-size: 3.5rem; margin-bottom: 0.6rem; animation: bob 1.6s ease-in-out infinite; }
-        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+        .ov-ico { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 0.9rem; background: var(--card); border: 1px solid var(--line2); color: var(--accent); box-shadow: 0 0 0 6px var(--accent-glow); animation: bob 1.8s ease-in-out infinite; }
+        .ov-ico svg { width: 30px; height: 30px; }
+        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
 
-        .overlay h3 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 5vw, 2rem); font-weight: 800; margin-bottom: 0.5rem; }
-        .overlay p  { color: var(--muted); font-size: clamp(0.85rem, 2.5vw, 0.95rem); line-height: 1.6; margin-bottom: 1rem; max-width: 360px; }
+        .overlay h3 { font-family: var(--fh); font-size: clamp(1.45rem, 5vw, 1.9rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.18; margin-bottom: 0.6rem; }
+        .overlay p  { color: var(--muted); font-size: clamp(0.9rem, 2.5vw, 0.98rem); line-height: 1.6; margin-bottom: 1rem; max-width: 360px; }
 
-        .instructions { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; flex-wrap: wrap; justify-content: center; }
-        .instr-pill { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,200,100,0.2); border-radius: 100px; padding: 0.4rem 0.9rem; font-size: clamp(0.78rem, 2.2vw, 0.85rem); display: flex; align-items: center; gap: 0.4rem; }
-        .dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-        .dot-good { background: var(--good); }
-        .dot-bad  { background: var(--bad); }
+        .instructions { display: flex; gap: 0.5rem; margin-bottom: 1.1rem; flex-wrap: wrap; justify-content: center; }
+        .instr-pill { background: var(--card); border: 1px solid var(--line2); border-radius: 100px; padding: 0.4rem 0.9rem; font-size: clamp(0.8rem, 2.2vw, 0.86rem); display: flex; align-items: center; gap: 0.5rem; color: var(--text); }
+        .dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+        .dot-good { background: var(--good); box-shadow: 0 0 0 3px rgba(125,211,192,.2); }
+        .dot-bad  { background: var(--bad); box-shadow: 0 0 0 3px rgba(224,65,79,.2); }
 
-        .btn { font-family: 'DM Sans', sans-serif; font-weight: 700; padding: 0.85rem 2.2rem; border-radius: 100px; border: none; cursor: pointer; font-size: clamp(0.95rem, 2.8vw, 1.05rem); transition: transform 0.15s, box-shadow 0.15s; }
-        .btn:hover  { transform: scale(1.04); }
+        .btn { font-family: 'DM Sans', system-ui, sans-serif; font-weight: 700; min-height: 48px; padding: 0.8rem 2rem; border-radius: 100px; border: none; cursor: pointer; font-size: clamp(0.95rem, 2.8vw, 1.05rem); display: inline-flex; align-items: center; justify-content: center; gap: .5rem; transition: transform 0.15s, box-shadow 0.15s, background .15s; }
+        .btn:hover  { transform: scale(1.03); }
         .btn:active { transform: scale(0.97); }
-        .btn-accent { background: var(--accent); color: #fff; box-shadow: 0 0 30px rgba(255,107,53,.45); }
-        .btn-ghost  { background: rgba(255,255,255,0.09); color: var(--text); border: 1px solid rgba(255,255,255,0.2); }
-        .btn-reveal { background: rgba(255,200,80,0.15); color: #ffd166; border: 1.5px solid rgba(255,200,80,0.4); font-size: 0.95rem; padding: 0.75rem 1.8rem;
-            animation: btnGlow 1.5s ease-in-out infinite; }
-        .btn-reveal:hover { background: rgba(255,200,80,0.25); }
+        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+        .btn-accent { background: var(--accent); color: #1a0d03; box-shadow: 0 8px 24px -8px var(--accent-glow); }
+        .btn-accent:hover { background: var(--accent-soft); }
+        .btn-ghost  { background: var(--card2); color: var(--text); border: 1px solid var(--line2); }
+        .btn-reveal { background: rgba(249,115,22,.12); color: var(--accent-soft); border: 1.5px solid rgba(249,115,22,.5); font-size: 0.98rem; padding: 0.75rem 1.8rem;
+            animation: btnGlow 1.6s ease-in-out infinite; }
+        .btn-reveal:hover { background: rgba(249,115,22,.2); }
         @keyframes btnGlow {
-            0%,100% { box-shadow: 0 0 8px rgba(255,209,102,0.3), 0 0 20px rgba(255,209,102,0.15); transform: scale(1); }
-            50% { box-shadow: 0 0 20px rgba(255,209,102,0.6), 0 0 40px rgba(255,209,102,0.3), 0 0 60px rgba(255,209,102,0.15); transform: scale(1.04); }
+            0%,100% { box-shadow: 0 0 0 0 rgba(249,115,22,.35); }
+            50% { box-shadow: 0 0 0 10px rgba(249,115,22,0); }
         }
 
-        /* Vibrating + glowing gorilla headline */
+        /* Gorilla headline */
         .gorilla-headline {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.6rem, 5vw, 2.2rem);
-            font-weight: 800;
-            color: #ffd166;
+            font-family: var(--fh);
+            font-size: clamp(1.55rem, 5vw, 2.1rem);
+            font-weight: 700; letter-spacing: -.02em;
+            color: var(--accent);
             margin: 0.5rem 0 0.2rem;
-            text-shadow: 0 0 20px rgba(255,209,102,0.6), 0 0 40px rgba(255,209,102,0.3);
+            text-shadow: 0 0 24px rgba(249,115,22,.35);
             animation: headlineVibe 0.4s ease-in-out 3;
         }
         @keyframes headlineVibe {
@@ -83,16 +86,16 @@
         }
 
         /* End screen */
-        #finalScoreDisplay { font-family: 'Syne', sans-serif; font-size: clamp(3.5rem, 12vw, 5rem); font-weight: 800; color: var(--good); line-height: 1; margin: 0.2rem 0; }
+        #finalScoreDisplay { font-family: var(--fh); font-size: clamp(3.4rem, 12vw, 4.8rem); font-weight: 700; color: var(--good); line-height: 1; margin: 0.2rem 0; }
 
-        .neutral-question { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 1rem 1.25rem; margin: 0.8rem 0; max-width: 360px; text-align: center; }
+        .neutral-question { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0.8rem 0; max-width: 360px; text-align: center; }
         .neutral-question p { color: var(--muted); margin: 0; font-size: 0.9rem; line-height: 1.5; }
 
-        /* Reveal section – hidden until clicked */
         #revealSection { display: none; margin-top: 0.5rem; max-width: 380px; width: 100%; }
-        .reveal-box { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,200,80,0.25); border-radius: 14px; padding: 0.9rem 1.25rem; margin: 0.5rem 0; text-align: left; }
-        .reveal-box strong { display: block; margin-bottom: 0.3rem; font-family: 'Syne', sans-serif; font-size: 0.9rem; }
-        .reveal-box p { color: var(--muted); margin: 0; font-size: 0.82rem; line-height: 1.5; }
+        .reveal-box { background: var(--card); border: 1px solid var(--line2); border-radius: var(--radius); padding: 0.95rem 1.25rem; margin: 0.5rem 0; text-align: left; }
+        .reveal-box strong { display: block; margin-bottom: 0.3rem; font-family: var(--fh); font-size: 0.95rem; }
+        .reveal-box p { color: var(--muted); margin: 0; font-size: 0.88rem; line-height: 1.55; max-width: none; }
+        .reveal-gone { display: inline-flex; align-items: center; gap: .4rem; }
 
         .end-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 0.75rem; }
 
@@ -102,23 +105,24 @@
         @keyframes scoreIn { 0%{transform:scale(0.3);opacity:0} 60%{transform:scale(1.15)} 100%{transform:scale(1);opacity:1} }
         #finalScoreDisplay { animation: none; }
         #finalScoreDisplay.pop { animation: scoreIn 0.6s cubic-bezier(.34,1.56,.64,1) forwards; }
-        .score-label { font-family:'Syne',sans-serif; font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--muted); margin-bottom:0.1rem; }
-        .score-detail { font-size: clamp(0.82rem, 2.2vw, 0.9rem); color: var(--muted); margin-bottom: 0.5rem; }
-        .score-detail span { font-weight: 700; }
+        .score-label { font-family: var(--fh); font-size:0.72rem; font-weight: 700; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-soft); margin-bottom:0.1rem; }
+        .score-detail { font-size: clamp(0.85rem, 2.2vw, 0.92rem); color: var(--muted); margin-bottom: 0.5rem; }
+        .score-detail span { font-weight: 700; display: inline-flex; align-items: center; gap: .35rem; }
 
-        /* Gorilla headline with vibration + glow */
-        .sub-question { color: #e8d5b0; font-size: clamp(0.9rem, 2.5vw, 1rem); margin-bottom: 0.9rem; font-weight: 500; }
+        .sub-question { color: var(--text); font-size: clamp(0.92rem, 2.5vw, 1rem); margin-bottom: 0.9rem; font-weight: 500; }
 
-        /* floating confetti pieces */
-        .confetti-piece {
-            position: absolute;
-            width: 8px; height: 8px;
-            border-radius: 2px;
-            animation: confettiFall linear forwards;
-        }
+        .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: confettiFall linear forwards; }
         @keyframes confettiFall {
             0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
             100% { transform: translateY(120px) rotate(540deg); opacity: 0; }
+        }
+
+        @media (max-height: 700px) { .ov-ico { width: 52px; height: 52px; margin-bottom: .6rem; } .ov-ico svg { width: 24px; height: 24px; } .overlay p { margin-bottom: .7rem; } }
+        @media (prefers-reduced-motion: reduce) {
+            .ov-ico, .btn-reveal, .gorilla-headline { animation: none !important; }
+            #finalScoreDisplay.pop { animation: none !important; opacity: 1; transform: none; }
+            .btn { transition: none; } .btn:hover, .btn:active { transform: none; }
+            #timerBar { transition: none; }
         }
     </style>
 <style id="kk-bar-css">
@@ -138,25 +142,25 @@ html{padding-top:var(--kk-h)}
 
 <div id="ui">
     <div id="hud">
-        <div class="hud-pill hud-score">🍕 <span id="scoreVal">0</span></div>
-        <div class="hud-pill hud-time">⏱ <span id="timeVal">20</span>s</div>
-        <div class="hud-pill" style="color:#e63946;">🌶️ <span id="chiliVal">0</span></div>
+        <div class="hud-pill hud-score"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5a17 17 0 0 1 17 0L12 21z"/><circle cx="12" cy="9.5" r="1"/><circle cx="11" cy="14" r="1"/></svg> <span id="scoreVal">0</span></div>
+        <div class="hud-pill hud-time"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> <span><span id="timeVal">20</span>s</span></div>
+        <div class="hud-pill hud-chili"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c2.5 0 4 1.5 4 4 0 8-6 14-15 14 5-2.5 7-6 7-10 0-4 1.5-8 4-8z"/><path d="M14 3c0 1 .5 2 2 2"/></svg> <span id="chiliVal">0</span></div>
     </div>
     <div id="timerBarWrap"><div id="timerBar"></div></div>
 
     <!-- START -->
     <div class="overlay" id="startOverlay">
-        <div class="overlay-emoji">⚡</div>
+        <div class="ov-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
         <h3>Das Reaktions-Experiment</h3>
         <p>Ein Restaurant im totalen Chaos!<br>
-           Fange so viele <strong style="color:var(--good)">Pizzen 🍕</strong> wie möglich.<br>
-           Fange die <strong style="color:var(--bad)">Chilis 🌶️</strong> auf <strong style="color:var(--bad)">keinen Fall!</strong></p>
+           Fange so viele <strong style="color:var(--good)">Pizzen</strong> wie möglich.<br>
+           Fange die <strong style="color:var(--bad)">Chilis</strong> auf <strong style="color:var(--bad)">keinen Fall!</strong></p>
         <div class="instructions">
-            <div class="instr-pill"><span class="dot dot-good"></span>Pizza 🍕 → fangen (+1)</div>
-            <div class="instr-pill"><span class="dot dot-bad"></span>Chili 🌶️ → auf keinen Fall fangen! (−2)</div>
+            <div class="instr-pill"><span class="dot dot-good"></span>Pizza → fangen (+1)</div>
+            <div class="instr-pill"><span class="dot dot-bad"></span>Chili → auf keinen Fall fangen! (−2)</div>
         </div>
-        <p style="font-size:0.8rem;margin-bottom:1.2rem;">Bewege das <strong style="color:#ffd166;">🍽️ Tablett</strong> unten mit Finger oder Maus · 20 Sekunden</p>
-        <button class="btn btn-accent" id="startBtn">🍕 Experiment starten!</button>
+        <p style="font-size:0.85rem;margin-bottom:1.2rem;">Bewege das <strong style="color:var(--accent-soft);">Tablett</strong> unten mit Finger oder Maus · 20 Sekunden</p>
+        <button class="btn btn-accent" id="startBtn">Experiment starten!</button>
     </div>
 
     <!-- END -->
@@ -168,8 +172,8 @@ html{padding-top:var(--kk-h)}
             <canvas id="confettiCanvas" style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);pointer-events:none;width:220px;height:160px;" width="220" height="160"></canvas>
         </div>
         <p class="score-detail" style="margin-top:0.2rem;">
-            <span id="finalPizzas" style="color:var(--good);">🍕 0 Pizzen</span> gefangen &nbsp;·&nbsp;
-            <span id="finalChilis" style="color:#e63946;">🌶️ 0 Chilis</span> erwischt
+            <span id="finalPizzas" style="color:var(--good);"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5a17 17 0 0 1 17 0L12 21z"/><circle cx="12" cy="9.5" r="1"/><circle cx="11" cy="14" r="1"/></svg> 0 Pizzen</span> gefangen &nbsp;·&nbsp;
+            <span id="finalChilis" style="color:var(--bad);"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c2.5 0 4 1.5 4 4 0 8-6 14-15 14 5-2.5 7-6 7-10 0-4 1.5-8 4-8z"/><path d="M14 3c0 1 .5 2 2 2"/></svg> 0 Chilis</span> erwischt
         </p>
 
         <!-- Big prominent question with glow -->
@@ -178,26 +182,26 @@ html{padding-top:var(--kk-h)}
 
         <!-- Reveal trigger – glowing button -->
         <button class="btn btn-reveal" id="revealBtn">
-            👀 Auflösung anzeigen
+            Auflösung anzeigen
         </button>
 
         <!-- Hidden reveal – Marco's text -->
         <div id="revealSection">
-            <div class="reveal-box" style="border-color: rgba(255,209,102,0.4);">
-                <strong style="color:#ffd166; display:block; font-family:'Syne',sans-serif; font-size:1.1rem; margin-bottom:0.4rem;">🦍 Ein Gorilla!</strong>
+            <div class="reveal-box" style="border-color: rgba(249,115,22,0.45);">
+                <strong style="color:var(--accent-soft); display:block; font-family:var(--fh); font-size:1.1rem; margin-bottom:0.4rem;">Ein Gorilla!</strong>
                 <p>Mitten durchs Restaurant ist ein großer Gorilla spaziert – und die meisten bemerken ihn gar nicht.</p>
                 <p style="margin-top:0.4rem;">Das ist kein Zufall und auch kein Fehler deinerseits.</p>
                 <p style="margin-top:0.4rem;">Wenn du zu den Menschen gehörst, die ihn nicht wahrnahmen: Keine Sorge, das ist völlig normal. Dein Gehirn hat den Gorilla einfach …</p>
-                <p style="margin-top:0.4rem; color:#e63946; font-weight:700; font-family:'Syne',sans-serif; font-size:1rem;">❌ gelöscht.</p>
+                <p style="margin-top:0.4rem; color:var(--bad); font-weight:700; font-family:var(--fh); font-size:1rem;"><span class="reveal-gone"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>gelöscht.</span></p>
             </div>
-            <div class="reveal-box" style="border-color: rgba(168,218,220,0.4);">
-                <p style="color:#a8dadc; font-weight:600;">Warum das so ist und was das mit deinem Alltag zu tun hat, erfährst du noch, nach einem weiteren kleinen Experiment.</p>
+            <div class="reveal-box" style="border-color: rgba(125,211,192,0.4);">
+                <p style="color:var(--good); font-weight:600;">Warum das so ist und was das mit deinem Alltag zu tun hat, erfährst du noch, nach einem weiteren kleinen Experiment.</p>
             </div>
         </div>
 
         <div class="end-btns">
-            <button class="btn btn-accent" id="restartBtn" style="display:none;">🔄 Nochmal spielen</button>
-            <button class="btn btn-ghost" id="backBtn" style="display:none;">↩ Zurück zum Start</button>
+            <button class="btn btn-accent" id="restartBtn" style="display:none;">Nochmal spielen</button>
+            <button class="btn btn-ghost" id="backBtn" style="display:none;">Zurück zum Start</button>
         </div>
     </div>
 </div>
@@ -224,7 +228,7 @@ let score = 0, pizzas = 0, chilis = 0, timeLeft = 20;
 let items = [], particles = [], bgFigures = [];
 let spawnTimer = 0, bgSpawnTimer = 0, lastTs = 0;
 let rafId = null, tickId = null;
-let flashA = 0, flashC = '#52b788';
+let flashA = 0, flashC = '#7DD3C0';
 let gorillaSpawned = false;
 
 const PL = { x:0, y:0, w:0, h:0, tx:0 };
@@ -240,23 +244,23 @@ function initPlayer() {
 // ═══════════════════ KITCHEN BACKGROUND ═══════════════════
 function drawKitchen() {
     const bg = ctx.createLinearGradient(0,0,0,H);
-    bg.addColorStop(0,'#3b1f0a'); bg.addColorStop(0.45,'#5c2e0e'); bg.addColorStop(1,'#2a1206');
+    bg.addColorStop(0,'#13202d'); bg.addColorStop(0.45,'#1a2b3b'); bg.addColorStop(1,'#0a121a');
     ctx.fillStyle = bg; ctx.fillRect(0,0,W,H);
 
     // Upper wall
-    ctx.fillStyle = '#4a2510'; ctx.fillRect(0,0,W,H*0.12);
+    ctx.fillStyle = '#101c28'; ctx.fillRect(0,0,W,H*0.12);
 
     // Hanging lamps
     [W*0.2, W*0.5, W*0.8].forEach(lx => {
-        ctx.strokeStyle='#2a1206'; ctx.lineWidth=2;
+        ctx.strokeStyle='#0a121a'; ctx.lineWidth=2;
         ctx.beginPath(); ctx.moveTo(lx,0); ctx.lineTo(lx,H*0.12); ctx.stroke();
-        ctx.fillStyle='#d4860a';
+        ctx.fillStyle='#c2570f';
         ctx.beginPath();
         ctx.moveTo(lx-22,H*0.12); ctx.lineTo(lx+22,H*0.12);
         ctx.lineTo(lx+14,H*0.18); ctx.lineTo(lx-14,H*0.18);
         ctx.closePath(); ctx.fill();
         const glow = ctx.createRadialGradient(lx,H*0.2,0,lx,H*0.2,H*0.28);
-        glow.addColorStop(0,'rgba(255,200,80,0.13)'); glow.addColorStop(1,'rgba(255,200,80,0)');
+        glow.addColorStop(0,'rgba(249,115,22,0.14)'); glow.addColorStop(1,'rgba(249,115,22,0)');
         ctx.fillStyle=glow; ctx.fillRect(lx-H*0.28,0,H*0.56,H*0.55);
     });
 
@@ -267,14 +271,14 @@ function drawKitchen() {
 
     // Counter
     const cy=H*0.82;
-    ctx.fillStyle='#7a3e18'; ctx.fillRect(0,cy,W,H-cy);
-    ctx.fillStyle='rgba(255,200,100,0.12)'; ctx.fillRect(0,cy,W,4);
-    ctx.fillStyle='#1e0d04'; ctx.fillRect(0,cy+(H-cy)*0.3,W,H);
+    ctx.fillStyle='#1f3347'; ctx.fillRect(0,cy,W,H-cy);
+    ctx.fillStyle='rgba(125,211,192,0.2)'; ctx.fillRect(0,cy,W,4);
+    ctx.fillStyle='#0a121a'; ctx.fillRect(0,cy+(H-cy)*0.3,W,H);
 
     // Shelves
     [[0.22,0.35],[0.62,0.27]].forEach(([sx,sy])=>{
-        ctx.fillStyle='#5c2e0e'; ctx.fillRect(W*sx,H*sy,W*0.18,6);
-        ['#c0392b','#e67e22','#27ae60'].forEach((c,i)=>{
+        ctx.fillStyle='#2a4157'; ctx.fillRect(W*sx,H*sy,W*0.18,6);
+        ['#B41928','#f97316','#5BB8A5'].forEach((c,i)=>{
             ctx.fillStyle=c; ctx.fillRect(W*sx+i*22+4,H*sy-18,14,18);
         });
     });
@@ -491,9 +495,9 @@ function drawPlayer(){
     // Tray body – flat silver/steel look
     ctx.beginPath(); ctx.roundRect(x,y,w,h,7);
     const tg=ctx.createLinearGradient(x,y,x,y+h);
-    tg.addColorStop(0,'#d4c5a9');
-    tg.addColorStop(0.35,'#c9b99a');
-    tg.addColorStop(1,'#9e8868');
+    tg.addColorStop(0,'#cbd5e1');
+    tg.addColorStop(0.35,'#94a3b8');
+    tg.addColorStop(1,'#64748b');
     ctx.fillStyle=tg; ctx.fill();
     ctx.shadowBlur=0; ctx.shadowOffsetY=0;
 
@@ -503,17 +507,17 @@ function drawPlayer(){
 
     // Tray rim border
     ctx.beginPath(); ctx.roundRect(x,y,w,h,7);
-    ctx.strokeStyle='rgba(100,70,30,0.5)'; ctx.lineWidth=1.5; ctx.stroke();
+    ctx.strokeStyle='rgba(15,25,35,0.6)'; ctx.lineWidth=1.5; ctx.stroke();
 
     // Raised rim around edge (inner line)
     ctx.beginPath(); ctx.roundRect(x+4,y+4,w-8,h-8,4);
     ctx.strokeStyle='rgba(255,255,255,0.2)'; ctx.lineWidth=1; ctx.stroke();
 
     // Label
-    ctx.fillStyle='rgba(60,35,10,0.85)';
+    ctx.fillStyle='#0f1923';
     ctx.font=`bold ${Math.round(h*0.36)}px 'DM Sans', sans-serif`;
     ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText('🍽️  TABLETT',x+w/2,y+h/2+1);
+    ctx.fillText('TABLETT',x+w/2,y+h/2+1);
     ctx.textAlign='left'; ctx.textBaseline='alphabetic';
 }
 
@@ -540,7 +544,7 @@ function drawItems(){
 // ═══════════════════ PARTICLES ═══════════════════
 function addParticles(x,y,good){
     for(let i=0;i<9;i++) particles.push({x,y,vx:(Math.random()-0.5)*6,vy:-2-Math.random()*4,
-        life:1,color:good?'#52b788':'#e63946',r:3+Math.random()*4});
+        life:1,color:good?'#7DD3C0':'#e0414f',r:3+Math.random()*4});
 }
 function drawParticles(){
     for(let i=particles.length-1;i>=0;i--){
@@ -572,7 +576,7 @@ function checkCollisions(){
                 if(it.isGood){ pizzas++; } else { chilis++; }
                 score=Math.max(0, pizzas - chilis*2);
                 addParticles(it.x,it.y,it.isGood);
-                flashA=0.22;flashC=it.isGood?'#52b788':'#e63946';
+                flashA=0.22;flashC=it.isGood?'#7DD3C0':'#e0414f';
                 updateHUD();
             }
             items.splice(i,1);
@@ -663,13 +667,13 @@ function endGame(){
     fsd.classList.remove('pop');
     void fsd.offsetWidth; // reflow to restart animation
     fsd.classList.add('pop');
-    document.getElementById('finalPizzas').textContent = '🍕 ' + pizzas + ' Pizzen';
-    document.getElementById('finalChilis').textContent = '🌶️ ' + chilis + ' Chilis';
+    document.getElementById('finalPizzas').innerHTML = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5a17 17 0 0 1 17 0L12 21z"/><circle cx="12" cy="9.5" r="1"/><circle cx="11" cy="14" r="1"/></svg> ' + pizzas + ' Pizzen';
+    document.getElementById('finalChilis').innerHTML = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3c2.5 0 4 1.5 4 4 0 8-6 14-15 14 5-2.5 7-6 7-10 0-4 1.5-8 4-8z"/><path d="M14 3c0 1 .5 2 2 2"/></svg> ' + chilis + ' Chilis';
 
     // Confetti burst
     const cc = document.getElementById('confettiCanvas');
     const cx = cc.getContext('2d');
-    const colors = ['#52b788','#ffd166','#ff6b35','#a8dadc','#e63946','#fff'];
+    const colors = ['#7DD3C0','#fb923c','#f97316','#7DD3C0','#e0414f','#fff'];
     let cfPieces = [];
     for(let i=0;i<38;i++) cfPieces.push({
         x:110+( Math.random()-0.5)*60, y:80,
@@ -691,7 +695,7 @@ function endGame(){
         }
         if(cfPieces.length>0) requestAnimationFrame(animateConfetti);
     }
-    animateConfetti();
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches) animateConfetti();
     document.getElementById('endOverlay').style.display='flex';
     document.getElementById('timerBar').style.width='0%';
 }

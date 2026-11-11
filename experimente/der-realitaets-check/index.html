@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>🚀 Der Realitäts-Check | Klarkommen</title>
+  <title>Der Realitäts-Check | Klarkommen</title>
   <link rel="stylesheet" href="../../fonts/fonts.css">
   <style>
     /* ====== THEME VARIABLES ====== */
@@ -12,6 +12,10 @@
       --bg-card: #162230;
       --bg-input: #1c2e40;
       --bg-pill: #1c2e40;
+      --healthy: #7DD3C0;
+      --healthy-dark: #5BB8A5;
+      --healthy-glow: rgba(125, 211, 192, 0.28);
+      --on-accent: #1a0d03;
 
       --accent: #f97316;
       --accent-glow: rgba(249, 115, 22, 0.25);
@@ -26,27 +30,6 @@
       --ring-track: rgba(148, 163, 184, 0.1);
       --radius: 16px;
       --card-shadow: 0 4px 24px rgba(0,0,0,0.3);
-    }
-
-    /* ====== LIGHT MODE ====== */
-    body.light {
-      --bg-deep: #f0f4f8;
-      --bg-card: #ffffff;
-      --bg-input: #e8eef5;
-      --bg-pill: #e8eef5;
-
-      --accent: #ea6c05;
-      --accent-glow: rgba(234, 108, 5, 0.18);
-      --accent-soft: #f97316;
-
-      --text-primary: #1a2332;
-      --text-secondary: #4a5568;
-      --text-muted: #94a3b8;
-      --border: rgba(30, 50, 80, 0.1);
-      --border-strong: rgba(30, 50, 80, 0.18);
-
-      --ring-track: rgba(30, 50, 80, 0.1);
-      --card-shadow: 0 4px 24px rgba(0,0,0,0.08);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -75,12 +58,6 @@
       z-index: 0;
     }
 
-    body.light::before {
-      background:
-        radial-gradient(ellipse at 20% 0%, rgba(249, 115, 22, 0.05) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 100%, rgba(125, 211, 192, 0.04) 0%, transparent 50%);
-    }
-
     .container {
       position: relative;
       z-index: 1;
@@ -107,27 +84,39 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
       transition: all 0.25s;
       box-shadow: var(--card-shadow);
     }
+    .icon-btn:focus-visible, .pill:focus-visible, .btn-primary:focus-visible, .btn-secondary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
+    .icon-btn svg, .btn-primary svg, .btn-secondary svg, .completion-badge svg {
+      width: 20px; height: 20px; stroke: currentColor; fill: none;
+      stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none;
+    }
+    .btn-primary svg.f { fill: currentColor; stroke: none; }
     .icon-btn:hover { color: var(--accent); border-color: var(--accent); }
     .icon-btn.active { color: var(--accent); border-color: var(--accent); background: var(--accent-glow); }
 
     /* ====== HEADER ====== */
     .header { text-align: center; margin-bottom: 2rem; }
 
-    .header-emoji {
-      font-size: 2.8rem;
+    .header-visual {
+      position: relative;
       display: block;
-      margin-bottom: 0.6rem;
-      animation: floatEmoji 4s ease-in-out infinite;
+      width: 168px;
+      height: 168px;
+      margin: 0 auto 0.4rem;
+      border-radius: 50%;
+      overflow: hidden;
+      -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 71%);
+      mask-image: radial-gradient(circle at 50% 50%, #000 52%, transparent 71%);
+      animation: observerGlow 5s ease-in-out infinite;
     }
+    .header-visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-    @keyframes floatEmoji {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-6px); }
+    @keyframes observerGlow {
+      0%, 100% { filter: brightness(0.92) saturate(1); transform: scale(1); }
+      50%      { filter: brightness(1.22) saturate(1.2) drop-shadow(0 0 14px rgba(125,211,192,0.55)); transform: scale(1.03); }
     }
 
     .header h1 {
@@ -136,11 +125,9 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: 0.6rem;
-      background: linear-gradient(135deg, var(--text-primary), var(--accent-soft));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: var(--text-primary);
     }
+    .header h1::after { content: ""; display: block; width: 44px; height: 3px; border-radius: 2px; background: var(--accent); margin: 0.6rem auto 0; }
 
     .header p {
       color: var(--text-secondary);
@@ -199,17 +186,15 @@
       font-family: 'DM Sans', sans-serif;
     }
 
-    .pill:hover { border-color: var(--accent); color: var(--accent); }
+    .pill { min-height: 36px; }
 
     .pill.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: #fff;
-      box-shadow: 0 2px 10px var(--accent-glow);
+      background: var(--healthy);
+      border-color: var(--healthy);
+      color: #0f1923;
+      box-shadow: 0 2px 10px var(--healthy-glow);
     }
-
-    /* Sound pills with emoji */
-    .pill-sound { font-size: 0.9rem; padding: 0.35rem 0.7rem; }
+    .pill:hover:not(.active) { border-color: var(--healthy); color: var(--healthy); }
 
     /* ====== TIMER AREA ====== */
     .timer-card {
@@ -234,7 +219,7 @@
       width: 220px;
       height: 220px;
       border-radius: 50%;
-      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--healthy-glow) 0%, transparent 70%);
       opacity: 0;
       transition: opacity 0.6s;
       pointer-events: none;
@@ -264,17 +249,15 @@
 
     .ring-progress {
       fill: none;
-      stroke: var(--accent);
+      stroke: var(--healthy);
       stroke-width: 8;
       stroke-linecap: round;
       stroke-dasharray: 534; /* 2π × 85 */
       stroke-dashoffset: 0;
       transition: stroke-dashoffset 1s linear, stroke 0.3s;
-      filter: drop-shadow(0 0 6px var(--accent-glow));
+      filter: drop-shadow(0 0 6px var(--healthy-glow));
     }
-
-    .ring-progress.warning { stroke: #f59e0b; }
-    .ring-progress.danger  { stroke: #ef4444; }
+    /* Ende des Countdowns: kein Alarm-Rot, Ruhe bleibt Teal (Farblogik: Teal = Ruhe/Fortschritt) */
 
     /* Center display */
     .ring-center {
@@ -295,8 +278,6 @@
       transition: color 0.3s;
     }
 
-    .time-display.warning { color: #f59e0b; }
-    .time-display.danger  { color: #ef4444; }
 
     .time-label {
       font-size: 0.75rem;
@@ -315,7 +296,12 @@
       border-radius: 12px;
       border: none;
       background: var(--accent);
-      color: #fff;
+      color: var(--on-accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 48px;
       font-family: 'Space Grotesk', sans-serif;
       font-size: 1rem;
       font-weight: 700;
@@ -342,6 +328,11 @@
       border: 1px solid var(--border-strong);
       background: transparent;
       color: var(--text-secondary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 48px;
       font-family: 'DM Sans', sans-serif;
       font-size: 0.9rem;
       font-weight: 600;
@@ -359,7 +350,7 @@
     /* ====== PULSE ANIMATION on START ====== */
     @keyframes pulseBorder {
       0%, 100% { box-shadow: 0 4px 16px var(--accent-glow); }
-      50%       { box-shadow: 0 4px 28px rgba(249,115,22,0.5); }
+      50%       { box-shadow: 0 4px 28px rgba(249,115,22,0.5), 0 0 0 8px rgba(249,115,22,0); }
     }
 
     .btn-primary.pulse { animation: pulseBorder 2s ease-in-out infinite; }
@@ -380,11 +371,11 @@
     /* ====== COMPLETION MESSAGE ====== */
     .completion-card {
       background: var(--bg-card);
-      border: 1px solid rgba(249, 115, 22, 0.3);
+      border: 1px solid rgba(125, 211, 192, 0.3);
       border-radius: var(--radius);
       padding: 1.75rem 1.5rem;
       margin-top: 1.25rem;
-      box-shadow: 0 4px 24px var(--accent-glow), var(--card-shadow);
+      box-shadow: 0 4px 24px var(--healthy-glow), var(--card-shadow);
       opacity: 0;
       transform: translateY(16px);
       transition: opacity 0.5s ease, transform 0.5s ease;
@@ -401,13 +392,13 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      background: rgba(249, 115, 22, 0.12);
-      border: 1px solid rgba(249, 115, 22, 0.3);
+      background: rgba(125, 211, 192, 0.12);
+      border: 1px solid rgba(125, 211, 192, 0.3);
       border-radius: 100px;
-      padding: 0.3rem 0.9rem;
+      padding: 0.3rem 0.9rem 0.3rem 0.6rem;
       font-size: 0.8rem;
       font-weight: 700;
-      color: var(--accent);
+      color: var(--healthy);
       font-family: 'Space Grotesk', sans-serif;
       letter-spacing: 0.04em;
       margin-bottom: 1.1rem;
@@ -434,8 +425,8 @@
     .completion-para strong { color: var(--text-primary); font-weight: 700; }
 
     .completion-highlight {
-      background: rgba(249, 115, 22, 0.08);
-      border-left: 3px solid var(--accent);
+      background: rgba(125, 211, 192, 0.08);
+      border-left: 3px solid var(--healthy);
       border-radius: 0 8px 8px 0;
       padding: 0.9rem 1.1rem;
       margin: 1rem 0;
@@ -468,21 +459,29 @@
     .completion-card.visible .completion-para:nth-child(5) { transition-delay: 0.55s; }
     .completion-card.visible .completion-para:nth-child(6) { transition-delay: 0.7s; }
 
-    /* ====== CONFETTI ====== */
-    .confetti-piece {
+    /* ====== GEDANKEN-ORBS (Abschluss, statt Konfetti) ====== */
+    .orb-piece {
       position: fixed;
-      width: 8px;
-      height: 8px;
-      border-radius: 2px;
+      bottom: 0;
+      border-radius: 50%;
       opacity: 0;
       pointer-events: none;
       z-index: 999;
-      animation: confettiFall 2.5s ease-in forwards;
+      animation: orbRise 3s ease-out forwards;
     }
 
-    @keyframes confettiFall {
-      0%   { opacity: 1; transform: translateY(-20px) rotate(0deg); }
-      100% { opacity: 0; transform: translateY(100vh) rotate(720deg); }
+    @keyframes orbRise {
+      0%   { opacity: 0; transform: translateY(0) scale(0.6); }
+      20%  { opacity: 0.9; }
+      100% { opacity: 0; transform: translateY(-70vh) scale(1.1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .header-visual { animation: none; filter: none; transform: none; }
+      .btn-primary.pulse { animation: none; }
+      .orb-piece { display: none; }
+      .ring-progress { transition: none; }
+      .completion-card, .completion-card .completion-para, .completion-card .completion-highlight { transition: none; transition-delay: 0s !important; }
     }
 
     /* ====== FOOTER ====== */
@@ -511,13 +510,12 @@ html{padding-top:var(--kk-h)}
 
   <!-- Top Bar -->
   <div class="top-bar">
-    <button class="icon-btn active" id="soundToggle" title="Ton ein/aus">🔔</button>
-    <button class="icon-btn" id="themeToggle" title="Hell/Dunkel">🌙</button>
+    <button class="icon-btn active" id="soundToggle" title="Gong ein/aus" aria-label="Gong ein/aus" aria-pressed="true"></button>
   </div>
 
   <!-- Header -->
   <div class="header">
-    <span class="header-emoji">🚀</span>
+    <span class="header-visual"><img src="beobachter.webp" width="512" height="512" alt="Ruhige Figur mit leuchtendem Kern, an der orange Gedanken wie Lichter vorbeiziehen"></span>
     <h1>Der Realitäts-Check</h1>
     <p>Dein einziges Ziel: An absolut gar nichts denken.<br>
     Kein Bild. Kein Wort. Totale Stille im Kopf.<br>
@@ -531,14 +529,6 @@ html{padding-top:var(--kk-h)}
       <div class="pill-group" id="durationPills">
         <button class="pill" data-sec="60" onclick="selectDuration(60)">1 Min</button>
         <button class="pill active" data-sec="120" onclick="selectDuration(120)">2 Min</button>
-      </div>
-    </div>
-    <div class="settings-row">
-      <span class="settings-label">Sound</span>
-      <div class="pill-group" id="soundPills">
-        <button class="pill pill-sound active" data-sound="gong" onclick="selectSound('gong')">🔔 Gong</button>
-        <button class="pill pill-sound" data-sound="chime" onclick="selectSound('chime')">✨ Chime</button>
-        <button class="pill pill-sound" data-sound="bowl" onclick="selectSound('bowl')">🎵 Bowl</button>
       </div>
     </div>
   </div>
@@ -559,13 +549,13 @@ html{padding-top:var(--kk-h)}
     <div class="status-text" id="statusText">Drücke Start – und schließ die Augen.</div>
 
     <div class="btn-row" id="btnRow">
-      <button class="btn-primary pulse" id="startBtn" onclick="startTimer()">▶ Start</button>
+      <button class="btn-primary pulse" id="startBtn" onclick="startTimer()"></button>
     </div>
   </div>
 
   <!-- Completion Message (hidden until done) -->
   <div class="completion-card" id="completionCard">
-    <div class="completion-badge">✓ Zeit um</div>
+    <div class="completion-badge"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Zeit um</div>
     <div class="completion-heading">Na? Wie weit bist du gekommen?</div>
     <p class="completion-para">Drei Sekunden? Fünf? Vielleicht zehn, wenn du Glück hattest?</p>
     <p class="completion-para">Wahrscheinlich war es ungefähr so: „Okay, an nichts denken… An. Nichts. Denken. Mist, das IST ja schon ein Gedanke. Wie lange sind 2 Minuten eigentlich? Hat mein Handy gerade vibriert? Ich hab Hunger. STOPP – an nichts denken!"</p>
@@ -585,9 +575,7 @@ html{padding-top:var(--kk-h)}
   // STATE
   // ============================================================
   let timerDuration = 120;
-  let selectedSound = 'gong';
   let soundOn = true;
-  let isDark = true;
   let interval = null;
   let remaining = 120;
   let isRunning = false;
@@ -601,6 +589,8 @@ html{padding-top:var(--kk-h)}
   function init() {
     updateDisplay(timerDuration);
     document.getElementById('ringProgress').style.strokeDashoffset = 0;
+    setBtn(document.getElementById('startBtn'), 'play', 'Start');
+    setBtn(document.getElementById('soundToggle'), 'bell');
   }
 
   // ============================================================
@@ -620,16 +610,20 @@ html{padding-top:var(--kk-h)}
   }
 
   // ============================================================
-  // SOUND SELECT
+  // ICONS (Klarkommen-Linien-Icons, 24er-Raster)
   // ============================================================
-  function selectSound(s) {
-    selectedSound = s;
-    document.querySelectorAll('#soundPills .pill').forEach(p => {
-      p.classList.toggle('active', p.dataset.sound === s);
-    });
-    // Preview sound
-    if (soundOn) playCompletion(s, 0.25);
+  const IC = {
+    play:   '<path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l11-6.8a.8.8 0 0 0 0-1.4l-11-6.8A.8.8 0 0 0 8 5.2z"/>',
+    pause:  '<rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/>',
+    reset:  '<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5"/>',
+    bell:   '<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/>',
+    bellOff:'<path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21h4"/><path d="M4 4l16 16"/>'
+  };
+  function ic(n) {
+    const fill = (n === 'play' || n === 'pause') ? ' class="f"' : '';
+    return `<svg${fill} viewBox="0 0 24 24" aria-hidden="true">${IC[n]}</svg>`;
   }
+  function setBtn(el, icon, text) { el.innerHTML = ic(icon) + (text ? '<span>' + text + '</span>' : ''); }
 
   // ============================================================
   // DISPLAY
@@ -646,22 +640,6 @@ html{padding-top:var(--kk-h)}
     const ring = document.getElementById('ringProgress');
     ring.style.strokeDashoffset = offset;
 
-    const timeEl = document.getElementById('timeDisplay');
-    const pctLeft = 1 - pct;
-    if (pctLeft <= 0.1) {
-      ring.classList.add('danger');
-      timeEl.classList.add('danger');
-      timeEl.classList.remove('warning');
-      ring.classList.remove('warning');
-    } else if (pctLeft <= 0.25) {
-      ring.classList.add('warning');
-      timeEl.classList.add('warning');
-      ring.classList.remove('danger');
-      timeEl.classList.remove('danger');
-    } else {
-      ring.classList.remove('warning','danger');
-      timeEl.classList.remove('warning','danger');
-    }
   }
 
   // ============================================================
@@ -673,14 +651,12 @@ html{padding-top:var(--kk-h)}
     remaining = timerDuration;
 
     // Update UI
-    const startBtn = document.getElementById('startBtn');
-    startBtn.classList.remove('pulse');
-    startBtn.textContent = '⏸ Pause';
-    startBtn.onclick = pauseTimer;
     document.getElementById('btnRow').innerHTML = `
-      <button class="btn-primary" id="startBtn" onclick="pauseTimer()" style="flex:2">⏸ Pause</button>
-      <button class="btn-secondary" id="resetBtn" onclick="resetTimer()" style="flex:1;margin-top:0">↺</button>
+      <button class="btn-primary" id="startBtn" onclick="pauseTimer()" style="flex:2"></button>
+      <button class="btn-secondary" id="resetBtn" onclick="resetTimer()" style="flex:1;margin-top:0" aria-label="Zurücksetzen"></button>
     `;
+    setBtn(document.getElementById('startBtn'), 'pause', 'Pause');
+    setBtn(document.getElementById('resetBtn'), 'reset');
 
     document.getElementById('timerCard').classList.add('running');
     document.getElementById('statusText').textContent = 'Augen zu. Kopf leer. Atme.';
@@ -708,7 +684,7 @@ html{padding-top:var(--kk-h)}
     if (!isRunning) {
       // Resume
       isRunning = true;
-      document.getElementById('startBtn').textContent = '⏸ Pause';
+      setBtn(document.getElementById('startBtn'), 'pause', 'Pause');
       interval = setInterval(() => {
         remaining--;
         updateDisplay(remaining);
@@ -725,7 +701,7 @@ html{padding-top:var(--kk-h)}
       isRunning = false;
       clearInterval(interval);
       interval = null;
-      document.getElementById('startBtn').textContent = '▶ Weiter';
+      setBtn(document.getElementById('startBtn'), 'play', 'Weiter');
       document.getElementById('startBtn').onclick = pauseTimer;
       document.getElementById('statusText').textContent = 'Pausiert. Wann immer du bereit bist.';
     }
@@ -741,8 +717,6 @@ html{padding-top:var(--kk-h)}
     remaining = timerDuration;
     updateDisplay(timerDuration);
     document.getElementById('ringProgress').style.strokeDashoffset = 0;
-    document.getElementById('ringProgress').classList.remove('warning','danger');
-    document.getElementById('timeDisplay').classList.remove('warning','danger');
     document.getElementById('timerCard').classList.remove('running');
     document.getElementById('statusText').textContent = 'Drücke Start – und schließ die Augen.';
     document.getElementById('statusText').classList.remove('active-msg');
@@ -755,8 +729,9 @@ html{padding-top:var(--kk-h)}
 
   function resetUI() {
     document.getElementById('btnRow').innerHTML = `
-      <button class="btn-primary pulse" id="startBtn" onclick="startTimer()">▶ Start</button>
+      <button class="btn-primary pulse" id="startBtn" onclick="startTimer()"></button>
     `;
+    setBtn(document.getElementById('startBtn'), 'play', 'Start');
   }
 
   // ============================================================
@@ -765,22 +740,21 @@ html{padding-top:var(--kk-h)}
   function onComplete() {
     document.getElementById('timerCard').classList.remove('running');
     document.getElementById('timeDisplay').textContent = '0:00';
-    document.getElementById('timeDisplay').classList.remove('warning','danger');
-    document.getElementById('ringProgress').classList.remove('warning','danger');
     document.getElementById('ringProgress').style.strokeDashoffset = CIRCUMFERENCE;
-    document.getElementById('timeLabel').textContent = 'Geschafft! 🎉';
+    document.getElementById('timeLabel').textContent = 'Geschafft!';
     document.getElementById('statusText').textContent = 'Beeindruckend. Lies weiter.';
     document.getElementById('statusText').classList.remove('active-msg');
 
     document.getElementById('btnRow').innerHTML = `
-      <button class="btn-secondary" onclick="resetTimer()" style="margin-top:0;width:100%">↺ Nochmal</button>
+      <button class="btn-secondary" id="againBtn" onclick="resetTimer()" style="margin-top:0;width:100%"></button>
     `;
+    setBtn(document.getElementById('againBtn'), 'reset', 'Nochmal');
 
     // Sound
-    if (soundOn) playCompletion(selectedSound, 1);
+    if (soundOn) playGong(getCtx(), 1);
 
-    // Confetti
-    launchConfetti();
+    // Gedanken-Orbs
+    launchOrbs();
 
     // Reveal message with delay
     setTimeout(() => {
@@ -793,21 +767,24 @@ html{padding-top:var(--kk-h)}
   /* spec/04 §5: Gedanken-Einblendung während der Zeit entfernt – Gedanken sollen von allein kommen */
 
   // ============================================================
-  // CONFETTI
+  // GEDANKEN-ORBS (ruhiger Abschluss; bei reduzierter Bewegung aus)
   // ============================================================
-  function launchConfetti() {
-    const colors = ['#f97316','#fb923c','#fcd34d','#7DD3C0','#ffffff'];
-    for (let i = 0; i < 40; i++) {
+  function launchOrbs() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const colors = ['#f97316', '#fb923c', '#7DD3C0'];
+    for (let i = 0; i < 16; i++) {
       const el = document.createElement('div');
-      el.className = 'confetti-piece';
-      el.style.left = (10 + Math.random() * 80) + 'vw';
-      el.style.top = '0px';
-      el.style.background = colors[Math.floor(Math.random() * colors.length)];
-      el.style.animationDelay = (Math.random() * 0.8) + 's';
-      el.style.animationDuration = (1.8 + Math.random() * 1.2) + 's';
-      el.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      const size = 6 + Math.random() * 10;
+      const c = colors[Math.floor(Math.random() * colors.length)];
+      el.className = 'orb-piece';
+      el.style.left = (8 + Math.random() * 84) + 'vw';
+      el.style.width = el.style.height = size + 'px';
+      el.style.background = c;
+      el.style.boxShadow = '0 0 ' + (size * 1.5) + 'px ' + c;
+      el.style.animationDelay = (Math.random() * 0.9) + 's';
+      el.style.animationDuration = (2.2 + Math.random() * 1.4) + 's';
       document.body.appendChild(el);
-      setTimeout(() => el.remove(), 3500);
+      setTimeout(() => el.remove(), 4500);
     }
   }
 
@@ -817,15 +794,6 @@ html{padding-top:var(--kk-h)}
   function getCtx() {
     if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     return audioCtx;
-  }
-
-  function playCompletion(sound, volume) {
-    try {
-      const ctx = getCtx();
-      if (sound === 'gong') playGong(ctx, volume);
-      else if (sound === 'chime') playChime(ctx, volume);
-      else if (sound === 'bowl') playBowl(ctx, volume);
-    } catch(e) { console.warn('Audio error', e); }
   }
 
   function playGong(ctx, vol) {
@@ -844,61 +812,15 @@ html{padding-top:var(--kk-h)}
     });
   }
 
-  function playChime(ctx, vol) {
-    // Bright sparkly chime cascade
-    const notes = [523, 659, 784, 1047, 880];
-    notes.forEach((freq, i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
-      gain.gain.setValueAtTime(0, ctx.currentTime + i * 0.15);
-      gain.gain.linearRampToValueAtTime(vol * 0.3, ctx.currentTime + i * 0.15 + 0.01);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.15 + 2.0);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(ctx.currentTime + i * 0.15);
-      osc.stop(ctx.currentTime + i * 0.15 + 2.0);
-    });
-  }
-
-  function playBowl(ctx, vol) {
-    // Tibetan singing bowl: slow attack, long sustain, overtone
-    [[216, 1.0],[432, 0.5],[648, 0.2]].forEach(([freq, amp], i) => {
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      // Slight frequency wobble for bowl character
-      osc.frequency.linearRampToValueAtTime(freq * 1.003, ctx.currentTime + 0.5);
-      gain.gain.setValueAtTime(0, ctx.currentTime);
-      gain.gain.linearRampToValueAtTime(amp * vol * 0.35, ctx.currentTime + 0.4 + i * 0.1);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 5.5);
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 5.5);
-    });
-  }
-
   // ============================================================
   // SOUND TOGGLE
   // ============================================================
   document.getElementById('soundToggle').addEventListener('click', () => {
     soundOn = !soundOn;
     const btn = document.getElementById('soundToggle');
-    btn.textContent = soundOn ? '🔔' : '🔕';
+    setBtn(btn, soundOn ? 'bell' : 'bellOff');
     btn.classList.toggle('active', soundOn);
-  });
-
-  // ============================================================
-  // THEME TOGGLE
-  // ============================================================
-  document.getElementById('themeToggle').addEventListener('click', () => {
-    isDark = !isDark;
-    document.body.classList.toggle('light', !isDark);
-    document.getElementById('themeToggle').textContent = isDark ? '🌙' : '☀️';
-    document.getElementById('themeToggle').classList.toggle('active', !isDark);
+    btn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
   });
 
   // ============================================================
