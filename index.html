@@ -733,7 +733,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.21';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.22';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r2';   /* muss zu MEDIEN in sw.js passen */
@@ -1179,7 +1179,8 @@ async function renderSlide(app, r){
     <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
-  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Ausführlich lesen (Leseversion)</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Leseversion schließen</button></div></details>`;
+  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Leseversion schließen</button></div></details>`;
+  if(s.spickzettel && s.spickzettel.length) html += `<details class="acc spick"><summary>${ic('bulb')}<span>Spickzettel</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.spickzettel, {...ctx, path:ctx.path+'/spick'})}</div></details>`;   /* v1.3.22: BrainFact-Reihenfolge Teaser → Podcast → „Lieber lesen statt hören?“ → Spickzettel (zugeklappt), Feld `spickzettel` */
   if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
     html += naechstWeiter(k, true);
     html += `<a class="btn ghost block sek" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1">Zu den ${esc((RUBRIK[next.rubrik]||{}).label||next.titel)} ${ic('right')}</a>`;

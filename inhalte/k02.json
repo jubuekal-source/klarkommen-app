@@ -66,50 +66,15 @@
       "header": "medien/bilder/rubrik/brainfact.webp",
       "bloecke": [
         {
+          "typ": "absatz",
+          "text": "Was, wenn dir irgendwann ein Etikett aufgeklebt wurde, das gar nicht zu dir passt? Alex und Jonas gehen der Frage nach, wie viel von dem, was du über dich glaubst, wirklich von dir stammt."
+        },
+        {
           "typ": "audio",
           "id": "k02-podcast",
           "titel": "Podcast: Episode 2 – Alex & Jonas über Identität, Prägungen und den Adler",
           "art": "podcast",
           "status": "fertig"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Das Wichtigste auf einen Blick"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Die Illusion des Hühnerstalls"
-        },
-        {
-          "typ": "absatz",
-          "text": "Wir kommen mit dem Potenzial eines Adlers auf die Welt, doch Umfeld und fremde Erwartungen kleben uns oft das Label *\"Huhn\"* auf. Wenn du diese Fremdbilder als Wahrheit akzeptierst, nimmst du unweigerlich das Selbstbild eines Huhns an – und deine Ergebnisse am Boden bestätigen das scheinbar (selbsterfüllende Prophezeiung)."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Der Durchbruch zur wahren Natur"
-        },
-        {
-          "typ": "absatz",
-          "text": "Labels sind nur Papier, keine Naturgesetze. Prüfe deine Labels daher genau, ob sie dich beflügeln oder auf dem Boden halten. Dein Selbstbild bestimmt dein Verhalten und dein Verhalten, bringt die dazugehörigen Ergebnisse. Die Kette deines Lebens lautet:"
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k02/kette-kurz.webp",
-          "alt": "Kette: Selbstbild, Verhalten, Ergebnisse",
-          "unterschrift": null,
-          "notion": "image.png"
-        },
-        {
-          "typ": "absatz",
-          "text": "**Selbstbild → Verhalten → Ergebnisse**."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Der Selbstcheck"
-        },
-        {
-          "typ": "absatz",
-          "text": "Die gute Nachricht ist: Du musst dein Selbstbild nicht über Nacht umkrempeln. Es reicht, die Labels jetzt einmal bewusst anzuschauen – und zu prüfen, welche davon wirklich deine sind. Lass uns genau das jetzt tun und gehe zur Slide “Mind-Hack”!"
         }
       ],
       "lese": [
@@ -119,15 +84,15 @@
         },
         {
           "typ": "absatz",
-          "text": "Der Adler aus dem Video wurde als Brathähnchen serviert. In der **Originalgeschichte von James Aggrey** endet es anders: Ein Naturforscher nimmt den Adler auf einen Berg – und dort breitet er seine Flügel aus und **fliegt**. Die Pointe ist dieselbe: **Er hatte immer die Fähigkeit zu fliegen.** Er wusste es nur nicht, weil alle um ihn herum nur pickten."
+          "text": "Der Adler aus dem Video wurde als Brathähnchen serviert. In der Fassung, die **James Aggrey** zugeschrieben wird, endet es anders: Ein Naturforscher nimmt den Adler auf einen Berg – und dort breitet er seine Flügel aus und **fliegt**. Die Pointe ist dieselbe: **Er hatte immer die Fähigkeit zu fliegen.** Er wusste es nur nicht, weil alle um ihn herum nur pickten."
         },
         {
           "typ": "ueberschrift",
-          "text": "Das Rosenthal-Experiment: Der wissenschaftliche Beweis"
+          "text": "Das Rosenthal-Experiment: Wie Erwartungen wirken können"
         },
         {
           "typ": "absatz",
-          "text": "1968 sagten Psychologen Lehrern, bestimmte Schüler seien „Überflieger\" – in Wahrheit waren sie zufällig ausgewählt. Nach einem Jahr hatten diese Kinder tatsächlich bessere Leistungen. Nicht weil sie schlauer waren, sondern weil die Lehrer sie unbewusst anders behandelten – mehr Aufmerksamkeit, mehr Ermutigung, höhere Erwartungen. Und die Kinder? Die spürten das, übernahmen das neue Bild von sich selbst – und wuchsen hinein. Das ist der sogenannte Pygmalion-Effekt: Labels von außen werden zu Labels von innen. Und umgekehrt gilt das genauso."
+          "text": "1968 sagten Psychologen Lehrern, bestimmte Schüler seien „Überflieger\" – in Wahrheit waren sie zufällig ausgewählt. Nach einem Jahr zeigten einige dieser Kinder, vor allem die jüngeren, in den Tests tatsächlich stärkere Fortschritte. Spätere Studien fanden den Effekt nicht immer gleich stark. Eine mögliche Erklärung: Nicht weil sie schlauer waren, sondern weil die Lehrer sie unbewusst anders behandelten – mehr Aufmerksamkeit, mehr Ermutigung, höhere Erwartungen. Und die Kinder? Die spürten das, übernahmen das neue Bild von sich selbst – und wuchsen hinein. Das ist der sogenannte Pygmalion-Effekt: Labels von außen werden zu Labels von innen. Und umgekehrt gilt das genauso."
         },
         {
           "typ": "ueberschrift",
@@ -167,7 +132,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Die **Framingham-Studie** (Christakis & Fowler, 2007) zeigt: Übergewicht, Rauchverhalten und sogar Glücklichsein breiten sich über dein persönliches Umfeld aus – also die Menschen, mit denen du wirklich Zeit verbringst: Familie, Freunde, Kollegen. Bis zu drei Kontaktebenen weit."
+          "text": "Die **Framingham-Studie** (Christakis & Fowler, 2007 und 2008) zeigt: Übergewicht, Rauchverhalten und sogar Glücklichsein breiten sich über dein persönliches Umfeld aus – also die Menschen, mit denen du wirklich Zeit verbringst: Familie, Freunde, Kollegen. Bis zu drei Kontaktebenen weit."
         },
         {
           "typ": "absatz",
@@ -203,6 +168,43 @@
         {
           "typ": "absatz",
           "text": "Die gute Nachricht: Du musst dein Selbstbild nicht über Nacht umkrempeln. Es reicht, die Labels einmal bewusst anzuschauen – und zu prüfen, welche davon wirklich deine sind. Genau das machen wir jetzt."
+        }
+      ],
+      "spickzettel": [
+        {
+          "typ": "ueberschrift",
+          "text": "Die Illusion des Hühnerstalls"
+        },
+        {
+          "typ": "absatz",
+          "text": "Wir kommen mit dem Potenzial eines Adlers auf die Welt, doch Umfeld und fremde Erwartungen kleben uns oft das Label *\"Huhn\"* auf. Wenn du diese Fremdbilder als Wahrheit akzeptierst, nimmst du unweigerlich das Selbstbild eines Huhns an – und deine Ergebnisse am Boden bestätigen das scheinbar (selbsterfüllende Prophezeiung)."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Der Durchbruch zur wahren Natur"
+        },
+        {
+          "typ": "absatz",
+          "text": "Labels sind nur Papier, keine Naturgesetze. Prüfe deine Labels daher genau, ob sie dich beflügeln oder auf dem Boden halten. Dein Selbstbild bestimmt dein Verhalten und dein Verhalten, bringt die dazugehörigen Ergebnisse. Die Kette deines Lebens lautet:"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k02/kette-kurz.webp",
+          "alt": "Kette: Selbstbild, Verhalten, Ergebnisse",
+          "unterschrift": null,
+          "notion": "image.png"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Selbstbild → Verhalten → Ergebnisse**."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Der Selbstcheck"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht ist: Du musst dein Selbstbild nicht über Nacht umkrempeln. Es reicht, die Labels jetzt einmal bewusst anzuschauen – und zu prüfen, welche davon wirklich deine sind. Lass uns genau das jetzt tun und gehe zur Slide “Mind-Hack”!"
         }
       ]
     },
@@ -314,11 +316,11 @@
         },
         {
           "typ": "ueberschrift",
-          "text": "Ausblick"
+          "text": "Ausblick: Was kommt als Nächstes?"
         },
         {
           "typ": "absatz",
-          "text": "Wie du solche Überzeugungen nicht nur erkennst, sondern auch gezielt verändern kannst – dazu kommen wir in den späteren Folgen zu Glaubenssätzen. Hier geht es erstmal darum, deinen Autopiloten zu erwischen."
+          "text": "Wie du solche Überzeugungen nicht nur erkennst, sondern auch gezielt verändern kannst – dazu kommen wir in den späteren Kapiteln zu Glaubenssätzen. Hier geht es erstmal darum, deinen Autopiloten zu erwischen."
         }
       ],
       "lese": null
@@ -341,17 +343,17 @@
         },
         {
           "typ": "quelle",
-          "text": "Framingham-Studie – Soziale Ansteckung (Christakis & Fowler, 2007, *New England Journal of Medicine*)",
+          "text": "Framingham-Studie, Soziale Ansteckung: Christakis & Fowler (2007), *New England Journal of Medicine* (Übergewicht); Christakis & Fowler (2008), *New England Journal of Medicine* (Rauchen); Fowler & Christakis (2008), *BMJ* (Glücklichsein)",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "Adler-Geschichte: James Aggrey (1875–1927)",
+          "text": "Adler-Geschichte: Parabel, populär zugeschrieben James Aggrey (1875–1927); Originalquelle nicht eindeutig belegt",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "Identitätstheorie (Erik Erikson)",
+          "text": "Psychosoziale Identitätsentwicklung (Erik Erikson, 1968, *Identity: Youth and Crisis*)",
           "url": null
         },
         {

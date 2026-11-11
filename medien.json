@@ -1,5 +1,5 @@
 {
- "version": 15,
+ "version": 16,
  "dateien": [
   {
    "id": "k01-5sinne-shift",
@@ -423,6 +423,22 @@
    "bytes": 91738,
    "typ": "bild",
    "kapitel": "k07",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k04/ball-unter-wasser",
+   "pfad": "medien/bilder/k04/ball-unter-wasser.webp",
+   "bytes": 126086,
+   "typ": "bild",
+   "kapitel": "k04",
+   "dauer": null
+  },
+  {
+   "id": "bilder/k04/gedankenwolke-beobachter",
+   "pfad": "medien/bilder/k04/gedankenwolke-beobachter.webp",
+   "bytes": 62332,
+   "typ": "bild",
+   "kapitel": "k04",
    "dauer": null
   }
  ]

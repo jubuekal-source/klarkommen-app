@@ -17,8 +17,8 @@
           "reihe": [
             {
               "id": "focus",
-              "titel": "Wahrnehmungsexperiment",
-              "text": "*30 Sekunden. Danach siehst du die Welt vielleicht schon ein kleines bisschen anders.*"
+              "titel": "30 Sekunden.",
+              "text": "*Danach siehst du die Welt vielleicht schon ein kleines bisschen anders.*"
             },
             {
               "id": "farbensuche",
@@ -37,59 +37,15 @@
       "header": "medien/bilder/rubrik/brainfact.webp",
       "bloecke": [
         {
+          "typ": "absatz",
+          "text": "Warum fällt dir ein bestimmtes Auto plötzlich überall auf, sobald du darüber nachdenkst? Alex und Lena gehen der Frage nach, was in deinem Kopf mitentscheidet, was du überhaupt bemerkst."
+        },
+        {
           "typ": "audio",
           "id": "k01-podcast",
           "titel": "Podcast: Alex & Lena erklären, was gerade in deinem Kopf passiert ist",
           "art": "podcast",
           "status": "fertig"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Das Wichtigste auf einen Blick"
-        },
-        {
-          "typ": "absatz",
-          "text": "Dein Gehirn nimmt nicht alles wahr – es filtert. Ein System namens RAS (dein „Türsteher\") entscheidet, was du bewusst siehst. Sein Auswahlkriterium? Deine Erwartungen und Überzeugungen."
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k01/tuersteher.webp",
-          "alt": "Der Türsteher in deinem Kopf: Ein Türsteher mit Gästeliste lässt nur einen Gedanken durch die Tür, andere bleiben draußen.",
-          "unterschrift": null
-        },
-        {
-          "typ": "zitat",
-          "text": "Wer Probleme erwartet, findet Probleme.\nWer Chancen sucht, entdeckt Chancen.",
-          "quelle": null
-        },
-        {
-          "typ": "absatz",
-          "text": "Die gute Nachricht: Dein Gehirn ist formbar, dein Leben lang (Neuroplastizität). Alte Denkmuster sind wie Autobahnen – breit und schnell. Neue Gedanken starten als Trampelpfad, aber jede bewusste Wiederholung macht ihn breiter."
-        },
-        {
-          "typ": "zitat",
-          "text": "Worauf du deinen Fokus legst, das wächst.",
-          "quelle": null
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k01/wolf.webp",
-          "alt": "Welchen Wolf fütterst du?",
-          "unterschrift": null,
-          "notion": "WelchenWolfFuetterstDu.jpeg"
-        },
-        {
-          "typ": "absatz",
-          "text": "Die bekannte Parabel der zwei Wölfe – einer steht für Sorge, der andere für Hoffnung – bringt es auf den Punkt:"
-        },
-        {
-          "typ": "zitat",
-          "text": "Der Wolf, den du fütterst, gewinnt.",
-          "quelle": null
-        },
-        {
-          "typ": "absatz",
-          "text": "*(Populäre Parabel unbekannten Ursprungs, häufig den Cherokee zugeschrieben.)*"
         }
       ],
       "lese": [
@@ -165,6 +121,52 @@
         {
           "typ": "absatz",
           "text": "Dafür brauchst du aber ein konkretes Werkzeug – einen „Cut\", der den Filter in Echtzeit umstellt. Keinen guten Vorsatz, sondern einen neurologischen Reset."
+        }
+      ],
+      "spickzettel": [
+        {
+          "typ": "absatz",
+          "text": "Dein Gehirn nimmt nicht alles wahr – es filtert. Ein System namens RAS (dein „Türsteher\") entscheidet, was du bewusst siehst. Sein Auswahlkriterium? Deine Erwartungen und Überzeugungen."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/tuersteher.webp",
+          "alt": "Der Türsteher in deinem Kopf: Ein Türsteher mit Gästeliste lässt nur einen Gedanken durch die Tür, andere bleiben draußen.",
+          "unterschrift": null
+        },
+        {
+          "typ": "zitat",
+          "text": "Wer Probleme erwartet, findet Probleme.\nWer Chancen sucht, entdeckt Chancen.",
+          "quelle": null
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht: Dein Gehirn ist formbar, dein Leben lang (Neuroplastizität). Alte Denkmuster sind wie Autobahnen – breit und schnell. Neue Gedanken starten als Trampelpfad, aber jede bewusste Wiederholung macht ihn breiter."
+        },
+        {
+          "typ": "zitat",
+          "text": "Worauf du deinen Fokus legst, das wächst.",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/wolf.webp",
+          "alt": "Welchen Wolf fütterst du?",
+          "unterschrift": null,
+          "notion": "WelchenWolfFuetterstDu.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die bekannte Parabel der zwei Wölfe – einer steht für Sorge, der andere für Hoffnung – bringt es auf den Punkt:"
+        },
+        {
+          "typ": "zitat",
+          "text": "Der Wolf, den du fütterst, gewinnt.",
+          "quelle": null
+        },
+        {
+          "typ": "absatz",
+          "text": "*(Populäre Parabel unbekannten Ursprungs, häufig den Cherokee zugeschrieben.)*"
         }
       ]
     },
@@ -246,11 +248,11 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "Warum das so stark funktioniert?",
+          "titel": "Warum das wirkt",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Du hast das vermutlich schon bei einem Kind erleben können: Es fällt hin und weint, plötzlich entdeckt es einen Schmetterling – und sofort ist alles vergessen. Das ist derselbe Mechanismus. Dein Gehirn kann nicht gleichzeitig in einer Stressspirale stecken und hochkonzentriert Sinneseindrücke zählen. Der 5-Sinne-Shift zwingt dein Gehirn durch den ständigen Wechsel zwischen den Sinneskanälen in den analytischen Modus. Dein Alarm-System (Amygdala) fährt runter, dein logisches Denken (präfrontaler Cortex) übernimmt. Das passiert nicht, weil du es dir „vornimmst\", sondern weil die Übung dein Gehirn dazu zwingt."
+              "text": "Du hast das vermutlich schon bei einem Kind erlebt: Es fällt hin und weint, plötzlich entdeckt es einen Schmetterling, und der Schmerz rückt in den Hintergrund. Ähnlich funktioniert der 5-Sinne-Shift. Deine Aufmerksamkeit ist begrenzt. Wenn du sie gezielt auf Dinge lenkst, die du siehst, fühlst und hörst, bleibt weniger Platz fürs Gedankenkarussell. Solche Erdungstechniken (Grounding) werden auch in der klinischen Psychologie eingesetzt. Der Mini-Reset 3-2-1 ist die Kurzform davon: Er unterbricht den Autopiloten und holt dich ins Hier und Jetzt. Wie stark das wirkt, ist von Mensch zu Mensch verschieden. Je öfter du die Übung im Alltag übst, desto leichter fällt sie dir, wenn es wirklich zählt."
             }
           ]
         },
@@ -350,6 +352,18 @@
         {
           "typ": "absatz",
           "text": "Je öfter du deinem Gehirn im entspannten Zustand zeigst, dass DU entscheidest, wann der Autopilot gestoppt wird, desto schneller ist dieser Reflex abrufbar, wenn es wirklich zählt – in der Prüfung, im Streitgespräch oder in der schlaflosen Nacht."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Ausblick: Was kommt als Nächstes?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Vielleicht fragst du dich jetzt: „Okay, ich kann den Autopiloten stoppen – aber worauf soll ich mich danach bewusst fokussieren?“ Gute Frage. Und genau dafür brauchen wir erst noch ein paar entscheidende Puzzleteile. In den nächsten Kapiteln lernst du, woher deine aktuellen Denkmuster überhaupt kommen, wie deine Gedanken deine Realität formen – und erst dann bist du bereit, deinen Fokus gezielt und dauerhaft neu auszurichten. Der Reset-Button allein ist schon mächtig. Aber er wird noch stärker, wenn du weißt, wohin du ihn richtest."
+        },
+        {
+          "typ": "absatz",
+          "text": "→ In Kapitel 3 lernst du konkret, worauf du deinen Fokus bewusst lenken kannst."
         }
       ],
       "lese": null
