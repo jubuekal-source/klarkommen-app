@@ -47,96 +47,25 @@
       "header": "medien/bilder/rubrik/brainfact.webp",
       "bloecke": [
         {
-          "typ": "ueberschrift",
-          "text": "Podcast: Episode 3"
+          "typ": "absatz",
+          "text": "Kann ein einziger Gedanke deinen Puls hochjagen? In dieser Folge erfährst du, warum dein Kopf mehr mitredet, als dir lieb ist."
         },
         {
           "typ": "audio",
           "id": "k03-podcast",
-          "titel": "Podcast: Episode 3",
+          "titel": "Episode 3: Alex & Lena über Zitronen, Placebos und die Frage, wer deine Gedanken füttert",
           "art": "podcast",
           "status": "fertig"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Das Wichtigste auf einen Blick"
-        },
-        {
-          "typ": "zitat",
-          "text": "**Dein Gehirn unterscheidet nicht zwischen Realität und intensiver Vorstellung. Jeder Gedanke erzeugt eine echte biochemische Reaktion in deinem Körper.**",
-          "quelle": null
-        },
-        {
-          "typ": "bild",
-          "src": "medien/bilder/k03/koerper.webp",
-          "alt": "Dein Körper glaubt deinen Gedanken",
-          "unterschrift": null
-        },
-        {
-          "typ": "absatz",
-          "text": "In der Wissenschaft nennt sich das Psychoneuroimmunologie – das Zusammenspiel von Psyche, Nervensystem und Immunsystem."
-        },
-        {
-          "typ": "callout",
-          "art": "wichtig",
-          "text": "**Das Gehirn ist die Apotheke deines Körpers. Deine Gedanken stellen die Rezepte aus.**"
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "**Negative Gedanken** (Sorgen, Ängste, Worst-Case-Szenarien)"
-        },
-        {
-          "typ": "absatz",
-          "text": "Dein Gehirn schüttet Cortisol und Adrenalin aus. Herzschlag geht hoch, Muskeln spannen sich an, dein Immunsystem wird heruntergefahren – obwohl du nur auf dem Sofa sitzt."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "**Positive Gedanken** (Dankbarkeit, Vorfreude, schöne Erinnerungen)"
-        },
-        {
-          "typ": "absatz",
-          "text": "Endorphine und Oxytocin werden ausgeschüttet. Dein Körper entspannt, heilt und regeneriert."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "**Was viele übersehen**"
-        },
-        {
-          "typ": "absatz",
-          "text": "Was du konsumierst, bestimmt mit, was du denkst. Beim Fernsehen schaltet dein Gehirn innerhalb von Sekunden in den Alpha-Wellen-Modus – einen Zustand hoher Aufnahmebereitschaft bei gleichzeitig reduzierter kritischer Filterung. Was auch immer dann auf dem Bildschirm läuft, wird ungefiltert verarbeitet. Kurzvideos (TikTok, Reels, Shorts) trainieren dein Gehirn zusätzlich auf ständige Dopamin-Kicks – und machen alles, was Geduld erfordert, zunehmend anstrengend."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "**Warum du ein Ziel bist**"
-        },
-        {
-          "typ": "absatz",
-          "text": "Dein Gehirn reagiert auf Negatives von Natur aus stärker als auf Positives – der sogenannte Negativity Bias. Die Algorithmen der Plattformen nutzen genau das: Inhalte, die dich wütend machen oder ängstigen, erzeugen mehr Klicks, mehr Bildschirmzeit, mehr Geld. Das ist kein Zufall, sondern Design. Du trittst nicht gegen deine eigene Willensschwäche an – du trittst gegen tausende Ingenieure und KI-Systeme an, die darauf trainiert sind, dein Belohnungssystem zu aktivieren."
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "**Der Hebel**"
-        },
-        {
-          "typ": "absatz",
-          "text": "Du kannst nicht kontrollieren, was in der Welt passiert. Aber du kannst entscheiden, was du reinlässt – und damit, welche Gedanken dein Gehirn füttert und welche Biochemie dein Körper produziert."
-        },
-        {
-          "typ": "experiment",
-          "id": "kausalkette",
-          "expTyp": "schaubild",
-          "titel": "Der Kreislauf",
-          "text": "Kapitel 1 und 3 in einem Bild. Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen, vieles läuft gleichzeitig. Spiel es mit Lea durch, zwei Wochen vor ihrer Prüfung, und sieh, wie sie wieder rauskommt. Animiert, ca. 2 Minuten."
         }
       ],
       "lese": [
         {
           "typ": "akkordeon",
-          "titel": "Die wissenschaftlichen Belege",
+          "titel": "Wie viel Macht hat ein einziger Gedanke?",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Vermutlich hast du es gerade selbst erlebt: Ein Gedanke an eine Zitrone – und dein Körper reagiert. Speichelfluss, Anspannung, Veränderung. Ohne dass irgendetwas real passiert ist. Das ist kein Trick. Dahinter steckt ein Mechanismus, den die Forschung inzwischen sehr gut versteht."
+              "text": "Vermutlich hast du es gerade selbst erlebt: Ein Gedanke an eine Zitrone – und dein Körper reagiert. Speichelfluss, Anspannung, Veränderung. Ohne dass irgendetwas real passiert ist. Das ist kein Trick. Dahinter steckt ein Mechanismus, den die Forschung inzwischen gut kennt."
             },
             {
               "typ": "ueberschrift",
@@ -148,11 +77,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Die Geschichte wird oft dem australischen Psychologen Alan Richardson zugeschrieben, der 1967 eine einflussreiche Übersichtsarbeit zu mentalem Training veröffentlichte. Ob das Experiment genau so stattfand, darüber streiten Forscher – die konkreten Zahlen lassen sich nicht eindeutig zurückverfolgen. **Aber der Punkt dahinter ist inzwischen vielfach bestätigt:**"
+              "text": "Die Geschichte wird oft dem australischen Psychologen Alan Richardson zugeschrieben, der 1967 eine einflussreiche Übersichtsarbeit zu mentalem Training veröffentlichte. Ob das Experiment genau so stattfand, ist unklar. Die konkreten Zahlen lassen sich nicht eindeutig zurückverfolgen. **Aber der Punkt dahinter ist inzwischen vielfach bestätigt:**"
             },
             {
               "typ": "absatz",
-              "text": "Eine Meta-Analyse aus 2021 (Lindsay et al., veröffentlicht in *Physical Education and Sport Pedagogy*, 36 Studien, 1.449 Teilnehmer) zeigt einen klaren, messbaren Effekt von mentalem Training auf sportliche Fähigkeiten – besonders in Kombination mit echtem Training."
+              "text": "Mehrere Meta-Analysen zeigen einen echten Effekt von mentalem Training: schon 1994 (Driskell et al.), bestätigt 2020 mit 37 neueren Studien (Toth et al.). Eine Meta-Analyse zum Sport (Lindsay et al., 2021, 36 Studien, 1.449 Teilnehmende) fand: Am stärksten wirkt es in Kombination mit echtem Training, allein ist der Effekt kleiner. Mentales Training ersetzt das Üben also nicht. Aber es ist mehr als Einbildung."
             },
             {
               "typ": "absatz",
@@ -164,15 +93,15 @@
             },
             {
               "typ": "absatz",
-              "text": "Parkinson-Patienten erhielten eine simple Kochsalzlösung – ein wirkstoffloses Scheinmedikament. Aber man sagte ihnen, es sei ein hochwirksames Medikament."
+              "text": "Parkinson-Patienten erhielten eine simple Kochsalzlösung, ein Scheinmedikament ohne Wirkstoff. Sie rechneten damit, es könnte ihr echtes Medikament sein."
             },
             {
               "typ": "absatz",
-              "text": "**Was passierte?** Bei vielen dieser Patienten löste allein der Glaube an die Wirkung eine messbare Dopaminausschüttung im Gehirn aus – nicht bei allen und nicht immer genauso stark wie beim echten Medikament, aber messbar. Das Gehirn begann, sich selbst zu behandeln."
+              "text": "**Was passierte?** Allein die Erwartung löste im Gehirn eine messbare Dopaminausschüttung aus, per PET-Scan nachgewiesen. Nicht bei allen gleich stark, aber messbar. Das Gehirn begann, sich selbst zu behandeln (de la Fuente-Fernández et al., 2001)."
             },
             {
               "typ": "absatz",
-              "text": "*(de la Fuente-Fernández et al., 2001, veröffentlicht in Science – per PET-Scan nachgewiesen)*"
+              "text": "Noch verblüffender: Migräne-Patienten bekamen mal ihr echtes Medikament, mal ein Scheinmedikament, und auf der Packung stand mal die Wahrheit, mal nicht. Allein das Etikett veränderte, wie gut die Tablette half: Das echte Medikament wirkte schwächer, wenn „Placebo“ draufstand. Das Scheinmedikament wirkte stärker, wenn der Name des echten Medikaments draufstand (Kam-Hansen et al., 2014)."
             },
             {
               "typ": "ueberschrift",
@@ -180,26 +109,31 @@
             },
             {
               "typ": "absatz",
-              "text": "**Das Gegenstück zum Placebo - nur mächtiger!**"
+              "text": "**Das Gegenstück zum Placebo.**"
             },
             {
               "typ": "absatz",
-              "text": "In Studien bekamen Versuchspersonen ein komplett harmloses Scheinpräparat. Aber man warnte sie vorher vor möglichen Nebenwirkungen wie Kopfschmerzen, Übelkeit oder Schwindel. **Das Ergebnis:** Ein erheblicher Teil entwickelte genau diese Symptome – obwohl kein einziger Wirkstoff sie auslösen konnte."
+              "text": "Menschen, die ihren Cholesterinsenker wegen Nebenwirkungen abgesetzt hatten, nahmen ein Jahr lang abwechselnd das echte Mittel, ein Scheinmedikament oder gar nichts, ohne zu wissen, was gerade dran war. Ergebnis: 90 % der Beschwerden, die sie mit dem echten Mittel hatten, traten genauso mit dem Scheinmedikament auf (Wood et al., 2020)."
             },
             {
               "typ": "absatz",
-              "text": "Eine Studie von Kunkel et al. (2025, veröffentlicht in *eLife*) zeigte: Nocebo-Effekte waren stärker und hielten länger an als Placebo-Effekte."
+              "text": "In einem Schmerzexperiment mit gesunden Freiwilligen waren Nocebo-Effekte außerdem stärker als Placebo-Effekte, und zwar über eine ganze Woche (Kunkel et al., 2025)."
             },
             {
               "typ": "zitat",
-              "text": "**Negative Erwartungen wirken mächtiger auf den Körper als positive.**",
+              "text": "**Negative Erwartungen wirken genauso echt auf den Körper wie positive. Manchmal sogar stärker.**",
               "quelle": null
+            },
+            {
+              "typ": "callout",
+              "art": "wichtig",
+              "text": "**Das Gehirn ist die Apotheke deines Körpers. Deine Gedanken stellen die Rezepte aus.**"
             }
           ]
         },
         {
           "typ": "akkordeon",
-          "titel": "Was bedeutet das für dich?",
+          "titel": "Welches Rezept stellst du dir selbst aus?",
           "bloecke": [
             {
               "typ": "absatz",
@@ -225,99 +159,38 @@
               "quelle": null
             },
             {
+              "typ": "bild",
+              "src": "medien/bilder/k03/koerper.webp",
+              "alt": "Dein Körper glaubt deinen Gedanken",
+              "unterschrift": null
+            },
+            {
               "typ": "absatz",
               "text": "In der Wissenschaft heißt dieses Zusammenspiel von Psyche, Nervensystem und Immunsystem **Psychoneuroimmunologie:** Ein sperriges Wort für eine einfache Wahrheit:"
             },
             {
               "typ": "zitat",
-              "text": "**Dein Körper hört mit, was du denkst.**",
+              "text": "**Dein Körper glaubt deinen Gedanken.**",
               "quelle": null
             },
             {
               "typ": "absatz",
-              "text": "**Negative Gedanken** (Sorgen, Ängste, Worst-Case-Szenarien): Dein Gehirn schüttet Cortisol und Adrenalin aus. Herzschlag geht hoch, Muskeln spannen sich an, dein Immunsystem wird heruntergefahren – obwohl du nur auf dem Sofa sitzt."
+              "text": "**Negative Gedanken** (Sorgen, Ängste, Worst-Case-Szenarien): Dein Körper schaltet in den **Stressmodus**. Das ist ein Alarmzustand, der eigentlich für echte Gefahr gedacht ist: Dein Gehirn schüttet Cortisol und Adrenalin aus, der Herzschlag geht hoch, die Muskeln spannen sich an. Und das, obwohl du nur auf dem Sofa sitzt. Auf dem Titelbild dieses Kapitels ist das der Gefahr-Modus. Wird daraus Dauerstress, fährt sogar dein Immunsystem herunter."
             },
             {
               "typ": "absatz",
               "text": "**Positive Gedanken** (Dankbarkeit, Vorfreude, schöne Erinnerungen): Endorphine und Oxytocin werden ausgeschüttet. Dein Körper entspannt, heilt und regeneriert."
+            },
+            {
+              "typ": "absatz",
+              "text": "Jetzt weißt du: Deine Gedanken lösen echte körperliche Reaktionen aus. Bleibt eine Frage, die die meisten übersehen:"
             }
           ]
         },
         {
           "typ": "akkordeon",
-          "titel": "Dein Gehirn und die drei Zeitzonen",
+          "titel": "Wer oder was entscheidet eigentlich, woran du den ganzen Tag denkst?",
           "bloecke": [
-            {
-              "typ": "bild",
-              "src": "medien/bilder/k03/zeitzonen.webp",
-              "alt": "Die drei Zeitzonen des Denkens",
-              "unterschrift": null
-            },
-            {
-              "typ": "absatz",
-              "text": "Dein Kopf bewegt sich ständig zwischen drei Zeitzonen. Und in welcher du dich aufhältst, entscheidet darüber, welche Biochemie dein Körper gerade produziert."
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "Zeitzone: **Vergangenheit**"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Giftig:** Grübeln über Fehler, Ärger über Vergangenes, Reue, Selbstvorwürfe"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Nützlich / Bestärkend:** Auf welche Erfolge kannst du zurückblicken? Worauf bist du stolz? Was hast du gemeistert, das du dir vorher nicht zugetraut hättest?"
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "Zeitzone: Hier und Jetzt"
-            },
-            {
-              "typ": "absatz",
-              "text": "Die einzige Zeitzone, in der du tatsächlich etwas verändern kannst. Hier hast du echten Einfluss. Hier passiert dein Leben."
-            },
-            {
-              "typ": "absatz",
-              "text": "Wie du zurück ins „Hier und Jetzt“ kommst, weißt du bereits aus Kapitel 1: Nutze den **Mini-Reset (3-2-1)** oder den vollen **5-Sinne-Shift!**"
-            },
-            {
-              "typ": "ueberschrift",
-              "text": "**Zeitzone: Zukunft**"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Giftig:** Worst-Case-Szenarien, Zukunftsängste, Katastrophendenken → dein Körper reagiert, als wären diese Szenarien schon real (Zitronen-Effekt!)"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Nützlich / Bestärkend:** Nutze deine Vorstellungskraft schöpferisch. Wie sieht das beste Ergebnis aus? Was wäre möglich, wenn es klappt? → dein Gehirn beginnt, genau darauf hinzuarbeiten (Basketball-Effekt!)"
-            },
-            {
-              "typ": "bild",
-              "src": "medien/bilder/k03/zeitzonen-ueberblick.webp",
-              "alt": "Die drei Zeitzonen im Überblick",
-              "unterschrift": null
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "titel": "Was du reinlässt, formt deine Gedanken",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Jetzt weißt du: Deine Gedanken lösen echte körperliche Reaktionen aus. Aber da ist noch eine Frage, die die meisten übersehen:"
-            },
-            {
-              "typ": "zitat",
-              "text": "**Wer oder was entscheidet eigentlich, woran du den ganzen Tag denkst?**",
-              "quelle": null
-            },
-            {
-              "typ": "absatz",
-              "text": "Die Antwort ist unbequem: Zu einem großen Teil bist es nicht du – sondern die Inhalte, die du konsumierst."
-            },
             {
               "typ": "bild",
               "src": "medien/bilder/k03/wer-bestimmt.webp",
@@ -325,30 +198,40 @@
               "unterschrift": null
             },
             {
+              "typ": "absatz",
+              "text": "Die Antwort ist unbequem: Zu einem großen Teil bist es nicht du, sondern die Inhalte, die du konsumierst."
+            },
+            {
               "typ": "ueberschrift",
-              "text": "Dein Gehirn im Empfangsmodus"
+              "text": "Wer schreibt deine Gästeliste?"
             },
             {
               "typ": "absatz",
-              "text": "Der Werbeforscher Herbert Krugman beobachtete schon 1969 per EEG: Beim Fernsehen wechseln die Gehirnwellen innerhalb von weniger als einer Minute von Beta-Wellen (waches, analytisches Denken) zu Alpha-Wellen – ein Zustand, den du aus tiefer Entspannung (z.B. wie bei einer Meditation) kennst. Die kritische Filterfunktion des Gehirns läuft auf Sparflamme."
-            },
-            {
-              "typ": "absatz",
-              "text": "Krugmans Studie war methodisch begrenzt, aber die Grundbeobachtung wurde in neueren EEG-Studien bestätigt: Beim passiven Konsum von Bildschirminhalten befindet sich das Gehirn in einem empfangsbereiten Zustand. Und dieser Effekt ist nicht an den Fernseher gebunden – eine Pilotstudie der Swinburne University (Gaillard, 2025) zeigte: Schon nach drei Minuten Social-Media-Nutzung sank die Aktivität im präfrontalen Kortex – dem Bereich, der für kritisches Denken und Entscheidungen zuständig ist."
+              "text": "Aus Kapitel 1 kennst du deinen Türsteher. Er entscheidet, was in deinem Kopf als „wichtig“ durchgeht. Seine Gästeliste schreibt er aber nicht selbst. Andere reden ihm rein: deine Prägung, deine Überzeugungen, dein Umfeld und das, was du konsumierst."
             },
             {
               "typ": "bild",
-              "src": "medien/bilder/k03/you-decide.webp",
-              "alt": "You decide",
-              "unterschrift": null
+              "src": "medien/bilder/k03/tuersteher-viele-schreiber.webp",
+              "alt": "Der Türsteher hält die Gästeliste, während viele Hände mitschreiben wollen: Überzeugungen, Prägung, Umfeld, Konsum und Algorithmus.",
+              "unterschrift": "*Viele reden mit, wer auf die Gästeliste kommt.*"
             },
             {
               "typ": "absatz",
-              "text": "Erinnere dich an den Zitronen-Test: Dein Körper reagiert auf intensive Vorstellungen – und das in einem *wachen, kritischen* Zustand. Was passiert wohl, wenn du zwei Stunden in einem *unkritischen* Empfangsmodus Thriller, True Crime oder Nachrichtensendungen konsumierst?"
+              "text": "Und dann gibt es noch eine kleine Gemeinheit, die deinen Türsteher besonders beeindruckt: Wiederholung. Genauer: Wiederholung, die dich emotional packt. Was du öfter hörst, hältst du eher für wahr, und zwar schon ab dem zweiten Mal (Hassan & Barber, 2021)."
             },
             {
               "typ": "absatz",
-              "text": "**Glaubst du wirklich, zwei bis drei Stunden tägliche „Meditation“ über Angst, Drama, Konflikte und negative Nachrichten ziehen an deinem Gehirn vorbei wie weiße Wölkchen?**"
+              "text": "Das heißt nicht, dass du alles glaubst, was du siehst. Aber manches kommt leichter durch die Tür, als du denkst, vor allem, wenn es dich emotional packt und immer wiederkommt. Was hilft: Frag beim ersten Mal kurz „Stimmt das eigentlich?“ Wer gleich prüft, fällt später seltener auf die Wiederholung herein, zumindest bei Themen, in denen er sich etwas auskennt (Brashier et al., 2020)."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k03/tuersteher-bekannte-duerfen-rein.webp",
+              "alt": "Dreiteiliger Comic: Der Türsteher fragt eine wütende Figur mit Warnschild „Wer bist du denn?“, dann „Schon wieder du …“, beim dritten Mal lässt er sie lächelnd mit „Kenn ich doch!“ herein, im Raum hängt ihr Bild mit dem Stempel „WAHR“.",
+              "unterschrift": "*Beim ersten Mal skeptisch, beim dritten Mal ein alter Bekannter.*"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was glaubst du, was passiert, wenn du dich jeden Abend stundenlang mit Angst, Drama und negativen Nachrichten fütterst?**"
             },
             {
               "typ": "einwand",
@@ -364,7 +247,7 @@
                 },
                 {
                   "typ": "absatz",
-                  "text": "Oder hast du die News konsumiert, dich schlecht gefühlt – und dann weitergescrollt?"
+                  "text": "Oder hast du die News konsumiert, dich schlecht gefühlt und dann weitergescrollt?"
                 },
                 {
                   "typ": "absatz",
@@ -372,7 +255,7 @@
                 },
                 {
                   "typ": "absatz",
-                  "text": "Das ist so, als würdest du an einem Unfall vorbeifahren, langsamer werden, hinschauen – aber nicht anhalten und helfen. Du nimmst die negativen Bilder mit. Und dein Körper zahlt die Rechnung."
+                  "text": "Das ist so, als würdest du an einem Unfall vorbeifahren, langsamer werden, hinschauen, aber nicht anhalten und helfen. Du nimmst die negativen Bilder mit. Und dein Körper zahlt die Rechnung."
                 },
                 {
                   "typ": "absatz",
@@ -384,37 +267,25 @@
                 },
                 {
                   "typ": "absatz",
-                  "text": "**Passives Berieseln** = Der Algorithmus entscheidet für dich – und dein Türsteher übernimmt alles ungefiltert auf die Gästeliste."
+                  "text": "**Passives Berieseln** = Der Algorithmus entscheidet für dich, und dein Türsteher übernimmt alles ungefiltert auf die Gästeliste."
                 }
               ]
             },
             {
-              "typ": "absatz",
-              "text": "Wenn schon der reine Gedanke an eine Zitrone – in einem wachen, kritischen Zustand – deinen Körper messbar reagieren lässt:"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Was glaubst du, was passiert, wenn du dich stundenlang mit emotional aufgeladenen Inhalten fütterst?**"
-            },
-            {
               "typ": "ueberschrift",
-              "text": "**Short-Form-Content und dein Dopamin-System**"
+              "text": "**Kurzvideos und deine Konzentration**"
             },
             {
               "typ": "absatz",
-              "text": "Eine große Meta-Analyse von Nguyen et al. (2025, veröffentlicht im *Psychological Bulletin*, 71 Studien, über 98.000 Teilnehmer) zeigt: Intensiver Konsum von Kurzvideos auf Plattformen wie TikTok, Instagram Reels und YouTube Shorts ist messbar verknüpft mit verringerter Aufmerksamkeit und schwächerer Impulskontrolle."
+              "text": "Das Muster zieht sich durch Dutzende Studien: Wer viele Kurzvideos schaut (TikTok, Reels, Shorts), kann sich im Schnitt schlechter konzentrieren und schlechter bremsen. Am deutlichsten ist das bei Menschen, die kaum noch davon loskommen. Eine große Auswertung von 71 Studien mit über 98.000 Teilnehmenden bestätigt das (Nguyen et al., 2025)."
             },
             {
               "typ": "absatz",
-              "text": "Der Mechanismus: Die schnellen Schnitte und der ständige Wechsel gewöhnen dein Gehirn daran, alle paar Sekunden eine kleine Dopamin-Belohnung zu bekommen. Die Folge: Alles, was länger dauert – lesen, lernen, zuhören, nachdenken – fühlt sich zunehmend anstrengend an."
+              "text": "Ob die Videos die Ursache sind, ist noch nicht endgültig geklärt. Vermutlich gewöhnen die schnellen Schnitte dein Gehirn an eine kleine Belohnung alle paar Sekunden. Dann fühlt sich alles anstrengend an, was länger dauert: lesen, lernen, zuhören."
             },
             {
               "typ": "absatz",
-              "text": "*Die Studie ist korrelational – sie beweist keine direkte Ursache-Wirkung. Aber die Muster sind über Dutzende Studien hinweg konsistent.*"
-            },
-            {
-              "typ": "absatz",
-              "text": "**Was das praktisch heißt:** Du merkst, dass du einen Artikel nicht mehr bis zum Ende lesen kannst. Dass du in Gesprächen innerlich abdriftest. Dass du dich für nichts mehr richtig begeistern kannst, was nicht sofort Belohnung liefert. Dass Langeweile sich anfühlt wie ein Entzug. Das sind keine Charakterschwächen – das ist ein Gehirn, das auf Kurzfutter trainiert wurde."
+              "text": "**Was das praktisch heißt:** Du liest keinen Artikel mehr zu Ende? Langeweile fühlt sich an wie Entzug? Das ist keine Charakterschwäche. Das ist ein Gehirn, das auf Kurzfutter trainiert wurde."
             },
             {
               "typ": "ueberschrift",
@@ -422,25 +293,25 @@
             },
             {
               "typ": "absatz",
-              "text": "Wer abends im Bett durch negative Nachrichten scrollt, hält seinen Cortisolspiegel auf einem Level, der eigentlich für akute Gefahrensituationen gedacht ist. Schlechterer Schlaf, höhere Reizbarkeit, mehr Ängste am nächsten Tag – ein Teufelskreis, der sich selbst verstärkt."
+              "text": "Doomscrolling heißt: endlos durch schlechte Nachrichten scrollen. Wer das abends im Bett tut, füttert seinen Kopf kurz vor dem Schlafen mit Angst und Drama. In einem Experiment reichten schon 14 Minuten negative Nachrichten, damit Menschen ängstlicher wurden und ihre eigenen Sorgen größer wirkten (Johnston & Davey, 1997). Und bei jungen Menschen geht viel Social Media oft mit schlechterem Schlaf einher (Alonzo et al., 2021)."
             }
           ]
         },
         {
           "typ": "akkordeon",
-          "titel": "Der Kampf um deine Gedanken und warum du ein Ziel bist",
+          "titel": "Wer verdient an deiner schlechten Laune?",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Vielleicht fragst du dich jetzt: *Warum sind diese Apps und Plattformen eigentlich so designt?*"
+              "text": "Vielleicht fragst du dich jetzt: *Warum sind diese Apps eigentlich so gebaut?*"
             },
             {
               "typ": "absatz",
-              "text": "**Deine Aufmerksamkeit ist das wertvollste Gut des 21. Jahrhunderts.** Die Plattformen messen, was Engagement erzeugt – Klicks, Reaktionen, Bildschirmzeit – und zeigen dir mehr davon."
+              "text": "**Deine Aufmerksamkeit ist das wertvollste Gut des 21. Jahrhunderts.** Die Plattformen messen, was Klicks, Reaktionen und Bildschirmzeit bringt, und zeigen dir mehr davon."
             },
             {
               "typ": "absatz",
-              "text": "Dabei nutzen sie einen evolutionären Mechanismus in deinem Gehirn: den **Negativity Bias**. Unser Gehirn reagiert auf Gefahr, Angst und Wut stärker als auf positive Dinge – das sicherte unseren Vorfahren das Überleben."
+              "text": "Dabei nutzen sie den **Negativity Bias**: Dein Gehirn reagiert auf Gefahr, Angst und Wut stärker als auf Schönes. Das sicherte unseren Vorfahren das Überleben."
             },
             {
               "typ": "absatz",
@@ -453,44 +324,27 @@
             },
             {
               "typ": "absatz",
-              "text": "Das ist keine Vermutung. Facebooks eigene interne Forschung (geleakt 2021 durch die Whistleblowerin Frances Haugen) bestätigte: Die Algorithmen verstärkten systematisch spaltende und emotional aufgeladene Inhalte. Gegenmaßnahmen wurden intern vorgeschlagen – und abgelehnt, weil sie die Engagement-Zahlen gesenkt hätten. Eine MIT-Studie (Vosoughi et al., 2018) zeigte ergänzend, dass falsche Nachrichten sich auf Twitter (heute „X“) deutlich schneller verbreiteten als wahre – nicht wegen Bots, sondern weil Menschen emotionale und neuartige Inhalte stärker teilen."
+              "text": "Das ist keine Vermutung. Interne Facebook-Dokumente, 2021 von der Whistleblowerin Frances Haugen öffentlich gemacht, zeigten: Eine Änderung am Algorithmus belohnte Empörung. Vorschläge, das abzuschwächen, wurden kaum umgesetzt, auch aus Sorge um weniger Engagement (Wall Street Journal, 2021)."
             },
             {
               "typ": "absatz",
-              "text": "Ehemalige Tech-Insider wie Tristan Harris (früherer Design-Ethiker bei Google) warnen seit Jahren: Es ist ein Wettlauf um deine primitivsten Instinkte."
-            },
-            {
-              "typ": "absatz",
-              "text": "**Und es geht noch weiter:** Die gleichen psychologischen Mechanismen, die Plattformen kommerziell nutzen, sind auch für politische und staatliche Akteure interessant. In der Militärforschung gibt es dafür inzwischen einen offiziellen Begriff: **Kognitive Kriegsführung** (*Cognitive Warfare*). Ein Forschungsbericht des NATO Innovation Hub (du Cluzel, 2021) definiert den menschlichen Verstand als das „sechste Operationsgebiet“. Propaganda gibt es, seit es Massenmedien gibt – aber Algorithmen, personalisierte Feeds und Milliarden vernetzte Smartphones machen es heute möglich, Einfluss auf das Denken und Fühlen ganzer Bevölkerungen in einer Geschwindigkeit und Präzision auszuüben, die vor 20 Jahren undenkbar war."
-            }
-          ]
-        },
-        {
-          "typ": "akkordeon",
-          "icon": "kette",
-          "titel": "Zieh die Kette",
-          "bloecke": [
-            {
-              "typ": "absatz",
-              "text": "Lass uns das einmal verbinden – vom Zitronen-Test bis hierher:"
-            },
-            {
-              "typ": "liste",
-              "geordnet": true,
-              "punkte": [
-                "**Deine Gedanken lösen körperliche Reaktionen aus** (Placebo, Nocebo, mentales Training)",
-                "**Dein Medienkonsum formt deine Gedanken** (Alpha-Zustand, Dopamin-Gewöhnung, Doomscrolling)",
-                "**Die Plattformen sind darauf optimiert, negative Emotionen zu verstärken** (Negativity Bias, Algorithmen)."
-              ]
-            },
-            {
-              "typ": "absatz",
-              "text": "Das heißt:"
+              "text": "Ein früherer Google-Designer nannte das vor dem US-Senat einen „race to the bottom of the brain stem“: einen Wettlauf hinunter bis zum Hirnstamm, dem ältesten und instinktivsten Teil deines Gehirns (Harris, 2019)."
             },
             {
               "typ": "zitat",
-              "text": "**Dein Konsum formt deinen körperlichen und mentalen Zustand. Jeden Tag. Ob du es willst oder nicht.**",
+              "text": "**Das Ziel dieser Systeme ist nicht dein Wohlbefinden. Das Ziel ist Bildschirmzeit. Und davon gibt es am meisten, wenn du auf Autopilot schaltest.**",
               "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "Wie das im Alltag aussieht, kannst du im Schaubild „Der Kreislauf“ selbst durchspielen: mit Lea, zwei Wochen vor ihrer Prüfung (ca. 2 Minuten)."
+            },
+            {
+              "typ": "experiment",
+              "id": "kausalkette",
+              "expTyp": "schaubild",
+              "titel": "Der Kreislauf",
+              "text": "Kapitel 1 und 3 in einem Bild. Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen, vieles läuft gleichzeitig. Spiel es mit Lea durch, zwei Wochen vor ihrer Prüfung, und sieh, wie sie wieder rauskommt. Animiert, ca. 2 Minuten."
             }
           ]
         },
@@ -500,23 +354,19 @@
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Das klingt erst mal bedrohlich. Aber eigentlich ist es eine der besten Nachrichten dieses gesamten Programms."
+              "text": "Das klingt erst mal bedrohlich. Aber eigentlich ist es eine der besten Nachrichten dieses Programms. Denn wenn das, was du reinlässt, so stark auf deinen Körper wirkt, kannst du genau dort ansetzen. Heute noch."
             },
             {
               "typ": "absatz",
-              "text": "Denn wenn dein Medienkonsum und deine Gedanken so starken Einfluss auf deinen Körper haben – dann bedeutet das auch: **Du hast einen enormen Hebel in der Hand.** Und anders als vieles in dieser Welt, ist es einer, den du *heute* umlegen kannst."
+              "text": "**Du hast die Wahl:**"
             },
             {
               "typ": "absatz",
-              "text": "**Du musst dich entscheiden: Wählst du die rote oder die blaue Pille?**"
+              "text": "**Weiterschlafen:** Du lässt alles ungefiltert rein. Jede Schlagzeile bestimmt, wie du dich fühlst. Der Autopilot steuert."
             },
             {
               "typ": "absatz",
-              "text": "**Weiterschlafen:** Du lässt alles ungefiltert rein. Jede Nachricht, jeder Algorithmus, jede Schlagzeile bestimmt, wie du dich fühlst. Der Autopilot steuert."
-            },
-            {
-              "typ": "absatz",
-              "text": "**Aufwachen:** Du entscheidest bewusst, was du reinlässt und was draußen bleibt. Nicht weil du die Augen vor der Realität verschließt – sondern weil du weißt: Deine Energie ist begrenzt, und du investierst sie dort, wo du wirklich Einfluss hast."
+              "text": "**Aufwachen:** Du entscheidest bewusst, was du reinlässt. Nicht weil du die Augen vor der Realität verschließt, sondern weil deine Energie begrenzt ist und du sie dort einsetzt, wo du wirklich Einfluss hast."
             },
             {
               "typ": "zitat",
@@ -531,9 +381,80 @@
             },
             {
               "typ": "absatz",
-              "text": "Du hast in Kapitel 1 den Reset gelernt. Jetzt weißt du, warum er so wichtig ist. Im nächsten Schritt zeigen wir dir, worauf du deinen Fokus nach dem Reset bewusst richten kannst."
+              "text": "Den Reset kennst du aus Kapitel 1. Jetzt weißt du, warum er so wichtig ist. Bleibt die Frage: Wohin wandert deine Aufmerksamkeit, wenn du sie nicht bewusst lenkst? Genau da setzt der Mind-Hack an."
             }
           ]
+        }
+      ],
+      "merkzettel": [
+        {
+          "typ": "zitat",
+          "text": "**Dein Gehirn unterscheidet nur bedingt zwischen Realität und intensiver Vorstellung. Ob du wirklich in der Prüfung sitzt oder nachts im Bett liegst und daran denkst: Für deinen Körper und deine Biochemie macht das oft wenig Unterschied.**",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k03/koerper.webp",
+          "alt": "Dein Körper glaubt deinen Gedanken",
+          "unterschrift": null
+        },
+        {
+          "typ": "absatz",
+          "text": "Kurz gesagt: Dein Körper glaubt deinen Gedanken. Placebo, Nocebo und mentales Training zeigen das jeden Tag."
+        },
+        {
+          "typ": "callout",
+          "art": "wichtig",
+          "text": "**Das Gehirn ist die Apotheke deines Körpers. Deine Gedanken stellen die Rezepte aus.**"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Negative Gedanken** (Sorgen, Ängste, Worst-Case-Szenarien)"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein Körper schaltet in den **Stressmodus**, einen Alarmzustand für echte Gefahr: Cortisol und Adrenalin steigen, das Herz schlägt schneller, die Muskeln spannen sich an. Auf dem Bild ist das der Gefahr-Modus. Wird daraus Dauerstress, fährt sogar dein Immunsystem herunter."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Positive Gedanken** (Dankbarkeit, Vorfreude, schöne Erinnerungen)"
+        },
+        {
+          "typ": "absatz",
+          "text": "Endorphine und Oxytocin werden ausgeschüttet. Dein Körper entspannt und regeneriert sich."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Was viele übersehen**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Was du konsumierst, bestimmt mit, was du denkst. Aus Kapitel 1 kennst du deinen Türsteher: Er entscheidet, was in deinem Kopf als wichtig durchkommt, also wer auf die Gästeliste deiner Gedanken kommt. Seine Gästeliste schreibt er aber nicht selbst: Prägung, Umfeld, Gewohnheiten und dein Feed reden ihm rein. Besonders beeindruckt ihn, was dich emotional packt und ständig wiederkommt. Das kommt leichter durch die Tür. Wer viele Kurzvideos schaut, kann sich im Schnitt schlechter konzentrieren. Vermutlich gewöhnen sie dein Gehirn an den schnellen Dopamin-Kick, also an schnelle Belohnung. Alles, was Geduld braucht, fühlt sich dann zäh an. Und Doomscrolling, das endlose Scrollen durch schlechte Nachrichten, macht ängstlicher und hängt oft mit schlechterem Schlaf zusammen."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Warum du ein Ziel bist**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein Gehirn reagiert auf Negatives von Natur aus stärker als auf Positives. Das heißt Negativity Bias. Plattformen nutzen genau das: Was dich wütend macht oder ängstigt, bringt mehr Klicks, mehr Bildschirmzeit, mehr Geld. Facebooks interne Dokumente zeigten 2021: Die Plattform belohnte Empörung, Vorschläge dagegen wurden kaum umgesetzt. Du trittst also nicht gegen deine eigene Willensschwäche an, sondern gegen Systeme, die auf deine Aufmerksamkeit trainiert sind."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Der Hebel**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du kannst nicht kontrollieren, was in der Welt passiert. Aber du kannst entscheiden, was du reinlässt, und damit, welche Gedanken dein Gehirn füttert. Was du oft denkst und tust, läuft irgendwann von selbst, wie eine Autobahn im Kopf: Das ist dein Autopilot. Neue Gedanken sind erst ein Trampelpfad, mit jeder Wiederholung wird er breiter. Wenn dein Kopf abdriftet, holt dich der Mini-Reset aus Kapitel 1 zurück: 3 Dinge sehen, 2 fühlen, 1 hören. Danach wählst du bewusst, worauf du schaust. Wie das geht, zeigt dir der Mind-Hack."
+        }
+      ],
+      "nach": [
+        {
+          "typ": "experiment",
+          "id": "kausalkette",
+          "expTyp": "schaubild",
+          "titel": "Der Kreislauf",
+          "text": "Kapitel 1 und 3 in einem Bild. Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen, vieles läuft gleichzeitig. Spiel es mit Lea durch, zwei Wochen vor ihrer Prüfung, und sieh, wie sie wieder rauskommt. Animiert, ca. 2 Minuten."
         }
       ]
     },
@@ -545,11 +466,46 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "In Kapitel 1 hast du gelernt, deinen Autopiloten zu stoppen. Jetzt kommt der zweite Schritt: bewusst wählen, worauf du deinen Fokus richtest. Denn nach dem Reset steht dein Gehirn kurz auf „Standby“ – und in diesem Moment entscheidest du, welchen Wolf du fütterst."
+          "text": "In Kapitel 1 hast du gelernt, deinen Autopiloten zu stoppen. Jetzt kommt der zweite Schritt: bewusst wählen, worauf du deinen Fokus richtest. Nach dem Mini-Reset ist dein Kopf kurz frei. Genau in diesem Moment entscheidest du, wohin er als Nächstes schaut. Das hast du im Kreislauf bei Lea schon gesehen: Stopp, Mini-Reset, Fokus neu ausrichten. Hier lernst du, wie das Neuausrichten geht."
         },
         {
           "typ": "akkordeon",
-          "titel": "Die drei häufigsten Fokus-Fallen – und der Ausweg",
+          "titel": "In welcher Zeit lebst du gerade wirklich?",
+          "bloecke": [
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k03/zeitzonen-header.webp",
+              "alt": "Die drei Zeitzonen: links Vergangenheit mit Grübeln und bestärkendem Pokal, in der Mitte das Gehirn als Hier-und-Jetzt-Reset-Punkt, rechts Zukunftsangst und Visualisierung.",
+              "unterschrift": null
+            },
+            {
+              "typ": "absatz",
+              "text": "Dein Kopf pendelt ständig zwischen drei Zeitzonen. Jede hat eine giftige und eine nützliche Seite."
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**Vergangenheit:** Giftig ist Grübeln über Fehler, Ärger, Reue und Selbstvorwürfe. Nützlich ist der Blick auf das, was du schon geschafft hast.",
+                "**Hier und Jetzt:** Die einzige Zeitzone, in der du tatsächlich etwas verändern kannst. Zurück ins Jetzt kommst du mit dem Mini-Reset (3-2-1) aus Kapitel 1.",
+                "**Zukunft:** Giftig sind Worst-Case-Kopfkino und „Was wenn …“-Sorgen. Dein Körper reagiert darauf, als wäre es schon passiert, genau wie bei der Zitrone. Nützlich ist, dir das beste Ergebnis vorzustellen, wie beim mentalen Training im Sport."
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "Grübeln, „Was wenn“-Sorgen und Vergleichen: Das sind genau die Kategorien aus deinem Gedanken-Klima-Check. Hier kommen sie als Fallen wieder, und zwar mit Ausweg."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k03/zeitzonen-klein.webp",
+              "alt": "Übersicht der drei Zeitzonen: Vergangenheit und Zukunft oben mit Grübelei und Worst-Case-Szenarien, in der Mitte Hier und Jetzt, unten die bestärkenden Seiten mit Stolz, Erfolgen, Dankbarkeit, kreativer Vision, Zielen und positiver Vorstellungskraft.",
+              "unterschrift": null
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "In welche Falle tappst du am häufigsten?",
           "bloecke": [
             {
               "typ": "bild",
@@ -563,7 +519,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Du scrollst durch Instagram oder hörst von den Erfolgen anderer – und fühlst dich klein. Dein Fokus heftet sich automatisch an das, was dir fehlt."
+              "text": "Du scrollst durch Instagram oder hörst von den Erfolgen anderer und fühlst dich klein. Dein Fokus heftet sich automatisch an das, was dir fehlt."
             },
             {
               "typ": "absatz",
@@ -580,11 +536,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Klimakrise, Kriege, wirtschaftliche Unsicherheit – dein Kopf dreht sich um Dinge, die du nicht kontrollieren kannst. Die Zeitzonen-Falle: Du steckst in der giftigen Zukunft fest."
+              "text": "Klimakrise, Kriege, wirtschaftliche Unsicherheit: Dein Kopf dreht sich um Dinge, die du nicht kontrollieren kannst. Das ist die Zeitzonen-Falle der giftigen Zukunft."
             },
             {
               "typ": "absatz",
-              "text": "**Der Ausweg:** Wenn du nicht aktiv politischen Einfluss nehmen kannst, verschwende deine Energie nicht dort. Lenke deinen Fokus auf das, was du in der Hand hast: deine Gesundheit, deine Finanzen, deine Beziehungen, dein persönliches Wachstum. Dort macht deine Energie einen echten Unterschied."
+              "text": "**Der Ausweg:** Wenn du nicht aktiv politischen Einfluss nehmen kannst, verschwende deine Energie nicht dort. Lenke deinen Fokus auf das, was du in der Hand hast: deine Gesundheit, deine Finanzen, deine Beziehungen, dein persönliches Wachstum. Dort macht deine Energie einen echten Unterschied. Und nutz die nützliche Seite der Zukunft: Stell dir bei dem, was du beeinflussen kannst, das beste Ergebnis so konkret vor wie beim mentalen Training."
             },
             {
               "typ": "ueberschrift",
@@ -592,11 +548,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Dein Kopf kreist um das, was du falsch gemacht hast. Was nicht gut genug war. Die Zeitzonen-Falle: Du steckst in der giftigen Vergangenheit fest."
+              "text": "Dein Kopf kreist um das, was du falsch gemacht hast. Was nicht gut genug war. Das ist die Zeitzonen-Falle der giftigen Vergangenheit."
             },
             {
               "typ": "absatz",
-              "text": "**Der Ausweg:** Wo hast du in den letzten Wochen Fortschritt gemacht? Welche Fähigkeit hast du verbessert, die du vor einem Jahr noch nicht hattest? Perfektionismus lähmt – Fortschrittsfokus motiviert."
+              "text": "**Der Ausweg:** Nutz die nützliche Seite der Vergangenheit. Worauf bist du stolz? Was hast du gemeistert, das du dir vorher nicht zugetraut hättest? Wo hast du in den letzten Wochen Fortschritt gemacht? Perfektionismus lähmt. Fortschrittsfokus motiviert."
             },
             {
               "typ": "zitat",
@@ -607,7 +563,7 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "Dein Werkzeug bei Rückschlägen: Reframing - Die zwei Leitfragen",
+          "titel": "Zwei Leitfragen für den Fokus-Shift",
           "bloecke": [
             {
               "typ": "bild",
@@ -617,11 +573,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Wenn dir ein Rückschlag passiert, verfällt dein Gehirn schnell in einen automatischen Schutzmechanismus: Es stellt blockierende Fragen. *„Warum passiert das ausgerechnet mir?“* oder *„Warum ist das so unfair?“* – diese Fragen zwingen dein Gehirn, Beweise für dein Unglück zu suchen. Sie rauben dir Energie, fördern die Ausschüttung von Stresshormonen und machen dich handlungsunfähig."
+              "text": "Nach einem Rückschlag stellt dein Gehirn schnell blockierende Fragen: *„Warum passiert das ausgerechnet mir?“* oder *„Warum ist das so unfair?“* Damit schickst du deinen Türsteher los, Beweise für dein Pech zu suchen. Das raubt dir Energie und hält dich im Stressmodus."
             },
             {
               "typ": "absatz",
-              "text": "**Der Ausweg:** Zwei lösungsorientierte Fragen, die dein Gehirn sofort vom Problem auf Wachstum und Chancen umstellen."
+              "text": "**Der Ausweg:** Zwei Fragen, die deinen Fokus vom Problem auf das lenken, was du daraus machen kannst."
             },
             {
               "typ": "ueberschrift",
@@ -637,19 +593,19 @@
             },
             {
               "typ": "akkordeon",
-              "titel": "Beispiel 1: Das geplatzte Projekt",
+              "titel": "Beispiel: Das geplatzte Projekt",
               "bloecke": [
                 {
                   "typ": "liste",
                   "geordnet": false,
                   "punkte": [
-                    "**Die Situation:** Du hast wochenlang Herzblut in ein wichtiges Projekt gesteckt. Einen Tag vor der Deadline wird es von oben abgesagt. Die Arbeit scheint komplett umsonst gewesen zu sein.",
-                    "**Der alte Weg (Autopilot):** *„Warum passiert mir das schon wieder? Das ist so respektlos. Die ganze Mühe für die Tonne!“* → Das Resultat: Frust, Selbstzweifel, Demotivation. Du steckst fest."
+                    "**Die Situation:** Du hast wochenlang Herzblut in ein Projekt gesteckt, im Studium, im Job oder im Verein. Einen Tag vor der Deadline wird es abgesagt. Die Arbeit scheint komplett umsonst gewesen zu sein.",
+                    "**Der alte Weg (Autopilot):** *„Warum passiert mir das schon wieder? Die ganze Mühe für die Tonne!“* → Das Resultat: Frust, Selbstzweifel, keine Lust mehr. Du steckst fest."
                   ]
                 },
                 {
                   "typ": "absatz",
-                  "text": "**Der neue Weg (Bewusster Perspektivenwechsel):** Erlaube dir kurz den Frust – und dann wechsle bewusst die Perspektive mit deinen Leitfragen:"
+                  "text": "**Der neue Weg (Bewusster Perspektivenwechsel):** Erlaube dir kurz den Frust. Dann wechsle bewusst die Perspektive mit deinen Leitfragen:"
                 },
                 {
                   "typ": "absatz",
@@ -657,7 +613,7 @@
                 },
                 {
                   "typ": "zitat",
-                  "text": "*„Ich habe mir in den letzten Wochen extrem viel neues Wissen angeeignet. Das nimmt mir niemand weg. Und ganz pragmatisch: Wir haben ab morgen endlich freie Kapazitäten für das andere Projekt, das ohnehin schon brennt.“*",
+                  "text": "*„Ich habe in den letzten Wochen extrem viel gelernt. Das nimmt mir niemand weg. Und ganz pragmatisch: Ab morgen habe ich endlich wieder Zeit für das, was liegen geblieben ist.“*",
                   "quelle": null
                 },
                 {
@@ -666,52 +622,12 @@
                 },
                 {
                   "typ": "zitat",
-                  "text": "*„Beim nächsten Mal hole ich mir viel früher Zwischen-Feedbacks von oben ein, um nicht blind in eine Richtung zu laufen.“*",
+                  "text": "*„Beim nächsten Mal hole ich mir viel früher Rückmeldung, statt wochenlang allein in eine Richtung zu laufen.“*",
                   "quelle": null
                 },
                 {
                   "typ": "absatz",
-                  "text": "**Fazit:** Du hakst den Frust schneller ab, gehst in die Lösungsfindung und verbesserst eure Abläufe. Aus einem Fehlschlag wird ein Trainingseffekt!"
-                }
-              ]
-            },
-            {
-              "typ": "akkordeon",
-              "titel": "Beispiel 2: Der ins Wasser gefallene Ausflug",
-              "bloecke": [
-                {
-                  "typ": "liste",
-                  "geordnet": false,
-                  "punkte": [
-                    "**Die Situation:** Ihr habt euch seit Wochen auf einen großen gemeinsamen Ausflug in den Freizeitpark gefreut. Am Samstagmorgen schüttet es wie aus Eimern und der Park meldet wegen Sturmwarnung geschlossen. Alle sind bitter enttäuscht, der Tag scheint komplett gelaufen zu sein.",
-                    "**Der alte Weg (Autopilot):** *„Warum haben wir immer so ein Pech? Das ganze Wochenende ist ruiniert, jetzt hocken wir hier nur frustriert herum!“* → Das Resultat: Miese Stimmung, Gereiztheit und ein verlorener Tag für alle."
-                  ]
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Der neue Weg (Bewusster Perspektivenwechsel):** Erlaube dir (und allen Beteiligten) kurz den Frust und die Enttäuschung – und dann wechsle bewusst die Perspektive mit deinen Leitfragen:"
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Was ist das Gute daran?**"
-                },
-                {
-                  "typ": "zitat",
-                  "text": "*„Wir haben plötzlich einen komplett leeren Kalender ohne Zeitdruck. Keinen Stress beim Packen, keine Staus auf der Autobahn, kein stundenlanges Anstehen an den Fahrgeschäften. Wir können stattdessen ohne schlechtes Gewissen auf dem Sofa versacken, mittags Pizza bestellen und einen genialen Film-Marathon oder Spiele-Tag starten, wozu wir im Alltag sonst nie Zeit haben.“*",
-                  "quelle": null
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Was lerne ich daraus?**"
-                },
-                {
-                  "typ": "zitat",
-                  "text": "*„Beim nächsten Mal überlegen wir uns bei Outdoor-Ausflügen von vornherein einen starken „Plan B“ für schlechtes Wetter, auf den wir genauso viel Lust hätten. So fällt die Enttäuschung gar nicht erst so tief aus.“*",
-                  "quelle": null
-                },
-                {
-                  "typ": "absatz",
-                  "text": "**Fazit:** Der Tag wird gerettet und bekommt eine völlig neue, entspannte Dynamik. Anstatt passiv in der Opferrolle zu bleiben („Das Wetter hat uns den Tag versaut“), übernehmt ihr **gemeinsam** wieder aktiv die Kontrolle über eure Stimmung und eure Zeit."
+                  "text": "**Fazit:** Du hakst den Frust schneller ab und gehst in die Lösung. Aus einem Fehlschlag wird ein Trainingseffekt."
                 }
               ]
             }
@@ -719,11 +635,11 @@
         },
         {
           "typ": "akkordeon",
-          "titel": "Warum das funktioniert?",
+          "titel": "Ist das nicht einfach Schönreden?",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Dein Gehirn kann nicht gleichzeitig blockierende und lösungsorientierte Fragen beantworten. Die Leitfragen zwingen es auf eine neue Bahn – weg vom Problem, hin zur Lösung. Das Prinzip dahinter nennt sich kognitive Umstrukturierung und ist eines der wirksamsten Werkzeuge der modernen Psychologie."
+              "text": "Nein. Du sollst Frust nicht wegdrücken. „Warum ich?“ bringt dich nur selten weiter. Die zwei Leitfragen lenken deine Aufmerksamkeit um: weg vom Problem, hin zu dem, was du daraus nutzen oder lernen kannst. In der Psychologie heißt das kognitive Umstrukturierung (Beck, 1979). Die Idee, eher nach Lösungen als nach Ursachen zu fragen, geht auf Steve de Shazer zurück (1985). Erlaube dir zuerst kurz das Gefühl. Dann stell die Fragen."
             }
           ]
         }
@@ -759,12 +675,13 @@
                 "Was ist das Erste, das du morgens auf deinem Handy siehst?",
                 "Was ist das Letzte, das du abends vor dem Einschlafen konsumierst?",
                 "Wie viel Zeit verbringst du täglich mit Nachrichten, Social Media und Serien?",
-                "Wie fühlst du dich typischerweise *nach* 30 Minuten Scrollen?"
+                "Wie fühlst du dich typischerweise *nach* 30 Minuten Scrollen?",
+                "Wer schreibt gerade an deiner Gästeliste mit, um 23 Uhr?"
               ]
             },
             {
               "typ": "absatz",
-              "text": "Du musst deswegen nicht alles löschen oder dein Handy wegwerfen. Aber sei dir bewusst, was du reinlässt – denn du weißt jetzt, was es mit deinem Körper macht."
+              "text": "Du musst deswegen nicht alles löschen oder dein Handy wegwerfen. Aber sei dir bewusst, was du reinlässt. Du weißt jetzt, was es mit deinem Körper macht."
             }
           ]
         },
@@ -774,7 +691,7 @@
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Achte diese Woche bewusst darauf, wenn dein Kopf in die giftige Vergangenheit oder die giftige Zukunft abdriftet. Und dann:"
+              "text": "Achte diese Woche bewusst darauf, wenn dein Kopf in die giftige Vergangenheit oder die giftige Zukunft abdriftet oder du dich wieder vergleichst. Und dann:"
             },
             {
               "typ": "liste",
@@ -808,11 +725,17 @@
             },
             {
               "typ": "absatz",
-              "text": "Klingt simpel – verändert aber messbar deine Wahrnehmung innerhalb von drei Wochen. Dein Türsteher aus Kapitel 1 lernt, die guten Dinge auf die Gästeliste zu setzen."
+              "text": "Klingt simpel, kann aber verändern, worauf du im Alltag achtest. Dein Türsteher aus Kapitel 1 lernt, die guten Dinge auf die Gästeliste zu setzen."
             },
             {
-              "typ": "absatz",
-              "text": "*(Die Wirksamkeit ist belegt durch die Studie von Emmons & McCullough, 2003 – eine der meistzitierten Studien der Positiven Psychologie.)*"
+              "typ": "akkordeon",
+              "titel": "Warum das wirkt",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Beim Dankbarkeitstagebuch trainierst du deinen Fokus auf das, was schon gut läuft. Emmons und McCullough (2003) ließen Menschen über mehrere Wochen regelmäßig aufschreiben, wofür sie dankbar waren. Im Vergleich zu Gruppen, die Ärgernisse oder neutrale Ereignisse notierten, berichteten sie mehr Wohlbefinden und eine positivere Stimmung. Das waren Selbstauskünfte in einzelnen Studien, kein Versprechen für jeden Menschen. Aber es passt zu deinem Türsteher aus Kapitel 1: Wer abends gezielt nach Gutem sucht, gibt dem Filter neue Einträge. Je öfter du das wiederholst, desto leichter fällt es dir."
+                }
+              ]
             }
           ]
         }
@@ -832,37 +755,77 @@
         },
         {
           "typ": "quelle",
-          "text": "**Mentales Training / Basketball-Studie:** Richardson, A. (1967). Mental Practice: A Review and Discussion. *Research Quarterly*, 38(1), 95–107. **Hinweis:** Richardsons Arbeit war eine Review-Publikation, die bestehende Forschung zu mentalem Training zusammenfasste. Die häufig zitierten Basketball-Freiwurf-Zahlen (24% vs. 23%) stammen aus dieser Review, die genaue Primärquelle ist in der Literatur nicht eindeutig identifizierbar. Der zugrundeliegende Effekt ist jedoch breit bestätigt: **Unterstützende Meta-Analysen:** (1) O'Sullivan, M., Davids, K., Woods, C.T. et al. (2021). Mental imagery training programs for developing sport-specific motor skills: a systematic review and meta-analysis. *Physical Education and Sport Pedagogy*, 28(4), 442–465. → 36 Studien, n=1.449, signifikanter Effekt (g=0.476); MI allein g=0.298, MI + physisches Training g=0.579. (2) Truong, C. et al. (2023). Error-based and reinforcement learning in basketball free throw shooting. *Scientific Reports*, 13, 396. → Moderne Studie zur motorischen Lernforschung bei Freiwürfen.",
+          "text": "**Mentales Training / Basketball-Studie:** Richardson, A. (1967). Mental Practice: A Review and Discussion. *Research Quarterly*, 38(1), 95–107. **Hinweis:** Richardsons Arbeit war eine Review-Publikation, die bestehende Forschung zu mentalem Training zusammenfasste. Die Basketball-Freiwurf-Zahlen (24 % vs. 23 %) werden häufig Richardson zugeschrieben; eine Primärstudie dazu ist nicht auffindbar. Der zugrundeliegende Effekt ist durch Meta-Analysen belegt: (1) Driskell, J. E., Copper, C. & Moran, A. (1994). Does mental practice enhance performance? *Journal of Applied Psychology*, 79(4), 481–492. [https://doi.org/10.1037/0021-9010.79.4.481](https://doi.org/10.1037/0021-9010.79.4.481) → positiver, signifikanter Effekt; abhängig von Aufgabentyp, Abstand bis zum Test und Dauer des mentalen Übens. (2) Toth, A. J., McNeill, E., Hayes, K., Moran, A. P. & Campbell, M. (2020). Does mental practice still enhance performance? A 24 year follow-up and meta-analytic replication and extension. *Psychology of Sport and Exercise*, 48, 101672. [https://doi.org/10.1016/j.psychsport.2020.101672](https://doi.org/10.1016/j.psychsport.2020.101672) → 37 Studien (1995–2018), kleiner, aber signifikanter Effekt (r = 0,13). (3) Lindsay, R. S., Larkin, P., Kittel, A. & Spittle, M. (2021; Druckausgabe 2023). Mental imagery training programs for developing sport-specific motor skills: a systematic review and meta-analysis. *Physical Education and Sport Pedagogy*, 28(4), 444–465. [https://doi.org/10.1080/17408989.2021.1991297](https://doi.org/10.1080/17408989.2021.1991297) → 36 Studien, n = 1.449, g = 0,48; Vorstellung allein g = 0,30, Vorstellung + echtes Training g = 0,58. Mentales Training ersetzt echtes Üben also nicht.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Placebo-Effekt bei Parkinson:** de la Fuente-Fernández, R. et al. (2001). Expectation and dopamine release: mechanism of the placebo effect in Parkinson's disease. *Science*, 293, 1164–1166. → Erste Imaging-Studie: substanzielle Dopamin-Ausschüttung im Striatum nach Placebo (Kochsalzlösung) mittels PET nachgewiesen. **Hinweis:** Nicht bei allen Patienten gleich stark – ca. die Hälfte zeigte klinische Verbesserung vergleichbar mit echtem Medikament. Bestätigt auf Einzelneuronen-Ebene: Benedetti, F. et al. (2004). *Nature Neuroscience*, 7, 587–588. Dosisabhängigkeit der Erwartung: Lidstone, S.C. et al. (2010). Effects of expectation on placebo-induced dopamine release in Parkinson disease. *Archives of General Psychiatry*, 67(8), 857–865. → Signifikante Dopamin-Ausschüttung nur bei 75% erklärter Wahrscheinlichkeit, echtes Medikament zu erhalten. Überblick: Benedetti, F. et al. (2005). Neurobiological Mechanisms of the Placebo Effect. *Journal of Neuroscience*, 25(45), 10390–10402.",
+          "text": "**Placebo-Effekt bei Parkinson:** de la Fuente-Fernández, R. et al. (2001). Expectation and dopamine release: mechanism of the placebo effect in Parkinson's disease. *Science*, 293, 1164–1166. → Erste Imaging-Studie: substanzielle Dopamin-Ausschüttung im Striatum nach Placebo (Kochsalzlösung) mittels PET nachgewiesen. **Hinweis:** Nicht bei allen Patienten gleich stark. Etwa die Hälfte berichtete eine Besserung der Beweglichkeit; bei ihnen war die Dopaminfreisetzung größer. Bestätigt auf Einzelneuronen-Ebene: Benedetti, F. et al. (2004). *Nature Neuroscience*, 7, 587–588. Dosisabhängigkeit der Erwartung: Lidstone, S.C. et al. (2010). Effects of expectation on placebo-induced dopamine release in Parkinson disease. *Archives of General Psychiatry*, 67(8), 857–865. → Signifikante Dopamin-Ausschüttung nur bei 75% erklärter Wahrscheinlichkeit, echtes Medikament zu erhalten. Überblick: Benedetti, F. et al. (2005). Neurobiological Mechanisms of the Placebo Effect. *Journal of Neuroscience*, 25(45), 10390–10402.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Nocebo-Effekt:** Colloca, L. & Barsky, A.J. (2020). Placebo and Nocebo Effects. *New England Journal of Medicine*, 382, 554–561. Nocebo-Effekte stärker und langanhaltender als Placebo: Kunkel, A., Schmidt, K., Hartmann, H. et al. (2025). Nocebo effects are stronger and more persistent than placebo effects in healthy individuals. *eLife*, 14.",
+          "text": "**Placebo-Etikett (Migräne):** Kam-Hansen, S., Jakubowski, M., Kelley, J. M., et al. (2014). Altered placebo and drug labeling changes the outcome of episodic migraine attacks. *Science Translational Medicine*, 6(218), 218ra5. [https://doi.org/10.1126/scitranslmed.3006175](https://doi.org/10.1126/scitranslmed.3006175)",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Drei Zeitzonen des Denkens:** Konzept verbreitet in der kognitiven Verhaltenstherapie und Achtsamkeitsforschung. Grundlage: Rumination (Vergangenheit) und Worry (Zukunft) als Kernmechanismen von Stress und Depression – vgl. Nolen-Hoeksema (2000), Borkovec et al. (1983).",
+          "text": "**Nocebo-Effekt:** Colloca, L. & Barsky, A.J. (2020). Placebo and Nocebo Effects. *New England Journal of Medicine*, 382, 554–561.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**TV und Alpha-Wellen:** Krugman, H.E. (1971). Brain Wave Measures of Media Involvement. *Journal of Advertising Research*, 11(1), 3–9. Bestätigt durch Mulholland & Peper sowie die Australian Broadcasting Study (Emery & Emery).",
+          "text": "**Nocebo bei Cholesterinsenkern (N-of-1-Studie):** Wood, F. A., Howard, J. P., Finegold, J. A., et al. (2020). N-of-1 trial of a statin, placebo, or no treatment to assess side effects. *New England Journal of Medicine*, 383(22), 2182–2184. [https://doi.org/10.1056/NEJMc2031173](https://doi.org/10.1056/NEJMc2031173)",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Short-Form-Video und Kognition:** Nguyen, L., Walters, J. et al. (2025). Feeds, Feelings, and Focus. *Psychological Bulletin*, 151(9), 1125–1146. Meta-Analyse basierend auf 71 Studien mit 98.299 Teilnehmern. Moderate negative Zusammenhänge zwischen Kurzvideokonsum und Aufmerksamkeit (r = -.38), Impulskontrolle (r = -.41).",
+          "text": "**Nocebo stärker als Placebo (Schmerzexperiment):** Kunkel, A., Schmidt, K., Hartmann, H., Strietzel, T., Sperzel, J., Wiech, K. & Bingel, U. (2025). Nocebo effects are stronger and more persistent than placebo effects in healthy individuals. *eLife*, 14, RP105753. [https://doi.org/10.7554/eLife.105753](https://doi.org/10.7554/eLife.105753) → 104 gesunde Freiwillige, experimenteller Hitzeschmerz, Schein-TENS. Nocebo-Effekte an Tag 1 und Tag 8 größer als Placebo-Effekte. Gilt für experimentellen Schmerz über eine Woche, nicht pauschal für alle körperlichen Wirkungen.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Doomscrolling:** Sharma et al. (2022). Doomscrolling Scale. Korrelation mit erhöhtem Cortisol, Schlafstörungen, Angst und Depression, bestätigt durch mehrere unabhängige Studien (2022–2025).",
+          "text": "**Drei Zeitzonen des Denkens:** Konzept verbreitet in Psychologie und Achtsamkeitsforschung (im Kapitel jetzt im Mind-Hack). Grundlage: Rumination (Vergangenheit) und Worry (Zukunft) als Kernmechanismen von Stress und Depression – vgl. Nolen-Hoeksema (2000), Borkovec et al. (1983).",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Eintauchen in Geschichten:** Green, M. C. & Brock, T. C. (2000). The role of transportation in the persuasiveness of public narratives. *Journal of Personality and Social Psychology*, 79(5), 701–721. [https://doi.org/10.1037/0022-3514.79.5.701](https://doi.org/10.1037/0022-3514.79.5.701)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Wiederholung wirkt wahr (Illusory-Truth-Effekt):** Hassan, A. & Barber, S. J. (2021). The effects of repetition frequency on the illusory truth effect. *Cognitive Research: Principles and Implications*, 6, 38.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Illusory-Truth-Effekt trotz Vorwissen:** Fazio, L. K., Brashier, N. M., Payne, B. K., & Marsh, E. J. (2015). Knowledge does not protect against illusory truth. *Journal of Experimental Psychology: General*, 144(5), 993–1002. [https://doi.org/10.1037/xge0000098](https://doi.org/10.1037/xge0000098)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Genauigkeitsfokus verhindert den Effekt:** Brashier, N. M., Eliseev, E. D., & Marsh, E. J. (2020). An initial accuracy focus prevents illusory truth. *Cognition*, 194, 104054. [https://doi.org/10.1016/j.cognition.2019.104054](https://doi.org/10.1016/j.cognition.2019.104054)",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Negative Nachrichten:** Johnston, W. M. & Davey, G. C. L. (1997). The psychological impact of negative TV news bulletins. *British Journal of Psychology*, 88(1), 85–91.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Short-Form-Video und Kognition:** Nguyen, L., Walters, J., Paul, S., Monreal Ijurco, S., Rainey, G. E., Parekh, N., Blair, G. & Darrah, M. (2025). Feeds, feelings, and focus: A systematic review and meta-analysis examining the cognitive and mental health correlates of short-form video use. *Psychological Bulletin*, 151(9), 1125–1146. [https://doi.org/10.1037/bul0000498](https://doi.org/10.1037/bul0000498) → 71 Studien, 98.299 Teilnehmende. Negative Zusammenhänge mit Kognition (r = −.34), Aufmerksamkeit (r = −.38) und Hemmungskontrolle (inhibitory control, r = −.41); mit psychischer Gesundheit schwächer (r = −.21). Korrelational. Der Dopamin-Mechanismus im Text ist eine Erklärungshypothese, kein Ergebnis der Meta-Analyse.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Doomscrolling:** Satici, S. A., Tekin, E. G., Deniz, M. E. & Satici, B. (2023; online 2022). Doomscrolling Scale: its Association with Personality Traits, Psychological Distress, Social Media Use, and Wellbeing. *Applied Research in Quality of Life*, 18(2), 833–847. [https://doi.org/10.1007/s11482-022-10110-7](https://doi.org/10.1007/s11482-022-10110-7) → Doomscrolling hängt mit psychischer Belastung und geringerem Wohlbefinden zusammen (korrelativ; keine Cortisol- oder Schlafmessung).",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Social Media und Schlaf:** Alonzo, R., Hussain, J., Stranges, S. & Anderson, K. K. (2021). Interplay between social media use, sleep quality, and mental health in youth: a systematic review. *Sleep Medicine Reviews*, 56, 101414. → 42 Studien mit 16- bis 25-Jährigen: intensive Nutzung hängt mit schlechterem Schlaf und schlechterer psychischer Gesundheit zusammen; Richtung und Stärke offen.",
           "url": null
         },
         {
@@ -877,17 +840,12 @@
         },
         {
           "typ": "quelle",
-          "text": "**Algorithmische Verstärkung – Facebook Files:** Horwitz, J. (2021). Facebook's own research: Algorithm change sowed division. *The Wall Street Journal*, „The Facebook Files“-Serie, September 2021. – Basierend auf internen Facebook-Dokumenten, geleakt durch die Whistleblowerin Frances Haugen. Facebooks eigene Forscher dokumentierten, dass der Algorithmus spaltende Inhalte systematisch verstärkte.",
+          "text": "**Algorithmische Verstärkung – Facebook Files:** Hagey, K. & Horwitz, J. (2021, 15. September). Facebook Tried to Make Its Platform a Healthier Place. It Got Angrier Instead. *The Wall Street Journal*, Serie „The Facebook Files“. – Interne Dokumente (Whistleblowerin Frances Haugen): Die Algorithmus-Änderung von 2018 („Meaningful Social Interactions“) belohnte Empörung. Viele vorgeschlagene Korrekturen wurden wegen möglicher Engagement-Verluste nicht oder nur teilweise umgesetzt (Teilumsetzung 2020, breitere Tests 2021).",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Verbreitung von Falschinformation durch menschliches Verhalten:** Vosoughi, S., Roy, D. & Aral, S. (2018). The spread of true and false news online. *Science*, 359(6380), 1146–1151. – MIT-Studie mit ~126.000 Nachrichtenkaskaden auf Twitter. Falschnachrichten verbreiteten sich schneller und weiter als wahre – getrieben durch menschliches Teilen (Neuheits- und Emotionseffekt), nicht durch Bots.",
-          "url": null
-        },
-        {
-          "typ": "quelle",
-          "text": "**Kognitive Kriegsführung:** du Cluzel, F. (2021). *Cognitive Warfare.* NATO Innovation Hub, beauftragt durch Allied Command Transformation. – Forschungsbericht, der den menschlichen Verstand als sechste operative Domäne neben Land, See, Luft, Weltraum und Cyber definiert. Durchgeführt Juni–November 2020, veröffentlicht Januar 2021.",
+          "text": "**Aufmerksamkeitsmarkt / „Race to the bottom of the brain stem“:** Harris, T. (2019). Optimizing for Engagement: Understanding the Use of Persuasive Technology on Internet Platforms. Anhörung im US-Senat, Commerce Committee, 25. Juni 2019. [https://www.govinfo.gov/content/pkg/CHRG-116shrg52609/html/CHRG-116shrg52609.htm](https://www.govinfo.gov/content/pkg/CHRG-116shrg52609/html/CHRG-116shrg52609.htm)",
           "url": null
         },
         {
@@ -902,12 +860,12 @@
         },
         {
           "typ": "quelle",
-          "text": "**Leitfragen / Kognitive Umstrukturierung:** Basiert auf kognitiver Verhaltenstherapie (CBT, Beck, 1979) und lösungsfokussierter Kurztherapie (de Shazer, 1985).",
+          "text": "**Leitfragen / Kognitive Umstrukturierung:** Kognitive Umstrukturierung nach Beck (1979) und lösungsfokussierter Ansatz nach de Shazer (1985).",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Fokus-Fallen / Reframing:** Kierkegaard-Zitat allgemein attribuiert; Vergleichsfalle basiert auf Festinger, L. (1954). Social Comparison Theory. Die Wirksamkeit von Fokus-Reframing ist breit belegt in der CBT-Literatur.",
+          "text": "**Fokus-Fallen / Reframing:** Kierkegaard-Zitat allgemein attribuiert; Vergleichsfalle basiert auf Festinger, L. (1954). Social Comparison Theory. Die Wirksamkeit kognitiver Umstrukturierung ist in der psychologischen Literatur breit belegt.",
           "url": null
         }
       ],

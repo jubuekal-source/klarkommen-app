@@ -1,445 +1,477 @@
 {
- "version": 16,
- "dateien": [
-  {
-   "id": "k01-5sinne-shift",
-   "pfad": "medien/audio/k01-5sinne-shift.mp3",
-   "bytes": 3555764,
-   "typ": "audio",
-   "kapitel": "k01",
-   "dauer": "4:56"
-  },
-  {
-   "id": "k01-podcast",
-   "pfad": "medien/audio/k01-podcast.mp3",
-   "bytes": 5619751,
-   "typ": "audio",
-   "kapitel": "k01",
-   "dauer": "11:42"
-  },
-  {
-   "id": "k02-podcast",
-   "pfad": "medien/audio/k02-podcast.mp3",
-   "bytes": 5551032,
-   "typ": "audio",
-   "kapitel": "k02",
-   "dauer": "11:34"
-  },
-  {
-   "id": "k03-podcast",
-   "pfad": "medien/audio/k03-podcast.mp3",
-   "bytes": 6911048,
-   "typ": "audio",
-   "kapitel": "k03",
-   "dauer": "14:24"
-  },
-  {
-   "id": "k07-sicherer-ort",
-   "pfad": "medien/audio/k07-sicherer-ort.mp3",
-   "bytes": 7749048,
-   "typ": "audio",
-   "kapitel": "k07",
-   "dauer": "10:46"
-  },
-  {
-   "id": "k07-song",
-   "pfad": "medien/audio/k07-song.mp3",
-   "bytes": 1775381,
-   "typ": "audio",
-   "kapitel": "k07",
-   "dauer": "2:27"
-  },
-  {
-   "id": "bilder/Titel-Slide",
-   "pfad": "medien/bilder/Titel-Slide.png",
-   "bytes": 2126703,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/bonus",
-   "pfad": "medien/bilder/cover/bonus.webp",
-   "bytes": 148044,
-   "typ": "bild",
-   "kapitel": "bonus",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k01",
-   "pfad": "medien/bilder/cover/k01.webp",
-   "bytes": 104974,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k02",
-   "pfad": "medien/bilder/cover/k02.webp",
-   "bytes": 118826,
-   "typ": "bild",
-   "kapitel": "k02",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k03",
-   "pfad": "medien/bilder/cover/k03.webp",
-   "bytes": 64890,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k04",
-   "pfad": "medien/bilder/cover/k04.webp",
-   "bytes": 82166,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k05",
-   "pfad": "medien/bilder/cover/k05.webp",
-   "bytes": 124324,
-   "typ": "bild",
-   "kapitel": "k05",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k06",
-   "pfad": "medien/bilder/cover/k06.webp",
-   "bytes": 118502,
-   "typ": "bild",
-   "kapitel": "k06",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k07",
-   "pfad": "medien/bilder/cover/k07.webp",
-   "bytes": 208232,
-   "typ": "bild",
-   "kapitel": "k07",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k08",
-   "pfad": "medien/bilder/cover/k08.webp",
-   "bytes": 110216,
-   "typ": "bild",
-   "kapitel": "k08",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k09",
-   "pfad": "medien/bilder/cover/k09.webp",
-   "bytes": 160574,
-   "typ": "bild",
-   "kapitel": "k09",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k10",
-   "pfad": "medien/bilder/cover/k10.webp",
-   "bytes": 216812,
-   "typ": "bild",
-   "kapitel": "k10",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k11",
-   "pfad": "medien/bilder/cover/k11.webp",
-   "bytes": 350778,
-   "typ": "bild",
-   "kapitel": "k11",
-   "dauer": null
-  },
-  {
-   "id": "bilder/cover/k12",
-   "pfad": "medien/bilder/cover/k12.webp",
-   "bytes": 84296,
-   "typ": "bild",
-   "kapitel": "k12",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/5-4-3-2-1",
-   "pfad": "medien/bilder/k01/5-4-3-2-1.webp",
-   "bytes": 270982,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/elefant",
-   "pfad": "medien/bilder/k01/elefant.webp",
-   "bytes": 276194,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/notaus",
-   "pfad": "medien/bilder/k01/notaus.webp",
-   "bytes": 46934,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/trigger",
-   "pfad": "medien/bilder/k01/trigger.webp",
-   "bytes": 281264,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/wolf",
-   "pfad": "medien/bilder/k01/wolf.webp",
-   "bytes": 225930,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k02/einstieg-ich-bin",
-   "pfad": "medien/bilder/k02/einstieg-ich-bin.webp",
-   "bytes": 64172,
-   "typ": "bild",
-   "kapitel": "k02",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k02/kette-kurz",
-   "pfad": "medien/bilder/k02/kette-kurz.webp",
-   "bytes": 121762,
-   "typ": "bild",
-   "kapitel": "k02",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k02/kette",
-   "pfad": "medien/bilder/k02/kette.webp",
-   "bytes": 231962,
-   "typ": "bild",
-   "kapitel": "k02",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/dankbarkeit",
-   "pfad": "medien/bilder/k03/dankbarkeit.webp",
-   "bytes": 151580,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/fokus-fallen",
-   "pfad": "medien/bilder/k03/fokus-fallen.webp",
-   "bytes": 227286,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/koerper",
-   "pfad": "medien/bilder/k03/koerper.webp",
-   "bytes": 273398,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/muelleimer-trainingsraum",
-   "pfad": "medien/bilder/k03/muelleimer-trainingsraum.webp",
-   "bytes": 187410,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/placebo-nocebo",
-   "pfad": "medien/bilder/k03/placebo-nocebo.webp",
-   "bytes": 159396,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/you-decide",
-   "pfad": "medien/bilder/k03/you-decide.webp",
-   "bytes": 169168,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/zeitzonen-ueberblick",
-   "pfad": "medien/bilder/k03/zeitzonen-ueberblick.webp",
-   "bytes": 78642,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/zeitzonen",
-   "pfad": "medien/bilder/k03/zeitzonen.webp",
-   "bytes": 73616,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k07/atmung-4-7-8",
-   "pfad": "medien/bilder/k07/atmung-4-7-8.webp",
-   "bytes": 188074,
-   "typ": "bild",
-   "kapitel": "k07",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k07/sigh",
-   "pfad": "medien/bilder/k07/sigh.webp",
-   "bytes": 234478,
-   "typ": "bild",
-   "kapitel": "k07",
-   "dauer": null
-  },
-  {
-   "id": "bilder/rubrik/brainfact",
-   "pfad": "medien/bilder/rubrik/brainfact.webp",
-   "bytes": 84122,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/rubrik/einstieg-portal",
-   "pfad": "medien/bilder/rubrik/einstieg-portal.webp",
-   "bytes": 85762,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/rubrik/mindhack",
-   "pfad": "medien/bilder/rubrik/mindhack.webp",
-   "bytes": 98930,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/rubrik/mission-alltag",
-   "pfad": "medien/bilder/rubrik/mission-alltag.webp",
-   "bytes": 76364,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/rubrik/quellen",
-   "pfad": "medien/bilder/rubrik/quellen.webp",
-   "bytes": 124614,
-   "typ": "bild",
-   "kapitel": null,
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/confirmation-bias",
-   "pfad": "medien/bilder/k01/confirmation-bias.webp",
-   "bytes": 104630,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k01/tuersteher",
-   "pfad": "medien/bilder/k01/tuersteher.webp",
-   "bytes": 62072,
-   "typ": "bild",
-   "kapitel": "k01",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/wer-bestimmt",
-   "pfad": "medien/bilder/k03/wer-bestimmt.webp",
-   "bytes": 80104,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k04/einstein-technik",
-   "pfad": "medien/bilder/k04/einstein-technik.webp",
-   "bytes": 83764,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k04/pitching-technik",
-   "pfad": "medien/bilder/k04/pitching-technik.webp",
-   "bytes": 77254,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k07/fernbedienung",
-   "pfad": "medien/bilder/k07/fernbedienung.webp",
-   "bytes": 92890,
-   "typ": "bild",
-   "kapitel": "k07",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k02/identitaets-check",
-   "pfad": "medien/bilder/k02/identitaets-check.webp",
-   "bytes": 77558,
-   "typ": "bild",
-   "kapitel": "k02",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k03/leitfragen",
-   "pfad": "medien/bilder/k03/leitfragen.webp",
-   "bytes": 57342,
-   "typ": "bild",
-   "kapitel": "k03",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k04/kritiker-einstein",
-   "pfad": "medien/bilder/k04/kritiker-einstein.webp",
-   "bytes": 78734,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k07/sicherer-ort",
-   "pfad": "medien/bilder/k07/sicherer-ort.webp",
-   "bytes": 91738,
-   "typ": "bild",
-   "kapitel": "k07",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k04/ball-unter-wasser",
-   "pfad": "medien/bilder/k04/ball-unter-wasser.webp",
-   "bytes": 126086,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  },
-  {
-   "id": "bilder/k04/gedankenwolke-beobachter",
-   "pfad": "medien/bilder/k04/gedankenwolke-beobachter.webp",
-   "bytes": 62332,
-   "typ": "bild",
-   "kapitel": "k04",
-   "dauer": null
-  }
- ]
+  "version": 18,
+  "dateien": [
+    {
+      "id": "k01-5sinne-shift",
+      "pfad": "medien/audio/k01-5sinne-shift.mp3",
+      "bytes": 3555764,
+      "typ": "audio",
+      "kapitel": "k01",
+      "dauer": "4:56"
+    },
+    {
+      "id": "k01-podcast",
+      "pfad": "medien/audio/k01-podcast.mp3",
+      "bytes": 5619751,
+      "typ": "audio",
+      "kapitel": "k01",
+      "dauer": "11:42"
+    },
+    {
+      "id": "k02-podcast",
+      "pfad": "medien/audio/k02-podcast.mp3",
+      "bytes": 5551032,
+      "typ": "audio",
+      "kapitel": "k02",
+      "dauer": "11:34"
+    },
+    {
+      "id": "k03-podcast",
+      "pfad": "medien/audio/k03-podcast.mp3",
+      "bytes": 6911048,
+      "typ": "audio",
+      "kapitel": "k03",
+      "dauer": "14:24"
+    },
+    {
+      "id": "k07-sicherer-ort",
+      "pfad": "medien/audio/k07-sicherer-ort.mp3",
+      "bytes": 7749048,
+      "typ": "audio",
+      "kapitel": "k07",
+      "dauer": "10:46"
+    },
+    {
+      "id": "k07-song",
+      "pfad": "medien/audio/k07-song.mp3",
+      "bytes": 1775381,
+      "typ": "audio",
+      "kapitel": "k07",
+      "dauer": "2:27"
+    },
+    {
+      "id": "bilder/Titel-Slide",
+      "pfad": "medien/bilder/Titel-Slide.png",
+      "bytes": 2126703,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/bonus",
+      "pfad": "medien/bilder/cover/bonus.webp",
+      "bytes": 148044,
+      "typ": "bild",
+      "kapitel": "bonus",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k01",
+      "pfad": "medien/bilder/cover/k01.webp",
+      "bytes": 104974,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k02",
+      "pfad": "medien/bilder/cover/k02.webp",
+      "bytes": 118826,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k03",
+      "pfad": "medien/bilder/cover/k03.webp",
+      "bytes": 64890,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k04",
+      "pfad": "medien/bilder/cover/k04.webp",
+      "bytes": 82166,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k05",
+      "pfad": "medien/bilder/cover/k05.webp",
+      "bytes": 124324,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k06",
+      "pfad": "medien/bilder/cover/k06.webp",
+      "bytes": 118502,
+      "typ": "bild",
+      "kapitel": "k06",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k07",
+      "pfad": "medien/bilder/cover/k07.webp",
+      "bytes": 208232,
+      "typ": "bild",
+      "kapitel": "k07",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k08",
+      "pfad": "medien/bilder/cover/k08.webp",
+      "bytes": 110216,
+      "typ": "bild",
+      "kapitel": "k08",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k09",
+      "pfad": "medien/bilder/cover/k09.webp",
+      "bytes": 160574,
+      "typ": "bild",
+      "kapitel": "k09",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k10",
+      "pfad": "medien/bilder/cover/k10.webp",
+      "bytes": 216812,
+      "typ": "bild",
+      "kapitel": "k10",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k11",
+      "pfad": "medien/bilder/cover/k11.webp",
+      "bytes": 350778,
+      "typ": "bild",
+      "kapitel": "k11",
+      "dauer": null
+    },
+    {
+      "id": "bilder/cover/k12",
+      "pfad": "medien/bilder/cover/k12.webp",
+      "bytes": 84296,
+      "typ": "bild",
+      "kapitel": "k12",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/5-4-3-2-1",
+      "pfad": "medien/bilder/k01/5-4-3-2-1.webp",
+      "bytes": 270982,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/elefant",
+      "pfad": "medien/bilder/k01/elefant.webp",
+      "bytes": 276194,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/notaus",
+      "pfad": "medien/bilder/k01/notaus.webp",
+      "bytes": 46934,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/trigger",
+      "pfad": "medien/bilder/k01/trigger.webp",
+      "bytes": 281264,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/wolf",
+      "pfad": "medien/bilder/k01/wolf.webp",
+      "bytes": 225930,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k02/einstieg-ich-bin",
+      "pfad": "medien/bilder/k02/einstieg-ich-bin.webp",
+      "bytes": 64172,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k02/kette-kurz",
+      "pfad": "medien/bilder/k02/kette-kurz.webp",
+      "bytes": 121762,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k02/kette",
+      "pfad": "medien/bilder/k02/kette.webp",
+      "bytes": 231962,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/dankbarkeit",
+      "pfad": "medien/bilder/k03/dankbarkeit.webp",
+      "bytes": 151580,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/fokus-fallen",
+      "pfad": "medien/bilder/k03/fokus-fallen.webp",
+      "bytes": 227286,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/koerper",
+      "pfad": "medien/bilder/k03/koerper.webp",
+      "bytes": 273398,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/muelleimer-trainingsraum",
+      "pfad": "medien/bilder/k03/muelleimer-trainingsraum.webp",
+      "bytes": 187410,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/placebo-nocebo",
+      "pfad": "medien/bilder/k03/placebo-nocebo.webp",
+      "bytes": 159396,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/you-decide",
+      "pfad": "medien/bilder/k03/you-decide.webp",
+      "bytes": 169168,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/zeitzonen-ueberblick",
+      "pfad": "medien/bilder/k03/zeitzonen-ueberblick.webp",
+      "bytes": 78642,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/zeitzonen",
+      "pfad": "medien/bilder/k03/zeitzonen.webp",
+      "bytes": 73616,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k07/atmung-4-7-8",
+      "pfad": "medien/bilder/k07/atmung-4-7-8.webp",
+      "bytes": 188074,
+      "typ": "bild",
+      "kapitel": "k07",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k07/sigh",
+      "pfad": "medien/bilder/k07/sigh.webp",
+      "bytes": 234478,
+      "typ": "bild",
+      "kapitel": "k07",
+      "dauer": null
+    },
+    {
+      "id": "bilder/rubrik/brainfact",
+      "pfad": "medien/bilder/rubrik/brainfact.webp",
+      "bytes": 84122,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/rubrik/einstieg-portal",
+      "pfad": "medien/bilder/rubrik/einstieg-portal.webp",
+      "bytes": 85762,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/rubrik/mindhack",
+      "pfad": "medien/bilder/rubrik/mindhack.webp",
+      "bytes": 98930,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/rubrik/mission-alltag",
+      "pfad": "medien/bilder/rubrik/mission-alltag.webp",
+      "bytes": 76364,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/rubrik/quellen",
+      "pfad": "medien/bilder/rubrik/quellen.webp",
+      "bytes": 124614,
+      "typ": "bild",
+      "kapitel": null,
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/confirmation-bias",
+      "pfad": "medien/bilder/k01/confirmation-bias.webp",
+      "bytes": 104630,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k01/tuersteher",
+      "pfad": "medien/bilder/k01/tuersteher.webp",
+      "bytes": 62072,
+      "typ": "bild",
+      "kapitel": "k01",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/wer-bestimmt",
+      "pfad": "medien/bilder/k03/wer-bestimmt.webp",
+      "bytes": 80104,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k04/einstein-technik",
+      "pfad": "medien/bilder/k04/einstein-technik.webp",
+      "bytes": 83764,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k04/pitching-technik",
+      "pfad": "medien/bilder/k04/pitching-technik.webp",
+      "bytes": 77254,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k07/fernbedienung",
+      "pfad": "medien/bilder/k07/fernbedienung.webp",
+      "bytes": 92890,
+      "typ": "bild",
+      "kapitel": "k07",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k02/identitaets-check",
+      "pfad": "medien/bilder/k02/identitaets-check.webp",
+      "bytes": 77558,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/leitfragen",
+      "pfad": "medien/bilder/k03/leitfragen.webp",
+      "bytes": 57342,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k04/kritiker-einstein",
+      "pfad": "medien/bilder/k04/kritiker-einstein.webp",
+      "bytes": 78734,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k07/sicherer-ort",
+      "pfad": "medien/bilder/k07/sicherer-ort.webp",
+      "bytes": 91738,
+      "typ": "bild",
+      "kapitel": "k07",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k04/ball-unter-wasser",
+      "pfad": "medien/bilder/k04/ball-unter-wasser.webp",
+      "bytes": 126086,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k04/gedankenwolke-beobachter",
+      "pfad": "medien/bilder/k04/gedankenwolke-beobachter.webp",
+      "bytes": 62332,
+      "typ": "bild",
+      "kapitel": "k04",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/tuersteher-viele-schreiber",
+      "pfad": "medien/bilder/k03/tuersteher-viele-schreiber.webp",
+      "bytes": 150166,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/tuersteher-bekannte-duerfen-rein",
+      "pfad": "medien/bilder/k03/tuersteher-bekannte-duerfen-rein.webp",
+      "bytes": 253698,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/zeitzonen-header",
+      "pfad": "medien/bilder/k03/zeitzonen-header.webp",
+      "bytes": 91588,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k03/zeitzonen-klein",
+      "pfad": "medien/bilder/k03/zeitzonen-klein.webp",
+      "bytes": 112138,
+      "typ": "bild",
+      "kapitel": "k03",
+      "dauer": null
+    }
+  ]
 }
