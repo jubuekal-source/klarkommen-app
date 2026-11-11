@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="dark">
 <title>Der Kreislauf – Klarkommen</title>
 <link rel="stylesheet" href="../../fonts/fonts.css">
-<!-- Schaubild „Der Kreislauf“ (id kausalkette, v1.3.19, Fassung v3) – berichte/code-v1319-kreislauf-v3.md · Texte: spec/09a_schaubild-kreislauf-v3-texte.md
+<!-- Schaubild „Der Kreislauf“ (id kausalkette, v1.3.20, Fassung v3; Start-Karte entfällt, Einladungskarte in k03) – berichte/code-v1319-kreislauf-v3.md · Texte: spec/09a_schaubild-kreislauf-v3-texte.md
      Modell: Einflussfeld statt Ring. Hühnerstall + Social Media wirken gleichzeitig und dauerhaft → Türsteher → Gedanken ↔ Körper & Energie;
      Rückweg Körper & Energie → Handy-Griff → Social Media. Kern: Energieanzeige + Körperbild.
      Körperbild: 6 deckungsgleiche Stufen (0 ruhig, 1 leicht besorgt, 2 angespannt, 3 Alarm, 4 erschöpft, 5 erholt), Mischung per opacity.
@@ -22,11 +22,14 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .grafik{flex:1 1 auto;min-height:0;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:6px}
 
 /* Umschalter Gesamtbild */
-.schalter{display:flex;flex:0 0 auto;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:3px;gap:3px}
-.schalter button{all:unset;box-sizing:border-box;cursor:pointer;min-height:38px;padding:0 1.1rem;border-radius:9px;font:700 .9rem/38px var(--font-h);color:var(--text-secondary);touch-action:manipulation}
+.schalter{display:flex;flex-direction:column;align-items:center;gap:5px;flex:0 0 auto;max-width:100%}
+.schalter .knoepfe{display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:3px;gap:3px;max-width:100%}
+.schalter button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:48px;padding:0 .9rem;border-radius:11px;font:700 .95rem/1 var(--font-h);color:var(--text-secondary);touch-action:manipulation;white-space:nowrap}
+.schalter button svg{width:20px;height:20px;flex:0 0 20px;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .schalter button[aria-pressed="true"]#s-auto{background:rgba(249,115,22,.18);color:var(--accent-soft);box-shadow:inset 0 0 0 1.5px var(--accent)}
 .schalter button[aria-pressed="true"]#s-bew{background:rgba(125,211,192,.16);color:var(--healthy);box-shadow:inset 0 0 0 1.5px var(--healthy)}
 .schalter button:focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
+.schalter-zeile{font-size:.8rem;line-height:1.3;color:var(--text-muted);text-align:center}
 
 /* Netz */
 .netz{flex:1 1 auto;min-height:0;width:100%;height:100%;display:block;overflow:visible}
@@ -78,6 +81,21 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .ekg-linie{fill:none;stroke:#7DD3C0;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round;transition:stroke 1.4s ease}
 .ekg-schatten{fill:none;stroke:rgba(15,25,35,.75);stroke-width:4.5;stroke-linejoin:round;stroke-linecap:round}
 
+/* Körper-Rahmen-Puls (klasse .kpuls auf #k-koerper) */
+.ring-k,.glow-k{transform-box:fill-box;transform-origin:center}
+.kpuls .ring-k{animation:kpR .6s ease-out}
+.kpuls .glow-k{animation:kpG .6s ease-out}
+@keyframes kpR{0%{transform:scale(1);stroke-width:3.2}35%{transform:scale(1.045);stroke-width:5.5}100%{transform:scale(1);stroke-width:3.2}}
+@keyframes kpG{0%{opacity:.18}35%{opacity:.55}100%{opacity:.18}}
+@keyframes kpH{0%,100%{opacity:1}40%{opacity:.35}}
+/* Anhalten (Autopilot-Phase) */
+.pause .kante,.pause .immer,.pause .ekg-lauf,.pause .ring-k,.pause .glow-k{animation-play-state:paused!important}
+.pausezeile{margin-top:.5rem;display:flex;justify-content:center}
+.pausebtn{gap:9px;min-height:46px;padding:.6rem 1.2rem;border:2px solid rgba(241,245,249,.38);border-radius:12px;background:rgba(148,163,184,.1);color:var(--text-primary);font:700 .95rem/1 var(--font-h);cursor:pointer;touch-action:manipulation;display:inline-flex;align-items:center;justify-content:center}
+.pausebtn svg{width:18px;height:18px;flex:0 0 18px;fill:currentColor}
+.pausebtn:focus-visible{outline:2px solid var(--accent-soft);outline-offset:3px}
+.pausebtn[aria-pressed="true"]{border-color:var(--healthy);color:var(--healthy);background:rgba(125,211,192,.1)}
+
 /* Textkarte */
 .karte{flex:0 0 auto;width:100%;max-width:440px;min-height:236px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:12px 14px 12px;text-align:center;display:flex;flex-direction:column;align-items:center;overflow-y:auto;max-height:52dvh}
 .karte .lbl{font:700 .7rem/1.2 var(--font-h);color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
@@ -107,7 +125,8 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellips
 .halten.aktiv .fill{transition:transform 2s linear;transform:scaleX(1)}
 .halten span{position:relative}
 /* Mini-Reset 3-2-1 */
-.sinne{display:flex;gap:6px;justify-content:center;margin-top:.55rem}
+.sinne{display:flex;gap:6px;justify-content:center;margin-top:.55rem;transition:opacity .3s ease}
+.sinne.aus{opacity:0}
 .sinn{width:72px;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--text-muted);font:700 .72rem/1.1 var(--font-h)}
 .sinn .kr{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;background:var(--bg-deep);transition:all .3s}
 .sinn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -126,7 +145,6 @@ body.bewusst .lauf .bar i{background:var(--healthy)}
 @media (max-height:560px) and (orientation:portrait){.app{height:auto;min-height:calc(100dvh - var(--kk-h))}.grafik{flex:0 0 auto;height:300px}.karte{position:sticky;bottom:0;max-height:none}}
 .karte.ende .btns{flex-wrap:nowrap}
 .karte.ende .btn{padding:.7rem .95rem}
-@media (max-height:680px){.schalter button{min-height:34px;line-height:34px}}
 
 @media (orientation:landscape) and (min-width:900px){
   .app{flex-direction:row;justify-content:center;align-items:center;gap:20px;padding:14px 20px}
@@ -138,6 +156,8 @@ body.bewusst .lauf .bar i{background:var(--healthy)}
   .kante.an,.kante.gr,.immer,.btn.pulse,.btn.gruen.pulse,.fade{animation:none!important}
   .immer{opacity:0}
   .ekg-lauf{animation:none!important}
+  .kpuls .ring-k{animation:kpH .6s ease-out!important}
+  .sinne{transition:none}
   .koerperbild image,.seg,.ring-k,.glow-k{transition-duration:.2s}
 }
 </style>
@@ -154,9 +174,12 @@ body{min-height:calc(100dvh - var(--kk-h))!important}</style>
 <div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button></div>
 <main class="app" id="app">
   <div class="grafik">
-    <div class="schalter" id="schalter" role="group" aria-label="Ansicht wählen" hidden>
-      <button type="button" id="s-auto" aria-pressed="false">Autopilot</button>
-      <button type="button" id="s-bew" aria-pressed="true">Bewusst</button>
+    <div class="schalter" id="schalter" hidden>
+      <div class="knoepfe" role="group" aria-label="Ansicht wählen">
+        <button type="button" id="s-auto" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6C9 6 11 15 19 17.6" stroke="#f97316"/><path d="M14.6 18.4L19 17.6L18.6 13" stroke="#e0414f"/></svg>Alter Autopilot</button>
+        <button type="button" id="s-bew" aria-pressed="true"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18C9 18 11 9 19 6.4" stroke="#7DD3C0"/><path d="M14.6 5.6L19 6.4L18.6 11" stroke="#7DD3C0"/></svg>Bewusst</button>
+      </div>
+      <p class="schalter-zeile" id="schalter-zeile"></p>
     </div>
     <svg class="netz" id="netz" viewBox="0 0 360 414" preserveAspectRatio="xMidYMid meet" role="img" aria-label="">
       <defs>
@@ -177,9 +200,6 @@ body{min-height:calc(100dvh - var(--kk-h))!important}</style>
 <script>
 /* =================== TEXTE (alle Texte zentral) =================== */
 const TEXTE = {
-  start:{lbl:'Kapitel 1 und 3 in einem Bild', h:'Der <span class="a">Kreislauf</span>',
-    p:'Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen. Und vieles läuft gleichzeitig. Spiel es einmal durch, mit Lea, zwei Wochen vor ihrer Prüfung.',
-    btn:'Los geht’s →'},
   runde1:[
     {lbl:'Runde 1 · Was auf Lea einwirkt', h:'<span class="a">Hühnerstall</span> und <span class="a">Social Media</span>',
      p:'Zu Hause hieß es oft: „Mathe ist halt nicht deins.“ Auf Social Media: Krisen-News, Ragebait und Leute mit 1,0-Schnitt. <strong>Beides wirkt gleichzeitig. Jeden Tag.</strong>'},
@@ -188,7 +208,7 @@ const TEXTE = {
     {lbl:'Runde 1 · Wie es Lea geht', h:'<span class="a">Körper & Energie</span>',
      p:'Herzklopfen am Schreibtisch, nachts wach. <strong>Dein Körper glaubt deinen Gedanken.</strong> Die Energie sinkt.'},
     {lbl:'Runde 1 · Der Rückweg', h:'Der Griff zum <span class="a">Handy</span>',
-     p:'Die Konzentration ist weg, Lernen fühlt sich zäh an. Klassische Prokrastination: Eine kurze Handypause verspricht einen schnellen Dopamin-Kick. Kurz ein schöner Ausweg, danach mehr Vergleich, mehr Negatives, weniger Zeit. <strong>Die Energie sinkt noch tiefer.</strong>'}
+     p:'Die Konzentration ist weg, Lernen fühlt sich zäh an. Klassische Prokrastination: Eine kurze Handypause verspricht einen schnellen Dopamin-Kick. Kurz ein schöner Ausweg, danach mehr Vergleich, mehr Negatives, weniger Zeit und ein noch müderer Kopf. <strong>Die Energie sinkt noch tiefer.</strong>'}
   ],
   weiter:'Weiter →', weiterLetzt:'Und dann? →',
   auto:[
@@ -223,15 +243,14 @@ const TEXTE = {
   fokus:{
     1:[   /* Rückblick auf frühere Erfolge */
       {h:'Der Türsteher sucht <span class="g">neu</span>', p:'Lea fragt sich: „Was hab ich schon mal geschafft?“ Die Statistik-Klausur letztes Semester zum Beispiel.'},
-      {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Ich hab das schon mal geschafft.“</strong>', mini:'Wie du deinen Fokus neu ausrichtest, zeigt dir gleich der Mind-Hack.'},
-      {h:'<span class="g">Körper & Energie</span>', p:'Das Herz wird ruhiger. Dein Körper glaubt auch diesem Gedanken. Die Energie steigt ein Stück.'},
-      {h:'Bewusst <span class="g">gewählt</span>', p:'Aber jetzt wählst du bewusst, was du reinlässt.'}
+      {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Ich hab das schon mal geschafft.“</strong>', mini:'Wie du deinen Fokus neu ausrichtest, zeigen dir die weiteren Kapitel.'},
+      {h:'<span class="g">Körper & Energie</span>', p:'Das Herz wird ruhiger. Dein Körper glaubt auch diesem Gedanken. Die Energie steigt ein Stück.'}
     ],
     2:[   /* Blick in die Zukunft */
       {h:'Ein Blick nach <span class="g">vorn</span>', p:'Nächster Tag. Lea stellt sich vor, wie sie ihr Abschlusszeugnis in der Hand hält und mit Freunden feiert.'},
       {h:'Ein neuer <span class="g">Gedanke</span>', p:'Der Gedanke: <strong>„Ich schaff das.“</strong>'},
       {h:'Mehr <span class="g">Energie</span>', p:'Die Energie steigt weiter. Der neue Weg wird breiter.'},
-      {h:'Bewusst <span class="g">gewählt</span>', p:'Social Media gehört dazu. Du entscheidest, wie viel und was genau du dir anschaust.'}
+      {h:'Bewusst <span class="g">gewählt</span>', p:'Social Media gehört dazu. Du entscheidest, wie viel und was genau du dir anschaust. Und du holst dir auch anderes rein, das dich stärkt: einen Podcast, einen Artikel, ein Buch.'}
     ],
     3:[   /* abends: Dankbarkeit */
       {h:'Abends: <span class="g">Dankbarkeit</span>', p:'Lea fragt sich: „Wofür bin ich heute dankbar?“'},
@@ -249,9 +268,11 @@ const TEXTE = {
   fokusLbl:['Türsteher','Gedanken','Körper & Energie','Social Media'],
   schluss:{h:'Aus dem Trampelpfad wird eine <span class="g">Straße</span>', p:'In echt dauert das Wochen, nicht drei Runden. Der Autopilot ist auch nicht in ein paar Tagen entstanden. <strong>Aber jede bewusste Wiederholung zählt.</strong>', btn:'Gesamtbild zeigen →'},
   ende:{lbl:'Das Gesamtbild',
-    p1:'Wenn die neuen Gedanken zu Autobahnen werden, läuft es von selbst: <strong>für dich, nicht gegen dich.</strong>',
-    p2:'Wegen des Negativity Bias rutschst du leichter in den Autopiloten. Deshalb braucht die neue Richtung am Anfang deine bewusste Entscheidung.',
+    p1:'Wenn die neuen Gedanken zu Autobahnen werden, entsteht ein neuer Autopilot: Er läuft von selbst, <strong>für dich, nicht gegen dich.</strong>',
+    p2:'Wegen des Negativity Bias rutschst du aber leichter ins alte Muster zurück. Deshalb braucht die neue Richtung am Anfang deine bewusste Entscheidung.',
     nochmal:'Nochmal durchspielen', fertig:'Fertig'},
+  schalterZeile:{auto:'So läuft es, wenn du nichts änderst.', bewusst:'Mit jeder Wiederholung wird das dein neuer Autopilot.'},
+  pause:{an:'Anhalten', aus:'Weiterlaufen lassen'},
   /* kleine Unterzeilen an den Elementen */
   unter:{
     start:{stall:'wirkt immer', sm:'wirkt immer', tuer:'sucht Beweise', ged:'', koerper:'', handy:'kurzer Kick', buch:'was dich stärkt'},
@@ -279,7 +300,32 @@ const IMG = {stufen:['kette-stufe-0.webp','kette-stufe-1.webp','kette-stufe-2.we
 const REDUZIERT = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 const $ = id => document.getElementById(id);
 const NS = 'http://www.w3.org/2000/svg';
-const wait = ms => new Promise(r => setTimeout(r, REDUZIERT ? Math.min(ms, 700) : ms));
+/* pausierbare Timer (Anhalten in der Autopilot-Phase): Restzeit bleibt erhalten, kein Doppelstart */
+let PAUSE = false, BARSYNC = null;
+const PT = new Set();
+function ptimer(ms, fn){
+  const o = {rest:ms, to:null, t0:0, an:false};
+  o.go = () => { if (o.an) return; o.an = true; o.t0 = performance.now(); o.to = setTimeout(() => { o.an = false; PT.delete(o); fn(); }, Math.max(0, o.rest)); };
+  o.stop = () => { if (!o.an) return; clearTimeout(o.to); o.rest -= performance.now() - o.t0; o.an = false; };
+  o.cancel = () => { clearTimeout(o.to); o.an = false; PT.delete(o); };
+  PT.add(o); if (!PAUSE) o.go();
+  return o;
+}
+const wait = ms => new Promise(r => ptimer(REDUZIERT ? Math.min(ms, 700) : ms, r));
+const PI_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="5" height="16" rx="1.4"/><rect x="14" y="4" width="5" height="16" rx="1.4"/></svg>';
+const PI_PLAY = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>';
+function pauseUI(){
+  const b = document.querySelector('.pausebtn'); if (!b) return;
+  b.setAttribute('aria-pressed', PAUSE ? 'true' : 'false');
+  b.innerHTML = (PAUSE ? PI_PLAY : PI_PAUSE) + '<span>' + (PAUSE ? TEXTE.pause.aus : TEXTE.pause.an) + '</span>';
+}
+function setPause(p){
+  if (PAUSE === p) return;
+  PAUSE = p; $('netz').classList.toggle('pause', p);
+  PT.forEach(o => p ? o.stop() : o.go());
+  if (BARSYNC) BARSYNC(p);
+  pauseUI();
+}
 const root = document.documentElement.style;
 let lauf = 0;           /* Token: laufende Abläufe abbrechen */
 
@@ -366,7 +412,11 @@ function ka(id, ...cls){
   e.setAttribute('marker-end', m); if (e.dataset.beid) e.setAttribute('marker-start', m);
 }
 function netzReset(){ Object.keys(KN).forEach(id => kn(id)); kn('buch', 'weg'); Object.keys(KE).forEach(id => ka(id)); $('netz').classList.remove('still'); }
-function blitz(ids){ ids.forEach(id => { KN[id].classList.add('blitz'); setTimeout(() => KN[id].classList.remove('blitz'), 280); }); }
+function koerperPuls(){
+  const g = KN.koerper; g.classList.remove('kpuls'); void g.getBoundingClientRect(); g.classList.add('kpuls');
+  clearTimeout(g._kp); g._kp = setTimeout(() => g.classList.remove('kpuls'), 650);
+}
+function blitz(ids){ if (ids.includes('koerper')) koerperPuls(); ids.forEach(id => { KN[id].classList.add('blitz'); setTimeout(() => KN[id].classList.remove('blitz'), 280); }); }
 /* Rückweg Körper & Energie → Handy → Social Media ehrlich in Teal, mit Buch „was dich stärkt“ */
 function tealWeg(){
   ka('kH', 'gr'); ka('hM', 'gr'); kn('handy', 'gr'); kn('buch', 'gr');
@@ -443,23 +493,34 @@ function zeige({lbl = '', h = '', hKlasse = '', p = '', p2 = '', extra = '', min
 const zeigeTap = (o, t, k = 'gruen') => new Promise(res => zeige({...o, btns:[{t, k, on:res}]}));
 /* Lesedauer: 450 ms pro Wort, mindestens 5 s */
 function leseMs(...t){ const w = t.join(' ').replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length; return Math.max(5000, w * 450); }
-function zeigeAuto(o, msFix){
+function zeigeAuto(o, msFix, pausierbar){
   const ms = msFix ?? leseMs(o.h || '', o.p || '');
-  zeige({...o, extra:(o.extra || '') + `<div class="lauf" aria-hidden="true"><span class="bar"><i></i></span><span class="lt">${TEXTE.autoHinweis}</span></div>`});
+  zeige({...o, extra:(o.extra || '') + `<div class="lauf" aria-hidden="true"><span class="bar"><i></i></span><span class="lt">${TEXTE.autoHinweis}</span></div>` + (pausierbar ? '<div class="pausezeile"><button type="button" class="pausebtn"></button></div>' : '')});
   karte.classList.add('tippbar');
   const i = karte.querySelector('.lauf i');
+  if (pausierbar){
+    pauseUI();
+    karte.querySelector('.pausebtn').addEventListener('click', e => { e.stopPropagation(); setPause(!PAUSE); });
+  }
   return new Promise(res => {
-    let fertig = false, to = null;
-    const weiter = () => { if (fertig) return; fertig = true; clearTimeout(to); karte.removeEventListener('click', weiter); karte.classList.remove('tippbar'); res(); };
-    requestAnimationFrame(() => requestAnimationFrame(() => { i.style.transition = `width ${ms}ms linear`; i.style.width = '100%'; }));
-    to = setTimeout(weiter, ms);
+    let fertig = false;
+    const barAn = rest => requestAnimationFrame(() => requestAnimationFrame(() => { if (fertig || PAUSE) return; i.style.transition = `width ${rest}ms linear`; i.style.width = '100%'; }));
+    const sync = p => {
+      if (fertig) return;
+      if (p){ const f = i.getBoundingClientRect().width / (i.parentElement.getBoundingClientRect().width || 1); i.style.transition = 'none'; i.style.width = (f * 100).toFixed(2) + '%'; }
+      else barAn(pt.rest);
+    };
+    const weiter = () => { if (fertig) return; fertig = true; pt.cancel(); if (BARSYNC === sync) BARSYNC = null; karte.removeEventListener('click', weiter); karte.classList.remove('tippbar'); res(); };
+    const pt = ptimer(ms, weiter);
+    if (pausierbar) BARSYNC = sync; else if (BARSYNC) BARSYNC = null;
+    if (!PAUSE) barAn(ms);
     setTimeout(() => { if (!fertig) karte.addEventListener('click', weiter); }, 60);
   });
 }
 
-/* =================== Phase 0: Start =================== */
+/* =================== Phase 0: Start (direkt Runde 1, Karte 1; keine Start-Karte mehr, v1.3.20) =================== */
 function start(){
-  lauf++; ZUG = false;
+  lauf++; ZUG = false; setPause(false);
   document.body.classList.remove('bewusst');
   $('schalter').hidden = true; karte.classList.remove('ende');
   root.setProperty('--flow', '1.8s');
@@ -467,7 +528,7 @@ function start(){
   netzReset(); unterAlle(TEXTE.unter.start);
   kn('stall', 'leise'); kn('sm', 'leise');
   energie(5); energieUnter();
-  zeige({...TEXTE.start, btns:[{t:TEXTE.start.btn, k:'pulse', on:() => runde1(0)}]});
+  runde1(0);
   window.scrollTo(0, 0);
 }
 
@@ -475,7 +536,7 @@ function start(){
 const SCHRITT1 = [
   async t => { kn('stall','an'); kn('sm','an'); ka('sT','an'); ka('mT','an'); blitz(['stall','sm']); },
   async t => { kn('tuer','an'); blitz(['tuer']); energie(4.5); energieUnter(); await wait(650); if (t !== lauf) return; ka('tG','an'); kn('ged','an'); blitz(['ged']); unter('ged', '„Ich fall eh durch.“'); },
-  async t => { ka('gK','an'); kn('koerper','an'); energie(4); await wait(700); if (t !== lauf) return; energie(3); energieUnter(); },
+  async t => { ka('gK','an'); kn('koerper','an'); blitz(['koerper']); energie(4); await wait(700); if (t !== lauf) return; energie(3); energieUnter(); },
   async t => { ka('kH','an'); kn('handy','an'); blitz(['handy']); await wait(650); if (t !== lauf) return; ka('hM','an'); blitz(['sm']); energie(2); energieUnter(); }
 ];
 function runde1(i){
@@ -490,7 +551,7 @@ const WELLE = [['stall','sm'], ['tuer'], ['ged'], ['koerper'], ['handy']];
 let tempo = 900;
 async function wellen(t){ while (t === lauf){ for (const g of WELLE){ if (t !== lauf) return; blitz(g); await wait(tempo); } await wait(REDUZIERT ? 400 : 200); } }
 async function autopilot(){
-  const t = ++lauf;
+  const t = ++lauf; setPause(false);
   Object.keys(KN).forEach(id => { if (id !== 'buch') kn(id, 'an'); }); Object.keys(KE).forEach(id => ka(id, 'an'));
   const TEMPO = [950, 700, 500, 360], FLOW = ['1.8s', '1.3s', '.95s', '.7s'], EN = [1.5, 1, 0.6, 0.4];
   tempo = TEMPO[0]; wellen(t);
@@ -501,9 +562,10 @@ async function autopilot(){
     ['kH','hM'].forEach(id => KE[id].style.strokeWidth = 1.8 + r * 0.55);   /* Rückweg wird breiter + schneller */
     energie(EN[r]); energieUnter();
     if (r === 2) unter('koerper', 'Dauerstress');
-    await zeigeAuto(TEXTE.auto[r]);
+    await zeigeAuto(TEXTE.auto[r], undefined, true);
   }
   if (t !== lauf) return;
+  setPause(false);
   tempo = REDUZIERT ? 600 : 300;
   haltenAnbieten();
 }
@@ -526,7 +588,7 @@ function haltenAnbieten(){
   b.addEventListener('contextmenu', e => e.preventDefault());
 }
 function stopp(){
-  lauf++;
+  lauf++; setPause(false);
   $('netz').classList.add('still');
   const [b] = zeige({h:TEXTE.stopp.h, hKlasse:'big', p:TEXTE.stopp.p, btns:[{t:TEXTE.stopp.btn, k:'gruen', on:() => resetKarte(1)}]});
   b.focus({preventScroll:true});
@@ -571,7 +633,9 @@ async function miniReset(p){
     if (t !== lauf) return;
   }
   energie(STAND[p].reset, 'auf'); energieUnter();
-  zeige({...TEXTE.nachReset[p], extra:sinneHTML(3), btns:[{t:TEXTE.fokusBtn, k:'gruen pulse', on:() => fokus(p, 0)}]});
+  zeige({...TEXTE.nachReset[p], extra:REDUZIERT ? '' : sinneHTML(3), btns:[{t:TEXTE.fokusBtn, k:'gruen pulse', on:() => fokus(p, 0)}]});
+  const sn = karte.querySelector('.sinne');   /* Mini-Reset fertig: Symbole blenden aus, Fokus-Button rückt in den Blick */
+  if (sn){ requestAnimationFrame(() => requestAnimationFrame(() => sn.classList.add('aus'))); setTimeout(() => { sn.hidden = true; }, 330); }
 }
 /* Fokus bewusst neu ausrichten: 4 Schritte, jeder mit eigenem Tap */
 function fokus(p, s){
@@ -589,7 +653,7 @@ function fokus(p, s){
     tealWeg(); blitz(['handy', 'buch', 'sm']);
   }
   const txt = TEXTE.fokus[p][s];
-  const weiter = s < 3 ? () => fokus(p, s + 1) : (p < 3 ? () => rueckfall(p) : schluss);
+  const weiter = s < TEXTE.fokus[p].length - 1 ? () => fokus(p, s + 1) : (p < 3 ? () => rueckfall(p) : schluss);
   zeige({lbl:`Bewusst ${p}/3 · ${TEXTE.fokusLbl[s]}`, ...txt, btns:[{t:TEXTE.weiter, k:'gruen', on:weiter}]});
 }
 function schluss(){
@@ -632,6 +696,7 @@ function ansicht(modus){
     energie(5, 'auf');
   }
   unterAlle(TEXTE.gesamt[modus]);
+  $('schalter-zeile').textContent = TEXTE.schalterZeile[modus];
 }
 function gesamtbild(){
   lauf++;
