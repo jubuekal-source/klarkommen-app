@@ -97,6 +97,7 @@
         .reveal-box p { color: var(--muted); margin: 0; font-size: 0.88rem; line-height: 1.55; max-width: none; }
         .reveal-gone { display: inline-flex; align-items: center; gap: .4rem; }
 
+        .replay-hint { color: var(--muted); font-size: 0.85rem; line-height: 1.5; max-width: 340px; margin: 0.9rem 0 0; text-align: center; }
         .end-btns { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; margin-top: 0.75rem; }
 
         /* Score celebration */
@@ -195,13 +196,14 @@ html{padding-top:var(--kk-h)}
                 <p style="margin-top:0.4rem; color:var(--bad); font-weight:700; font-family:var(--fh); font-size:1rem;"><span class="reveal-gone"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>gelöscht.</span></p>
             </div>
             <div class="reveal-box" style="border-color: rgba(125,211,192,0.4);">
-                <p style="color:var(--good); font-weight:600;">Warum das so ist und was das mit deinem Alltag zu tun hat, erfährst du noch, nach einem weiteren kleinen Experiment.</p>
+                <p style="color:var(--good); font-weight:600;">Warum das so ist und was das mit deinem Alltag zu tun hat, erfährst du im Brain-Fact.</p>
             </div>
         </div>
 
+        <p class="replay-hint" id="replayHint" style="display:none;">Wenn du magst: Spiel noch einmal und achte diesmal bewusst auf das Unerwartete.</p>
         <div class="end-btns">
-            <button class="btn btn-accent" id="restartBtn" style="display:none;">Nochmal spielen</button>
-            <button class="btn btn-ghost" id="backBtn" style="display:none;">Zurück zum Start</button>
+            <button class="btn btn-accent" id="backBtn" style="display:none;">Zurück zur App</button>
+            <button class="btn btn-ghost" id="restartBtn" style="display:none;">Nochmal spielen</button>
         </div>
     </div>
 </div>
@@ -637,6 +639,7 @@ function startGame(){
     document.getElementById('revealSection').style.display='none';
     document.getElementById('restartBtn').style.display='none';
     document.getElementById('backBtn').style.display='none';
+    document.getElementById('replayHint').style.display='none';
     document.getElementById('revealBtn').style.display='inline-flex';
     // Clear confetti
     const cc2=document.getElementById('confettiCanvas');
@@ -706,15 +709,13 @@ document.getElementById('revealBtn').addEventListener('click',()=>{
     document.getElementById('revealBtn').style.display='none';
     document.getElementById('restartBtn').style.display='inline-flex';
     document.getElementById('backBtn').style.display='inline-flex';
+    document.getElementById('replayHint').style.display='block';
 });
 
 document.getElementById('startBtn').addEventListener('click',startGame);
 document.getElementById('restartBtn').addEventListener('click',startGame);
 document.getElementById('backBtn').addEventListener('click',()=>{
-    document.getElementById('endOverlay').style.display='none';
-    document.getElementById('startOverlay').style.display='flex';
-    resize();initPlayer();
-    ctx.clearRect(0,0,W,H);drawKitchen();drawPlayer();
+    if(window.parent!==window){parent.postMessage({kk:'zurueck'},'*')}else{location.href='../../#/'}
 });
 
 // Initial idle draw - use requestAnimationFrame to ensure canvas
