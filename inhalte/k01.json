@@ -50,28 +50,75 @@
       ],
       "lese": [
         {
+          "typ": "ueberschrift",
+          "text": "Der Gorilla im Restaurant!"
+        },
+        {
           "typ": "absatz",
-          "text": "Dein Gehirn filtert permanent Millionen von Sinneseindrücken. Der Filter heißt **RAS** (Retikuläres Aktivierungssystem) – stell ihn dir vor wie einen **Türsteher** vor einem Club. Der Türsteher lässt nur rein, wer auf der **Gästeliste** steht. Und diese Liste schreibst du – meistens ohne es zu merken."
+          "text": "Hast du den Gorilla gesehen? Falls nicht, bist du in bester Gesellschaft. 1999 bekamen Versuchspersonen in einem berühmten Experiment ein kurzes Basketballvideo und eine einzige Aufgabe: Zähle die Pässe des Teams in Weiß. Mitten im Spiel läuft ein Mensch im Gorillakostüm durchs Bild, bleibt stehen, trommelt sich auf die Brust und verschwindet wieder. Rund die Hälfte hat ihn nicht bemerkt, obwohl er direkt vor ihren Augen war (Simons & Chabris, 1999)."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Wie kann dein Gehirn so etwas einfach ausblenden?**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Es filtert pausenlos Millionen von Sinneseindrücken. Das muss es auch, sonst wäre es heillos überlastet. Ein wichtiger Teil dieses Filters ist das **RAS** (Retikuläres Aktivierungssystem), ein Netzwerk im Hirnstamm. Stell es dir vor wie einen **Türsteher** vor einem Club: Er lässt nur rein, wer auf der **Gästeliste** steht. Der Gorilla stand nicht drauf."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/tuersteher-gaesteliste.webp",
+          "alt": "Ein Türsteher mit Gästeliste (Pizza, Basketball, Ampel, Tasse) lässt eine Pizza durch die Tür. Der Gorilla bleibt ratlos draußen.",
+          "unterschrift": null
         },
         {
           "typ": "ueberschrift",
-          "text": "Neue Sneaker gekauft?"
+          "text": "Wer schreibt die Gästeliste?"
         },
         {
           "typ": "absatz",
-          "text": "Plötzlich siehst du sie überall. Bei Sneakern ist das harmlos. Aber der gleiche Mechanismus läuft auch bei Menschen."
+          "text": "Zum Teil du selbst. Das hast du eben erlebt: Kaum heißt es „Fang die Pizzen!“ oder „Merk dir alles, was rot ist“, steht genau das auf der Liste, und für den Rest bleibt die Tür zu. Dein Fokus funktioniert wie eine **Taschenlampe** im Dunkeln. Er beleuchtet, worauf du ihn richtest. Alles andere bleibt unsichtbar."
         },
         {
           "typ": "absatz",
-          "text": "Stell dir vor, du ziehst in eine neue Wohnung. Am ersten Tag läufst du deiner Nachbarin im Treppenhaus über den Weg – sie schaut auf ihr Handy und grüßt nicht. Dein erster Gedanke: *„Unfreundlich.\"* Ab diesem Moment hat dein Türsteher „unfreundliche Nachbarin\" auf die Liste gesetzt. Von nun an fällt dir jedes Mal auf, wenn sie wortlos am Briefkasten vorbeigeht. Dass sie dir letzte Woche die Tür aufgehalten hat? Rausgefiltert. Dass sie deinen vollen Einkaufsbeutel angeschaut und gelächelt hat? Nicht auf der Liste – also nicht wahrgenommen."
+          "text": "Aber hältst du die Taschenlampe wirklich immer selbst? Denk an eine Party. Du unterhältst dich mit jemandem, und dein Filter blendet fast alles andere aus: Gläserklirren, das streitende Pärchen neben dir und zehn andere Gespräche. Ohne ihn könntest du kaum ein Gespräch führen. Plötzlich fällt am Nachbartisch dein Name. Bäm, ab jetzt hört ein Ohr dort mit (Forscher nennen das den Cocktailparty-Effekt). Hast du entschieden, hinzuhören? Nein. Dein Name stand längst auf der Liste, ganz ohne dich zu fragen."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und damit muss ich dich kurz auf den Boden holen:"
+        },
+        {
+          "typ": "zitat",
+          "text": "Es gibt viel mächtigere Spieler, die den Großteil deiner Gästeliste schreiben, ohne dich zu fragen.",
+          "quelle": null
+        },
+        {
+          "typ": "absatz",
+          "text": "**Dazu gehören deine Erwartungen, deine tief verankerten Überzeugungen und die Art, wie du Dinge bewertest.**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du lernst sie in diesem und den nächsten Kapiteln genauer kennen. Wie viel sie bewirken, zeigen drei Beispiele, vom Kleinen zum Großen."
+        },
+        {
+          "typ": "absatz",
+          "text": "**🏠 Ein Eindruck.** Du ziehst in eine neue Wohnung. Am ersten Tag begegnest du deiner Nachbarin im Treppenhaus. Sie schaut aufs Handy und grüßt nicht. Dein erster Gedanke: *„Unfreundlich.“* Schon steht „unfreundliche Nachbarin“ auf der Liste. Ab jetzt fällt dir jedes Mal auf, wenn sie wortlos am Briefkasten vorbeigeht. Dass sie dir letzte Woche die Tür aufgehalten hat? Rausgefiltert. Ihr Lächeln, als sie deinen übervollen Einkaufsbeutel gesehen hat? Nicht auf der Liste, also nicht wahrgenommen. Zum Glück bekommt deine Nachbarin meist noch ein paar Chancen, diesen ersten Eindruck zu kippen."
+        },
+        {
+          "typ": "absatz",
+          "text": "**☕ Ein Morgen.** Manchmal reicht ein einziges emotionales Erlebnis. Du hast verschlafen, in der Hektik fällt dir auch noch die Tasse runter, und du denkst: *„Heute läuft aber auch alles schief.“* Ab diesem Moment lässt dein Türsteher alles rein, was dazu passt: die rote Ampel, die leere Butter, die Suche nach deinem Geldbeutel. Dass dich jemand beim Bäcker vorgelassen hat? Längst vergessen."
+        },
+        {
+          "typ": "absatz",
+          "text": "Aber warum macht dein Gehirn das?"
         },
         {
           "typ": "ueberschrift",
-          "text": "Psychologen nennen das **Confirmation Bias**"
+          "text": "Psychologen nennen das Confirmation Bias"
         },
         {
           "typ": "absatz",
-          "text": "Dein Gehirn sucht permanent nach Beweisen für das, was du sowieso schon glaubst – und findet sie. Immer."
+          "text": "Dein Gehirn sucht ständig nach Beweisen für das, was du sowieso schon glaubst. Und es findet sie fast immer. Auf Deutsch heißt das Bestätigungsfehler."
         },
         {
           "typ": "bild",
@@ -80,12 +127,17 @@
           "unterschrift": null
         },
         {
-          "typ": "ueberschrift",
-          "text": "Und es kommt noch krasser"
+          "typ": "absatz",
+          "text": "**🌍 Ein Leben.** Ein schlechter Start in den Tag ist spätestens nach einer Nacht Schlaf vorbei. Aber was, wenn auf deiner Liste nicht „Heute läuft alles schief“ steht, sondern „Das Leben ist schwer und unfair“? Dann sammelt dein Türsteher nicht einen Tag lang Beweise, sondern Jahre. Jeder Rückschlag kommt rein, jede Chance bleibt draußen. Irgendwann fühlt sich das nicht mehr an wie eine Sichtweise, sondern wie die Wahrheit."
+        },
+        {
+          "typ": "zitat",
+          "text": "Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie formt, wie du dein Leben siehst.",
+          "quelle": null
         },
         {
           "typ": "absatz",
-          "text": "Laut Hirnforschern laufen 80–95 % unserer täglichen Entscheidungen komplett automatisch ab (Kahneman, 2011). Dein bewusster Wille ist wie ein **Reiter auf einem Elefanten**: Der Reiter gibt die Richtung vor, aber wenn der Elefant anders will, zieht er dich einfach mit. „Ich denke jetzt einfach positiv!\" reicht also nicht – der Elefant ignoriert das."
+          "text": "Warum schreibst du dann nicht einfach einen neuen Satz auf die Liste? Weil du sie nicht allein führst. Ein großer Teil deines Alltags läuft auf **Autopilot** (Kahneman, 2011). Tagebuchstudien zeigen: Rund 40 % dessen, was Menschen täglich tun, ist Gewohnheit (Wood et al., 2002). Der Psychologe Jonathan Haidt hat dafür ein starkes Bild gefunden: Dein bewusster Wille ist wie ein **Reiter auf einem Elefanten**. Der Reiter gibt die Richtung vor. Aber wenn der Elefant anders will, zieht er dich einfach mit. „Ich denke jetzt einfach positiv!“ reicht also nicht. Der Elefant ignoriert das."
         },
         {
           "typ": "bild",
@@ -100,7 +152,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Du kannst den Elefanten trainieren. Die Wissenschaft nennt das **Neuroplastizität** – dein Gehirn ist formbar, dein Leben lang. Stell dir deine alten Denkmuster vor wie **Autobahnen im Kopf** – breite Nervenbahnen, über die Gedanken blitzschnell rasen. Ein neuer Gedanke? Ein schmaler Trampelpfad. Dein Gehirn nimmt natürlich die Autobahn. Aber: Jedes Mal, wenn du bewusst den Trampelpfad wählst, wird er ein Stück breiter. Über Wochen wird daraus eine Straße. Irgendwann eine neue Autobahn."
+          "text": "Du kannst den Elefanten trainieren. Die Wissenschaft nennt das **Neuroplastizität**: Dein Gehirn ist formbar, dein Leben lang. Stell dir alte Denkmuster vor wie **Autobahnen im Kopf**, breite Nervenbahnen, über die Gedanken blitzschnell rasen. Ein neuer Gedanke ist erst ein schmaler **Trampelpfad**. Dein Gehirn nimmt natürlich die Autobahn. Sie ist vertraut und kostet am wenigsten Aufwand. Das ist einer der Gründe für den Confirmation Bias: Was zu deinen Überzeugungen passt, geht leichter rein als alles, was sie infrage stellt. Das Gute: Jedes Mal, wenn du bewusst den Trampelpfad wählst, wird er ein Stück breiter. Über Wochen wird daraus eine Straße, irgendwann eine neue Autobahn. Die alte wächst dafür nach und nach zu, je seltener du sie nutzt. Ganz weg ist sie selten, aber sie verliert ihre Vorfahrt."
         },
         {
           "typ": "ueberschrift",
@@ -108,7 +160,18 @@
         },
         {
           "typ": "absatz",
-          "text": "Er wertet nicht – er filtert einfach stur nach dem, was auf deiner Liste steht. Und das bedeutet: Du kannst die Liste umschreiben. Wer morgens mit dem Gedanken aufwacht *„Heute wird ein schlechter Tag\"*, dessen Türsteher wird den ganzen Tag jeden Beweis dafür durchlassen – und alles Gute rausfiltern. Aber wer sich morgens fragt *„Wofür bin ich gerade eigentlich dankbar?\"*, der setzt einen komplett anderen Filter. Plötzlich fallen dir Dinge auf, die vorher unsichtbar waren."
+          "text": "Er wertet nicht. Er filtert stur nach dem, was auf der Liste steht. Und das heißt: Du kannst die Liste umschreiben. Wer morgens schon mit *„Heute wird ein schlechter Tag“* aufwacht, hat die Liste geschrieben, bevor der Tag begonnen hat. Wer sich stattdessen fragt *„Wofür bin ich gerade eigentlich dankbar?“*, setzt einen ganz anderen Filter. Plötzlich fallen dir Dinge auf, die vorher unsichtbar waren."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/wolf.webp",
+          "alt": "Welchen Wolf fütterst du?",
+          "unterschrift": null,
+          "notion": "WelchenWolfFuetterstDu.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Eine bekannte Parabel bringt es auf den Punkt: In jedem Menschen kämpfen zwei Wölfe. Einer steht für Sorge, der andere für Hoffnung. Welcher gewinnt? **Der, den du fütterst.** *(Populäre Parabel unbekannten Ursprungs, häufig den Cherokee zugeschrieben.)*"
         },
         {
           "typ": "ueberschrift",
@@ -120,28 +183,45 @@
         },
         {
           "typ": "absatz",
-          "text": "Dafür brauchst du aber ein konkretes Werkzeug – einen „Cut\", der den Filter in Echtzeit umstellt. Keinen guten Vorsatz, sondern einen neurologischen Reset."
+          "text": "Dafür brauchst du ein konkretes Werkzeug: einen „Cut“, der den Filter im Moment umstellt. Keinen guten Vorsatz, sondern einen Reset-Button für deinen Kopf. Genau den bekommst du jetzt."
         }
       ],
       "merkzettel": [
         {
           "typ": "absatz",
-          "text": "Dein Gehirn nimmt nicht alles wahr – es filtert. Ein System namens RAS (dein „Türsteher\") entscheidet, was du bewusst siehst. Sein Auswahlkriterium? Deine Erwartungen und Überzeugungen."
+          "text": "Dein Gehirn nimmt nicht alles wahr, es filtert. Ein wichtiger Teil dieses Filters ist das RAS, dein **Türsteher**. Er lässt nur rein, was auf deiner **Gästeliste** steht. Alles andere übersiehst du, sogar einen Gorilla direkt vor deiner Nase."
         },
         {
           "typ": "bild",
-          "src": "medien/bilder/k01/tuersteher.webp",
-          "alt": "Der Türsteher in deinem Kopf: Ein Türsteher mit Gästeliste lässt nur einen Gedanken durch die Tür, andere bleiben draußen.",
+          "src": "medien/bilder/k01/tuersteher-gaesteliste.webp",
+          "alt": "Ein Türsteher mit Gästeliste (Pizza, Basketball, Ampel, Tasse) lässt eine Pizza durch die Tür. Der Gorilla bleibt ratlos draußen.",
           "unterschrift": null
         },
         {
-          "typ": "zitat",
-          "text": "Wer Probleme erwartet, findet Probleme.\nWer Chancen sucht, entdeckt Chancen.",
-          "quelle": null
+          "typ": "absatz",
+          "text": "**Wer schreibt die Gästeliste?**"
         },
         {
           "typ": "absatz",
-          "text": "Die gute Nachricht: Dein Gehirn ist formbar, dein Leben lang (Neuroplastizität). Alte Denkmuster sind wie Autobahnen – breit und schnell. Neue Gedanken starten als Trampelpfad, aber jede bewusste Wiederholung macht ihn breiter."
+          "text": "Zum Teil du selbst. Den Großteil schreiben aber **deine Erwartungen, Überzeugungen und Bewertungen, ohne dich zu fragen.**"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Confirmation Bias:** Dein Gehirn sucht Beweise für das, was du schon glaubst, und findet sie fast immer. Aus einer Begegnung wird „unfreundliche Nachbarin“, aus einer zerbrochenen Tasse ein schlechter Tag, aus einer Überzeugung wie „Das Leben ist unfair“ ein ganzes Lebensgefühl."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/confirmation-bias.webp",
+          "alt": "Mann mit Lupe vor einer Wand voller Bilder: Die Lupe hebt nur die Warnsignale hervor. Nicht die Wahrheit, unsere Wahrheit.",
+          "unterschrift": null
+        },
+        {
+          "typ": "absatz",
+          "text": "**Reiter und Elefant:** Ein großer Teil deines Alltags läuft auf Autopilot. Dein bewusster Wille ist der Reiter, deine Gewohnheiten sind der Elefant. Wenn der Elefant anders will, gewinnt er. Einfach positiv denken reicht deshalb nicht."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Die gute Nachricht:** Dein Gehirn ist formbar, dein Leben lang (Neuroplastizität). Alte Denkmuster sind Autobahnen, neue starten als Trampelpfad. Jede bewusste Wiederholung macht ihn breiter."
         },
         {
           "typ": "zitat",
@@ -157,7 +237,7 @@
         },
         {
           "typ": "absatz",
-          "text": "Die bekannte Parabel der zwei Wölfe – einer steht für Sorge, der andere für Hoffnung – bringt es auf den Punkt:"
+          "text": "Zwei Wölfe, einer für Sorge, einer für Hoffnung:"
         },
         {
           "typ": "zitat",
@@ -381,22 +461,37 @@
         },
         {
           "typ": "quelle",
-          "text": "**Retikuläres Aktivierungssystem (RAS):** Der Gehirnfilter, der bestimmt, welche der Millionen Sinneseindrücke pro Sekunde ins Bewusstsein gelangen.",
+          "text": "**Retikuläres Aktivierungssystem (RAS):** Netzwerk im Hirnstamm, das Wachheit und Aufmerksamkeit reguliert. Welche Sinneseindrücke ins Bewusstsein gelangen, entsteht im Zusammenspiel mehrerer Hirnnetzwerke; das RAS ist ein wichtiger Teil davon. Der „Türsteher“ ist eine vereinfachende Metapher für diesen Filter.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Confirmation Bias:** Eine der am besten erforschten kognitiven Verzerrungen – beschrieben u.a. von Daniel Kahneman in „Thinking, Fast and Slow\" (2011).",
+          "text": "**Confirmation Bias (Bestätigungsfehler):** Eine der am besten erforschten kognitiven Verzerrungen, Überblick bei Nickerson (1998), Review of General Psychology 2(2), 175–220; populär beschrieben u. a. bei Kahneman (2011). Zur Teilbegründung „kostet am wenigsten Aufwand“: Bei hoher kognitiver Belastung nutzen Menschen bevorzugt eine „positive Teststrategie“, also das Suchen nach Passendem (Klayman & Ha, 1987, Psychological Review 94(2), 211–228). Nickerson (1998) nennt neben dem Aufwand auch motivationale Gründe (Identität, Gefühle). Deshalb steht im Text „einer der Gründe“, nicht „die Ursache“.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Neuroplastizität:** Die Fähigkeit des Gehirns, sich durch Erfahrung und Wiederholung strukturell umzubauen – belegt durch Forschung von Michael Merzenich, Norman Doidge u.a.",
+          "text": "**Neuroplastizität:** Die Fähigkeit des Gehirns, sich durch Erfahrung und Wiederholung strukturell umzubauen – belegt durch Forschung von Michael Merzenich, Norman Doidge u.a. Zum Satz „Die alte Autobahn wächst zu, ganz weg ist sie selten“: Verlerntes wird meist nicht gelöscht, sondern durch neues, hemmendes Lernen überlagert und kann später wiederkehren (Bouton, 2004, Learning & Memory 11(5), 485–494; Todd, Vurbic & Bouton, 2014, Neurobiology of Learning and Memory, 52–64, doi:10.1016/j.nlm.2013.08.012). Die Befunde stammen überwiegend aus der Konditionierungsforschung; die Übertragung auf Denkmuster ist ein Bild.",
           "url": null
         },
         {
           "typ": "quelle",
-          "text": "**Automatische Entscheidungen (80–95%):** Kahneman (2011) beschreibt das Dual-Process-Modell – System 1 (schnell, automatisch) vs. System 2 (langsam, bewusst). Der Großteil unserer täglichen Entscheidungen läuft über System 1.",
+          "text": "**Reiter und Elefant:** Bild von Jonathan Haidt, The Happiness Hypothesis (2006).",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Cocktailparty-Effekt:** Cherry (1953) beschrieb, wie wir aus vielen Gesprächen eines herausfiltern; Moray (1959) zeigte, dass der eigene Name trotzdem durchdringt (bei etwa einem Drittel der Teilnehmenden).",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Zwei Wölfe:** Populäre Parabel unbekannten Ursprungs, häufig den Cherokee zugeschrieben; keine Studie, sondern ein Bild.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Autopilot im Alltag:** Kahneman (2011), Thinking, Fast and Slow, beschreibt System 1 (schnell, automatisch) und System 2 (langsam, bewusst), ohne Prozentangabe. Die oft zitierte Zahl „80–95 %“ ist nicht belegt und wurde deshalb gestrichen. Belegbar: Wood, Quinn & Kashy (2002), Journal of Personality and Social Psychology 83(6), 1281–1297: In Tagebuchstudien liefen rund 43 % der Alltagshandlungen gewohnheitsmäßig ab.",
           "url": null
         },
         {

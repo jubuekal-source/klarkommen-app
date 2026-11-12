@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 20,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -348,15 +348,15 @@
     {
       "id": "bilder/k01/confirmation-bias",
       "pfad": "medien/bilder/k01/confirmation-bias.webp",
-      "bytes": 104630,
+      "bytes": 135518,
       "typ": "bild",
       "kapitel": "k01",
       "dauer": null
     },
     {
-      "id": "bilder/k01/tuersteher",
-      "pfad": "medien/bilder/k01/tuersteher.webp",
-      "bytes": 62072,
+      "id": "bilder/k01/tuersteher-gaesteliste",
+      "pfad": "medien/bilder/k01/tuersteher-gaesteliste.webp",
+      "bytes": 83284,
       "typ": "bild",
       "kapitel": "k01",
       "dauer": null
