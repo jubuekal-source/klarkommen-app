@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="color-scheme" content="dark">
+<title>Glaubenssatz-Detektor – Klarkommen</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<!-- Glaubenssatz-Detektor v2.2 (spec/10 Abschnitt 9, 12.11.2026). Eine Datei, kein Netzwerk (Schriften nur lokal über ../../fonts/fonts.css). Eingaben ausschließlich per textContent/value. Nur Solo-Modus. -->
+<style>
+:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--bg-input:#1c2e40;--accent:#f97316;--accent-soft:#fb923c;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#64748b;--border:rgba(148,163,184,.14);--healthy:#7DD3C0;--healthy-dark:#5BB8A5;--radius:16px;
+  --font-h:'Space Grotesk','DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;--font-t:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{max-width:100%;overflow-x:clip}
+body{font-family:var(--font-t);background:var(--bg-deep);color:var(--text-primary);-webkit-tap-highlight-color:transparent;font-size:16px;line-height:1.5;background-image:radial-gradient(ellipse at 20% 0%,rgba(125,211,192,.07),transparent 55%);background-repeat:no-repeat}
+/* Zurück-Leiste wie in kausalkette (einziges fest positioniertes Element) */
+:root{--kk-h:calc(44px + env(safe-area-inset-top,0px))}
+html{padding-top:var(--kk-h)}
+#kk-bar{position:fixed;top:0;left:0;right:0;z-index:2147483000;box-sizing:border-box;height:var(--kk-h);padding:env(safe-area-inset-top,0px) 8px 0;display:flex;align-items:center;justify-content:space-between;gap:6px;background:#0f1923;border-bottom:1px solid rgba(241,245,249,.12);font-family:'DM Sans',system-ui,sans-serif}
+#kk-bar button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;color:#f1f5f9;font:600 15px/1 'DM Sans',system-ui,sans-serif;-webkit-tap-highlight-color:transparent}
+#kk-bar button:hover,#kk-bar button:focus-visible{color:#f97316}
+#kk-bar button:focus-visible{outline:2px solid #f97316;outline-offset:-2px;border-radius:8px}
+#kk-bar #kk-samml{color:var(--healthy);font-size:14px}
+body{min-height:calc(100dvh - var(--kk-h))}
+.sr{position:absolute;width:1px;height:1px;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;padding:0}
+#kk-toast{display:none;width:100%;max-width:460px;margin:8px auto 0;padding:0 14px}
+#kk-toast div{background:var(--bg-card);border:1px solid var(--healthy);color:var(--text-primary);padding:10px 14px;border-radius:12px;font-size:14px}
+.shell{width:100%;max-width:460px;margin:0 auto;display:flex;flex-direction:column;padding:8px 14px 28px}
+.prog{padding:6px 0 10px}
+.prog .zeile{display:flex;justify-content:space-between;font:600 12px/1.2 var(--font-h);color:var(--text-muted);letter-spacing:.04em;margin-bottom:6px}
+.prog .leiste{height:4px;border-radius:2px;background:rgba(148,163,184,.16);overflow:hidden}
+.prog .fuell{height:100%;background:var(--accent);border-radius:2px;transition:width .35s ease}
+main{display:flex;flex-direction:column;gap:16px;min-width:0}
+main:focus{outline:none}
+.fade>*{animation:ein .3s ease-out both}
+.fade>*:nth-child(2){animation-delay:.04s}.fade>*:nth-child(3){animation-delay:.08s}.fade>*:nth-child(4){animation-delay:.12s}.fade>*:nth-child(5){animation-delay:.16s}.fade>*:nth-child(n+6){animation-delay:.2s}
+@keyframes ein{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h1,h2{font-family:var(--font-h);letter-spacing:-.02em;line-height:1.2;overflow-wrap:anywhere}
+h1{font-size:clamp(1.4rem,6.4vw,1.75rem);font-weight:700}
+h2{font-size:clamp(1.2rem,5.4vw,1.45rem);font-weight:700}
+h1:focus,h2:focus{outline:none}
+.lbl{font:700 .7rem/1.2 var(--font-h);color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase}
+.lbl::before{content:'';display:inline-block;width:14px;height:2px;border-radius:1px;background:var(--healthy-dark);vertical-align:middle;margin-right:8px}
+p.hell strong{color:var(--text-primary)}
+p{color:var(--text-secondary);font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+p.klein{font-size:13px;color:var(--text-muted)}
+p.hell{color:var(--text-primary);font-size:16px}
+strong{color:var(--text-primary)}
+.karte{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.karte.teal{border-color:rgba(125,211,192,.45);box-shadow:0 0 0 1px rgba(125,211,192,.08) inset}
+.karte.fund{border-color:rgba(249,115,22,.3);border-left:4px solid var(--accent);background:linear-gradient(180deg,rgba(249,115,22,.06),transparent 60%),var(--bg-card)}
+.karte.start{gap:12px;background:linear-gradient(180deg,rgba(125,211,192,.07),transparent 55%),var(--bg-card);padding:18px 16px}
+.gs-bild{margin:0;border-radius:12px;overflow:hidden}.gs-bild[hidden]{display:none}.gs-bild img{display:block;width:100%;height:auto}
+.karte.situation{min-height:140px;justify-content:center}
+.karte.situation .text{font:600 clamp(1.05rem,4.8vw,1.25rem)/1.4 var(--font-h);color:var(--text-primary);overflow-wrap:anywhere}
+.zitat{border-left:3px solid var(--healthy-dark);padding:2px 0 2px 10px;color:var(--text-secondary);font-size:14px;overflow-wrap:anywhere}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;justify-content:center;text-align:center;min-height:48px;padding:10px 14px;border-radius:12px;font:700 15px/1.25 var(--font-h);color:var(--text-primary);background:rgba(148,163,184,.1);border:2px solid rgba(241,245,249,.28);touch-action:manipulation;width:100%;overflow-wrap:anywhere}
+.btn:active,.chip:active,.wahl:active,.antw button:active,.stat:active,.item .open:active{transform:scale(.985)}
+.btn:focus-visible,.chip:focus-visible,.stat:focus-visible,.item .open:focus-visible,.wahl:focus-visible,.antw button:focus-visible,.sw:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible,.ikon:focus-visible,.seg button:focus-visible{outline:2px solid var(--accent-soft);outline-offset:2px}
+.btn.primaer{background:rgba(249,115,22,.16);border-color:var(--accent);color:#fdba74}
+.btn.gruen{background:rgba(125,211,192,.14);border-color:var(--healthy);color:var(--healthy)}
+.btn.signal{background:rgba(249,115,22,.14);border-color:var(--accent);color:var(--accent-soft)}
+.btn[aria-disabled="true"]{opacity:.4;cursor:default}
+.btn.leise{border-color:var(--border);color:var(--text-secondary);background:transparent;font-weight:600}
+.btn.kompakt{min-height:44px;padding:8px 8px;font-size:14px}
+.btn.zwei{flex-direction:column;align-items:center;gap:0;padding:14px}
+.btn b{display:block;font:700 15px/1.25 var(--font-h)}
+.btn small{display:block;font:500 13px/1.3 var(--font-t);color:var(--text-secondary);margin-top:4px}
+.btn .badge{display:block;align-self:center;font:700 11px/1 var(--font-h);letter-spacing:.06em;text-transform:uppercase;color:var(--bg-deep);background:var(--healthy);border-radius:6px;padding:3px 6px;margin-bottom:6px}
+.foot{display:flex;flex-direction:column;gap:8px;margin-top:6px;padding-bottom:calc(8px + env(safe-area-inset-bottom,0px))}
+.zeile2{display:flex;gap:8px}
+.zeile2>*{flex:1 1 0;min-width:0}
+.zeile3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.chips{display:flex;flex-direction:column;gap:8px}
+.chip{all:unset;box-sizing:border-box;cursor:pointer;min-height:46px;padding:10px 14px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-primary);font:500 15px/1.35 var(--font-t);touch-action:manipulation;overflow-wrap:anywhere;display:block;width:100%}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:rgba(249,115,22,.12);color:#fdba74}
+.bereiche{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.bereiche .chip{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font:600 14px/1.3 var(--font-h);min-height:64px;gap:0}
+.bereiche .chip b{display:block;font-weight:600}
+.bereiche .chip small{display:block;font:400 12px/1.3 var(--font-t);color:var(--text-muted);margin-top:4px}
+.bereiche .chip[aria-pressed="true"] small{color:var(--accent-soft)}
+.bereiche .chip.klein{min-height:52px;font-size:13px;font-weight:500;color:var(--text-secondary);grid-column:1/-1}
+.bereiche .chip.klein[aria-pressed="true"]{color:#fdba74}
+.sw{all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:10px;min-height:44px;font:500 14px/1.3 var(--font-t);color:var(--text-secondary);touch-action:manipulation}
+.sw .k{flex:0 0 44px;width:44px;height:26px;border-radius:13px;background:rgba(148,163,184,.25);position:relative;transition:background .2s}
+.sw .k::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:var(--text-primary);transition:transform .2s}
+.sw[aria-checked="true"] .k{background:var(--healthy-dark)}
+.sw[aria-checked="true"] .k::after{transform:translateX(18px)}
+.antw{display:flex;flex-direction:column;gap:8px}
+.antw button{all:unset;box-sizing:border-box;cursor:pointer;min-height:50px;padding:10px 14px;border-radius:12px;border:2px solid var(--border);background:var(--bg-card);color:var(--text-primary);font:700 15px/1.2 var(--font-h);text-align:center;touch-action:manipulation;display:flex;align-items:center;justify-content:center}
+.antw button[aria-pressed="true"]{border-color:var(--accent);color:#fdba74;background:rgba(249,115,22,.12)}
+.wahl{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;min-height:52px;padding:12px 14px;border-radius:12px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-primary);font:500 15px/1.4 var(--font-t);touch-action:manipulation;overflow-wrap:anywhere}
+.wahl[aria-checked="true"]{border-color:var(--accent);background:rgba(249,115,22,.12)}
+.wahl b{display:block;font-weight:500}
+.wahl .tag{display:block;font:700 11px/1.2 var(--font-h);letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted);margin-top:6px}
+.wahl[aria-checked="true"] .tag{color:var(--accent-soft)}
+.wahl.keiner{min-height:48px;color:var(--text-secondary)}
+.kzeile{display:flex;gap:8px;align-items:stretch}
+.kzeile .wahl{flex:1 1 auto;min-width:0;width:auto}
+.ikon{all:unset;box-sizing:border-box;cursor:pointer;flex:0 0 48px;width:48px;min-height:48px;display:flex;align-items:center;justify-content:center;border-radius:12px;border:1.5px solid var(--border);background:var(--bg-card);color:var(--text-secondary);touch-action:manipulation}
+.ikon:hover{color:var(--accent-soft)}
+textarea{width:100%;min-height:92px;resize:vertical;background:var(--bg-input);border:1.5px solid var(--border);border-radius:12px;color:var(--text-primary);font:400 16px/1.45 var(--font-t);padding:12px;display:block;overflow:hidden}
+textarea::placeholder{color:var(--text-muted)}
+select{width:100%;min-height:48px;background:var(--bg-input);border:1.5px solid var(--border);border-radius:12px;color:var(--text-primary);font:400 16px/1.3 var(--font-t);padding:10px 12px}
+label.feld{display:block;font:600 14px/1.35 var(--font-h);color:var(--text-primary)}
+.regler{display:flex;flex-direction:column;gap:2px}
+.wahlkopf{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.regler .werte{display:flex;justify-content:space-between;font:500 12px/1.2 var(--font-t);color:var(--text-muted)}
+.zahl{font:700 1.7rem/1 var(--font-h);color:var(--healthy);min-width:2ch;text-align:right;flex:0 0 auto}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;display:block}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:rgba(148,163,184,.28)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--healthy);border:3px solid var(--bg-deep);margin-top:-12px}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:rgba(148,163,184,.28)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--healthy);border:3px solid var(--bg-deep)}
+input[type=range][disabled]{opacity:.35}
+.hinweis.mit-ikon{display:flex;gap:10px;align-items:flex-start}.hinweis svg{flex:0 0 20px;color:var(--healthy);margin-top:1px}
+.hinweis{background:rgba(125,211,192,.08);border:1px solid rgba(125,211,192,.3);border-radius:12px;padding:10px 12px;font-size:14px;color:var(--text-primary);overflow-wrap:anywhere}
+.hinweis.warm{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.4)}
+.satzkarte{font:700 clamp(1.1rem,5vw,1.35rem)/1.35 var(--font-h);color:var(--text-primary);overflow-wrap:anywhere}
+ul.preis{list-style:none;display:flex;flex-direction:column;gap:6px}
+ul.preis li{font-size:14px;color:var(--text-secondary);padding-left:14px;position:relative;overflow-wrap:anywhere}
+ul.preis li::before{content:'';position:absolute;left:0;top:.6em;width:6px;height:6px;border-radius:50%;background:var(--healthy-dark)}
+.seg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.seg button{all:unset;box-sizing:border-box;cursor:pointer;min-height:44px;padding:6px 4px;border-radius:10px;border:1.5px solid var(--border);background:transparent;color:var(--text-secondary);font:600 13px/1.2 var(--font-h);text-align:center;display:flex;align-items:center;justify-content:center;touch-action:manipulation}
+.seg button[aria-pressed="true"]{border-color:var(--healthy);background:rgba(125,211,192,.13);color:var(--healthy)}
+.meta{font:500 13px/1.4 var(--font-t);color:var(--text-muted);overflow-wrap:anywhere}
+.nowrap{white-space:nowrap}
+.satz-grid{display:flex;flex-direction:column;gap:12px}
+/* Sammlung: eine Karte pro Satz, Status-Icon getrennt antippbar (keine verschachtelten Buttons) */
+.karte.item{flex-direction:row;align-items:stretch;gap:0;padding:0;overflow:hidden}
+.item .open{all:unset;box-sizing:border-box;cursor:pointer;flex:1 1 auto;min-width:0;min-height:64px;padding:14px 12px 14px 14px;display:flex;flex-direction:column;justify-content:center;gap:8px;touch-action:manipulation}
+.item .open:focus-visible{outline:2px solid var(--accent-soft);outline-offset:-3px;border-radius:14px}
+.item .alt{font:600 1.02rem/1.4 var(--font-h);color:var(--text-primary);overflow-wrap:anywhere}
+.item .alt.gedaempft{opacity:.55;text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(148,163,184,.55)}
+.item .neu{font:600 1.02rem/1.4 var(--font-h);color:var(--text-primary);border-left:3px solid var(--healthy);padding-left:10px;overflow-wrap:anywhere}
+.stat{all:unset;box-sizing:border-box;cursor:pointer;flex:0 0 78px;min-width:44px;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px;border-left:1px solid var(--border);color:var(--text-secondary);font:600 11px/1.15 var(--font-h);text-align:center;touch-action:manipulation;overflow-wrap:anywhere}
+.stat[data-s="1"]{color:var(--accent-soft)}.stat[data-s="2"]{color:var(--healthy)}
+.item.blitz{animation:blitz 1s ease-out}
+@keyframes blitz{0%{box-shadow:0 0 0 2px var(--accent)}100%{box-shadow:0 0 0 2px transparent}}
+.fakten{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
+.fakten dt{font:700 11px/1.6 var(--font-h);color:var(--text-muted);letter-spacing:.08em;text-transform:uppercase}
+.fakten dd{margin:0;font-size:15px;color:var(--text-primary);overflow-wrap:anywhere;min-width:0}
+details.mehr{border:1px solid var(--border);border-radius:var(--radius)}
+details.mehr summary{cursor:pointer;list-style:none;min-height:48px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;font:600 15px/1.3 var(--font-h);color:var(--text-secondary);touch-action:manipulation}
+details.mehr summary::-webkit-details-marker{display:none}
+details.mehr summary::after{content:'';width:8px;height:8px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(45deg);margin:-4px 4px 0 0;transition:transform .2s}
+details.mehr[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+details.mehr .inhalt{padding:0 14px 14px;display:flex;flex-direction:column;gap:10px}
+@media (orientation:landscape) and (max-height:520px){
+  .shell{max-width:760px}
+  .satz-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start}
+}
+@media (prefers-reduced-motion:reduce){.fade>*{animation:none!important}.btn:active,.chip:active,.wahl:active,.antw button:active,.stat:active,.item .open:active{transform:none}.blitz{animation:none!important}.prog .fuell,.sw .k,.sw .k::after{transition:none}*{scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button><button type="button" id="kk-samml" aria-label="Meine Glaubenssätze, 0 gespeichert">Meine Sätze (0)</button></div>
+<div id="kk-toast" role="status"></div>
+<div id="kk-live" class="sr" aria-live="polite"></div>
+<div class="shell">
+  <div class="prog" id="prog"><div class="zeile"><span id="prog-t"></span><span id="prog-m"></span></div><div class="leiste"><div class="fuell" id="prog-f" style="width:0%"></div></div></div>
+  <main id="main" tabindex="-1"></main>
+</div>
+
+<script>
+'use strict';
+/* ===================== DATEN ===================== */
+var CLUSTER = {
+  scham: { name: 'Mit mir stimmt etwas nicht', saetze: ['Mit mir stimmt etwas nicht.', 'Ich bin nicht gut genug.', 'Wenn mich jemand wirklich kennt, ist er weg.', 'Ich bin nicht liebenswert.'] },
+  zugehoerigkeit: { name: 'Ich gehöre nicht dazu', saetze: ['Ich gehöre nirgends richtig dazu.', 'Ich bin anders als die anderen.', 'Alle haben ihre Leute, nur ich nicht.', 'Ich bin den anderen eigentlich egal.'] },
+  ablehnung: { name: 'Am Ende werde ich verlassen', saetze: ['Früher oder später werde ich verlassen.', 'Wenn jemand nicht antwortet, hat er genug von mir.', 'Ich bin zu viel für andere.', 'Wer mich mag, geht irgendwann.'] },
+  versagen: { name: 'Ich kann das nicht', saetze: ['Ich kann das nicht.', 'Andere kriegen das hin, ich nicht.', 'Irgendwann merken alle, dass ich nichts draufhabe.', 'Ohne Hilfe bin ich aufgeschmissen.'] },
+  pessimismus: { name: 'Es geht sowieso schief', saetze: ['Am Ende geht es sowieso schief.', 'Wenn es gut läuft, kommt bald der Haken.', 'Für Leute wie mich wird es nicht besser.', 'Freu dich lieber nicht zu früh.'] },
+  perfektion: { name: 'Ich bin nur etwas wert, wenn ich abliefere', saetze: ['Ich darf keine Fehler machen.', 'Ich bin nur etwas wert, wenn ich etwas leiste.', 'Gut ist nicht gut genug.', 'Alle erwarten, dass ich es perfekt mache.'] },
+  anpassung: { name: 'Was ich will, zählt nicht', saetze: ['Ich muss es allen recht machen.', 'Wenn ich Nein sage, mag man mich nicht mehr.', 'Meine Gefühle sind anderen zu viel.', 'Ich darf niemanden enttäuschen.'] },
+  fest: { name: 'So bin ich halt', saetze: ['So bin ich halt.', 'Ich kann mich nicht wirklich ändern.', 'Bei mir funktioniert so etwas nicht.', 'Dafür ist es zu spät.'] },
+  geld: { name: 'Geld und Erfolg sind nichts für Leute wie mich', saetze: ['Leute wie ich werden nicht erfolgreich.', 'Geld verdirbt den Charakter.', 'Ich kann einfach nicht mit Geld umgehen.', 'Ich muss mich zwischen Sinn und Geld entscheiden.'] },
+  glaube: { name: 'Für Gott bin ich nicht gut genug', saetze: ['Ich bin nicht gut genug für Gott.', 'Gottes Liebe muss ich mir verdienen.', 'Gott ist weit weg und sieht mich nicht.', 'Ich habe zu viele Fehler gemacht.'] }
+};
+var CLUSTER_ORDER = ['scham','zugehoerigkeit','ablehnung','versagen','pessimismus','perfektion','anpassung','fest','geld','glaube'];
+/* Themen in Alltagssprache (Weg 1, Sammlung) */
+var THEMA = { scham:'Selbstwert', zugehoerigkeit:'Dazugehören', ablehnung:'Nähe & Verlassenwerden', versagen:'Können & Leistung', pessimismus:'Zukunft', perfektion:'Perfektion', anpassung:'Es allen recht machen', fest:'Veränderung', geld:'Geld & Erfolg', glaube:'Christlicher Glaube' };
+var GLAUBE_SUB = 'Fragen aus Sicht des christlichen Glaubens';
+
+/* Kosten je Einzelsatz: genau 3, vorsichtig formuliert, mit Tun/Lassen und dem, was entgeht */
+var KOSTEN = {
+  'Mit mir stimmt etwas nicht.': [
+    'Möglicherweise versteckst du Seiten an dir, die du für seltsam hältst, und deshalb lernt dich fast niemand ganz kennen.',
+    'Vielleicht gehst du Situationen aus dem Weg, in denen du auffallen könntest, und verpasst dadurch Chancen und Begegnungen.',
+    'Es kann sein, dass du bei Problemen nicht um Hilfe bittest und Dinge allein durchstehst, die sich zu zweit leichter tragen ließen.'
+  ],
+  'Ich bin nicht gut genug.': [
+    'Möglicherweise bewirbst du dich nur dort, wo die Latte niedrig liegt, und erfährst nie, was du wirklich könntest.',
+    'Vielleicht überlegst du so lange, bevor du etwas sagst, dass deine Ideen in Gesprächen nie auftauchen.',
+    'Es kann sein, dass du Lob wegwischst und dir dadurch die Rückmeldung entgeht, die dir zeigen würde, was du gut kannst.'
+  ],
+  'Wenn mich jemand wirklich kennt, ist er weg.': [
+    'Möglicherweise erzählst du kaum etwas Persönliches, und deshalb bleiben Freundschaften an der Oberfläche.',
+    'Vielleicht lenkst du bei tieferen Fragen ab und machst Witze, und es entgeht dir, dass jemand dich trotzdem gern haben könnte.',
+    'Es kann sein, dass du dich zurückziehst, sobald jemand näherkommt, und dir genau die Nähe entgeht, die du dir wünschst.'
+  ],
+  'Ich bin nicht liebenswert.': [
+    'Möglicherweise wehrst du Zuneigung als Versehen ab und lässt Menschen abblitzen, die dich wirklich mögen.',
+    'Vielleicht gibst du in Beziehungen sehr viel, um dir Zuneigung zu verdienen, und bleibst bei Menschen, die dir nicht guttun.',
+    'Es kann sein, dass du dich gar nicht erst verabredest oder öffnest, und dir Begegnungen entgehen, die schön werden könnten.'
+  ],
+  'Ich gehöre nirgends richtig dazu.': [
+    'Möglicherweise bleibst du am Rand von Gruppen und gehst früh, und so entstehen kaum Gespräche, aus denen Freundschaft wachsen könnte.',
+    'Vielleicht trittst du keinem Verein oder Kreis bei, weil du dort ohnehin außen stündest, und verpasst Leute mit denselben Interessen.',
+    'Es kann sein, dass du neue Leute nur kurz testest und früh aufgibst, sodass nie eine feste Runde entsteht.'
+  ],
+  'Ich bin anders als die anderen.': [
+    'Möglicherweise hältst du Interessen oder Meinungen zurück, die dich ausmachen, und findest so die Leute nicht, die ähnlich ticken.',
+    'Vielleicht passt du dich der Gruppe an und erlebst nie, wie es ist, einfach als du selbst dazuzugehören.',
+    'Es kann sein, dass du vor allem auf Unterschiede achtest und Gemeinsamkeiten übersiehst, aus denen ein guter Kontakt werden könnte.'
+  ],
+  'Alle haben ihre Leute, nur ich nicht.': [
+    'Möglicherweise scrollst du durch die Fotos der Gruppen anderer, statt selbst etwas vorzuschlagen, und deshalb entstehen kaum Treffen.',
+    'Vielleicht schreibst du anderen nie zuerst, weil du dich aufdringlich fühlst, und alte Kontakte schlafen einfach ein.',
+    'Es kann sein, dass du Abende allein verbringst, die du lieber mit jemandem verbringen würdest, weil du nicht nachfragst.'
+  ],
+  'Ich bin den anderen eigentlich egal.': [
+    'Möglicherweise meldest du dich nie von dir aus, und dir entgeht, dass andere sich über eine Nachricht von dir freuen würden.',
+    'Vielleicht deutest du Funkstille als Beweis, ohne nachzufragen, und übersiehst, dass es oft nur Stress oder Vergesslichkeit war.',
+    'Es kann sein, dass du kaum etwas von dir erzählst und nie um etwas bittest, und deshalb bleiben Freundschaften einseitig.'
+  ],
+  'Früher oder später werde ich verlassen.': [
+    'Möglicherweise bindest du dich nur halb, damit ein Abschied weniger wehtut, und erlebst nie, wie tief eine Beziehung werden kann.',
+    'Vielleicht beendest du Freundschaften oder Beziehungen selbst, bevor jemand gehen kann, und verlierst so Menschen, die geblieben wären.',
+    'Es kann sein, dass du kleine Veränderungen bei anderen sofort als Abschied deutest und dir ruhige gemeinsame Zeit entgeht.'
+  ],
+  'Wenn jemand nicht antwortet, hat er genug von mir.': [
+    'Möglicherweise schreibst du mehrfach nach oder grübelst stundenlang, und dir fehlt die Ruhe für den Rest des Tages.',
+    'Vielleicht ziehst du dich selbst zurück, wenn eine Antwort ausbleibt, und der andere versteht dein Schweigen falsch.',
+    'Es kann sein, dass du nie nachfragst, was los war, und dir dadurch die ganz harmlose Erklärung entgeht.'
+  ],
+  'Ich bin zu viel für andere.': [
+    'Möglicherweise erzählst du wenig von Sorgen und Freuden, und deshalb können andere dir gar nicht beistehen.',
+    'Vielleicht machst du dich klein, sprichst leiser und sagst weniger, und andere lernen nur eine gedämpfte Version von dir kennen.',
+    'Es kann sein, dass du um nichts bittest und Probleme allein trägst, die Freunde gern mit dir getragen hätten.'
+  ],
+  'Wer mich mag, geht irgendwann.': [
+    'Möglicherweise testest du Menschen, ob sie wirklich bleiben, und manche ziehen sich dadurch tatsächlich zurück.',
+    'Vielleicht kannst du dich über Zuneigung nicht richtig freuen, weil du schon aufs Ende wartest, und verpasst den schönen Moment.',
+    'Es kann sein, dass du neue Freundschaften nicht vertiefst und deshalb viele flüchtige, aber wenige tragende Kontakte hast.'
+  ],
+  'Ich kann das nicht.': [
+    'Möglicherweise probierst du Neues gar nicht erst aus und erfährst deshalb nie, dass du es mit Übung hättest lernen können.',
+    'Vielleicht gibst du nach den ersten Fehlern sofort auf, und dir entgeht der Fortschritt, der erst nach mehreren Versuchen kommt.',
+    'Es kann sein, dass du Aufgaben abgibst oder ablehnst und dir dadurch die Erfahrung fehlt, es doch geschafft zu haben.'
+  ],
+  'Andere kriegen das hin, ich nicht.': [
+    'Möglicherweise vergleichst du deinen Anfang mit dem Ergebnis anderer und hörst früh auf, ohne zu sehen, wie viel Übung dahintersteckt.',
+    'Vielleicht fragst du niemanden, wie die anderen es machen, und dir entgehen Tipps, die dir den Einstieg erleichtern würden.',
+    'Es kann sein, dass du im Team lieber zuarbeitest, und so zeigt sich nie, was du allein könntest.'
+  ],
+  'Irgendwann merken alle, dass ich nichts draufhabe.': [
+    'Möglicherweise arbeitest du bis spät abends, um nicht aufzufliegen, und es bleibt kaum Zeit zum Erholen.',
+    'Vielleicht fragst du bei Unklarheiten nicht nach, um keine Lücke zu zeigen, und machst dadurch Fehler, die vermeidbar gewesen wären.',
+    'Es kann sein, dass du mehr Verantwortung ablehnst und dir damit Aufgaben entgehen, die gut zu dir passen würden.'
+  ],
+  'Ohne Hilfe bin ich aufgeschmissen.': [
+    'Möglicherweise fragst du bei jeder Kleinigkeit nach und nimmst dir damit die Erfahrung, Dinge selbst zu lösen.',
+    'Vielleicht wartest du darauf, dass jemand den ersten Schritt für dich macht, und Vorhaben bleiben dadurch liegen.',
+    'Es kann sein, dass du Entscheidungen anderen überlässt und deshalb nie erlebst, dass dein eigenes Urteil trägt.'
+  ],
+  'Am Ende geht es sowieso schief.': [
+    'Möglicherweise steckst du gar nicht erst viel Energie in Pläne, und dadurch bekommen sie nie eine echte Chance.',
+    'Vielleicht hörst du bei den ersten Schwierigkeiten auf und verpasst, dass sich manches erst nach einer Durststrecke wendet.',
+    'Es kann sein, dass du dich auf Neues gar nicht erst bewirbst oder anmeldest, und deshalb bleibt alles beim Alten.'
+  ],
+  'Wenn es gut läuft, kommt bald der Haken.': [
+    'Möglicherweise bremst du dich selbst aus, sobald etwas gut läuft, und lässt Chancen liegen, die du nutzen könntest.',
+    'Vielleicht nimmst du Komplimente oder Angebote nur halb an, und dir entgehen schöne Erfahrungen.',
+    'Es kann sein, dass du gute Phasen vor lauter Vorsicht kaum entspannt erlebst und dir die Erholung entgeht, die sie schenken könnten.'
+  ],
+  'Für Leute wie mich wird es nicht besser.': [
+    'Möglicherweise suchst du dir keine Beratung oder Unterstützung, weil sie bei dir ohnehin nichts ändern würde, und bleibst mit Problemen allein.',
+    'Vielleicht setzt du dir keine Ziele für die nächsten Jahre, und dir fehlt die Richtung, in die du dich bewegen könntest.',
+    'Es kann sein, dass du kleine Fortschritte als Zufall abtust und dir entgeht, dass sich schon etwas verändert.'
+  ],
+  'Freu dich lieber nicht zu früh.': [
+    'Möglicherweise gehst du mit gedämpfter Stimmung in schöne Pläne, und die Vorfreude bleibt aus, die einen Tag erst besonders macht.',
+    'Vielleicht erzählst du gute Nachrichten erst, wenn alles sicher ist, und andere können sich nicht mit dir freuen.',
+    'Es kann sein, dass du Erfolge kleinredest und sie dadurch nicht feierst und keine Kraft daraus ziehst.'
+  ],
+  'Ich darf keine Fehler machen.': [
+    'Möglicherweise gibst du Arbeiten spät oder gar nicht ab und bekommst deshalb nie die Rückmeldung, die dich weiterbringen würde.',
+    'Vielleicht kontrollierst du alles mehrfach, und dir bleibt weniger Zeit für anderes, das dir guttun würde.',
+    'Es kann sein, dass du Aufgaben meidest, bei denen Fehler fast sicher sind, und dir das Lernen entgeht, das nur über Fehler läuft.'
+  ],
+  'Ich bin nur etwas wert, wenn ich etwas leiste.': [
+    'Möglicherweise sagst du Treffen mit Freunden ab, um zu arbeiten, und dir entgeht Zeit, die dich auflädt.',
+    'Vielleicht fühlst du dich an freien Tagen unruhig oder schuldig und erholst dich deshalb kaum richtig.',
+    'Es kann sein, dass du Zuneigung nur nach einer Leistung zulässt und dir damit Nähe ohne Gegenleistung entgeht.'
+  ],
+  'Gut ist nicht gut genug.': [
+    'Möglicherweise feilst du so lange an Dingen, dass du Fristen reißt oder Projekte nie zeigst, und deine Arbeit bleibt ungesehen.',
+    'Vielleicht feierst du ein gutes Ergebnis nicht, weil du schon beim nächsten Schritt bist, und deine Erfolge bleiben ungenossen.',
+    'Es kann sein, dass du ein Hobby aufgibst, sobald du nicht mehr besser wirst, und dir entgeht, was dir einfach Freude machte.'
+  ],
+  'Alle erwarten, dass ich es perfekt mache.': [
+    'Möglicherweise sagst du nie, dass du überfordert bist, und bekommst deshalb keine Entlastung oder Hilfe.',
+    'Vielleicht übernimmst du zu viel, damit nichts auszusetzen ist, und es bleibt kaum Luft für Dinge, die dir selbst wichtig sind.',
+    'Es kann sein, dass du nie nachfragst, was andere wirklich brauchen, und dich an Erwartungen abarbeitest, die niemand hatte.'
+  ],
+  'Ich muss es allen recht machen.': [
+    'Möglicherweise übernimmst du Aufgaben und Termine, die andere tragen könnten, und deine eigene Zeit bleibt auf der Strecke.',
+    'Vielleicht sagst du Ja, bevor du überlegt hast, was du selbst möchtest, und deine Wünsche gehen unter.',
+    'Es kann sein, dass du Konflikten ausweichst und nie erlebst, dass eine Beziehung auch Meinungsverschiedenheiten aushält.'
+  ],
+  'Wenn ich Nein sage, mag man mich nicht mehr.': [
+    'Möglicherweise sagst du Ja zu Dingen, die du nicht willst, und bist danach erschöpft oder verärgert, während andere deine Grenzen nicht kennen.',
+    'Vielleicht sagst du aus Prinzip Ja, sodass andere dir immer mehr aufladen, ohne es zu merken.',
+    'Es kann sein, dass du nie erfährst, ob dich jemand auch nach einem Nein mag, und deshalb unsicher bleibst.'
+  ],
+  'Meine Gefühle sind anderen zu viel.': [
+    'Möglicherweise antwortest du auf die Frage, wie es dir geht, immer mit „gut“, und niemand weiß, was dich gerade beschäftigt.',
+    'Vielleicht behältst du Ärger und Traurigkeit für dich und trägst sie allein, obwohl Freunde dir gern zugehört hätten.',
+    'Es kann sein, dass du Gespräche über Persönliches abbrichst, und dadurch bleibt Nähe oberflächlich.'
+  ],
+  'Ich darf niemanden enttäuschen.': [
+    'Möglicherweise versprichst du mehr, als du schaffen kannst, und musst am Ende doch absagen oder rennst dich ab.',
+    'Vielleicht änderst du eigene Pläne, sobald jemand etwas anderes möchte, und deine Vorhaben kommen nie zustande.',
+    'Es kann sein, dass du ehrliche Rückmeldungen zurückhältst, und dadurch entwickeln sich Beziehungen und Projekte nicht weiter.'
+  ],
+  'So bin ich halt.': [
+    'Möglicherweise nimmst du Verbesserungsvorschläge nicht ernst und wiederholst alte Muster, die dir eigentlich nicht gefallen.',
+    'Vielleicht probierst du neue Gewohnheiten gar nicht aus und erfährst nie, wie viel sich mit kleinen Schritten verändern lässt.',
+    'Es kann sein, dass du Kritik mit „So bin ich eben“ abwehrst, und Gespräche enden, in denen sich etwas klären könnte.'
+  ],
+  'Ich kann mich nicht wirklich ändern.': [
+    'Möglicherweise nimmst du dir nichts mehr vor, weil es dir sinnlos erscheint, und bleibst bei Gewohnheiten, die du loswerden wolltest.',
+    'Vielleicht holst du dir keine Unterstützung wie Beratung oder Training, und dir fehlt der Anstoß, den du bräuchtest.',
+    'Es kann sein, dass du einen Rückschlag als endgültigen Beweis nimmst und aufhörst, bevor etwas Neues Wurzeln schlägt.'
+  ],
+  'Bei mir funktioniert so etwas nicht.': [
+    'Möglicherweise lässt du Kurse, Gespräche oder Methoden aus, und dir entgeht, was dir helfen könnte.',
+    'Vielleicht startest du nur halbherzig, damit ein Scheitern weniger wehtut, und es kommt dadurch tatsächlich wenig heraus.',
+    'Es kann sein, dass du Tipps von Freunden abwinkst und weniger Rat bekommst, als du bekommen könntest.'
+  ],
+  'Dafür ist es zu spät.': [
+    'Möglicherweise meldest du dich für einen neuen Weg, einen Kurs oder einen Wechsel gar nicht erst an, und alles bleibt beim Alten.',
+    'Vielleicht vergleichst du dich mit Leuten, die früher gestartet sind, und übersiehst, was du von jetzt an noch aufbauen kannst.',
+    'Es kann sein, dass du Träume gar nicht mehr aussprichst, und sie kommen nie in ein Gespräch, das sie voranbringen könnte.'
+  ],
+  'Leute wie ich werden nicht erfolgreich.': [
+    'Möglicherweise bewirbst du dich nicht auf anspruchsvollere Stellen, und dir entgehen Chancen, die du mit deinen Fähigkeiten längst nutzen könntest.',
+    'Vielleicht fragst du erfolgreiche Menschen nie nach ihrem Weg und verpasst Tipps und Kontakte, die dir weiterhelfen würden.',
+    'Es kann sein, dass du deine Ziele klein hältst, bevor du sie ernsthaft versucht hast, und nie erfährst, wie weit du kämst.'
+  ],
+  'Geld verdirbt den Charakter.': [
+    'Möglicherweise lehnst du Gehaltserhöhungen oder gut bezahlte Aufträge ab, und dir fehlt Spielraum für Dinge, die dir wichtig sind.',
+    'Vielleicht hältst du Abstand zu Menschen mit viel Geld und verpasst Kontakte und Vorbilder, von denen du lernen könntest.',
+    'Es kann sein, dass du dir verbietest, mehr zu verdienen, und deshalb Möglichkeiten nicht nutzt, mit Geld etwas Gutes zu bewegen.'
+  ],
+  'Ich kann einfach nicht mit Geld umgehen.': [
+    'Möglicherweise schaust du nicht auf deinen Kontostand, weil du den Überblick ohnehin verloren glaubst, und am Monatsende überraschen dich die Zahlen.',
+    'Vielleicht legst du nie etwas zurück, weil es doch nicht klappt, und dir fehlt ein Polster für Unvorhergesehenes.',
+    'Es kann sein, dass du dich nie über Budget oder Sparen informierst und bei Gewohnheiten bleibst, die du ändern könntest.'
+  ],
+  'Ich muss mich zwischen Sinn und Geld entscheiden.': [
+    'Möglicherweise nimmst du sinnvolle Arbeit zu einem niedrigen Preis an, ohne zu verhandeln, und finanziell bleibt dir wenig Luft.',
+    'Vielleicht schließt du gut bezahlte Jobs von vornherein aus, und dir entgehen Stellen, die beides verbinden könnten.',
+    'Es kann sein, dass du in einem Job bleibst, der Geld bringt, weil du Sinn auf später verschiebst, und Jahre mit leerer Arbeit verbringst.'
+  ],
+  'Ich bin nicht gut genug für Gott.': [
+    'Möglicherweise bleibst du Gottesdiensten und Gesprächen mit anderen Gläubigen fern, weil du dich erst in Ordnung bringen willst, und dir entgeht Gemeinschaft.',
+    'Vielleicht betest du nur, wenn du dich gut fühlst, und dein Glaube trägt dich dadurch in schweren Zeiten nicht.',
+    'Es kann sein, dass du Zweifel und Fehler nicht mit Vertrauten besprichst und dir dadurch Zuspruch entgeht.'
+  ],
+  'Gottes Liebe muss ich mir verdienen.': [
+    'Möglicherweise strengst du dich im Glauben ständig mit Diensten, Regeln und Pflichten an, und für Ruhe und Vertrauen bleibt wenig Raum.',
+    'Vielleicht zählst du deine Fehler mit und vergleichst dich mit anderen, und kannst Zusagen aus der Bibel kaum annehmen.',
+    'Es kann sein, dass du eine Glaubenspause als Versagen siehst und dich dann ganz zurückziehst, statt ehrlich darüber zu sprechen.'
+  ],
+  'Gott ist weit weg und sieht mich nicht.': [
+    'Möglicherweise betest du kaum noch, weil du keine Antwort erwartest, und dieser Raum für deine Sorgen bleibt leer.',
+    'Vielleicht suchst du Gott nur in großen Erlebnissen und übersiehst stille Momente, in denen du etwas spüren könntest.',
+    'Es kann sein, dass du mit niemandem über deine Zweifel sprichst und mit dieser Frage allein bleibst.'
+  ],
+  'Ich habe zu viele Fehler gemacht.': [
+    'Möglicherweise meidest du Gebet oder Gottesdienst, weil du dich schuldig fühlst, und dir entgeht die Erfahrung von Vergebung.',
+    'Vielleicht sprichst du mit niemandem über deine Fehler und trägst Schuld allein, die im Gespräch leichter werden könnte.',
+    'Es kann sein, dass du dir selbst nicht verzeihst und Neuanfänge, die dir offenstehen, nicht annimmst.'
+  ]
+};
+
+var AREAS = [
+  { id: 'liebe', title: 'Liebe & Partnerschaft', cards: [
+    ['Wenn mein Partner, meine Partnerin oder mein Schwarm länger nicht antwortet, gehe ich im Kopf sofort das Schlimmste durch.', {ablehnung:2}],
+    ['Wenn es ernster wird, finde ich plötzlich Fehler am anderen oder ziehe mich zurück.', {ablehnung:1, scham:2}],
+    ['Ich frage mich, was jemand überhaupt an mir finden soll.', {scham:2}],
+    ['In Beziehungen passe ich mich so an, dass ich mich selbst kaum wiedererkenne.', {anpassung:2, ablehnung:1}],
+    ['Nach einem Streit bin ich sicher, dass es jetzt vorbei ist.', {ablehnung:2, pessimismus:1}],
+    ['Ich zeige erst Interesse, wenn ich sicher bin, dass der andere mich will.', {ablehnung:2}],
+    ['Ich war noch nie oder lange nicht in einer Beziehung und denke, das sagt etwas über mich.', {scham:2, zugehoerigkeit:1}],
+    ['Ich denke: Die Richtigen wollen jemanden wie mich sowieso nicht.', {scham:1, pessimismus:2}]
+  ]},
+  { id: 'freunde', title: 'Freundschaften & Gruppe', cards: [
+    ['Wenn eine Freundschaft enger wird, melde ich mich seltener und gehe auf Abstand.', {zugehoerigkeit:2}],
+    ['Meine ehrliche Meinung behalte ich oft für mich, sie könnte falsch ankommen.', {anpassung:2, zugehoerigkeit:1}],
+    ['Wenn jemand distanziert wirkt, denke ich sofort: Ich habe etwas falsch gemacht.', {ablehnung:2, scham:1}],
+    ['Ich strenge mich in Freundschaften meist mehr an als die anderen.', {ablehnung:2, anpassung:1}],
+    ['Streit vermeide ich, wo es nur geht, auch wenn ich innerlich koche.', {anpassung:2}],
+    ['Ich vergleiche mich mit anderen und schneide dabei in meinem Kopf meist schlecht ab.', {scham:2}],
+    ['Ich bin oft der Mensch, der außen steht und zuschaut.', {zugehoerigkeit:2}]
+  ]},
+  { id: 'job', title: 'Schule, Ausbildung & Job', cards: [
+    ['Vor Prüfungen oder Präsentationen denke ich: Das geht schief, egal wie gut ich vorbereitet bin.', {versagen:2, pessimismus:1}],
+    ['Bei Lob denke ich: Die haben nur noch nicht gemerkt, dass ich es eigentlich nicht draufhabe.', {versagen:2, scham:1}],
+    ['Ich melde mich nicht, obwohl ich die Antwort weiß, falls sie doch falsch ist.', {perfektion:2, versagen:1}],
+    ['Kritik an meiner Arbeit fühlt sich an wie Kritik an mir als Person.', {scham:2, perfektion:1}],
+    ['Die großen, wichtigen Aufgaben schiebe ich am längsten vor mir her.', {versagen:2, perfektion:1}],
+    ['Alle anderen wirken, als hätten sie alles im Griff, nur ich nicht.', {versagen:1, zugehoerigkeit:1}],
+    ['Ich bleibe unter meinen Möglichkeiten, das sagen sogar andere.', {versagen:2}]
+  ]},
+  { id: 'zukunft', title: 'Zukunft & Entscheidungen', cards: [
+    ['Vor großen Entscheidungen hole ich erst viele Meinungen ein und entscheide dann oft lange gar nicht.', {versagen:2}],
+    ['Ich denke oft: Ich sollte längst weiter sein, als ich bin.', {perfektion:2, scham:1}],
+    ['Bevor ich etwas Neues anfange, male ich mir zuerst aus, wie es scheitert.', {versagen:2, pessimismus:2, fest:1}],
+    ['Wenn sich eine Chance auftut, finde ich schnell Gründe, warum gerade jetzt kein guter Zeitpunkt ist.', {fest:2}],
+    ['Wenn ich an meine Zukunft denke, fühle ich mich eher klein als neugierig.', {scham:1, versagen:1, pessimismus:1}],
+    ['Träume habe ich schon, aber Leute wie ich erreichen so etwas am Ende eh nicht.', {pessimismus:2, geld:1, scham:1}],
+    ['Große Schritte verschiebe ich seit Jahren auf „irgendwann“.', {fest:2}]
+  ]},
+  { id: 'geld', title: 'Geld & Erfolg', cards: [
+    ['Wenn jemand richtig viel verdient, denke ich automatisch: Da stimmt doch etwas nicht.', {geld:2}],
+    ['Über Geld zu reden ist mir unangenehm, fast peinlich.', {geld:2}],
+    ['Wenn ich mir etwas gönne, habe ich schnell ein schlechtes Gewissen.', {geld:1, scham:2}],
+    ['Erfolgreiche Leute sind ein anderer Menschenschlag als ich.', {geld:2, zugehoerigkeit:1}],
+    ['Ich sage Sätze wie „Geld macht eh nicht glücklich“, vor allem, wenn ich keins habe.', {geld:2}],
+    ['Beim Thema Bezahlung nehme ich, was man mir anbietet, verhandeln fühlt sich unangenehm an.', {geld:1, scham:2}],
+    ['Am Monatsende ist mein Geld weg, egal, wie viel hereinkommt.', {geld:2}]
+  ]},
+  { id: 'koerper', title: 'Ich & mein Körper', cards: [
+    ['Wenn ich in den Spiegel schaue, sehe ich zuerst, was nicht stimmt.', {scham:2}],
+    ['Auf Fotos sehe ich zuerst, was an mir nicht stimmt.', {scham:2}],
+    ['Ich denke oft: Wenn ich anders aussähe, wäre vieles leichter.', {scham:2, fest:1}],
+    ['Ich entschuldige mich oft, auch für Dinge, die gar keine Entschuldigung brauchen.', {anpassung:2, scham:1}],
+    ['Komplimente kann ich schlecht annehmen, ich wehre sie sofort ab.', {scham:2}],
+    ['Ich bin mit mir härter, als ich es mit jedem anderen Menschen je wäre.', {perfektion:2, scham:1}],
+    ['Ich denke manchmal: Wenn die Leute wüssten, wie ich wirklich bin …', {scham:2, zugehoerigkeit:1}],
+    ['Um Hilfe zu bitten fällt mir extrem schwer, ich muss das allein schaffen.', {perfektion:2}]
+  ]},
+  { id: 'glaube', title: 'Christlicher Glaube', sub: GLAUBE_SUB, optional: true, cards: [
+    ['Wenn ich etwas falsch gemacht habe, gehe ich Gott erst einmal aus dem Weg.', {glaube:2}],
+    ['Wenn andere von Erlebnissen mit Gott erzählen, denke ich: Bei mir passiert so etwas nicht.', {glaube:2, zugehoerigkeit:1}],
+    ['Ich strenge mich im Glauben an, damit Gott zufrieden mit mir ist.', {glaube:2, perfektion:1}],
+    ['Beim Beten denke ich oft: Es ändert sich ja doch nichts.', {glaube:1, pessimismus:2}],
+    ['Zweifel behalte ich für mich, weil gute Christen so etwas nicht haben.', {glaube:2, anpassung:1}],
+    ['Ich glaube, dass Gott andere mehr liebt oder gebraucht als mich.', {glaube:2, scham:1}]
+  ]}
+];
+function areaById(id){ for (var i=0;i<AREAS.length;i++) if (AREAS[i].id===id) return AREAS[i]; return null; }
+
+/* Weg 2, Tiefenfrage 1: ausgewogen innen und außen */
+var SCHLIMMSTES = ['Dass ich meine Ziele nicht erreiche','Dass ich mich selbst enttäusche','Dass ich stehen bleibe, während andere weiterkommen','Dass ich versagt habe','Dass andere es mitbekommen','Dass ich jemanden enttäusche','Dass ich allein dastehe','Dass es nie anders wird'];
+var STATI = ['Aufgespürt','In Arbeit','Verwandelt'];
+
+/* ===================== SPEICHER ===================== */
+var KEY = 'kk_glaubenssaetze_v1';
+var AKTIV_KEY = 'kk_glaubenssatz_aktiv';
+var memStore = [];
+var memAktiv = null;
+function ladeEintraege(){
+  try { var r = window.localStorage.getItem(KEY); if (r){ var a = JSON.parse(r); if (Array.isArray(a)) return a; } return memStore; }
+  catch(e){ return memStore; }
+}
+function speichereEintraege(arr){
+  memStore = arr;
+  try { window.localStorage.setItem(KEY, JSON.stringify(arr)); } catch(e){}
+  updateKopf();
+}
+function merkeAktiv(id){ memAktiv = id; try { window.localStorage.setItem(AKTIV_KEY, id); } catch(e){} }
+function neueId(){ return 'g' + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function heute(){ var d = new Date(); function z(n){return (n<10?'0':'')+n;} return d.getFullYear()+'-'+z(d.getMonth()+1)+'-'+z(d.getDate()); }
+function fmtDatum(iso){ var m = /^(\d{4})-(\d{2})-(\d{2})/.exec(String(iso||'')); return m ? m[3]+'.'+m[2]+'.'+m[1] : String(iso||''); }
+function str(x){ return (typeof x === 'string') ? x : ''; }
+/* Alte Einträge (v2 und früher) ohne die neuen Felder werden mit Standardwerten ergänzt */
+function norm(e){
+  var cl = (typeof e.cluster === 'string' && CLUSTER[e.cluster]) ? e.cluster : null;
+  return {
+    id: str(e.id) || neueId(),
+    datum: str(e.datum) || heute(),
+    geaendert: str(e.geaendert) || str(e.datum),
+    modus: 'solo',
+    quelle: e.quelle === 'eigen' ? 'eigen' : 'detektor',
+    status: STATI.indexOf(e.status) >= 0 ? e.status : STATI[0],
+    cluster: cl,
+    situation: str(e.situation),
+    schlimmstes: str(e.schlimmstes),
+    satz: str(e.satz),
+    wahr: (typeof e.wahr === 'number' && isFinite(e.wahr)) ? e.wahr : null,
+    treffer: (e.treffer === 1 || e.treffer === 2) ? e.treffer : 0,
+    preis: Array.isArray(e.preis) ? e.preis.filter(function(x){ return typeof x === 'string' && x.trim(); }) : [],
+    preisText: str(e.preisText),
+    gewicht: (typeof e.gewicht === 'number' && isFinite(e.gewicht)) ? Math.max(0, Math.min(10, Math.round(e.gewicht))) : 5,
+    neuerSatz: str(e.neuerSatz),
+    bereiche: Array.isArray(e.bereiche) ? e.bereiche : []
+  };
+}
+function eintraege(){
+  var out = [];
+  ladeEintraege().forEach(function(e){ if (e && typeof e === 'object') out.push(norm(e)); });
+  return out;
+}
+function eintragById(id){ var l = eintraege(); for (var i=0;i<l.length;i++) if (l[i].id === id) return l[i]; return null; }
+function ersetzeEintrag(e){
+  var l = eintraege(), ix = -1;
+  for (var i=0;i<l.length;i++) if (l[i].id === e.id) ix = i;
+  if (ix >= 0) l[ix] = e; else l.push(e);
+  speichereEintraege(l);
+}
+function loescheEintrag(id){ speichereEintraege(eintraege().filter(function(e){ return e.id !== id; })); }
+/* Einen Eintrag ändern und speichern (liest immer den aktuellen Stand) */
+function aendere(id, fn){
+  var l = eintraege(), ix = -1;
+  for (var i=0;i<l.length;i++) if (l[i].id === id) ix = i;
+  if (ix < 0) return null;
+  fn(l[ix]); l[ix].geaendert = heute();
+  speichereEintraege(l);
+  return l[ix];
+}
+/* Sortierung: nicht verwandelte zuerst, darin Gewichtung absteigend, bei Gleichstand der neuere zuerst; Verwandelte am Ende */
+function sortiert(l){
+  var a = l.map(function(e, i){ return { e:e, i:i }; });
+  a.sort(function(x, y){
+    var vx = x.e.status === STATI[2] ? 1 : 0, vy = y.e.status === STATI[2] ? 1 : 0;
+    if (vx !== vy) return vx - vy;
+    if (x.e.gewicht !== y.e.gewicht) return y.e.gewicht - x.e.gewicht;
+    if (x.e.geaendert !== y.e.geaendert) return x.e.geaendert < y.e.geaendert ? 1 : -1;
+    if (x.e.datum !== y.e.datum) return x.e.datum < y.e.datum ? 1 : -1;
+    return y.i - x.i;
+  });
+  return a.map(function(x){ return x.e; });
+}
+function naechsterStatus(s){ return STATI[(STATI.indexOf(s) + 1) % STATI.length]; }
+function katName(e){ return e.cluster ? THEMA[e.cluster] : 'Eigener Satz'; }
+function wahrText(e){
+  if (e.wahr !== null) return e.wahr + ' von 10';
+  if (e.treffer === 2) return 'Fühlt sich oft wahr an';
+  if (e.treffer === 1) return 'Manchmal wahr';
+  return 'nicht bewertet';
+}
+
+/* ===================== ZUSTAND ===================== */
+var S, hist;
+function frischerLauf(glaubeAn){
+  S = { weg: 0, bereiche: [], glaubeAn: !!glaubeAn, antworten: {}, cards: [], themen: [], saetze: [], antw1: {}, trefferWahl: null,
+    situation: null, schlimmstes: '', satz: '', vorlage: null, cluster: null, wahr: 5, gewicht: 5,
+    kosten: [], kostenFuer: null, kostenEdit: -1, keiner: false, preisText: '',
+    entryId: null, k6: false, andereGesichert: false, loeschId: null, loeschAlle: false, mehrOffen: false, k6id: null };
+  hist = [];
+}
+frischerLauf(false);
+var E = null; /* Bearbeiten-Formular der Sammlung */
+
+/* ===================== DOM-HELFER (nur textContent / value) ===================== */
+function h(tag, props){
+  var e = document.createElement(tag);
+  if (props) for (var k in props){
+    var v = props[k];
+    if (v === null || v === undefined || v === false) continue;
+    if (k === 'class') e.className = v;
+    else if (k === 'text') e.textContent = v;
+    else if (k.indexOf('on') === 0) e.addEventListener(k.slice(2), v);
+    else e.setAttribute(k, v === true ? '' : v);
+  }
+  for (var i=2;i<arguments.length;i++) add(e, arguments[i]);
+  return e;
+}
+function add(e, c){
+  if (c === null || c === undefined || c === false) return;
+  if (Array.isArray(c)){ c.forEach(function(x){ add(e,x); }); return; }
+  e.appendChild(typeof c === 'string' ? document.createTextNode(c) : c);
+}
+function btn(text, cls, onclick, extra){
+  var b = h('button', { type:'button', class:'btn ' + (cls||''), onclick: onclick }, text);
+  if (extra) for (var k in extra) b.setAttribute(k, extra[k]);
+  return b;
+}
+function setzeAktiv(b, an){ if (an) b.removeAttribute('aria-disabled'); else b.setAttribute('aria-disabled','true'); }
+function istAktiv(b){ return b.getAttribute('aria-disabled') !== 'true'; }
+var SVGNS = 'http' + '://www.w3.org/2000/svg'; /* XML-Namespace-Kennung, kein Netzwerkzugriff */
+function svgIcon(ds, size){
+  var s = document.createElementNS(SVGNS, 'svg');
+  s.setAttribute('width', size||20); s.setAttribute('height', size||20); s.setAttribute('viewBox','0 0 24 24');
+  s.setAttribute('fill','none'); s.setAttribute('stroke','currentColor'); s.setAttribute('stroke-width','2'); s.setAttribute('stroke-linecap','round'); s.setAttribute('stroke-linejoin','round'); s.setAttribute('aria-hidden','true');
+  ds.forEach(function(d){ var p = document.createElementNS(SVGNS,'path'); p.setAttribute('d', d); s.appendChild(p); });
+  return s;
+}
+function stiftIcon(){ return svgIcon(['M12 20h9','M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z']); }
+function schlossIcon(){ return svgIcon(['M5 11h14v9a1 1 0 01-1 1H6a1 1 0 01-1-1z','M8 11V8a4 4 0 018 0v3']); }
+/* Status-Icons (Linien-SVG): Aufgespürt = Lupe, In Arbeit = Halbkreis, Verwandelt = Haken im Kreis */
+function statusIcon(s){
+  var svg;
+  if (s === STATI[1]){
+    svg = svgIcon(['M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z'], 26);
+    var p = document.createElementNS(SVGNS, 'path');
+    p.setAttribute('d', 'M12 3.5a8.5 8.5 0 010 17z'); p.setAttribute('fill', 'currentColor'); p.setAttribute('fill-opacity', '.85');
+    svg.appendChild(p);
+  } else if (s === STATI[2]){
+    svg = svgIcon(['M12 3.5a8.5 8.5 0 100 17 8.5 8.5 0 000-17z', 'M8 12.3l2.8 2.8 5.4-5.7'], 26);
+  } else {
+    svg = svgIcon(['M10.5 4a6.5 6.5 0 100 13 6.5 6.5 0 000-13z', 'M20 20l-4.9-4.9'], 26);
+  }
+  return svg;
+}
+/* Ansage für Screenreader (unsichtbare Live-Region) */
+function ansage(t){
+  var e = document.getElementById('kk-live'); if (!e) return;
+  e.textContent = ''; setTimeout(function(){ e.textContent = t; }, 30);
+}
+
+/* Textfelder: mindestens 3 Zeilen, wachsen mit */
+function autogrow(t){ t.style.height = 'auto'; t.style.height = Math.max(t.scrollHeight + 3, 92) + 'px'; }
+function mkTa(props){
+  var t = h('textarea', props); t.rows = 3;
+  t.addEventListener('input', function(){ autogrow(t); });
+  return t;
+}
+/* Tastatur: fokussiertes Feld in den sichtbaren Bereich holen */
+function istTextfeld(el){
+  if (!el || !el.tagName) return false;
+  if (el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') return true;
+  return el.tagName === 'INPUT' && /^(text|search|email|url|tel|number)?$/.test(el.type || '');
+}
+function sichtbar(el){
+  if (!el || document.activeElement !== el) return;
+  try { el.scrollIntoView({ block:'center' }); } catch(e){ try { el.scrollIntoView(); } catch(e2){} }
+  var vv = window.visualViewport, top = vv ? vv.offsetTop : 0, hh = vv ? vv.height : window.innerHeight;
+  var r = el.getBoundingClientRect();
+  if (r.bottom > top + hh - 8 || r.top < top + 4){
+    var dy = (r.height > hh - 16) ? (r.top - (top + 8)) : ((r.top + r.height/2) - (top + hh/2));
+    window.scrollBy(0, dy);
+  }
+}
+document.addEventListener('focusin', function(ev){
+  var t = ev.target; if (!istTextfeld(t)) return;
+  setTimeout(function(){ sichtbar(t); }, 320);
+});
+if (window.visualViewport){
+  window.visualViewport.addEventListener('resize', function(){
+    var a = document.activeElement; if (!istTextfeld(a)) return;
+    setTimeout(function(){ sichtbar(a); }, 80);
+  });
+}
+
+var main = document.getElementById('main');
+function toast(t){
+  var e = document.getElementById('kk-toast'); e.textContent = '';
+  e.appendChild(h('div', { text:t })); e.style.display = 'block';
+  clearTimeout(toast._t); toast._t = setTimeout(function(){ e.style.display='none'; }, 3200);
+}
+/* Statusmeldung direkt unter dem auslösenden Knopf (im Fluss, nicht schwebend) */
+function statusBox(){
+  var d = h('div', { class:'hinweis', role:'status', 'aria-live':'polite', style:'display:none' });
+  d.zeige = function(t){ d.textContent = t; d.style.display = 'block'; };
+  return d;
+}
+function updateKopf(){
+  var n = 0; try { n = eintraege().length; } catch(e){}
+  var b = document.getElementById('kk-samml');
+  if (!b) return;
+  b.textContent = 'Meine Sätze (' + n + ')';
+  b.setAttribute('aria-label', 'Meine Glaubenssätze, ' + n + ' gespeichert');
+}
+
+var P1 = { themen:1, hinweis:2, saetze:2, treffer:3, satz:4, preis:5, ende:6 };
+var P2 = { bereiche:1, karte:2, situation:3, tiefe1:4, tiefe2:5, satz:6, preis:7, ende:8 };
+function progInfo(name){
+  if (name === 'themen' || name === 'hinweis' || name === 'saetze' || name === 'treffer') return { n:P1[name], tot:6 };
+  if (name === 'bereiche' || name === 'karte' || name === 'situation' || name === 'tiefe1' || name === 'tiefe2') return { n:P2[name], tot:8 };
+  if (name === 'satz' || name === 'preis' || name === 'ende'){
+    if (S.weg === 1) return { n:P1[name], tot:6 };
+    return { n:P2[name], tot:8 };
+  }
+  return null;
+}
+function zeigeFortschritt(name, extra){
+  var pi = progInfo(name), box = document.getElementById('prog');
+  if (!pi){ box.style.display = 'none'; return; }
+  box.style.display = 'block';
+  document.getElementById('prog-t').textContent = 'Schritt ' + pi.n + ' von ' + pi.tot;
+  document.getElementById('prog-m').textContent = extra || '';
+  document.getElementById('prog-f').style.width = (pi.n/pi.tot*100) + '%';
+}
+function render(name, kids, extra){
+  zeigeFortschritt(name, extra);
+  updateKopf();
+  main.textContent = '';
+  var wrap = h('div', { class:'fade', style:'display:flex;flex-direction:column;gap:12px' }, kids);
+  main.appendChild(wrap);
+  window.scrollTo(0,0);
+  var tas = main.querySelectorAll('textarea'); for (var i=0;i<tas.length;i++) autogrow(tas[i]);
+  var f = main.querySelector('h1,h2'); if (f){ f.setAttribute('tabindex','-1'); try{ f.focus({preventScroll:true}); }catch(e){} }
+}
+function neuZeichnen(){ var y = window.scrollY; zeige(); window.scrollTo(0, y); }
+
+/* ===================== NAVIGATION ===================== */
+var cur = { name:'start', i:0, id:null };
+function go(name, i, id){ hist.push({ name:cur.name, i:cur.i, id:cur.id }); cur = { name:name, i:i||0, id:id||null }; zeige(); }
+function ersetze(name, i){ cur = { name:name, i:i||0, id:null }; zeige(); }
+function zurueckSchritt(){
+  var p = hist.pop(); if (!p) p = { name:'start', i:0, id:null };
+  cur = p; zeige();
+}
+function zurueck(){ if (window.parent !== window) parent.postMessage({ kk:'zurueck' }, '*'); else location.href = '../../#/'; }
+document.getElementById('kk-back').addEventListener('click', zurueck);
+document.getElementById('kk-samml').addEventListener('click', function(){ if (cur.name !== 'sammlung') go('sammlung'); });
+function zeige(){
+  var f = { start:vStart, themen:vThemen, hinweis:vHinweis, saetze:vSaetze, treffer:vTreffer, keintreffer:vKeinTreffer,
+    bereiche:vBereiche, karte:vKarte, situation:vSituation, tiefe1:vTiefe1, tiefe2:vTiefe2, satz:vSatz, preis:vPreis, ende:vEnde,
+    sammlung:vSammlung, detail:vDetail, bearbeiten:vBearbeiten }[cur.name];
+  f();
+}
+function zurueckBtn(){ return btn('Zurück', 'leise', zurueckSchritt); }
+function fuss(primaer, mitZurueck){
+  var kids = [];
+  if (primaer) kids.push(primaer);
+  if (mitZurueck !== false) kids.push(zurueckBtn());
+  return h('div', { class:'foot' }, kids);
+}
+function neuerLauf(){
+  var g = S.glaubeAn;
+  frischerLauf(g);
+  cur = { name:'start', i:0, id:null }; zeige();
+}
+/* Aus der Sammlung heraus: Detektor starten, Zurück führt wieder in die Sammlung */
+function detektorStarten(){
+  var g = S.glaubeAn;
+  frischerLauf(g);
+  hist = [{ name:'sammlung', i:0, id:null }];
+  cur = { name:'start', i:0, id:null }; zeige();
+}
+function zurListe(){
+  if (hist.length && hist[hist.length-1].name === 'sammlung') hist.pop();
+  cur = { name:'sammlung', i:0, id:null }; zeige();
+}
+
+/* ===================== ABLAUF-LOGIK ===================== */
+function baueKarten(){
+  var cards = [];
+  S.bereiche.forEach(function(id){
+    var a = areaById(id);
+    a.cards.forEach(function(c, i){ cards.push({ key: id + ':' + i, area: id, text: c[0], w: c[1] }); });
+  });
+  S.cards = cards;
+}
+function clusterPunkte(){
+  var pts = {};
+  S.cards.forEach(function(c){
+    var a = S.antworten[c.key]; if (!a) return;
+    for (var k in c.w) pts[k] = (pts[k]||0) + a * c.w[k];
+  });
+  return pts;
+}
+function topCluster(n){
+  var pts = clusterPunkte();
+  var list = Object.keys(pts).filter(function(k){ return pts[k] > 0 && CLUSTER[k]; });
+  list.sort(function(a,b){ return (pts[b]-pts[a]) || (CLUSTER_ORDER.indexOf(a)-CLUSTER_ORDER.indexOf(b)); });
+  return list.slice(0, n);
+}
+function kartenCluster(w){
+  var best = null, bw = 0;
+  for (var k in w){ if (w[k] > bw && CLUSTER[k]){ best = k; bw = w[k]; } }
+  return best;
+}
+function satzChips(){
+  var top = topCluster(2);
+  if (!top.length) top = ['scham','versagen'];
+  var out = [];
+  for (var j=0;j<4 && out.length<6;j++){
+    for (var t=0;t<top.length && out.length<6;t++){
+      var s = CLUSTER[top[t]].saetze[j]; if (s) out.push({ text:s, cl:top[t] });
+    }
+  }
+  return out;
+}
+function clusterFuerSatz(t){
+  for (var i=0;i<CLUSTER_ORDER.length;i++){ if (CLUSTER[CLUSTER_ORDER[i]].saetze.indexOf(t) >= 0) return CLUSTER_ORDER[i]; }
+  return null;
+}
+function markierte(){
+  return S.cards.filter(function(c){ return S.antworten[c.key] >= 1; })
+    .sort(function(a,b){ return S.antworten[b.key] - S.antworten[a.key]; });
+}
+/* Weg 1 */
+function baueSaetze(){
+  var out = [];
+  CLUSTER_ORDER.forEach(function(id){
+    if (S.themen.indexOf(id) < 0) return;
+    if (id === 'glaube' && !S.glaubeAn) return;
+    CLUSTER[id].saetze.forEach(function(s){ out.push({ text:s, cl:id }); });
+  });
+  S.saetze = out;
+}
+function trefferListe(){
+  var oft = [], manchmal = [];
+  S.saetze.forEach(function(s){
+    var a = S.antw1[s.text];
+    if (a === 2) oft.push({ text:s.text, cl:s.cl, w:2 });
+    else if (a === 1) manchmal.push({ text:s.text, cl:s.cl, w:1 });
+  });
+  return oft.concat(manchmal);
+}
+function alternativen(){
+  var out = [];
+  if (S.weg === 1) trefferListe().forEach(function(t){ out.push({ text:t.text, cl:t.cl }); });
+  else out = satzChips();
+  return out.slice(0, 6);
+}
+function setzeVorlageAusText(t){
+  var kc = clusterFuerSatz(t);
+  if (kc) S.vorlage = { satz:t, cluster:kc };
+  S.cluster = S.vorlage ? S.vorlage.cluster : ((S.situation && S.situation.cl) || null);
+}
+
+/* ===================== SCREENS: START UND WEGE ===================== */
+/* Titel + Unterzeile als eigene Block-Elemente (b + small), einheitlich für alle Wahl-Buttons */
+function titelBtn(titel, unter, cls, fn, badge){
+  var kids = [];
+  if (badge) kids.push(h('span', { class:'badge', text:badge }));
+  kids.push(h('b', { text:titel }));
+  if (unter) kids.push(h('small', { text:unter }));
+  return btn(kids, 'zwei ' + (cls || ''), fn);
+}
+function sammlungBtn(){ return btn('Meine Glaubenssätze öffnen', 'leise', function(){ go('sammlung'); }); }
+function vStart(){
+  var bild = h('figure', { class:'gs-bild', hidden:true, 'data-bild':'start' });
+  var foot = [ sammlungBtn() ];
+  if (hist.length) foot.push(zurueckBtn());
+  render('start', [
+    h('div', { class:'karte start' }, [
+      bild,
+      h('div', { class:'lbl', text:'Klarkommen · Kapitel 5' }),
+      h('h1', { text:'Glaubenssatz-Detektor' }),
+      h('p', { class:'hell' }, [ 'Manche Sätze über dich fühlen sich an wie Tatsachen, auch wenn es Gedanken sind. Hier spürst du einen Satz auf, ', h('strong', { text:'der wirklich deiner ist' }), ', und erkennst, ', h('strong', { text:'was er dich kostet' }), '.' ]),
+      h('div', { class:'hinweis mit-ikon' }, [ schlossIcon(), h('span', { text:'Bleibt auf deinem Gerät. Nichts wird gesendet, nur in diesem Browser gespeichert.' }) ]),
+      h('p', { class:'klein', text:'Das ist keine Diagnose und ersetzt keine Therapie, sondern ist eine Denkhilfe.' })
+    ]),
+    h('h2', { text:'Wie willst du deinem Satz auf die Spur kommen?' }),
+    h('p', { text:'Zwei Wege führen zum gleichen Ziel. Du kannst später den anderen ausprobieren.' }),
+    titelBtn('Sätze durchgehen', 'Du liest typische Sätze und spürst, welche sich wahr anfühlen.', 'gruen', function(){ S.weg = 1; go('themen'); }, 'Hauptweg'),
+    titelBtn('Über Situationen finden', 'Wenn dir bei Sätzen nichts auffällt', '', function(){ S.weg = 2; go('bereiche'); }),
+    h('div', { class:'foot' }, foot)
+  ]);
+}
+
+/* ===================== WEG 1 ===================== */
+function vThemen(){
+  var grid = h('div', { class:'bereiche', role:'group', 'aria-label':'Themen, mindestens eins' });
+  var weiter = btn('Weiter', 'primaer', function(){
+    if (!S.themen.length) return;
+    baueSaetze(); S.antw1 = {}; S.trefferWahl = null; go('hinweis');
+  });
+  var alle = btn('', 'leise kompakt', function(){
+    var sichtbare = CLUSTER_ORDER.filter(function(id){ return id !== 'glaube' || S.glaubeAn; });
+    if (S.themen.length >= sichtbare.length) S.themen = []; else S.themen = sichtbare.slice();
+    zeichne();
+  });
+  function chip(id){
+    var an = S.themen.indexOf(id) >= 0, klein = id === 'glaube';
+    var kids = [ h('b', { text:THEMA[id] }) ];
+    if (id === 'glaube') kids.push(h('small', { text:GLAUBE_SUB }));
+    else kids.push(h('small', { text:CLUSTER[id].name }));
+    return h('button', { type:'button', class:'chip' + (klein ? ' klein' : ''), 'aria-pressed': an ? 'true' : 'false', onclick:function(){
+      var ix = S.themen.indexOf(id);
+      if (ix >= 0) S.themen.splice(ix,1); else S.themen.push(id);
+      zeichne();
+    } }, kids);
+  }
+  function zeichne(){
+    grid.textContent = '';
+    CLUSTER_ORDER.forEach(function(id){
+      if (id === 'glaube' && !S.glaubeAn) return;
+      grid.appendChild(chip(id));
+    });
+    var sichtbare = CLUSTER_ORDER.filter(function(id){ return id !== 'glaube' || S.glaubeAn; });
+    alle.textContent = S.themen.length >= sichtbare.length ? 'Alle abwählen' : 'Alle Themen wählen';
+    setzeAktiv(weiter, S.themen.length >= 1);
+  }
+  var sw = h('button', { type:'button', class:'sw', role:'switch', 'aria-checked': S.glaubeAn ? 'true':'false', onclick:function(){
+    S.glaubeAn = !S.glaubeAn;
+    sw.setAttribute('aria-checked', S.glaubeAn ? 'true':'false');
+    if (!S.glaubeAn){ var ix = S.themen.indexOf('glaube'); if (ix>=0) S.themen.splice(ix,1); }
+    zeichne();
+  } }, h('span', { class:'k' }), h('span', { text:'Glaubensthemen zeigen' }));
+  render('themen', [
+    h('h2', { text:'Welche Themen willst du durchgehen?' }),
+    h('p', { text:'Wähle ein Thema, mehrere oder alle.' }),
+    grid, alle, sw,
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function vHinweis(){
+  render('hinweis', [
+    h('div', { class:'lbl', text:'Bevor es losgeht' }),
+    h('h2', { text:'Antworte nach Gefühl' }),
+    h('div', { class:'karte teal' }, [
+      h('p', { class:'hell' }, [ h('strong', { text:'Antworte nach Gefühl, nicht nach Verstand.' }), ' Dein Kopf weiß oft, dass ein Satz nicht stimmt, und trotzdem lebst du danach. Achte auf ein inneres Ja, auf Widerstand oder ein ungutes Gefühl.' ])
+    ]),
+    h('p', { text:'Du gehst ' + S.saetze.length + ' Sätze durch, einen pro Bildschirm.' }),
+    fuss(btn('Los geht’s', 'primaer', function(){ go('saetze', 0); }))
+  ]);
+}
+function vSaetze(){
+  var s = S.saetze[cur.i];
+  if (!s){ ersetze('treffer'); return; }
+  var a = S.antw1[s.text];
+  var opts = [ ['Fühlt sich oft wahr an', 2], ['Manchmal', 1], ['Nein', 0] ];
+  var antw = h('div', { class:'antw' }, opts.map(function(o){
+    return h('button', { type:'button', 'aria-pressed': a === o[1] ? 'true':'false', onclick:function(){
+      S.antw1[s.text] = o[1];
+      if (cur.i + 1 < S.saetze.length){ hist.push({ name:'saetze', i:cur.i, id:null }); cur = { name:'saetze', i:cur.i+1, id:null }; zeige(); }
+      else { go('treffer'); }
+    } }, o[0]);
+  }));
+  var kids = [
+    h('h2', { text:'Wie ist das bei dir?' }),
+    h('div', { class:'karte teal situation' }, [ h('div', { class:'lbl', text:THEMA[s.cl] }), h('div', { class:'text', text:'„' + s.text + '“' }) ]),
+  ];
+  kids.push(antw);
+  var fk = [];
+  if (cur.i >= 3) fk.push(btn('Jetzt zur Trefferliste', 'leise', function(){ go('treffer'); }));
+  fk.push(zurueckBtn());
+  kids.push(h('div', { class:'foot' }, fk));
+  render('saetze', kids, 'Satz ' + (cur.i+1) + ' von ' + S.saetze.length);
+}
+function vTreffer(){
+  var t = trefferListe();
+  if (!t.length){ ersetze('keintreffer'); return; }
+  if (S.trefferWahl && !t.some(function(x){ return x.text === S.trefferWahl; })) S.trefferWahl = null;
+  var weiter = btn('Weiter mit diesem Satz', 'primaer', function(){
+    if (!S.trefferWahl) return;
+    var tt = null; t.forEach(function(x){ if (x.text === S.trefferWahl) tt = x; });
+    S.satz = tt.text; S.vorlage = { satz:tt.text, cluster:tt.cl }; S.cluster = tt.cl; go('satz');
+  });
+  setzeAktiv(weiter, !!S.trefferWahl);
+  var liste = h('div', { class:'chips', role:'radiogroup', 'aria-label':'Treffer' });
+  function zeichne(){
+    liste.textContent = '';
+    t.forEach(function(x){
+      var an = S.trefferWahl === x.text;
+      liste.appendChild(h('button', { type:'button', class:'wahl', role:'radio', 'aria-checked': an?'true':'false', onclick:function(){
+        S.trefferWahl = x.text; zeichne(); setzeAktiv(weiter, true);
+      } }, [ h('b', { class:'t', text:'„' + x.text + '“' }), h('span', { class:'tag', text: (x.w === 2 ? 'Fühlt sich oft wahr an' : 'Manchmal') + ' · ' + THEMA[x.cl] }) ]));
+    });
+  }
+  render('treffer', [
+    h('h2', { text:'Das sind deine Treffer' }),
+    h('p', { text:'Welcher Satz wiegt am schwersten? Wähle genau einen. Die anderen kannst du am Ende auch sichern.' }),
+    liste,
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function vKeinTreffer(){
+  render('keintreffer', [
+    h('h2', { text:'Hier war nichts dabei' }),
+    h('p', { text:'Das ist in Ordnung. Manchmal zeigt sich ein Satz erst über eine Situation. Oder du schreibst einen eigenen Satz auf.' }),
+    btn('Über Situationen finden', 'primaer', function(){ S.weg = 2; go('bereiche'); }),
+    btn('Eigenen Satz schreiben', '', function(){ S.weg = 1; S.satz = ''; S.vorlage = null; S.cluster = null; go('satz'); }),
+    fuss(null)
+  ]);
+}
+
+/* ===================== WEG 2 ===================== */
+function vBereiche(){
+  var grid = h('div', { class:'bereiche', role:'group', 'aria-label':'Bereiche, höchstens zwei' });
+  function zeichne(){
+    grid.textContent = '';
+    AREAS.forEach(function(a){
+      if (a.optional) return;
+      grid.appendChild(chip(a));
+    });
+    if (S.glaubeAn) grid.appendChild(chip(areaById('glaube'), true));
+    weiter && setzeAktiv(weiter, S.bereiche.length >= 1);
+  }
+  function chip(a, klein){
+    var an = S.bereiche.indexOf(a.id) >= 0;
+    var kids = [ h('b', { text:a.title }) ];
+    if (a.sub) kids.push(h('small', { text:a.sub }));
+    return h('button', { type:'button', class:'chip' + (klein ? ' klein' : ''), 'aria-pressed': an ? 'true' : 'false', onclick:function(){
+      var ix = S.bereiche.indexOf(a.id);
+      if (ix >= 0) S.bereiche.splice(ix,1);
+      else { S.bereiche.push(a.id); if (S.bereiche.length > 2) S.bereiche.shift(); }
+      zeichne();
+    } }, kids);
+  }
+  var weiter = btn('Weiter', 'primaer', function(){
+    if (!S.bereiche.length) return;
+    baueKarten(); go('karte', 0);
+  });
+  var sw = h('button', { type:'button', class:'sw', role:'switch', 'aria-checked': S.glaubeAn ? 'true':'false', onclick:function(){
+    S.glaubeAn = !S.glaubeAn;
+    sw.setAttribute('aria-checked', S.glaubeAn ? 'true':'false');
+    if (!S.glaubeAn){ var ix = S.bereiche.indexOf('glaube'); if (ix>=0) S.bereiche.splice(ix,1); }
+    zeichne();
+  } }, h('span', { class:'k' }), h('span', { text:'Glaubensthemen zeigen' }));
+  render('bereiche', [
+    h('h2', { text:'Wo passiert es dir am ehesten?' }),
+    h('p', { text:'Wähle einen oder zwei Bereiche, die dir gerade am nächsten sind.' }),
+    grid, sw,
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function vKarte(){
+  var c = S.cards[cur.i];
+  if (!c){ ersetze('bereiche'); return; }
+  var a = S.antworten[c.key];
+  var opts = [ ['Kenne ich gut', 2], ['Manchmal', 1], ['Nein', 0] ];
+  var antw = h('div', { class:'antw' }, opts.map(function(o){
+    return h('button', { type:'button', 'aria-pressed': a === o[1] ? 'true':'false', onclick:function(){
+      S.antworten[c.key] = o[1];
+      if (cur.i + 1 < S.cards.length){ hist.push({ name:'karte', i:cur.i, id:null }); cur = { name:'karte', i:cur.i+1, id:null }; zeige(); }
+      else { go('situation'); }
+    } }, o[0]);
+  }));
+  var titel = areaById(c.area).title;
+  render('karte', [
+    h('h2', { text:'Kennst du das?' }),
+    h('div', { class:'karte teal situation' }, [ h('div', { class:'lbl', text:titel }), h('div', { class:'text', text:c.text }) ]),
+    antw,
+    h('div', { class:'foot' }, [ zurueckBtn() ])
+  ], 'Karte ' + (cur.i+1) + ' von ' + S.cards.length);
+}
+function vSituation(){
+  var m = markierte();
+  if (!m.length){ vSituationLeer(); return; }
+  if (S.situation && (S.situation.free || !m.some(function(c){ return c.text === S.situation.text; }))) S.situation = null;
+  if (m.length === 1 && !S.situation) S.situation = { text:m[0].text, cl:kartenCluster(m[0].w), free:false };
+  var weiter = btn('Weiter', 'primaer', function(){ if (S.situation) go('tiefe1'); });
+  setzeAktiv(weiter, !!S.situation);
+  var liste = h('div', { class:'chips', role:'radiogroup', 'aria-label':'Situationen' });
+  function zeichne(){
+    liste.textContent = '';
+    m.forEach(function(c){
+      var an = S.situation && S.situation.text === c.text;
+      liste.appendChild(h('button', { type:'button', class:'wahl', role:'radio', 'aria-checked': an?'true':'false', onclick:function(){
+        S.situation = { text:c.text, cl:kartenCluster(c.w), free:false }; zeichne(); setzeAktiv(weiter,true);
+      } }, c.text));
+    });
+  }
+  render('situation', [
+    h('h2', { text:'Deine stärkste Situation' }),
+    h('p', { text:'Welche davon trifft am meisten? Wähle genau eine.' }),
+    liste,
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function vSituationLeer(){
+  var ta = mkTa({ id:'sit-frei', 'aria-label':'Eine Situation, die mich immer wieder ärgert', placeholder:'Eine Situation, die mich immer wieder ärgert …', maxlength:'400' });
+  if (S.situation && S.situation.free) ta.value = S.situation.text;
+  var weiter = btn('Mit dieser Situation weiter', 'primaer', function(){
+    var t = ta.value.trim(); if (!t) return;
+    S.situation = { text:t, cl:null, free:true }; go('tiefe1');
+  });
+  setzeAktiv(weiter, !!ta.value.trim());
+  ta.addEventListener('input', function(){ setzeAktiv(weiter, !!ta.value.trim()); });
+  render('situation', [
+    h('h2', { text:'Hier war nichts dabei' }),
+    h('p', { text:'Das ist in Ordnung. Du kannst einen anderen Bereich wählen, den Weg „Sätze durchgehen“ probieren oder selbst eine Situation beschreiben.' }),
+    btn('Anderen Bereich wählen', '', function(){ while (hist.length && cur.name !== 'bereiche'){ cur = hist.pop(); } zeige(); }),
+    btn('Sätze durchgehen', '', function(){ S.weg = 1; go('themen'); }),
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'sit-frei', text:'Oder: eine Situation, die mich immer wieder ärgert' }), ta ]),
+    fuss(weiter)
+  ]);
+}
+function frageBlock(gross){
+  return [ h('h2', { text:gross }) ];
+}
+function situationZitat(){
+  return h('div', { class:'zitat' }, [ h('span', { class:'lbl', text:'Deine Situation' }), h('div', { text:'„' + S.situation.text + '“' }) ]);
+}
+function vTiefe1(){
+  var ta = mkTa({ id:'t1', 'aria-label':'Das Schlimmste daran', placeholder:'Das Schlimmste wäre …', maxlength:'400' });
+  ta.value = S.schlimmstes || '';
+  var weiter = btn('Weiter', 'primaer', function(){ var t = ta.value.trim(); if (!t) return; S.schlimmstes = t; go('tiefe2'); });
+  setzeAktiv(weiter, !!ta.value.trim());
+  var chips = h('div', { class:'chips' });
+  function zeichne(){
+    chips.textContent = '';
+    SCHLIMMSTES.forEach(function(t){
+      chips.appendChild(h('button', { type:'button', class:'chip', 'aria-pressed': ta.value.trim() === t ? 'true':'false', onclick:function(){ ta.value = t; autogrow(ta); setzeAktiv(weiter,true); zeichne(); } }, t));
+    });
+  }
+  ta.addEventListener('input', function(){ setzeAktiv(weiter, !!ta.value.trim()); zeichne(); });
+  render('tiefe1', [
+    situationZitat(),
+    frageBlock('Denk an so einen Moment. Was ist für dich das Schlimmste daran?'),
+    chips,
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'t1', text:'Oder in deinen Worten' }), ta ]),
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function vTiefe2(){
+  var chipDaten = satzChips();
+  var ta = mkTa({ id:'t2', 'aria-label':'Ich …', placeholder:'Ich …', maxlength:'300' });
+  ta.value = S.satz || '';
+  var weiter = btn('Weiter', 'primaer', function(){
+    var t = ta.value.trim(); if (!t) return;
+    S.satz = t; setzeVorlageAusText(t);
+    if (!S.cluster) S.cluster = null;
+    go('satz');
+  });
+  setzeAktiv(weiter, !!ta.value.trim());
+  var chips = h('div', { class:'chips' });
+  function zeichne(){
+    chips.textContent = '';
+    chipDaten.forEach(function(c){
+      chips.appendChild(h('button', { type:'button', class:'chip', 'aria-pressed': ta.value.trim() === c.text ? 'true':'false', onclick:function(){ ta.value = c.text; autogrow(ta); S.vorlage = { satz:c.text, cluster:c.cl }; setzeAktiv(weiter,true); zeichne(); } }, c.text));
+    });
+  }
+  ta.addEventListener('input', function(){ setzeAktiv(weiter, !!ta.value.trim()); zeichne(); });
+  render('tiefe2', [
+    h('div', { class:'zitat' }, [ h('span', { class:'lbl', text:'Das Schlimmste' }), h('div', { text:'„' + S.schlimmstes + '“' }) ]),
+    frageBlock('Und wenn das so wäre: Was würde das über dich sagen?'),
+    chips,
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'t2', text:'Oder in deinen Worten' }), ta ]),
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+
+/* ===================== DEIN SATZ ===================== */
+function vSatz(){
+  var leer = !S.satz;
+  var ta = mkTa({ id:'satz', 'aria-label':'Dein Satz', maxlength:'300', placeholder: leer ? 'Ich …' : '' });
+  ta.value = S.satz;
+  var weiter = btn('Weiter: Was kostet dich dieser Satz?', 'primaer', function(){
+    var t = ta.value.trim(); if (!t) return;
+    S.satz = t; setzeVorlageAusText(t); go('preis');
+  });
+  setzeAktiv(weiter, !!ta.value.trim());
+  var meld = h('div', { 'aria-live':'polite' });
+  var zahl = h('div', { class:'zahl', id:'wahr-zahl', text:String(S.wahr) });
+  var alt = h('div', { class:'chips', style:'margin-top:8px' });
+  function meldung(){
+    meld.textContent = ''; alt.textContent = '';
+    if (S.wahr >= 7){ meld.appendChild(h('div', { class:'hinweis', text:'Das ist ein starker Fund.' })); }
+    else if (S.wahr < 4){
+      meld.appendChild(h('div', { class:'hinweis warm', text:'Vielleicht ist es ein anderer Satz.' }));
+      alternativen().forEach(function(c){
+        if (c.text === ta.value.trim()) return;
+        alt.appendChild(h('button', { type:'button', class:'chip', onclick:function(){ ta.value = c.text; autogrow(ta); S.vorlage = { satz:c.text, cluster:c.cl }; setzeAktiv(weiter,true); meldung(); } }, c.text));
+      });
+    }
+  }
+  ta.addEventListener('input', function(){ setzeAktiv(weiter, !!ta.value.trim()); if (S.wahr < 4) meldung(); });
+  var rng = h('input', { type:'range', min:'0', max:'10', step:'1', value:String(S.wahr), id:'wahr', 'aria-label':'Wie wahr fühlt sich das an, 0 bis 10' });
+  rng.addEventListener('input', function(){ S.wahr = parseInt(rng.value,10); zahl.textContent = String(S.wahr); meldung(); });
+  render('satz', [
+    h('h2', { text: leer ? 'Dein eigener Satz' : 'Dein Satz' }),
+    h('p', { text:'Mach ihn zu deinem Satz, in deinen Worten.' }),
+    h('div', { class:'satz-grid' }, [
+      h('div', { class:'karte teal' }, [ h('label', { class:'feld', for:'satz', text:'Ich glaube:' }), ta ]),
+      h('div', { class:'karte' }, [
+        h('div', { class:'wahlkopf' }, [ h('label', { class:'feld', for:'wahr', text:'Wie wahr fühlt sich das an? Bauchgefühl, nicht Kopf.' }), zahl ]),
+        h('div', { class:'regler' }, [ rng, h('div', { class:'werte' }, [ h('span', { text:'0 · gar nicht' }), h('span', { text:'10 · völlig' }) ]) ]),
+        meld, alt
+      ])
+    ]),
+    fuss(weiter)
+  ]);
+  meldung();
+}
+
+/* ===================== DER PREIS ===================== */
+function satzAnzeige(){ return S.satz; }
+function vPreis(){
+  var key = S.vorlage ? S.vorlage.satz : '';
+  if (S.kostenFuer !== key){
+    S.kosten = (KOSTEN[key] || []).map(function(t){ return { t:t, an:false, eigen:false }; });
+    S.kostenFuer = key; S.keiner = false; S.kostenEdit = -1;
+  }
+  var hatVorschlaege = S.kosten.some(function(k){ return !k.eigen; });
+  var liste = h('div', { class:'chips', role:'group', 'aria-label':'Mögliche Folgen' });
+  var keinerBtn = null;
+
+  function zeichne(){
+    liste.textContent = '';
+    S.kosten.forEach(function(k, i){
+      if (S.kostenEdit === i){
+        var ed = mkTa({ 'aria-label':'Wortlaut ändern', maxlength:'300' }); ed.value = k.t;
+        liste.appendChild(h('div', { class:'karte teal' }, [
+          h('div', { class:'lbl', text:'Wortlaut ändern' }), ed,
+          h('div', { class:'zeile2' }, [
+            btn('Übernehmen', 'primaer kompakt', function(){ var v = ed.value.trim(); if (v) k.t = v; S.kostenEdit = -1; zeichne(); }),
+            btn('Abbrechen', 'leise kompakt', function(){ S.kostenEdit = -1; zeichne(); })
+          ])
+        ]));
+        setTimeout(function(){ autogrow(ed); }, 0);
+        return;
+      }
+      liste.appendChild(h('div', { class:'kzeile' }, [
+        h('button', { type:'button', class:'wahl', role:'checkbox', 'aria-checked': k.an?'true':'false', onclick:function(){
+          k.an = !k.an; if (k.an && !k.eigen) S.keiner = false; zeichne();
+        } }, [ h('b', { class:'t', text:k.t }), h('span', { class:'tag', text: k.an ? 'Trifft bei mir zu' : 'Tippen: Trifft bei mir zu' }) ]),
+        h('button', { type:'button', class:'ikon', 'aria-label':'Wortlaut ändern', title:'Wortlaut ändern', onclick:function(){ S.kostenEdit = i; zeichne(); } }, stiftIcon())
+      ]));
+    });
+    if (keinerBtn) keinerBtn.setAttribute('aria-checked', S.keiner ? 'true' : 'false');
+  }
+  if (hatVorschlaege){
+    keinerBtn = h('button', { type:'button', class:'wahl keiner', role:'checkbox', 'aria-checked': S.keiner?'true':'false', onclick:function(){
+      S.keiner = !S.keiner;
+      if (S.keiner) S.kosten.forEach(function(k){ if (!k.eigen) k.an = false; });
+      zeichne();
+    } }, 'Keiner dieser Punkte passt');
+  }
+  var neu = mkTa({ id:'neu-punkt', 'aria-label':'Eigenen Punkt hinzufügen', placeholder:'Was tust oder lässt du deshalb, und was entgeht dir dadurch?', maxlength:'300' });
+  var addB = btn('Punkt hinzufügen', 'kompakt', function(){
+    var v = neu.value.trim(); if (!v) return;
+    S.kosten.push({ t:v, an:true, eigen:true }); neu.value = ''; autogrow(neu); setzeAktiv(addB, false); zeichne();
+  });
+  setzeAktiv(addB, false);
+  neu.addEventListener('input', function(){ setzeAktiv(addB, !!neu.value.trim()); });
+
+  var ta = mkTa({ id:'pt', 'aria-label':'Was verpasst du in fünf Jahren', placeholder:'Freiwillig …', maxlength:'400' }); ta.value = S.preisText || '';
+  ta.addEventListener('input', function(){ S.preisText = ta.value; });
+  var weiter = btn('Weiter: Satz und Preis sichern', 'primaer', function(){
+    S.preisText = ta.value.trim();
+    speichereAktuellen(); go('ende');
+  });
+  var kopf = hatVorschlaege
+    ? [ h('h2', { text:'Was dich dieser Satz möglicherweise kostet' }), h('p', { text:'Das sind Möglichkeiten, keine Urteile. Kreuze an, was bei dir zutrifft. Mit dem Stift änderst du den Wortlaut.' }) ]
+    : [ h('h2', { text:'Was kostet dich dieser Satz?' }), h('p', { text:'Schreibe auf, was du wegen dieses Satzes tust oder lässt und was dir dadurch entgeht. Das ist freiwillig.' }) ];
+  render('preis', [
+    h('div', { class:'karte fund' }, [ h('div', { class:'lbl', text:'Dein Satz' }), h('div', { class:'satzkarte', text: '„' + satzAnzeige() + '“' }) ]),
+    kopf,
+    liste,
+    keinerBtn,
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'neu-punkt', text:'Eigenen Punkt hinzufügen' }), neu, addB ]),
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'pt', text:'Wenn der Satz „' + satzAnzeige() + '“ noch 5 Jahre bleibt: Was verpasst du?' }), ta ]),
+    fuss(weiter)
+  ]);
+  zeichne();
+}
+function angekreuzt(){ return S.kosten.filter(function(k){ return k.an; }).map(function(k){ return k.t; }); }
+function speichereAktuellen(){
+  var alt = S.entryId ? eintragById(S.entryId) : null;
+  var e = {
+    id: S.entryId || neueId(), datum: alt ? alt.datum : heute(), geaendert: heute(), modus: 'solo', quelle: 'detektor',
+    status: alt ? alt.status : STATI[0], weg: S.weg, bereiche: (S.weg === 1 ? S.themen : S.bereiche).slice(), cluster: S.cluster,
+    situation: S.situation ? S.situation.text : '', schlimmstes: S.schlimmstes, satz: S.satz, wahr: S.wahr, treffer: 0,
+    preis: angekreuzt(), preisText: S.preisText, gewicht: alt ? alt.gewicht : S.gewicht, neuerSatz: alt ? alt.neuerSatz : ''
+  };
+  S.entryId = e.id;
+  ersetzeEintrag(norm(e));
+}
+function k6Setzen(id, box){
+  merkeAktiv(id);
+  if (box) box.zeige('Kapitel 6 startet später genau mit diesem Satz.');
+}
+
+/* Regler "Wie dringend will ich das ändern?" (Gewichtung 0 bis 10), geteilt von Abschluss, Detail und Bearbeiten */
+function gewichtRegler(idp, start, onInput, titel){
+  var zahl = h('div', { class:'zahl', text:String(start) });
+  var rng = h('input', { type:'range', min:'0', max:'10', step:'1', value:String(start), id:idp, 'aria-label':'Wie dringend will ich das ändern, 0 bis 10' });
+  rng.addEventListener('input', function(){ var v = parseInt(rng.value, 10); zahl.textContent = String(v); onInput(v); });
+  var kids = [];
+  if (titel) kids.push(h('div', { class:'lbl', text:titel }));
+  kids.push(h('div', { class:'wahlkopf' }, [ h('label', { class:'feld', for:idp, text:'Wie dringend will ich das ändern?' }), zahl ]));
+  kids.push(h('div', { class:'regler' }, [ rng, h('div', { class:'werte' }, [ h('span', { text:'0 · gar nicht' }), h('span', { text:'10 · sehr dringend' }) ]) ]));
+  return h('div', { class:'karte' }, kids);
+}
+
+/* ===================== ABSCHLUSS ===================== */
+function andereTreffer(){
+  if (S.weg !== 1) return [];
+  var gewaehlt = S.vorlage ? S.vorlage.satz : S.trefferWahl;
+  return trefferListe().filter(function(t){ return t.text !== gewaehlt && t.text !== S.satz; });
+}
+function vEnde(){
+  var ent = S.entryId ? eintragById(S.entryId) : null;
+  var kids = [ h('h2', { text:'Dein Satz und sein Preis' }) ];
+  var karte = [
+    h('div', { class:'lbl', text:'Dein Satz' }),
+    h('div', { class:'satzkarte', text:'„' + satzAnzeige() + '“' }),
+    h('p', { class:'klein', text:'Wie wahr er sich anfühlt: ' + S.wahr + ' von 10' })
+  ];
+  var pr = angekreuzt();
+  if (pr.length){
+    karte.push(h('div', { class:'lbl', text:'Was er dich möglicherweise kostet' }));
+    karte.push(h('ul', { class:'preis' }, pr.map(function(t){ return h('li', { text:t }); })));
+  }
+  if (S.preisText){
+    karte.push(h('div', { class:'lbl', text:'Wenn er noch 5 Jahre bleibt, verpasst du' }));
+    karte.push(h('p', { text:S.preisText }));
+  }
+  kids.push(h('div', { class:'karte fund' }, karte));
+  kids.push(h('div', { class:'hinweis', text:'Dein Satz ist in deiner Sammlung gesichert (nur auf diesem Gerät).' }));
+  kids.push(gewichtRegler('g-ende', ent ? ent.gewicht : S.gewicht, function(v){
+    S.gewicht = v;
+    if (S.entryId) aendere(S.entryId, function(x){ x.gewicht = v; });
+  }));
+  kids.push(h('p', { class:'hell' }, [ h('strong', { text:'Vermutlich hat dich dieser Satz früher einmal geschützt.' }), ' Heute kannst du prüfen, ob du ihn noch brauchst. ', h('strong', { text:'Ihn zu kennen ist der erste Schritt.' }) ]));
+  var st = statusBox();
+  var aktionen = [];
+  aktionen.push(btn('Satz sichern und zur Sammlung', 'primaer', function(){ go('sammlung'); }));
+  aktionen.push(btn('Kapitel 6: diesen Satz ins Wanken bringen', '', function(){ k6Setzen(S.entryId, st); }));
+  aktionen.push(st);
+  var andere = andereTreffer();
+  if (andere.length && !S.andereGesichert){
+    aktionen.push(btn('Auch meine anderen Treffer in die Sammlung legen', '', function(){
+      var vorhanden = eintraege().map(function(e){ return e.satz; }), n = 0;
+      andere.forEach(function(t){
+        if (vorhanden.indexOf(t.text) >= 0) return;
+        ersetzeEintrag(norm({ id:neueId(), datum:heute(), geaendert:heute(), quelle:'detektor', status:STATI[0], cluster:t.cl, satz:t.text, wahr:null, treffer:t.w, preis:[], preisText:'' }));
+        n++;
+      });
+      S.andereGesichert = true; var y0 = window.scrollY; vEnde(); window.scrollTo(0, y0);
+      var box = main.querySelector('[data-andere]'); if (box){ box.style.display = 'block'; box.textContent = n + (n === 1 ? ' weiterer Treffer liegt' : ' weitere Treffer liegen') + ' jetzt in deiner Sammlung.'; }
+    }));
+  } else if (S.andereGesichert){
+    aktionen.push(h('div', { class:'hinweis', 'data-andere':'1', text:'Deine anderen Treffer liegen in der Sammlung.' }));
+  }
+  if (andere.length && !S.andereGesichert){ aktionen.push(h('div', { class:'hinweis', 'data-andere':'1', style:'display:none' })); }
+  aktionen.push(btn('Noch einen Satz aufspüren', '', neuerLauf));
+  aktionen.push(btn('Zurück zur App', 'leise', zurueck));
+  kids.push(h('div', { style:'display:flex;flex-direction:column;gap:8px' }, aktionen));
+  kids.push(h('div', { class:'foot' }, [ zurueckBtn() ]));
+  render('ende', kids);
+}
+
+/* ===================== EXPORT ===================== */
+function exportText(list){
+  var L = ['Meine Glaubenssätze (Klarkommen)', '================================', ''];
+  list.forEach(function(e, i){
+    if (i > 0){ L.push('--------------------------------'); L.push(''); }
+    L.push('„' + e.satz + '“');
+    L.push('Kategorie: ' + katName(e));
+    L.push('Gewichtung: ' + e.gewicht + ' von 10');
+    if (e.neuerSatz) L.push('Neuer Satz: „' + e.neuerSatz + '“');
+    if (e.preis.length){
+      L.push('Was er mich kostet:');
+      e.preis.forEach(function(p){ L.push('- ' + p); });
+    }
+    if (e.preisText) L.push('Wenn er noch 5 Jahre bleibt, verpasse ich: ' + e.preisText);
+    L.push('Datum: ' + fmtDatum(e.datum));
+    L.push('');
+  });
+  return L.join('\n');
+}
+function kopieren(text, ausRueckfall, box){
+  function ok(){ box.zeige(ausRueckfall ? 'Teilen geht hier nicht. Der Text liegt in der Zwischenablage.' : 'In die Zwischenablage kopiert.'); }
+  function alt(){
+    try {
+      var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly',''); t.style.cssText = 'position:absolute;left:-9999px;top:0';
+      document.body.appendChild(t); t.select(); var r = document.execCommand('copy'); document.body.removeChild(t);
+      if (r) ok(); else box.zeige('Kopieren hat nicht geklappt. Nutze „Als Datei speichern“.');
+    } catch(e){ box.zeige('Kopieren hat nicht geklappt. Nutze „Als Datei speichern“.'); }
+  }
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(ok, alt); else alt();
+  } catch(e){ alt(); }
+}
+function teilen(text, box){
+  if (navigator.share){
+    try {
+      navigator.share({ title:'Meine Glaubenssätze (Klarkommen)', text:text }).then(function(){ box.zeige('Geteilt.'); }, function(err){
+        if (err && err.name === 'AbortError') return;
+        kopieren(text, true, box);
+      });
+    } catch(e){ kopieren(text, true, box); }
+  } else kopieren(text, true, box);
+}
+function alsDatei(text, box){
+  try {
+    var blob = new Blob([text], { type:'text/plain;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href = url; a.download = 'meine-glaubenssaetze.txt';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1500);
+    box.zeige('Datei „meine-glaubenssaetze.txt“ wird gespeichert.');
+  } catch(e){ box.zeige('Speichern als Datei hat nicht geklappt. Nutze „Kopieren“.'); }
+}
+function exportLeiste(getList){
+  var box = statusBox();
+  var zeile = h('div', { class:'zeile3' }, [
+    btn('Teilen', 'kompakt', function(){ teilen(exportText(getList()), box); }),
+    btn('Kopieren', 'kompakt', function(){ kopieren(exportText(getList()), false, box); }),
+    btn('Als Datei speichern', 'kompakt', function(){ alsDatei(exportText(getList()), box); })
+  ]);
+  return h('div', { style:'display:flex;flex-direction:column;gap:8px' }, [ zeile, box ]);
+}
+
+/* ===================== SAMMLUNG ===================== */
+function statusSeg(e, nachher){
+  return h('div', { class:'seg', role:'group', 'aria-label':'Status' }, STATI.map(function(s){
+    return h('button', { type:'button', 'aria-pressed': e.status === s ? 'true':'false', onclick:function(){
+      aendere(e.id, function(x){ x.status = s; }); nachher();
+    } }, s);
+  }));
+}
+/* Status-Icon: Tippen schaltet Aufgespürt, In Arbeit, Verwandelt, Aufgespürt durch; öffnet die Karte nicht */
+function statusKnopf(e){
+  var ix = STATI.indexOf(e.status);
+  return h('button', { type:'button', class:'stat', 'data-s':String(ix), 'data-stat':e.id,
+    'aria-label':'Status: ' + e.status + '. Tippen zum Weiterschalten.',
+    onclick:function(ev){
+      ev.stopPropagation();
+      var neu = naechsterStatus(e.status);
+      aendere(e.id, function(x){ x.status = neu; });
+      neuZeichnen();
+      var el = main.querySelector('[data-stat="' + e.id + '"]');
+      if (el){
+        try { el.focus({ preventScroll:true }); } catch(x){}
+        var r = el.getBoundingClientRect();
+        if (r.top < 56 || r.bottom > window.innerHeight){ try { el.scrollIntoView({ block:'center' }); } catch(x2){} }
+        if (el.parentNode) el.parentNode.classList.add('blitz');
+      }
+      ansage('Status: ' + neu + '.');
+      toast('Status: ' + neu + '.');
+    } },
+    [ statusIcon(e.status), h('span', { text:e.status }) ]);
+}
+function itemKarte(e){
+  var verw = e.status === STATI[2], hatNeu = verw && !!e.neuerSatz;
+  var inhalt = [ h('div', { class:'alt' + (hatNeu ? ' gedaempft' : ''), text:'„' + e.satz + '“' }) ];
+  if (hatNeu) inhalt.push(h('div', { class:'neu', text:'„' + e.neuerSatz + '“' }));
+  var open = h('button', { type:'button', class:'open', onclick:function(){ S.loeschId = null; go('detail', 0, e.id); } }, inhalt);
+  return h('div', { class:'karte item', 'data-id':e.id }, [ open, statusKnopf(e) ]);
+}
+function openBearbeiten(id){ E = null; go('bearbeiten', 0, id); }
+/* "Mehr": Export, Eigenen Satz anlegen, Alle löschen */
+function mehrBereich(l){
+  var d = h('details', { class:'mehr' });
+  if (S.mehrOffen) d.setAttribute('open', '');
+  d.addEventListener('toggle', function(){ S.mehrOffen = d.open; });
+  var inh = h('div', { class:'inhalt' });
+  if (l.length){
+    inh.appendChild(h('div', { class:'lbl', text:'Alle ' + l.length + (l.length === 1 ? ' Satz' : ' Sätze') + ' weitergeben' }));
+    inh.appendChild(exportLeiste(function(){ return sortiert(eintraege()); }));
+  }
+  inh.appendChild(btn('Eigenen Satz anlegen', '', function(){ openBearbeiten(null); }));
+  if (l.length){
+    if (S.loeschAlle){
+      inh.appendChild(h('div', { class:'hinweis warm', text:'Alle Sätze auf diesem Gerät löschen?' }));
+      inh.appendChild(h('div', { class:'zeile2' }, [
+        btn('Ja, alle löschen', 'signal kompakt', function(){ speichereEintraege([]); S.loeschAlle = false; neuZeichnen(); }),
+        btn('Abbrechen', 'leise kompakt', function(){ S.loeschAlle = false; neuZeichnen(); })
+      ]));
+    } else inh.appendChild(btn('Alle Sätze löschen', 'leise kompakt', function(){ S.loeschAlle = true; neuZeichnen(); }));
+  }
+  d.appendChild(h('summary', { text:'Mehr' }));
+  d.appendChild(inh);
+  return d;
+}
+function vSammlung(){
+  var l = sortiert(eintraege());
+  var kids = [
+    h('div', { class:'lbl', text:'Klarkommen · Kapitel 5' }),
+    h('h2', { text:'Meine Glaubenssätze' }),
+    h('p', { text:'Alles bleibt auf diesem Gerät. Du kannst Sätze ansehen, ändern, löschen und weitergeben.' }),
+    btn('Neuen Satz aufspüren', 'primaer', detektorStarten)
+  ];
+  if (!l.length){
+    kids.push(h('div', { class:'karte' }, [ h('p', { text:'Noch nichts gesammelt. Spüre mit dem Detektor einen Satz auf oder lege unter „Mehr“ selbst einen an.' }) ]));
+  } else {
+    kids.push(h('p', { class:'klein', text:'Tippe auf das Symbol, um den Status weiterzuschalten. Tippe auf eine Karte für Details.' }));
+    var hatOffene = l.some(function(e){ return e.status !== STATI[2]; }), verwStart = false;
+    l.forEach(function(e){
+      if (e.status === STATI[2] && !verwStart){ verwStart = true; if (hatOffene) kids.push(h('div', { class:'lbl', text:STATI[2] })); }
+      kids.push(itemKarte(e));
+    });
+  }
+  kids.push(mehrBereich(l));
+  kids.push(h('div', { class:'foot' }, [ btn('Zurück', 'leise', function(){ if (hist.length) zurueckSchritt(); else zurueck(); }) ]));
+  render('sammlung', kids);
+}
+function vDetail(){
+  var e = eintragById(cur.id);
+  if (!e){ zurListe(); return; }
+  var box = statusBox();
+  var karte = [
+    h('div', { class:'lbl', text:'Dein Satz' }),
+    h('div', { class:'satzkarte', text:'„' + e.satz + '“' }),
+    h('dl', { class:'fakten' }, [
+      h('dt', { text:'Kategorie' }), h('dd', { text:katName(e) }),
+      h('dt', { text:'Datum' }), h('dd', { text:fmtDatum(e.datum) }),
+      h('dt', { text:'Wahr-Wert' }), h('dd', { text:wahrText(e) })
+    ]),
+    h('div', { class:'lbl', text:'Status' }),
+    statusSeg(e, neuZeichnen)
+  ];
+  var kids = [
+    h('h2', { text:'Dein Satz im Detail' }),
+    h('div', { class:'karte fund' }, karte),
+    gewichtRegler('d-gew', e.gewicht, function(v){ aendere(e.id, function(x){ x.gewicht = v; }); }, 'Gewichtung')
+  ];
+  if (e.preis.length || e.preisText){
+    var pk = [];
+    if (e.preis.length){
+      pk.push(h('div', { class:'lbl', text:'Was er mich kostet' }));
+      pk.push(h('ul', { class:'preis' }, e.preis.map(function(t){ return h('li', { text:t }); })));
+    }
+    if (e.preisText){
+      pk.push(h('div', { class:'lbl', text:'Wenn er noch 5 Jahre bleibt, verpasse ich' }));
+      pk.push(h('p', { text:e.preisText }));
+    }
+    kids.push(h('div', { class:'karte' }, pk));
+  }
+  var nt = mkTa({ id:'d-neu', 'aria-label':'Neuer Satz', placeholder:'Ich …', maxlength:'300' });
+  nt.value = e.neuerSatz;
+  var timer = null;
+  function sichern(){
+    clearTimeout(timer);
+    var x = eintragById(e.id); if (!x) return;
+    var v = nt.value.trim();
+    if (v !== x.neuerSatz) aendere(e.id, function(y){ y.neuerSatz = v; });
+  }
+  nt.addEventListener('input', function(){ clearTimeout(timer); timer = setTimeout(sichern, 400); });
+  nt.addEventListener('blur', sichern);
+  kids.push(h('div', { class:'karte' }, [ h('label', { class:'feld', for:'d-neu', text:'Neuer Satz' }), nt, h('p', { class:'klein', text:'Wird automatisch gespeichert.' }) ]));
+  kids.push(btn('Bearbeiten', '', function(){ openBearbeiten(e.id); }));
+  kids.push(btn('In Kapitel 6 bearbeiten', 'primaer', function(){ k6Setzen(e.id, box); }));
+  kids.push(box);
+  kids.push(h('div', { class:'lbl', text:'Diesen Satz weitergeben' }));
+  kids.push(exportLeiste(function(){ var x = eintragById(e.id); return x ? [x] : []; }));
+  if (S.loeschId === e.id){
+    kids.push(h('div', { class:'hinweis warm', text:'Diesen Satz wirklich löschen? Das lässt sich nicht rückgängig machen.' }));
+    kids.push(h('div', { class:'zeile2' }, [
+      btn('Ja, löschen', 'signal kompakt', function(){ loescheEintrag(e.id); S.loeschId = null; zurListe(); }),
+      btn('Abbrechen', 'leise kompakt', function(){ S.loeschId = null; neuZeichnen(); })
+    ]));
+  } else {
+    kids.push(btn('Löschen', 'leise', function(){ S.loeschId = e.id; neuZeichnen(); }));
+  }
+  kids.push(h('div', { class:'foot' }, [ btn('Zurück zur Liste', 'leise', zurListe) ]));
+  render('detail', kids);
+}
+function vBearbeiten(){
+  var neu = !cur.id, alt = neu ? null : eintragById(cur.id);
+  if (!neu && !alt){ zurueckSchritt(); return; }
+  if (!E || E.id !== (cur.id || null) || E.frisch){
+    E = { id: cur.id || null, frisch:false,
+      satz: alt ? alt.satz : '', cluster: alt ? alt.cluster : null, wahrAn: alt ? alt.wahr !== null : false, wahr: alt && alt.wahr !== null ? alt.wahr : 5,
+      kosten: alt ? alt.preis.slice() : [], preisText: alt ? alt.preisText : '', gewicht: alt ? alt.gewicht : 5, neuerSatz: alt ? alt.neuerSatz : '' };
+  }
+  var weiter;
+  var ta = mkTa({ id:'e-satz', 'aria-label':'Satz', maxlength:'300', placeholder:'Ich …' }); ta.value = E.satz;
+  ta.addEventListener('input', function(){ E.satz = ta.value; setzeAktiv(weiter, !!ta.value.trim()); });
+  var sel = h('select', { id:'e-kat', 'aria-label':'Kategorie' });
+  sel.appendChild(h('option', { value:'', text:'Weiß nicht' }));
+  CLUSTER_ORDER.forEach(function(id){ sel.appendChild(h('option', { value:id, text:THEMA[id] })); });
+  sel.value = E.cluster || '';
+  sel.addEventListener('change', function(){ E.cluster = sel.value || null; });
+  var zahl = h('div', { class:'zahl', text:String(E.wahr) });
+  var rng = h('input', { type:'range', min:'0', max:'10', step:'1', value:String(E.wahr), id:'e-wahr', 'aria-label':'Wahr-Wert, 0 bis 10' });
+  rng.addEventListener('input', function(){ E.wahr = parseInt(rng.value,10); zahl.textContent = String(E.wahr); });
+  function wahrSync(){ rng.disabled = !E.wahrAn; zahl.style.opacity = E.wahrAn ? '1' : '.35'; sw.setAttribute('aria-checked', E.wahrAn ? 'true':'false'); }
+  var sw = h('button', { type:'button', class:'sw', role:'switch', 'aria-checked': E.wahrAn ? 'true':'false', onclick:function(){ E.wahrAn = !E.wahrAn; wahrSync(); } }, h('span', { class:'k' }), h('span', { text:'Wahr-Wert angeben' }));
+  var kl = h('div', { style:'display:flex;flex-direction:column;gap:10px' });
+  function zeichneK(fokusLetzte){
+    kl.textContent = '';
+    E.kosten.forEach(function(t, i){
+      var k = mkTa({ 'aria-label':'Kostenpunkt ' + (i+1), maxlength:'300' }); k.value = t;
+      k.addEventListener('input', function(){ E.kosten[i] = k.value; });
+      kl.appendChild(h('div', { class:'karte' }, [ k, btn('Punkt entfernen', 'leise kompakt', function(){ E.kosten.splice(i,1); zeichneK(); }) ]));
+    });
+    var tas = kl.querySelectorAll('textarea'); for (var q=0;q<tas.length;q++) autogrow(tas[q]);
+    if (fokusLetzte && tas.length) tas[tas.length-1].focus();
+  }
+  var pt = mkTa({ id:'e-5', 'aria-label':'Was verpasst du in fünf Jahren', placeholder:'Freiwillig …', maxlength:'400' }); pt.value = E.preisText;
+  pt.addEventListener('input', function(){ E.preisText = pt.value; });
+  var nsa = mkTa({ id:'e-neu', 'aria-label':'Neuer Satz', placeholder:'Ich …', maxlength:'300' }); nsa.value = E.neuerSatz;
+  nsa.addEventListener('input', function(){ E.neuerSatz = nsa.value; });
+  weiter = btn('Speichern', 'primaer', function(){
+    var t = E.satz.trim(); if (!t) return;
+    var kosten = E.kosten.map(function(x){ return x.trim(); }).filter(Boolean);
+    var e2;
+    if (neu){
+      e2 = norm({ id:neueId(), datum:heute(), geaendert:heute(), quelle:'eigen', status:STATI[0] });
+    } else { e2 = alt; e2.geaendert = heute(); }
+    e2.satz = t; e2.cluster = E.cluster; e2.wahr = E.wahrAn ? E.wahr : null; if (E.wahrAn) e2.treffer = 0; e2.preis = kosten; e2.preisText = E.preisText.trim(); e2.gewicht = E.gewicht; e2.neuerSatz = E.neuerSatz.trim();
+    ersetzeEintrag(e2); E = null; zurueckSchritt();
+  });
+  setzeAktiv(weiter, !!E.satz.trim());
+  render('bearbeiten', [
+    h('h2', { text: neu ? 'Eigenen Satz anlegen' : 'Satz bearbeiten' }),
+    h('div', { class:'karte teal' }, [ h('label', { class:'feld', for:'e-satz', text:'Ich glaube:' }), ta ]),
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'e-kat', text:'Kategorie' }), sel ]),
+    h('div', { class:'karte' }, [
+      h('div', { class:'wahlkopf' }, [ h('label', { class:'feld', for:'e-wahr', text:'Wie wahr fühlt sich das an?' }), zahl ]),
+      rng, sw
+    ]),
+    h('div', { class:'karte' }, [ h('div', { class:'lbl', text:'Was er mich kostet (freiwillig)' }), kl, btn('Punkt hinzufügen', 'kompakt', function(){ E.kosten.push(''); zeichneK(true); }) ]),
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'e-5', text:'Wenn er noch 5 Jahre bleibt: Was verpasse ich?' }), pt ]),
+    gewichtRegler('e-gew', E.gewicht, function(v){ E.gewicht = v; }),
+    h('div', { class:'karte' }, [ h('label', { class:'feld', for:'e-neu', text:'Neuer Satz' }), nsa ]),
+    h('div', { class:'foot' }, [ weiter, btn('Abbrechen', 'leise', function(){ E = null; zurueckSchritt(); }) ])
+  ]);
+  zeichneK(false); wahrSync();
+}
+
+updateKopf();
+/* Deep-Link: experimente/glaubenssatz-detektor/index.html#sammlung öffnet direkt die Sammlung; Zurück führt dann in die App */
+function ausHash(){
+  if (location.hash === '#sammlung'){ hist = []; cur = { name:'sammlung', i:0, id:null }; return true; }
+  return false;
+}
+ausHash();
+zeige();
+window.addEventListener('hashchange', function(){ if (ausHash()) zeige(); });
+</script>
+</body>
+</html>

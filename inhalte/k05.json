@@ -1,0 +1,28 @@
+{
+ "schemaVersion": 1,
+ "id": "k05",
+ "slides": [
+  {
+   "id": "einstieg",
+   "rubrik": "einstieg",
+   "titel": "Einstieg",
+   "bloecke": [
+    {
+     "typ": "experiment",
+     "id": "glaubenssatz-detektor",
+     "expTyp": "werkzeug",
+     "titel": "Der Glaubenssatz-Detektor",
+     "text": "Finde den einen Satz, der dich im Alltag am meisten bremst, und was er dich kostet. Alles bleibt auf deinem Gerät. Ca. 10 Minuten."
+    },
+    {
+     "typ": "xlink",
+     "id": "glaubenssatz-detektor",
+     "anker": "sammlung",
+     "titel": "Meine Glaubenssätze",
+     "text": "Deine gesammelten Sätze ansehen und gewichten"
+    }
+   ],
+   "lese": null
+  }
+ ]
+}

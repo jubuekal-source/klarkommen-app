@@ -66,6 +66,18 @@
       }
     },
     {
+      "id": "glaubenssatz-detektor",
+      "titel": "Glaubenssatz-Detektor",
+      "dateien": [
+        "experimente/glaubenssatz-detektor/index.html"
+      ],
+      "bytes": 102756,
+      "kapitel": 5,
+      "deeplinks": {
+        "sammlung": "#sammlung"
+      }
+    },
+    {
       "id": "kausalkette",
       "titel": "Der Kreislauf",
       "dateien": [

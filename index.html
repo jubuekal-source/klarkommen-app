@@ -354,6 +354,7 @@ body.xmode .fab,body.xmode footer.foot{display:none}
 .card h2{font-size:1.18rem;display:flex;align-items:center;gap:10px;margin:0 0 12px}
 .card h2 svg.i{color:var(--brand-accent-soft)}
 .card .hint{color:var(--brand-text-2);font-size:.9rem;margin:0 0 12px}
+.zugrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0}.zugrow .btn{min-height:40px;padding:6px 14px;width:auto}
 .fld{display:block;margin:0 0 12px}
 .fld span{display:block;font-size:.84rem;color:var(--brand-text-2);margin-bottom:6px;font-weight:500}
 .fld input{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1px solid var(--brand-line-2);background:var(--brand-input);outline:none}
@@ -733,7 +734,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.31';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.32';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -815,7 +816,9 @@ const IC = {
   share:'<path d="M12 14.5v-11M8 7.5l4-4 4 4"/><path d="M8 10.5H6v10h12v-10h-2"/>',
   dots:'<circle cx="12" cy="5.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="18.5" r="1.4"/>',
   plusbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/>',
-  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>'
+  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>',
+  key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l3 3M14 9l2 2"/>',   /* v1.3.32 */
+  search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>'   /* v1.3.32: Lupe (Werkzeug-Karte k05) */
 };
 /* spec/01 §C.8 – Icon-Helfer */
 function ic(n, cls){ const fill = (n==='play'||n==='pause'); return `<svg class="i${fill?' f':''}${cls?' '+cls:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]||''}</svg>`; }
@@ -844,6 +847,40 @@ let startbildURL = null;
 /* spec/01 §C.6 – localStorage gekapselt (Privatmodus/Vorschau) */
 function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 function lsSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+/* v1.3.32: Zugangscodes (spec/10 §10). Codes liegen nur als SHA-256 ('klarkommen:'+normalisierter Code) in inhalte/zugang.json; gemerkt wird je Gerät nur der Hash (localStorage kk_zugang). Kein echter Schutz, nur Freischaltung. */
+const ZUG_KEY = 'kk_zugang';
+let ZUG = {liste:[], geladen:false, aktiv:[], frei:new Set()};   /* liste = Einträge der zugang.json; aktiv = davon auf diesem Gerät eingelöste; frei = Set Kapitel-IDs (oder 'alle') */
+function zugHashes(){ try{ const a = JSON.parse(lsGet(ZUG_KEY)||'[]'); return Array.isArray(a) ? a.filter(x=>typeof x==='string') : []; }catch(e){ return []; } }
+function zugBerechne(){
+  const hs = zugHashes();
+  ZUG.aktiv = ZUG.liste.filter(c=>hs.includes(c.hash));   /* unbekannt gewordene Hashes bleiben gespeichert, wirken aber nicht */
+  ZUG.frei = new Set();
+  for(const c of ZUG.aktiv){ if(c.kapitel==='alle') ZUG.frei.add('alle'); else if(Array.isArray(c.kapitel)) c.kapitel.forEach(id=>{ if(typeof id==='string') ZUG.frei.add(id); }); }
+}
+async function zugLaden(){
+  try{ const j = await getJSON('inhalte/zugang.json'); ZUG.liste = (Array.isArray(j.codes)?j.codes:[]).filter(c=>c && typeof c.hash==='string'); ZUG.geladen = true; }
+  catch(e){ ZUG.liste = []; ZUG.geladen = false; }
+  zugBerechne();
+}
+const zugNorm = c => String(c||'').trim().toLowerCase().replace(/\s+/g,'');
+async function zugHash(code){
+  if(!(window.crypto && crypto.subtle && crypto.subtle.digest && window.TextEncoder)) return null;
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('klarkommen:'+zugNorm(code)));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+/* löst einen Code ein; gibt den Toast-Text zurück */
+async function zugEinloesen(code){
+  if(!zugNorm(code)) return 'Bitte gib zuerst einen Code ein.';
+  const h = await zugHash(code);
+  if(!h) return 'Freischalten klappt nur über die normale Klarkommen-Adresse.';
+  if(!ZUG.geladen) await zugLaden();
+  const c = ZUG.liste.find(x=>x.hash===h);
+  if(!c) return ZUG.geladen ? 'Dieser Zugangscode ist nicht bekannt.' : 'Die Zugangscodes konnten nicht geladen werden. Bist du online?';
+  const hs = zugHashes(); if(!hs.includes(h)){ hs.push(h); lsSet(ZUG_KEY, JSON.stringify(hs)); }
+  zugBerechne();
+  return 'Freigeschaltet: '+(c.name||'Zugang');
+}
+const kapFrei = k => !!k && (k.status==='frei' || (!!k.inhalt && (ZUG.frei.has('alle') || ZUG.frei.has(k.id))));   /* ohne Inhaltsdatei bleibt jedes Kapitel gesperrt */
 /* Skill §2.2 – einzige Stelle für Migrationen */
 function normalizeData(o){
   const d = JSON.parse(JSON.stringify(DEFAULT_DATA));
@@ -867,7 +904,7 @@ async function getJSON(url){
 /* spec/01 §B – Kapitelinhalt; Feld "inhalt" in kapitel.json zeigt vorübergehend auf Beispielinhalt (§E) */
 async function inhalt(k){
   if(INH[k.id]) return INH[k.id];
-  if(k.status!=='frei') return null;
+  if(!kapFrei(k)) return null;   /* v1.3.32 */
   const url = k.inhalt || `inhalte/${k.id}.json`;
   try{
     const data = await getJSON(url);
@@ -1004,7 +1041,7 @@ function ringSvg(f, wort='gelesen'){
 function coverPos(k, wo){ const v = (wo==='kopf' && k.coverPosKopf) || k.coverPos; return (typeof v==='string' && /^[\d.% a-z-]{1,40}$/.test(v)) ? ` style="object-position:${v}"` : ''; }
 /* spec/01 §C.2 + §C.3 – Kachel */
 function tile(k){
-  const locked = k.status!=='frei';
+  const locked = !kapFrei(k);   /* v1.3.32 */
   const eyebrow = k.nr ? `Kapitel ${k.nr}` : 'Bonus';
   const f = fortschritt(k);
   const tag = locked ? `<span class="tag">Vollversion</span>` : (k.typ==='toolbox' ? `<span class="tag">Toolsammlung</span>` : '');
@@ -1041,15 +1078,15 @@ async function renderStart(app){
   offlinePill();
   setTimeout(instZeigen, 900);   /* spec/06 §2 */
   /* Fortschrittsringe nachladen */
-  for(const k of KAP.filter(k=>k.status==='frei')){
+  for(const k of KAP.filter(kapFrei)){
     inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
   }
-  Promise.all(KAP.filter(k=>k.status==='frei' && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); const it=document.getElementById('intro'); if(it && curRoute.name==='start') it.innerHTML = introHtml(); });
+  Promise.all(KAP.filter(k=>kapFrei(k) && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); const it=document.getElementById('intro'); if(it && curRoute.name==='start') it.innerHTML = introHtml(); });
 }
 /* v1.3.10: Einstiegstext – zweiter Satz je nach Fortschritt. N = erstes freies, begonnenes, nicht abgeschlossenes Kapitel, sonst erstes freies nicht abgeschlossenes (Toolbox übersprungen); alles erledigt = nur erster Satz */
 function introHtml(){
   const S1 = 'Kapitel für Kapitel zu mehr innerer Stärke und Klarheit.';
-  const fr = KAP.filter(k=>k.nr && k.status==='frei' && k.typ!=='toolbox');
+  const fr = KAP.filter(k=>k.nr && kapFrei(k) && k.typ!=='toolbox');
   if(fr.some(k=>!INH[k.id])){ return (Object.keys(D.gelesen||{}).length || Object.keys(D.letzte||{}).length) ? S1 : S1+' Tippe Kapitel 1 an, um loszulegen.'; }   /* Inhalte noch nicht geladen: nichts Falsches behaupten */
   const st = fr.map(k=>{ const f=fortschritt(k); return {k, done: !!(f && f.n && f.r===f.n), beg: !!(f && (f.r>0 || D.letzte[k.id]))}; });
   const any = st.some(x=>x.done || x.beg);
@@ -1062,7 +1099,7 @@ function introHtml(){
 function progHtml(){
   const Kn = KAP.filter(k=>k.nr); let fertig = 0, beg = 0;
   const seg = Kn.map(k=>{
-    const f = (k.status==='frei' && k.typ!=='toolbox') ? fortschritt(k) : null;
+    const f = (kapFrei(k) && k.typ!=='toolbox') ? fortschritt(k) : null;
     if(!f) return '<i></i>';
     if(f.n && f.r===f.n){ fertig++; return '<i class="ok"><b style="width:100%"></b></i>'; }
     if(f.r>0 || D.letzte[k.id]){ beg++; return `<i class="beg"><b style="width:${Math.max(22, Math.round(100*f.r/f.n))}%"></b></i>`; }
@@ -1072,12 +1109,12 @@ function progHtml(){
   return `<div class="prog${fertig||beg?'':' leer'}" id="prog" role="img" aria-label="${txt}"><div class="pbar">${seg}</div><div class="pt">${txt}</div></div>`;
 }
 /* spec/00 §2.2 – nächstes freies Kapitel */
-function naechstesKapitel(k){ const i = KAP.indexOf(k); return KAP.slice(i+1).find(x=>x.status==='frei') || null; }
+function naechstesKapitel(k){ const i = KAP.indexOf(k); return KAP.slice(i+1).find(kapFrei) || null; }
 /* spec/01 §C.4 – Kapitelseite */
 async function renderKapitel(app, r){
   const k = kapFromRoute(r.kap);
   if(!k){ location.replace('#/'); return; }
-  if(k.status!=='frei'){ location.replace('#/'); setTimeout(()=>openSperre(k),50); return; }
+  if(!kapFrei(k)){ location.replace('#/'); setTimeout(()=>openSperre(k),50); return; }
   document.title = `${k.titel} · ${titel()}`;
   const eyebrow = k.nr ? `Kapitel ${k.nr}` : 'Bonus';
   const head = `<section class="khead"><img src="${esc(k.cover)}" alt=""${coverPos(k,'kopf')}><div class="wrap"><div class="eyebrow">${eyebrow}${k.phase?` · ${esc(k.phase)}`:''}</div><h1>${esc(k.titel)}</h1>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}</div></section>`;
@@ -1141,6 +1178,11 @@ function blocks(arr, ctx){
       case 'link': { /* Nachtrag 04.11.: externe Link-Karte (nur Link, nichts wird vorgeladen) */
         if(!/^https:\/\//.test(b.url||'')) break;
         h += `<div class="exp lnk"><div class="art">${ic('play')} ${esc(b.art||'Link')}</div><h3>${esc(b.titel||b.url)}</h3>${b.hinweis?`<p>${inl(b.hinweis)}</p>`:''}<a class="btn sec block" href="${esc(b.url)}" target="_blank" rel="noopener noreferrer">${ic('ext')} ${esc(b.label||'Link öffnen')}</a>${b.online?`<p class="hint lnk-on">${ic('info')} ${esc(b.online)}</p>`:''}</div>`; break; }
+      case 'xlink': { /* v1.3.32: interner Link in ein Experiment/Werkzeug (Deep-Link #/x/<id>/<anker>) als Link-Karte; öffnet das iframe-Overlay wie die Einladungskarte */
+        if(!b.id) break;
+        const key = `${path}/xl/${b.id}${b.anker?'-'+b.anker:''}`;
+        h += `<section class="card lk" data-xk="${esc(key)}"><a class="linkrow" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}"><span class="iconbtn" style="background:var(--brand-card-2)">${ic(b.icon||'search')}</span><span class="k">${esc(b.titel||'')}${b.text?`<small>${esc(b.text)}</small>`:''}</span>${ic('chev')}</a></section>`;
+        break; }
       case 'quelle': h += `<div class="quelle">${ic('book')}<div>${inl(b.text)}${b.url?` <a href="${esc(b.url)}" target="_blank" rel="noopener">${ic('ext')}<span class="sr">Link öffnen</span></a>`:''}</div></div>`; break;
       default: console.warn('Unbekannter Blocktyp', b.typ);
     }
@@ -1164,7 +1206,7 @@ function audioCard(b){
 /* spec/01 §C.5 – Slide */
 async function renderSlide(app, r){
   const k = kapFromRoute(r.kap);
-  if(!k || k.status!=='frei'){ location.replace('#/'); return; }
+  if(!k || !kapFrei(k)){ location.replace('#/'); return; }
   const I = await inhalt(k); const S = I.data.slides;
   const i = S.findIndex(s=>s.id===r.slide);
   if(i<0){ location.replace('#/k/'+kapRouteId(k)); return; }
@@ -1266,6 +1308,14 @@ function xRueckScroll(r){
   return true;
 }
 /* spec/01 §C.6 – Einstellungen */
+/* v1.3.32: Karte „Zugangscode“ */
+function zugangHtml(){
+  const li = ZUG.aktiv.length ? `<div class="sep"></div><div class="zuglist">${ZUG.aktiv.map(c=>`<div class="zugrow"><span><b>${esc(c.name||'Zugang')}</b></span><button class="btn ghost" data-act="zug-weg" data-h="${esc(c.hash)}">entfernen</button></div>`).join('')}</div>` : '';
+  return `      <p class="hint">Hast du einen Code aus deinem Workshop? Hier eingeben, dann öffnen sich weitere Kapitel. Bleibt nur auf diesem Gerät.</p>
+      <label class="fld"><span>Zugangscode</span><input id="inZug" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="60" style="font-size:16px"></label>
+      <button class="btn block" data-act="zug-ok">${ic('check')} Freischalten</button>${li}
+`;
+}
 async function renderEinstellungen(app){
   document.title = `Einstellungen · ${titel()}`;
   const eigenesBild = !!startbildURL;
@@ -1273,6 +1323,7 @@ async function renderEinstellungen(app){
     <div class="pagehead"><h1>Einstellungen</h1><p>Alles hier bleibt nur auf diesem Gerät.</p></div>
     <section class="card lk"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
     <section class="card lk"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
+    ${setk('set-zugang','key','Zugangscode',`<span id="sZug">${ZUG.aktiv.length?ZUG.aktiv.length+' aktiv':'Code eingeben'}</span>`,zugangHtml())}
     ${setk('set-titel','edit','Titel &amp; Untertitel',`<span id="sTitel">${esc(titel())}</span>`,`      <label class="fld"><span>Titel auf der Startseite</span><input id="inTitel" maxlength="40" value="${esc(titel())}" autocomplete="off"></label>
       <label class="fld"><span>Untertitel</span><input id="inUnter" maxlength="90" value="${esc(untertitel())}" autocomplete="off"></label>
       <div class="btns two"><button class="btn" data-act="titel-speichern">${ic('check')} Speichern</button><button class="btn sec" data-act="titel-reset">${ic('reset')} Auf Standard zurücksetzen</button></div>
@@ -1348,6 +1399,7 @@ const EXP_TYPEN = {
   experiment:{art:'Experiment', icon:'flask', start:'Experiment starten'},
   uebung:{art:'Übung', icon:'play', start:'Übung starten'},
   atemtool:{art:'Atemtool', icon:'wind', start:'Atemtool starten'},
+  werkzeug:{art:'Werkzeug', icon:'search', start:'Detektor starten', nochmal:'Nochmal starten'},   /* v1.3.32: Glaubenssatz-Detektor (k05) – ausdrücklich kein Experiment */
   schaubild:{art:'Schaubild', icon:'loop', start:'Los geht’s', nochmal:'Nochmal ansehen', vorschau:true}   /* v1.3.17: Visualisierung statt Experiment (k03 „Der Kreislauf“), per expTyp im Block */
 };
 function expLabel(b, path){
@@ -1399,8 +1451,9 @@ function tbDauer(t){
   return `${String(Math.round(m*10)/10).replace('.',',')} min`;
 }
 async function tbDaten(k){ const I = await inhalt(k); return I; }
-const tbFrei = T => (T.tools||[]).filter(t=>t.status!=='gesperrt');
-const tbTool = (T,id) => (T.tools||[]).find(t=>t.id===id && t.status!=='gesperrt');
+const tbGesp = t => t.status==='gesperrt' && !(t.herkunft && kapFrei(kapById(t.herkunft)));   /* v1.3.32: per Code freigeschaltetes Herkunftskapitel öffnet auch seine Toolbox-Übungen */
+const tbFrei = T => (T.tools||[]).filter(t=>!tbGesp(t));
+const tbTool = (T,id) => (T.tools||[]).find(t=>t.id===id && !tbGesp(t));
 const tbHref = (k,t,von) => `#/k/${kapRouteId(k)}/tool/${encodeURIComponent(t.id)}${von?`?${von==='alle'?'von=alle':'u='+encodeURIComponent(von)}`:''}`;
 
 /* Hilfe-Karte – immer sichtbar (spec/02 §2, spec/03 Kap. 7 Nr. 4) */
@@ -1419,7 +1472,7 @@ function tbHilfe(T){
 }
 /* Tool-Zeile (Listen) */
 function tbZeile(k, T, t, von){
-  if(t.status==='gesperrt'){
+  if(tbGesp(t)){
     const hk = kapById(t.herkunft);
     return `<li><button class="trow locked" data-act="sperre-tool" data-kap="${esc(t.herkunft||'')}" data-titel="${esc(t.titel)}"><span class="ti">${ic('lock')}</span><span class="tt"><b>${esc(t.titel)}</b><small>${hk&&hk.nr?`Kapitel ${hk.nr} · `:''}Vollversion</small></span></button></li>`;
   }
@@ -1464,7 +1517,7 @@ const tbKatVon = (T,id) => (tbKategorien(T).find(c=>c.tools.some(t=>t.id===id))|
 const tbAnz = n => `${n} ${n===1?'Übung':'Übungen'}`;
 /* spec/07 T16 + F10: gesperrte Übungen als eine dezente, nicht antippbare Zeile je Kapitel */
 function tbKommt(T){
-  const g = (T.tools||[]).filter(t=>t.status==='gesperrt'), by = new Map();
+  const g = (T.tools||[]).filter(tbGesp), by = new Map();
   for(const t of g){ const hk = kapById(t.herkunft); const key = hk && hk.nr ? hk.nr : 0; if(!by.has(key)) by.set(key, []); by.get(key).push(t.titel); }
   return [...by.entries()].sort((a,b)=>a[0]-b[0]).map(([nr,ts])=>`<p class="tbkommt">${ic('lock')}<span><b>${nr?`Kommt in Kapitel ${nr}`:'Kommt in der Vollversion'}:</b> ${ts.map(esc).join(' · ')}</span></p>`).join('');
 }
@@ -1510,7 +1563,7 @@ const tbQuellen = q => (Array.isArray(q)?q:[]).map(x=>typeof x==='string' ? {typ
 /* Unterseiten: Toolkarte (alte Use-Case-/Alle-Routen → Toolbox) */
 async function renderToolboxSub(app, r){
   const k = kapFromRoute(r.kap);
-  if(!k || k.status!=='frei' || k.typ!=='toolbox'){ location.replace(k?'#/k/'+kapRouteId(k):'#/'); return; }
+  if(!k || !kapFrei(k) || k.typ!=='toolbox'){ location.replace(k?'#/k/'+kapRouteId(k):'#/'); return; }
   const I = await tbDaten(k), T = I.data, R = kapRouteId(k);
   /* spec/05 C3: Use-Case-Seiten und Filterseite „Alle Tools“ entfallen – alte Links führen zur Toolbox */
   if(r.name==='tbuc' || r.name==='tballe'){ location.replace('#/k/'+R); return; }
@@ -1523,7 +1576,7 @@ async function renderToolboxSub(app, r){
   const kat = tbKatVon(T, t.id); sessionStorageSet('kk_tbkat', kat||'');
   const zurueckHref = `#/k/${R}${kat?`?kat=${encodeURIComponent(kat)}`:''}`;
   const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null;
-  const herk = hk ? `<span class="tchip">aus Kapitel ${hk.nr}${hk.status==='frei'?` · ${esc(hk.titel)}`:''}</span>` : '';   /* spec/05 C4: reine Info, kein Link */
+  const herk = hk ? `<span class="tchip">aus Kapitel ${hk.nr}${kapFrei(hk)?` · ${esc(hk.titel)}`:''}</span>` : '';   /* spec/05 C4: reine Info, kein Link */
   const ctx = {path:`${k.id}/tool/${t.id}`};
   const auds = (Array.isArray(t.audio) ? t.audio : (t.audio ? [t.audio] : [])).map((x,i,arr)=>typeof x==='string' ? {typ:'audio', id:x, titel:arr.length>1?`${t.titel} (${i+1})`:t.titel, art:t.art==='audio'?'meditation':'uebung', status:'fertig'} : {typ:'audio', ...x});
   const exps = (Array.isArray(t.experiment) ? t.experiment : (t.experiment ? [t.experiment] : [])).map(x=>typeof x==='string' ? {typ:'experiment', id:x, titel:`${t.titel} – geführt`, text:t.experimentText||null} : {typ:'experiment', ...x});
@@ -1914,6 +1967,13 @@ document.addEventListener('click', async e=>{
   const el = e.target.closest('[data-act]'); if(!el) return;
   const act = el.dataset.act;
   if(act==='sperre'){ const k = kapById(el.dataset.kap); if(k) openSperre(k); }
+  else if(act==='zug-ok'){ const inp = document.getElementById('inZug'); const msg = await zugEinloesen(inp ? inp.value : ''); toast(msg); if(/^Freigeschaltet/.test(msg)) route(); }
+  else if(act==='zug-weg'){
+    const c = ZUG.aktiv.find(x=>x.hash===el.dataset.h); if(!c) return;
+    if(await ask('Zugang entfernen?','„'+(c.name||'Zugang')+'“ wird auf diesem Gerät entfernt. Mit dem Code kannst du ihn jederzeit wieder freischalten.','Entfernen')){
+      lsSet(ZUG_KEY, JSON.stringify(zugHashes().filter(h=>h!==c.hash))); zugBerechne(); toast('Zugang entfernt.'); route();
+    }
+  }
   else if(act==='sperre-anfragen'){ closeDlg(document.getElementById('dlgSperre')); location.hash = '#/ueber'; }
   else if(act==='dlg-zu'){ closeDlg(el.closest('dialog')); }
   else if(act==='play'||act==='rw'||act==='ff'){ audioAct(el.closest('.audio'), act); }
@@ -1947,7 +2007,7 @@ document.addEventListener('click', async e=>{
   else if(act==='export'){ exportieren(); }
   else if(act==='import'){ document.getElementById('fileImport').click(); }
   else if(act==='kap-reset'){
-    const k = kapById(el.dataset.kap); if(!k || k.status!=='frei') return;
+    const k = kapById(el.dataset.kap); if(!k || !kapFrei(k)) return;
     if(await ask('Fortschritt dieses Kapitels zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen in „'+k.titel+'“ werden gelöscht. Andere Kapitel bleiben unverändert.','Ja, zurücksetzen')){
       const pre = k.id+'/';
       for(const o of [D.gelesen, D.checks]) for(const key of Object.keys(o)) if(key.startsWith(pre)) delete o[key];
@@ -1961,6 +2021,7 @@ document.addEventListener('click', async e=>{
   }
 });
 /* spec/04 §10: Kommentar live mitschreiben (Link-Text aktuell halten) */
+document.addEventListener('keydown', e=>{ if(e.key==='Enter' && e.target && e.target.id==='inZug'){ e.preventDefault(); const b = document.querySelector('[data-act="zug-ok"]'); if(b) b.click(); } });   /* v1.3.32 */
 document.addEventListener('input', e=>{ if(e.target.id==='fbKom' && FB){ FB.kommentar = e.target.value; fbSpeichern(); fbUpdate(); } });
 document.addEventListener('change', async e=>{
   const cb = e.target.closest('input[data-check]');
@@ -2099,6 +2160,8 @@ window.addEventListener('offline', ()=>{ if(curRoute.name==='start') offlinePill
    ================================================================ */
 async function init(){
   loadData();
+  let zugLink = null;   /* v1.3.32: ?zugang=CODE aus der Adresse nehmen und sofort aus der URL entfernen (Hash-Route bleibt) */
+  try{ const u = new URL(location.href); if(u.searchParams.has('zugang')){ zugLink = u.searchParams.get('zugang'); u.searchParams.delete('zugang'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } }catch(e){}
   try{
     const [b, kj, mj, xj] = await Promise.all([getJSON('brand/brand.json'), getJSON('inhalte/kapitel.json'), getJSON('medien.json').catch(()=>({version:0, dateien:[]})), getJSON('experimente/index.json').catch(()=>null)]);
     BRAND = b; KAP = (kj.kapitel||[]); MED = mj;
@@ -2109,8 +2172,11 @@ async function init(){
     return;
   }
   document.body.classList.remove('sv-a','sv-b','sv-c'); document.body.classList.add('sv-'+(BRAND.sperrVariante||'b'));
+  await zugLaden();   /* v1.3.32: fehlt die Datei, läuft die App wie bisher */
+  let zugMsg = null; if(zugLink!==null){ try{ zugMsg = await zugEinloesen(zugLink); }catch(e){ zugMsg = 'Freischalten hat nicht geklappt.'; } }
   await ladeStartbild();
   route();
+  if(zugMsg) toast(zugMsg);
   if('serviceWorker' in navigator){
     const hadSW = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('sw.js').then(r=>{ try{ r.update(); }catch(e){} }).catch(e=>console.warn('SW-Registrierung fehlgeschlagen', e));

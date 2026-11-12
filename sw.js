@@ -3,14 +3,14 @@
    - Medien-Cache "kk-medien-r<N>" (Revision, nicht App-Version): alles aus medien.json – cache-first,
      Range-Anfragen werden aus dem Cache als 206 beantwortet (iOS-Audio).
    Bei jedem App-Update VERSION hochzählen (und APP_VERSION in index.html). */
-const VERSION = 'v37';
+const VERSION = 'v38';
 const SHELL = 'kk-shell-' + VERSION;
 const MEDIEN = 'kk-medien-r3';   /* Revision hochzählen, wenn Bilder/Audios mit GLEICHEM Dateinamen ersetzt werden (cache-first!) */
 const CORE = [
   './', 'index.html', 'manifest.webmanifest', 'medien.json',
   'brand/brand.json', 'brand/start.webp', 'brand/rubrik/rubrik-einstieg.webp', 'brand/rubrik/rubrik-brainfact.webp', 'brand/rubrik/rubrik-mindhack.webp', 'brand/rubrik/rubrik-mission.webp', 'brand/rubrik/rubrik-quellen.webp', 'brand/icons/zw-kettenglied.webp', 'brand/icons/zw-anker.webp', 'brand/icons/zw-wegweiser.webp', 'brand/icon-192.png', 'brand/icon-512.png', 'brand/icon-maskable-512.png', 'brand/apple-touch-icon.png',
   'brand/getcon/hero.webp', 'brand/getcon/logo-weiss.png',
-  'fonts/fonts.css', 'inhalte/kapitel.json', 'experimente/index.json'
+  'fonts/fonts.css', 'inhalte/kapitel.json', 'inhalte/zugang.json', 'experimente/index.json'
 ];
 const NET_TIMEOUT = 5000;
 
@@ -47,7 +47,7 @@ self.addEventListener('install', event => {
     try { /* Inhalte der freien Kapitel */
       const kj = await (await fetch('inhalte/kapitel.json', { cache: 'reload' })).json();
       for (const k of kj.kapitel || []) {
-        if (k.status !== 'frei') continue;
+        if (k.status !== 'frei' && !k.inhalt) continue;   /* v38: jedes Kapitel mit Inhaltsdatei (auch gesperrte – Dateien sind öffentlich) */
         const u = k.inhalt || `inhalte/${k.id}.json`;   /* slides + toolbox (Kap. 7) */
         await addSafe(c, u);
       }
