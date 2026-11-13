@@ -204,16 +204,15 @@ svg.i.f{fill:currentColor;stroke:none}
 .bl h2.lzh>span,.bl h3.lzs>span{min-width:0}
 .bl h3.lzs{display:flex;align-items:center;gap:10px;font-size:1.12rem;margin:26px 0 8px}
 .bl h3.lzs>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
-.bl .btn.lese-zu{margin:30px 0 8px}
 .bl ul,.bl ol{margin:0 0 1.2em;padding-left:1.35em}
 .bl li{margin:.35em 0;padding-left:.2em}
 img.ti{height:1.2em;width:auto;vertical-align:-.28em;display:inline-block}
 .bl .or{color:var(--brand-accent-soft)}
 /* v1.3.34: Lese-Vollansicht – ist „Lieber lesen statt hören?“ offen, verschwindet alles andere (Kopfbild, Titel, Podcast, Merkzettel, Weiter), die Karte verliert Rand/Hintergrund/Innenabstand und der Text nutzt die volle Breite. Klasse .lese-voll sitzt auf .view (per JS beim Auf-/Zuklappen). */
-.view.lese-voll .shead,.view.lese-voll footer.foot,.view.lese-voll .slide>*:not(details.acc.lese){display:none}
-.view.lese-voll details.acc.lese{margin:0;border:0;border-radius:0;background:none}
-.view.lese-voll details.acc.lese>summary{padding:14px 0;border-bottom:1px solid var(--brand-line)}
-.view.lese-voll details.acc.lese .acb{padding:18px 0 8px}   /* v1.3.33 */
+.view.lese-voll .shead,.view.lese-voll footer.foot,.view.lese-voll .slide>*:not(details.acc.vv[open]){display:none}
+.view.lese-voll details.acc.vv[open]{margin:0;border:0;border-radius:0;background:none}
+.view.lese-voll details.acc.vv[open]>summary{padding:14px 0;border-bottom:1px solid var(--brand-line)}
+.view.lese-voll details.acc.vv[open]>.acb{padding:18px 0 96px}   /* unten Platz, damit der Schwebe-Button nichts verdeckt */   /* v1.3.33 */
 .bl li::marker{color:var(--brand-accent-soft);font-weight:700}
 .bl blockquote{margin:22px 0;padding:2px 0 2px 18px;border-left:3px solid var(--brand-accent);font-family:var(--brand-font-head);font-size:1.22rem;font-weight:500;line-height:1.4;color:#fff}
 .bl blockquote cite{display:block;margin-top:8px;font-family:var(--brand-font-body);font-style:normal;font-size:.88rem;font-weight:400;color:var(--brand-text-2)}
@@ -746,7 +745,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.35';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.36';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1235,8 +1234,8 @@ async function renderSlide(app, r){
     <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
-  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Ansicht schließen</button></div></details>`;
-  if(s.merkzettel && s.merkzettel.length) html += `<details class="acc merk"><summary>${ic('bulb')}<span>Merkzettel</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.merkzettel, {...ctx, path:ctx.path+'/merk'})}</div></details>`;   /* v1.3.22: BrainFact-Reihenfolge Teaser → Podcast → „Lieber lesen statt hören?“ → Merkzettel (zugeklappt), Feld `merkzettel`; v1.3.25: Umbenennung zu Merkzettel, neues Feld `nach` (Blöcke nach dem Merkzettel) */
+  if(s.lese && s.lese.length) html += `<details class="acc lese vv"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}</div></details>`;
+  if(s.merkzettel && s.merkzettel.length) html += `<details class="acc merk vv"><summary>${ic('bulb')}<span>Merkzettel</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.merkzettel, {...ctx, path:ctx.path+'/merk'})}</div></details>`;   /* v1.3.22: BrainFact-Reihenfolge Teaser → Podcast → „Lieber lesen statt hören?“ → Merkzettel (zugeklappt), Feld `merkzettel`; v1.3.25: Umbenennung zu Merkzettel, neues Feld `nach` (Blöcke nach dem Merkzettel) */
   if(s.nach && s.nach.length) html += `<div class="bl">${blocks(s.nach, {...ctx, path:ctx.path+'/nach'})}</div>`;   /* v1.3.25: Karten nach dem Merkzettel (k03: Kreislauf) */
   if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
     html += naechstWeiter(k, true);
@@ -2146,13 +2145,14 @@ document.addEventListener('toggle', e=>{
     window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
   }));
 }, true);
-/* v1.3.11: „Leseversion schließen“ am Ende des Lesetextes – wie der Schalter oben: zuklappen, sanft zum Schalter zurück */
-/* v1.3.34: Vollansicht an/aus (Summary-Klick und Schließen-Button laufen beide über das toggle-Ereignis) */
+/* v1.3.36: Vollansicht für „Lieber lesen statt hören?“ und „Merkzettel“ (Klasse vv): Karte auf → alles andere weg, Text volle Breite, schwebender „Ansicht schließen“-Button (#leseclose, Einblend-Regel wie der Zurück-Button). Der frühere Button am Textende ist entfallen. Summary-Klick und Schweb-Button laufen beide über das toggle-Ereignis. */
 document.addEventListener('toggle', e=>{
-  const d = e.target; if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('lese')) return;
-  const v = d.closest('.view'); if(v) v.classList.toggle('lese-voll', d.open);
-  const lc = document.getElementById('leseclose'); if(lc){ if(d.open && !lc.innerHTML) lc.innerHTML = ic('x')+'<span>Ansicht schließen</span>'; lc.classList.remove('away'); lc.hidden = !d.open; }
+  const d = e.target; if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('vv')) return;
+  const offen = document.querySelector('#app details.acc.vv[open]');   /* Karte A schließt, weil B aufgeht → nicht zurücksetzen */
+  const v = d.closest('.view'); if(v) v.classList.toggle('lese-voll', !!offen);
+  const lc = document.getElementById('leseclose'); if(lc){ if(offen && !lc.innerHTML) lc.innerHTML = ic('x')+'<span>Ansicht schließen</span>'; lc.classList.remove('away'); lc.hidden = !offen; }
   if(d.open){ window.scrollTo({top:0, behavior:'auto'}); return; }
+  if(offen) return;
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     if(!d.isConnected) return;
     const bar = document.querySelector('#app .bar'), off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
@@ -2161,20 +2161,11 @@ document.addEventListener('toggle', e=>{
   }));
 }, true);
 document.addEventListener('click', e=>{
-  if(e.target.closest && e.target.closest('#leseclose')){ const dd = document.querySelector('#app details.acc.lese[open]'); if(dd) dd.open = false; return; }   /* v1.3.35: mittendrin schließen (ohne „gelesen“) – das toggle-Ereignis räumt auf und scrollt zur Karte */
-  const b = e.target.closest && e.target.closest('[data-lese-zu]'); if(!b) return;
-  const d = b.closest('details.acc.lese'); if(!d) return;
-  /* v1.3.34: Wer die Leseversion bis zum Schließen-Button liest, hat den Teil gelesen (die Weiter-Karte ist in der Vollansicht ausgeblendet) */
-  try{ const kk = kapFromRoute(curRoute.kap), II = kk && INH[kk.id], ss = II && II.data.slides.find(x=>x.id===curRoute.slide); if(kk && ss) markRead(kk, ss); }catch(_){}
-  const vv = d.closest('.view'); if(vv) vv.classList.remove('lese-voll');
-  d.open = false;
-  requestAnimationFrame(()=>requestAnimationFrame(()=>{
-    const bar = document.querySelector('#app .bar'), off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
-    const top = d.getBoundingClientRect().top + window.scrollY - off;
-    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
-    const sm = d.querySelector(':scope>summary'); if(sm) sm.focus({preventScroll:true});
-  }));
+  if(!(e.target.closest && e.target.closest('#leseclose'))) return;
+  const dd = document.querySelector('#app details.acc.vv[open]'); if(!dd) return;
+  /* am Textende geschlossen = Teil gelesen (die Weiter-Karte ist in der Vollansicht ausgeblendet) */
+  if(innerHeight + scrollY >= document.documentElement.scrollHeight - 80){ try{ const kk = kapFromRoute(curRoute.kap), II = kk && INH[kk.id], ss = II && II.data.slides.find(x=>x.id===curRoute.slide); if(kk && ss) markRead(kk, ss); }catch(_){} }
+  dd.open = false;
 });
 window.addEventListener('hashchange', route);
 /* Experiment-iframe: postMessage {kk:'zurueck'} schließt das Overlay */
