@@ -98,15 +98,15 @@
         },
         {
           "typ": "absatz",
-          "text": "Du lernst sie in diesem und den nächsten Kapiteln genauer kennen. Wie viel sie bewirken, zeigen drei Beispiele, vom Kleinen zum Großen."
+          "text": "Du lernst sie in diesem und den nächsten Kapiteln genauer kennen. Wie viel sie bewirken, zeigen ==drei Beispiele==, vom Kleinen zum Großen."
         },
         {
           "typ": "absatz",
-          "text": "**🏠 Ein Eindruck.** Du ziehst in eine neue Wohnung. Am ersten Tag begegnest du deiner Nachbarin im Treppenhaus. Sie schaut aufs Handy und grüßt nicht. Dein erster Gedanke: *„Unfreundlich.“* Schon steht „unfreundliche Nachbarin“ auf der Liste. Ab jetzt fällt dir jedes Mal auf, wenn sie wortlos am Briefkasten vorbeigeht. Dass sie dir letzte Woche die Tür aufgehalten hat? Rausgefiltert. Ihr Lächeln, als sie deinen übervollen Einkaufsbeutel gesehen hat? Nicht auf der Liste, also nicht wahrgenommen. Zum Glück bekommt deine Nachbarin meist noch ein paar Chancen, diesen ersten Eindruck zu kippen."
+          "text": "**==1.== Ein Eindruck.** Du ziehst in eine neue Wohnung. Am ersten Tag begegnest du deiner Nachbarin im Treppenhaus. Sie schaut aufs Handy und grüßt nicht. Dein erster Gedanke: *„Unfreundlich.“* Schon steht „unfreundliche Nachbarin“ auf der Liste. Ab jetzt fällt dir jedes Mal auf, wenn sie wortlos am Briefkasten vorbeigeht. Dass sie dir letzte Woche die Tür aufgehalten hat? Rausgefiltert. Ihr Lächeln, als sie deinen übervollen Einkaufsbeutel gesehen hat? Nicht auf der Liste, also nicht wahrgenommen. Zum Glück bekommt deine Nachbarin meist noch ein paar Chancen, diesen ersten Eindruck zu kippen."
         },
         {
           "typ": "absatz",
-          "text": "**☕ Ein Morgen.** Manchmal reicht ein einziges emotionales Erlebnis. Du hast verschlafen, in der Hektik fällt dir auch noch die Tasse runter, und du denkst: *„Heute läuft aber auch alles schief.“* Ab diesem Moment lässt dein Türsteher alles rein, was dazu passt: die rote Ampel, die leere Butter, die Suche nach deinem Geldbeutel. Dass dich jemand beim Bäcker vorgelassen hat? Längst vergessen."
+          "text": "**==2.== Ein Morgen.** Manchmal reicht ein einziges emotionales Erlebnis. Du hast verschlafen, in der Hektik fällt dir auch noch die Tasse runter, und du denkst: *„Heute läuft aber auch alles schief.“* Ab diesem Moment lässt dein Türsteher alles rein, was dazu passt: die rote Ampel, die leere Butter, die Suche nach deinem Geldbeutel. Dass dich jemand beim Bäcker vorgelassen hat? Längst vergessen."
         },
         {
           "typ": "absatz",
@@ -128,7 +128,7 @@
         },
         {
           "typ": "absatz",
-          "text": "**🌍 Ein Leben.** Ein schlechter Start in den Tag ist spätestens nach einer Nacht Schlaf vorbei. Aber was, wenn auf deiner Liste nicht „Heute läuft alles schief“ steht, sondern „Das Leben ist schwer und unfair“? Dann sammelt dein Türsteher nicht einen Tag lang Beweise, sondern Jahre. Jeder Rückschlag kommt rein, jede Chance bleibt draußen. Irgendwann fühlt sich das nicht mehr an wie eine Sichtweise, sondern wie die Wahrheit."
+          "text": "**==3.== Ein Leben.** Ein schlechter Start in den Tag ist spätestens nach einer Nacht Schlaf vorbei. Aber was, wenn auf deiner Liste nicht „Heute läuft alles schief“ steht, sondern „Das Leben ist schwer und unfair“? Dann sammelt dein Türsteher nicht einen Tag lang Beweise, sondern Jahre. Jeder Rückschlag kommt rein, jede Chance bleibt draußen. Irgendwann fühlt sich das nicht mehr an wie eine Sichtweise, sondern wie die Wahrheit."
         },
         {
           "typ": "zitat",
