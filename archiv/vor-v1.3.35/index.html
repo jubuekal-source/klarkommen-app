@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0f1923">
+<meta name="color-scheme" content="dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Klarkommen">
+<meta name="description" content="Klarkommen – Mentale Stärke. Klare Richtung.">
+<title>Klarkommen</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="brand/icon-192.png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="preload" href="fonts/space-grotesk-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+/* ================================================================
+   Klarkommen – App-Shell (spec/00, spec/01). Reihenfolge nach Skill §2.8:
+   Style → HTML-Gerüst → Daten/Helper → Render → Events → Init
+   ================================================================ */
+
+/* ===== Tokens (Skill klarkommen-design §7 → --brand-*) – spec/01 §C.8 ===== */
+:root{
+  color-scheme:dark;
+  --brand-bg:#0f1923; --brand-bg-deep:#0a121a; --brand-card:#162230; --brand-card-2:#1c2e40; --brand-input:#1c2e40;
+  --brand-accent:#f97316; --brand-accent-soft:#fb923c; --brand-accent-glow:rgba(249,115,22,.25);
+  --brand-ok:#7DD3C0; --brand-ok-dark:#5BB8A5; --brand-bad:#B41928; --brand-bad-glow:rgba(180,25,40,.45);
+  --brand-text:#f1f5f9; --brand-text-2:#94a3b8; --brand-muted:#64748b;
+  --brand-line:rgba(148,163,184,.12); --brand-line-2:rgba(148,163,184,.22);
+  --brand-radius:16px; --brand-radius-lg:22px;
+  --brand-font-head:'Space Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --brand-font-body:'DM Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --read:720px; --wide:1120px;
+  --sat:env(safe-area-inset-top); --sab:env(safe-area-inset-bottom);
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;background:var(--brand-bg)}
+html,body{margin:0;padding:0;overflow-x:clip;max-width:100%}
+body{font-family:var(--brand-font-body);font-size:17px;line-height:1.65;color:var(--brand-text);min-height:100dvh;
+  background:var(--brand-bg) radial-gradient(ellipse 120% 60% at 15% 0%,rgba(249,115,22,.06),transparent 55%) no-repeat;
+  -webkit-font-smoothing:antialiased;padding-bottom:var(--sab)}
+h1,h2,h3,h4{font-family:var(--brand-font-head);font-weight:700;letter-spacing:-.02em;line-height:1.18;margin:0 0 .45em;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+p{margin:0 0 1em}
+a{color:var(--brand-accent-soft);text-underline-offset:3px}
+button{font:inherit;color:inherit;cursor:pointer;border:none;background:none;padding:0}
+input,textarea{font:inherit;font-size:16px;color:var(--brand-text)}
+img{max-width:100%;display:block}
+svg.i{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex:none}
+svg.i.f{fill:currentColor;stroke:none}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--brand-accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:var(--read);margin:0 auto;padding:0 16px}
+@supports (padding:max(0px)){.wrap{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}}
+.wrap.wide{max-width:var(--wide)}
+#app{min-height:60vh}
+.view{animation:enter .38s var(--ease) both}
+@keyframes enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 22px;border-radius:14px;font-weight:700;font-size:1rem;
+  background:var(--brand-accent);color:#1a0d03;box-shadow:0 8px 24px -8px var(--brand-accent-glow);transition:transform .15s,background .15s;text-decoration:none;text-align:center;line-height:1.25}
+.btn:hover{background:var(--brand-accent-soft)}
+.btn:active{transform:scale(.98)}
+.btn.sec{background:var(--brand-card-2);color:var(--brand-text);box-shadow:none;border:1px solid var(--brand-line-2)}
+.btn.sec:hover{background:#223650}
+.btn.ghost{background:transparent;color:var(--brand-text-2);box-shadow:none;border:1px solid var(--brand-line-2)}
+.btn.bad{background:transparent;color:#f3a3ab;border:1px solid rgba(180,25,40,.55);box-shadow:none}
+.btn.block{display:flex;width:100%}
+.btn svg.i{width:20px;height:20px}
+.btns{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:560px){.btns.two{grid-template-columns:1fr 1fr}}
+.pulse{animation:pulse 2.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 8px 24px -8px var(--brand-accent-glow),0 0 0 0 rgba(249,115,22,.35)}50%{box-shadow:0 8px 24px -8px var(--brand-accent-glow),0 0 0 10px rgba(249,115,22,0)}}
+.iconbtn{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--brand-text);flex:none}
+.glass{background:rgba(10,18,26,.42);border:1px solid rgba(255,255,255,.16);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+
+/* ===== Startseite / Hero – spec/01 §C.2 ===== */
+.hero{position:relative;min-height:calc(min(72svh,600px) + var(--sat));display:flex;flex-direction:column;overflow:hidden;isolation:isolate}
+.hero img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;z-index:-2;transform:scale(1.02)}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(180deg,rgba(10,18,26,.70) 0%,rgba(10,18,26,.25) 34%,rgba(10,18,26,0) 52%,rgba(15,25,35,.35) 76%,var(--brand-bg) 100%)}
+.hero .top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:calc(12px + var(--sat)) 16px 0;max-width:var(--wide);width:100%;margin:0 auto}
+.hero .ttl{padding:18px 16px 0;max-width:var(--wide);width:100%;margin:0 auto}
+.hero h1{font-size:clamp(2.9rem,15.5vw,6.2rem);line-height:.95;letter-spacing:-.045em;margin:0;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.hero .sub{font-family:var(--brand-font-head);font-weight:500;font-size:clamp(1.06rem,4.6vw,1.5rem);line-height:1.3;margin-top:12px;color:#e7edf4;max-width:22em;text-shadow:0 2px 16px rgba(0,0,0,.55)}
+.hero .sub::before{content:"";display:block;width:44px;height:3px;border-radius:2px;background:var(--brand-accent);margin-bottom:12px}
+.hero .bottom{margin-top:auto;padding:0 16px 20px;max-width:var(--wide);width:100%;margin-left:auto;margin-right:auto}
+.pill{display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:6px 14px 6px 10px;border-radius:999px;font-size:.84rem;font-weight:500;color:var(--brand-text)}
+.pill .dot{width:9px;height:9px;border-radius:50%;background:var(--brand-text-2);box-shadow:0 0 0 3px rgba(148,163,184,.18)}
+.pill.ok .dot{background:var(--brand-ok);box-shadow:0 0 0 3px rgba(125,211,192,.2)}
+.pill.todo .dot{background:var(--brand-accent);box-shadow:0 0 0 3px rgba(249,115,22,.22)}
+.pill.off .dot{background:#e2a03f}
+.lead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:8px 0 6px}
+.lead h2{font-size:1.5rem;margin:0}
+.lead .meta{color:var(--brand-text-2);font-size:.88rem;white-space:nowrap}
+.introtxt{color:var(--brand-text-2);margin:0 0 6px;font-size:.98rem}
+
+/* Reise (Kapitel-Galerie) */
+.reise{display:grid;grid-template-columns:1fr;gap:14px;margin-top:6px}
+.phase{grid-column:1/-1;display:flex;align-items:center;gap:12px;margin:22px 0 2px;color:var(--brand-text-2);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.phase::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--brand-line-2),transparent)}
+.phase b{color:var(--brand-accent-soft);font-weight:700}
+.tile .ph{display:none;color:#d5dde6;font-weight:500;letter-spacing:.08em}
+@media(min-width:700px){.reise{grid-template-columns:1fr 1fr;gap:18px}.reise .phase{display:none}.tile .ph{display:inline}.tile.wide{grid-column:1/-1;aspect-ratio:auto;min-height:clamp(230px,30vw,320px)}}
+@media(min-width:1100px){.reise{grid-template-columns:1fr 1fr 1fr}}
+.tile{position:relative;display:block;width:100%;text-align:left;border-radius:var(--brand-radius-lg);overflow:hidden;background:var(--brand-card);aspect-ratio:16/10;
+  box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 18px 40px -22px rgba(0,0,0,.8);isolation:isolate;transition:transform .25s var(--ease)}
+.tile:active{transform:scale(.985)}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .6s var(--ease),filter .3s}
+@media(hover:hover){.tile:hover img{transform:scale(1.035)}}
+.tile::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,18,26,0) 28%,rgba(10,18,26,.66) 58%,rgba(10,18,26,.96) 100%)}
+.tile .tx{text-shadow:0 1px 10px rgba(0,0,0,.55)}
+.tile .tx{position:absolute;left:0;right:0;bottom:0;padding:16px 16px 15px;display:flex;align-items:flex-end;gap:12px}
+.tile .tx>div{min-width:0;flex:1}
+.tile .eyebrow{font-size:.74rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-accent-soft);margin-bottom:3px}
+.tile h3{font-size:1.32rem;margin:0;line-height:1.12;color:#fff}
+.tile .u{color:#d5dde6;font-size:.92rem;line-height:1.35;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+/* spec/04 §8: Bonus-Kachel – Untertitel vollständig (kein line-clamp), Kachel wächst mit dem Text */
+.tile.wide{display:flex;align-items:flex-end}
+@media(max-width:699px){.tile.wide{aspect-ratio:auto;min-height:clamp(210px,62vw,320px)}}
+.tile.wide .tx{position:relative;flex:1;min-width:0;padding-top:64px}
+@media(max-width:699px){.tile.wide::before,.sv-b .tile.wide.locked::before{background:linear-gradient(180deg,rgba(10,18,26,.05) 0%,rgba(10,18,26,.45) 30%,rgba(10,18,26,.85) 60%,rgba(10,18,26,.97) 100%)}}
+.tile.wide .u{display:block;-webkit-line-clamp:unset;overflow:visible;max-width:34em}
+.ring{width:46px;height:46px;flex:none;position:relative;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;color:#fff;font-family:var(--brand-font-head)}
+.ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.ring .tr{stroke:rgba(255,255,255,.18)} .ring .pr{stroke:var(--brand-accent);transition:stroke-dashoffset .6s var(--ease)}   /* spec/04 §3: Ring Orange */
+.ring span{position:relative}
+.ring.done{color:#fff}   /* spec/04 §3: voll = nur äußerer Ring, innen transparent, Text „5/5“ bleibt */
+.lockb{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+.lockb svg.i{width:19px;height:19px;stroke-width:2}
+.tile .tag{display:inline-block;margin-top:7px;font-size:.72rem;font-weight:700;letter-spacing:.06em;color:#fff;padding:3px 9px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.18)}
+/* Sperr-Varianten – spec/01 §C.3 (a: nur Badge · b: unten abgedunkelt · c: 25 % entsättigt) */
+.sv-b .tile.locked::before{background:linear-gradient(180deg,rgba(10,18,26,.10) 0%,rgba(10,18,26,.25) 30%,rgba(10,18,26,.72) 62%,rgba(10,18,26,.97) 100%)}
+.sv-b .tile.locked img{filter:brightness(.86)}
+.sv-c .tile.locked img{filter:saturate(.75)}
+#einfuehrung[hidden]{display:none}
+
+/* ===== App-Leiste (Kapitel/Slide/Einstellungen) ===== */
+.bar{position:sticky;top:0;z-index:40;padding-top:var(--sat);background:rgba(15,25,35,.78);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2);border-bottom:1px solid var(--brand-line)}
+.bar .in{max-width:var(--wide);margin:0 auto;display:flex;align-items:center;gap:6px;padding:6px 8px;min-height:56px}
+.bar .t{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:500;font-size:.95rem;color:var(--brand-text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:center}
+.bar .t b{color:var(--brand-text);font-weight:700}
+.segs{display:flex;gap:5px;max-width:var(--read);margin:0 auto;padding:0 16px 10px}
+.segs a{flex:1;height:4px;border-radius:3px;background:rgba(148,163,184,.2);position:relative}
+.segs a::after{content:"";position:absolute;inset:-10px 0}
+.segs a.r{background:var(--brand-ok-dark)}
+.segs a.cur{background:var(--brand-accent)}
+
+/* ===== Kapitelseite – spec/01 §C.4 ===== */
+.khead{position:relative;isolation:isolate;overflow:hidden;min-height:min(92vw,520px);display:flex;align-items:flex-end}
+.khead img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.khead::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,25,35,.15) 0%,rgba(15,25,35,0) 28%,rgba(15,25,35,.62) 56%,rgba(15,25,35,.93) 80%,var(--brand-bg) 100%)}
+.khead .eyebrow,.khead h1,.khead .u{text-shadow:0 2px 14px rgba(0,0,0,.6)}
+.khead .wrap{width:100%;padding-top:80px;padding-bottom:6px}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--brand-accent-soft);margin-bottom:8px}
+.khead h1{font-size:clamp(2rem,9vw,3.4rem);margin:0;letter-spacing:-.035em}
+.khead .u{font-family:var(--brand-font-head);font-weight:500;font-size:clamp(1.05rem,4.4vw,1.35rem);color:#dbe3ec;margin-top:6px;line-height:1.3}
+.kmeta{display:flex;flex-wrap:wrap;gap:8px 16px;color:var(--brand-text-2);font-size:.9rem;margin:16px 0 22px}
+.kmeta span{display:inline-flex;gap:7px;align-items:center}
+.kmeta svg.i{width:18px;height:18px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;padding:4px 10px;border-radius:999px;background:rgba(249,115,22,.12);color:var(--brand-accent-soft);border:1px solid rgba(249,115,22,.28)}
+.etappen{list-style:none;margin:26px 0 8px;padding:0;position:relative}
+.etappen::before{content:"";position:absolute;left:23px;top:30px;bottom:30px;width:2px;background:linear-gradient(var(--brand-line-2),var(--brand-line-2))}
+.etappe{position:relative;margin:0 0 10px}
+.etappe a{display:flex;align-items:center;gap:14px;padding:12px 12px 12px 0;text-decoration:none;color:inherit;border-radius:16px}
+.etappe a:active{background:rgba(255,255,255,.03)}
+.etappe .ic{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;background:var(--brand-card);border:1px solid var(--brand-line-2);color:var(--brand-text-2);position:relative;z-index:1}
+.etappe.r .ic{background:#163834;border-color:rgba(125,211,192,.45);color:var(--brand-ok)}
+.etappe.next .ic{background:var(--brand-accent);border-color:var(--brand-accent);color:#1a0d03;box-shadow:0 0 0 6px rgba(249,115,22,.14)}
+.etappe .txt{flex:1;min-width:0}
+.etappe .rb{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--brand-text-2)}
+.etappe .tt{font-family:var(--brand-font-head);font-weight:700;font-size:1.06rem;line-height:1.28;margin-top:2px}
+.etappe .ok{color:var(--brand-ok);display:flex}
+.etappe .chev{color:var(--brand-muted)}
+
+/* ===== Slide – spec/01 §C.5 ===== */
+.shead{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:16/8;max-height:52vh;width:100%}
+@media(min-width:700px){.shead{aspect-ratio:16/6.2}}
+.shead img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.shead::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(15,25,35,0) 45%,var(--brand-bg) 100%)}
+.slide{padding-top:4px;padding-bottom:10px}
+.rubrik{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brand-accent-soft);margin:-4px 0 10px}
+.rubrik svg.i{width:18px;height:18px}
+.rubrik img.rbi{width:32px;height:32px;flex:none;display:block}
+.etappe .ic.img{background:var(--brand-card)}
+.etappe.r .ic.img{background:#163834}
+.etappe.next .ic.img{background:var(--brand-card);border-color:var(--brand-accent)}
+.etappe .ic img.rbi{width:36px;height:36px;display:block}
+.slide h1{font-size:clamp(1.7rem,7.4vw,2.5rem);letter-spacing:-.03em;margin-bottom:18px}
+.bl h2{font-size:1.32rem;margin:30px 0 10px}
+.bl>p{margin:0 0 1.05em}
+/* v1.3.11: Leseversion = durchgehender Text. Ehemalige Akkordeon-Titel (Daten unverändert) werden im Lese-Modus zu Zwischenüberschriften: Ebene 1 = h2.lzh mit feiner Linie (+ optionales Icon, 28 px), Ebene 2 und Überschriften darin = h3.lzs */
+.bl h2.lzh{display:flex;align-items:center;gap:10px;margin:40px 0 12px;padding-top:22px;border-top:1px solid var(--brand-line)}
+.bl h2.lzh:first-child{margin-top:8px;padding-top:0;border-top:0}
+.bl h2.lzh>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.bl h2.lzh>span,.bl h3.lzs>span{min-width:0}
+.bl h3.lzs{display:flex;align-items:center;gap:10px;font-size:1.12rem;margin:26px 0 8px}
+.bl h3.lzs>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.bl .btn.lese-zu{margin:30px 0 8px}
+.bl ul,.bl ol{margin:0 0 1.2em;padding-left:1.35em}
+.bl li{margin:.35em 0;padding-left:.2em}
+img.ti{height:1.2em;width:auto;vertical-align:-.28em;display:inline-block}
+.bl .or{color:var(--brand-accent-soft)}
+/* v1.3.34: Lese-Vollansicht – ist „Lieber lesen statt hören?“ offen, verschwindet alles andere (Kopfbild, Titel, Podcast, Merkzettel, Weiter), die Karte verliert Rand/Hintergrund/Innenabstand und der Text nutzt die volle Breite. Klasse .lese-voll sitzt auf .view (per JS beim Auf-/Zuklappen). */
+.view.lese-voll .shead,.view.lese-voll footer.foot,.view.lese-voll .slide>*:not(details.acc.lese){display:none}
+.view.lese-voll details.acc.lese{margin:0;border:0;border-radius:0;background:none}
+.view.lese-voll details.acc.lese>summary{padding:14px 0;border-bottom:1px solid var(--brand-line)}
+.view.lese-voll details.acc.lese .acb{padding:18px 0 8px}   /* v1.3.33 */
+.bl li::marker{color:var(--brand-accent-soft);font-weight:700}
+.bl blockquote{margin:22px 0;padding:2px 0 2px 18px;border-left:3px solid var(--brand-accent);font-family:var(--brand-font-head);font-size:1.22rem;font-weight:500;line-height:1.4;color:#fff}
+.bl blockquote cite{display:block;margin-top:8px;font-family:var(--brand-font-body);font-style:normal;font-size:.88rem;font-weight:400;color:var(--brand-text-2)}
+.call{display:flex;gap:12px;padding:14px 16px;border-radius:14px;margin:18px 0;background:rgba(125,211,192,.07);border:1px solid rgba(125,211,192,.22)}
+.call svg.i{color:var(--brand-ok);margin-top:2px}
+.call.wichtig{background:rgba(249,115,22,.08);border-color:rgba(249,115,22,.3)} .call.wichtig svg.i{color:var(--brand-accent-soft)}
+.call.info{background:rgba(148,163,184,.07);border-color:var(--brand-line-2)} .call.info svg.i{color:var(--brand-text-2)}
+.call p{margin:0}
+figure{margin:22px 0}
+figure img{width:100%;height:auto;border-radius:14px;background:var(--brand-card)}
+figcaption{color:var(--brand-text-2);font-size:.88rem;margin-top:8px}
+.check{list-style:none;padding:0!important;margin:12px 0 18px}
+.check li{padding:0!important;margin:8px 0}
+.check label{display:flex;gap:14px;align-items:flex-start;padding:14px 14px;border-radius:14px;background:var(--brand-card);border:1px solid var(--brand-line);cursor:pointer;min-height:52px}
+.check input{position:absolute;opacity:0;pointer-events:none}
+.check .bx{width:26px;height:26px;border-radius:8px;border:2px solid var(--brand-line-2);flex:none;display:flex;align-items:center;justify-content:center;color:transparent;transition:.2s;margin-top:1px}
+.check input:checked+.bx{background:var(--brand-ok);border-color:var(--brand-ok);color:#0f1923}
+.check input:focus-visible+.bx{outline:2px solid var(--brand-accent);outline-offset:2px}
+.check input:checked~span{color:var(--brand-text-2)}
+details.acc{margin:18px 0;border-radius:16px;background:var(--brand-card);border:1px solid var(--brand-line)}
+details.acc>summary{list-style:none;display:flex;align-items:center;gap:12px;padding:16px;min-height:56px;cursor:pointer;font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem}
+details.acc>summary::-webkit-details-marker{display:none}
+details.acc>summary .chv{margin-left:auto;transition:transform .25s;color:var(--brand-text-2)}
+details.acc[open]>summary .chv{transform:rotate(180deg)}
+details.acc>summary>svg.i:first-child{color:var(--brand-accent-soft)}
+details.acc>summary>img.zbi{width:28px;height:28px;flex:none;display:block;object-fit:contain}
+.zz{display:inline-block;white-space:nowrap;font-weight:800;color:inherit;letter-spacing:.04em;margin-left:.15em}.zz .z1{font-size:1.5em;line-height:1}.zz .z2{font-size:1.05em;position:relative;top:-.45em}.zz .z3{font-size:.8em;position:relative;top:-.85em}
+.tile img.bci{position:static;inset:auto;z-index:auto;width:36px;height:36px;flex:none;object-fit:contain;align-self:flex-start;margin-top:1px;transform:none;filter:drop-shadow(0 1px 6px rgba(0,0,0,.5))}
+.introtxt a{color:var(--brand-accent-soft);text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+details.acc .acb{padding:0 16px 8px}
+details.acc.lese{background:linear-gradient(180deg,rgba(249,115,22,.07),rgba(249,115,22,0) 70%),var(--brand-card);border-color:rgba(249,115,22,.25)}
+/* spec/05 A: Keine Karte in der Karte (Skill §10.4) – innerhalb eines geöffneten Akkordeons sind verschachtelte Akkordeons nur Zwischenüberschrift mit dünner Linie, ohne Rahmen/Hintergrund/Einzug; Kästen werden flach */
+.acb details.acc{margin:6px 0 0;border:0;border-top:1px solid var(--brand-line);border-radius:0;background:none}
+.acb details.acc:last-child{border-bottom:1px solid var(--brand-line);margin-bottom:10px}
+.acb details.acc+details.acc{margin-top:0}
+/* v1.3.18: Einwand-Button (Block "einwand") – pulsierender Knopf, klappt Inhalt auf; auch in der Leseversion aufklappbar */
+details.einw{margin:20px 0}
+details.einw>summary{list-style:none;display:flex;align-items:center;gap:10px;min-height:52px;padding:12px 16px;border-radius:16px;border:1.5px solid rgba(249,115,22,.55);background:rgba(249,115,22,.1);color:var(--brand-text);font-family:var(--brand-font-head);font-weight:700;font-size:1rem;line-height:1.3;cursor:pointer;animation:pulse 2.6s ease-in-out infinite}
+details.einw>summary::-webkit-details-marker{display:none}
+details.einw>summary>svg.i:first-child{color:var(--brand-accent-soft);flex:none}
+details.einw>summary .chv{margin-left:auto;flex:none;transition:transform .25s;color:var(--brand-text-2)}
+details.einw[open]>summary{animation:none;border-radius:16px 16px 0 0}
+details.einw[open]>summary .chv{transform:rotate(180deg)}
+details.einw .ewb{padding:12px 16px 4px;border:1px solid rgba(249,115,22,.25);border-top:0;border-radius:0 0 16px 16px;background:rgba(249,115,22,.04)}
+.acb details.acc>summary{padding:14px 0;min-height:52px;gap:10px;font-size:1rem}
+.acb details.acc>summary>svg.i:first-child{display:none}
+.acb details.acc .acb{padding:0 0 6px}
+.acb .call{background:none;border:0;border-left:3px solid rgba(125,211,192,.45);border-radius:0;padding:2px 0 2px 12px}
+.acb .call.wichtig{background:none;border-left-color:rgba(249,115,22,.55)}
+.acb .call.info{background:none;border-left-color:var(--brand-line-2)}
+.acb .call>svg.i{display:none}
+.acb blockquote{padding-left:12px}
+.lnk .lnk-on{color:var(--brand-text-2);display:flex;align-items:center;gap:6px;margin:10px 0 0;font-size:.84rem}.lnk .lnk-on svg.i{width:16px;height:16px}
+.quelle{display:flex;gap:10px;padding:12px 0;border-bottom:1px solid var(--brand-line);font-size:.94rem;color:#d3dbe4}
+.quelle:last-child{border-bottom:none}
+.quelle svg.i{width:18px;height:18px;color:var(--brand-text-2);margin-top:3px}
+.quelle a{overflow-wrap:anywhere}
+
+/* Audio-Karte */
+.audio{margin:22px 0;padding:16px;border-radius:20px;background:linear-gradient(135deg,#1d3046 0%,var(--brand-card) 60%);border:1px solid var(--brand-line-2);box-shadow:0 20px 40px -28px rgba(0,0,0,.9)}
+.audio .row{display:flex;align-items:center;gap:14px}
+.audio .play{width:64px;height:64px;border-radius:50%;background:var(--brand-accent);color:#1a0d03;display:flex;align-items:center;justify-content:center;flex:none;box-shadow:0 10px 26px -8px var(--brand-accent-glow)}
+.audio .play svg.i{width:28px;height:28px}
+.audio .play .pa{display:none}
+.audio.on .play .pl{display:none} .audio.on .play .pa{display:block}
+.audio .meta{min-width:0;flex:1}
+.audio .art{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--brand-accent-soft);display:flex;align-items:center;gap:6px}
+.audio .art svg.i{width:16px;height:16px}
+.audio .at{font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem;line-height:1.3;margin-top:2px}
+.audio .sub{color:var(--brand-text-2);font-size:.84rem;margin-top:3px;display:flex;flex-wrap:wrap;gap:4px 12px}
+.audio .off{color:var(--brand-ok);display:inline-flex;align-items:center;gap:4px}
+.audio .off svg.i{width:15px;height:15px;stroke-width:2.2}
+.audio .ctl{display:flex;align-items:center;gap:6px;margin-top:14px}
+.audio .skip{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--brand-text-2);position:relative;flex:none}
+.audio .skip span{position:absolute;font-size:.56rem;font-weight:700;top:16px;left:0;right:0;text-align:center;color:var(--brand-text)}
+.audio .skip svg.i{width:30px;height:30px;stroke-width:1.5}
+.audio .tl{flex:1;min-width:0}
+.audio .times{display:flex;justify-content:space-between;font-size:.76rem;color:var(--brand-text-2);font-variant-numeric:tabular-nums;margin-top:2px}
+input[type=range].seek{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;margin:0;--p:0%}
+input[type=range].seek::-webkit-slider-runnable-track{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--brand-accent) var(--p),rgba(148,163,184,.25) var(--p))}
+input[type=range].seek::-moz-range-track{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--brand-accent) var(--p),rgba(148,163,184,.25) var(--p))}
+input[type=range].seek::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;margin-top:-6.5px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
+input[type=range].seek::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:none}
+.audio.prod{display:flex;gap:14px;align-items:center;background:var(--brand-card)}
+.audio.prod .play{background:var(--brand-card-2);color:var(--brand-text-2);box-shadow:none;border:1px dashed var(--brand-line-2)}
+/* Experiment-Karte */
+.exp{margin:22px 0;border-radius:20px;overflow:hidden;position:relative;isolation:isolate;padding:20px 18px 18px;
+  background:radial-gradient(120% 120% at 100% 0%,rgba(249,115,22,.22),transparent 55%),radial-gradient(90% 90% at 0% 100%,rgba(125,211,192,.12),transparent 60%),var(--brand-card);border:1px solid rgba(249,115,22,.28)}
+.xvor{display:block;width:128px;height:128px;max-width:100%;margin:14px auto 4px;border-radius:50%;-webkit-tap-highlight-color:transparent}
+.xvor:focus-visible{outline:2px solid var(--brand-accent-soft);outline-offset:4px}
+.xv-kreis{position:relative;display:block;width:100%;height:100%;border-radius:50%;border:3px solid #7DD3C0;overflow:hidden;background:#13202d;box-shadow:0 0 10px rgba(125,211,192,.25);animation:xvpuls 1.2s ease-out infinite}
+.xv-kreis img{position:absolute;left:0;top:-3px;width:100%;height:100%;object-fit:cover;display:block}
+.xv-kreis svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.xv-lauf{animation:xvekg 1.2s linear infinite}
+@keyframes xvekg{from{transform:translateX(0)}to{transform:translateX(-200px)}}
+/* gleiche Periode (1,2 s) wie xvekg; Puls-Spitze bei 88 % = EKG-Spitze in Fenstermitte */
+@keyframes xvpuls{0%,76%,100%{transform:scale(1);box-shadow:0 0 10px rgba(125,211,192,.25)}88%{transform:scale(1.045);box-shadow:0 0 20px 3px rgba(125,211,192,.55)}}
+@media (prefers-reduced-motion:reduce){.xv-kreis,.xv-lauf{animation:none!important}}
+.exp .art{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--brand-accent-soft);display:flex;align-items:center;gap:7px}
+.exp h3{font-size:1.3rem;margin:8px 0 6px}
+.exp p{color:#d3dbe4;margin:0 0 16px}
+/* Weiter-Karte */
+.weiter{display:flex;align-items:center;gap:14px;margin:34px 0 8px;padding:18px 18px;border-radius:20px;text-decoration:none;color:var(--brand-text);background:var(--brand-card);border:1px solid var(--brand-line-2);transition:transform .15s}
+.weiter:active{transform:scale(.99)}
+.weiter .k{flex:1;min-width:0}
+.weiter .l{font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--brand-accent-soft)}
+.weiter .n{font-family:var(--brand-font-head);font-weight:700;font-size:1.12rem;line-height:1.3;margin-top:3px}
+.weiter .go{width:48px;height:48px;border-radius:50%;background:var(--brand-accent);color:#1a0d03;display:flex;align-items:center;justify-content:center;flex:none}
+.weiter.end{background:linear-gradient(135deg,rgba(125,211,192,.14),rgba(125,211,192,0) 70%),var(--brand-card);border-color:rgba(125,211,192,.32)}
+.weiter.end .l{color:var(--brand-ok)}
+.weiter.end .go{background:var(--brand-ok)}
+.zurueck{display:flex;align-items:center;gap:8px;color:var(--brand-text-2);text-decoration:none;font-size:.92rem;padding:12px 0;min-height:44px}
+.zurueck svg.i{width:18px;height:18px}
+.btn.sek{margin:6px 0 4px}
+/* v1.3.9: Gesamtfortschritt (Start) + Kapitel-Reset-Link */
+.prog{margin:16px 0 4px}
+.pbar{display:flex;gap:3px}
+.pbar i{position:relative;flex:1;height:6px;border-radius:3px;background:rgba(148,163,184,.16);overflow:hidden}
+.pbar i b{position:absolute;left:0;top:0;bottom:0;background:var(--brand-ok);border-radius:3px}
+.pbar i.beg b{opacity:.5}
+.prog .pt{margin-top:8px;font-size:.84rem;color:var(--brand-text-2)}
+.prog.leer .pbar i{background:rgba(148,163,184,.12)}
+.prog.leer .pt{color:var(--brand-muted)}
+.kreset{margin:18px 0 6px;text-align:center}
+.kreset button{background:none;border:0;padding:12px 8px;min-height:44px;color:var(--brand-muted);font:inherit;font-size:.84rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.kreset button:hover{color:var(--brand-text-2)}
+.beispiel{display:flex;gap:10px;align-items:center;font-size:.84rem;color:#f6c9a4;background:rgba(249,115,22,.08);border:1px dashed rgba(249,115,22,.4);border-radius:12px;padding:8px 12px;margin:14px 0 0}
+
+/* ===== Experiment-Vollbild – spec/01 §C.1 ===== */
+.xview{position:fixed;inset:0;z-index:60;background:var(--brand-bg);display:flex;flex-direction:column}
+.xbar{flex:none;padding-top:var(--sat);background:rgba(15,25,35,.94);border-bottom:1px solid var(--brand-line)}
+.xbar .in{display:flex;align-items:center;gap:10px;padding:6px 10px;min-height:56px;max-width:var(--wide);margin:0 auto}
+.xbar .back{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 14px 0 10px;border-radius:999px;background:var(--brand-card-2);border:1px solid var(--brand-line-2);font-weight:700}
+.xbar .t{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:500;color:var(--brand-text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xview iframe{flex:1;width:100%;border:0;background:var(--brand-bg)}
+body.xmode{overflow:hidden}
+body.xmode .fab,body.xmode footer.foot{display:none}
+
+/* ===== Einstellungen – spec/01 §C.6 ===== */
+.pagehead{padding:26px 0 6px}
+.pagehead h1{font-size:2rem;margin:0}
+.pagehead p{color:var(--brand-text-2);margin:6px 0 0}
+.card{background:var(--brand-card);border:1px solid var(--brand-line);border-radius:20px;padding:18px 16px;margin:16px 0}
+.card h2{font-size:1.18rem;display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.card h2 svg.i{color:var(--brand-accent-soft)}
+.card .hint{color:var(--brand-text-2);font-size:.9rem;margin:0 0 12px}
+.zugrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0}.zugrow .btn{min-height:40px;padding:6px 14px;width:auto}
+.fld{display:block;margin:0 0 12px}
+.fld span{display:block;font-size:.84rem;color:var(--brand-text-2);margin-bottom:6px;font-weight:500}
+.fld input{width:100%;min-height:50px;padding:12px 14px;border-radius:12px;border:1px solid var(--brand-line-2);background:var(--brand-input);outline:none}
+.fld input:focus{border-color:var(--brand-accent);box-shadow:0 0 0 3px var(--brand-accent-glow)}
+.prev{position:relative;border-radius:14px;overflow:hidden;aspect-ratio:16/8;margin:0 0 12px;background:var(--brand-card-2)}
+.prev img{width:100%;height:100%;object-fit:cover}
+.prev .lbl{position:absolute;left:10px;bottom:10px;font-size:.78rem;padding:4px 10px;border-radius:999px}
+.bar2{height:10px;border-radius:6px;background:rgba(148,163,184,.18);overflow:hidden;margin:10px 0 8px}
+.bar2 i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand-ok-dark),var(--brand-ok));border-radius:6px;transition:width .3s}
+.ostat{display:flex;justify-content:space-between;gap:10px;font-size:.92rem;color:var(--brand-text-2);flex-wrap:wrap}
+.ostat b{color:var(--brand-text)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:.86rem;color:var(--brand-text-2);margin:10px 0 14px}
+.kv b{color:var(--brand-text);font-weight:500}
+.sep{height:1px;background:var(--brand-line);margin:16px 0}
+.linkrow{display:flex;align-items:center;gap:12px;padding:6px 0;text-decoration:none;color:var(--brand-text);min-height:52px}
+.linkrow .k{flex:1}
+.linkrow small{display:block;color:var(--brand-text-2);font-size:.86rem}
+
+/* ===== Experiment-Serie & Deep-Links – spec/03 ===== */
+.exp .xdone{margin-left:auto;display:inline-flex;align-items:center;gap:4px;color:var(--brand-ok);letter-spacing:.06em}
+.exp .xdone svg.i{width:15px;height:15px;stroke-width:2.2}
+.exp span.btn[aria-disabled]{opacity:.7;cursor:default}
+.exp.serie{padding-bottom:8px}
+.xsteps{list-style:none;margin:14px 0 0!important;padding:0!important;position:relative}
+.xsteps::before{content:"";position:absolute;left:17px;top:22px;bottom:34px;width:2px;background:var(--brand-line-2)}
+.xstep{display:flex;gap:14px;margin:0 0 14px!important;padding:0!important;position:relative}
+.xstep .xn{width:36px;height:36px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;background:var(--brand-card-2);border:1px solid var(--brand-line-2);color:var(--brand-text-2);position:relative;z-index:1}
+.xstep.cur .xn{background:var(--brand-accent);border-color:var(--brand-accent);color:#1a0d03;box-shadow:0 0 0 5px rgba(249,115,22,.14)}
+.xstep.done .xn{background:#163834;border-color:rgba(125,211,192,.45);color:var(--brand-ok)}
+.xstep .xn svg.i{width:18px;height:18px;stroke-width:2.2}
+.xstep .xb{flex:1;min-width:0;padding-top:4px}
+.xstep h3{font-size:1.1rem;margin:0 0 4px}
+.xstep p{margin:0 0 10px!important;font-size:.95rem}
+.xstep .btn{min-height:46px;padding:10px 18px}
+.xstep .soon{display:inline-flex;align-items:center;gap:6px;color:var(--brand-text-2);font-size:.9rem}
+.xstep .soon svg.i{width:17px;height:17px}
+.xview.eigenbar .xbar{display:none}
+
+/* ===== Toolbox Kap. 7 – spec/07: Kategorien, Badge „Neu“, „Kommt in Kapitel N“, Zurück zur Toolbox ===== */
+.kats{margin:22px 0 6px}
+.kath{display:flex;align-items:center;gap:12px;margin:0 0 10px}
+.ki{width:44px;height:44px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.25);color:var(--brand-ok)}
+.ki svg.i{width:22px;height:22px}
+.kt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.kt b{font-family:var(--brand-font-head);font-size:1.08rem;line-height:1.25;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto}
+.kt small{font-family:var(--brand-font-body,inherit);font-weight:400;color:var(--brand-text-2);font-size:.86rem;line-height:1.3}
+.kt small.kn{font-size:.76rem;color:var(--brand-muted);margin-top:2px}
+details.acc.kat{margin:0 0 10px}
+details.acc.kat>summary{padding:12px 14px;min-height:72px}
+details.acc.kat>summary>.ki{color:var(--brand-ok)}
+details.acc.kat[open]{border-color:rgba(125,211,192,.3)}
+details.acc.kat .acb{padding:0 10px 2px}
+details.acc.kat .tlist{margin:0 0 8px}
+details.acc.kat .trow{background:var(--brand-card-2)}
+/* v1.3.8: „Schnelle Hilfe“ – Orange nur als Wegweiser an der Kategorie-Karte (Rahmen + Blitz), Übungen darin wie überall */
+details.acc.kat.akz,details.acc.kat.akz[open]{margin:0 0 18px;border-color:rgba(249,115,22,.45)}
+details.acc.kat.akz>summary>.ki{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
+.bneu{display:inline-block;margin-left:8px;padding:1px 8px;border-radius:999px;font-family:var(--brand-font-body,inherit);font-size:.68rem;font-weight:700;line-height:1.5;letter-spacing:.08em;text-transform:uppercase;vertical-align:2px;color:var(--brand-ok);background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.35);white-space:nowrap}
+.tbkommt{display:flex;align-items:flex-start;gap:10px;margin:14px 2px 6px;color:var(--brand-muted);font-size:.86rem;line-height:1.4}
+.tbkommt svg.i{width:16px;height:16px;flex:none;margin-top:2px}
+.tbkommt b{font-weight:500;color:var(--brand-text-2)}
+.tbbackw{text-align:center;margin:30px 0 8px}
+.tbback{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:999px;background:rgba(125,211,192,.08);border:1px solid rgba(125,211,192,.3);color:var(--brand-ok);font:500 .95rem var(--brand-font-body,inherit);text-decoration:none}
+.tbback:active{background:rgba(125,211,192,.16)}
+.tbback svg.i{width:18px;height:18px}
+details.acc.tbtheo>summary>svg.i:first-child{color:var(--brand-ok)}
+/* ===== Toolbox Kap. 7 – spec/02 §2–4 ===== */
+.tb .tbintro{margin-top:4px}
+.tbsec{margin:28px 0 6px}
+.tbh{display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:0 0 12px}
+.tbh h2{font-size:1.32rem;margin:0;display:flex;align-items:center;gap:9px}
+.tbh h2 svg.i{color:var(--brand-accent-soft)}
+.tbh span{color:var(--brand-text-2);font-size:.88rem}
+.tbh2{margin-top:30px}
+.ti{width:44px;height:44px;border-radius:14px;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);border:1px solid rgba(125,211,192,.25);color:var(--brand-ok)}
+.ti svg.i{width:22px;height:22px}
+/* Abnahme K2: Offline-Pill Tap-Ziel */
+.hero .pill{min-height:44px}
+/* Use-Case-Kacheln */
+.ucgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media(min-width:820px){.ucgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.uc{display:flex;flex-direction:column;gap:6px;padding:16px 14px 14px;border-radius:18px;background:var(--brand-card);border:1px solid var(--brand-line-2);text-decoration:none;color:var(--brand-text);min-height:150px;transition:transform .15s}
+.uc:active{transform:scale(.98)}
+.uc .ui{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);color:var(--brand-ok);margin-bottom:4px}
+.uc b{font-family:var(--brand-font-head);font-size:1.02rem;line-height:1.25;overflow-wrap:break-word;hyphens:auto}
+.uc small{color:var(--brand-text-2);font-size:.84rem;line-height:1.35}
+.uc .un{margin-top:auto;font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-accent-soft);padding-top:6px}
+/* Neu in diesem Kapitel: wischbarer Streifen */
+.neu{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 10px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.neu::-webkit-scrollbar{display:none}
+.neu a{flex:0 0 min(72%,250px);scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:18px;text-decoration:none;color:var(--brand-text);position:relative;
+  background:radial-gradient(120% 100% at 100% 0%,rgba(125,211,192,.16),transparent 60%),var(--brand-card);border:1px solid rgba(125,211,192,.28);min-height:150px}
+.neu b{font-family:var(--brand-font-head);font-size:1.08rem;line-height:1.25;margin-top:6px}
+.neu .kz{color:#d3dbe4;font-size:.9rem;line-height:1.3}
+.neu small{color:var(--brand-text-2);font-size:.82rem;margin-top:auto}
+.neu .tok,.trow .tok{position:absolute;top:14px;right:14px;color:var(--brand-ok);display:flex}
+/* Alle-Tools-Link */
+.weiter.alle{margin:22px 0 8px}
+.weiter.alle .ic2{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;background:var(--brand-card-2);color:var(--brand-accent-soft);flex:none}
+.weiter.alle small{display:block;color:var(--brand-text-2);font-size:.84rem;margin-top:2px}
+/* Tool-Liste */
+.tlist{list-style:none;margin:8px 0 14px;padding:0}
+.tlist li{margin:0 0 10px}
+.trow{display:flex;align-items:center;gap:14px;width:100%;text-align:left;padding:14px;border-radius:16px;background:var(--brand-card);border:1px solid var(--brand-line);text-decoration:none;color:var(--brand-text);position:relative;min-height:64px}
+.trow:active{background:#1a2a3b}
+.trow .tt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.trow b{font-family:var(--brand-font-head);font-size:1.04rem;line-height:1.25}
+.trow .kz{color:#cdd6df;font-size:.9rem;line-height:1.3}
+.trow small{display:flex;flex-wrap:wrap;align-items:center;gap:2px 7px;color:var(--brand-text-2);font-size:.8rem;margin-top:2px}
+.trow small i{font-style:normal;color:var(--brand-muted)}
+.trow small svg.i{width:14px;height:14px}
+.trow .chev{color:var(--brand-muted);display:flex}
+.trow .tok{position:static}
+.trow.ok .ti{background:#163834;border-color:rgba(125,211,192,.45)}
+.trow.locked{background:transparent;border-style:dashed;border-color:var(--brand-line-2);min-height:56px;padding:10px 14px}
+.trow.locked .ti{background:var(--brand-card-2);border-color:var(--brand-line-2);color:var(--brand-text-2);width:36px;height:36px;border-radius:50%}
+.trow.locked .ti svg.i{width:17px;height:17px}
+.trow.locked b{font-size:.98rem;color:#cdd6df}
+/* Filter-Chips: gleich breites Raster (Skill §10.4) */
+.flabel{display:flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text-2);margin:18px 0 8px}
+.flabel svg.i{width:16px;height:16px}
+.flabel.gs{margin-top:26px}
+.chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chips .fchip:last-child:nth-child(odd){grid-column:1/-1}
+@media(min-width:560px){.chips{grid-template-columns:repeat(4,minmax(0,1fr))}.chips .fchip:last-child:nth-child(odd){grid-column:auto}}
+.fchip{min-height:44px;padding:8px 10px;border-radius:12px;background:var(--brand-card);border:1px solid var(--brand-line-2);color:var(--brand-text);font-weight:500;font-size:.92rem;line-height:1.2;text-align:center}
+.fchip.on{background:var(--brand-accent);border-color:var(--brand-accent);color:#1a0d03;font-weight:700}
+.fres{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:18px 0 6px;color:var(--brand-text-2);font-size:.92rem;min-height:44px}
+.fres b{color:var(--brand-text)}
+.leer{color:var(--brand-text-2);padding:14px 0}
+.uchead{display:flex;gap:14px;align-items:flex-start}
+.uchead .ui{width:52px;height:52px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;background:rgba(125,211,192,.1);color:var(--brand-ok);margin-top:4px}
+.pagehead .eyebrow{margin-bottom:4px}
+/* Toolkarte */
+.tool .tkurz{font-family:var(--brand-font-head);font-weight:500;font-size:1.12rem;color:#dbe3ec;margin:-10px 0 14px}
+.tchips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+.tchip{display:inline-flex;align-items:center;gap:6px;min-height:34px;padding:5px 12px;border-radius:999px;font-size:.86rem;font-weight:500;background:var(--brand-card-2);border:1px solid var(--brand-line-2);color:var(--brand-text);text-decoration:none}
+.tchip svg.i{width:15px;height:15px}
+.tchip.link{color:var(--brand-accent-soft);border-color:rgba(249,115,22,.35);background:rgba(249,115,22,.08)}
+.wofuer{border-left:3px solid var(--brand-ok);padding:2px 0 2px 14px;margin:0 0 6px}
+.wofuer span{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-ok)}
+.wofuer p{margin:2px 0 0;font-size:1.04rem}
+.tool .soh{font-size:1.32rem;margin:26px 0 10px}
+.tool .bl ol li{font-size:1.06rem}
+.passt{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:24px 0 16px}
+.passt>span{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-text-2);margin-right:4px}
+/* Hilfe-Karte */
+.hilfe{margin:30px 0 10px;padding:18px 16px 16px;border-radius:20px;background:linear-gradient(135deg,rgba(125,211,192,.1),rgba(125,211,192,0) 70%),var(--brand-card);border:1px solid rgba(125,211,192,.3)}
+.hilfe .hk{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.hilfe .hk svg.i{color:var(--brand-ok)}
+.hilfe h2{font-size:1.12rem;margin:0}
+.hilfe .bl p{font-size:.96rem;color:#d3dbe4}
+.hilfe .btn{margin-top:4px}
+/* spec/05 C2: Hilfe als zugeklapptes Akkordeon */
+details.acc.hilfe{padding:0;margin:30px 0 10px;border-radius:16px}
+details.acc.hilfe>summary>svg.i:first-child{color:var(--brand-ok)}
+details.acc.hilfe .acb{padding:0 16px 14px}
+details.acc.hilfe .btn{margin-top:8px}
+/* v1.3.4: Hilfe-Buttons – gleich breit, gleich hoch, sauber untereinander, nichts abgeschnitten (auch 360 px) */
+details.acc.hilfe .hbs{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:14px}
+details.acc.hilfe .hbs .btn{margin:0;width:100%;min-width:0;min-height:64px;padding:10px 16px;justify-content:flex-start;text-align:left;gap:14px}
+details.acc.hilfe .hbs .btn svg.i{flex:none}
+.hbt{display:flex;flex-direction:column;min-width:0;gap:1px}
+.hbt small{font-size:.8rem;font-weight:500;color:var(--brand-text-2)}
+.hbt b{font-size:1.06rem;line-height:1.25;overflow-wrap:anywhere;word-break:break-word}
+.hbt b.nw{white-space:nowrap}
+/* spec/05 C3: Übungsliste – Titel + kurze Statements, ruhig, ohne Filter */
+.trow.ub{align-items:flex-start}
+.trow.ub .ti{margin-top:2px}
+.trow.ub .chev,.trow.ub .tok{align-self:center}
+.trow .ubp{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:3px}
+.trow .ubp li{margin:0;padding:0 0 0 14px;position:relative;color:#cdd6df;font-size:.9rem;line-height:1.35}
+.trow .ubp li::before{content:"";position:absolute;left:2px;top:.55em;width:5px;height:5px;border-radius:50%;background:var(--brand-accent-soft);opacity:.8}
+.trow.ub small{margin-top:4px;flex-wrap:nowrap;align-items:flex-start;gap:6px}
+.trow.ub small svg.i{flex:none;margin-top:1px}
+.trow.ub small span{min-width:0}
+details.acc.hilfe{border-color:rgba(125,211,192,.3)}
+/* Über-Seite: Kontakt-Buttons */
+.getcon .btns.kontakt{margin-top:14px}
+@media(min-width:700px){.getcon .btns.kontakt{grid-template-columns:repeat(3,1fr)}}
+
+/* ===== Feedback „Titel-Test“ – spec/04 P1-Zusatz (§10) ===== */
+.fbk{display:flex;align-items:center;gap:14px;margin:4px 0 8px;padding:14px 14px;border-radius:18px;text-decoration:none;color:var(--brand-text);min-height:64px;
+  background:linear-gradient(100deg,rgba(249,115,22,.12),rgba(249,115,22,0) 65%),var(--brand-card);border:1px solid rgba(249,115,22,.28)}
+.fbk .ti{background:rgba(249,115,22,.14);border-color:rgba(249,115,22,.32);color:var(--brand-accent-soft)}
+.fbk .k{flex:1;min-width:0}
+.fbk b{display:block;font-family:var(--brand-font-head);font-size:1rem;line-height:1.28}
+.fbk small{display:block;color:var(--brand-text-2);font-size:.84rem;margin-top:2px}
+.fbk small.ok{color:var(--brand-ok)}
+.fbk .chev{color:var(--brand-accent-soft);display:flex;flex:none}
+.fb .card h2{font-size:1.12rem;line-height:1.3;hyphens:manual;-webkit-hyphens:manual}
+.fb .qn{color:var(--brand-accent-soft);margin-right:2px}
+.fopts{display:grid;gap:10px}
+.fopt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 14px;border-radius:14px;text-align:left;background:var(--brand-card-2);border:1.5px solid var(--brand-line-2);color:var(--brand-text);transition:background .15s,border-color .15s}
+.fopt .lt{width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;font-size:1.1rem;background:rgba(148,163,184,.14);color:var(--brand-text)}
+.fopt .tx2{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:500;font-size:1.02rem;line-height:1.3;overflow-wrap:break-word}
+.fopt .tx2 span{display:block;font-size:.8rem;color:var(--brand-text-2);font-weight:500}
+.fopt .mk{width:26px;height:26px;border-radius:50%;flex:none;border:2px solid var(--brand-line-2);display:flex;align-items:center;justify-content:center;color:transparent}
+.fopt .mk svg.i{width:16px;height:16px;stroke-width:2.6}
+.fopt[aria-checked="true"]{background:rgba(249,115,22,.12);border-color:var(--brand-accent)}
+.fopt[aria-checked="true"] .lt{background:var(--brand-accent);color:#1a0d03}
+.fopt[aria-checked="true"] .mk{background:var(--brand-accent);border-color:var(--brand-accent);color:#1a0d03}
+.fld textarea{width:100%;min-height:96px;padding:12px 14px;border-radius:12px;border:1px solid var(--brand-line-2);background:var(--brand-input);outline:none;font-size:16px;line-height:1.45;resize:vertical}
+.fld textarea:focus{border-color:var(--brand-accent);box-shadow:0 0 0 3px var(--brand-accent-glow)}
+.fb .btn[aria-disabled="true"]{opacity:.45;box-shadow:none;animation:none}
+.fb .transp{display:flex;gap:10px;font-size:.88rem;line-height:1.45;color:#cdd6df;margin:10px 0 14px;padding:10px 12px;border-radius:12px;background:rgba(148,163,184,.07);border:1px solid var(--brand-line-2)}
+.fb .transp svg.i{width:18px;height:18px;color:var(--brand-text-2);margin-top:1px}
+.fb .fehlt{color:var(--brand-text-2);font-size:.9rem;margin:0 0 10px;min-height:1.4em}
+.fbdank{background:linear-gradient(135deg,rgba(125,211,192,.14),rgba(125,211,192,0) 70%),var(--brand-card);border-color:rgba(125,211,192,.35)}
+.fbdank h2 svg.i{color:var(--brand-ok)!important}
+.getcon .fblink{color:var(--gc-navy)}
+
+/* ===== FAB & Footer – Skill §10.3, spec/01 §C.10 ===== */
+.fab{position:fixed;right:calc(16px + env(safe-area-inset-right));bottom:calc(18px + var(--sab));width:56px;height:56px;border-radius:50%;z-index:50;
+  display:flex;align-items:center;justify-content:center;color:var(--brand-text);background:rgba(28,46,64,.86);border:1px solid var(--brand-line-2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 26px -6px rgba(0,0,0,.7)}
+.fab svg.i{width:24px;height:24px;stroke-width:2}
+.fab[hidden]{display:none}
+.fab{transition:transform .3s var(--ease),opacity .3s}
+.fab.away{transform:translateY(90px);opacity:0;pointer-events:none}
+footer.foot{text-align:center;color:var(--brand-muted);font-size:.8rem;line-height:1.6;padding:34px 16px calc(96px + var(--sab))}
+footer.foot a{color:var(--brand-text-2);text-decoration:none}
+footer.foot a b{color:var(--brand-text-2);font-weight:700}
+
+/* ===== Lightbox für Inhaltsbilder – spec/04 §4 ===== */
+.bl figure img{cursor:zoom-in}
+.lb{position:fixed;inset:0;z-index:95;background:rgba(5,10,15,.96);display:flex;align-items:center;justify-content:center;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;animation:enter .2s var(--ease) both}
+.lb[hidden]{display:none}
+.lb img{max-width:100vw;max-height:100dvh;width:auto;height:auto;object-fit:contain;transform-origin:0 0;will-change:transform;-webkit-user-drag:none;pointer-events:none}
+.lb .lbx{position:absolute;top:calc(10px + var(--sat));right:calc(10px + env(safe-area-inset-right));width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;background:rgba(28,46,64,.85);border:1px solid rgba(255,255,255,.22);z-index:2}
+.lb .lbx svg.i{width:24px;height:24px;stroke-width:2.2}
+.lb .lbh{position:absolute;left:0;right:0;bottom:calc(14px + var(--sab));text-align:center;color:var(--brand-text-2);font-size:.82rem;pointer-events:none;padding:0 16px}
+body.lbmode{overflow:hidden}
+
+/* ===== Dialoge & Toast ===== */
+dialog.dlg{border:none;padding:0;background:transparent;color:var(--brand-text);max-width:min(440px,calc(100vw - 32px));width:100%}
+dialog.dlg::backdrop{background:rgba(5,10,15,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+dialog.dlg .box{background:var(--brand-card);border:1px solid var(--brand-line-2);border-radius:24px;padding:24px 20px 18px;box-shadow:0 30px 70px -20px rgba(0,0,0,.9);animation:pop .3s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+dialog.dlg .ico{width:56px;height:56px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(249,115,22,.14);color:var(--brand-accent-soft);margin-bottom:14px}
+dialog.dlg .ico svg.i{width:28px;height:28px}
+dialog.dlg h2{font-size:1.42rem;margin:0 0 8px}
+dialog.dlg p{color:#d3dbe4;margin:0 0 18px}
+dialog.dlg .thumb{border-radius:14px;overflow:hidden;aspect-ratio:16/7;margin:0 0 16px;position:relative}
+dialog.dlg .thumb img{width:100%;height:100%;object-fit:cover}
+dialog.dlg .thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(10,18,26,.75))}
+dialog.dlg .thumb .lockb{z-index:1}
+dialog.dlg .thumb span{z-index:1;position:absolute;left:12px;bottom:10px;font-family:var(--brand-font-head);font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+.toast{position:fixed;left:50%;width:max-content;text-align:center;bottom:calc(90px + var(--sab));transform:translateX(-50%) translateY(20px);opacity:0;z-index:90;background:#22364c;color:var(--brand-text);border:1px solid var(--brand-line-2);border-radius:14px;padding:12px 16px;font-size:.92rem;max-width:calc(100vw - 32px);box-shadow:0 14px 34px -10px rgba(0,0,0,.8);transition:.3s var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translateX(-50%)}
+
+/* ===== Über-Seite im GetCon-Design (gescoped) – spec/01 §C.9, Skill §10.1 ===== */
+.getcon{--gc-bg:#0D1823;--gc-card:#152638;--gc-card2:#1A2E44;--gc-soft:#1B324A;--gc-text:#DCE5EE;--gc-muted:#A7B7C6;--gc-head:#CFE0F3;--gc-line:#28425C;--gc-navy:#9EC2EE;--gc-blue:#7AA7E0;--gc-maxw:880px;
+  background:var(--gc-bg);color:var(--gc-text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,sans-serif;line-height:1.55;min-height:100dvh}
+.getcon h1,.getcon h2,.getcon h3{font-family:Poppins,-apple-system,"Segoe UI",sans-serif;color:var(--gc-head);letter-spacing:0;font-weight:600;line-height:1.25}
+.getcon .hero2{position:relative;color:#fff;background:#1F4E79 var(--gc-hero) 72% 100%/cover no-repeat;overflow:hidden;min-height:calc(190px + var(--sat))}
+.getcon .hero2::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,52,84,.80) 0%,rgba(31,78,121,.45) 45%,rgba(31,78,121,0) 75%),linear-gradient(90deg,rgba(17,52,84,.35),rgba(17,52,84,0) 60%)}
+@media(min-width:700px){.getcon .hero2{min-height:230px;background-position:center 92%}}
+.getcon .hero2 .in{position:relative;max-width:var(--gc-maxw);margin:0 auto;padding:calc(14px + var(--sat)) 16px 16px;display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.getcon .logo{display:block;flex:none;border-radius:8px;padding:2px}
+.getcon .logo img{display:block;height:42px;width:auto}
+.getcon .ttl2{font-family:Poppins,sans-serif;font-size:.86rem;font-weight:500;opacity:.95;line-height:1.3;border-left:1px solid rgba(255,255,255,.45);padding-left:12px}
+.getcon .ttl2 b{display:block;font-size:1rem;font-weight:600}
+@media(max-width:420px){.getcon .ttl2{flex-basis:100%;border-left:none;padding-left:2px;margin-top:2px}}
+.getcon .wrap2{max-width:var(--gc-maxw);margin:0 auto;padding:6px 16px 0}
+.getcon .sec{background:var(--gc-card);border:1px solid var(--gc-line);border-radius:16px;padding:18px 16px;margin:16px 0;box-shadow:0 4px 18px rgba(0,0,0,.35)}
+.getcon .sec h2{font-size:1.2rem;margin:0 0 8px}
+.getcon .sec p{margin:0}
+.getcon .sec.hl{background:linear-gradient(135deg,#1B324A,#152638);border-color:#3A5E85}
+.getcon .sec.hl h2::before{content:"★ ";color:#F1D27A}
+.getcon .gbtn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;border-radius:12px;padding:12px 18px;font-weight:600;font-family:Poppins,sans-serif;text-decoration:none;text-align:center;background:var(--gc-blue);color:#0D1823}
+.getcon .gbtn.sec2{background:transparent;color:var(--gc-navy);border:1.5px solid var(--gc-navy)}
+.getcon .gbtn svg.i{width:20px;height:20px}
+.getcon .back2{display:inline-flex;align-items:center;gap:8px;color:var(--gc-muted);text-decoration:none;min-height:44px;margin-top:6px}
+.getcon footer.foot{color:var(--gc-muted)}
+.getcon footer.foot a{color:var(--gc-muted)}
+
+/* ===== spec/06 ===== */
+/* §5 Slide-Leiste: Rubrik + Position, Wisch-Hinweis (absolut, kein Layout-Sprung) */
+.bar .t .st2{display:flex;flex-direction:column;align-items:center;line-height:1.2;min-width:0}
+.bar .t .st2 b{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:1rem}
+.bar .t .st2 small{display:block;max-width:100%;overflow:hidden;text-overflow:ellipsis;font-size:.76rem;font-weight:500;color:var(--brand-text-2);margin-top:1px}
+.bar{position:sticky}
+.wisch{position:absolute;left:50%;top:calc(100% + 12px);transform:translate(-50%,-6px);opacity:0;transition:opacity .35s var(--ease),transform .35s var(--ease);pointer-events:none;
+  display:inline-flex;align-items:center;gap:8px;max-width:calc(100vw - 32px);width:max-content;padding:8px 14px 8px 10px;border-radius:999px;background:rgba(27,43,61,.94);border:1px solid var(--brand-line-2);
+  color:var(--brand-text);font-size:.86rem;font-weight:600;box-shadow:0 10px 26px -10px rgba(0,0,0,.8)}
+.wisch.on{opacity:1;transform:translate(-50%,0)}
+.wisch svg.i{width:18px;height:18px;flex:none}
+.wisch .wh{display:inline-flex;color:var(--brand-accent-soft);animation:wnudge 1.3s var(--ease) infinite}
+@keyframes wnudge{0%,100%{transform:translateX(4px)}50%{transform:translateX(-6px)}}
+/* §2 Hinweis „Als App auf den Startbildschirm“ – Bottom-Sheet, nicht modal */
+.inst{position:fixed;left:0;right:0;bottom:0;z-index:60;padding:0 10px calc(10px + var(--sab));transform:translateY(110%);transition:transform .35s var(--ease);pointer-events:none}
+.inst.on{transform:none}
+.inst.on .in{pointer-events:auto}
+.inst[hidden]{display:none}
+.inst .in{position:relative;max-width:520px;margin:0 auto;background:#1b2b3d;border:1px solid var(--brand-line-2);border-radius:20px;padding:14px 14px 10px;box-shadow:0 -10px 40px -12px rgba(0,0,0,.85)}
+.inst .ix{position:absolute;top:4px;right:4px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--brand-text-2);border-radius:50%}
+.inst .ih{display:flex;gap:12px;align-items:center;padding-right:38px}
+.inst .ih .ti{width:40px;height:40px;flex:none;border-radius:12px;display:flex;align-items:center;justify-content:center;background:rgba(249,115,22,.14);color:var(--brand-accent-soft)}
+.inst .ih b{display:block;font-family:var(--brand-font-head);font-size:1.02rem;line-height:1.25}
+.inst .ih small{display:block;color:var(--brand-text-2);font-size:.82rem;line-height:1.3}
+.inst ol.ist{margin:10px 0 4px;padding-left:22px;font-size:.92rem;line-height:1.45}
+.inst ol.ist li{margin:4px 0}
+.inst .btn.block{margin:10px 0 2px;min-height:48px}
+.kbd{display:inline-flex;align-items:center;justify-content:center;width:26px;height:24px;border-radius:7px;background:var(--brand-card-2);border:1px solid var(--brand-line-2);vertical-align:-6px;color:var(--brand-text)}
+.kbd svg.i{width:16px;height:16px}
+.inst .inote{font-size:.82rem;color:var(--brand-text-2);margin:4px 0 0;line-height:1.4}
+.inst .ib{display:flex;gap:6px;align-items:center;justify-content:space-between;margin-top:6px;flex-wrap:wrap}
+.inst .ib button{white-space:nowrap}
+.inst .ib button{min-height:44px;padding:0 6px;font-size:.88rem;font-weight:600;color:var(--brand-text-2)}
+.inst .ib .lnk{color:var(--brand-accent-soft);text-decoration:underline;text-underline-offset:3px}
+body.inst-on footer.foot{padding-bottom:calc(300px + var(--sab))}
+/* §3 Anleitungen (Einstellungen) */
+.anl-sec{margin:26px 0 8px}
+.anl-h{font-size:1.18rem;display:flex;align-items:center;gap:10px;margin:0 0 4px}
+.anl-h svg.i{color:var(--brand-accent-soft)}
+.anl-sec>.hint{color:var(--brand-text-2);font-size:.9rem;margin:0 0 6px}
+details.acc.anl{margin:10px 0}
+/* v1.3.3 Einstellungen: Aufklappkarten im Stil der Link-Karten */
+section.card.lk{padding:6px 16px;margin:12px 0}
+section.card.lk .linkrow .k{font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem;line-height:1.25}
+section.card.lk .linkrow small{font-family:inherit;font-weight:400;font-size:.84rem;line-height:1.3;margin-top:1px}
+details.acc.set{margin:12px 0;border-radius:20px}
+details.acc.set>summary{gap:12px;padding:8px 16px;min-height:60px}
+details.acc.set>summary .iconbtn{background:var(--brand-card-2);color:var(--brand-accent-soft)}
+details.acc.set>summary .k{flex:1;min-width:0;font-family:var(--brand-font-head);font-weight:700;font-size:1.04rem;line-height:1.25}
+details.acc.set>summary .k small{display:block;font-family:inherit;font-weight:400;color:var(--brand-text-2);font-size:.86rem;margin-top:1px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+details.acc.set>.acb{padding:0 16px 16px}
+details.acc.set>.acb>.hint:first-child{margin-top:0}
+details.acc.anl .acb{padding:0 16px 10px}
+details.acc.anl .acb h3{font-size:1rem;margin:16px 0 6px}
+details.acc.anl .acb h3:first-child{margin-top:2px}
+details.acc.anl .acb ol,details.acc.anl .acb ul{font-size:.96rem;margin:0 0 .8em;padding-left:1.35em}
+details.acc.anl .acb li{margin:3px 0}
+details.acc.anl .acb p{font-size:.96rem}
+details.acc.anl .acb .anl-n{font-size:.88rem;color:var(--brand-text-2)}
+details.acc.anl .acb .btn{margin:4px 0 10px}
+/* §4 Offline-Dateien löschen */
+#offline .hint.odel{margin:8px 0 0;font-size:.86rem}
+#offline button[disabled]{opacity:.5;cursor:default}
+</style>
+</head>
+<body class="sv-b">
+<a class="sr" href="#app">Zum Inhalt</a>
+<main id="app" aria-live="polite"></main>
+<button class="fab" id="fab" hidden aria-label="Eine Ebene zurück"></button>
+
+<dialog class="dlg" id="dlgSperre" aria-labelledby="dsT">
+  <div class="box">
+    <div class="thumb" id="dsThumb"></div>
+    <h2 id="dsT"></h2>
+    <p id="dsP"></p>
+    <div class="btns">
+      <button class="btn block" data-act="sperre-anfragen" id="dsOk"></button>
+      <button class="btn ghost block" data-act="dlg-zu" id="dsZu"></button>
+    </div>
+  </div>
+</dialog>
+<dialog class="dlg" id="dlgAsk" aria-labelledby="daT">
+  <div class="box">
+    <h2 id="daT"></h2>
+    <p id="daP"></p>
+    <div class="btns">
+      <button class="btn block" id="daOk"></button>
+      <button class="btn ghost block" id="daNo">Abbrechen</button>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast" role="status"></div>
+<aside class="inst" id="inst" hidden aria-label="Als App auf den Startbildschirm"></aside>   <!-- spec/06 §2 -->
+<!-- spec/04 §4: Lightbox -->
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bild in Vollansicht"><img id="lbImg" alt=""><button class="lbx" id="lbX" aria-label="Schließen"></button><div class="lbh">Mit zwei Fingern zoomen · Doppeltipp vergrößert</div></div>
+<input type="file" id="fileBild" accept="image/*" hidden>
+<input type="file" id="fileImport" accept="application/json,.json" hidden>
+
+<script>
+'use strict';
+/* ================================================================
+   1. Konstanten, Icons
+   ================================================================ */
+const APP_VERSION = '1.3.34';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
+const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
+const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
+const RUBRIK = {                         /* spec/00 §2.2 Reihenfolge Einstieg → Quellen */
+  einstieg:{label:'Einstieg', icon:'flask'},
+  brainfact:{label:'Brain-Fact', icon:'bulb'},
+  mindhack:{label:'Mind-Hack', icon:'wrench'},
+  mission:{label:'Mission Alltag', icon:'clip'},
+  quellen:{label:'Quellen & Hintergrund', icon:'book'}
+};
+const RUBRIK_BILD = ['einstieg','brainfact','mindhack','mission','quellen'];   /* v1.3.3: goldene Illustrationen, brand/rubrik/ */
+function rubIcon(key, px){
+  const rb = RUBRIK[key];
+  if(rb && RUBRIK_BILD.includes(key)) return `<img class="rbi" src="brand/rubrik/rubrik-${key}.webp" width="${px}" height="${px}" alt="" decoding="async">`;
+  return ic(rb ? rb.icon : 'chev');
+}
+/* v1.3.10: Zwischenüberschrift-Icons (Akkordeon-Feld "icon"), goldene WebP 56 px für 28 px Anzeige */
+const ZW_ICON = {kette:'brand/icons/zw-kettenglied.webp', anker:'brand/icons/zw-anker.webp', wegweiser:'brand/icons/zw-wegweiser.webp'};
+const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung'};
+
+/* Linien-Icons (Skill §10.2): stroke currentColor, 1.7 px */
+const IC = {
+  home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20h5v-6h4v6h5V9.5"/>',
+  sliders:'<path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/>',
+  back:'<path d="M19 12H5M11 18l-6-6 6-6"/>',
+  up:'<path d="M15 18l-6-6 6-6"/>',
+  arrowup:'<path d="M12 19V5M5 12l7-7 7 7"/>',   /* v1.3.11: echter Pfeil nach oben (up = Zurück-Chevron) */
+  lock:'<rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V7.5a4 4 0 0 1 8 0V11"/>',
+  check:'<path d="M5 12.5l4.5 4.5L19 7.5"/>',
+  play:'<path d="M8 5.2v13.6a.8.8 0 0 0 1.2.7l11-6.8a.8.8 0 0 0 0-1.4l-11-6.8A.8.8 0 0 0 8 5.2z"/>',
+  pause:'<rect x="6.5" y="5" width="4" height="14" rx="1.2"/><rect x="13.5" y="5" width="4" height="14" rx="1.2"/>',
+  rw:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5"/>',
+  ff:'<path d="M20.5 12a8.5 8.5 0 1 1-2.6-6.1l2.6 2.6"/><path d="M20.5 3.5v5h-5"/>',
+  flask:'<path d="M9 3h6M10 3v6.2L4.6 18.4A1.8 1.8 0 0 0 6.2 21h11.6a1.8 1.8 0 0 0 1.6-2.6L14 9.2V3"/><path d="M7.2 15h9.6"/>',
+  bulb:'<path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.6 1.1 1.3 1.1 2.2v.5h5V16c0-.9.4-1.6 1.1-2.2A6 6 0 0 0 12 3z"/>',
+  wrench:'<path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.4-3.4a6 6 0 0 1-7.9 7.9l-6.5 6.5a2.1 2.1 0 0 1-3-3l6.5-6.5a6 6 0 0 1 7.9-7.9z"/>',
+  clip:'<rect x="8" y="2.5" width="8" height="4" rx="1"/><path d="M16 4.5h2a2 2 0 0 1 2 2V20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6.5a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+  book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M20 17v4H6.5A2.5 2.5 0 0 1 4 18.5"/>',
+  right:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  chev:'<path d="M9 6l6 6-6 6"/>',
+  down:'<path d="M6 9l6 6 6-6"/>',
+  dl:'<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>',
+  ul:'<path d="M12 21V9M7 14l5-5 5 5M5 3h14"/>',
+  head:'<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+  mic:'<rect x="9" y="2.5" width="6" height="12" rx="3"/><path d="M5 10.5v1a7 7 0 0 0 14 0v-1M12 18.5V22"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.01"/>',
+  warn:'<path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.4v.01"/>',
+  spark:'<path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/>',
+  ext:'<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>',
+  mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 7 8.5 6 8.5-6"/>',
+  img:'<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/>',
+  reset:'<path d="M3.5 12a8.5 8.5 0 1 0 2.6-6.1L3.5 8.5"/><path d="M3.5 3.5v5h5"/>',
+  compass:'<circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/>',
+  cloud:'<path d="M7 18a4.5 4.5 0 0 1-.5-9 6 6 0 0 1 11.5 1.5A3.8 3.8 0 0 1 17.5 18z"/><path d="m9.5 13.5 2 2 3.5-3.5"/>',
+  save:'<path d="M12 3v10M8 9l4 4 4-4"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/>',
+  people:'<circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 4.8a3.2 3.2 0 0 1 0 6.4M18 14.4c1.8.8 3 2.6 3 4.6"/>',
+  layers:'<path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  edit:'<path d="M4 20h4L19 9l-4-4L4 16z"/><path d="m13.5 6.5 4 4"/>',
+  chat:'<path d="M20 11.5a8 8 0 0 1-11.6 7.2L4 20l1.3-4.2A8 8 0 1 1 20 11.5z"/>',
+  wind:'<path d="M3 8h10.5a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h15.5a2.5 2.5 0 1 1-2.5 2.5"/><path d="M3 16h7"/>',
+  hand:'<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11V4.5a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.5V6a1.5 1.5 0 0 1 3 0v7.5"/><path d="M8 12.5 6.6 11a1.6 1.6 0 0 0-2.4 2.1L8 18.5A6 6 0 0 0 12.6 21H13a5 5 0 0 0 5-5v-3"/>',
+  brain:'<path d="M9 4.5a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5.2A3 3 0 0 0 12 18V6a3 3 0 0 0-3-1.5z"/><path d="M15 4.5a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5.2A3 3 0 0 1 12 18"/>',
+  repeat:'<path d="M17 2.5 20.5 6 17 9.5"/><path d="M3.5 11V9a3 3 0 0 1 3-3h14"/><path d="M7 21.5 3.5 18 7 14.5"/><path d="M20.5 13v2a3 3 0 0 1-3 3h-14"/>',
+  bolt:'<path d="M13 2.5 4.5 13.5H12l-1 8 8.5-11H12z"/>',
+  puls:'<path d="M3 12h4l2.5-6 4 12 2.5-6H21"/>',
+  loop:'<path d="M12 4a8 8 0 1 0 8 8"/><path d="M12 8a4 4 0 1 0 4 4"/><path d="M20 4v4h-4"/>',
+  moon:'<path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/>',
+  wave:'<path d="M2.5 9c2.4-2 4.8-2 7.2 0s4.8 2 7.2 0 3.6-1.5 4.6-1"/><path d="M2.5 15c2.4-2 4.8-2 7.2 0s4.8 2 7.2 0 3.6-1.5 4.6-1"/>',
+  battery:'<rect x="2.5" y="7" width="17" height="10" rx="2.5"/><path d="M21.5 10.5v3M6 10v4M9.5 10v4"/>',
+  stack:'<rect x="4" y="3.5" width="16" height="5" rx="1.5"/><rect x="4" y="9.5" width="16" height="5" rx="1.5"/><rect x="4" y="15.5" width="16" height="5" rx="1.5"/>',
+  heart:'<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>',
+  phone:'<path d="M5 3.5h3.5l2 5-2.5 1.5a11 11 0 0 0 6 6l1.5-2.5 5 2V19a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/>',
+  grid:'<rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',   /* spec/04 §4 */
+  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9 6.8 19.6l1-5.8L3.5 9.7l5.9-.9z"/>',
+  /* spec/06 */
+  share:'<path d="M12 14.5v-11M8 7.5l4-4 4 4"/><path d="M8 10.5H6v10h12v-10h-2"/>',
+  dots:'<circle cx="12" cy="5.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="12" cy="18.5" r="1.4"/>',
+  plusbox:'<rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8.5v7M8.5 12h7"/>',
+  trash:'<path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13M10 11v5.5M14 11v5.5"/>',
+  key:'<circle cx="8" cy="15" r="4"/><path d="m11 12 8-8M16 7l3 3M14 9l2 2"/>',   /* v1.3.32 */
+  search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/>'   /* v1.3.32: Lupe (Werkzeug-Karte k05) */
+};
+/* spec/01 §C.8 – Icon-Helfer */
+function ic(n, cls){ const fill = (n==='play'||n==='pause'); return `<svg class="i${fill?' f':''}${cls?' '+cls:''}" viewBox="0 0 24 24" aria-hidden="true">${IC[n]||''}</svg>`; }
+
+/* ================================================================
+   2. Datenmodell & Helper (Skill §2.1–2.5)
+   ================================================================ */
+const DEFAULT_DATA = {
+  schemaVersion:1,
+  gelesen:{},          /* "k01/brainfact": true */
+  checks:{},           /* "k01/mission/1/0": true */
+  letzte:{},           /* "k01": "brainfact" */
+  anpassung:{titel:null, untertitel:null, startbildId:null},
+  theme:'dunkel'       /* spec/00 §9: nur dunkel */
+};
+const SECTIONS = {     /* Skill §4: Bereiche für Export/Import */
+  anpassung:{label:'Anpassung (Titel, Untertitel, Startbild)', keys:['anpassung']},
+  fortschritt:{label:'Fortschritt (gelesene Slides, Häkchen)', keys:['gelesen','checks','letzte']}
+};
+let D = null, BRAND = null, KAP = [], MED = {version:0, dateien:[]};
+let EXPF = [];         /* Abnahme S3: Experiment-Dateien für den Offline-Button {pfad, bytes} */
+let EXP = null;        /* Set vorhandener Experiment-Ordner (experimente/index.json); null = unbekannt → alle annehmen */
+const INH = {};        /* Kapitelinhalte-Cache: id → {data, beispiel} */
+let startbildURL = null;
+
+/* spec/01 §C.6 – localStorage gekapselt (Privatmodus/Vorschau) */
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); return true; }catch(e){ return false; } }
+/* v1.3.32: Zugangscodes (spec/10 §10). Codes liegen nur als SHA-256 ('klarkommen:'+normalisierter Code) in inhalte/zugang.json; gemerkt wird je Gerät nur der Hash (localStorage kk_zugang). Kein echter Schutz, nur Freischaltung. */
+const ZUG_KEY = 'kk_zugang';
+let ZUG = {liste:[], geladen:false, aktiv:[], frei:new Set()};   /* liste = Einträge der zugang.json; aktiv = davon auf diesem Gerät eingelöste; frei = Set Kapitel-IDs (oder 'alle') */
+function zugHashes(){ try{ const a = JSON.parse(lsGet(ZUG_KEY)||'[]'); return Array.isArray(a) ? a.filter(x=>typeof x==='string') : []; }catch(e){ return []; } }
+function zugBerechne(){
+  const hs = zugHashes();
+  ZUG.aktiv = ZUG.liste.filter(c=>hs.includes(c.hash));   /* unbekannt gewordene Hashes bleiben gespeichert, wirken aber nicht */
+  ZUG.frei = new Set();
+  for(const c of ZUG.aktiv){ if(c.kapitel==='alle') ZUG.frei.add('alle'); else if(Array.isArray(c.kapitel)) c.kapitel.forEach(id=>{ if(typeof id==='string') ZUG.frei.add(id); }); }
+}
+async function zugLaden(){
+  try{ const j = await getJSON('inhalte/zugang.json'); ZUG.liste = (Array.isArray(j.codes)?j.codes:[]).filter(c=>c && typeof c.hash==='string'); ZUG.geladen = true; }
+  catch(e){ ZUG.liste = []; ZUG.geladen = false; }
+  zugBerechne();
+}
+const zugNorm = c => String(c||'').trim().toLowerCase().replace(/\s+/g,'');
+async function zugHash(code){
+  if(!(window.crypto && crypto.subtle && crypto.subtle.digest && window.TextEncoder)) return null;
+  const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode('klarkommen:'+zugNorm(code)));
+  return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+/* löst einen Code ein; gibt den Toast-Text zurück */
+async function zugEinloesen(code){
+  if(!zugNorm(code)) return 'Bitte gib zuerst einen Code ein.';
+  const h = await zugHash(code);
+  if(!h) return 'Freischalten klappt nur über die normale Klarkommen-Adresse.';
+  if(!ZUG.geladen) await zugLaden();
+  const c = ZUG.liste.find(x=>x.hash===h);
+  if(!c) return ZUG.geladen ? 'Dieser Zugangscode ist nicht bekannt.' : 'Die Zugangscodes konnten nicht geladen werden. Bist du online?';
+  const hs = zugHashes(); if(!hs.includes(h)){ hs.push(h); lsSet(ZUG_KEY, JSON.stringify(hs)); }
+  zugBerechne();
+  return 'Freigeschaltet: '+(c.name||'Zugang');
+}
+const kapFrei = k => !!k && (k.status==='frei' || (!!k.inhalt && (ZUG.frei.has('alle') || ZUG.frei.has(k.id))));   /* ohne Inhaltsdatei bleibt jedes Kapitel gesperrt */
+/* Skill §2.2 – einzige Stelle für Migrationen */
+function normalizeData(o){
+  const d = JSON.parse(JSON.stringify(DEFAULT_DATA));
+  if(!o || typeof o!=='object') return d;
+  for(const k of ['gelesen','checks','letzte']) if(o[k] && typeof o[k]==='object') d[k] = Object.assign({}, o[k]);
+  if(o.anpassung && typeof o.anpassung==='object'){
+    for(const k of ['titel','untertitel','startbildId']) if(typeof o.anpassung[k]==='string' && o.anpassung[k].trim()) d.anpassung[k] = o.anpassung[k];
+  }
+  d.schemaVersion = 1;
+  return d;
+}
+function loadData(){ try{ D = normalizeData(JSON.parse(lsGet(LS_KEY)||'null')); }catch(e){ D = normalizeData(null); } }
+function saveData(){ lsSet(LS_KEY, JSON.stringify(D)); }
+
+/* spec/00 §3 – JSON laden (geht durch den Service Worker: network-first) */
+async function getJSON(url){
+  const r = await fetch(url, {cache:'no-cache'});
+  if(!r.ok) throw new Error(url+' → '+r.status);
+  return r.json();
+}
+/* spec/01 §B – Kapitelinhalt; Feld "inhalt" in kapitel.json zeigt vorübergehend auf Beispielinhalt (§E) */
+async function inhalt(k){
+  if(INH[k.id]) return INH[k.id];
+  if(!kapFrei(k)) return null;   /* v1.3.32 */
+  const url = k.inhalt || `inhalte/${k.id}.json`;
+  try{
+    const data = await getJSON(url);
+    const slides = (data.slides||[]).filter(s=>s && s.id);
+    const tools = (data.tools||[]).filter(t=>t && t.id);
+    INH[k.id] = {data:{...data, slides, tools}, beispiel:/beispiel/.test(url)};
+  }catch(e){ INH[k.id] = {data:{slides:[], tools:[]}, beispiel:false, fehler:true}; }
+  return INH[k.id];
+}
+const kapById = id => KAP.find(k=>k.id===id);
+const kapRouteId = k => k.id.replace(/^k/,'');           /* k01 → "01" */
+const kapFromRoute = s => kapById(/^\d+$/.test(s) ? 'k'+s.padStart(2,'0') : s);
+const medium = id => (MED.dateien||[]).find(d=>d.id===id);
+const fmtMB = b => b>=1e6 ? (b/1e6).toLocaleString('de-DE',{maximumFractionDigits:1})+' MB' : Math.max(1,Math.round(b/1e3))+' KB';
+const fmtT = s => { if(!isFinite(s)||s<0) s=0; s=Math.floor(s); const m=Math.floor(s/60), h=Math.floor(m/60); return h? `${h}:${String(m%60).padStart(2,'0')}:${String(s%60).padStart(2,'0')}` : `${m}:${String(s%60).padStart(2,'0')}`; };
+
+/* HTML-Escape + Inline-Markup (**fett**, *kursiv*, [Text](url)) – spec/01 §B */
+function esc(s){ return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+/* Inline-Icons im Text: Platzhalter {icon:name} in den Daten -> <img> in Texthöhe (1.2em). Neues Icon = Eintrag hier + Datei in brand/icons/ */
+const INL_ICON = {zzz:{src:'brand/icons/zzz.webp', w:44, h:56, alt:'schläft'}};
+function inl(s){
+  let t = esc(s);
+  t = t.replace(/\{icon:([a-z0-9-]+)\}/g,(m,n)=>{ if(n==='zzz') return '<span class="zz" role="img" aria-label="schläft"><span class="z1">Z</span><span class="z2">z</span><span class="z3">z</span></span>'; const i=INL_ICON[n]; return i?`<img class="ti" src="${i.src}" width="${i.w}" height="${i.h}" alt="${i.alt}" decoding="async">`:''; });
+  t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#)[^)\s]+)\)/g,(m,a,u)=>`<a href="${u}"${u[0]==='#'?'':' target="_blank" rel="noopener"'}>${a}</a>`);
+  t = t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g,'$1<em>$2</em>');
+  t = t.replace(/==([^=]+)==/g,'<span class="or">$1</span>');   /* v1.3.33: ==Text== = Orange-Akzent (Nummern/Schlagwort, sparsam) */
+  return t;
+}
+
+/* Skill §2.5 – IndexedDB für das eigene Startbild */
+function idb(){ return new Promise((res,rej)=>{ if(!('indexedDB' in window)) return rej(new Error('kein IndexedDB')); const r=indexedDB.open(IDB_NAME,1); r.onupgradeneeded=()=>r.result.createObjectStore(IDB_STORE); r.onsuccess=()=>res(r.result); r.onerror=()=>rej(r.error); }); }
+async function imgPut(id,blob){ const db=await idb(); return new Promise((res,rej)=>{ const t=db.transaction(IDB_STORE,'readwrite'); t.objectStore(IDB_STORE).put(blob,id); t.oncomplete=()=>res(); t.onerror=()=>rej(t.error); }); }
+async function imgGet(id){ try{ const db=await idb(); return await new Promise(res=>{ const r=db.transaction(IDB_STORE).objectStore(IDB_STORE).get(id); r.onsuccess=()=>res(r.result||null); r.onerror=()=>res(null); }); }catch(e){ return null; } }
+async function imgDel(id){ try{ const db=await idb(); await new Promise(res=>{ const t=db.transaction(IDB_STORE,'readwrite'); t.objectStore(IDB_STORE).delete(id); t.oncomplete=res; t.onerror=res; }); }catch(e){} }
+/* Bild verkleinern → JPEG (max. 2000 px) */
+function shrink(file,max=2000,q=.84){ return new Promise((res,rej)=>{ const u=URL.createObjectURL(file); const im=new Image(); im.onload=()=>{ const s=Math.min(1,max/Math.max(im.width,im.height)); const c=document.createElement('canvas'); c.width=Math.round(im.width*s); c.height=Math.round(im.height*s); c.getContext('2d').drawImage(im,0,0,c.width,c.height); URL.revokeObjectURL(u); c.toBlob(b=>b?res(b):rej(new Error('toBlob')),'image/jpeg',q); }; im.onerror=()=>{URL.revokeObjectURL(u); rej(new Error('Bild nicht lesbar'));}; im.src=u; }); }
+async function ladeStartbild(){
+  if(startbildURL){ URL.revokeObjectURL(startbildURL); startbildURL=null; }
+  if(D.anpassung.startbildId){ const b = await imgGet(D.anpassung.startbildId); if(b) startbildURL = URL.createObjectURL(b); }
+}
+const titel = () => D.anpassung.titel || BRAND.titelStandard;
+const untertitel = () => D.anpassung.untertitel || BRAND.untertitelStandard;
+const startbild = () => startbildURL || BRAND.startbild;
+
+/* Fortschritt – spec/01 §C.2/§C.5 */
+const sKey = (k,s) => `${k.id}/${s.id}`;
+function fortschritt(k){ const I=INH[k.id]; if(!I) return null;
+  if(k.typ==='toolbox') return null;   /* v1.3.8: Toolbox ohne Fortschrittsring (Markierung entfällt) */
+  /* v1.3.9: Quellen-Slides zählen nicht mit (Nachschlagen, kein Pflichtteil) – ein Kapitel ist fertig, wenn alle übrigen Slides inkl. „Mission Alltag“ gelesen sind */
+  const Z = I.data.slides.filter(s=>s.rubrik!=='quellen'); if(!Z.length) return null; const n=Z.length; const r=Z.filter(s=>D.gelesen[sKey(k,s)]).length; return {n,r}; }
+/* v1.3.9: „gelesen“ erst, wenn das Slide-Ende ca. 2 s im Blick war (bloßes Reinschauen/Durchwischen zählt nicht) */
+let readT = null, readIO = null;
+function readStop(){ clearTimeout(readT); readT = null; if(readIO){ readIO.disconnect(); readIO = null; } }
+function markRead(k,s){ const key=sKey(k,s); if(!D.gelesen[key]){ D.gelesen[key]=true; saveData(); const sg=document.querySelector(`.segs a[data-sid="${s.id}"]`); if(sg) sg.classList.add('r'); } }
+
+/* ================================================================
+   3. Router (Hash) – spec/01 §C.1
+   ================================================================ */
+function parse(h){
+  const raw = (h||'').replace(/^#\/?/,''); const qi = raw.indexOf('?');
+  const q = {}; if(qi>=0) for(const [a,b] of new URLSearchParams(raw.slice(qi+1))) q[a]=b;
+  const p = (qi>=0?raw.slice(0,qi):raw).split('/').filter(Boolean).map(s=>{ try{ return decodeURIComponent(s); }catch(e){ return s; } });
+  if(!p.length) return {name:'start'};
+  if(p[0]==='k' && p[1]){
+    /* spec/02 §3 – Toolbox-Routen: u/<usecase> · tool/<id> (Alias t/<id>) · alle?dauer=&art= */
+    if(p[2]==='u' && p[3]) return {name:'tbuc', kap:p[1], uc:p[3]};
+    if((p[2]==='tool'||p[2]==='t') && p[3]) return {name:'tbtool', kap:p[1], tool:p[3], von:q.u||q.von||null, anker:q.a||null};
+    if(p[2]==='alle') return {name:'tballe', kap:p[1], q};
+    return p[2] ? {name:'slide', kap:p[1], slide:p[2]} : {name:'kap', kap:p[1], kat:q.kat||null};   /* spec/07 T6: #/k/07?kat=<id> öffnet diese Kategorie */
+  }
+  if(p[0]==='x' && p[1]) return {name:'x', id:p[1], anker:p[2]||null};
+  if(p[0]==='einstellungen') return {name:'einstellungen'};
+  if(p[0]==='ueber') return {name:'ueber'};
+  if(p[0]==='feedback') return {name:'feedback'};   /* spec/04 §10 */
+  return {name:'start'};
+}
+/* Skill §10.3 – FAB = eine Ebene nach oben */
+function parentOf(r){
+  switch(r.name){
+    case 'slide': case 'tbuc': case 'tballe': return '#/k/'+r.kap;
+    case 'tbtool': return '#/k/'+r.kap;   /* spec/05 C3 */
+    case 'kap': case 'einstellungen': case 'ueber': case 'feedback': return '#/';
+    default: return null;
+  }
+}
+let curRoute = {name:'start'}, prevHash = null, lastStartScroll = 0;
+let routeFrom = {name:'start'}, tbFokus = null, tbVonUebersicht = false;   /* spec/07 T6: Rückkehr zur Herkunftskategorie */
+async function route(){
+  const r = parse(location.hash);
+  readStop();
+  lbVerstecken();   /* spec/04 §4: Routenwechsel schließt die Lightbox */
+  instVerstecken();   /* spec/06 §2 */
+  if(curRoute.name==='start') lastStartScroll = window.scrollY;
+  const from = curRoute; curRoute = r; routeFrom = from; tbFokus = null;
+  if(r.name==='tbtool') tbVonUebersicht = from.name==='kap' ? true : (from.name==='x' || (from.name==='tbtool' && from.tool===r.tool)) ? tbVonUebersicht : false;   /* spec/07 T6 */
+  stopAudio();
+  document.body.classList.toggle('xmode', r.name==='x');
+  const fab = document.getElementById('fab'); const par = parentOf(r);
+  fab.classList.remove('away'); fab.hidden = !par; fab.innerHTML = ic('back'); fab.dataset.go = par||'';
+  { const kk = r.name==='kap' ? kapFromRoute(r.kap) : null; if(kk && kk.typ==='toolbox') fab.hidden = true; }   /* v1.3.7: Toolbox-Übersicht ohne schwebenden Zurück-Button (verdeckte Kachel-Pfeile; Start über Home-Icon der Leiste) */
+  const app = document.getElementById('app');
+  try{
+    if(r.name==='start') await renderStart(app);
+    else if(r.name==='kap') await renderKapitel(app, r);
+    else if(r.name==='slide') await renderSlide(app, r);
+    else if(r.name==='tbuc' || r.name==='tbtool' || r.name==='tballe') await renderToolboxSub(app, r);
+    else if(r.name==='x') renderExperiment(app, r);
+    else if(r.name==='einstellungen') await renderEinstellungen(app);
+    else if(r.name==='ueber') renderUeber(app);
+    else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
+  }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
+  if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
+  if(tbFokus){ const el = document.getElementById(tbFokus); tbFokus = null; if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 10)); } }   /* spec/07 T6 */
+  if(r.name==='tbtool' && r.anker){ const el = document.getElementById('h-'+r.anker); if(el){ for(let q=el; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; }   /* spec/07 F9: Anker kann in einem Akkordeon liegen */ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 14)); } }   /* v1.3.4 */
+  const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
+  if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ for(let q=o; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; } o.scrollIntoView({block:'start'}); } }
+}
+function sessionStorageGet(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
+function sessionStorageSet(k,v){ try{ sessionStorage.setItem(k,v); }catch(e){} }
+
+/* ================================================================
+   4. Render-Funktionen
+   ================================================================ */
+/* spec/01 §C.10 – Footer überall */
+function footer(){ return `<footer class="foot"><a href="#/ueber"><b>Klarkommen</b> – ${esc(BRAND && BRAND.untertitelStandard || 'Mentale Stärke. Klare Richtung.')} · herausgegeben von <b>GetCon</b></a></footer>`; }
+/* App-Leiste für Unterseiten */
+function bar(titleHtml, extra=''){ return `<header class="bar"><div class="in"><a class="iconbtn" href="#/" aria-label="Startseite">${ic('home')}</a><div class="t">${titleHtml}</div><a class="iconbtn" href="#/einstellungen" aria-label="Einstellungen">${ic('sliders')}</a></div>${extra}</header>`; }
+function ringSvg(f, wort='gelesen'){
+  const C = 2*Math.PI*19; const p = f && f.n ? f.r/f.n : 0;
+  const done = f && f.n && f.r===f.n;
+  /* spec/04 §3: auch bei vollem Kapitel Text „n/n“ statt gefüllter Fläche; bei 0 kein Strich (sonst Punkt durch linecap) */
+  return `<div class="ring${done?' done':''}" aria-label="${f?`${f.r} von ${f.n} ${wort}`:''}"><svg viewBox="0 0 46 46"><circle class="tr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5"/>${p>0?`<circle class="pr" cx="23" cy="23" r="19" fill="none" stroke-width="3.5" stroke-linecap="${done?'butt':'round'}" stroke-dasharray="${C.toFixed(1)}" stroke-dashoffset="${(C*(1-p)).toFixed(1)}"/>`:''}</svg><span>${f?`${f.r}/${f.n}`:''}</span></div>`;
+}
+/* spec/04 §9: optionaler Bildausschnitt je Kapitel aus kapitel.json (coverPos = Kachel, coverPosKopf = Kapitelkopf) */
+function coverPos(k, wo){ const v = (wo==='kopf' && k.coverPosKopf) || k.coverPos; return (typeof v==='string' && /^[\d.% a-z-]{1,40}$/.test(v)) ? ` style="object-position:${v}"` : ''; }
+/* spec/01 §C.2 + §C.3 – Kachel */
+function tile(k){
+  const locked = !kapFrei(k);   /* v1.3.32 */
+  const eyebrow = k.nr ? `Kapitel ${k.nr}` : 'Bonus';
+  const f = fortschritt(k);
+  const tag = locked ? `<span class="tag">Vollversion</span>` : (k.typ==='toolbox' ? `<span class="tag">Toolsammlung</span>` : '');
+  const attrs = locked ? `data-act="sperre" data-kap="${k.id}"` : `data-go="#/k/${kapRouteId(k)}"`;
+  return `<button class="tile${locked?' locked':''}${k.nr?'':' wide'}" ${attrs} aria-label="${esc(eyebrow+': '+k.titel+(locked?' – nicht freigeschaltet':''))}">
+    <img src="${esc(k.cover)}" alt="" loading="lazy" decoding="async"${coverPos(k,'kachel')}>
+    ${locked?`<span class="lockb glass">${ic('lock')}</span>`:''}
+    <span class="tx"><div><div class="eyebrow">${eyebrow}${k.phase && k.nr?`<span class="ph"> · ${esc(k.phase)}</span>`:''}</div><h3>${esc(k.titel)}</h3>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}${tag}</div>${(!locked && k.typ!=='toolbox')?`<span data-ring="${k.id}">${ringSvg(f)}</span>`:''}</span>
+  </button>`;
+}
+/* spec/01 §C.2 – Startseite */
+async function renderStart(app){
+  document.title = titel();
+  let html = `<div class="view"><section class="hero">
+    <img class="bg" src="${esc(startbild())}" alt="" fetchpriority="high">
+    <div class="top"><button class="pill glass" id="opill" data-act="zu-offline"><span class="dot"></span><span id="opillT">Offline-Status …</span></button><a class="iconbtn glass" href="#/einstellungen" aria-label="Einstellungen">${ic('sliders')}</a></div>
+    <div class="ttl"><h1>${esc(titel())}</h1><div class="sub">${esc(untertitel())}</div></div>
+    <div class="bottom"></div>
+  </section>
+  <section id="einfuehrung" ${BRAND.features && BRAND.features.einfuehrung ? '' : 'hidden'} class="wrap wide"><!-- Platz für spätere Einführung (Feature-Flag brand.json features.einfuehrung) --></section>
+  <section class="wrap wide" aria-labelledby="reiseH">
+    <div class="lead"><h2 id="reiseH">Deine Reise</h2><span class="meta">${KAP.filter(k=>k.nr).length} Kapitel + Bonus</span></div>
+    <p class="introtxt" id="intro">${introHtml()}</p>
+    ${fbKarte()}<!-- spec/04 §10 -->
+    ${progHtml()}
+    <div class="reise">`;
+  let phase = null;
+  for(const k of KAP){
+    if(k.phase && k.phase!==phase){ phase = k.phase; const nrs = KAP.filter(x=>x.phase===phase && x.nr).map(x=>x.nr); html += `<div class="phase"><span>${esc(phase)}${nrs.length?` <b>· ${nrs.length>1?nrs[0]+'–'+nrs[nrs.length-1]:nrs[0]}</b>`:''}</span></div>`; }
+    html += tile(k);
+  }
+  html += `</div></section>${footer()}</div>`;
+  app.innerHTML = html;
+  offlinePill();
+  setTimeout(instZeigen, 900);   /* spec/06 §2 */
+  /* Fortschrittsringe nachladen */
+  for(const k of KAP.filter(kapFrei)){
+    inhalt(k).then(()=>{ const el=document.querySelector(`[data-ring="${k.id}"]`); if(el) el.innerHTML = ringSvg(fortschritt(k)); });
+  }
+  Promise.all(KAP.filter(k=>kapFrei(k) && k.typ!=='toolbox').map(k=>inhalt(k))).then(()=>{ const el=document.getElementById('prog'); if(el && curRoute.name==='start') el.outerHTML = progHtml(); const it=document.getElementById('intro'); if(it && curRoute.name==='start') it.innerHTML = introHtml(); });
+}
+/* v1.3.10: Einstiegstext – zweiter Satz je nach Fortschritt. N = erstes freies, begonnenes, nicht abgeschlossenes Kapitel, sonst erstes freies nicht abgeschlossenes (Toolbox übersprungen); alles erledigt = nur erster Satz */
+function introHtml(){
+  const S1 = 'Kapitel für Kapitel zu mehr innerer Stärke und Klarheit.';
+  const fr = KAP.filter(k=>k.nr && kapFrei(k) && k.typ!=='toolbox');
+  if(fr.some(k=>!INH[k.id])){ return (Object.keys(D.gelesen||{}).length || Object.keys(D.letzte||{}).length) ? S1 : S1+' Tippe Kapitel 1 an, um loszulegen.'; }   /* Inhalte noch nicht geladen: nichts Falsches behaupten */
+  const st = fr.map(k=>{ const f=fortschritt(k); return {k, done: !!(f && f.n && f.r===f.n), beg: !!(f && (f.r>0 || D.letzte[k.id]))}; });
+  const any = st.some(x=>x.done || x.beg);
+  if(!any) return S1+' Tippe Kapitel 1 an, um loszulegen.';
+  const t = st.find(x=>x.beg && !x.done) || st.find(x=>!x.done);
+  if(!t) return S1;
+  return `${S1} Mach weiter mit <a href="#/k/${kapRouteId(t.k)}">Kapitel ${t.k.nr}</a>.`;
+}
+/* v1.3.9: Gesamtfortschritt auf der Startseite – 12 Segmente (ein Segment je Kapitel), Daten aus der vorhandenen Fortschrittslogik */
+function progHtml(){
+  const Kn = KAP.filter(k=>k.nr); let fertig = 0, beg = 0;
+  const seg = Kn.map(k=>{
+    const f = (kapFrei(k) && k.typ!=='toolbox') ? fortschritt(k) : null;
+    if(!f) return '<i></i>';
+    if(f.n && f.r===f.n){ fertig++; return '<i class="ok"><b style="width:100%"></b></i>'; }
+    if(f.r>0 || D.letzte[k.id]){ beg++; return `<i class="beg"><b style="width:${Math.max(22, Math.round(100*f.r/f.n))}%"></b></i>`; }
+    return '<i></i>';
+  }).join('');
+  const txt = `Dein Fortschritt · ${fertig} von ${Kn.length} Kapiteln${beg?` · ${beg} begonnen`:''}`;
+  return `<div class="prog${fertig||beg?'':' leer'}" id="prog" role="img" aria-label="${txt}"><div class="pbar">${seg}</div><div class="pt">${txt}</div></div>`;
+}
+/* spec/00 §2.2 – nächstes freies Kapitel */
+function naechstesKapitel(k){ const i = KAP.indexOf(k); return KAP.slice(i+1).find(kapFrei) || null; }
+/* spec/01 §C.4 – Kapitelseite */
+async function renderKapitel(app, r){
+  const k = kapFromRoute(r.kap);
+  if(!k){ location.replace('#/'); return; }
+  if(!kapFrei(k)){ location.replace('#/'); setTimeout(()=>openSperre(k),50); return; }
+  document.title = `${k.titel} · ${titel()}`;
+  const eyebrow = k.nr ? `Kapitel ${k.nr}` : 'Bonus';
+  const head = `<section class="khead"><img src="${esc(k.cover)}" alt=""${coverPos(k,'kopf')}><div class="wrap"><div class="eyebrow">${eyebrow}${k.phase?` · ${esc(k.phase)}`:''}</div><h1>${esc(k.titel)}</h1>${k.untertitel?`<div class="u">${esc(k.untertitel)}</div>`:''}</div></section>`;
+  if(k.typ==='toolbox'){ await renderToolbox(app, k, head, eyebrow); return; }
+  const I = await inhalt(k);
+  const S = I.data.slides;
+  const f = fortschritt(k) || {n:0,r:0};
+  const firstUnread = S.find(s=>!D.gelesen[sKey(k,s)]);
+  const last = D.letzte[k.id] && S.find(s=>s.id===D.letzte[k.id]);
+  const ziel = (f.r>0 || last) ? (last && !D.gelesen[sKey(k,last)] ? last : (firstUnread||S[0])) : S[0];
+  const label = f.r===f.n && f.n ? 'Noch einmal ansehen' : ((f.r>0||last) ? 'Weiter, wo du warst' : 'Los geht’s');
+  let html = `<div class="view">${bar(`<b>${eyebrow}</b> · ${esc(k.titel)}`)}${head}<div class="wrap">`;
+  if(I.beispiel) html += `<div class="beispiel">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`;
+  html += `<div class="kmeta"><span>${ic('layers')} ${S.length} Etappen</span><span>${ic('check')} ${f.r} gelesen</span></div>`;
+  if(ziel) html += `<a class="btn block pulse" href="#/k/${kapRouteId(k)}/${encodeURIComponent((f.r===f.n&&f.n?S[0]:ziel).id)}">${label} ${ic('right')}</a>`;
+  html += `<ol class="etappen">`;
+  for(const s of S){
+    const rd = !!D.gelesen[sKey(k,s)]; const nx = !rd && ziel && s.id===ziel.id;
+    const rb = RUBRIK[s.rubrik] || {label:s.rubrik, icon:'chev'};
+    html += `<li class="etappe${rd?' r':''}${nx?' next':''}"><a href="#/k/${kapRouteId(k)}/${encodeURIComponent(s.id)}"><span class="ic${RUBRIK_BILD.includes(s.rubrik)?' img':''}">${rubIcon(s.rubrik,36)}</span><span class="txt"><span class="rb">${esc(rb.label)}</span><div class="tt">${esc(s.titel)}</div></span>${rd?`<span class="ok" aria-label="gelesen">${ic('check')}</span>`:`<span class="chev">${ic('chev')}</span>`}</a></li>`;
+  }
+  html += `</ol>`;
+  if(f.r>0 || D.letzte[k.id] || Object.keys(D.checks).some(x=>x.startsWith(k.id+'/'))) html += `<p class="kreset"><button type="button" data-act="kap-reset" data-kap="${k.id}">Fortschritt dieses Kapitels zurücksetzen</button></p>`;
+  html += `${I.fehler?`<div class="call wichtig">${ic('warn')}<p>Der Inhalt dieses Kapitels konnte nicht geladen werden. Bist du offline? Dann einmal mit Internet öffnen.</p></div>`:''}</div>${footer()}</div>`;
+  app.innerHTML = html;
+}
+/* Weiter-Karte am Kapitelende */
+function naechstWeiter(k, fertig){
+  const n = naechstesKapitel(k); const fa = fertig ? ' data-fertig' : '';
+  if(!n) return `<a class="weiter end" href="#/" data-endcard${fa}><span class="k"><span class="l">Geschafft</span><div class="n">Zurück zu deiner Reise</div></span><span class="go">${ic('home')}</span></a>`;
+  return `<a class="weiter end" href="#/k/${kapRouteId(n)}" data-endcard${fa}><span class="k"><span class="l">Nächstes Kapitel</span><div class="n">${n.nr?`Kapitel ${n.nr}: `:''}${esc(n.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
+}
+/* spec/01 §B – Blöcke rendern */
+function blocks(arr, ctx){
+  let h = ''; const skip = new Set();
+  (arr||[]).forEach((b,bi)=>{
+    if(!b || !b.typ || skip.has(bi)) return;
+    const path = ctx.path+'/'+bi;
+    switch(b.typ){
+      case 'absatz': h += `<p>${inl(b.text)}</p>`; break;
+      case 'ueberschrift': if(ctx.lz){ h += `<h3 class="lzs"${b.id?` id="h-${esc(b.id)}"`:''}><span>${inl(b.text)}</span></h3>`; break; }   /* v1.3.11: Überschrift innerhalb eines Lese-Abschnitts eine Stufe tiefer */
+        h += `<h2${b.id?` id="h-${esc(b.id)}"`:''}>${inl(b.text)}</h2>`; break;   /* v1.3.4: optionale id → Sprungziel (z. B. #/k/07/tool/safe-place?a=anker) */
+      case 'liste': { const t = b.geordnet?'ol':'ul'; h += `<${t}>${(b.punkte||[]).map(p=>`<li>${inl(p)}</li>`).join('')}</${t}>`; break; }
+      case 'checkliste': h += `<ul class="check">${(b.punkte||[]).map((p,i)=>{ const key=path+'/'+i; return `<li><label><input type="checkbox" data-check="${esc(key)}" ${D.checks[key]?'checked':''}><span class="bx">${ic('check')}</span><span>${inl(p)}</span></label></li>`; }).join('')}</ul>`; break;
+      case 'zitat': h += `<blockquote>${inl(b.text)}${b.quelle?`<cite>– ${inl(b.quelle)}</cite>`:''}</blockquote>`; break;
+      case 'callout': { const a = b.art||'tipp'; h += `<div class="call ${esc(a)}">${ic(a==='wichtig'?'warn':a==='info'?'info':'spark')}<p>${inl(b.text)}</p></div>`; break; }
+      case 'bild': if(!b.src) break; h += `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" loading="lazy" decoding="async">${b.unterschrift?`<figcaption>${inl(b.unterschrift)}</figcaption>`:''}</figure>`; break;
+      case 'audio': h += audioCard(b); break;
+      case 'experiment': {
+        /* spec/03: mehrere Experimente direkt nacheinander → eine Serien-Karte (z. B. Kap. 1 Einstieg: focus, farbensuche, Pizza) */
+        let serie = Array.isArray(b.reihe) ? b.reihe.map(x=>({typ:'experiment', ...x})) : [b];
+        for(let j=bi+1; j<arr.length && arr[j] && arr[j].typ==='experiment' && !Array.isArray(arr[j].reihe); j++){ serie.push(arr[j]); skip.add(j); }
+        h += serie.length>1 ? expSerie(serie, path) : expKarte(serie[0], path);
+        break; }
+      case 'akkordeon': if(ctx.lese){   /* v1.3.11: Lese-Modus – Akkordeon-Titel wird Zwischenüberschrift, Inhalt steht direkt darunter (Daten unverändert, gilt für alle Kapitel) */
+          const lz = (ctx.lz||0)+1, ico = ZW_ICON[b.icon]?`<img class="zbi" src="${ZW_ICON[b.icon]}" width="28" height="28" alt="" decoding="async">`:'', tg = lz===1?'h2':'h3';
+          h += `<${tg} class="${lz===1?'lzh':'lzs'}"${b.id?` id="h-${esc(b.id)}"`:''}>${ico}<span>${esc(b.titel)}</span></${tg}>` + blocks(b.bloecke, {...ctx, path, lz});
+          break; }
+        h += `<details class="acc"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ZW_ICON[b.icon]?`<img class="zbi" src="${ZW_ICON[b.icon]}" width="28" height="28" alt="" decoding="async">`:ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
+      case 'einwand': h += `<details class="einw"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ic('chat')}<span>${esc(b.titel||'')}</span>${ic('down','chv')}</summary><div class="ewb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;   /* v1.3.18: Einwand-Knopf (k03 Leseversion „informiert bleiben“) */
+      case 'link': { /* Nachtrag 04.11.: externe Link-Karte (nur Link, nichts wird vorgeladen) */
+        if(!/^https:\/\//.test(b.url||'')) break;
+        h += `<div class="exp lnk"><div class="art">${ic('play')} ${esc(b.art||'Link')}</div><h3>${esc(b.titel||b.url)}</h3>${b.hinweis?`<p>${inl(b.hinweis)}</p>`:''}<a class="btn sec block" href="${esc(b.url)}" target="_blank" rel="noopener noreferrer">${ic('ext')} ${esc(b.label||'Link öffnen')}</a>${b.online?`<p class="hint lnk-on">${ic('info')} ${esc(b.online)}</p>`:''}</div>`; break; }
+      case 'xlink': { /* v1.3.32: interner Link in ein Experiment/Werkzeug (Deep-Link #/x/<id>/<anker>) als Link-Karte; öffnet das iframe-Overlay wie die Einladungskarte */
+        if(!b.id) break;
+        const key = `${path}/xl/${b.id}${b.anker?'-'+b.anker:''}`;
+        h += `<section class="card lk" data-xk="${esc(key)}"><a class="linkrow" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}"><span class="iconbtn" style="background:var(--brand-card-2)">${ic(b.icon||'search')}</span><span class="k">${esc(b.titel||'')}${b.text?`<small>${esc(b.text)}</small>`:''}</span>${ic('chev')}</a></section>`;
+        break; }
+      case 'quelle': h += `<div class="quelle">${ic('book')}<div>${inl(b.text)}${b.url?` <a href="${esc(b.url)}" target="_blank" rel="noopener">${ic('ext')}<span class="sr">Link öffnen</span></a>`:''}</div></div>`; break;
+      default: console.warn('Unbekannter Blocktyp', b.typ);
+    }
+  });
+  return h;
+}
+/* spec/01 §C.5 – Audio-Karte */
+function audioCard(b){
+  const art = AUDIO_ART[b.art] || 'Audio';
+  if(b.status==='in-produktion') return `<div class="audio prod"><span class="play">${ic('mic')}</span><div class="meta"><div class="art">${ic('head')} ${art}</div><div class="at">${esc(b.titel||'')}</div><div class="sub">Dieser Podcast ist noch in Produktion.</div></div></div>`;
+  const m = medium(b.id);
+  if(!m) return `<div class="audio prod"><span class="play">${ic('head')}</span><div class="meta"><div class="art">${ic('head')} ${art}</div><div class="at">${esc(b.titel||'')}</div><div class="sub">Audio folgt in Kürze.</div></div></div>`;
+  return `<div class="audio" data-audio="${esc(b.id)}">
+    <div class="row"><button class="play" data-act="play" aria-label="Abspielen">${ic('play','pl')}${ic('pause','pa')}</button>
+      <div class="meta"><div class="art">${ic('head')} ${art}</div><div class="at">${esc(b.titel||'')}</div><div class="sub"><span>${ic('clock').replace('class="i"','class="i" style="width:15px;height:15px;vertical-align:-3px"')} ${esc(m.dauer||'')}</span><span>${fmtMB(m.bytes)}</span><span class="off" hidden>${ic('check')} offline gespeichert</span></div></div></div>
+    <div class="ctl"><button class="skip" data-act="rw" aria-label="15 Sekunden zurück">${ic('rw')}<span>15</span></button>
+      <div class="tl"><input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position"><div class="times"><span class="cur">0:00</span><span class="dur">${esc(m.dauer||'')}</span></div></div>
+      <button class="skip" data-act="ff" aria-label="15 Sekunden vor">${ic('ff')}<span>15</span></button></div>
+    <audio preload="none" src="${esc(m.pfad)}"></audio></div>`;
+}
+/* spec/01 §C.5 – Slide */
+async function renderSlide(app, r){
+  const k = kapFromRoute(r.kap);
+  if(!k || !kapFrei(k)){ location.replace('#/'); return; }
+  const I = await inhalt(k); const S = I.data.slides;
+  const i = S.findIndex(s=>s.id===r.slide);
+  if(i<0){ location.replace('#/k/'+kapRouteId(k)); return; }
+  const s = S[i], prev = S[i-1], next = S[i+1];
+  D.letzte[k.id] = s.id; saveData();
+  const rb = RUBRIK[s.rubrik] || {label:s.rubrik, icon:'chev'};
+  document.title = `${s.titel} · ${titel()}`;
+  const segs = `<nav class="segs" aria-label="Etappen">${S.map((x,j)=>`<a href="#/k/${kapRouteId(k)}/${encodeURIComponent(x.id)}" data-rep="1" data-sid="${esc(x.id)}" class="${j===i?'cur':(D.gelesen[sKey(k,x)]?'r':'')}" aria-label="${esc(x.titel)}"></a>`).join('')}</nav>`;
+  const ctx = {k, s, path:`${k.id}/${s.id}`};
+  let html = `<div class="view">${bar(`<span class="st2"><b>${esc(rb.label)}</b><small>${k.nr?`Kapitel ${k.nr}`:'Bonus'} · Teil ${i+1} von ${S.length}</small></span>`, segs)}
+    <div class="shead"><img src="${esc(s.header||k.cover)}" alt=""></div>
+    <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
+    ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
+    <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
+  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Leseversion schließen</button></div></details>`;
+  if(s.merkzettel && s.merkzettel.length) html += `<details class="acc merk"><summary>${ic('bulb')}<span>Merkzettel</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.merkzettel, {...ctx, path:ctx.path+'/merk'})}</div></details>`;   /* v1.3.22: BrainFact-Reihenfolge Teaser → Podcast → „Lieber lesen statt hören?“ → Merkzettel (zugeklappt), Feld `merkzettel`; v1.3.25: Umbenennung zu Merkzettel, neues Feld `nach` (Blöcke nach dem Merkzettel) */
+  if(s.nach && s.nach.length) html += `<div class="bl">${blocks(s.nach, {...ctx, path:ctx.path+'/nach'})}</div>`;   /* v1.3.25: Karten nach dem Merkzettel (k03: Kreislauf) */
+  if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
+    html += naechstWeiter(k, true);
+    html += `<a class="btn ghost block sek" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1">Zu den ${esc((RUBRIK[next.rubrik]||{}).label||next.titel)} ${ic('right')}</a>`;
+  }
+  else if(next) html += `<a class="weiter" href="#/k/${kapRouteId(k)}/${encodeURIComponent(next.id)}" data-rep="1" data-endcard><span class="k"><span class="l">Weiter: ${esc((RUBRIK[next.rubrik]||{}).label||'')}</span><div class="n">${esc(next.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
+  else html += naechstWeiter(k);
+  if(prev) html += `<a class="zurueck" href="#/k/${kapRouteId(k)}/${encodeURIComponent(prev.id)}" data-rep="1">${ic('up')} Zurück: ${esc(prev.titel)}</a>`;
+  else html += `<a class="zurueck" href="#/k/${kapRouteId(k)}">${ic('up')} Zur Kapitelübersicht</a>`;
+  html += `</article>${footer()}</div>`;
+  app.innerHTML = html;
+  /* gelesen beim Erreichen des Endes */
+  const end = app.querySelector('[data-endcard]');
+  if(end && 'IntersectionObserver' in window){
+    readIO = new IntersectionObserver(es=>{
+      if(es.some(e=>e.isIntersecting)){ if(readT===null) readT = setTimeout(()=>{ if(curRoute.name==='slide' && curRoute.slide===s.id){ markRead(k,s); } readStop(); }, 2000); }
+      else { clearTimeout(readT); readT = null; }
+    },{threshold:.6}); readIO.observe(end);
+  }
+  /* v1.3.9: Weiter-Button am Ende von „Mission Alltag“ = bewusstes Weitergehen → Mission gilt als gelesen */
+  const fw = app.querySelector('[data-fertig]'); if(fw) fw.addEventListener('click', ()=>markRead(k,s));
+  initAudios(app);
+  wischHinweis(app, !!next);   /* spec/06 §5 */
+}
+/* spec/06 §5: dezenter Wisch-Hinweis – max. 2× angezeigt, nach dem ersten echten Wischen nie wieder; verschwindet nach 4 s */
+const WISCH_KEY = 'klarkommen_wisch';
+function wischHinweis(app, hatNext){
+  if(!hatNext) return;
+  const v = lsGet(WISCH_KEY); if(v==='ok') return; const n = parseInt(v,10) || 0; if(n >= 2) return;
+  if(!(('ontouchstart' in window) || (navigator.maxTouchPoints||0) > 0)) return;
+  const b = app.querySelector('.bar'); if(!b) return;
+  lsSet(WISCH_KEY, String(n+1));
+  const h = document.createElement('div'); h.className = 'wisch'; h.setAttribute('aria-hidden','true');
+  h.innerHTML = `<span class="wh">${ic('hand')}</span><span>Nach links wischen: nächster Teil</span>`;
+  b.appendChild(h); requestAnimationFrame(()=>requestAnimationFrame(()=>h.classList.add('on')));
+  setTimeout(()=>wischWeg(false), 4000);
+}
+function wischWeg(ok){ if(ok) lsSet(WISCH_KEY,'ok'); document.querySelectorAll('.wisch').forEach(h=>{ h.classList.remove('on'); setTimeout(()=>h.remove(), 400); }); }
+/* spec/01 §C.1 – Experiment im Vollbild-iframe mit sticky Leiste */
+function renderExperiment(app, r){
+  const t = sessionStorageGet('kk_xtitel') || ('Experiment: ' + r.id.replace(/[-_]/g,' ').replace(/^./,c=>c.toUpperCase()));
+  document.title = `${t} · ${titel()}`;
+  const src = `experimente/${encodeURIComponent(r.id)}/index.html${r.anker?'#'+encodeURIComponent(r.anker):''}`;   /* Deep-Link: {"anker":"klima"} → …/index.html#klima */
+  app.innerHTML = `<div class="xview" id="xview"><div class="xbar"><div class="in"><button class="back" data-act="x-zurueck">${ic('back')} Zurück</button><div class="t">${esc(t)}</div></div></div><iframe id="xframe" src="${src}" title="${esc(t)}" allow="autoplay; fullscreen"></iframe></div>`;
+  const fr = document.getElementById('xframe');
+  /* Experimente mit eigener „Zurück zur App“-Leiste (#kk-bar, sendet postMessage {kk:'zurueck'}) → App-Leiste ausblenden, sonst doppelt */
+  fr.addEventListener('load', ()=>{ try{ if(fr.contentDocument && fr.contentDocument.getElementById('kk-bar')) document.getElementById('xview').classList.add('eigenbar'); }catch(e){} atemNurUebung(fr, r); });
+}
+/* spec/07 F7 (Entscheidung A1): Pro Atemübung genau EINE Erklärung – die steht auf der Toolbox-Detailseite
+   (Wofür · So geht’s · Dauer vor dem Start, „Hintergrund“ + „Quellen“ aufklappbar dahinter).
+   Wird das Atemtool aus der Toolbox gestartet (#sigh/#478, Schlüssel …/tool/…), zeigt es nur noch die Übung selbst:
+   Info-Panel (Anleitungsbild + Stichpunkte mit Studienhinweis) und „Wie wirkt …?“-Karte werden ausgeblendet.
+   Umsetzung ohne Änderung an experimente/atem-anker (same-origin, Style in das iframe). Ohne Toolbox-Kontext bleibt das Atemtool unverändert. */
+function atemNurUebung(fr, r){
+  if(r.id!=='atem-anker' || !/^(sigh|478)$/.test(r.anker||'')) return;
+  if(!/\/tool\//.test(sessionStorageGet('kk_xkey')||'')) return;
+  try{
+    const d = fr.contentDocument; if(!d || d.getElementById('kk-nur-uebung')) return;
+    const st = d.createElement('style'); st.id = 'kk-nur-uebung';
+    st.textContent = '.info-panel,.science-card{display:none!important}';
+    d.head.appendChild(st);
+    /* spec/07 Z (UX-Fix): Tap auf „Übung starten“ der Detailseite startet die Übung direkt (kein zweiter Tap im Atemtool).
+       Atemtool nutzt weder Audio noch Vibration → kein iOS-Nutzer-Tap-Zwang. Einmalig je Seitenaufruf; „Stopp“/„Übung starten“ im Tool bleiben. */
+    const w = fr.contentWindow;
+    if(w && typeof w.toggleStart==='function' && !w.__kkAuto){ w.__kkAuto = 1; setTimeout(()=>{ try{ w.toggleStart(); }catch(e){} }, 350); }
+  }catch(e){ console.warn('Atemtool: Erklärung nicht ausblendbar', e); }
+}
+/* Overlay schließen (Zurück-Button oder postMessage aus dem iframe) */
+function xSchliessen(){
+  const key = sessionStorageGet('kk_xkey'); if(key){ D.checks[key] = true; saveData(); }
+  if(prevHash!==null && history.length>1) history.back(); else location.hash = sessionStorageGet('kk_xback') || '#/';
+}
+/* nach Rückkehr aus dem Experiment zur Karte scrollen statt nach oben */
+function xRueckScroll(r){
+  const key = sessionStorageGet('kk_xkey'); if(!key) return false; sessionStorageSet('kk_xkey','');
+  const el = document.querySelector(`[data-xk="${CSS.escape(key)}"]`); if(!el) return false;
+  for(let dt=el.closest('details'); dt; dt=dt.parentElement && dt.parentElement.closest('details')) dt.open = true;   /* v1.3.25: Karte liegt evtl. in der zugeklappten Leseversion */
+  el.scrollIntoView({block:'center'});
+  /* v1.3.28: Browser-Scrollwiederherstellung und nachladende Bilder verschieben die Karte nachträglich → mehrfach nachführen, bis die Person selbst scrollt */
+  let stop = false; const halt = () => { stop = true; };
+  ['touchstart','wheel','keydown','mousedown'].forEach(ev => window.addEventListener(ev, halt, {once:true, passive:true}));
+  [50,200,450,900,1600].forEach(ms => setTimeout(() => { if(stop) return; const e2 = document.querySelector(`[data-xk="${CSS.escape(key)}"]`); if(e2) e2.scrollIntoView({block:'center'}); }, ms));
+  return true;
+}
+/* spec/01 §C.6 – Einstellungen */
+/* v1.3.32: Karte „Zugangscode“ */
+function zugangHtml(){
+  const li = ZUG.aktiv.length ? `<div class="sep"></div><div class="zuglist">${ZUG.aktiv.map(c=>`<div class="zugrow"><span><b>${esc(c.name||'Zugang')}</b></span><button class="btn ghost" data-act="zug-weg" data-h="${esc(c.hash)}">entfernen</button></div>`).join('')}</div>` : '';
+  return `      <p class="hint">Hast du einen Code aus deinem Workshop? Hier eingeben, dann öffnen sich weitere Kapitel. Bleibt nur auf diesem Gerät.</p>
+      <label class="fld"><span>Zugangscode</span><input id="inZug" type="text" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="60" style="font-size:16px"></label>
+      <button class="btn block" data-act="zug-ok">${ic('check')} Freischalten</button>${li}
+`;
+}
+async function renderEinstellungen(app){
+  document.title = `Einstellungen · ${titel()}`;
+  const eigenesBild = !!startbildURL;
+  app.innerHTML = `<div class="view">${bar('<b>Einstellungen</b>')}<div class="wrap">
+    <div class="pagehead"><h1>Einstellungen</h1><p>Alles hier bleibt nur auf diesem Gerät.</p></div>
+    <section class="card lk"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
+    <section class="card lk"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
+    ${setk('set-zugang','key','Zugangscode',`<span id="sZug">${ZUG.aktiv.length?ZUG.aktiv.length+' aktiv':'Code eingeben'}</span>`,zugangHtml())}
+    ${setk('set-titel','edit','Titel &amp; Untertitel',`<span id="sTitel">${esc(titel())}</span>`,`      <label class="fld"><span>Titel auf der Startseite</span><input id="inTitel" maxlength="40" value="${esc(titel())}" autocomplete="off"></label>
+      <label class="fld"><span>Untertitel</span><input id="inUnter" maxlength="90" value="${esc(untertitel())}" autocomplete="off"></label>
+      <div class="btns two"><button class="btn" data-act="titel-speichern">${ic('check')} Speichern</button><button class="btn sec" data-act="titel-reset">${ic('reset')} Auf Standard zurücksetzen</button></div>
+`)}
+    ${setk('set-bild','img','Titelbild individualisieren',`<span id="sBild">${eigenesBild?'Eigenes Bild':'Standardbild'}</span>`,`      <div class="prev"><img src="${esc(startbild())}" alt="Aktuelles Startbild" id="prevImg"><span class="lbl glass">${eigenesBild?'Eigenes Bild':'Standardbild'}</span></div>
+      <div class="btns two"><button class="btn sec" data-act="bild-waehlen">${ic('ul')} Eigenes Bild wählen</button><button class="btn sec" data-act="bild-reset" ${eigenesBild?'':'disabled style="opacity:.5"'}>${ic('reset')} Standardbild</button></div>
+`)}
+    ${setk('offline','cloud','Offline nutzen','<span id="sOff">Prüfe …</span>',`      <p class="hint">Speichert Bilder und Audios auf diesem Gerät, damit Klarkommen auch ohne Internet läuft. Am besten im WLAN.</p>
+      <div class="ostat"><span id="oStat">Prüfe …</span><span id="oSize"></span></div>
+      <div class="bar2"><i id="oBar"></i></div>
+      <div class="btns" style="margin-top:12px"><button class="btn block" data-act="offline-laden" id="oBtn">${ic('dl')} Alles offline speichern</button><button class="btn sec block" data-act="offline-abbruch" id="oAbbr" hidden>Abbrechen</button></div>
+      <div class="kv" id="oKv"></div>
+      <button class="btn bad block" data-act="offline-loeschen" id="oDel">${ic('trash')} Offline-Dateien löschen (Speicher freigeben)</button>
+      <p class="hint odel" id="oDelH"></p>
+      <div class="sep"></div>
+      <p class="hint">Hakt die App, obwohl du online bist? <b>App neu laden</b> leert den gesamten App-Zwischenspeicher (inkl. Offline-Dateien) und lädt Klarkommen neu. Fortschritt und Einstellungen bleiben.</p>
+      <button class="btn ghost block" data-act="offline-reset">${ic('reset')} App neu laden (bei Problemen)</button>
+`)}
+    ${setk('set-sichern','save','Sichern &amp; Übertragen','Exportieren · Importieren',`      <p class="hint">Exportiere deinen Fortschritt und deine Anpassungen als Datei – zum Sichern oder für ein anderes Gerät.</p>
+      <div class="btns two"><button class="btn sec" data-act="export">${ic('dl')} Exportieren</button><button class="btn sec" data-act="import">${ic('ul')} Importieren</button></div>
+      <div class="sep"></div>
+      <button class="btn bad block" data-act="fortschritt-reset">${ic('reset')} Fortschritt zurücksetzen</button>
+`)}
+    ${setk('anleitungen','info','Anleitungen','Installieren · iPhone-Tipps',anleitungenHtml())}
+    <p style="color:var(--brand-muted);font-size:.8rem;text-align:center">App-Version ${APP_VERSION} · Inhalte v${MED.version||0}</p>
+  </div>${footer()}</div>`;
+  offlineStatus();
+  let offen = []; try{ offen = (sessionStorage.getItem('kk_set_offen')||'').split(',').filter(Boolean); }catch(e){}
+  app.querySelectorAll('details.set').forEach(d=>{
+    if(offen.includes(d.id)) d.open = true;
+    d.addEventListener('toggle', ()=>{
+      const l = [...app.querySelectorAll('details.set[open]')].map(x=>x.id);
+      try{ sessionStorage.setItem('kk_set_offen', l.join(',')); }catch(e){}
+    });
+  });
+}
+function setk(id, icon, titel, sub, body){
+  return `<details class="acc set" id="${id}"><summary><span class="iconbtn">${ic(icon)}</span><span class="k">${titel}<small>${sub}</small></span>${ic('down','chv')}</summary><div class="acb">${body}</div></details>`;
+}
+/* spec/01 §C.9 + spec/03 – Über-Seite im GetCon-Design (dunkel), Kontakt: E-Mail · WhatsApp · Website */
+function renderUeber(app){
+  const H = BRAND.herausgeber, U = BRAND.ueber;
+  document.title = `${U.titel} · GetCon`;
+  const mailOk = H.mail && !/^\[/.test(H.mail);
+  const mailto = `mailto:${mailOk?H.mail:''}?subject=${encodeURIComponent(H.mailBetreff||'Klarkommen Vollversion')}`;
+  const wa = H.whatsapp ? `https://wa.me/${encodeURIComponent(H.whatsapp)}${H.whatsappText?`?text=${encodeURIComponent(H.whatsappText)}`:''}` : null;
+  const kbtn = [
+    mailOk ? `<a class="gbtn" href="${esc(mailto)}">${ic('mail')} ${esc(U.buttonMail||'Per E-Mail anfragen')}</a>` : '',
+    wa ? `<a class="gbtn" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(U.buttonWhatsapp||'Per WhatsApp schreiben')}</a>` : '',
+    `<a class="gbtn sec2" href="${esc(H.url)}" target="_blank" rel="noopener">${ic('ext')} ${esc(U.buttonWebsite||'Zur Website')}</a>`
+  ].join('');
+  app.innerHTML = `<div class="view getcon" style="--gc-hero:url('${esc(H.header)}')">
+    <header class="hero2"><div class="in"><a class="logo" href="${esc(H.url)}" target="_blank" rel="noopener" aria-label="GetCon – zur Website"><img src="${esc(H.logo)}" alt="GetCon"></a><div class="ttl2"><b>${esc(U.titel)}</b>${esc(U.unterzeile)}</div></div></header>
+    <div class="wrap2">
+      <a class="back2" href="#/">${ic('back')} Zurück zu Klarkommen</a>
+      ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p></section>`).join('')}
+      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p></section>   <!-- spec/04 §10 -->
+      <section class="sec" id="kontakt"><h2>${esc(U.kontaktTitel)}</h2>${U.kontaktText?`<p>${inl(U.kontaktText)}</p>`:''}
+        <div class="btns kontakt">${kbtn}</div>
+      </section>
+    </div>${footer()}</div>`;
+}
+
+/* ================================================================
+   4b. Experiment-Karten & Toolbox Kap. 7 – spec/02 §2–4, spec/03
+   ================================================================ */
+/* Experiment-Link: #/x/<id>[/<anker>] (Deep-Link → experimente/<id>/index.html#<anker>) */
+const expHref = b => `#/x/${encodeURIComponent(b.id)}${b.anker?'/'+encodeURIComponent(b.anker):''}`;
+const expDa = id => !EXP || EXP.has(id);
+/* einzelne Experiment-Karte – spec/01 §C.5 */
+/* spec/04 §7: Button-Beschriftung nach Typ. Vorrang: Feld im Block (label/button/start) → atem-anker = Atemtool → Toolsammlung = Übung → sonst echtes Experiment */
+const EXP_TYPEN = {
+  experiment:{art:'Experiment', icon:'flask', start:'Experiment starten'},
+  uebung:{art:'Übung', icon:'play', start:'Übung starten'},
+  atemtool:{art:'Atemtool', icon:'wind', start:'Atemtool starten'},
+  werkzeug:{art:'Werkzeug', icon:'search', start:'Detektor starten', nochmal:'Nochmal starten'},   /* v1.3.32: Glaubenssatz-Detektor (k05) – ausdrücklich kein Experiment */
+  schaubild:{art:'Schaubild', icon:'loop', start:'Los geht’s', nochmal:'Nochmal ansehen', vorschau:true}   /* v1.3.17: Visualisierung statt Experiment (k03 „Der Kreislauf“), per expTyp im Block */
+};
+function expLabel(b, path){
+  const typ = (b && typeof b.expTyp==='string' && EXP_TYPEN[b.expTyp]) ? b.expTyp
+    : (b && b.id==='atem-anker') ? 'atemtool'
+    : ((kapById(String(path||'').split('/')[0])||{}).typ==='toolbox') ? 'uebung' : 'experiment';
+  const L = {...EXP_TYPEN[typ]};
+  const eig = b && [b.label, b.button, b.start].find(x=>typeof x==='string' && x.trim());
+  if(eig) L.start = eig.trim();
+  return L;
+}
+/* v1.3.20/v1.3.21: animierte Vorschau (nur CSS/SVG) auf der Einladungskarte des Schaubilds: Lea (Stufe 5 = volle Energie, grün #7DD3C0), EKG-Linie, ruhiger Herzschlag-Puls synchron zur EKG-Spitze; Tippen öffnet das Schaubild */
+const XV_EKG = 'M0 0 H40 l6 -2 l5 2 H70 l4 -11 l5 20 l4 -9 H110 l6 -3 l6 3 H200 H240 l6 -2 l5 2 H270 l4 -11 l5 20 l4 -9 H310 l6 -3 l6 3 H400';
+function xVorschau(b, key){
+  return `<a class="xvor" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}"><span class="xv-kreis"><img src="experimente/${esc(b.id)}/kette-stufe-5.webp" alt="Lea, ruhig und erholt, ihr Herzschlag als Linie" loading="lazy" decoding="async" width="128" height="128"><svg viewBox="0 0 128 128" aria-hidden="true" focusable="false"><defs><clipPath id="xvE"><rect x="8" y="84" width="112" height="34"/></clipPath></defs><g clip-path="url(#xvE)"><g transform="translate(12 101) scale(.52 .75)"><g class="xv-lauf"><path d="${XV_EKG}" fill="none" stroke="rgba(15,25,35,.75)" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="${XV_EKG}" fill="none" stroke="#7DD3C0" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke"/></g></g></g></svg></span></a>`;
+}
+function expKarte(b, path, L){
+  L = L || expLabel(b, path);
+  const key = `${path}/x/${b.id}`; const done = !!D.checks[key];
+  const tbK = /\/tool\//.test(path);   /* spec/07 T4 + F4: in der Toolbox immer „Übung starten“, nie „Nochmal starten“ (Kap. 1–4 unverändert) */
+  const lab = tbK ? 'Übung starten' : (done?(L.nochmal||'Nochmal starten'):L.start);
+  const btn = expDa(b.id) ? `<a class="btn pulse" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(key)}">${lab} ${ic('right')}</a>` : `<span class="btn sec" aria-disabled="true">${ic('clock')} ${esc(L.art)} folgt in Kürze</span>`;
+  const vor = (L.vorschau && expDa(b.id)) ? xVorschau(b, key) : '';
+  return `<div class="exp" data-xk="${esc(key)}"><div class="art">${ic(L.icon)} ${esc(L.art)}${done && !/\/tool\//.test(path)?`<span class="xdone">${ic('check')} gemacht</span>`:''}</div>${vor}<h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}${btn}</div>`;
+}
+/* mehrere Experimente nacheinander in einer Slide – spec/03 (Kap. 1 Einstieg) */
+function expSerie(serie, path){
+  const keys = serie.map(b=>`${path}/x/${b.id}`);
+  const nextI = keys.findIndex((k,i)=>!D.checks[k] && expDa(serie[i].id));
+  let h = `<div class="exp serie"><div class="art">${ic('flask')} ${serie.length} Experimente nacheinander</div><ol class="xsteps">`;
+  serie.forEach((b,i)=>{
+    const done = !!D.checks[keys[i]], da = expDa(b.id), cur = i===nextI;
+    h += `<li class="xstep${done?' done':''}${cur?' cur':''}" data-xk="${esc(keys[i])}"><span class="xn">${done?ic('check'):i+1}</span><div class="xb"><h3>${esc(b.titel||'Experiment')}</h3>${b.text?`<p>${inl(b.text)}</p>`:''}`
+      + (da ? `<a class="btn${cur?' pulse':' sec'}" href="${expHref(b)}" data-xtitel="${esc(b.titel||'')}" data-xkey="${esc(keys[i])}">${done?'Nochmal':'Starten'} ${ic('right')}</a>` : `<span class="soon">${ic('clock')} Folgt in Kürze</span>`)
+      + `</div></li>`;
+  });
+  return h + `</ol></div>`;
+}
+
+/* Toolbox: Konstanten – spec/02 §2 */
+const TB_ART = {atem:{label:'Atem',icon:'wind'}, sinne:{label:'Körper & Sinne',icon:'hand'}, audio:{label:'Hören',icon:'head'}, denken:{label:'Kopf',icon:'brain'}, reflexion:{label:'Schreiben & Reflexion',icon:'edit'}, routine:{label:'Routine',icon:'repeat'}};
+const tbArt = t => TB_ART[t.art] || {label:t.art||'Tool', icon:'wrench'};
+const tbKurz = t => t.kurztitel || '';
+/* Dauer-Anzeige: dauerText vor dauerMin; beides null → nichts anzeigen (Auftrag) */
+function tbDauer(t){
+  if(t.dauerText) return t.dauerText;
+  const m = t.dauerMin; if(m==null || !isFinite(m)) return null;
+  if(m < 1) return `${Math.max(5, Math.round(m*60/5)*5)} s`;
+  return `${String(Math.round(m*10)/10).replace('.',',')} min`;
+}
+async function tbDaten(k){ const I = await inhalt(k); return I; }
+const tbGesp = t => t.status==='gesperrt' && !(t.herkunft && kapFrei(kapById(t.herkunft)));   /* v1.3.32: per Code freigeschaltetes Herkunftskapitel öffnet auch seine Toolbox-Übungen */
+const tbFrei = T => (T.tools||[]).filter(t=>!tbGesp(t));
+const tbTool = (T,id) => (T.tools||[]).find(t=>t.id===id && !tbGesp(t));
+const tbHref = (k,t,von) => `#/k/${kapRouteId(k)}/tool/${encodeURIComponent(t.id)}${von?`?${von==='alle'?'von=alle':'u='+encodeURIComponent(von)}`:''}`;
+
+/* Hilfe-Karte – immer sichtbar (spec/02 §2, spec/03 Kap. 7 Nr. 4) */
+function tbHilfe(T){
+  const H = T.hilfe || {};
+  const bl = (H.bloecke && H.bloecke.length) ? H.bloecke.map(b=>b.typ==='callout'?{typ:'absatz',text:b.text}:b)
+    : [{typ:'absatz', text:'Falls du gerade das Gefühl hast, dass es dir wirklich nicht gut geht: Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist kostenlos und rund um die Uhr für dich da: **0800 111 0 111**.'}];
+  const tel = H.telefon || (H.bloecke && H.bloecke.length ? null : '0800 111 0 111');
+  /* spec/02 §6 / v1.3.4: kontakte[] → tel:-Buttons, link → Website-Button; alle gleich breit/hoch, zweizeilig (Beschriftung klein, Nummer/Adresse fett) */
+  const hb = (icon, label, main, href, ext, nw) => `<a class="btn sec block hb" href="${esc(href)}"${ext?' target="_blank" rel="noopener"':''}>${ic(icon)}<span class="hbt"><small>${esc(label)}</small><b${nw?' class="nw"':''}>${esc(main)}</b></span></a>`;
+  const kt = Array.isArray(H.kontakte) && H.kontakte.length ? H.kontakte.map(c=>hb('phone', c.label||'Anrufen', c.nummer||c.tel||'', 'tel:'+String(c.tel||c.nummer||'').replace(/[^\d+]/g,''), false, true)).join('')
+    : (tel?hb('phone','Telefonseelsorge anrufen', tel, 'tel:'+tel.replace(/[^\d+]/g,''), false, true):'');
+  const lk = H.link && H.link.url ? hb('ext', H.link.label||'Website', H.link.text||H.link.url, H.link.url, true, false) : '';
+  /* spec/05 C2: zugeklapptes Akkordeon, Telefonseelsorge im Titel */
+  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}</div></details>`;
+}
+/* Tool-Zeile (Listen) */
+function tbZeile(k, T, t, von){
+  if(tbGesp(t)){
+    const hk = kapById(t.herkunft);
+    return `<li><button class="trow locked" data-act="sperre-tool" data-kap="${esc(t.herkunft||'')}" data-titel="${esc(t.titel)}"><span class="ti">${ic('lock')}</span><span class="tt"><b>${esc(t.titel)}</b><small>${hk&&hk.nr?`Kapitel ${hk.nr} · `:''}Vollversion</small></span></button></li>`;
+  }
+  const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null;
+  const meta = [d?`${ic('clock')} ${esc(d)}`:'', esc(a.label), hk&&hk.nr?`Kap. ${hk.nr}`:'', t.audio?ic('head'):'', t.experiment?ic('flask'):''].filter(Boolean).join('<i>·</i>');
+  return `<li><a class="trow" href="${tbHref(k,t,von)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}</b>${tbKurz(t)?`<span class="kz">${esc(tbKurz(t))}</span>`:''}<small>${meta}</small></span><span class="chev">${ic('chev')}</span></a></li>`;   /* spec/06 §1 */
+}
+/* spec/05 C3: Reihenfolge aus T.uebungen (fehlende freie Tools hinten anhängen) + Übungskarte mit Statements */
+function tbReihe(T){
+  const ids = (T.uebungen||[]).map(u=>u && u.id).filter(Boolean);
+  const r = ids.map(id=>tbTool(T,id)).filter(Boolean);
+  return r.concat(tbFrei(T).filter(t=>!ids.includes(t.id)));
+}
+/* spec/07 T15: Badge „Neu“ (Daten: T.neu) */
+const tbNeu = (T,t) => Array.isArray(T.neu) && T.neu.includes(t.id) ? `<span class="bneu">Neu</span>` : '';
+function tbKarte(k, T, t){
+  const u = (T.uebungen||[]).find(x=>x && x.id===t.id) || {}, a = tbArt(t), d = tbDauer(t);
+  const pk = (Array.isArray(u.punkte) && u.punkte.length) ? u.punkte : (tbKurz(t) ? [tbKurz(t)] : []);
+  /* spec/06 §1: Übungen sind wiederholbar – immer Pfeil */
+  return `<li><a class="trow ub" href="${tbHref(k,t)}"><span class="ti">${ic(a.icon)}</span><span class="tt"><b>${esc(t.titel)}${tbNeu(T,t)}</b>${pk.length?`<ul class="ubp">${pk.map(p=>`<li>${esc(p)}</li>`).join('')}</ul>`:''}${d?`<small>${ic('clock')}<span>${esc(d)}</span></small>`:''}</span><span class="chev">${ic('chev')}</span></a></li>`;
+}
+const tbBeispiel = I => I.beispiel ? `<div class="beispiel">${ic('info')}<span>Beispielinhalt – die echten Tools folgen.</span></div>` : '';
+const tbFehler = I => I.fehler ? `<div class="call wichtig">${ic('warn')}<p>${navigator.onLine===false?'Die Toolsammlung konnte nicht geladen werden. Du bist offline – öffne Klarkommen einmal mit Internet.':'Die Toolsammlung wird gerade vorbereitet und folgt in Kürze.'}</p></div>` : '';
+
+/* spec/07 T1–T3: Kategorien aus T.kategorien (Schema spec/07 §2.1). Alle Kategorien sind Akkordeons (Ein-offen-Handler), beim Öffnen zu;
+   die Akzent-Kategorie („Schnelle Hilfe“) ist nur farblich hervorgehoben (v1.3.8). Fallback ohne kategorien: Schnellhilfe + alle übrigen freien Tools als eine Liste. */
+function tbKategorien(T){
+  const frei = tbFrei(T), gesehen = new Set();
+  const nimm = ids => (Array.isArray(ids)?ids:[]).map(id=>tbTool(T,id)).filter(t=>t && !gesehen.has(t.id) && gesehen.add(t.id));
+  let K;
+  if(Array.isArray(T.kategorien) && T.kategorien.length){
+    K = T.kategorien.filter(c=>c && c.id).map((c,i)=>({id:String(c.id), titel:c.titel||'Übungen', untertitel:c.untertitel||'', icon:c.icon||'wrench', akzent:c.ton==='akzent' || (i===0 && c.id==='schnell'), tools:nimm(c.tools)}));
+    const rest = frei.filter(t=>!gesehen.has(t.id));
+    if(rest.length){ console.warn('spec/07: Tools ohne Kategorie', rest.map(t=>t.id)); K.push({id:'weitere', titel:'Weitere Übungen', untertitel:'', icon:'wrench', akzent:false, tools:rest}); }
+  } else {
+    const sh = nimm(T.schnellhilfe);
+    K = [{id:'schnell', titel:'Schnelle Hilfe', untertitel:'Wenn es sofort gehen muss', icon:'bolt', akzent:true, tools:sh}, {id:'alle', titel:'Alle Übungen', untertitel:'', icon:'wrench', akzent:false, tools:nimm(tbReihe(T).map(t=>t.id))}];
+  }
+  return K.filter(c=>c.tools.length);
+}
+const tbKatVon = (T,id) => (tbKategorien(T).find(c=>c.tools.some(t=>t.id===id))||{}).id || null;
+const tbAnz = n => `${n} ${n===1?'Übung':'Übungen'}`;
+/* spec/07 T16 + F10: gesperrte Übungen als eine dezente, nicht antippbare Zeile je Kapitel */
+function tbKommt(T){
+  const g = (T.tools||[]).filter(tbGesp), by = new Map();
+  for(const t of g){ const hk = kapById(t.herkunft); const key = hk && hk.nr ? hk.nr : 0; if(!by.has(key)) by.set(key, []); by.get(key).push(t.titel); }
+  return [...by.entries()].sort((a,b)=>a[0]-b[0]).map(([nr,ts])=>`<p class="tbkommt">${ic('lock')}<span><b>${nr?`Kommt in Kapitel ${nr}`:'Kommt in der Vollversion'}:</b> ${ts.map(esc).join(' · ')}</span></p>`).join('');
+}
+
+/* #/k/07 – Toolbox-Übersicht – spec/07 §2.2: Intro → Meta → Kategorien → „Kommt in Kapitel N“ → Hilfe (einziges Vorkommen) → Weiter */
+async function renderToolbox(app, k, head, eyebrow){
+  const I = await tbDaten(k), T = I.data, fr = tbFrei(T);
+  const r = curRoute || {};
+  const K = tbKategorien(T);
+  /* Herkunftskategorie: ?kat= (Button „Zurück zur Toolbox“) oder Browser-Zurück von einer Übung */
+  let auf = r.kat || (routeFrom && routeFrom.name==='tbtool' ? sessionStorageGet('kk_tbkat') : null) || null;
+  if(!K.some(c=>c.id===auf)) auf = null;
+  if(r.kat){ try{ history.replaceState(history.state, '', '#/k/'+kapRouteId(k)); }catch(e){} }   /* ?kat nicht dauerhaft in der Adresse lassen */
+  let h = `<div class="view tb">${bar(`<b>${eyebrow}</b> · ${esc(k.titel)}`)}${head}<div class="wrap">${tbBeispiel(I)}${tbFehler(I)}`;
+  if(fr.length) h += `<div class="kmeta"><span>${ic('wrench')} ${fr.length} Tools</span></div>`;
+  if(T.intro && T.intro.length) h += `<div class="bl tbintro">${blocks(T.intro,{path:`${k.id}/intro`})}</div>`;
+  h += `<div class="kats">`;
+  for(const c of K){
+      h += `<details class="acc kat${c.akzent?' akz':''}" id="kat-${esc(c.id)}"${c.id===auf?' open':''}><summary><span class="ki">${ic(c.icon)}</span><span class="kt"><b>${esc(c.titel)}</b>${c.untertitel?`<small>${esc(c.untertitel)}</small>`:''}<small class="kn">${tbAnz(c.tools.length)}</small></span>${ic('down','chv')}</summary><div class="acb"><ul class="tlist">${c.tools.map(t=>tbKarte(k,T,t)).join('')}</ul></div></details>`;
+  }
+  h += `</div>${tbKommt(T)}`;
+  /* spec/07 T9: kein „Warum das wirkt“, keine Quellen, keine Mission in der Übersicht – Theorie steht auf den Detailseiten */
+  h += tbHilfe(T) + naechstWeiter(k) + `</div>${footer()}</div>`;
+  app.innerHTML = h;
+  if(auf) tbFokus = 'kat-'+auf;
+  leereWeg(app);   /* spec/04 §7 */
+  initAudios(app);
+}
+
+/* spec/04 §7: Inhalt von k07.json wird gekürzt – leere Blöcke/Akkordeons und Überschriften ohne Inhalt nach dem Rendern entfernen */
+function leereWeg(root){
+  const hatInhalt = el => !!(el && (el.textContent.trim() || el.querySelector('img,audio,iframe,.exp,.audio,a,button,input')));
+  root.querySelectorAll('details.acc').forEach(d=>{ if(!hatInhalt(d.querySelector('.acb'))) d.remove(); });
+  root.querySelectorAll('.bl').forEach(b=>{ if(!hatInhalt(b)) b.remove(); });
+  root.querySelectorAll('.tbh2, h2.soh').forEach(h=>{ const n = h.nextElementSibling; if(!n || !n.classList.contains('bl')) h.remove(); });
+  root.querySelectorAll('.bl h2').forEach(h=>{ let n = h.nextElementSibling; if(!n || /^H[1-3]$/.test(n.tagName)) h.remove(); });
+  root.querySelectorAll('.tbsec').forEach(s=>{ const kids = [...s.children].filter(c=>!c.classList.contains('tbh')); if(!kids.some(hatInhalt)) s.remove(); });
+}
+/* spec/07 T10: Bausteine zum Starten (Atemtool-/Experiment-Karte, Audio) – alles davor ist „So geht’s“, alles danach folgt unter dem Start */
+const tbIstStart = b => b && (b.typ==='experiment' || b.typ==='audio');
+/* Quellen tolerant: Block {typ:'quelle',…} oder reiner Text */
+const tbQuellen = q => (Array.isArray(q)?q:[]).map(x=>typeof x==='string' ? {typ:'quelle', text:x, url:null} : (x && !x.typ ? {typ:'quelle', ...x} : x)).filter(Boolean);
+/* Unterseiten: Toolkarte (alte Use-Case-/Alle-Routen → Toolbox) */
+async function renderToolboxSub(app, r){
+  const k = kapFromRoute(r.kap);
+  if(!k || !kapFrei(k) || k.typ!=='toolbox'){ location.replace(k?'#/k/'+kapRouteId(k):'#/'); return; }
+  const I = await tbDaten(k), T = I.data, R = kapRouteId(k);
+  /* spec/05 C3: Use-Case-Seiten und Filterseite „Alle Tools“ entfallen – alte Links führen zur Toolbox */
+  if(r.name==='tbuc' || r.name==='tballe'){ location.replace('#/k/'+R); return; }
+  /* v1.3.4: „Dein Anker für den Alltag“ ist Teil von „Dein sicherer Ort“ – alte Route #/k/07/tool/anker springt zum Anker-Abschnitt */
+  if(r.tool==='anker' && !tbTool(T,'anker') && tbTool(T,'safe-place')){ location.replace(`#/k/${R}/tool/safe-place?a=anker`); return; }
+  /* Toolkarte – spec/07 §2.3 */
+  const t = tbTool(T, r.tool);
+  if(!t){ const g = (T.tools||[]).find(x=>x.id===r.tool); location.replace('#/k/'+R); if(g){ const gk=kapById(g.herkunft); if(gk) setTimeout(()=>openSperre(gk,g.titel),50); } return; }
+  document.title = `${t.titel} · ${titel()}`;
+  const kat = tbKatVon(T, t.id); sessionStorageSet('kk_tbkat', kat||'');
+  const zurueckHref = `#/k/${R}${kat?`?kat=${encodeURIComponent(kat)}`:''}`;
+  const a = tbArt(t), d = tbDauer(t), hk = t.herkunft && t.herkunft!==k.id ? kapById(t.herkunft) : null;
+  const herk = hk ? `<span class="tchip">aus Kapitel ${hk.nr}${kapFrei(hk)?` · ${esc(hk.titel)}`:''}</span>` : '';   /* spec/05 C4: reine Info, kein Link */
+  const ctx = {path:`${k.id}/tool/${t.id}`};
+  const auds = (Array.isArray(t.audio) ? t.audio : (t.audio ? [t.audio] : [])).map((x,i,arr)=>typeof x==='string' ? {typ:'audio', id:x, titel:arr.length>1?`${t.titel} (${i+1})`:t.titel, art:t.art==='audio'?'meditation':'uebung', status:'fertig'} : {typ:'audio', ...x});
+  const exps = (Array.isArray(t.experiment) ? t.experiment : (t.experiment ? [t.experiment] : [])).map(x=>typeof x==='string' ? {typ:'experiment', id:x, titel:`${t.titel} – geführt`, text:t.experimentText||null} : {typ:'experiment', ...x});
+  /* spec/02 §6: t.audio / t.experiment sind nur Kennzeichen – nicht doppelt rendern, wenn die Blöcke den Player/Button schon enthalten */
+  const alle = JSON.stringify([t.bloecke||[], t.mehr||[]]);
+  const inBl = (typ,id) => alle.includes(`"typ":"${typ}"`) && alle.includes(`"id":"${id}"`);
+  for(let i=auds.length-1;i>=0;i--) if(inBl('audio',auds[i].id)) auds.splice(i,1);
+  for(let i=exps.length-1;i>=0;i--) if(inBl('experiment',exps[i].id)) exps.splice(i,1);
+  /* spec/07 T10: bloecke an der ersten Start-Karte teilen → So geht’s | Start | Rest (z. B. Anker/Song-Akkordeons beim sicheren Ort) */
+  const B = Array.isArray(t.bloecke) ? t.bloecke : [];
+  let si = B.findIndex(tbIstStart); if(si<0) si = B.length;
+  let ei = si; while(ei<B.length && tbIstStart(B[ei])) ei++;
+  const vor = B.slice(0,si), start = B.slice(si,ei), nach = B.slice(ei);
+  const hg = Array.isArray(t.hintergrund) ? t.hintergrund : [], qu = tbQuellen(t.quellen);
+  /* bloecke-Pfade bleiben wie bisher (ctx.path + '/' + Index), damit „gemacht“-Schlüssel erhalten bleiben → tbBl() */
+  let h = `<div class="view tb">${bar(`<b>Kapitel ${k.nr}</b> · Tool`)}${t.header?`<div class="shead"><img src="${esc(t.header)}" alt="" onerror="this.closest('.shead').remove()"></div>`:''}
+    <article class="wrap slide tool">${tbBeispiel(I)}
+    <div class="rubrik">${ic(a.icon)} Tool · ${esc(a.label)}</div><h1>${esc(t.titel)}</h1>${tbKurz(t)?`<p class="tkurz">${esc(tbKurz(t))}</p>`:''}
+    <div class="tchips">${d?`<span class="tchip">${ic('clock')} ${esc(d)}</span>`:''}${t.routine?`<span class="tchip">${ic('repeat')} Routine</span>`:''}${herk}</div>
+    ${t.wofuer?`<div class="wofuer"><span>Wofür</span><p>${inl(t.wofuer)}</p></div>`:''}
+    ${vor.length?`${tbEigeneSoh(vor)?'':`<h2 class="soh">So geht’s</h2>`}<div class="bl">${tbBl(vor, ctx, 0)}</div>`:''}
+    <div class="bl tbstart">${tbBl(start, ctx, si)}${blocks(auds, {...ctx, path:ctx.path+'/audio'})}${exps.map((x,i)=>expKarte(x, ctx.path+'/exp'+i)).join('')}</div>
+    ${nach.length?`<div class="bl">${tbBl(nach, ctx, ei)}</div>`:''}
+    ${t.mehr && t.mehr.length?`<div class="bl">${blocks(t.mehr, {...ctx, path:ctx.path+'/mehr'})}</div>`:''}
+    ${hg.length?`<details class="acc tbtheo"><summary>${ic('spark')}<span>Hintergrund: Warum das wirkt</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(hg, {...ctx, path:ctx.path+'/hintergrund'})}</div></details>`:''}
+    ${qu.length?`<details class="acc tbtheo"><summary>${ic('book')}<span>Quellen</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(qu, {...ctx, path:ctx.path+'/quellen'})}</div></details>`:''}
+    <div class="tbbackw"><a class="tbback" href="${esc(zurueckHref)}" data-act="tb-zurueck">${ic('back')} Zurück zur Toolbox</a></div>
+    </article>${footer()}</div>`;   /* spec/07 T5/T7/T8: kein Vor/Zurück zu anderen Tools, kein Textlink, keine Hilfe-Karte */
+  app.innerHTML = h;
+  const fab = document.getElementById('fab'); if(fab) fab.dataset.go = zurueckHref;   /* FAB = eine Ebene hoch, in die Herkunftskategorie */
+  leereWeg(app);   /* spec/04 §7 */
+  initAudios(app);
+}
+/* spec/07 T10: bringt der Inhalt eine eigene Überschrift mit, keine zweite „So geht’s“ davorsetzen */
+const tbEigeneSoh = arr => !!(arr[0] && arr[0].typ==='ueberschrift');   /* Inhalt beginnt mit eigener Überschrift (z. B. „So geht’s“, „So drückst du …“) */
+/* spec/07 T10: Teilstück der bloecke mit den Original-Indizes rendern (Pfade/Schlüssel wie vor spec/07) */
+function tbBl(arr, ctx, off){
+  if(!arr.length) return '';
+  const voll = new Array(off).fill(null).concat(arr);   /* null-Einträge überspringt blocks() */
+  return blocks(voll, ctx);
+}
+
+/* ================================================================
+   4c. Feedback „Titel-Test“ – spec/04 P1-Zusatz (§10)
+   ================================================================ */
+const FB_KEY = 'klarkommen_titeltest';
+const FB_TITEL = {A:'Klarkommen – Finde raus, was du willst', B:'Klarkommen – Mit dir, deinem Kopf und deinem Weg', C:'Klarkommen – Mentale Stärke. Klare Richtung.'};
+const FB_WA = '4917697318191', FB_MAIL = 'info@getcon-ep.de';
+const FB_FRAGEN = [{id:'q1', text:'Welchen Link würdest du anklicken?', kurz:'Anklicken'}, {id:'q2', text:'Welchen würdest du einer Freundin/einem Freund schicken?', kurz:'Weiterschicken'}];
+const FB_TRANSPARENZ = 'Du schickst eine normale WhatsApp-Nachricht an Marco (GetCon). Dabei sieht er deine Nummer und darf dich ggf. persönlich zum Projekt ansprechen. Freiwillig – du kannst auch per E-Mail antworten.';
+let FB = null;
+/* Zustand pro Gerät: feste Buchstaben, zufällige (gespeicherte) Reihenfolge gegen Positionseffekt */
+function fbLaden(){
+  if(FB) return FB;
+  let o = null; try{ o = JSON.parse(lsGet(FB_KEY)||'null'); }catch(e){ o = null; }
+  const ok = o && Array.isArray(o.reihenfolge) && o.reihenfolge.length===3 && ['A','B','C'].every(x=>o.reihenfolge.includes(x));
+  let rf = ok ? o.reihenfolge : null;
+  if(!rf){ rf = ['A','B','C']; for(let i=rf.length-1;i>0;i--){ let r; try{ r = crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296; }catch(e){ r = Math.random(); } const j = Math.floor(r*(i+1)); [rf[i],rf[j]] = [rf[j],rf[i]]; } }
+  const val = v => (v==='A'||v==='B'||v==='C') ? v : null;
+  FB = {reihenfolge:rf, q1:val(o&&o.q1), q2:val(o&&o.q2), kommentar:(o && typeof o.kommentar==='string') ? o.kommentar : '', abgestimmt:(o && typeof o.abgestimmt==='string') ? o.abgestimmt : null, nochmal:false};
+  fbSpeichern();
+  return FB;
+}
+function fbSpeichern(){ if(!FB) return; const {nochmal, ...rest} = FB; lsSet(FB_KEY, JSON.stringify(rest)); }
+function fbText(){
+  const t = `Klarkommen Titel-Test: Anklicken: ${FB.q1} (${FB_TITEL[FB.q1]}) · Weiterschicken: ${FB.q2} (${FB_TITEL[FB.q2]})`;
+  const k = (FB.kommentar||'').trim();
+  return k ? `${t} · Kommentar: ${k}` : t;
+}
+const fbWaURL = () => `https://wa.me/${FB_WA}?text=${encodeURIComponent(fbText())}`;
+const fbMailURL = () => `mailto:${FB_MAIL}?subject=${encodeURIComponent('Klarkommen Titel-Test')}&body=${encodeURIComponent(fbText())}`;
+/* Startseiten-Karte unter „Deine Reise“ */
+function fbKarte(){
+  const F = fbLaden();
+  return `<a class="fbk" href="#/feedback"><span class="ti">${ic('chat')}</span><span class="k"><b>Hilf mit: Welcher Titel passt? – 30 Sekunden</b>${F.abgestimmt?`<small class="ok">${ic('check').replace('class="i"','class="i" style="width:15px;height:15px;vertical-align:-3px"')} Danke, schon abgestimmt</small>`:`<small>Drei Titel-Ideen – deine Meinung zählt.</small>`}</span><span class="chev">${ic('chev')}</span></a>`;
+}
+function fbOption(q, L){
+  const an = FB[q]===L;
+  return `<button type="button" class="fopt" role="radio" aria-checked="${an}" data-act="fb-wahl" data-q="${q}" data-v="${L}"><span class="lt">${L}</span><span class="tx2">${esc(FB_TITEL[L])}</span><span class="mk">${ic('check')}</span></button>`;
+}
+function renderFeedback(app){
+  const F = fbLaden();
+  document.title = `Hilf mit · ${titel()}`;
+  const formZeigen = !F.abgestimmt || F.nochmal;
+  let h = `<div class="view fb">${bar('<b>Hilf mit</b> · Titel-Test')}<div class="wrap">
+    <div class="pagehead"><div class="eyebrow">Hilf mit · 30 Sekunden</div><h1>Welcher Titel passt?</h1><p>Drei Ideen für den Namen dieser App. Wähle bei beiden Fragen spontan aus dem Bauch heraus.</p></div>`;
+  if(F.abgestimmt) h += `<section class="card fbdank" id="fbDank"><h2>${ic('check')} Danke, schon abgestimmt</h2><p class="hint">Deine Antwort ist auf diesem Gerät vermerkt. Du kannst jederzeit erneut abstimmen.</p>${F.nochmal?'':`<button class="btn sec block" data-act="fb-nochmal">${ic('repeat')} Erneut abstimmen</button>`}</section>`;
+  if(formZeigen){
+    h += FB_FRAGEN.map((q,i)=>`<section class="card"><h2 id="fbH${i}"><span class="qn">${i+1}.</span> ${esc(q.text)}</h2><div class="fopts" role="radiogroup" aria-labelledby="fbH${i}">${F.reihenfolge.map(L=>fbOption(q.id, L)).join('')}</div></section>`).join('');
+    h += `<section class="card"><label class="fld" style="margin:0"><span>Dein Vorschlag/Kommentar (optional)</span><textarea id="fbKom" maxlength="500" rows="3" autocomplete="off" placeholder="z. B. eigener Titel-Vorschlag">${esc(F.kommentar)}</textarea></label></section>
+      <section class="card"><h2>${ic('chat')} Absenden</h2>
+        <p class="fehlt" id="fbFehlt"></p>
+        <div class="btns">
+          <a class="btn block" id="fbWa" data-act="fb-senden" data-weg="wa" target="_blank" rel="noopener">${ic('chat')} Per WhatsApp an Marco senden</a>
+        </div>
+        <p class="transp">${ic('info')}<span>${esc(FB_TRANSPARENZ)}</span></p>
+        <div class="btns"><a class="btn sec block" id="fbMail" data-act="fb-senden" data-weg="mail">${ic('mail')} Per E-Mail senden</a></div>
+      </section>`;
+  }
+  h += `<a class="zurueck" href="#/">${ic('up')} Zur Startseite</a></div>${footer()}</div>`;
+  app.innerHTML = h;
+  fbUpdate();
+}
+/* Senden erst aktiv, wenn beide Fragen beantwortet sind; Links immer aus dem aktuellen Stand */
+function fbUpdate(){
+  const wa = document.getElementById('fbWa'), ml = document.getElementById('fbMail'), fe = document.getElementById('fbFehlt'); if(!wa) return;
+  const fertig = !!(FB.q1 && FB.q2);
+  for(const [a,u] of [[wa, fertig?fbWaURL():null],[ml, fertig?fbMailURL():null]]){ if(u){ a.href = u; a.removeAttribute('aria-disabled'); } else { a.removeAttribute('href'); a.setAttribute('aria-disabled','true'); } }
+  wa.classList.toggle('pulse', fertig);
+  const off = FB_FRAGEN.filter(q=>!FB[q.id]).map((q,i)=>FB_FRAGEN.indexOf(q)+1);
+  fe.textContent = fertig ? 'Bereit – wähle, wie du senden möchtest.' : `Bitte beantworte noch Frage ${off.join(' und ')}.`;
+}
+function fbWahl(el){
+  const q = el.dataset.q, v = el.dataset.v; FB[q] = v; fbSpeichern();
+  el.closest('.fopts').querySelectorAll('.fopt').forEach(b=>b.setAttribute('aria-checked', String(b===el)));
+  fbUpdate();
+}
+
+/* ================================================================
+   5. Audio – spec/01 §C.5
+   ================================================================ */
+let audioCur = null;
+function stopAudio(){ document.querySelectorAll('.audio audio').forEach(a=>{ try{ a.pause(); }catch(e){} }); audioCur = null; }
+function initAudios(root){
+  root.querySelectorAll('.audio[data-audio]').forEach(card=>{
+    const a = card.querySelector('audio'), seek = card.querySelector('.seek'), cur = card.querySelector('.cur'), dur = card.querySelector('.dur');
+    let dragging = false;
+    const upd = ()=>{ if(!dragging && a.duration){ const v = a.currentTime/a.duration*1000; seek.value = v; seek.style.setProperty('--p', (v/10)+'%'); } cur.textContent = fmtT(a.currentTime); };
+    a.addEventListener('timeupdate', upd);
+    a.addEventListener('loadedmetadata', ()=>{ if(isFinite(a.duration)) dur.textContent = fmtT(a.duration); upd(); });
+    a.addEventListener('play', ()=>{ card.classList.add('on'); card.querySelector('.play').setAttribute('aria-label','Pause'); });
+    a.addEventListener('pause', ()=>{ card.classList.remove('on'); card.querySelector('.play').setAttribute('aria-label','Abspielen'); });
+    a.addEventListener('ended', ()=>{ a.currentTime = 0; upd(); });
+    a.addEventListener('error', ()=>toast('Audio konnte nicht geladen werden. Bist du offline? Dann vorher „Offline speichern“ nutzen.'));
+    seek.addEventListener('input', ()=>{ dragging = true; seek.style.setProperty('--p', (seek.value/10)+'%'); if(a.duration) cur.textContent = fmtT(seek.value/1000*a.duration); });
+    seek.addEventListener('change', ()=>{ dragging = false; if(a.duration) a.currentTime = seek.value/1000*a.duration; });
+    istOffline(a.getAttribute('src')).then(ok=>{ const o = card.querySelector('.off'); if(o) o.hidden = !ok; });
+  });
+}
+function audioAct(card, act){
+  const a = card.querySelector('audio');
+  if(act==='play'){
+    if(a.paused){ document.querySelectorAll('.audio audio').forEach(x=>{ if(x!==a) x.pause(); }); a.play().catch(e=>{ console.warn(e); toast('Abspielen nicht möglich.'); }); audioCur = a; }
+    else a.pause();
+  }
+  if(act==='rw') a.currentTime = Math.max(0, a.currentTime-15);
+  if(act==='ff') a.currentTime = Math.min(a.duration||0, a.currentTime+15);
+}
+
+/* ================================================================
+   6. Offline – spec/01 §C.7, Skill §5a
+   ================================================================ */
+const absURL = p => new URL(p, location.href.split('#')[0]).href;
+async function istOffline(pfad){ try{ if(!('caches' in window)) return false; return !!(await caches.match(absURL(pfad), {ignoreSearch:true})); }catch(e){ return false; } }   /* Abnahme S3: alle Caches (Medien + Shell/Experimente) */
+const offlineListe = () => [...(MED.dateien||[]), ...EXPF];
+async function offlineZaehlen(){
+  const F = offlineListe(); let n=0, b=0, tb=0;
+  for(const f of F){ tb += f.bytes; if(await istOffline(f.pfad)){ n++; b += f.bytes; } }
+  return {n, gesamt:F.length, bytes:b, totalBytes:tb};
+}
+async function offlinePill(){
+  const p = document.getElementById('opill'), t = document.getElementById('opillT'); if(!p) return;
+  const z = await offlineZaehlen();
+  p.classList.remove('ok','todo','off');
+  if(!navigator.onLine){ p.classList.add(z.n===z.gesamt?'ok':'off'); t.textContent = z.n===z.gesamt ? 'Offline · alles gespeichert' : 'Offline'; return; }
+  if(z.gesamt && z.n===z.gesamt && navigator.serviceWorker && navigator.serviceWorker.controller){ p.classList.add('ok'); t.textContent = 'Offline bereit'; }
+  else { p.classList.add('todo'); t.textContent = 'Offline speichern'; }
+}
+let oAbort = null;
+async function offlineStatus(){
+  const st = document.getElementById('oStat'); if(!st) return;
+  const z = await offlineZaehlen();
+  const so = document.getElementById('sOff');
+  if(so) so.textContent = (z.gesamt && z.n>=z.gesamt) ? 'Alles gespeichert' : (z.n ? `${z.gesamt-z.n} Dateien fehlen · ca. ${fmtMB(z.totalBytes-z.bytes)}` : 'Noch nicht gespeichert');
+  st.innerHTML = `Offline verfügbar: <b>${z.n} von ${z.gesamt}</b> Dateien`;
+  document.getElementById('oSize').textContent = `${fmtMB(z.bytes)} / ${fmtMB(z.totalBytes)}`;
+  document.getElementById('oBar').style.width = (z.gesamt? z.n/z.gesamt*100 : 0)+'%';
+  const del = document.getElementById('oDel'), delH = document.getElementById('oDelH');   /* spec/06 §4 */
+  if(del){ del.disabled = !z.n || !!oAbort; delH.textContent = z.n ? `Belegt: ca. ${fmtMB(z.bytes)} in ${z.n} Dateien.` : 'Zurzeit sind keine Offline-Dateien gespeichert.'; }
+  const btn = document.getElementById('oBtn');
+  if(!oAbort){
+    const rest = z.gesamt - z.n, restB = z.totalBytes - z.bytes;
+    btn.innerHTML = rest ? `${ic('dl')} ${z.n?'Fehlende':'Alles'} offline speichern – ${rest} Dateien · ca. ${fmtMB(restB)} (WLAN)` : `${ic('check')} Alles offline gespeichert`;
+    btn.disabled = !rest; btn.classList.toggle('sec', !rest); btn.classList.toggle('pulse', !!rest);
+  }
+  const sw = navigator.serviceWorker && navigator.serviceWorker.controller ? 'aktiv' : ('serviceWorker' in navigator ? 'noch nicht aktiv – Seite einmal neu laden' : 'vom Browser nicht unterstützt');
+  let est = '';
+  try{ if(navigator.storage && navigator.storage.estimate){ const e = await navigator.storage.estimate(); est = `${fmtMB(e.usage||0)} belegt`; } }catch(e){}
+  let pers = '';
+  try{ if(navigator.storage && navigator.storage.persisted) pers = (await navigator.storage.persisted()) ? 'ja' : 'nein'; }catch(e){}
+  document.getElementById('oKv').innerHTML = `<span>App-Grundgerüst offline</span><b>${sw}</b>${est?`<span>Speicher</span><b>${est}</b>`:''}${pers?`<span>Dauerhaft geschützt</span><b>${pers}</b>`:''}`;
+}
+async function offlineLaden(){
+  if(!('caches' in window)){ toast('Dieser Browser kann keine Offline-Daten speichern.'); return; }
+  try{ if(navigator.storage && navigator.storage.persist) await navigator.storage.persist(); }catch(e){}
+  const btn = document.getElementById('oBtn'), ab = document.getElementById('oAbbr'), st = document.getElementById('oStat'), barEl = document.getElementById('oBar');
+  oAbort = new AbortController(); btn.disabled = true; btn.classList.remove('pulse'); ab.hidden = false;
+  const del = document.getElementById('oDel'); if(del) del.disabled = true;   /* spec/06 §4 */
+  const F = offlineListe(); const c = await caches.open(MEDIEN_CACHE);
+  let fertig = 0, fehler = 0;
+  for(const f of F){
+    if(oAbort.signal.aborted) break;
+    const u = absURL(f.pfad);
+    try{
+      if(!(await caches.match(u, {ignoreSearch:true}))){
+        btn.innerHTML = `Lade ${fertig+1} von ${F.length} …`;
+        const r = await fetch(u, {signal:oAbort.signal, cache:'no-cache'});
+        if(!r.ok) throw new Error(r.status);
+        await c.put(u, r);
+      }
+    }catch(e){ if(oAbort.signal.aborted) break; fehler++; console.warn('Offline-Laden fehlgeschlagen:', f.pfad, e); }
+    fertig++;
+    st.innerHTML = `Offline verfügbar: <b>${fertig-fehler} von ${F.length}</b> Dateien`; barEl.style.width = (fertig/F.length*100)+'%';
+  }
+  const abgebrochen = oAbort.signal.aborted; oAbort = null; ab.hidden = true;
+  await offlineStatus();
+  toast(abgebrochen ? 'Abgebrochen. Bereits Gespeichertes bleibt erhalten.' : (fehler ? `${fehler} Datei(en) konnten nicht geladen werden – bitte erneut versuchen.` : 'Fertig – Klarkommen ist jetzt offline verfügbar.'));
+}
+/* spec/06 §4: nur die Offline-Dateien löschen (Medien-Cache + Experiment-Dateien im Shell-Cache).
+   Fortschritt/Einstellungen (localStorage, IndexedDB), Service Worker und App-Grundgerüst bleiben. */
+async function offlineLoeschen(){
+  if(oAbort){ toast('Bitte warte, bis das Speichern fertig ist – oder brich es ab.'); return; }
+  if(!('caches' in window)) return;
+  const z = await offlineZaehlen();
+  if(!z.n){ toast('Es sind keine Offline-Dateien gespeichert.'); await offlineStatus(); return; }
+  if(!(await ask('Offline-Dateien löschen?', `Gibt ca. ${fmtMB(z.bytes)} frei (${z.n} Dateien: Audios, Bilder, Experimente). Dein Fortschritt und deine Einstellungen bleiben erhalten. Mit Internet läuft Klarkommen normal weiter; ohne Internet fehlen danach Audios und Bilder.`, 'Löschen'))) return;
+  try{
+    await caches.delete(MEDIEN_CACHE);
+    const ex = EXPF.map(f=>absURL(f.pfad));
+    for(const n of await caches.keys()){ if(!n.startsWith('kk-')) continue; const c = await caches.open(n); for(const u of ex) await c.delete(u, {ignoreSearch:true}); }
+  }catch(e){ console.warn('Löschen fehlgeschlagen', e); }
+  await offlineStatus();
+  const z2 = await offlineZaehlen();
+  toast(z2.n ? `Gelöscht. ${z2.n} Datei(en) konnten nicht entfernt werden.` : 'Offline-Dateien gelöscht – Speicher freigegeben.');
+}
+async function offlineReset(){
+  if(!(await ask('App neu laden?','Alle Offline-Dateien und der App-Zwischenspeicher werden von diesem Gerät gelöscht, danach lädt Klarkommen neu (Internet nötig). Dein Fortschritt und deine Einstellungen bleiben erhalten.','Neu laden'))) return;
+  try{ for(const n of await caches.keys()) if(n.startsWith('kk-')) await caches.delete(n); }catch(e){}
+  try{ if(navigator.serviceWorker) for(const r of await navigator.serviceWorker.getRegistrations()) await r.unregister(); }catch(e){}
+  location.reload();
+}
+
+
+/* ================================================================
+   6b. spec/06 §2+§3 – „Als App auf den Startbildschirm“ + Anleitungen
+   ================================================================ */
+const INST_KEY = 'klarkommen_install_hinweis';
+let instPrompt = null;   /* Android/Chrome: beforeinstallprompt */
+window.addEventListener('beforeinstallprompt', e=>{ e.preventDefault(); instPrompt = e; const el = document.getElementById('inst'); if(el && !el.hidden) el.innerHTML = instSheet(plattform()); });
+window.addEventListener('appinstalled', ()=>{ instPrompt = null; lsSet(INST_KEY,'aus'); instVerstecken(); });
+function istStandalone(){
+  try{ if(window.matchMedia && (window.matchMedia('(display-mode: standalone)').matches || window.matchMedia('(display-mode: fullscreen)').matches)) return true; }catch(e){}
+  return window.navigator.standalone === true;
+}
+function plattform(){
+  const ua = navigator.userAgent || '';
+  const ios = /iPad|iPhone|iPod/.test(ua) || (navigator.platform==='MacIntel' && (navigator.maxTouchPoints||0) > 1);
+  if(ios) return {os:'ios', safari: !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|DuckDuckGo|Instagram|FBAN|FBAV|Line\//.test(ua)};
+  if(/Android/i.test(ua)) return {os:'android'};
+  return {os:'andere'};
+}
+function instSheet(P){
+  let body = '';
+  if(P.os==='ios'){
+    body = `<ol class="ist"><li>Tippe auf <b>Teilen</b> <span class="kbd">${ic('share')}</span> – je nach iOS-Version direkt in der Leiste oder über „…“.</li><li>Wähle <b>„Zum Home-Bildschirm“</b> (evtl. etwas nach unten scrollen).</li><li>Tippe auf <b>„Hinzufügen“</b>.</li></ol>`
+      + (P.safari ? '' : `<p class="inote">Klappt das in diesem Browser nicht, öffne den Link in Safari.</p>`)
+      + `<p class="inote">Offline speichern danach in der App – sie hat einen eigenen Speicher.</p>`;
+  } else if(instPrompt){
+    body = `<button class="btn block" data-act="inst-prompt">${ic('dl')} App installieren</button><p class="inote">Oder über das Browser-Menü <span class="kbd">${ic('dots')}</span> → „App installieren“.</p>`;
+  } else {
+    body = `<ol class="ist"><li>Tippe auf das Browser-Menü <span class="kbd">${ic('dots')}</span> (z. B. oben rechts).</li><li>Wähle <b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b>.</li><li>Bestätigen – fertig.</li></ol>`;
+  }
+  return `<div class="in"><button class="ix" data-act="inst-zu" aria-label="Hinweis schließen">${ic('x')}</button>
+    <div class="ih"><span class="ti">${ic('plusbox')}</span><div><b>Als App auf den Startbildschirm</b><small>Schneller da, ohne Adressleiste.</small></div></div>
+    ${body}
+    <div class="ib"><button data-act="inst-aus">Nicht mehr anzeigen</button><button class="lnk" data-act="inst-mehr">Ganze Anleitung</button></div></div>`;
+}
+function instZeigen(){
+  if(curRoute.name!=='start' || istStandalone() || lsGet(INST_KEY)==='aus' || sessionStorageGet(INST_KEY)==='zu') return;
+  const P = plattform(); if(P.os==='andere') return;   /* Desktop: nur unter Einstellungen → Anleitungen */
+  const el = document.getElementById('inst'); if(!el) return;
+  el.innerHTML = instSheet(P); el.hidden = false; document.body.classList.add('inst-on');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>el.classList.add('on')));
+}
+function instVerstecken(){
+  const el = document.getElementById('inst'); if(!el || el.hidden) return;
+  el.classList.remove('on'); document.body.classList.remove('inst-on');
+  setTimeout(()=>{ if(!el.classList.contains('on')) el.hidden = true; }, 380);
+}
+function instZu(dauerhaft){ if(dauerhaft) lsSet(INST_KEY,'aus'); else sessionStorageSet(INST_KEY,'zu'); instVerstecken(); }
+async function instInstallieren(){
+  if(!instPrompt){ toast('Bitte über das Browser-Menü installieren – siehe Anleitung.'); return; }
+  const p = instPrompt; instPrompt = null;
+  try{ p.prompt(); const r = await p.userChoice; if(r && r.outcome==='accepted'){ lsSet(INST_KEY,'aus'); instVerstecken(); } }catch(e){}
+}
+/* spec/06 §3: Anleitungen als Akkordeons (Einstellungen) – nur gesicherte Schritte, abweichende Bezeichnungen mit „z. B.“ */
+function anleitungenHtml(){
+  const sh = `<span class="kbd">${ic('share')}</span>`, dots = `<span class="kbd">${ic('dots')}</span>`;
+  const tot = offlineListe().reduce((a,f)=>a+(f.bytes||0),0);
+  const acc = (id, icon, t, body) => `<details class="acc anl" id="anl-${id}"><summary>${ic(icon)}<span>${t}</span>${ic('down','chv')}</summary><div class="acb">${body}</div></details>`;
+  const instBtn = (instPrompt && !istStandalone()) ? `<button class="btn block" data-act="inst-prompt">${ic('dl')} App jetzt installieren</button>` : '';
+  return `<p class="hint" style="margin-top:0">Kurz erklärt – zum Aufklappen.</p>
+  ${acc('home','plusbox','App auf den Startbildschirm',
+    `<h3>iPhone / iPad</h3><ol><li>Öffne Klarkommen in <strong>Safari</strong>.</li><li>Tippe auf <strong>Teilen</strong> ${sh} – je nach iOS-Version direkt in der Leiste oder erst über „…“.</li><li>Wähle <strong>„Zum Home-Bildschirm“</strong> (evtl. etwas nach unten scrollen).</li><li>Tippe auf <strong>„Hinzufügen“</strong>.</li></ol>
+    <p class="anl-n">In anderen Browsern auf dem iPhone geht das teils auch über „Teilen“. Klappt es nicht, öffne den Link in Safari.</p>
+    <h3>Android</h3>${instBtn}<ol><li>Öffne Klarkommen in <strong>Chrome</strong>.</li><li>Tippe auf das Menü ${dots} (oben rechts).</li><li>Wähle <strong>„App installieren“</strong> oder <strong>„Zum Startbildschirm hinzufügen“</strong> – die Bezeichnung hängt von der Version ab.</li><li>Bestätige mit <strong>„Installieren“</strong> bzw. <strong>„Hinzufügen“</strong>.</li></ol>
+    <p class="anl-n">Andere Browser (z. B. Samsung Internet) haben einen ähnlichen Menüpunkt.</p>
+    <p>Danach startest du Klarkommen über das Icon – ohne Adressleiste, wie eine App.</p>`)}
+  ${acc('offline','cloud','Offline speichern',
+    `<ol><li>Verbinde dich mit dem <strong>WLAN</strong> (insgesamt ca. ${fmtMB(tot)}).</li><li>Tippe unter <strong>Offline nutzen</strong> auf „Alles offline speichern“.</li><li>Warte, bis dort „Offline verfügbar: ${offlineListe().length} von ${offlineListe().length}“ steht.</li></ol>
+    <h3>Wichtig fürs iPhone</h3><p>Die App auf dem Home-Bildschirm hat einen <strong>eigenen Speicher</strong>, getrennt von Safari. Füge Klarkommen deshalb <strong>zuerst</strong> zum Home-Bildschirm hinzu, öffne es über das Icon und speichere <strong>dort</strong> offline. Was du vorher in Safari gespeichert hast, ist in der App nicht da – auch dein Fortschritt nicht.</p>
+    <p class="anl-n">Prüfe vor dem Workshop oder unterwegs kurz den Offline-Status. Wird der Speicher knapp, kann das Handy gespeicherte Dateien selbst wieder entfernen.</p>`)}
+  ${acc('loeschen','trash','Offline-Dateien löschen',
+    `<p>Unter <strong>Offline nutzen</strong> → „Offline-Dateien löschen (Speicher freigeben)“.</p>
+    <ul><li><strong>Gelöscht werden:</strong> gespeicherte Audios, Bilder und Experimente.</li><li><strong>Bleibt erhalten:</strong> dein Fortschritt, Häkchen, Titel und Startbild.</li></ul>
+    <p>Mit Internet läuft Klarkommen danach ganz normal weiter. Du kannst jederzeit wieder offline speichern.</p>
+    <p class="anl-n">iPhone: Safari und Home-Bildschirm-App haben getrennten Speicher – lösche dort, wo du gespeichert hast. Bitte nicht die Browserdaten löschen: Dabei geht auch dein Fortschritt verloren.</p>`)}
+  ${acc('update','repeat','App aktualisieren',
+    `<p>Neue Inhalte und Verbesserungen kommen <strong>automatisch</strong>, wenn du Klarkommen mit Internet öffnest. Dein Fortschritt bleibt dabei erhalten.</p>
+    <p>Siehst du noch die alte Version?</p>
+    <ol><li><strong>App ganz schließen</strong> (in der App-Übersicht wegwischen).</li><li><strong>Neu öffnen</strong> – mit Internet.</li><li>Im Browser: Seite neu laden (z. B. nach unten ziehen oder Neu-laden-Symbol).</li></ol>
+    <p class="anl-n">Die aktuelle Version steht ganz unten in den Einstellungen. Das Icon musst du dafür nicht neu anlegen.</p>`)}
+  ${acc('entfernen','x','App entfernen',
+    `<h3>iPhone / iPad</h3><ol><li>Icon auf dem Home-Bildschirm <strong>lange drücken</strong>.</li><li><strong>„App entfernen“</strong> wählen (je nach iOS-Version z. B. auch „Lesezeichen löschen“) und bestätigen.</li></ol>
+    <h3>Android</h3><ol><li>Icon <strong>lange drücken</strong>.</li><li><strong>„Deinstallieren“</strong> bzw. <strong>„Entfernen“</strong> wählen (je nach Gerät z. B. auch durch Ziehen auf „Deinstallieren“) und bestätigen.</li></ol>
+    <p class="anl-n">Fortschritt behalten? Vorher unter „Sichern &amp; Übertragen“ exportieren. Speicher freigeben? Vorher die Offline-Dateien löschen – je nach Gerät bleiben sie sonst im Browser liegen.</p>`)}`;
+}
+/* ================================================================
+   7. Sperre, Dialoge, Toast – spec/01 §C.3, §D
+   ================================================================ */
+function openSperre(k, toolTitel){
+  const T = BRAND.sperrDialog, d = document.getElementById('dlgSperre');
+  document.getElementById('dsThumb').innerHTML = `<img src="${esc(k.cover)}" alt=""><b class="lockb glass">${ic('lock')}</b><span>${toolTitel?`${esc(toolTitel)} · `:''}${k.nr?`Kapitel ${k.nr}: `:''}${esc(k.titel)}</span>`;
+  document.getElementById('dsT').textContent = T.titel; document.getElementById('dsP').textContent = toolTitel ? (T.textTool || 'Dieses Tool gehört zur Vollversion von Klarkommen. In deinem Workshop-Zugang ist es nicht enthalten.') : T.text;
+  document.getElementById('dsOk').innerHTML = `${esc(T.button)} ${ic('right')}`; document.getElementById('dsZu').textContent = T.schliessen;
+  if(d.showModal) d.showModal(); else d.setAttribute('open','');
+}
+function closeDlg(d){ if(d.close) d.close(); else d.removeAttribute('open'); }
+function ask(t, p, ok){
+  return new Promise(res=>{
+    const d = document.getElementById('dlgAsk');
+    document.getElementById('daT').textContent = t; document.getElementById('daP').textContent = p; document.getElementById('daOk').textContent = ok;
+    const fin = v => { closeDlg(d); okB.onclick = noB.onclick = d.oncancel = null; res(v); };
+    const okB = document.getElementById('daOk'), noB = document.getElementById('daNo');
+    okB.onclick = ()=>fin(true); noB.onclick = ()=>fin(false); d.oncancel = e=>{ e.preventDefault(); fin(false); };
+    if(d.showModal) d.showModal(); else d.setAttribute('open','');
+  });
+}
+let toastT = null;
+function toast(msg){ const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(()=>t.classList.remove('on'), 3200); }
+
+/* ================================================================
+   8. Export / Import – Skill §4, spec/00 §4
+   ================================================================ */
+async function exportieren(){
+  const out = {app:'klarkommen', schemaVersion:1, exportiert:new Date().toISOString(), anpassung:{...D.anpassung}, fortschritt:{gelesen:D.gelesen, checks:D.checks, letzte:D.letzte}};
+  if(D.anpassung.startbildId){ const b = await imgGet(D.anpassung.startbildId); if(b) out._images = {startbild: await new Promise(r=>{ const fr=new FileReader(); fr.onload=()=>r(fr.result); fr.readAsDataURL(b); })}; }
+  const blob = new Blob([JSON.stringify(out,null,1)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `klarkommen-sicherung-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); }, 500);
+  toast('Sicherung exportiert.');
+}
+async function importieren(file){
+  let j; try{ j = JSON.parse(await file.text()); }catch(e){ toast('Diese Datei ist keine gültige Klarkommen-Sicherung.'); return; }
+  if(!j || j.app!=='klarkommen'){ toast('Diese Datei ist keine Klarkommen-Sicherung.'); return; }
+  const fs = j.fortschritt||{}; const nG = Object.keys(fs.gelesen||{}).length, nC = Object.keys(fs.checks||{}).length;
+  const vorschau = `${nG} gelesene Slides · ${nC} Häkchen${j.anpassung && j.anpassung.titel?` · Titel „${j.anpassung.titel}“`:''}${j._images&&j._images.startbild?' · eigenes Startbild':''}. Dein aktueller Stand auf diesem Gerät wird dabei ersetzt.`;
+  if(!(await ask('Sicherung importieren?', vorschau, 'Importieren'))) return;
+  const neu = normalizeData({gelesen:fs.gelesen, checks:fs.checks, letzte:fs.letzte, anpassung:j.anpassung});
+  neu.anpassung.startbildId = null;
+  if(j._images && j._images.startbild){ try{ const b = await (await fetch(j._images.startbild)).blob(); await imgPut('startbild', b); neu.anpassung.startbildId = 'startbild'; }catch(e){} }
+  else await imgDel('startbild');
+  D = neu; saveData(); await ladeStartbild(); toast('Import abgeschlossen.'); route();
+}
+
+/* ================================================================
+   9. Events (zentral, Skill §2.8)
+   ================================================================ */
+document.addEventListener('click', async e=>{
+  const go = e.target.closest('[data-go]');
+  if(go && go.dataset.go){ e.preventDefault(); if(go.id==='fab') location.replace(go.dataset.go); else location.hash = go.dataset.go; return; }   /* Abnahme K4 */
+  const rep = e.target.closest('a[data-rep]');
+  if(rep){ e.preventDefault(); location.replace(rep.getAttribute('href')); return; }  /* Skill §10.3: Blättern ohne Verlauf */
+  const fig = e.target.closest('#app .bl figure img');   /* spec/04 §4: nur Inhaltsbilder */
+  if(fig && !fig.closest('a')){ e.preventDefault(); lbAuf(fig.currentSrc || fig.src, fig.alt); return; }
+  const xa = e.target.closest('a[href^="#/x/"]');
+  if(xa){ sessionStorageSet('kk_xtitel', xa.dataset.xtitel||''); sessionStorageSet('kk_xkey', xa.dataset.xkey||''); sessionStorageSet('kk_xback', location.hash||'#/'); prevHash = location.hash; }
+  const el = e.target.closest('[data-act]'); if(!el) return;
+  const act = el.dataset.act;
+  if(act==='sperre'){ const k = kapById(el.dataset.kap); if(k) openSperre(k); }
+  else if(act==='zug-ok'){ const inp = document.getElementById('inZug'); const msg = await zugEinloesen(inp ? inp.value : ''); toast(msg); if(/^Freigeschaltet/.test(msg)) route(); }
+  else if(act==='zug-weg'){
+    const c = ZUG.aktiv.find(x=>x.hash===el.dataset.h); if(!c) return;
+    if(await ask('Zugang entfernen?','„'+(c.name||'Zugang')+'“ wird auf diesem Gerät entfernt. Mit dem Code kannst du ihn jederzeit wieder freischalten.','Entfernen')){
+      lsSet(ZUG_KEY, JSON.stringify(zugHashes().filter(h=>h!==c.hash))); zugBerechne(); toast('Zugang entfernt.'); route();
+    }
+  }
+  else if(act==='sperre-anfragen'){ closeDlg(document.getElementById('dlgSperre')); location.hash = '#/ueber'; }
+  else if(act==='dlg-zu'){ closeDlg(el.closest('dialog')); }
+  else if(act==='play'||act==='rw'||act==='ff'){ audioAct(el.closest('.audio'), act); }
+  else if(act==='x-zurueck'){ xSchliessen(); }
+  else if(act==='tb-zurueck'){ e.preventDefault(); if(tbVonUebersicht && history.length>1) history.back(); else location.hash = el.getAttribute('href'); }   /* spec/07 T6: kein doppelter Verlaufseintrag */
+  /* spec/04 §10: Titel-Test */
+  else if(act==='fb-wahl'){ fbWahl(el); }
+  else if(act==='fb-nochmal'){ FB.nochmal = true; FB.q1 = null; FB.q2 = null; fbSpeichern(); route(); }
+  else if(act==='fb-senden'){
+    if(el.getAttribute('aria-disabled')==='true' || !el.getAttribute('href')){ e.preventDefault(); toast('Bitte beantworte zuerst beide Fragen.'); fbUpdate(); return; }
+    FB.abgestimmt = new Date().toISOString(); FB.nochmal = false; fbSpeichern();
+    setTimeout(()=>{ if(curRoute.name==='feedback'){ route(); toast('Danke fürs Mitmachen!'); } }, 400);
+  }
+  else if(act==='sperre-tool'){ const k = kapById(el.dataset.kap); if(k) openSperre(k, el.dataset.titel); }
+  else if(act==='zu-offline'){ sessionStorageSet('kk_scroll','offline'); location.hash = '#/einstellungen'; }
+  else if(act==='titel-speichern'){
+    const t = document.getElementById('inTitel').value.trim(), u = document.getElementById('inUnter').value.trim();
+    D.anpassung.titel = (t && t!==BRAND.titelStandard) ? t : null; D.anpassung.untertitel = (u && u!==BRAND.untertitelStandard) ? u : null; saveData(); { const e=document.getElementById('sTitel'); if(e) e.textContent = titel(); } toast('Gespeichert.');
+  }
+  else if(act==='titel-reset'){ D.anpassung.titel = null; D.anpassung.untertitel = null; saveData(); document.getElementById('inTitel').value = BRAND.titelStandard; document.getElementById('inUnter').value = BRAND.untertitelStandard; { const e=document.getElementById('sTitel'); if(e) e.textContent = titel(); } toast('Auf Standard zurückgesetzt.'); }
+  else if(act==='bild-waehlen'){ document.getElementById('fileBild').click(); }
+  else if(act==='bild-reset'){ await imgDel('startbild'); D.anpassung.startbildId = null; saveData(); await ladeStartbild(); toast('Standardbild wiederhergestellt.'); route(); }
+  else if(act==='offline-laden'){ offlineLaden(); }
+  else if(act==='offline-abbruch'){ if(oAbort) oAbort.abort(); }
+  else if(act==='offline-reset'){ offlineReset(); }
+  else if(act==='offline-loeschen'){ offlineLoeschen(); }   /* spec/06 §4 */
+  else if(act==='inst-zu'){ instZu(false); }   /* spec/06 §2 */
+  else if(act==='inst-aus'){ instZu(true); toast('Okay. Die Anleitung findest du unter Einstellungen → Anleitungen.'); }
+  else if(act==='inst-mehr'){ sessionStorageSet(INST_KEY,'zu'); sessionStorageSet('kk_scroll','anl-home'); location.hash = '#/einstellungen'; }
+  else if(act==='inst-prompt'){ instInstallieren(); }
+  else if(act==='export'){ exportieren(); }
+  else if(act==='import'){ document.getElementById('fileImport').click(); }
+  else if(act==='kap-reset'){
+    const k = kapById(el.dataset.kap); if(!k || !kapFrei(k)) return;
+    if(await ask('Fortschritt dieses Kapitels zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen in „'+k.titel+'“ werden gelöscht. Andere Kapitel bleiben unverändert.','Ja, zurücksetzen')){
+      const pre = k.id+'/';
+      for(const o of [D.gelesen, D.checks]) for(const key of Object.keys(o)) if(key.startsWith(pre)) delete o[key];
+      delete D.letzte[k.id]; saveData(); toast('Fortschritt des Kapitels zurückgesetzt.'); route();
+    }
+  }
+  else if(act==='fortschritt-reset'){
+    if(await ask('Fortschritt zurücksetzen?','Alle Häkchen und „gelesen“-Markierungen auf diesem Gerät werden gelöscht.','Weiter') && await ask('Wirklich löschen?','Das lässt sich nicht rückgängig machen – außer du hast vorher exportiert.','Ja, löschen')){
+      D.gelesen = {}; D.checks = {}; D.letzte = {}; saveData(); toast('Fortschritt zurückgesetzt.');
+    }
+  }
+});
+/* spec/04 §10: Kommentar live mitschreiben (Link-Text aktuell halten) */
+document.addEventListener('keydown', e=>{ if(e.key==='Enter' && e.target && e.target.id==='inZug'){ e.preventDefault(); const b = document.querySelector('[data-act="zug-ok"]'); if(b) b.click(); } });   /* v1.3.32 */
+document.addEventListener('input', e=>{ if(e.target.id==='fbKom' && FB){ FB.kommentar = e.target.value; fbSpeichern(); fbUpdate(); } });
+document.addEventListener('change', async e=>{
+  const cb = e.target.closest('input[data-check]');
+  if(cb){ if(cb.checked) D.checks[cb.dataset.check] = true; else delete D.checks[cb.dataset.check]; saveData(); return; }
+  if(e.target.id==='fileBild' && e.target.files[0]){
+    try{ const b = await shrink(e.target.files[0]); await imgPut('startbild', b); D.anpassung.startbildId = 'startbild'; saveData(); await ladeStartbild(); toast('Startbild gespeichert.'); route(); }
+    catch(err){ toast('Das Bild konnte nicht gespeichert werden.'); }
+    e.target.value = '';
+  }
+  if(e.target.id==='fileImport' && e.target.files[0]){ await importieren(e.target.files[0]); e.target.value = ''; }
+});
+document.getElementById('dlgSperre').addEventListener('click', e=>{ if(e.target.id==='dlgSperre') closeDlg(e.target); });  /* Tipp auf Hintergrund schließt */
+/* Wischen zwischen Slides (location.replace) – spec/00 §2.3 */
+let tStart = null;
+document.addEventListener('touchstart', e=>{ if(curRoute.name!=='slide' || e.touches.length!==1 || e.target.closest('input,.audio,details summary,#lb')) { tStart=null; return; } tStart = {x:e.touches[0].clientX, y:e.touches[0].clientY, t:Date.now()}; }, {passive:true});
+document.addEventListener('touchend', e=>{
+  if(!tStart) return; const dx = e.changedTouches[0].clientX - tStart.x, dy = e.changedTouches[0].clientY - tStart.y; const dt = Date.now()-tStart.t; tStart = null;
+  if(Math.abs(dx) < 70 || Math.abs(dx) < Math.abs(dy)*1.6 || dt > 700) return;
+  const k = kapFromRoute(curRoute.kap); const I = INH[k && k.id]; if(!I) return;
+  const S = I.data.slides, i = S.findIndex(s=>s.id===curRoute.slide);
+  const t = dx < 0 ? S[i+1] : S[i-1];
+  if(t) wischWeg(true);   /* spec/06 §5 */
+  if(t) location.replace(`#/k/${kapRouteId(k)}/${encodeURIComponent(t.id)}`);
+}, {passive:true});
+/* spec/04 §4: Lightbox – Tipp auf Inhaltsbild (figure in .bl; nicht Cover/Header/Icons) → Vollbild.
+   Eigener Pinch-Zoom (touch-action:none, keine Bibliothek), Doppeltipp 1×/2,5×, Schließen per X, Tipp auf Hintergrund, Handy-Zurück (history state). */
+const LB = {s:1, tx:0, ty:0, r0:null, t:null, moved:false, lastTap:0};
+function lbEl(){ return document.getElementById('lb'); }
+function lbApply(){ document.getElementById('lbImg').style.transform = `translate(${LB.tx}px,${LB.ty}px) scale(${LB.s})`; }
+function lbBase(){ const im = document.getElementById('lbImg'); const t = im.style.transform; im.style.transform = 'none'; LB.r0 = im.getBoundingClientRect(); im.style.transform = t; }
+function lbClamp(){
+  if(!LB.r0) return; if(LB.s <= 1.01){ LB.s = 1; LB.tx = 0; LB.ty = 0; return; }
+  const r = LB.r0, vw = innerWidth, vh = innerHeight, sw = r.width*LB.s, sh = r.height*LB.s;
+  LB.tx = sw <= vw ? (vw-sw)/2 - r.left : Math.min(-r.left, Math.max(vw - r.left - sw, LB.tx));
+  LB.ty = sh <= vh ? (vh-sh)/2 - r.top : Math.min(-r.top, Math.max(vh - r.top - sh, LB.ty));
+}
+function lbZoomAt(x, y, s){ const r = LB.r0; const u = (x - r.left - LB.tx)/LB.s, v = (y - r.top - LB.ty)/LB.s; LB.s = s; LB.tx = x - r.left - s*u; LB.ty = y - r.top - s*v; lbClamp(); lbApply(); }
+function lbAufBild(x, y){ const r = document.getElementById('lbImg').getBoundingClientRect(); return x>=r.left && x<=r.right && y>=r.top && y<=r.bottom; }
+function lbAuf(src, alt){
+  const lb = lbEl(), im = document.getElementById('lbImg');
+  document.getElementById('lbX').innerHTML = ic('x');
+  LB.s = 1; LB.tx = 0; LB.ty = 0; im.style.transform = 'none'; im.alt = alt || '';
+  im.onload = ()=>lbBase(); im.src = src;
+  lb.hidden = false; document.body.classList.add('lbmode');
+  if(im.complete) lbBase();
+  try{ history.pushState({kkLb:1}, ''); }catch(e){}
+  document.getElementById('lbX').focus({preventScroll:true});
+}
+function lbVerstecken(){ const lb = lbEl(); if(!lb || lb.hidden) return; lb.hidden = true; document.body.classList.remove('lbmode'); document.getElementById('lbImg').removeAttribute('src'); }
+function lbZu(){ if(lbEl().hidden) return; if(history.state && history.state.kkLb) history.back(); else lbVerstecken(); }
+window.addEventListener('popstate', ()=>{ if(!lbEl().hidden) lbVerstecken(); });
+window.addEventListener('resize', ()=>{ if(!lbEl().hidden){ LB.s = 1; LB.tx = 0; LB.ty = 0; lbApply(); lbBase(); } });
+document.addEventListener('keydown', e=>{ if(e.key==='Escape' && !lbEl().hidden) lbZu(); });
+(function(){
+  const lb = document.getElementById('lb');
+  const pts = t => [...t].map(p=>({x:p.clientX, y:p.clientY}));
+  const dist = (a,b) => Math.hypot(a.x-b.x, a.y-b.y);
+  lb.addEventListener('touchstart', e=>{
+    if(e.target.closest('.lbx')) return;
+    if(!LB.r0) lbBase();
+    const P = pts(e.touches);
+    LB.t = {P, s:LB.s, tx:LB.tx, ty:LB.ty, d:P.length>1?dist(P[0],P[1]):0, m:P.length>1?{x:(P[0].x+P[1].x)/2, y:(P[0].y+P[1].y)/2}:P[0]};
+    if(P.length===1) LB.moved = false; else LB.moved = true;
+  }, {passive:true});
+  lb.addEventListener('touchmove', e=>{
+    if(!LB.t) return; e.preventDefault();
+    const P = pts(e.touches), T = LB.t, r = LB.r0;
+    if(P.length>1 && T.d){
+      const m = {x:(P[0].x+P[1].x)/2, y:(P[0].y+P[1].y)/2};
+      const s = Math.min(5, Math.max(1, T.s * dist(P[0],P[1]) / T.d));
+      const u = (T.m.x - r.left - T.tx)/T.s, v = (T.m.y - r.top - T.ty)/T.s;
+      LB.s = s; LB.tx = m.x - r.left - s*u; LB.ty = m.y - r.top - s*v; LB.moved = true; lbApply();
+    } else if(P.length===1){
+      const dx = P[0].x - T.P[0].x, dy = P[0].y - T.P[0].y;
+      if(Math.abs(dx)+Math.abs(dy) > 8) LB.moved = true;
+      if(LB.s > 1){ LB.tx = T.tx + dx; LB.ty = T.ty + dy; lbApply(); }
+    }
+  }, {passive:false});
+  lb.addEventListener('touchend', e=>{
+    if(!LB.t) return;
+    if(e.touches.length){ const P = pts(e.touches); LB.t = {P, s:LB.s, tx:LB.tx, ty:LB.ty, d:0, m:P[0]}; return; }
+    LB.t = null; lbClamp(); lbApply();
+  });
+  lb.addEventListener('click', e=>{
+    if(e.target.closest('.lbx')){ lbZu(); return; }
+    if(LB.moved){ LB.moved = false; return; }
+    if(!lbAufBild(e.clientX, e.clientY)){ lbZu(); return; }
+    const now = Date.now();
+    if(now - LB.lastTap < 350){ LB.lastTap = 0; lbZoomAt(e.clientX, e.clientY, LB.s > 1 ? 1 : 2.5); } else LB.lastTap = now;
+  });
+  lb.addEventListener('wheel', e=>{ e.preventDefault(); if(!LB.r0) lbBase(); lbZoomAt(e.clientX, e.clientY, Math.min(5, Math.max(1, LB.s * (e.deltaY<0 ? 1.15 : 1/1.15)))); }, {passive:false});
+})();
+/* spec/04 §1: Akkordeons – immer nur EINER offen (verschachtelte: Vorfahren bleiben offen).
+   Erst die anderen schließen, dann im nächsten Frame (Layout steht) den geöffneten unter Leiste/Segmentleiste an die Oberkante scrollen. */
+let accZu = false;
+document.addEventListener('toggle', e=>{
+  const d = e.target;
+  if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('acc') || !d.open || accZu) return;
+  accZu = true;
+  document.querySelectorAll('#app details.acc[open]').forEach(o=>{ if(o!==d && !o.contains(d) && !d.contains(o)) o.open = false; });
+  accZu = false;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(!d.isConnected || !d.open) return;
+    const bar = document.querySelector('#app .bar');
+    const off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
+    const top = d.getBoundingClientRect().top + window.scrollY - off;
+    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
+  }));
+}, true);
+/* v1.3.11: „Leseversion schließen“ am Ende des Lesetextes – wie der Schalter oben: zuklappen, sanft zum Schalter zurück */
+/* v1.3.34: Vollansicht an/aus (Summary-Klick und Schließen-Button laufen beide über das toggle-Ereignis) */
+document.addEventListener('toggle', e=>{
+  const d = e.target; if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('lese')) return;
+  const v = d.closest('.view'); if(v) v.classList.toggle('lese-voll', d.open);
+  if(d.open){ window.scrollTo({top:0, behavior:'auto'}); return; }
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    if(!d.isConnected) return;
+    const bar = document.querySelector('#app .bar'), off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
+    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0, d.getBoundingClientRect().top + window.scrollY - off), behavior: ruhig ? 'auto' : 'smooth'});
+  }));
+}, true);
+document.addEventListener('click', e=>{
+  const b = e.target.closest && e.target.closest('[data-lese-zu]'); if(!b) return;
+  const d = b.closest('details.acc.lese'); if(!d) return;
+  /* v1.3.34: Wer die Leseversion bis zum Schließen-Button liest, hat den Teil gelesen (die Weiter-Karte ist in der Vollansicht ausgeblendet) */
+  try{ const kk = kapFromRoute(curRoute.kap), II = kk && INH[kk.id], ss = II && II.data.slides.find(x=>x.id===curRoute.slide); if(kk && ss) markRead(kk, ss); }catch(_){}
+  const vv = d.closest('.view'); if(vv) vv.classList.remove('lese-voll');
+  d.open = false;
+  requestAnimationFrame(()=>requestAnimationFrame(()=>{
+    const bar = document.querySelector('#app .bar'), off = (bar ? bar.getBoundingClientRect().height : 0) + 10;
+    const top = d.getBoundingClientRect().top + window.scrollY - off;
+    const ruhig = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:Math.max(0, top), behavior: ruhig ? 'auto' : 'smooth'});
+    const sm = d.querySelector(':scope>summary'); if(sm) sm.focus({preventScroll:true});
+  }));
+});
+window.addEventListener('hashchange', route);
+/* Experiment-iframe: postMessage {kk:'zurueck'} schließt das Overlay */
+window.addEventListener('message', e=>{ if(e.origin!==location.origin) return; if(e.data && e.data.kk==='zurueck' && curRoute.name==='x') xSchliessen(); });
+/* Skill §3: FAB verdeckt beim Lesen keine Bedienelemente – beim Runterscrollen ausblenden, beim Hochscrollen/am Ende zeigen */
+let lastY = 0;
+window.addEventListener('scroll', ()=>{ const y = window.scrollY, f = document.getElementById('fab'); const atEnd = innerHeight + y >= document.documentElement.scrollHeight - 40;
+  if(y > lastY + 6 && y > 120 && !atEnd) f.classList.add('away'); else if(y < lastY - 6 || atEnd || y < 120) f.classList.remove('away'); lastY = y; }, {passive:true});
+window.addEventListener('online', ()=>{ if(curRoute.name==='start') offlinePill(); });
+window.addEventListener('offline', ()=>{ if(curRoute.name==='start') offlinePill(); });
+
+/* ================================================================
+   10. Init
+   ================================================================ */
+async function init(){
+  loadData();
+  let zugLink = null;   /* v1.3.32: ?zugang=CODE aus der Adresse nehmen und sofort aus der URL entfernen (Hash-Route bleibt) */
+  try{ const u = new URL(location.href); if(u.searchParams.has('zugang')){ zugLink = u.searchParams.get('zugang'); u.searchParams.delete('zugang'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } }catch(e){}
+  try{
+    const [b, kj, mj, xj] = await Promise.all([getJSON('brand/brand.json'), getJSON('inhalte/kapitel.json'), getJSON('medien.json').catch(()=>({version:0, dateien:[]})), getJSON('experimente/index.json').catch(()=>null)]);
+    BRAND = b; KAP = (kj.kapitel||[]); MED = mj;
+    if(xj){ const arr = Array.isArray(xj) ? xj : (xj.experimente||[]); EXP = new Set(arr.map(e=>typeof e==='string'?e:(e&&e.id)).filter(Boolean));
+      EXPF = arr.flatMap(e=>{ const d=(e&&e.dateien)||[]; return d.map(f=>({pfad:f, bytes:Math.round((e.bytes||0)/(d.length||1))})); }); }
+  }catch(e){
+    document.getElementById('app').innerHTML = `<div class="wrap" style="padding-top:60px"><h1>Klarkommen</h1><p>Die App konnte nicht geladen werden. Bitte einmal mit Internetverbindung öffnen.</p><p style="color:var(--brand-text-2);font-size:.9rem">${esc(e.message)}</p></div>`;
+    return;
+  }
+  document.body.classList.remove('sv-a','sv-b','sv-c'); document.body.classList.add('sv-'+(BRAND.sperrVariante||'b'));
+  await zugLaden();   /* v1.3.32: fehlt die Datei, läuft die App wie bisher */
+  let zugMsg = null; if(zugLink!==null){ try{ zugMsg = await zugEinloesen(zugLink); }catch(e){ zugMsg = 'Freischalten hat nicht geklappt.'; } }
+  await ladeStartbild();
+  route();
+  if(zugMsg) toast(zugMsg);
+  if('serviceWorker' in navigator){
+    const hadSW = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('sw.js').then(r=>{ try{ r.update(); }catch(e){} }).catch(e=>console.warn('SW-Registrierung fehlgeschlagen', e));
+    navigator.serviceWorker.addEventListener('controllerchange', ()=>{ if(hadSW && curRoute.name==='start' && !sessionStorage.getItem('kkSwReload')){ try{ sessionStorage.setItem('kkSwReload','1'); }catch(e){} location.reload(); return; } if(curRoute.name==='start') offlinePill(); if(curRoute.name==='einstellungen') offlineStatus(); });
+  }
+}
+init();
+</script>
+</body>
+</html>

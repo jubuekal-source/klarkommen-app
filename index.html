@@ -578,6 +578,11 @@ details.acc.hilfe{border-color:rgba(125,211,192,.3)}
   display:flex;align-items:center;justify-content:center;color:var(--brand-text);background:rgba(28,46,64,.86);border:1px solid var(--brand-line-2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 26px -6px rgba(0,0,0,.7)}
 .fab svg.i{width:24px;height:24px;stroke-width:2}
 .fab[hidden]{display:none}
+/* v1.3.35: „Ansicht schließen“ (Lese-Vollansicht) – unten mittig neben dem Zurück-Button, gleiche Einblend-Regel (.away beim Runterscrollen) */
+.leseclose{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(22px + var(--sab));height:48px;padding:0 18px;border-radius:999px;z-index:50;display:flex;align-items:center;gap:8px;white-space:nowrap;font:inherit;font-weight:700;font-size:.95rem;color:var(--brand-text);background:rgba(28,46,64,.9);border:1px solid var(--brand-line-2);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 10px 26px -6px rgba(0,0,0,.7);cursor:pointer;transition:transform .3s var(--ease),opacity .3s}
+.leseclose svg.i{width:18px;height:18px;stroke-width:2.2;color:var(--brand-accent-soft)}
+.leseclose[hidden]{display:none}
+.leseclose.away{transform:translate(-50%,90px);opacity:0;pointer-events:none}
 .fab{transition:transform .3s var(--ease),opacity .3s}
 .fab.away{transform:translateY(90px);opacity:0;pointer-events:none}
 footer.foot{text-align:center;color:var(--brand-muted);font-size:.8rem;line-height:1.6;padding:34px 16px calc(96px + var(--sab))}
@@ -706,6 +711,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 <a class="sr" href="#app">Zum Inhalt</a>
 <main id="app" aria-live="polite"></main>
 <button class="fab" id="fab" hidden aria-label="Eine Ebene zurück"></button>
+<button class="leseclose" id="leseclose" type="button" hidden></button>   <!-- v1.3.35: schwebender „Ansicht schließen“-Button der Lese-Vollansicht -->
 
 <dialog class="dlg" id="dlgSperre" aria-labelledby="dsT">
   <div class="box">
@@ -740,7 +746,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.34';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.35';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1008,6 +1014,7 @@ async function route(){
   if(r.name==='tbtool') tbVonUebersicht = from.name==='kap' ? true : (from.name==='x' || (from.name==='tbtool' && from.tool===r.tool)) ? tbVonUebersicht : false;   /* spec/07 T6 */
   stopAudio();
   document.body.classList.toggle('xmode', r.name==='x');
+  { const lc = document.getElementById('leseclose'); if(lc){ lc.hidden = true; lc.classList.remove('away'); } }   /* v1.3.35 */
   const fab = document.getElementById('fab'); const par = parentOf(r);
   fab.classList.remove('away'); fab.hidden = !par; fab.innerHTML = ic('back'); fab.dataset.go = par||'';
   { const kk = r.name==='kap' ? kapFromRoute(r.kap) : null; if(kk && kk.typ==='toolbox') fab.hidden = true; }   /* v1.3.7: Toolbox-Übersicht ohne schwebenden Zurück-Button (verdeckte Kachel-Pfeile; Start über Home-Icon der Leiste) */
@@ -1228,7 +1235,7 @@ async function renderSlide(app, r){
     <article class="wrap slide" id="slide"><div class="rubrik">${rubIcon(s.rubrik,32)} ${esc(rb.label)}</div><h1>${esc(s.titel)}</h1>
     ${I.beispiel?`<div class="beispiel" style="margin:-6px 0 18px">${ic('info')}<span>Beispielinhalt – die echten Texte folgen.</span></div>`:''}
     <div class="bl">${blocks(s.bloecke, ctx)}</div>`;
-  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Leseversion schließen</button></div></details>`;
+  if(s.lese && s.lese.length) html += `<details class="acc lese"><summary>${ic('book')}<span>Lieber lesen statt hören?</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.lese, {...ctx, path:ctx.path+'/lese', lese:true})}<button type="button" class="btn sec block lese-zu" data-lese-zu>${ic('arrowup')} Ansicht schließen</button></div></details>`;
   if(s.merkzettel && s.merkzettel.length) html += `<details class="acc merk"><summary>${ic('bulb')}<span>Merkzettel</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(s.merkzettel, {...ctx, path:ctx.path+'/merk'})}</div></details>`;   /* v1.3.22: BrainFact-Reihenfolge Teaser → Podcast → „Lieber lesen statt hören?“ → Merkzettel (zugeklappt), Feld `merkzettel`; v1.3.25: Umbenennung zu Merkzettel, neues Feld `nach` (Blöcke nach dem Merkzettel) */
   if(s.nach && s.nach.length) html += `<div class="bl">${blocks(s.nach, {...ctx, path:ctx.path+'/nach'})}</div>`;   /* v1.3.25: Karten nach dem Merkzettel (k03: Kreislauf) */
   if(s.rubrik==='mission' && next){   /* v1.3.9: Wahl schon am Ende von „Mission Alltag“ – primär nächstes Kapitel (wie auf dem Quellen-Slide), sekundär Quellen */
@@ -2144,6 +2151,7 @@ document.addEventListener('toggle', e=>{
 document.addEventListener('toggle', e=>{
   const d = e.target; if(!(d instanceof HTMLDetailsElement) || !d.classList.contains('lese')) return;
   const v = d.closest('.view'); if(v) v.classList.toggle('lese-voll', d.open);
+  const lc = document.getElementById('leseclose'); if(lc){ if(d.open && !lc.innerHTML) lc.innerHTML = ic('x')+'<span>Ansicht schließen</span>'; lc.classList.remove('away'); lc.hidden = !d.open; }
   if(d.open){ window.scrollTo({top:0, behavior:'auto'}); return; }
   requestAnimationFrame(()=>requestAnimationFrame(()=>{
     if(!d.isConnected) return;
@@ -2153,6 +2161,7 @@ document.addEventListener('toggle', e=>{
   }));
 }, true);
 document.addEventListener('click', e=>{
+  if(e.target.closest && e.target.closest('#leseclose')){ const dd = document.querySelector('#app details.acc.lese[open]'); if(dd) dd.open = false; return; }   /* v1.3.35: mittendrin schließen (ohne „gelesen“) – das toggle-Ereignis räumt auf und scrollt zur Karte */
   const b = e.target.closest && e.target.closest('[data-lese-zu]'); if(!b) return;
   const d = b.closest('details.acc.lese'); if(!d) return;
   /* v1.3.34: Wer die Leseversion bis zum Schließen-Button liest, hat den Teil gelesen (die Weiter-Karte ist in der Vollansicht ausgeblendet) */
@@ -2173,7 +2182,8 @@ window.addEventListener('message', e=>{ if(e.origin!==location.origin) return; i
 /* Skill §3: FAB verdeckt beim Lesen keine Bedienelemente – beim Runterscrollen ausblenden, beim Hochscrollen/am Ende zeigen */
 let lastY = 0;
 window.addEventListener('scroll', ()=>{ const y = window.scrollY, f = document.getElementById('fab'); const atEnd = innerHeight + y >= document.documentElement.scrollHeight - 40;
-  if(y > lastY + 6 && y > 120 && !atEnd) f.classList.add('away'); else if(y < lastY - 6 || atEnd || y < 120) f.classList.remove('away'); lastY = y; }, {passive:true});
+  if(y > lastY + 6 && y > 120 && !atEnd) f.classList.add('away'); else if(y < lastY - 6 || atEnd || y < 120) f.classList.remove('away'); const lz = document.getElementById('leseclose'); if(lz){ if(y > lastY + 6 && y > 120 && !atEnd) lz.classList.add('away'); else if(y < lastY - 6 || atEnd || y < 120) lz.classList.remove('away'); }   /* v1.3.35: gleiche Regel wie der Zurück-Button */
+  lastY = y; }, {passive:true});
 window.addEventListener('online', ()=>{ if(curRoute.name==='start') offlinePill(); });
 window.addEventListener('offline', ()=>{ if(curRoute.name==='start') offlinePill(); });
 
