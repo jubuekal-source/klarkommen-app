@@ -52,7 +52,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Bevor du jetzt denkst „Der spinnt doch“: Das allein hat mich nicht weitergebracht. Viele Bücher haben richtig starken Inhalt, manches war echt mindblowing. Aber am Ende blieb oft eine immer längere To-do-Liste mit Themen, die ich mir genauer anschauen und umsetzen wollte. Die Hürde zur echten Umsetzung war riesig. Ich stand mit dem Wissen und einem Gefühl der Überforderung allein da. Ich wusste, warum etwas wichtig ist, aber nicht, wie ich es morgen konkret mache. Heute könntest du dir Millionen Podcasts anhören oder jede Frage einer KI stellen. Das Problem bleibt dasselbe: Wissen allein verändert nichts."
+              "text": "Bevor du jetzt denkst „Der spinnt doch“: Das allein hat mich nicht weitergebracht. Viele Bücher haben richtig starken Inhalt, manches war echt mindblowing. Aber am Ende blieb oft eine immer längere To-do-Liste mit Themen, die ich mir genauer anschauen und umsetzen wollte. Die Hürde zur echten Umsetzung war riesig. Ich stand mit dem Wissen und einem Gefühl der Überforderung allein da. Ich wusste, warum etwas wichtig ist, aber nicht, wie ich es morgen konkret mache. Heutzutage könntest du dir Millionen Podcasts anhören oder jede Frage einer KI stellen. Das Problem bleibt dasselbe: Wissen allein verändert nichts."
             },
             {
               "typ": "absatz",
@@ -94,7 +94,7 @@
         },
         {
           "typ": "absatz",
-          "text": "**==3.== Merkzettel:** Die wichtigsten Punkte zum schnellen Nachschlagen."
+          "text": "**==3.== Merkzettel:** Die wichtigsten Punkte zum schnellen Nachschlagen, mit hilfreichen Illustrationen, die du auch während der Podcastwiedergabe ansehen kannst."
         },
         {
           "typ": "absatz",
@@ -140,7 +140,7 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Im Podcast spricht Alex mit wechselnden Expert:innen über genau die Fragen, die du dir vermutlich auch stellst. Alex und die Gäste sind erfunden, ihre Stimmen sind KI-erzeugt. Die Inhalte beruhen auf wissenschaftlichen Erkenntnissen."
+          "text": "Im Podcast spricht Alex mit wechselnden Expert:innen über genau die Fragen, die du dir eventuell auch stellst. Alex und die Gäste sind erfunden, ihre Stimmen sind KI-erzeugt. Die Inhalte beruhen auf wissenschaftlichen Erkenntnissen."
         }
       ]
     },
