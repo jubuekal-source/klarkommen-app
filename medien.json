@@ -100,7 +100,7 @@
     {
       "id": "bilder/cover/k05",
       "pfad": "medien/bilder/cover/k05.webp",
-      "bytes": 124324,
+      "bytes": 156804,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null
@@ -455,6 +455,46 @@
       "bytes": 253698,
       "typ": "bild",
       "kapitel": "k03",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/gaesteliste-titelbild",
+      "pfad": "medien/bilder/k05/gaesteliste-titelbild.webp",
+      "bytes": 145424,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/einstieg-3-sekunden",
+      "pfad": "medien/bilder/k05/einstieg-3-sekunden.webp",
+      "bytes": 113316,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/gaesteliste-im-kopf",
+      "pfad": "medien/bilder/k05/gaesteliste-im-kopf.webp",
+      "bytes": 122304,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/gegenpole-kampf-spielwiese",
+      "pfad": "medien/bilder/k05/gegenpole-kampf-spielwiese.webp",
+      "bytes": 125886,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/glaubenssatz-detektor",
+      "pfad": "medien/bilder/k05/glaubenssatz-detektor.webp",
+      "bytes": 89728,
+      "typ": "bild",
+      "kapitel": "k05",
       "dauer": null
     }
   ]
