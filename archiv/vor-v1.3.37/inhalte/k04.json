@@ -1,0 +1,621 @@
+{
+  "schemaVersion": 1,
+  "id": "k04",
+  "slides": [
+    {
+      "id": "einstieg",
+      "rubrik": "einstieg",
+      "titel": "Der Realitäts-Check: 120 Sekunden Stille",
+      "header": "medien/bilder/rubrik/einstieg-portal.webp",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Bevor du loslegst…"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du hast in Kapitel 3 gesehen, wie der Kreislauf auf Autopilot immer schneller läuft. Jetzt testest du, ob du ihn für zwei Minuten anhalten kannst."
+        },
+        {
+          "typ": "experiment",
+          "id": "der-realitaets-check",
+          "titel": "Nur 2 Minuten…",
+          "text": ""
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "brainfact",
+      "rubrik": "brainfact",
+      "titel": "Brain-Fact: Warum du deinem inneren Kritiker nicht glauben solltest",
+      "header": "medien/bilder/rubrik/brainfact.webp",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Du verhaust eine Kleinigkeit, und im Kopf läuft plötzlich ein Dauerkommentar, der kein gutes Haar an dir lässt. Woher kommt diese Stimme, und warum klingt sie so überzeugend?"
+        },
+        {
+          "typ": "audio",
+          "id": "k04-podcast",
+          "titel": "Episode 4",
+          "art": "podcast",
+          "status": "in-produktion"
+        }
+      ],
+      "lese": [
+        {
+          "typ": "akkordeon",
+          "titel": "Die wissenschaftlichen Belege",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Du hast es gerade erlebt: Zwei Minuten an nichts denken klappt kaum. Nach ein paar Sekunden war der erste Gedanke da, ohne dass du ihn bestellt hast. Das ist kein Versagen. Dein Gehirn ist genau dafür gebaut. Dahinter stecken drei gut belegte Mechanismen."
+            },
+            {
+              "typ": "akkordeon",
+              "titel": "Dein Gehirn ist ein Warnsystem, kein neutraler Berater",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Die oberste Aufgabe deines Gehirns ist nicht, dich glücklich zu machen. Es soll dich am Leben halten. Deshalb sucht es ständig nach Gefahren und schlägt lieber einmal zu oft Alarm als einmal zu wenig."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "In der Forschung heißt das **Negativity Bias**. Eine viel zitierte Übersichtsarbeit von Baumeister und Kollegen (2001, *Review of General Psychology*) trägt den Titel *„Bad is stronger than good“*: Kritik, schlechte Erfahrungen und Bedrohungen wirken stärker und länger nach als Gutes. Früher war das ein Überlebensvorteil."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Für dich heißt das:** Die negativen Kommentare deines Kritikers zeigen nicht, dass mit dir etwas nicht stimmt. Sie sind die Grundeinstellung eines Systems, das auf Gefahr geeicht ist. Heute warnt es eben vor Vorträgen, Nachrichten, Blicken und deiner Zukunft."
+                }
+              ]
+            },
+            {
+              "typ": "akkordeon",
+              "titel": "Warum „an nichts denken“ kaum klappt",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Die Harvard-Forscher Matthew Killingsworth und Daniel Gilbert fragten über 2.200 Menschen zu zufälligen Zeitpunkten, woran sie gerade denken (2010, *Science*). Ergebnis: In **fast der Hälfte der wachen Zeit (rund 47 %)** waren die Gedanken woanders als bei dem, was die Leute gerade taten. Der Titel der Studie: *„A Wandering Mind Is an Unhappy Mind“*."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "Dein Gehirn produziert Gedanken also von selbst, so wie dein Herz schlägt."
+                },
+                {
+                  "typ": "zitat",
+                  "text": "**Der entscheidende Punkt:** Wenn Gedanken von selbst kommen und du sie nur *bemerkst*, bist du nicht der Gedanke. Du bist der, der zuhört.",
+                  "quelle": null
+                }
+              ]
+            },
+            {
+              "typ": "akkordeon",
+              "titel": "Der weiße Bär: Warum Bekämpfen die Stimme lauter macht",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Vielleicht hast du im Experiment gedacht: „Ich darf jetzt NICHT denken.“ Und genau dann wurde es voll im Kopf."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "Der Psychologe Daniel Wegner bat 1987 Versuchspersonen, **nicht an einen weißen Bären zu denken.** Der Bär tauchte im Schnitt mehr als einmal pro Minute auf. Der Grund: Um etwas nicht zu denken, prüft dein Gehirn ständig: „Denke ich gerade an den Bären?“ Und dieses Prüfen holt den Gedanken zurück. Wegner nannte das den **ironischen Prozess**."
+                },
+                {
+                  "typ": "bild",
+                  "src": "medien/bilder/k04/ball-unter-wasser.webp",
+                  "alt": "Ein junger Mann drückt verbissen einen glühenden Ball unter Wasser, ringsum schießen weitere glühende Bälle aus dem Wasser hoch.",
+                  "unterschrift": "*Je fester du den Gedanken unter Wasser drückst, desto heftiger schießt er wieder hoch.*"
+                },
+                {
+                  "typ": "zitat",
+                  "text": "**Alles, was du bekämpfst, wird lauter. Der Ausweg ist nicht Kampf, sondern Distanz.**",
+                  "quelle": null
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Was bedeutet das für dich? Du bist der Beobachter",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Klingt erst mal ernüchternd. Aber im Experiment hast du etwas Wichtiges gezeigt: **Du konntest deine Gedanken beobachten.**"
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k04/gedankenwolke-beobachter.webp",
+              "alt": "Zweimal dieselbe junge Frau: links mittendrin in einer dunklen Gedankenwolke mit Blitzen, rechts ruhig und mit Abstand vor der Wolke.",
+              "unterschrift": "*Links mittendrin in der Gedankenwolke, rechts davor und mit Abstand: derselbe Mensch, derselbe Gedanke.*"
+            },
+            {
+              "typ": "absatz",
+              "text": "In der Psychologie heißt dieses Auf-Abstand-Gehen **Kognitive Defusion** (Steven Hayes, Acceptance and Commitment Therapy). Statt *„Ich BIN nicht gut genug“* sagst du: *„Mein Gehirn HAT gerade den Gedanken, dass ich nicht gut genug bin.“* Derselbe Satz, aber du bist jetzt Zuschauer statt Hauptrolle."
+            },
+            {
+              "typ": "absatz",
+              "text": "Dass das mehr ist als ein Sprachtrick, zeigt eine Studie von Masuda und Kollegen (2004, *Behaviour Research and Therapy*): Wer einen belastenden Gedanken als das behandelte, was er ist, nämlich nur Wörter im Kopf, fand ihn danach **weniger glaubwürdig und weniger belastend**. Der Gedanke war noch da, aber er hatte weniger Macht."
+            },
+            {
+              "typ": "akkordeon",
+              "titel": "Distanz durch Sprache",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Ethan Kross und sein Team (2014, *Journal of Personality and Social Psychology*) zeigten: Wer in stressigen Momenten nicht in der Ich-Form mit sich redet, sondern mit dem eigenen Namen oder in der Du-Form, erlebt die Lage als **weniger bedrohlich und besser zu bewältigen**. Mit anderen gehen wir fairer und ruhiger um als mit uns selbst. Sobald du deine innere Stimme wie eine andere Person behandelst, verliert sie an Wucht."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "icon": "kette",
+          "titel": "Zieh die Kette",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Vom gescheiterten 2-Minuten-Test bis hierher:"
+            },
+            {
+              "typ": "liste",
+              "geordnet": true,
+              "punkte": [
+                "**Dein Gehirn denkt automatisch und oft negativ.** Das ist sein Job als Warnsystem, kein Defekt (Killingsworth & Gilbert, Baumeister).",
+                "**Wegdrücken verstärkt die Gedanken.** Kampf ist die falsche Strategie (Wegner, weißer Bär).",
+                "**Beobachten statt verschmelzen** nimmt den Gedanken ihre Macht (Defusion, Masuda).",
+                "**Distanz entsteht durch Sprache.** Mit Abstand wird die Stimme zum Kommentator statt zur Wahrheit (Kross, Self-Distancing)."
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "Das heißt:"
+            },
+            {
+              "typ": "zitat",
+              "text": "**Du musst deinen inneren Kritiker nicht besiegen. Du musst nur aufhören, ihn für dich selbst zu halten.**",
+              "quelle": null
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Warum das eine gute Nachricht ist",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Dein innerer Kritiker wird weiter senden. Diesen Kampf musst du aber gar nicht führen. Du wechselst nur die Rolle: vom Sprecher zum Zuhörer. Das kannst du sofort, ohne jahrelange Übung."
+            },
+            {
+              "typ": "zitat",
+              "text": "**Dein Gehirn ist ein Radio, das ständig sendet. Du entscheidest, ob du jedes Wort glaubst oder dir aussuchst, wem du zuhörst.**",
+              "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "Genau diese Distanz ist die Grundlage für deinen Mind-Hack. Dort bekommst du zwei Werkzeuge, die darauf aufbauen."
+            }
+          ]
+        }
+      ],
+      "merkzettel": [
+        {
+          "typ": "ueberschrift",
+          "text": "**Dein Gehirn ist kein neutraler Berater, sondern ein Warnsystem.**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die Stimme in deinem Kopf klingt wie deine eigene. Deshalb glaubst du ihr. Dabei produziert dein Gehirn Gedanken automatisch, ungefiltert und oft negativ. Das ist kein Fehler, sondern sein Job: lieber einmal zu viel warnen als einmal zu wenig."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Das Problem:** Früher warnte es vor dem Säbelzahntiger. Heute warnt es mit Sätzen wie *„Du bist nicht gut genug.“*"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Drei Dinge, die dein innerer Kritiker NICHT ist:**"
+        },
+        {
+          "typ": "liste",
+          "geordnet": true,
+          "punkte": [
+            "**Nicht die Wahrheit.** Er ist eine automatische Bewertung, keine Tatsache.",
+            "**Nicht DU.** Im Experiment hast du deine Gedanken beobachtet. Der Beobachter und der Gedanke sind nicht dasselbe.",
+            "**Nicht dein Feind.** Er will dich schützen, nur mit veralteten Methoden. Statt zu schützen, lähmt er dich."
+          ]
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Der Schlüssel**"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k04/ball-unter-wasser.webp",
+          "alt": "Ein junger Mann drückt verbissen einen glühenden Ball unter Wasser, ringsum schießen weitere glühende Bälle aus dem Wasser hoch.",
+          "unterschrift": "*Je fester du den Gedanken unter Wasser drückst, desto heftiger schießt er wieder hoch.*"
+        },
+        {
+          "typ": "absatz",
+          "text": "Du musst den inneren Kritiker nicht bekämpfen oder wegdrücken. Alles, was du bekämpfst, wird lauter."
+        },
+        {
+          "typ": "absatz",
+          "text": "Stattdessen: **Distanz schaffen.** Sieh die Stimme als das, was sie ist: ein übereifriges Warnsystem. Dann verliert sie ihre Macht über dich."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k04/gedankenwolke-beobachter.webp",
+          "alt": "Zweimal dieselbe junge Frau: links mittendrin in einer dunklen Gedankenwolke mit Blitzen, rechts ruhig und mit Abstand vor der Wolke.",
+          "unterschrift": "*Links mittendrin in der Gedankenwolke, rechts davor und mit Abstand: derselbe Mensch, derselbe Gedanke.*"
+        },
+        {
+          "typ": "absatz",
+          "text": "In der Psychologie heißt das „Kognitive Defusion“ (Steven Hayes): Statt mit deinen Gedanken **verschmolzen** zu sein (ich BIN nicht gut genug), **löst** du dich von ihnen (mein Gehirn HAT gerade den Gedanken, dass ich nicht gut genug bin)."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k04/kritiker-einstein.webp",
+          "alt": "Der innere Kritiker: Ein übereifriger kleiner Assistent schleppt einen wackelnden Memo-Stapel heran – auf zwei Zetteln steht „DU BIST NICHT GUT GENUG!“ und „DAS SCHAFFST DU NIE!“. Der junge Mann auf der Bettkante schaut gelassen zu.",
+          "unterschrift": null
+        },
+        {
+          "typ": "zitat",
+          "text": "**Merke: Dein innerer Kritiker spricht mit deiner Stimme. Deshalb vertraust du ihm. Aber er irrt sich oft.**",
+          "quelle": null
+        }
+      ]
+    },
+    {
+      "id": "mindhack",
+      "rubrik": "mindhack",
+      "titel": "Dein Mind-Hack: Den inneren Kritiker entwaffnen",
+      "header": "medien/bilder/rubrik/mindhack.webp",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Du hast gerade gelernt: Der innere Kritiker ist nicht DU. Jetzt bekommst du das Werkzeug, um ihn in Echtzeit zu entwaffnen – ohne Kampf, ohne Unterdrückung."
+        },
+        {
+          "typ": "absatz",
+          "text": "Aber Menschen erleben den inneren Kritiker unterschiedlich. Deshalb gibt es hier **zwei Wege** – und du wählst den, der besser zu dir passt."
+        },
+        {
+          "typ": "akkordeon",
+          "icon": "wegweiser",
+          "titel": "Eine kurze Frage vorweg",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "**Wenn negative Gedanken kommen – wie zeigen sie sich bei dir?**"
+            },
+            {
+              "typ": "absatz",
+              "text": "**A)** **Du hörst eine klar erkennbare innere Stimme**, die dich runtermacht. Konkrete Sätze wie: *„Das schaffst du nie“* oder *„Du bist nicht gut genug.“*"
+            },
+            {
+              "typ": "absatz",
+              "text": "Geh zu Weg 1: Die Pitching-Technik"
+            },
+            {
+              "typ": "absatz",
+              "text": "**B)** **Es ist eher ein diffuses Grübeln** – ein Hin-und-Her-Denken, viele Gedanken gleichzeitig, kein klarer Anfang und kein klares Ende. Das Gedankenkarussell dreht sich einfach."
+            },
+            {
+              "typ": "absatz",
+              "text": "Geh zu Weg 2: Die Einstein-Technik"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Unsicher?** Beides ausprobieren. Du wirst spüren, welcher Weg besser wirkt."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Weg 1: Die Pitching-Technik – Die innere Stimme lächerlich machen",
+          "bloecke": [
+            {
+              "typ": "zitat",
+              "text": "*Für dich, wenn du eine klar erkennbare innere Stimme hörst, die dich runtermacht.*",
+              "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "**Das Prinzip:** Dein Gehirn kann nicht gleichzeitig zwei gegensätzliche Gefühle empfinden. Entweder macht dir ein Gedanke Angst – oder er ist lächerlich. Beides gleichzeitig geht nicht. Genau das nutzt du aus."
+            },
+            {
+              "typ": "ueberschrift",
+              "text": "**So geht's – in 3 Schritten:**"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 1: Den Satz erkennen.** Achte darauf, was dein innerer Kritiker gerade sagt. Der exakte Wortlaut. Zum Beispiel: *„Du wirst dich total blamieren.“*"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 2: Stell dir eine lächerliche Figur vor.** Jetzt stell dir vor, dass nicht DU diesen Satz sagst – sondern eine kleine, alberne Cartoon-Figur. Ein aufgeregter Donald Duck. Ein wild gestikulierender Schlumpf. Ein Minion, der panisch auf und ab hüpft. Such dir eine Figur aus, die du unmöglich ernst nehmen kannst."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 3: Lass die Figur den Satz sprechen.** Dieselben Worte. Derselbe Satz. Aber jetzt in dieser piepsigen, komischen Stimme: *„Du wirst dich total blamieren!“* – gesprochen von einem aufgeregten Donald Duck, der wild mit den Armen fuchtelt."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k04/pitching-technik.webp",
+              "alt": "Pitching-Technik: Eine kleine alberne Figur mit Partyhut sagt auf deiner Hand den Satz des inneren Kritikers. Gleiche Worte, keine Wucht.",
+              "unterschrift": null
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was passiert?** Du fängst an zu grinsen. Vielleicht sogar zu lachen. Und genau in diesem Moment ist die emotionale Wucht des Gedankens gebrochen. Die Worte haben keine Macht mehr über dich."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Warum funktioniert das?** Deine eigene Stimme glaubst du automatisch. Eine Cartoon-Stimme ist unmöglich ernst zu nehmen, und plötzlich hinterfragst du den Inhalt, statt ihn blind zu glauben."
+            },
+            {
+              "typ": "callout",
+              "art": "tipp",
+              "text": "**Profi-Tipp:** Manche stellen sich die Figur nicht nur im Kopf vor, sondern lassen sie aus dem Kopf herausspringen und wild gestikulierend vor sich auf und ab laufen. Je alberner, desto besser."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Weg 2: Die Einstein-Technik – Dem Grübeln einen Namen geben",
+          "bloecke": [
+            {
+              "typ": "zitat",
+              "text": "*Für dich, wenn es eher ein diffuses Grübeln ist – viele Gedanken gleichzeitig, kein klarer Anfang.*",
+              "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "**Das Prinzip:** Du behandelst deinen grübelnden Verstand wie einen externen Assistenten – einen übereifrigen Mitarbeiter, der dich ständig mit Memos bombardiert. Du gibst ihm einen Namen, hörst ihm einmal zu, quittierst – und lässt los."
+            },
+            {
+              "typ": "absatz",
+              "text": "**So geht's – in 3 Schritten:**"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 1: Gib deinem Gehirn einen Namen.** Gib deinem internen Assistenten einen Namen: Einstein, Günther, Herbert oder „Das Radio“ – whatever works. Hauptsache, er klingt nach einer separaten Instanz, nicht nach ICH."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 2: Lass ihn einmal reden.** Wenn das Gedankenkarussell startet (z.B. abends im Bett), kämpfe nicht dagegen an. Gib deinem „Einstein“ bewusst das Mikrofon. Er darf dir jeden Gedanken, jede Sorge, jedes To-Do **ein einziges Mal** präsentieren."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Schritt 3: Quittieren und stehen lassen.** Höre dem Gedanken zu. Bewerte ihn nicht. Diskutiere nicht. Sag einfach innerlich: *„Ah, interessant. Danke für den Hinweis, Einstein.“* Dann lass den Gedanken wie eine Wolke am Himmel stehen und warte auf den nächsten."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k04/einstein-technik.webp",
+              "alt": "Einstein-Technik: Ein gestresster kleiner Assistent schleppt einen Papierstapel mit Sorgen, während ein junger Mann entspannt im Bett liegt.",
+              "unterschrift": "Danke, Einstein. Hab ich gehört."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was passiert?** Dein Verstand weiß jetzt, dass seine Warnung angekommen ist. Er muss sie nicht mehr in Dauerschleife wiederholen. Nach wenigen Runden wird es still im Kopf. Denn ein Assistent, der merkt, dass seine Memos gelesen werden, hört auf zu nerven."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Praxis-Beispiel: Schlaflos vor dem Meeting",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "**Die Situation:** 24:00 Uhr. Morgen Präsentation. Dein Kopf rattert."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der alte Weg:** Du kämpfst gegen die Gedanken: *„Ich MUSS jetzt schlafen! Hör auf zu denken!“* Puls steigt. Stressreaktion. An Schlaf ist nicht zu denken."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der neue Weg (Einstein-Technik):**"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "*Einstein:* „Was ist, wenn die Technik ausfällt?!“",
+                "*Du:* „Danke Einstein. Hab ich gehört.“",
+                "*Einstein:* „Der Chef wird kritische Fragen stellen!“",
+                "*Du:* „Okay, interessanter Punkt. Notiert.“",
+                "*Einstein:* „Du wirst den Faden verlieren!“",
+                "*Du:* „Danke. Noch was?“",
+                "*Einstein:* „…“",
+                "*Du:* {icon:zzz}"
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "Er beruhigt sich – und du kannst einschlafen."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Abgrenzung zum Mini-Reset (Kapitel 1)",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Vielleicht fragst du dich: „Was ist der Unterschied zum 5-Sinne-Shift aus Kapitel 1?“"
+            },
+            {
+              "typ": "absatz",
+              "text": "Gute Frage. Der Mini-Reset (3-2-1) holt dich über deine Sinne zurück ins Hier und Jetzt – er unterbricht die Stressreaktion über den **Körper**."
+            },
+            {
+              "typ": "absatz",
+              "text": "Die Pitching- und Einstein-Technik arbeiten direkt an der **inneren Stimme** – sie verändern dein Verhältnis zu deinen Gedanken."
+            },
+            {
+              "typ": "absatz",
+              "text": "Beides ergänzt sich. Der Mini-Reset ist dein Notfall-Stopp-Knopf."
+            }
+          ]
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "mission",
+      "rubrik": "mission",
+      "titel": "Mission Alltag: Dein innerer Kritiker bekommt einen Namen",
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Dein Auftrag für diese Woche"
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "1. Wähle deinen Weg",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "**(Pitching oder Einstein) und gib deinem inneren Kritiker eine Identität.**"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**Pitching-Weg:** Wähle die Cartoon-Figur, die dich am zuverlässigsten zum Grinsen bringt.",
+                "**Einstein-Weg:** Wähle einen Namen für deinen internen Assistenten, den du nicht ernst nehmen kannst."
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "2. Setz dir einen Trigger für diese Woche",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "**„Wenn ich merke, dass mein innerer Kritiker anfängt zu reden, dann _______________ .“**"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Beispiele:** *…dann stelle ich mir vor, dass Spongebob das sagt. …dann sage ich innerlich: Danke, Einstein. Hab ich gehört.*"
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "3. Abend-Check",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Bevor du einschläfst, eine kurze Reflexion: Hast du deinen inneren Kritiker heute erwischt? Was hat er gesagt? Wie hast du reagiert?"
+            },
+            {
+              "typ": "absatz",
+              "text": "30 Sekunden an 7 Abenden helfen deinem Gehirn, den neuen Weg zu bahnen."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Rückblick Kapitel 1 – 4",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Du hast jetzt vier Werkzeuge in deinem mentalen Werkzeugkasten:"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "Den Mini-Reset (3-2-1) – um den Autopiloten zu stoppen",
+                "Die Leitfragen – um bei Rückschlägen den Fokus umzulenken",
+                "Das Dankbarkeitstagebuch – um langfristig deinen Fokus umzuprogrammieren",
+                "Pitching oder Einstein – um den inneren Kritiker zu entwaffnen"
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "In den nächsten Kapiteln gehen wir tiefer: an die Überzeugungen, die hinter deinem inneren Kritiker stecken. Denn der Kritiker ist nur die Stimme – die eigentliche Frage ist: Wer hat ihm beigebracht, was er sagt?"
+            }
+          ]
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "quellen",
+      "rubrik": "quellen",
+      "titel": "Quellen & Hintergrund: Der innere Kritiker",
+      "header": "medien/bilder/rubrik/quellen.webp",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Gedankenflut & Warnsystem:"
+        },
+        {
+          "typ": "quelle",
+          "text": "Baumeister, R. F. et al. (2001) Bad is stronger than good. *Review of General Psychology*, 5(4), 323–370.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Killingsworth, M. A. & Gilbert, D. T. (2010) A wandering mind is an unhappy mind. *Science*, 330(6006), 932.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Wegner, D. M. et al. (1987) Paradoxical effects of thought suppression. *Journal of Personality and Social Psychology*, 53(1), 5–13.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Kross, E. et al. (2014) Self-talk as a regulatory mechanism: How you do it matters. *Journal of Personality and Social Psychology*, 106(2), 304–324.",
+          "url": null
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Kognitive Defusion (Einstein-Technik):"
+        },
+        {
+          "typ": "quelle",
+          "text": "Hayes, S. C. (2004). Acceptance and Commitment Therapy, Relational Frame Theory, and the Third Wave of Behavioral and Cognitive Therapies. *Behavior Therapy*, 35(4), 639–665.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Masuda, A., Hayes, S. C., Sackett, C. F., & Twohig, M. P. (2004). Cognitive defusion and self-relevant negative thoughts: Examining the impact of a ninety year old technique. *Behaviour Research and Therapy*, 42(4), 477–485.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Luoma, J. & Hayes, S. C. (2009). Cognitive Defusion. In: W. O'Donohue & J. Fisher (Eds.), *General Principles and Empirically Supported Techniques of Cognitive Behavior Therapy*. Wiley.",
+          "url": null
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Pitching-Technik:"
+        },
+        {
+          "typ": "quelle",
+          "text": "Bernhardt, K. (2016). *Panikattacken und andere Angststörungen loswerden.* Ariston Verlag. – Kapitel 5.6.2: Die Pitching-Technik als Musterunterbrecher für auditiv ausgelöste negative Gedanken.",
+          "url": null
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Acceptance and Commitment Therapy (ACT) – Allgemein:"
+        },
+        {
+          "typ": "quelle",
+          "text": "Hayes, S. C., Strosahl, K. D., & Wilson, K. G. (2012). *Acceptance and Commitment Therapy: The Process and Practice of Mindful Change* (2nd ed.). Guilford Press.",
+          "url": null
+        }
+      ],
+      "lese": null
+    }
+  ]
+}

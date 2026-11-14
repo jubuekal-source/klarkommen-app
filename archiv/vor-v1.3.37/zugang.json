@@ -1,0 +1,36 @@
+{
+ "schemaVersion": 1,
+ "_hinweis": "Codes nur als SHA-256 von 'klarkommen:'+code (klein, ohne Leerzeichen). Neue Codes: quelle/zugang-code.py",
+ "codes": [
+  {
+   "hash": "536a5e2706950cef113da7e30dc3c2d86c0e10fb59630f11545cb446eedf75dc",
+   "name": "Werkstatt (Marco)",
+   "kapitel": "alle"
+  },
+  {
+   "hash": "af9473cde19fd156e7de7955bb086d499d6d4c8ee6020a3e0217750b0bb58d0d",
+   "name": "Blockaden lösen",
+   "kapitel": [
+    "k05",
+    "k06"
+   ]
+  },
+  {
+   "hash": "412eb084f1eac6a85a5bb4449e5d151581b7cc3833ddcf69d7d3f9a1fcedf63f",
+   "name": "Klarheit aufbauen",
+   "kapitel": [
+    "k08",
+    "k09",
+    "k10",
+    "k11"
+   ]
+  },
+  {
+   "hash": "b59443a8e4ede199cb9c96d4cad1148d10fcc50814a18852ece710a64c4196a1",
+   "name": "Kapitel 5",
+   "kapitel": [
+    "k05"
+   ]
+  }
+ ]
+}

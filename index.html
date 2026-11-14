@@ -550,6 +550,17 @@ details.acc.hilfe{border-color:rgba(125,211,192,.3)}
 .fbk small{display:block;color:var(--brand-text-2);font-size:.84rem;margin-top:2px}
 .fbk small.ok{color:var(--brand-ok)}
 .fbk .chev{color:var(--brand-accent-soft);display:flex;flex:none}
+/* v1.3.37: Einführung (T00) – Ablaufgrafik „So funktioniert ein Kapitel“ */
+.ein-bl>p:first-child{margin-top:4px}
+.ein-sec:first-of-type h2{margin-top:22px}
+.ablauf{margin:6px 0 22px;padding:18px 4px 14px;border-radius:18px;background:var(--brand-card);border:1px solid var(--brand-line)}
+.ablauf ol{list-style:none;margin:0;padding:0;display:flex;position:relative}
+.ablauf ol::before{content:"";position:absolute;left:10%;right:10%;top:17px;height:2px;background:var(--brand-line-2)}
+.ablauf li{flex:1;min-width:0;text-align:center;position:relative;margin:0;padding:0}
+.ablauf .ab-nr{display:flex;position:relative;width:34px;height:34px;margin:0 auto 8px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;font-size:.95rem;background:var(--brand-card-2);border:2px solid var(--brand-line-2);color:var(--brand-text);animation:abstation 7.5s ease-in-out infinite;animation-delay:calc(var(--i)*1.5s)}
+.ablauf .ab-t{display:block;font-size:.72rem;line-height:1.25;color:var(--brand-text-2);padding:0 1px}
+@keyframes abstation{0%,20%,100%{background:var(--brand-card-2);border-color:var(--brand-line-2);color:var(--brand-text);transform:none}4%,14%{background:var(--brand-accent);border-color:var(--brand-accent);color:#fff;transform:scale(1.12)}}
+.ein-mehr{margin:10px 0 18px}
 .fb .card h2{font-size:1.12rem;line-height:1.3;hyphens:manual;-webkit-hyphens:manual}
 .fb .qn{color:var(--brand-accent-soft);margin-right:2px}
 .fopts{display:grid;gap:10px}
@@ -745,7 +756,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.36';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.37';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -939,7 +950,7 @@ const INL_ICON = {zzz:{src:'brand/icons/zzz.webp', w:44, h:56, alt:'schläft'}};
 function inl(s){
   let t = esc(s);
   t = t.replace(/\{icon:([a-z0-9-]+)\}/g,(m,n)=>{ if(n==='zzz') return '<span class="zz" role="img" aria-label="schläft"><span class="z1">Z</span><span class="z2">z</span><span class="z3">z</span></span>'; const i=INL_ICON[n]; return i?`<img class="ti" src="${i.src}" width="${i.w}" height="${i.h}" alt="${i.alt}" decoding="async">`:''; });
-  t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|#)[^)\s]+)\)/g,(m,a,u)=>`<a href="${u}"${u[0]==='#'?'':' target="_blank" rel="noopener"'}>${a}</a>`);
+  t = t.replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:|tel:|#)[^)\s]+)\)/g,(m,a,u)=>`<a href="${u}"${/^(#|tel:)/.test(u)?'':' target="_blank" rel="noopener"'}>${a}</a>`);   /* v1.3.37: tel:-Links (Einführung „Wichtig“) */
   t = t.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>').replace(/(^|[^*])\*([^*\s][^*]*)\*/g,'$1<em>$2</em>');
   t = t.replace(/==([^=]+)==/g,'<span class="or">$1</span>');   /* v1.3.33: ==Text== = Orange-Akzent (Nummern/Schlagwort, sparsam) */
   return t;
@@ -987,7 +998,8 @@ function parse(h){
     return p[2] ? {name:'slide', kap:p[1], slide:p[2]} : {name:'kap', kap:p[1], kat:q.kat||null};   /* spec/07 T6: #/k/07?kat=<id> öffnet diese Kategorie */
   }
   if(p[0]==='x' && p[1]) return {name:'x', id:p[1], anker:p[2]||null};
-  if(p[0]==='einstellungen') return {name:'einstellungen'};
+  if(p[0]==='einstellungen') return {name:'einstellungen', anker:p[1]||null};   /* v1.3.37: #/einstellungen/anl-update öffnet die Anleitung */
+  if(p[0]==='einfuehrung') return {name:'einfuehrung'};   /* v1.3.37: T00 Einführung */
   if(p[0]==='ueber') return {name:'ueber'};
   if(p[0]==='feedback') return {name:'feedback'};   /* spec/04 §10 */
   return {name:'start'};
@@ -997,7 +1009,7 @@ function parentOf(r){
   switch(r.name){
     case 'slide': case 'tbuc': case 'tballe': return '#/k/'+r.kap;
     case 'tbtool': return '#/k/'+r.kap;   /* spec/05 C3 */
-    case 'kap': case 'einstellungen': case 'ueber': case 'feedback': return '#/';
+    case 'kap': case 'einstellungen': case 'ueber': case 'feedback': case 'einfuehrung': return '#/';
     default: return null;
   }
 }
@@ -1027,11 +1039,12 @@ async function route(){
     else if(r.name==='einstellungen') await renderEinstellungen(app);
     else if(r.name==='ueber') renderUeber(app);
     else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
+    else if(r.name==='einfuehrung') renderEinfuehrung(app);   /* v1.3.37 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
   if(tbFokus){ const el = document.getElementById(tbFokus); tbFokus = null; if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 10)); } }   /* spec/07 T6 */
   if(r.name==='tbtool' && r.anker){ const el = document.getElementById('h-'+r.anker); if(el){ for(let q=el; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; }   /* spec/07 F9: Anker kann in einem Akkordeon liegen */ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 14)); } }   /* v1.3.4 */
-  const sc = r.name==='einstellungen' ? sessionStorageGet('kk_scroll') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
+  const sc = r.name==='einstellungen' ? (sessionStorageGet('kk_scroll') || r.anker || '') : '';   /* spec/06: 'offline' oder eine Anleitung (anl-…) */
   if(sc){ sessionStorageSet('kk_scroll',''); const o=document.getElementById(sc); if(o){ for(let q=o; q; q=q.parentElement && q.parentElement.closest('details')){ if(q.tagName==='DETAILS') q.open = true; } o.scrollIntoView({block:'start'}); } }
 }
 function sessionStorageGet(k){ try{ return sessionStorage.getItem(k); }catch(e){ return null; } }
@@ -1078,7 +1091,7 @@ async function renderStart(app){
   <section class="wrap wide" aria-labelledby="reiseH">
     <div class="lead"><h2 id="reiseH">Deine Reise</h2><span class="meta">${KAP.filter(k=>k.nr).length} Kapitel + Bonus</span></div>
     <p class="introtxt" id="intro">${introHtml()}</p>
-    ${fbKarte()}<!-- spec/04 §10 -->
+    ${einfKarte()}<!-- v1.3.37: Startkarte Einführung statt Titel-Test-Karte -->
     ${progHtml()}
     <div class="reise">`;
   let phase = null;
@@ -1393,7 +1406,7 @@ function renderUeber(app){
     <div class="wrap2">
       <a class="back2" href="#/">${ic('back')} Zurück zu Klarkommen</a>
       ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p></section>`).join('')}
-      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p></section>   <!-- spec/04 §10 -->
+      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p>${U.hilfMit?`<p>${inl(U.hilfMit.replace('{wa}', H.whatsapp ? `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent('Feedback zu Klarkommen: ')}` : '#/ueber'))}</p>`:''}</section>   <!-- spec/04 §10 -->
       <section class="sec" id="kontakt"><h2>${esc(U.kontaktTitel)}</h2>${U.kontaktText?`<p>${inl(U.kontaktText)}</p>`:''}
         <div class="btns kontakt">${kbtn}</div>
       </section>
@@ -1665,6 +1678,32 @@ const fbMailURL = () => `mailto:${FB_MAIL}?subject=${encodeURIComponent('Klarkom
 function fbKarte(){
   const F = fbLaden();
   return `<a class="fbk" href="#/feedback"><span class="ti">${ic('chat')}</span><span class="k"><b>Hilf mit: Welcher Titel passt? – 30 Sekunden</b>${F.abgestimmt?`<small class="ok">${ic('check').replace('class="i"','class="i" style="width:15px;height:15px;vertical-align:-3px"')} Danke, schon abgestimmt</small>`:`<small>Drei Titel-Ideen – deine Meinung zählt.</small>`}</span><span class="chev">${ic('chev')}</span></a>`;
+}
+/* ===== v1.3.37: T00 Einführung „Herzlich willkommen“ – Startkarte, Seite #/einfuehrung, Ablaufgrafik ===== */
+let EINF = null;   /* inhalte/einfuehrung.json */
+function einfKarte(){
+  if(!EINF || !EINF.karte) return '';
+  return `<a class="fbk" href="#/einfuehrung"><span class="ti">${ic('compass')}</span><span class="k"><b>${esc(EINF.karte.titel)}</b><small>${esc(EINF.karte.unterzeile)}</small></span><span class="chev">${ic('chev')}</span></a>`;
+}
+function ablaufHtml(st){
+  return `<div class="ablauf" role="img" aria-label="Ablauf eines Kapitels: ${esc((st||[]).join(', '))}"><ol aria-hidden="true">${(st||[]).map((t,i)=>`<li style="--i:${i}"><span class="ab-nr">${i+1}</span><span class="ab-t">${esc(t)}</span></li>`).join('')}</ol></div>`;
+}
+function renderEinfuehrung(app){
+  const E = EINF; if(!E) throw new Error('Einführung nicht geladen');
+  document.title = `Einführung · ${titel()}`;
+  const H = BRAND.herausgeber || {};
+  const blk = (b, i) => {
+    switch(b.typ){
+      case 'ablauf': return ablaufHtml(b.stationen);
+      case 'weiterlesen': return `<details class="acc ein-mehr"><summary>${ic('chev')}<span>${esc(b.label)}</span>${ic('down','chv')}</summary><div class="acb bl">${(b.bloecke||[]).map((x,j)=>blk(x,j)).join('')}</div></details>`;
+      case 'feedback-wa': { if(!H.whatsapp) return ''; const wa = `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent(b.text||'')}`; return `<p><a class="btn block" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(b.label)}</a></p>`; }
+      default: return blocks([b], {path:'ein/'+i});
+    }
+  };
+  const sek = (E.abschnitte||[]).map(a=>`<section class="ein-sec" id="ein-${esc(a.id)}"><h2>${esc(a.titel)}</h2>${(a.bloecke||[]).map((x,i)=>blk(x,i)).join('')}${a.id==='rueckmeldung'?'<div id="ein-spaeter" data-platz="kapitel-feedback abschluss-fragebogen" hidden></div>':''}</section>`).join('');   /* ein-spaeter: Platz für spätere Hilfreich-Abfrage je Kapitel und Abschluss-Fragebogen (brand.json features) – noch nicht gebaut */
+  app.innerHTML = `<div class="view ein">${bar('<b>Einführung</b>')}<div class="wrap">
+    <div class="pagehead"><div class="eyebrow">${esc(E.karte.unterzeile)}</div><h1>${esc(E.titel)}</h1></div>
+    <div class="bl ein-bl"><p>${inl(E.einleitung)}</p>${sek}</div></div>${footer()}</div>`;
 }
 function fbOption(q, L){
   const an = FB[q]===L;
@@ -2186,7 +2225,8 @@ async function init(){
   let zugLink = null;   /* v1.3.32: ?zugang=CODE aus der Adresse nehmen und sofort aus der URL entfernen (Hash-Route bleibt) */
   try{ const u = new URL(location.href); if(u.searchParams.has('zugang')){ zugLink = u.searchParams.get('zugang'); u.searchParams.delete('zugang'); history.replaceState(history.state, '', u.pathname + u.search + u.hash); } }catch(e){}
   try{
-    const [b, kj, mj, xj] = await Promise.all([getJSON('brand/brand.json'), getJSON('inhalte/kapitel.json'), getJSON('medien.json').catch(()=>({version:0, dateien:[]})), getJSON('experimente/index.json').catch(()=>null)]);
+    const [b, kj, mj, xj, ej] = await Promise.all([getJSON('brand/brand.json'), getJSON('inhalte/kapitel.json'), getJSON('medien.json').catch(()=>({version:0, dateien:[]})), getJSON('experimente/index.json').catch(()=>null), getJSON('inhalte/einfuehrung.json').catch(()=>null)]);
+    EINF = ej;
     BRAND = b; KAP = (kj.kapitel||[]); MED = mj;
     if(xj){ const arr = Array.isArray(xj) ? xj : (xj.experimente||[]); EXP = new Set(arr.map(e=>typeof e==='string'?e:(e&&e.id)).filter(Boolean));
       EXPF = arr.flatMap(e=>{ const d=(e&&e.dateien)||[]; return d.map(f=>({pfad:f, bytes:Math.round((e.bytes||0)/(d.length||1))})); }); }

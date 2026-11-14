@@ -334,17 +334,6 @@
               "typ": "zitat",
               "text": "**Das Ziel dieser Systeme ist nicht dein Wohlbefinden. Das Ziel ist Bildschirmzeit. Und davon gibt es am meisten, wenn du auf Autopilot schaltest.**",
               "quelle": null
-            },
-            {
-              "typ": "absatz",
-              "text": "Wie das im Alltag aussieht, kannst du im Schaubild „Der Kreislauf“ selbst durchspielen: mit Lea, zwei Wochen vor ihrer Prüfung (ca. 2 Minuten)."
-            },
-            {
-              "typ": "experiment",
-              "id": "kausalkette",
-              "expTyp": "schaubild",
-              "titel": "Der Kreislauf",
-              "text": "Kapitel 1 und 3 in einem Bild. Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen, vieles läuft gleichzeitig. Spiel es mit Lea durch, zwei Wochen vor ihrer Prüfung, und sieh, wie sie wieder rauskommt. Animiert, ca. 2 Minuten."
             }
           ]
         },
@@ -382,6 +371,17 @@
             {
               "typ": "absatz",
               "text": "Den Reset kennst du aus Kapitel 1. Jetzt weißt du, warum er so wichtig ist. Bleibt die Frage: Wohin wandert deine Aufmerksamkeit, wenn du sie nicht bewusst lenkst? Genau da setzt der Mind-Hack an."
+            },
+            {
+              "typ": "absatz",
+              "text": "Genau das zeigt dir das Schaubild „Der Kreislauf“: Was du oft denkst, läuft wie auf einer Autobahn von allein. Du musst sie aber nicht weiterfahren. Jedes Mal, wenn du bewusst entscheidest, was du reinlässt und woran du denkst, trittst du einen neuen Trampelpfad ein Stück breiter, bis daraus irgendwann eine Straße wird. Spiel es mit Lea einmal durch, zwei Wochen vor ihrer Prüfung (ca. 2 Minuten), und schau, wo du abbiegen kannst."
+            },
+            {
+              "typ": "experiment",
+              "id": "kausalkette",
+              "expTyp": "schaubild",
+              "titel": "Der Kreislauf",
+              "text": "Kapitel 1 und 3 in einem Bild. Was auf dich einwirkt, was du denkst und wie viel Energie du hast: alles hängt zusammen, vieles läuft gleichzeitig. Spiel es mit Lea durch, zwei Wochen vor ihrer Prüfung, und sieh, wie sie wieder rauskommt. Animiert, ca. 2 Minuten."
             }
           ]
         }
@@ -446,9 +446,7 @@
         {
           "typ": "absatz",
           "text": "Du kannst nicht kontrollieren, was in der Welt passiert. Aber du kannst entscheiden, was du reinlässt, und damit, welche Gedanken dein Gehirn füttert. Was du oft denkst und tust, läuft irgendwann von selbst, wie eine Autobahn im Kopf: Das ist dein Autopilot. Neue Gedanken sind erst ein Trampelpfad, mit jeder Wiederholung wird er breiter. Wenn dein Kopf abdriftet, holt dich der Mini-Reset aus Kapitel 1 zurück: 3 Dinge sehen, 2 fühlen, 1 hören. Danach wählst du bewusst, worauf du schaust. Wie das geht, zeigt dir der Mind-Hack."
-        }
-      ],
-      "nach": [
+        },
         {
           "typ": "experiment",
           "id": "kausalkette",

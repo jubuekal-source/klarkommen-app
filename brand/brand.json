@@ -7,7 +7,9 @@
  "startbild": "brand/start.webp",
  "sperrVariante": "b",
  "features": {
-  "einfuehrung": false
+  "einfuehrung": false,
+  "kapitelFeedback": false,
+  "abschlussFragebogen": false
  },
  "sperrDialog": {
   "titel": "Noch nicht freigeschaltet",
@@ -31,7 +33,7 @@
   "abschnitte": [
    {
     "titel": "Wer steckt hinter Klarkommen?",
-    "text": "Hinter Klarkommen steht Marco Schuster von GetCon. Als Resilienzcoach, systemischer Teamcoach und Sozialpädagoge (B.A.) begleitet er seit vielen Jahren junge Menschen, Teams und Gruppen – in Workshops, Outdoor-Trainings und als Lehrbeauftragter an Dualen Hochschulen. Klarkommen bündelt diese Erfahrung mit Erkenntnissen aus Psychologie und Hirnforschung: alltagsnah, ehrlich und ohne erhobenen Zeigefinger."
+    "text": "Ich bin Marco Schuster von GetCon. Als Resilienzcoach, systemischer Teamcoach und Sozialpädagoge (B.A.) begleite ich seit vielen Jahren junge Menschen, Teams und Gruppen: in Workshops, Outdoor-Trainings und als Lehrbeauftragter an Dualen Hochschulen. In Klarkommen bündle ich diese Erfahrung mit Erkenntnissen aus Psychologie und Hirnforschung. Alltagsnah, ehrlich und ohne erhobenen Zeigefinger."
    },
    {
     "titel": "Klarkommen ist im Bau",
@@ -39,14 +41,15 @@
    },
    {
     "titel": "Starter-Angebot für die Ersten",
-    "text": "Du bekommst die Vollversion zum Starter-Preis von 4,99 €. Im Gegenzug bitten wir dich um ehrliches Feedback und – wenn dir Klarkommen hilft – um ein kurzes Testimonial.",
+    "text": "Du bekommst die Vollversion zum Starter-Preis von 4,99 €. Im Gegenzug bitte ich dich um ehrliches Feedback und, wenn dir Klarkommen hilft, um ein kurzes Testimonial.",
     "hervorheben": true
    }
   ],
   "kontaktTitel": "Kontakt",
   "buttonWebsite": "Zur Website",
-  "kontaktText": "Du willst die Vollversion vorbestellen oder hast eine Frage? Schreib uns – per E-Mail oder WhatsApp.",
+  "kontaktText": "Du willst die Vollversion vorbestellen oder hast eine Frage? Schreib mir per E-Mail oder WhatsApp.",
   "buttonMail": "Per E-Mail anfragen",
-  "buttonWhatsapp": "Per WhatsApp schreiben"
+  "buttonWhatsapp": "Per WhatsApp schreiben",
+  "hilfMit": "Rückmeldung zu Inhalten, Fehlern oder Technik? Schreib mir einfach [per WhatsApp]({wa}), ich freue mich über jede Nachricht."
  }
 }
