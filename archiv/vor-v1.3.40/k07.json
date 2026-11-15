@@ -1,0 +1,923 @@
+{
+  "schemaVersion": 1,
+  "id": "k07",
+  "typ": "toolbox",
+  "header": null,
+  "intro": [
+    {
+      "typ": "absatz",
+      "text": "Dein persönlicher **Werkzeugkasten** – zum Runterkommen. Zum Auftanken. Zum Weitermachen."
+    },
+    {
+      "typ": "absatz",
+      "text": "Du musst nicht alle Tools nutzen. Probier aus, was sich für dich richtig anfühlt – und mach das zu deinem Go-to."
+    }
+  ],
+  "kategorien": [
+    {
+      "id": "schnell",
+      "titel": "Schnelle Hilfe",
+      "untertitel": "Wenn es sofort gehen muss",
+      "icon": "bolt",
+      "ton": "akzent",
+      "tools": [
+        "mini-reset",
+        "sigh"
+      ]
+    },
+    {
+      "id": "ruhe",
+      "titel": "Zur Ruhe kommen",
+      "untertitel": "Runterfahren, abschalten, einschlafen",
+      "icon": "moon",
+      "tools": [
+        "478",
+        "5-sinne",
+        "safe-place"
+      ]
+    },
+    {
+      "id": "kopf",
+      "titel": "Wenn der Kopf nicht leise wird",
+      "untertitel": "Grübeln und innere Kritik",
+      "icon": "brain",
+      "tools": [
+        "pitching",
+        "einstein"
+      ]
+    },
+    {
+      "id": "blick",
+      "titel": "Den Blick neu ausrichten",
+      "untertitel": "Nach Rückschlägen und am Abend",
+      "icon": "compass",
+      "tools": [
+        "leitfragen",
+        "dankbarkeit"
+      ]
+    }
+  ],
+  "neu": [
+    "sigh",
+    "478",
+    "safe-place"
+  ],
+  "uebungen": [
+    {
+      "id": "mini-reset",
+      "punkte": [
+        "Sofort-Reset in zehn Sekunden",
+        "Wenn du gerade gestresst bist",
+        "Wenn alles gerade zu viel ist"
+      ]
+    },
+    {
+      "id": "sigh",
+      "punkte": [
+        "Baut akuten Stress und Frust ab",
+        "Löst innere Anspannung",
+        "Vor einer Prüfung oder einem Auftritt"
+      ]
+    },
+    {
+      "id": "5-sinne",
+      "punkte": [
+        "Wenn dein Stresspegel steigt",
+        "Wenn das Gedankenkarussell dreht",
+        "Wenn du an einem Problem feststeckst"
+      ]
+    },
+    {
+      "id": "478",
+      "punkte": [
+        "Für tiefe Beruhigung",
+        "Hilft gegen das Gedankenkarussell",
+        "Zur Vorbereitung auf den Schlaf"
+      ]
+    },
+    {
+      "id": "safe-place",
+      "punkte": [
+        "Innerer Ort, an dem du dich sicher fühlst",
+        "Zum Auftanken, Abschalten und Einschlafen",
+        "Inklusive Anker: Ruhe per Daumen und Zeigefinger"
+      ]
+    },
+    {
+      "id": "einstein",
+      "punkte": [
+        "Dem Grübeln einen Namen geben",
+        "Viele Gedanken gleichzeitig, kein klarer Anfang"
+      ]
+    },
+    {
+      "id": "pitching",
+      "punkte": [
+        "Wenn eine innere Stimme dich runtermacht",
+        "Die innere Stimme lächerlich machen",
+        "Vor einer Prüfung oder einem Auftritt"
+      ]
+    },
+    {
+      "id": "leitfragen",
+      "punkte": [
+        "Bei Rückschlag, Frust oder Vergleichen",
+        "Zwei lösungsorientierte Fragen",
+        "Lenkt den Blick vom Problem auf Chancen"
+      ]
+    },
+    {
+      "id": "dankbarkeit",
+      "punkte": [
+        "Drei Dinge am Abend",
+        "Programmiert deinen Fokus dauerhaft um",
+        "Einfach und gut erforscht"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "sigh",
+      "titel": "Physiological Sigh",
+      "kurztitel": "Dein 1-Atemzug-Reset",
+      "wofuer": "Sofortiger Abbau von akutem Stress, Frust oder innerer Anspannung.",
+      "dauerMin": 0.5,
+      "dauerText": "1–3 Atemzüge (unter 30 Sekunden)",
+      "dauerQuelle": "notion",
+      "routine": false,
+      "art": "atem",
+      "herkunft": "k07",
+      "herkunftSlide": null,
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "So geht's"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k07/sigh.webp",
+          "alt": "Physiological Sigh – 1-Atemzug-Reset",
+          "unterschrift": null,
+          "notion": "PhysiologicalSigh-1-Atemzug-Reset.jpg"
+        },
+        {
+          "typ": "zitat",
+          "text": "**Zusammengefasst:** Einatmen … nachschnappen … laaaaang ausatmen.",
+          "quelle": null
+        },
+        {
+          "typ": "experiment",
+          "id": "atem-anker",
+          "titel": "Dein Atem-Anker",
+          "text": "Begleitet dich und zählt vor – ideal am Anfang.",
+          "anker": "sigh"
+        }
+      ],
+      "mehr": [],
+      "audio": null,
+      "experiment": "atem-anker",
+      "voraussetzung": null,
+      "status": "frei",
+      "hintergrund": [
+        {
+          "typ": "ueberschrift",
+          "text": "Dein Körper als Fernbedienung"
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein Körper hat zwei Betriebsmodi – den **Stressmodus** (Sympathikus) und den **Ruhemodus** (Parasympathikus). In stressigen Phasen – vor Prüfungen, bei Konflikten, wenn du nachts nicht abschalten kannst – schaltet der Körper in den Stressmodus. Das Problem: Oft klemmt der Schalter für den Rückweg, und du nimmst die Anspannung mit in den Feierabend, ins Bett, in den nächsten Tag."
+        },
+        {
+          "typ": "absatz",
+          "text": "Die gute Nachricht: Du kannst dein Nervensystem über die Atmung **direkt ansteuern**. Nicht über den Umweg eines Gedankens (*„Ich muss jetzt ruhig werden\"*), sondern rein über Körpermechanik. Wie eine Fernbedienung."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k07/fernbedienung.webp",
+          "alt": "Stress und Ruhe: Langes Ausatmen ist die Bremse",
+          "unterschrift": null,
+          "notion": "06_Fernbedienung.png"
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Warum funktioniert das so gut?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Das zweite, kurze Nachschnappen bläht Millionen von mikroskopisch kleinen Lungenbläschen (Alveolen) auf, die bei Stress zusammengefallen sind. Dadurch wird schlagartig mehr CO₂ aus dem Blut abtransportiert. Das lange Ausatmen stimuliert den **Vagusnerv** – die wichtigste Verbindung zwischen Gehirn und Körper für den Ruhemodus. Dein Gehirn bekommt das sofortige, mechanische Signal: *„Wir sind sicher.\"*"
+        },
+        {
+          "typ": "absatz",
+          "text": "Übrigens: Dein Körper kennt dieses Atemmuster bereits – du machst es unbewusst im Schlaf und beim Weinen. Die Entdeckung der Stanford-Forscher war, dass du es auch bewusst auslösen kannst."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Was sagt die Forschung?"
+        },
+        {
+          "typ": "absatz",
+          "text": "Eine randomisierte, kontrollierte Studie (Balban et al. 2023) verglich drei Atemübungen – darunter wiederholte Physiological Sighs (Cyclic Sighing) – mit Achtsamkeitsmeditation. Die Teilnehmenden übten einen Monat lang täglich 5 Minuten."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Ergebnis:** Alle Atemübungen verbesserten die Stimmung, am meisten das Cyclic Sighing. Es hob die Stimmung und senkte die Atemfrequenz stärker als die Achtsamkeitsmeditation. Es ist eine einzelne Studie – aber ein ermutigender Hinweis."
+        }
+      ],
+      "quellen": [
+        {
+          "typ": "quelle",
+          "text": "Balban, M. Y., Neri, E., Kogon, M. M., Weed, L., Nourber, B., Jo, B., Holl, G., Zeitzer, J. M., Spiegel, D., & Huberman, A. D. (2023). Brief structured respiration practices enhance mood and reduce physiological arousal. *Cell Reports Medicine*, 4(1), 100895.",
+          "url": "https://doi.org/10.1016/j.xcrm.2022.100895"
+        },
+        {
+          "typ": "quelle",
+          "text": "Porges, S. W. (2011). *The polyvagal theory: Neurophysiological foundations of emotions, attachment, communication, and self-regulation.* W. W. Norton & Company.",
+          "url": null
+        }
+      ]
+    },
+    {
+      "id": "478",
+      "titel": "Die 4-7-8 Atmung",
+      "kurztitel": "Dein Ruhe-Dimmer",
+      "wofuer": "Tiefe Beruhigung, Stoppen von Gedankenkarussellen, Vorbereitung auf den Schlaf.",
+      "dauerMin": 3,
+      "dauerText": "4 Durchgänge, ca. 3 Minuten",
+      "dauerQuelle": "notion",
+      "routine": false,
+      "art": "atem",
+      "herkunft": "k07",
+      "herkunftSlide": null,
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "So geht's"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k07/atmung-4-7-8.webp",
+          "alt": "4-7-8-Atmung: einatmen, anhalten, ausatmen",
+          "unterschrift": null,
+          "notion": "4-7-8_Atmung.jpeg"
+        },
+        {
+          "typ": "experiment",
+          "id": "atem-anker",
+          "titel": "Dein Atem-Anker",
+          "text": "Begleitet dich und zählt vor – ideal am Anfang.",
+          "anker": "478"
+        }
+      ],
+      "mehr": [],
+      "audio": null,
+      "experiment": "atem-anker",
+      "voraussetzung": null,
+      "status": "frei",
+      "hintergrund": [
+        {
+          "typ": "absatz",
+          "text": "Zur 4-7-8-Atmung selbst gibt es kaum Studien. Übersichtsarbeiten zu langsamer Atmung (unter 10 Atemzügen pro Minute) zeigen aber, dass sie den Parasympathikus begünstigt und mit weniger Anspannung und Angst einhergeht. Es wird vermutet, dass auch das lange Ausatmen der 4-7-8-Atmung so wirkt. Das strikte Zählen lenkt die Aufmerksamkeit zusätzlich auf den Rhythmus, was Grübeleien unterbrechen kann. Dafür braucht sie mehr Zeit und Konzentration als der Physiological Sigh."
+        }
+      ],
+      "quellen": [
+        {
+          "typ": "quelle",
+          "text": "Weil, A. (2015). *Breathing: The master key to self healing* (Audio). Sounds True.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Zaccaro, A., Piarulli, A., Laurino, M., Garbella, E., Menicucci, D., Neri, B., & Gemignani, A. (2018). How breath-control can change your life: A systematic review on psycho-physiological correlates of slow breathing. *Frontiers in Human Neuroscience*, 12, 353.",
+          "url": "https://doi.org/10.3389/fnhum.2018.00353"
+        }
+      ]
+    },
+    {
+      "id": "safe-place",
+      "titel": "Dein sicherer Ort",
+      "kurztitel": "Die Safe-Place-Visualisierung",
+      "wofuer": "Diese Übung führt dich an einen inneren Ort, an dem du dich sicher und geborgen fühlst.",
+      "dauerMin": 11,
+      "dauerText": "ca. 11 Min. (Audio)",
+      "dauerQuelle": "vorschlag-bestaetigt-spec07a",
+      "routine": false,
+      "art": "audio",
+      "herkunft": "k07",
+      "herkunftSlide": null,
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "So geht's"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k07/sicherer-ort.webp",
+          "alt": "Dein sicherer Ort: Ein junger Mann sitzt mit geschlossenen Augen im Schneidersitz, Daumen und Zeigefinger als Anker zusammengelegt – um ihn herum öffnet sich eine warm leuchtende Waldlichtung wie ein Traumbild.",
+          "unterschrift": null
+        },
+        {
+          "typ": "liste",
+          "geordnet": true,
+          "punkte": [
+            "**Es gibt kein Richtig oder Falsch.** Manche sehen dabei klare Bilder, andere spüren eher ein Gefühl oder nehmen nur Farben wahr.",
+            "**Du hast jederzeit die Kontrolle.** Du kannst die Augen öffnen und zurückkommen, wann immer du möchtest.",
+            "**Schaffe dir den richtigen Rahmen.** Such dir einen Ort, an dem du für die nächsten Minuten ungestört bist. Kopfhörer sind ideal. Setz oder leg dich bequem hin."
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Und was, wenn dir kein Ort einfällt?",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Manche haben sofort einen Platz vor Augen – einen Strand, an dem sie mal waren, eine Hütte in den Bergen, das Sofa bei Oma. Andere haben ein Foto oder Bild im Kopf, das ihnen hilft. Beides ist perfekt. Falls dir gerade weder noch einfällt: Starte einfach die Meditation und lass dich von deiner Vorstellungskraft leiten – oft kommt der Ort von ganz allein. Und falls du danach merkst, dass du ein konkretes Bild brauchst: Lass dir eins mit einer KI erstellen oder such dir ein Foto im Netz, das sich für dich nach „sicher\" anfühlt."
+            }
+          ]
+        },
+        {
+          "typ": "absatz",
+          "text": "Wenn du soweit bist: Play drücken und einfach der Stimme folgen."
+        },
+        {
+          "typ": "audio",
+          "id": "k07-sicherer-ort",
+          "titel": "Audio: Dein sicherer Ort",
+          "art": "meditation",
+          "status": "fertig"
+        },
+        {
+          "typ": "akkordeon",
+          "id": "anker",
+          "icon": "anker",
+          "titel": "Dein Anker für den Alltag",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Du hast gerade etwas Wichtiges getan: Dein Gehirn hat das Gefühl von Sicherheit und Ruhe mit einer einfachen Bewegung verknüpft – Daumen und Zeigefinger zusammendrücken."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Wichtig:** Je öfter du die Meditation wiederholst, desto stärker wird der Anker. In den ersten Tagen lohnt es sich, die Übung abends vor dem Einschlafen zu machen – auch nur 5 Minuten reichen. Dein Gehirn baut mit jeder Wiederholung eine stärkere Verbindung auf."
+            },
+            {
+              "typ": "absatz",
+              "text": "Und noch etwas: Den sicheren Ort kannst du auch ohne Audio besuchen. Sobald du die Übung ein paar Mal gemacht hast, kennst du den Weg. Augen schließen, Atem vertiefen, ankommen. Dein Ort wartet."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Im Alltag nutzen:** Immer wenn du einen Moment der Ruhe brauchst – vor einer Prüfung, in einer stressigen Situation, wenn der Kopf nicht aufhört zu rattern – drücke einfach Daumen und Zeigefinger zusammen. Dein Körper erinnert sich an das Gefühl."
+            },
+            {
+              "typ": "absatz",
+              "text": "Den Anker **setzt** du immer in Ruhe, zusammen mit deinem sicheren Ort – nicht mitten im Stress. Im stressigen Moment **rufst** du ihn nur noch **ab**. Das wirkt, weil er mit dem Gefühl von Ruhe verknüpft ist; ohne diese Verbindung würde er den Stress mit abspeichern."
+            }
+          ]
+        }
+      ],
+      "mehr": [
+        {
+          "typ": "akkordeon",
+          "titel": "Dein Song",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Zum Schluss noch etwas zum Mitnehmen. Wir haben deinem sicheren Ort einen eigenen Song gegeben – nicht zum Analysieren, sondern einfach zum Hören. Manchmal erreicht uns Musik dort, wo Worte gerade nicht mehr hinkommen."
+            },
+            {
+              "typ": "absatz",
+              "text": "Leg ihn dir auf, wenn du runterkommen willst, oder lass ihn nebenbei laufen, während du zur Ruhe findest. Mit der Zeit wird er selbst zu einem kleinen Anker: Die ersten Töne, und ein Teil von dir weiß sofort – *hier bin ich sicher.*"
+            },
+            {
+              "typ": "absatz",
+              "text": "Drück Play, wenn du soweit bist."
+            },
+            {
+              "typ": "audio",
+              "id": "k07-song",
+              "titel": "Dein Song",
+              "art": "meditation",
+              "status": "fertig"
+            }
+          ]
+        }
+      ],
+      "audio": "k07-sicherer-ort",
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei",
+      "hintergrund": [
+        {
+          "typ": "ueberschrift",
+          "text": "Bilder im Kopf wirken"
+        },
+        {
+          "typ": "absatz",
+          "text": "Wenn du dir etwas lebhaft vorstellst, arbeitet dein Gehirn zum Teil mit denselben Bereichen wie beim echten Sehen. Forschende beschreiben eine Vorstellung deshalb als eine Art **„schwache Wahrnehmung“**."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und Vorstellungen gehen stärker ans Gefühl als reine Worte. In Experimenten reagierten Menschen, die sich Situationen bildlich vorstellten, emotional stärker als Menschen, die dieselben Beschreibungen nur hörten und über ihre Bedeutung nachdachten – bei unangenehmen Situationen genauso wie bei positiven."
+        },
+        {
+          "typ": "absatz",
+          "text": "Genau das nutzt dein sicherer Ort – nur in die angenehme Richtung."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Was sagt die Forschung?"
+        },
+        {
+          "typ": "absatz",
+          "text": "In einer Studie mit 60 Studierenden hörten die Teilnehmenden 20 Minuten lang eine Anleitung: Muskelentspannung, tiefes Atmen oder eine geführte Fantasiereise – eine Vergleichsgruppe bekam keine dieser Übungen. Nach der Fantasiereise fühlten sich die Teilnehmenden messbar entspannter als die Vergleichsgruppe, und auch ihr Körper zeigte sofort eine Tendenz Richtung Entspannung."
+        },
+        {
+          "typ": "absatz",
+          "text": "In einer anderen Studie mit 48 Erwachsenen sank die akute Angst nach einer geführten Fantasiereise – am stärksten, wenn der Ort in der Natur lag."
+        },
+        {
+          "typ": "absatz",
+          "text": "Auch beim Einschlafen kann eine Vorstellung helfen: Menschen mit Schlafproblemen, die sich vor dem Einschlafen bewusst in ein inneres Bild vertieften, schliefen schneller ein als Menschen ohne Anleitung. Die Erklärung der Forschenden: Das Bild belegt so viel „Platz im Kopf“, dass für Grübeln weniger übrig bleibt."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Ehrlich gesagt"
+        },
+        {
+          "typ": "absatz",
+          "text": "Die Studien sind eher klein, meist mit Erwachsenen gemacht und messen vor allem die Wirkung direkt danach. Für genau diese Übung – den sicheren Ort mit Anker – haben wir keine eigenen Studien gefunden. Belegt ist das Prinzip dahinter: Geführte Vorstellungsübungen können dich beruhigen. Ob sie bei dir wirken, findest du am besten selbst heraus."
+        }
+      ],
+      "quellen": [
+        {
+          "typ": "quelle",
+          "text": "Pearson, J., Naselaris, T., Holmes, E. A., & Kosslyn, S. M. (2015). Mental imagery: Functional mechanisms and clinical applications. *Trends in Cognitive Sciences*, 19(10), 590–602.",
+          "url": "https://doi.org/10.1016/j.tics.2015.08.003"
+        },
+        {
+          "typ": "quelle",
+          "text": "Holmes, E. A., & Mathews, A. (2005). Mental imagery and emotion: A special relationship? *Emotion*, 5(4), 489–497.",
+          "url": "https://doi.org/10.1037/1528-3542.5.4.489"
+        },
+        {
+          "typ": "quelle",
+          "text": "Holmes, E. A., Mathews, A., Dalgleish, T., & Mackintosh, B. (2006). Positive interpretation training: Effects of mental imagery versus verbal training on positive mood. *Behavior Therapy*, 37(3), 237–247.",
+          "url": "https://doi.org/10.1016/j.beth.2006.02.002"
+        },
+        {
+          "typ": "quelle",
+          "text": "Toussaint, L., Nguyen, Q. A., Roettger, C., Dixon, K., Offenbächer, M., Kohls, N., Hirsch, J., & Sirois, F. (2021). Effectiveness of progressive muscle relaxation, deep breathing, and guided imagery in promoting psychological and physiological states of relaxation. *Evidence-Based Complementary and Alternative Medicine*, 2021, 5924040.",
+          "url": "https://doi.org/10.1155/2021/5924040"
+        },
+        {
+          "typ": "quelle",
+          "text": "Nguyen, J., & Brymer, E. (2018). Nature-based guided imagery as an intervention for state anxiety. *Frontiers in Psychology*, 9, 1858.",
+          "url": "https://doi.org/10.3389/fpsyg.2018.01858"
+        },
+        {
+          "typ": "quelle",
+          "text": "Harvey, A. G., & Payne, S. (2002). The management of unwanted pre-sleep thoughts in insomnia: Distraction with imagery versus general distraction. *Behaviour Research and Therapy*, 40(3), 267–277.",
+          "url": "https://doi.org/10.1016/S0005-7967(01)00012-2"
+        }
+      ]
+    },
+    {
+      "id": "5-sinne",
+      "titel": "Der 5-Sinne-Shift",
+      "kurztitel": "5-4-3-2-1",
+      "wofuer": "Wenn dein Stresspegel steigt, das Gedankenkarussell dreht oder dein Fokus komplett auf einem Problem feststeckt – hier ist dein Reset-Button. Steckt der Kopf im Gestern (Reue, Ärger, Trauma) oder im Morgen (Angst, Sorgen), holt dich die 5-4-3-2-1-Methode zurück ins Heute.",
+      "dauerMin": 5,
+      "dauerText": "geführt ca. 5 Min",
+      "dauerQuelle": "notion",
+      "routine": false,
+      "art": "sinne",
+      "herkunft": "k01",
+      "herkunftSlide": "mindhack",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "So drückst du deinen Reset-Button"
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/5-4-3-2-1.webp",
+          "alt": "5-4-3-2-1-Übung",
+          "unterschrift": null,
+          "notion": "4-4-3-2-1-bung.jpeg"
+        },
+        {
+          "typ": "audio",
+          "id": "k01-5sinne-shift",
+          "titel": "Geführter 5-Sinne-Shift (ca. 5 Min)",
+          "art": "meditation",
+          "status": "fertig"
+        }
+      ],
+      "mehr": [
+        {
+          "typ": "akkordeon",
+          "titel": "Detaillierte Beschreibung: Der 5-Sinne-Shift",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Diese Technik wird in der Fachwelt auch die 5-4-3-2-1-Methode genannt und gehört zu den sogenannten Erdungstechniken (Grounding Techniques)."
+            },
+            {
+              "typ": "absatz",
+              "text": "Das Ziel ist es, jemanden aus einer akuten Stressspirale, einer Panikattacke oder einem „Flashback“ zurück in das Hier und Jetzt zu holen."
+            },
+            {
+              "typ": "ueberschrift",
+              "text": "So funktioniert's"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**5 ×** **SEHEN**: Benenne fünf Dinge, die du gerade siehst. So spezifisch wie möglich – nicht „ein Tisch\", sondern „die Kratzer auf der Tischplatte links von meiner Hand\".",
+                "**4 ×** **FÜHLEN**: Spüre vier Dinge physisch. Den Stoff deines Shirts auf der Schulter. Den Kontakt deiner Füße mit dem Boden. Das Gewicht deines Handys in der Tasche. Die Temperatur der Luft auf deiner Haut.",
+                "**3 ×** **HÖREN**: Identifiziere drei Geräusche. Das Flugzeug am Himmel. Schritte im Flur. Deinen eigenen Atem.",
+                "**2 ×** **RIECHEN**: Achte auf zwei Gerüche. Kaffee? Frische Luft? Dein eigenes Deo?",
+                "**1 ×** **SCHMECKEN**: Nimm einen Geschmack in deinem Mund wahr. Auch wenn es „nichts Besonderes\" ist – das zählt."
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Weitere Situationen, in denen die Übung hilft",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**Prüfungsangst & Blackouts:** Wenn vor einer Klausur die Panik steigt und das Gelernte „weg“ scheint, holt die Übung den Fokus zurück ins Hier und Jetzt.",
+                "**Einschlafprobleme:** Wenn das Gedankenkarussell (Grübeln über den Tag oder Sorgen vor morgen) das Einschlafen verhindert, beruhigt die sensorische Fokussierung das Nervensystem.",
+                "**Akute Wut oder Konflikte:** Bevor man im Streit etwas sagt, das man bereut, dient die Übung als „Notbremse“, um die emotionale Spannung zu senken.",
+                "**Panikattacken & starke Angst:** Sie ist eine der effektivsten Techniken, um eine beginnende Panikattacke zu stoppen, da sie die Dissoziation (das Gefühl, „neben sich zu stehen“) unterbricht.",
+                "**Flashbacks oder Trigger:** Falls du durch ein bestimmtes Wort, Bild oder Geräusch an ein negatives Erlebnis erinnert wirst, hilft dir die Übung, dich wieder sicher in der Gegenwart zu fühlen.",
+                "**Überreizung (Sensory Overload):** Wenn auf einem Konzert, in der vollen Bahn oder in einer großen Gruppe alles „zu viel“ wird, hilft sie, die Reize zu sortieren."
+              ]
+            }
+          ]
+        }
+      ],
+      "audio": "k01-5sinne-shift",
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "mini-reset",
+      "titel": "Mini-Reset 3-2-1",
+      "kurztitel": "Dein 10-Sekunden-Notaus",
+      "wofuer": "Manchmal hast du keine zwei Minuten – du brauchst einen Sofort-Reset in zehn Sekunden.",
+      "dauerMin": 0.2,
+      "dauerText": "10 Sekunden",
+      "dauerQuelle": "notion",
+      "routine": true,
+      "art": "sinne",
+      "herkunft": "k01",
+      "herkunftSlide": "mindhack",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Die volle 5-4-3-2-1-Version ist dein Hauptwerkzeug. Hier ist die Kurzfassung:"
+        },
+        {
+          "typ": "zitat",
+          "text": "3 × sehen – 2 × fühlen – 1 × hören.",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k01/notaus.webp",
+          "alt": "10-Sekunden-Notaus",
+          "unterschrift": null,
+          "notion": "10-Sekunden-Notaus.jpg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Das reicht oft schon, um den Autopiloten zu unterbrechen und dich zurück ins Hier und Jetzt zu holen."
+        }
+      ],
+      "mehr": [],
+      "audio": null,
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "leitfragen",
+      "titel": "Reframing: Die zwei Leitfragen",
+      "kurztitel": "Dein Werkzeug bei Rückschlägen",
+      "wofuer": "Zwei lösungsorientierte Fragen, die dein Gehirn sofort vom Problem auf Wachstum und Chancen umstellen.",
+      "dauerMin": 2,
+      "dauerText": "ca. 2 Min.",
+      "dauerQuelle": "vorschlag-bestaetigt-spec07a",
+      "routine": false,
+      "art": "denken",
+      "herkunft": "k03",
+      "herkunftSlide": "mindhack",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Wenn dir ein Rückschlag passiert, verfällt dein Gehirn schnell in einen automatischen Schutzmechanismus: Es stellt blockierende Fragen. *„Warum passiert das ausgerechnet mir?“* oder *„Warum ist das so unfair?“* – diese Fragen zwingen dein Gehirn, Beweise für dein Unglück zu suchen. Sie rauben dir Energie, fördern die Ausschüttung von Stresshormonen und machen dich handlungsunfähig."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k03/leitfragen.webp",
+          "alt": "Zwei Leitfragen: Links sitzt eine junge Frau nach einem Rückschlag in roten Fragezeichen-Schleifen fest, rechts geht sie mit einem leuchtenden Stein in der Hand nach vorn – zwei ruhige türkise Fragezeichen zeigen den Weg.",
+          "unterschrift": null
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**Bei jedem Rückschlag – stell dir diese zwei Fragen:**"
+        },
+        {
+          "typ": "liste",
+          "geordnet": true,
+          "punkte": [
+            "**Wofür könnte diese Situation (trotzdem) gut sein, oder welchen versteckten Nutzen kann ich darin entdecken?**",
+            "**Welche konkrete Erkenntnis nehme ich daraus für die Zukunft mit?**"
+          ]
+        }
+      ],
+      "mehr": [
+        {
+          "typ": "akkordeon",
+          "titel": "Beispiel: Das geplatzte Projekt",
+          "bloecke": [
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "**Die Situation:** Du hast wochenlang Herzblut in ein wichtiges Projekt gesteckt. Einen Tag vor der Deadline wird es von oben abgesagt. Die Arbeit scheint komplett umsonst gewesen zu sein.",
+                "**Der alte Weg (Autopilot):** *„Warum passiert mir das schon wieder? Das ist so respektlos. Die ganze Mühe für die Tonne!“* → Das Resultat: Frust, Selbstzweifel, Demotivation. Du steckst fest."
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der neue Weg (Bewusster Perspektivenwechsel):** Erlaube dir kurz den Frust – und dann wechsle bewusst die Perspektive mit deinen Leitfragen:"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was ist das Gute daran?**"
+            },
+            {
+              "typ": "zitat",
+              "text": "*„Ich habe mir in den letzten Wochen extrem viel neues Wissen angeeignet. Das nimmt mir niemand weg. Und ganz pragmatisch: Wir haben ab morgen endlich freie Kapazitäten für das andere Projekt, das ohnehin schon brennt.“*",
+              "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was lerne ich daraus?**"
+            },
+            {
+              "typ": "zitat",
+              "text": "*„Beim nächsten Mal hole ich mir viel früher Zwischen-Feedbacks von oben ein, um nicht blind in eine Richtung zu laufen.“*",
+              "quelle": null
+            },
+            {
+              "typ": "absatz",
+              "text": "**Fazit:** Du hakst den Frust schneller ab, gehst in die Lösungsfindung und verbesserst eure Abläufe. Aus einem Fehlschlag wird ein Trainingseffekt!"
+            }
+          ]
+        }
+      ],
+      "audio": null,
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "dankbarkeit",
+      "titel": "Dankbarkeitstagebuch",
+      "kurztitel": "Drei Dinge am Abend",
+      "wofuer": "Eine der einfachsten und gleichzeitig am besten erforschten Methoden, deinen Fokus dauerhaft umzuprogrammieren.",
+      "dauerMin": 3,
+      "dauerText": "ca. 3 Min. · täglich, abends",
+      "dauerQuelle": "vorschlag-bestaetigt-spec07a",
+      "routine": true,
+      "art": "reflexion",
+      "herkunft": "k03",
+      "herkunftSlide": "mission",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "zitat",
+          "text": "**Jeden Abend vor dem Schlafen: Schreibe drei Dinge auf, wofür du heute dankbar bist.**",
+          "quelle": null
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k03/dankbarkeit.webp",
+          "alt": "Dankbarkeitstagebuch",
+          "unterschrift": null,
+          "notion": "Gedankenkontrolle_-_Mision_Alltag-Dankbarkeitstagebuch.jpeg"
+        },
+        {
+          "typ": "absatz",
+          "text": "Klingt simpel – verändert aber messbar deine Wahrnehmung innerhalb von drei Wochen. Dein Türsteher aus Kapitel 1 lernt, die guten Dinge auf die Gästeliste zu setzen."
+        }
+      ],
+      "mehr": [],
+      "audio": null,
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "pitching",
+      "titel": "Die Pitching-Technik",
+      "kurztitel": "Die innere Stimme lächerlich machen",
+      "wofuer": "Für dich, wenn du eine klar erkennbare innere Stimme hörst, die dich runtermacht.",
+      "dauerMin": 1,
+      "dauerText": "unter 1 Min.",
+      "dauerQuelle": "vorschlag-bestaetigt-spec07a",
+      "routine": false,
+      "art": "denken",
+      "herkunft": "k04",
+      "herkunftSlide": "mindhack",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "**Schritt 1: Den Satz erkennen.** Achte darauf, was dein innerer Kritiker gerade sagt. Der exakte Wortlaut. Zum Beispiel: *„Du wirst dich total blamieren.“*"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Schritt 2: Stell dir eine lächerliche Figur vor.** Jetzt stell dir vor, dass nicht DU diesen Satz sagst – sondern eine kleine, alberne Cartoon-Figur. Ein aufgeregter Donald Duck. Ein wild gestikulierender Schlumpf. Ein Minion, der panisch auf und ab hüpft. Such dir eine Figur aus, die du unmöglich ernst nehmen kannst."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Schritt 3: Lass die Figur den Satz sprechen.** Dieselben Worte. Derselbe Satz. Aber jetzt in dieser piepsigen, komischen Stimme: *„Du wirst dich total blamieren!“* – gesprochen von einem aufgeregten Donald Duck, der wild mit den Armen fuchtelt."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k04/pitching-technik.webp",
+          "alt": "Pitching-Technik: Eine alberne Figur spricht den Satz – gleiche Worte, keine Wucht",
+          "unterschrift": null,
+          "notion": "14_Pitching.png"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Was passiert?** Du fängst an zu grinsen. Vielleicht sogar zu lachen. Und genau in diesem Moment ist die emotionale Wucht des Gedankens gebrochen. Die Worte sind dieselben – aber sie haben keine Macht mehr über dich."
+        }
+      ],
+      "mehr": [
+        {
+          "typ": "akkordeon",
+          "titel": "Profi-Tipp: Die Figur herausspringen lassen",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Manche stellen sich die Figur nicht nur im Kopf vor, sondern lassen sie aus dem Kopf herausspringen und wild gestikulierend vor sich auf und ab laufen. Je alberner, desto besser."
+            }
+          ]
+        }
+      ],
+      "audio": null,
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "einstein",
+      "titel": "Die Einstein-Technik",
+      "kurztitel": "Dem Grübeln einen Namen geben",
+      "wofuer": "Für dich, wenn es eher ein diffuses Grübeln ist – viele Gedanken gleichzeitig, kein klarer Anfang.",
+      "dauerMin": 5,
+      "dauerText": "ca. 5 Min.",
+      "dauerQuelle": "vorschlag-bestaetigt-spec07a",
+      "routine": false,
+      "art": "denken",
+      "herkunft": "k04",
+      "herkunftSlide": "mindhack",
+      "header": null,
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "**Das Prinzip:** Du behandelst deinen grübelnden Verstand wie einen externen Assistenten – einen übereifrigen Mitarbeiter, der dich ständig mit Memos bombardiert. Du gibst ihm einen Namen, hörst ihm einmal zu, quittierst – und lässt los."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Schritt 1: Gib deinem Gehirn einen Namen.** Dein Verstand ist nicht DU. Er ist dein interner Assistent. Gib ihm einen Namen: Einstein, Günther, Herbert, oder „Das Radio“ – whatever works. Hauptsache, der Name macht klar: Das da oben ist eine separate Instanz, die Gedanken produziert, nicht ICH."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Schritt 2: Lass ihn einmal reden.** Wenn das Gedankenkarussell startet (z.B. abends im Bett), kämpfe nicht dagegen an. Gib deinem „Einstein“ bewusst das Mikrofon. Er darf dir jeden Gedanken, jede Sorge, jedes To-Do **ein einziges Mal** präsentieren."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Schritt 3: Quittieren und stehen lassen.** Höre dem Gedanken zu. Bewerte ihn nicht. Diskutiere nicht. Sag einfach innerlich: *„Ah, interessant. Danke für den Hinweis, Einstein.“* Dann lass den Gedanken wie eine Wolke am Himmel stehen und warte auf den nächsten."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k04/einstein-technik.webp",
+          "alt": "Einstein-Technik: Ein übereifriger Assistent mit Memo-Stapel, der Mann im Bett bleibt entspannt",
+          "unterschrift": "Danke, Einstein. Hab ich gehört.",
+          "notion": "16_Einstein.png"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Was passiert?** Dein Verstand weiß jetzt, dass seine Warnung angekommen ist. Er muss sie nicht mehr in Dauerschleife wiederholen. Nach wenigen Runden wird es still im Kopf. Denn ein Assistent, der merkt, dass seine Memos gelesen werden, hört auf zu nerven."
+        }
+      ],
+      "mehr": [
+        {
+          "typ": "akkordeon",
+          "titel": "Praxis-Beispiel: Schlaflos vor dem Meeting",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "**Die Situation:** 24:00 Uhr. Morgen Präsentation. Dein Kopf rattert."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der alte Weg:** Du kämpfst gegen die Gedanken: *„Ich MUSS jetzt schlafen! Hör auf zu denken!“* Puls steigt. Stressreaktion. An Schlaf ist nicht zu denken."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der neue Weg (Einstein-Technik):**"
+            },
+            {
+              "typ": "liste",
+              "geordnet": false,
+              "punkte": [
+                "*Einstein:* „Was ist, wenn die Technik ausfällt?!“",
+                "*Du:* „Danke Einstein. Hab ich gehört.“",
+                "*Einstein:* „Der Chef wird kritische Fragen stellen!“",
+                "*Du:* „Okay, interessanter Punkt. Notiert.“",
+                "*Einstein:* „Du wirst den Faden verlieren!“",
+                "*Du:* „Danke. Noch was?“",
+                "*Einstein:* „…“",
+                "*Du:* {icon:zzz}"
+              ]
+            },
+            {
+              "typ": "absatz",
+              "text": "Kein Kampf, kein Widerstand. Und ohne Widerstand hat dein Grübel-Assistent nichts, woran er sich reiben kann. Er beruhigt sich – und du kannst einschlafen."
+            }
+          ]
+        }
+      ],
+      "audio": null,
+      "experiment": null,
+      "voraussetzung": null,
+      "status": "frei"
+    },
+    {
+      "id": "entscheidungsmuskel",
+      "titel": "Trainiere deinen Entscheidungsmuskel",
+      "herkunft": "k11",
+      "status": "gesperrt"
+    },
+    {
+      "id": "zeitreise-frage",
+      "titel": "Die Zeitreise-Frage",
+      "herkunft": "k11",
+      "status": "gesperrt"
+    }
+  ],
+  "hilfe": {
+    "titel": "Wenn’s mehr ist: Telefonseelsorge & Hilfe",
+    "bloecke": [
+      {
+        "typ": "absatz",
+        "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da – auch per Chat oder Mail. **Im Notfall: 112.**"
+      },
+      {
+        "typ": "absatz",
+        "text": "Begleiten dich Ängste oder Druck dauerhaft, hol dir professionelle Unterstützung – zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Stärke zeigt sich auch darin, sich Unterstützung zu holen."
+      }
+    ],
+    "kontakte": [
+      {
+        "label": "Telefonseelsorge",
+        "nummer": "0800 111 0 111",
+        "tel": "08001110111"
+      },
+      {
+        "label": "Nummer gegen Kummer · Mo–Sa 14–20 Uhr",
+        "nummer": "116 111",
+        "tel": "116111"
+      },
+      {
+        "label": "Im Notfall",
+        "nummer": "112",
+        "tel": "112"
+      }
+    ],
+    "link": {
+      "label": "Chat & Mail",
+      "text": "telefonseelsorge.de",
+      "url": "https://www.telefonseelsorge.de"
+    }
+  }
+}

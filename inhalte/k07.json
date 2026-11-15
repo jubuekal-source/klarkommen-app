@@ -884,40 +884,5 @@
       "herkunft": "k11",
       "status": "gesperrt"
     }
-  ],
-  "hilfe": {
-    "titel": "Wenn’s mehr ist: Telefonseelsorge & Hilfe",
-    "bloecke": [
-      {
-        "typ": "absatz",
-        "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da – auch per Chat oder Mail. **Im Notfall: 112.**"
-      },
-      {
-        "typ": "absatz",
-        "text": "Begleiten dich Ängste oder Druck dauerhaft, hol dir professionelle Unterstützung – zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Stärke zeigt sich auch darin, sich Unterstützung zu holen."
-      }
-    ],
-    "kontakte": [
-      {
-        "label": "Telefonseelsorge",
-        "nummer": "0800 111 0 111",
-        "tel": "08001110111"
-      },
-      {
-        "label": "Nummer gegen Kummer · Mo–Sa 14–20 Uhr",
-        "nummer": "116 111",
-        "tel": "116111"
-      },
-      {
-        "label": "Im Notfall",
-        "nummer": "112",
-        "tel": "112"
-      }
-    ],
-    "link": {
-      "label": "Chat & Mail",
-      "text": "telefonseelsorge.de",
-      "url": "https://www.telefonseelsorge.de"
-    }
-  }
+  ]
 }

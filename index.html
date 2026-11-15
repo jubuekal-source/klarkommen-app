@@ -760,7 +760,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.38';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.40';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1003,7 +1003,7 @@ function parse(h){
   }
   if(p[0]==='x' && p[1]) return {name:'x', id:p[1], anker:p[2]||null};
   if(p[0]==='einstellungen') return {name:'einstellungen', anker:p[1]||null};   /* v1.3.37: #/einstellungen/anl-update öffnet die Anleitung */
-  if(p[0]==='einfuehrung') return {name:'einfuehrung'};   /* v1.3.37: T00 Einführung */
+  if(p[0]==='einfuehrung') return {name:'einfuehrung', anker:p[1]||null};   /* v1.3.37: T00 Einführung */
   if(p[0]==='ueber') return {name:'ueber'};
   if(p[0]==='feedback') return {name:'feedback'};   /* spec/04 §10 */
   return {name:'start'};
@@ -1043,7 +1043,7 @@ async function route(){
     else if(r.name==='einstellungen') await renderEinstellungen(app);
     else if(r.name==='ueber') renderUeber(app);
     else if(r.name==='feedback') renderFeedback(app);   /* spec/04 §10 */
-    else if(r.name==='einfuehrung') renderEinfuehrung(app);   /* v1.3.37 */
+    else if(r.name==='einfuehrung') renderEinfuehrung(app, r.anker);   /* v1.3.37 */
   }catch(e){ console.warn(e); app.innerHTML = `<div class="wrap"><div class="card" style="margin-top:40px"><h2>${ic('warn')} Hier hakt etwas</h2><p class="hint">${esc(e.message||e)}</p><a class="btn" href="#/">Zur Startseite</a></div></div>`; }
   if(r.name==='start' && from.name!=='start' && from.name!=='einstellungen') window.scrollTo(0,lastStartScroll); else if(!(r.name==='slide' && from.name==='slide' && from.slide===r.slide) && !(r.name==='tballe' && from.name==='tballe') && !(from.name==='x' && xRueckScroll(r))) window.scrollTo(0,0);
   if(tbFokus){ const el = document.getElementById(tbFokus); tbFokus = null; if(el){ const bar = document.querySelector('#app .bar'); window.scrollTo(0, Math.max(0, el.getBoundingClientRect().top + window.scrollY - (bar ? bar.getBoundingClientRect().height : 0) - 10)); } }   /* spec/07 T6 */
@@ -1351,7 +1351,7 @@ async function renderEinstellungen(app){
   const eigenesBild = !!startbildURL;
   app.innerHTML = `<div class="view">${bar('<b>Einstellungen</b>')}<div class="wrap">
     <div class="pagehead"><h1>Einstellungen</h1><p>Alles hier bleibt nur auf diesem Gerät.</p></div>
-    <section class="card lk"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Wer dahintersteckt · Vollversion · Kontakt</small></span>${ic('chev')}</a></section>
+    <section class="card lk"><a class="linkrow" href="#/ueber"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('people')}</span><span class="k">Über Klarkommen &amp; GetCon<small>Über GetCon · Vollversion · Kontakt &amp; Feedback</small></span>${ic('chev')}</a></section>
     <section class="card lk"><a class="linkrow" href="#/feedback"><span class="iconbtn" style="background:var(--brand-card-2)">${ic('chat')}</span><span class="k">Hilf mit: Titel-Test<small>Welcher Titel passt? – 30 Sekunden</small></span>${ic('chev')}</a></section>   <!-- spec/04 §10 -->
     ${setk('set-zugang','key','Zugangscode',`<span id="sZug">${ZUG.aktiv.length?ZUG.aktiv.length+' aktiv':'Code eingeben'}</span>`,zugangHtml())}
     ${setk('set-titel','edit','Titel &amp; Untertitel',`<span id="sTitel">${esc(titel())}</span>`,`      <label class="fld"><span>Titel auf der Startseite</span><input id="inTitel" maxlength="40" value="${esc(titel())}" autocomplete="off"></label>
@@ -1398,19 +1398,19 @@ function renderUeber(app){
   const H = BRAND.herausgeber, U = BRAND.ueber;
   document.title = `${U.titel} · GetCon`;
   const mailOk = H.mail && !/^\[/.test(H.mail);
-  const mailto = `mailto:${mailOk?H.mail:''}?subject=${encodeURIComponent(H.mailBetreff||'Klarkommen Vollversion')}`;
+  const mailto = `mailto:${mailOk?H.mail:''}?subject=${encodeURIComponent(`${H.mailBetreff||'Klarkommen'} (Version ${APP_VERSION})`)}`;
   const wa = H.whatsapp ? `https://wa.me/${encodeURIComponent(H.whatsapp)}${H.whatsappText?`?text=${encodeURIComponent(H.whatsappText)}`:''}` : null;
   const kbtn = [
-    mailOk ? `<a class="gbtn" href="${esc(mailto)}">${ic('mail')} ${esc(U.buttonMail||'Per E-Mail anfragen')}</a>` : '',
+    H.whatsapp ? `<a class="gbtn" href="${esc(`https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((U.feedbackText||'Feedback zu Klarkommen: ').replace('{v}',APP_VERSION))}`)}" target="_blank" rel="noopener">${ic('chat')} ${esc(U.buttonFeedback||'Feedback per WhatsApp')}</a>` : '',
     wa ? `<a class="gbtn" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(U.buttonWhatsapp||'Per WhatsApp schreiben')}</a>` : '',
-    `<a class="gbtn sec2" href="${esc(H.url)}" target="_blank" rel="noopener">${ic('ext')} ${esc(U.buttonWebsite||'Zur Website')}</a>`
-  ].join('');
+    mailOk ? `<a class="gbtn sec2" href="${esc(mailto)}">${ic('mail')} ${esc(U.buttonMail||'Per E-Mail schreiben')}</a>` : ''
+  ].join('');   /* v1.3.39: Kontakt & Feedback zusammengeführt, Website-Button bei „Über GetCon“ */
+  const webBtn = `<div class="btns kontakt"><a class="gbtn sec2" href="${esc(H.url)}" target="_blank" rel="noopener">${ic('ext')} ${esc(U.buttonWebsite||'Zur Website')}</a></div>`;
   app.innerHTML = `<div class="view getcon" style="--gc-hero:url('${esc(H.header)}')">
     <header class="hero2"><div class="in"><a class="logo" href="${esc(H.url)}" target="_blank" rel="noopener" aria-label="GetCon – zur Website"><img src="${esc(H.logo)}" alt="GetCon"></a><div class="ttl2"><b>${esc(U.titel)}</b>${esc(U.unterzeile)}</div></div></header>
     <div class="wrap2">
       <a class="back2" href="#/">${ic('back')} Zurück zu Klarkommen</a>
-      ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p></section>`).join('')}
-      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p>${U.hilfMit?`<p>${inl(U.hilfMit)}</p>`:''}${H.whatsapp?`<div class="btns kontakt"><a class="gbtn" href="${esc(`https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((U.feedbackText||'Feedback zu Klarkommen: ').replace('{v}',APP_VERSION))}`)}" target="_blank" rel="noopener">${ic('chat')} ${esc(U.buttonFeedback||'Feedback per WhatsApp')}</a></div>`:''}</section>   <!-- spec/04 §10 -->
+      ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p>${a.button==='website'?webBtn:''}</section>`).join('')}
       <section class="sec" id="kontakt"><h2>${esc(U.kontaktTitel)}</h2>${U.kontaktText?`<p>${inl(U.kontaktText)}</p>`:''}
         <div class="btns kontakt">${kbtn}</div>
       </section>
@@ -1487,7 +1487,7 @@ const tbTool = (T,id) => (T.tools||[]).find(t=>t.id===id && !tbGesp(t));
 const tbHref = (k,t,von) => `#/k/${kapRouteId(k)}/tool/${encodeURIComponent(t.id)}${von?`?${von==='alle'?'von=alle':'u='+encodeURIComponent(von)}`:''}`;
 
 /* Hilfe-Karte – immer sichtbar (spec/02 §2, spec/03 Kap. 7 Nr. 4) */
-function tbHilfe(T){
+function tbHilfe(T, pfad){
   const H = T.hilfe || {};
   const bl = (H.bloecke && H.bloecke.length) ? H.bloecke.map(b=>b.typ==='callout'?{typ:'absatz',text:b.text}:b)
     : [{typ:'absatz', text:'Falls du gerade das Gefühl hast, dass es dir wirklich nicht gut geht: Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist kostenlos und rund um die Uhr für dich da: **0800 111 0 111**.'}];
@@ -1498,7 +1498,7 @@ function tbHilfe(T){
     : (tel?hb('phone','Telefonseelsorge anrufen', tel, 'tel:'+tel.replace(/[^\d+]/g,''), false, true):'');
   const lk = H.link && H.link.url ? hb('ext', H.link.label||'Website', H.link.text||H.link.url, H.link.url, true, false) : '';
   /* spec/05 C2: zugeklapptes Akkordeon, Telefonseelsorge im Titel */
-  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}</div></details>`;
+  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:pfad||'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}</div></details>`;
 }
 /* Tool-Zeile (Listen) */
 function tbZeile(k, T, t, von){
@@ -1570,7 +1570,7 @@ async function renderToolbox(app, k, head, eyebrow){
   }
   h += `</div>${tbKommt(T)}`;
   /* spec/07 T9: kein „Warum das wirkt“, keine Quellen, keine Mission in der Übersicht – Theorie steht auf den Detailseiten */
-  h += tbHilfe(T) + naechstWeiter(k) + `</div>${footer()}</div>`;
+  h += `<a class="fbk" href="#/einfuehrung/hilfe"><span class="ti">${ic('heart')}</span><span class="k"><b>Keine Therapie: Wenn es dir richtig schlecht geht</b><small>Hilfe-Nummern findest du in der Einführung</small></span><span class="chev">${ic('chev')}</span></a>` + naechstWeiter(k) + `</div>${footer()}</div>`;
   app.innerHTML = h;
   if(auf) tbFokus = 'kat-'+auf;
   leereWeg(app);   /* spec/04 §7 */
@@ -1672,12 +1672,12 @@ function fbLaden(){
 }
 function fbSpeichern(){ if(!FB) return; const {nochmal, ...rest} = FB; lsSet(FB_KEY, JSON.stringify(rest)); }
 function fbText(){
-  const t = `Klarkommen Titel-Test: Anklicken: ${FB.q1} (${FB_TITEL[FB.q1]}) · Weiterschicken: ${FB.q2} (${FB_TITEL[FB.q2]})`;
+  const t = `Klarkommen Titel-Test (Version ${APP_VERSION}): Anklicken: ${FB.q1} (${FB_TITEL[FB.q1]}) · Weiterschicken: ${FB.q2} (${FB_TITEL[FB.q2]})`;
   const k = (FB.kommentar||'').trim();
   return k ? `${t} · Kommentar: ${k}` : t;
 }
 const fbWaURL = () => `https://wa.me/${FB_WA}?text=${encodeURIComponent(fbText())}`;
-const fbMailURL = () => `mailto:${FB_MAIL}?subject=${encodeURIComponent('Klarkommen Titel-Test')}&body=${encodeURIComponent(fbText())}`;
+const fbMailURL = () => `mailto:${FB_MAIL}?subject=${encodeURIComponent(`Klarkommen Titel-Test (Version ${APP_VERSION})`)}&body=${encodeURIComponent(fbText())}`;
 /* Startseiten-Karte unter „Deine Reise“ */
 function fbKarte(){
   const F = fbLaden();
@@ -1694,23 +1694,25 @@ function ablaufHtml(st){
   const ik = k => RUBRIK_BILD.includes(k) ? rubIcon(k, 26) : ic(k);
   return `<div class="ablauf" role="img" aria-label="Ablauf eines Kapitels: ${esc((st||[]).map(x=>x.t).join(', '))}"><ol aria-hidden="true">${(st||[]).map((x,i)=>`<li style="--i:${i}"><span class="ab-nr">${ik(x.icon)}</span><span class="ab-t">${esc(x.t)}</span></li>`).join('')}</ol></div>`;
 }
-function renderEinfuehrung(app){
+function renderEinfuehrung(app, anker){
   const E = EINF; if(!E) throw new Error('Einführung nicht geladen');
   document.title = `Einführung · ${titel()}`;
   const H = BRAND.herausgeber || {};
   const blk = (b, i) => {
     switch(b.typ){
       case 'ablauf': return ablaufHtml(b.stationen);
+      case 'hilfe': return tbHilfe({hilfe:b}, 'ein/hilfe');   /* v1.3.39: Hilfe-Karte wie Kap. 7, zugeklappt */
       case 'station': return `<div class="ein-st"><span class="ein-st-ic">${RUBRIK_BILD.includes(b.icon)?rubIcon(b.icon,30):ic(b.icon)}</span><p><b>${esc(b.titel)}:</b> ${inl(b.text)}</p></div>`;   /* v1.3.38: Kapitel-Rubrik mit Icon statt Ziffer */
       case 'weiterlesen': return `<details class="acc ein-mehr"><summary>${ic('chev')}<span>${esc(b.label)}</span>${ic('down','chv')}</summary><div class="acb bl">${(b.bloecke||[]).map((x,j)=>blk(x,j)).join('')}</div></details>`;
       case 'feedback-wa': { if(!H.whatsapp) return ''; const wa = `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((b.text||'').replace('{v}',APP_VERSION))}`; return `<p><a class="btn block" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(b.label)}</a></p>`; }
       default: return blocks([b], {path:'ein/'+i});
     }
   };
-  const sek = (E.abschnitte||[]).map(a=>`<section class="ein-sec" id="ein-${esc(a.id)}"><h2>${esc(a.titel)}</h2>${(a.bloecke||[]).map((x,i)=>blk(x,i)).join('')}${a.id==='rueckmeldung'?'<div id="ein-spaeter" data-platz="kapitel-feedback abschluss-fragebogen" hidden></div>':''}</section>`).join('');   /* ein-spaeter: Platz für spätere Hilfreich-Abfrage je Kapitel und Abschluss-Fragebogen (brand.json features) – noch nicht gebaut */
+  const sek = (E.abschnitte||[]).map(a=>`<section class="ein-sec" id="ein-${esc(a.id)}">${a.titel?`<h2>${esc(a.titel)}</h2>`:''}${(a.bloecke||[]).map((x,i)=>blk(x,i)).join('')}${a.id==='rueckmeldung'?'<div id="ein-spaeter" data-platz="kapitel-feedback abschluss-fragebogen" hidden></div>':''}</section>`).join('');   /* ein-spaeter: Platz für spätere Hilfreich-Abfrage je Kapitel und Abschluss-Fragebogen (brand.json features) – noch nicht gebaut */
   app.innerHTML = `<div class="view ein">${bar('<b>Einführung</b>')}<div class="wrap">
     <div class="pagehead"><div class="eyebrow">${esc(E.karte.unterzeile)}</div><h1>${esc(E.titel)}</h1></div>
     <div class="bl ein-bl"><p>${inl(E.einleitung)}</p>${sek}</div></div>${footer()}</div>`;
+  if(anker==='hilfe'){ const d = app.querySelector('details.hilfe'); if(d){ d.open = true; setTimeout(()=>d.scrollIntoView({block:'center'}), 60); } }   /* v1.3.40: Sprung aus Kap. 7 */
 }
 function fbOption(q, L){
   const an = FB[q]===L;
@@ -1721,7 +1723,7 @@ function renderFeedback(app){
   document.title = `Hilf mit · ${titel()}`;
   const formZeigen = !F.abgestimmt || F.nochmal;
   let h = `<div class="view fb">${bar('<b>Hilf mit</b> · Titel-Test')}<div class="wrap">
-    <div class="pagehead"><div class="eyebrow">Hilf mit · 30 Sekunden</div><h1>Welcher Titel passt?</h1><p>Drei Ideen für den Namen dieser App. Wähle bei beiden Fragen spontan aus dem Bauch heraus.</p></div>`;
+    <div class="pagehead"><div class="eyebrow">Hilf mit · 30 Sekunden</div><h1>Welcher Titel passt?</h1><p>„Klarkommen“ bleibt, aber welcher Zusatz passt am besten? Hier sind drei Ideen. Wähle bei beiden Fragen spontan aus dem Bauch heraus. Deine Antwort hilft mir, den Titel festzulegen.</p></div>`;
   if(F.abgestimmt) h += `<section class="card fbdank" id="fbDank"><h2>${ic('check')} Danke, schon abgestimmt</h2><p class="hint">Deine Antwort ist auf diesem Gerät vermerkt. Du kannst jederzeit erneut abstimmen.</p>${F.nochmal?'':`<button class="btn sec block" data-act="fb-nochmal">${ic('repeat')} Erneut abstimmen</button>`}</section>`;
   if(formZeigen){
     h += FB_FRAGEN.map((q,i)=>`<section class="card"><h2 id="fbH${i}"><span class="qn">${i+1}.</span> ${esc(q.text)}</h2><div class="fopts" role="radiogroup" aria-labelledby="fbH${i}">${F.reihenfolge.map(L=>fbOption(q.id, L)).join('')}</div></section>`).join('');

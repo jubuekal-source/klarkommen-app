@@ -3,9 +3,9 @@
   "id": "einfuehrung",
   "karte": {
     "titel": "Bevor du startest: So funktioniert Klarkommen",
-    "unterzeile": "6 Minuten, die dir den Weg zeigen"
+    "unterzeile": "5 Minuten, die dir den Weg zeigen"
   },
-  "titel": "Herzlich willkommen - was dich erwartet",
+  "titel": "Herzlich willkommen – so funktioniert Klarkommen",
   "einleitung": "Schön, dass du da bist. Hier erfährst du in ein paar Minuten, wie Klarkommen funktioniert und wie du am meisten davon hast.",
   "abschnitte": [
     {
@@ -78,7 +78,7 @@
               "icon": "einstieg"
             },
             {
-              "t": "Brain Fact",
+              "t": "Brain-Fact",
               "icon": "brainfact"
             },
             {
@@ -104,7 +104,7 @@
         {
           "typ": "station",
           "icon": "brainfact",
-          "titel": "Brain Fact",
+          "titel": "Brain-Fact",
           "text": "Was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe. Dazu gibt es einen Merkzettel mit den Kernpunkten und Bildern zum schnellen Nachschlagen."
         },
         {
@@ -171,22 +171,59 @@
             "Die Podcasts überarbeite ich noch. Manche passen nicht mehr ganz zum aktuellen Text, und an einzelnen Stellen steckt noch ein Fehler drin. Im Zweifel gilt die Leseversion.",
             "Auch einige Bilder werden noch ausgetauscht.",
             "Neue Inhalte kommen automatisch, wenn du Klarkommen mit Internet öffnest. Siehst du trotzdem noch die alte Version? Schließ die App ganz und öffne sie neu oder zieh die Seite nach unten. Mehr dazu findest du in den Einstellungen unter [„Anleitungen“ › „App aktualisieren“](#/einstellungen/anl-update).",
-            "Im Moment ist Klarkommen kostenlos und begleitet meine Workshops und die Testphase. Das öffentliche Hosting kann ich für ungefähr ein Jahr zusagen. Wenn du Klarkommen auch danach nutzen willst, schreib mir kurz. Ich setze dich auf eine Liste, und falls die App umzieht oder nicht mehr öffentlich erreichbar ist, bekommst du kostenlos einen neuen Zugang."
+            "Im Moment ist Klarkommen kostenlos und begleitet meine Workshops und die Testphase. Das öffentliche Hosting kann ich für ungefähr ein Jahr zusagen. Wenn du Klarkommen auch danach nutzen willst, [schreib mir kurz](#/ueber). Ich setze dich auf eine Liste, und falls die App umzieht oder nicht mehr öffentlich erreichbar ist, bekommst du kostenlos einen neuen Zugang."
           ]
         }
       ]
     },
     {
       "id": "wichtig",
-      "titel": "Wichtig",
+      "titel": "",
       "bloecke": [
         {
-          "typ": "absatz",
-          "text": "Klarkommen ist keine Therapie und ersetzt keine professionelle Hilfe. Alle Inhalte sind nach bestem Wissen erstellt, trotzdem können Fehler passieren."
-        },
-        {
-          "typ": "absatz",
-          "text": "Wenn es dir gerade richtig schlecht geht: Die TelefonSeelsorge ist kostenlos und rund um die Uhr erreichbar unter [0800 111 0 111](tel:08001110111) oder [0800 111 0 222](tel:08001110222). Oder sprich mit einer Person, der du vertraust."
+          "typ": "hilfe",
+          "titel": "Keine Therapie: Wenn es dir richtig schlecht geht",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Klarkommen ist keine Therapie und ersetzt keine professionelle Hilfe. Alle Inhalte sind nach bestem Wissen erstellt, trotzdem können Fehler passieren."
+            },
+            {
+              "typ": "absatz",
+              "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da, auch per Chat oder Mail. **Im Notfall: 112.**"
+            },
+            {
+              "typ": "absatz",
+              "text": "Begleiten dich Ängste oder Druck dauerhaft, hol dir professionelle Unterstützung, zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Stärke zeigt sich auch darin, sich Unterstützung zu holen."
+            }
+          ],
+          "kontakte": [
+            {
+              "label": "Telefonseelsorge",
+              "nummer": "0800 111 0 111",
+              "tel": "08001110111"
+            },
+            {
+              "label": "Telefonseelsorge",
+              "nummer": "0800 111 0 222",
+              "tel": "08001110222"
+            },
+            {
+              "label": "Nummer gegen Kummer · Mo–Sa 14–20 Uhr",
+              "nummer": "116 111",
+              "tel": "116111"
+            },
+            {
+              "label": "Im Notfall",
+              "nummer": "112",
+              "tel": "112"
+            }
+          ],
+          "link": {
+            "label": "Chat & Mail",
+            "text": "telefonseelsorge.de",
+            "url": "https://www.telefonseelsorge.de"
+          }
         }
       ]
     },
