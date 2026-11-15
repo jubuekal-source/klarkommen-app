@@ -32,16 +32,12 @@
   "unterzeile": "herausgegeben von GetCon",
   "abschnitte": [
    {
-    "titel": "Wer steckt hinter Klarkommen?",
-    "text": "Ich bin Marco Schuster von GetCon. Als Resilienzcoach, systemischer Teamcoach und Sozialpädagoge (B.A.) begleite ich seit vielen Jahren junge Menschen, Teams und Gruppen: in Workshops, Outdoor-Trainings und als Lehrbeauftragter an Dualen Hochschulen. In Klarkommen bündle ich diese Erfahrung mit Erkenntnissen aus Psychologie und Hirnforschung. Alltagsnah, ehrlich und ohne erhobenen Zeigefinger."
-   },
-   {
-    "titel": "Klarkommen ist im Bau",
-    "text": "Klarkommen wächst gerade Kapitel für Kapitel. Die Vollversion mit allen 12 Kapiteln, Bonus-Kapitel, Podcasts und Meditationen kannst du schon jetzt vorbestellen."
+    "titel": "Über GetCon",
+    "text": "Klarkommen wird von GetCon herausgegeben. Über GetCon biete ich Resilienzworkshops und Team-Resilienztrainings an, außerdem Teambuilding und Teamtrainings für Unternehmen, Kitas und Schulen. Praxisnah, ohne Seminarcharakter, vor Ort oder in der Natur. Wenn du neugierig geworden bist, schau gern auf der Website vorbei."
    },
    {
     "titel": "Starter-Angebot für die Ersten",
-    "text": "Du bekommst die Vollversion zum Starter-Preis von 4,99 €. Im Gegenzug bitte ich dich um ehrliches Feedback und, wenn dir Klarkommen hilft, um ein kurzes Testimonial.",
+    "text": "Die Vollversion mit allen 12 Kapiteln, Bonus-Kapitel, Podcasts und Meditationen kannst du schon jetzt vorbestellen. Du bekommst sie zum Starter-Preis von 4,99 €. Im Gegenzug bitte ich dich um ehrliches Feedback und, wenn dir Klarkommen hilft, um ein kurzes Testimonial.",
     "hervorheben": true
    }
   ],
@@ -50,6 +46,8 @@
   "kontaktText": "Du willst die Vollversion vorbestellen oder hast eine Frage? Schreib mir per E-Mail oder WhatsApp.",
   "buttonMail": "Per E-Mail anfragen",
   "buttonWhatsapp": "Per WhatsApp schreiben",
-  "hilfMit": "Rückmeldung zu Inhalten, Fehlern oder Technik? Schreib mir einfach [per WhatsApp]({wa}), ich freue mich über jede Nachricht."
+  "hilfMit": "Rückmeldung zu Inhalten, Fehlern oder Technik? Schreib mir einfach per WhatsApp.",
+  "buttonFeedback": "Feedback per WhatsApp",
+  "feedbackText": "Feedback zu Klarkommen (Version {v}): "
  }
 }

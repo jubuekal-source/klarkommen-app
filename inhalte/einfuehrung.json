@@ -5,7 +5,7 @@
     "titel": "Bevor du startest: So funktioniert Klarkommen",
     "unterzeile": "6 Minuten, die dir den Weg zeigen"
   },
-  "titel": "Herzlich willkommen\u00a0- was dich erwartet",
+  "titel": "Herzlich willkommen - was dich erwartet",
   "einleitung": "Schön, dass du da bist. Hier erfährst du in ein paar Minuten, wie Klarkommen funktioniert und wie du am meisten davon hast.",
   "abschnitte": [
     {
@@ -77,11 +77,26 @@
         {
           "typ": "ablauf",
           "stationen": [
-            "Einstieg",
-            "Brain Fact",
-            "Merkzettel",
-            "Mind-Hack",
-            "Mission Alltag"
+            {
+              "t": "Einstieg",
+              "icon": "einstieg"
+            },
+            {
+              "t": "Brain Fact",
+              "icon": "brainfact"
+            },
+            {
+              "t": "Merkzettel",
+              "icon": "bulb"
+            },
+            {
+              "t": "Mind-Hack",
+              "icon": "mindhack"
+            },
+            {
+              "t": "Mission Alltag",
+              "icon": "mission"
+            }
           ]
         },
         {
@@ -122,7 +137,7 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Nimm dir pro Kapitel etwa eine Woche. So hat das Neue Zeit, im Alltag anzukommen. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Es ist dein Programm, nicht meins."
+          "text": "Du bestimmst das Tempo. Die Mission Alltag am Ende eines Kapitels ist meist auf etwa eine Woche angelegt, manche Aufgaben sind kürzer, und nicht jedes Kapitel hat eine feste Wochenaufgabe. Du kannst also ruhig schon im nächsten Kapitel weiterlesen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn nur durch Wiederholung kommt das Neue im Alltag an. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Es ist dein Programm, nicht meins."
         },
         {
           "typ": "absatz",
@@ -185,12 +200,12 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Ich freue mich über jede Rückmeldung: Was hat dir geholfen, was eher nicht? Wo bist du hängen geblieben? Ist dir ein Fehler aufgefallen oder klappt technisch etwas nicht? Ein paar Worte reichen, ich bin für jede Nachricht dankbar."
+          "text": "Ich freue mich über jede Rückmeldung: Was hat dir geholfen, was eher nicht? Ein Fehler aufgefallen oder hakt es technisch? Ein paar Worte reichen."
         },
         {
           "typ": "feedback-wa",
           "label": "Feedback per WhatsApp",
-          "text": "Feedback zu Klarkommen: "
+          "text": "Feedback zu Klarkommen (Version {v}): "
         }
       ]
     },

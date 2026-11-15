@@ -556,11 +556,13 @@ details.acc.hilfe{border-color:rgba(125,211,192,.3)}
 .ein-sec:first-of-type h2{margin-top:22px}
 .ablauf{margin:6px 0 22px;padding:18px 4px 14px;border-radius:18px;background:var(--brand-card);border:1px solid var(--brand-line)}
 .ablauf ol{list-style:none;margin:0;padding:0;display:flex;position:relative}
-.ablauf ol::before{content:"";position:absolute;left:10%;right:10%;top:17px;height:2px;background:var(--brand-line-2)}
+.ablauf ol::before{content:"";position:absolute;left:10%;right:10%;top:20px;height:2px;background:var(--brand-line-2)}
 .ablauf li{flex:1;min-width:0;text-align:center;position:relative;margin:0;padding:0}
-.ablauf .ab-nr{display:flex;position:relative;width:34px;height:34px;margin:0 auto 8px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;font-size:.95rem;background:var(--brand-card-2);border:2px solid var(--brand-line-2);color:var(--brand-text);animation:abstation 7.5s ease-in-out infinite;animation-delay:calc(var(--i)*1.5s)}
+.ablauf .ab-nr{display:flex;position:relative;width:40px;height:40px;margin:0 auto 8px;border-radius:50%;align-items:center;justify-content:center;font-family:var(--brand-font-head);font-weight:700;font-size:.95rem;background:var(--brand-card-2);border:2px solid var(--brand-line-2);color:var(--brand-text);animation:abstation 7.5s ease-in-out infinite;animation-delay:calc(var(--i)*1.5s)}
 .ablauf .ab-t{display:block;font-size:.72rem;line-height:1.25;color:var(--brand-text-2);padding:0 1px}
-@keyframes abstation{0%,20%,100%{background:var(--brand-card-2);border-color:var(--brand-line-2);color:var(--brand-text);transform:none}4%,14%{background:var(--brand-accent);border-color:var(--brand-accent);color:#fff;transform:scale(1.12)}}
+@keyframes abstation{0%,20%,100%{background:var(--brand-card-2);border-color:var(--brand-line-2);box-shadow:none;transform:none}4%,14%{background:rgba(249,115,22,.16);border-color:var(--brand-accent);box-shadow:0 0 0 4px rgba(249,115,22,.2);transform:scale(1.1)}}
+.ablauf .ab-nr img.rbi{width:26px;height:26px;display:block}
+.ablauf .ab-nr svg.i{width:20px;height:20px;color:var(--brand-accent-soft)}
 .ein-mehr{margin:10px 0 18px}
 .fb .card h2{font-size:1.12rem;line-height:1.3;hyphens:manual;-webkit-hyphens:manual}
 .fb .qn{color:var(--brand-accent-soft);margin-right:2px}
@@ -1407,7 +1409,7 @@ function renderUeber(app){
     <div class="wrap2">
       <a class="back2" href="#/">${ic('back')} Zurück zu Klarkommen</a>
       ${U.abschnitte.map(a=>`<section class="sec${a.hervorheben?' hl':''}"><h2>${esc(a.titel)}</h2><p>${inl(a.text)}</p></section>`).join('')}
-      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p>${U.hilfMit?`<p>${inl(U.hilfMit.replace('{wa}', H.whatsapp ? `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent('Feedback zu Klarkommen: ')}` : '#/ueber'))}</p>`:''}</section>   <!-- spec/04 §10 -->
+      <section class="sec"><h2>Hilf mit</h2><p><a class="fblink" href="#/feedback">Titel-Test: Welcher Titel passt? – 30 Sekunden</a></p>${U.hilfMit?`<p>${inl(U.hilfMit)}</p>`:''}${H.whatsapp?`<div class="btns kontakt"><a class="gbtn" href="${esc(`https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((U.feedbackText||'Feedback zu Klarkommen: ').replace('{v}',APP_VERSION))}`)}" target="_blank" rel="noopener">${ic('chat')} ${esc(U.buttonFeedback||'Feedback per WhatsApp')}</a></div>`:''}</section>   <!-- spec/04 §10 -->
       <section class="sec" id="kontakt"><h2>${esc(U.kontaktTitel)}</h2>${U.kontaktText?`<p>${inl(U.kontaktText)}</p>`:''}
         <div class="btns kontakt">${kbtn}</div>
       </section>
@@ -1687,7 +1689,9 @@ function einfKarte(){
   return `<a class="fbk" href="#/einfuehrung"><span class="ti">${ic('compass')}</span><span class="k"><b>${esc(EINF.karte.titel)}</b><small>${esc(EINF.karte.unterzeile)}</small></span><span class="chev">${ic('chev')}</span></a>`;
 }
 function ablaufHtml(st){
-  return `<div class="ablauf" role="img" aria-label="Ablauf eines Kapitels: ${esc((st||[]).join(', '))}"><ol aria-hidden="true">${(st||[]).map((t,i)=>`<li style="--i:${i}"><span class="ab-nr">${i+1}</span><span class="ab-t">${esc(t)}</span></li>`).join('')}</ol></div>`;
+  /* v1.3.37b: Stationen mit den Icons der Kapitel-Rubriken (gold) bzw. Glühbirne (Merkzettel) statt Ziffern */
+  const ik = k => RUBRIK_BILD.includes(k) ? rubIcon(k, 26) : ic(k);
+  return `<div class="ablauf" role="img" aria-label="Ablauf eines Kapitels: ${esc((st||[]).map(x=>x.t).join(', '))}"><ol aria-hidden="true">${(st||[]).map((x,i)=>`<li style="--i:${i}"><span class="ab-nr">${ik(x.icon)}</span><span class="ab-t">${esc(x.t)}</span></li>`).join('')}</ol></div>`;
 }
 function renderEinfuehrung(app){
   const E = EINF; if(!E) throw new Error('Einführung nicht geladen');
@@ -1697,7 +1701,7 @@ function renderEinfuehrung(app){
     switch(b.typ){
       case 'ablauf': return ablaufHtml(b.stationen);
       case 'weiterlesen': return `<details class="acc ein-mehr"><summary>${ic('chev')}<span>${esc(b.label)}</span>${ic('down','chv')}</summary><div class="acb bl">${(b.bloecke||[]).map((x,j)=>blk(x,j)).join('')}</div></details>`;
-      case 'feedback-wa': { if(!H.whatsapp) return ''; const wa = `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent(b.text||'')}`; return `<p><a class="btn block" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(b.label)}</a></p>`; }
+      case 'feedback-wa': { if(!H.whatsapp) return ''; const wa = `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((b.text||'').replace('{v}',APP_VERSION))}`; return `<p><a class="btn block" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(b.label)}</a></p>`; }
       default: return blocks([b], {path:'ein/'+i});
     }
   };
