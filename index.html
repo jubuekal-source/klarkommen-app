@@ -553,6 +553,7 @@ details.acc.hilfe{border-color:rgba(125,211,192,.3)}
 .fbk .chev{color:var(--brand-accent-soft);display:flex;flex:none}
 /* v1.3.37: Einführung (T00) – Ablaufgrafik „So funktioniert ein Kapitel“ */
 .ein-bl>p:first-child{margin-top:4px}
+.ein-st{display:flex;gap:12px;align-items:flex-start;margin:0 0 12px}.ein-st-ic{flex:0 0 30px;margin-top:1px}.ein-st-ic img.rbi{display:block}.ein-st p{margin:0}
 .ein-sec:first-of-type h2{margin-top:22px}
 .ablauf{margin:6px 0 22px;padding:18px 4px 14px;border-radius:18px;background:var(--brand-card);border:1px solid var(--brand-line)}
 .ablauf ol{list-style:none;margin:0;padding:0;display:flex;position:relative}
@@ -759,7 +760,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.37';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.38';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1700,6 +1701,7 @@ function renderEinfuehrung(app){
   const blk = (b, i) => {
     switch(b.typ){
       case 'ablauf': return ablaufHtml(b.stationen);
+      case 'station': return `<div class="ein-st"><span class="ein-st-ic">${RUBRIK_BILD.includes(b.icon)?rubIcon(b.icon,30):ic(b.icon)}</span><p><b>${esc(b.titel)}:</b> ${inl(b.text)}</p></div>`;   /* v1.3.38: Kapitel-Rubrik mit Icon statt Ziffer */
       case 'weiterlesen': return `<details class="acc ein-mehr"><summary>${ic('chev')}<span>${esc(b.label)}</span>${ic('down','chv')}</summary><div class="acb bl">${(b.bloecke||[]).map((x,j)=>blk(x,j)).join('')}</div></details>`;
       case 'feedback-wa': { if(!H.whatsapp) return ''; const wa = `https://wa.me/${encodeURIComponent(H.whatsapp)}?text=${encodeURIComponent((b.text||'').replace('{v}',APP_VERSION))}`; return `<p><a class="btn block" href="${esc(wa)}" target="_blank" rel="noopener">${ic('chat')} ${esc(b.label)}</a></p>`; }
       default: return blocks([b], {path:'ein/'+i});

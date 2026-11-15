@@ -56,15 +56,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Genau das soll Klarkommen anders machen. Es ist keine Zusammenfassung aller Bücher, sondern eine kleine Auswahl dessen, was mir selbst geholfen hat und was ich in meinen Workshops einsetze. Mit Übungen, Meditationen und Aufgaben, die du Woche für Woche wirklich umsetzt."
+              "text": "Genau das soll Klarkommen anders machen. Es ist keine Zusammenfassung aller Bücher, sondern eine kleine Auswahl dessen, was mir selbst geholfen hat und was ich in meinen Workshops einsetze. Mit Übungen, Meditationen und Aufgaben, die du Schritt für Schritt wirklich umsetzt."
             },
             {
               "typ": "absatz",
               "text": "Keine Esoterik: Die Inhalte stützen sich auf Psychologie und Hirnforschung. Mir persönlich sind mein Glaube und meine Beziehung zu Gott, wie die Bibel ihn beschreibt, sehr wichtig. In Klarkommen habe ich diese Themen aber bewusst weggelassen. Nur am Ende gibt es ein Bonus-Kapitel dazu, das du lesen oder einfach überspringen kannst."
-            },
-            {
-              "typ": "absatz",
-              "text": "Wie du mich erreichst, findest du unter „[Über Klarkommen](#/ueber)“ ganz unten in der App."
             }
           ]
         }
@@ -86,48 +82,48 @@
               "icon": "brainfact"
             },
             {
-              "t": "Merkzettel",
-              "icon": "bulb"
-            },
-            {
               "t": "Mind-Hack",
               "icon": "mindhack"
             },
             {
               "t": "Mission Alltag",
               "icon": "mission"
+            },
+            {
+              "t": "Quellen",
+              "icon": "quellen"
             }
           ]
         },
         {
-          "typ": "absatz",
-          "text": "**==1.== Einstieg:** Oft startest du mit einem kleinen Experiment oder einer Aufgabe. Du erlebst etwas, bevor du es erklärt bekommst."
+          "typ": "station",
+          "icon": "einstieg",
+          "titel": "Einstieg",
+          "text": "Oft startest du mit einem kleinen Experiment oder einer Aufgabe. Du erlebst etwas, bevor du es erklärt bekommst."
         },
         {
-          "typ": "absatz",
-          "text": "**==2.== Brain Fact:** Was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe."
+          "typ": "station",
+          "icon": "brainfact",
+          "titel": "Brain Fact",
+          "text": "Was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe. Dazu gibt es einen Merkzettel mit den Kernpunkten und Bildern zum schnellen Nachschlagen."
         },
         {
-          "typ": "absatz",
-          "text": "**==3.== Merkzettel:** Die wichtigsten Punkte zum schnellen Nachschlagen, mit hilfreichen Illustrationen, die du auch während der Podcastwiedergabe ansehen kannst."
+          "typ": "station",
+          "icon": "mindhack",
+          "titel": "Mind-Hack",
+          "text": "Ein konkretes Werkzeug, das du sofort ausprobieren kannst."
         },
         {
-          "typ": "absatz",
-          "text": "**==4.== Mind-Hack:** Ein konkretes Werkzeug, das du sofort ausprobieren kannst."
+          "typ": "station",
+          "icon": "mission",
+          "titel": "Mission Alltag",
+          "text": "Deine Aufgabe, damit das Neue im Alltag ankommt. Mal eine Übung über mehrere Tage, mal etwas, das du gleich erledigst."
         },
         {
-          "typ": "absatz",
-          "text": "**==5.== Mission Alltag:** Deine Aufgabe für die nächsten Tage, damit das Neue im Alltag ankommt."
-        }
-      ]
-    },
-    {
-      "id": "merkzettel",
-      "titel": "Wofür der Merkzettel da ist",
-      "bloecke": [
-        {
-          "typ": "absatz",
-          "text": "Der Merkzettel ersetzt nicht Podcast oder Leseversion. Er hält nur das Wichtigste fest, damit du dich schnell wieder erinnerst. Zum Beispiel, wenn du schon in Kapitel 5 bist und nachschauen willst, was in Kapitel 1 die Kernpunkte waren. Den ganzen Zusammenhang bekommst du über Podcast oder Leseversion."
+          "typ": "station",
+          "icon": "quellen",
+          "titel": "Quellen",
+          "text": "Die Studien und Bücher hinter dem Kapitel, falls du tiefer einsteigen willst."
         }
       ]
     },
@@ -137,11 +133,11 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Du bestimmst das Tempo. Die Mission Alltag am Ende eines Kapitels ist meist auf etwa eine Woche angelegt, manche Aufgaben sind kürzer, und nicht jedes Kapitel hat eine feste Wochenaufgabe. Du kannst also ruhig schon im nächsten Kapitel weiterlesen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn nur durch Wiederholung kommt das Neue im Alltag an. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Es ist dein Programm, nicht meins."
+          "text": "Du bestimmst das Tempo. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn erst durch Wiederholung kommt das Neue im Alltag an."
         },
         {
           "typ": "absatz",
-          "text": "Nicht jedes Kapitel wirkt bei dir gleich stark. Das ist normal. Manches machst du vielleicht schon gut, anderes sitzt so tief, dass es mehr Zeit braucht. Bleib trotzdem dran. Klarkommen ist ein Werkzeugkoffer, auf den du immer wieder zurückgreifen kannst, je nachdem, was in deinem Leben gerade dran ist."
+          "text": "Nicht jedes Kapitel wirkt bei dir gleich stark. Das ist normal. Klarkommen ist ein Werkzeugkoffer, auf den du immer wieder zurückgreifen kannst."
         },
         {
           "typ": "absatz",
@@ -200,12 +196,7 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Ich freue mich über jede Rückmeldung: Was hat dir geholfen, was eher nicht? Ein Fehler aufgefallen oder hakt es technisch? Ein paar Worte reichen."
-        },
-        {
-          "typ": "feedback-wa",
-          "label": "Feedback per WhatsApp",
-          "text": "Feedback zu Klarkommen (Version {v}): "
+          "text": "Ich freue mich über jede Rückmeldung: Was hat dir geholfen, was eher nicht? Ein Fehler aufgefallen oder hakt es technisch? Feedback und Kontakt findest du jederzeit unter „[Über Klarkommen](#/ueber)“ ganz unten in der App."
         }
       ]
     },
