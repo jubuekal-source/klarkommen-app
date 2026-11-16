@@ -17,32 +17,6 @@
           "id": "gedanken-reframing",
           "titel": "Dein Körperexperiment",
           "text": ""
-        },
-        {
-          "typ": "ueberschrift",
-          "text": "Nochmal gezielt ausprobieren"
-        },
-        {
-          "typ": "experiment",
-          "id": "gedanken-reframing",
-          "anker": "zitrone",
-          "titel": "Zitronen-Experiment",
-          "text": "Kann ein reiner Gedanke deinen Körper steuern? Finde es heraus!"
-        },
-        {
-          "typ": "absatz",
-          "text": "**Zusammenfassung** Eine audio-geführte Visualisierung, die zeigt: Dein Gehirn reagiert auf eine intensive Vorstellung oft ähnlich wie auf die Realität. Der Effekt (Speichelfluss durch bloße Vorstellung) lässt sich bei vielen Menschen messen."
-        },
-        {
-          "typ": "experiment",
-          "id": "gedanken-reframing",
-          "anker": "luftballon",
-          "titel": "Luftballon-Experiment",
-          "text": "Deine Gedanken bewegen deinen Körper. Stell dich hin und erlebe es selbst."
-        },
-        {
-          "typ": "absatz",
-          "text": "**Zusammenfassung** Der ideomotorische Effekt: Allein durch Vorstellung hebt sich ein Arm und senkt sich der andere. Einfach nur durch Kopfkino. Das gleiche Prinzip, das bei Sorgen und Grübeln deinen ganzen Körper in den Stressmodus versetzt."
         }
       ],
       "lese": null
@@ -879,6 +853,11 @@
         {
           "typ": "quelle",
           "text": "**Fokus-Fallen / Reframing:** Kierkegaard-Zitat allgemein attribuiert; Vergleichsfalle basiert auf Festinger, L. (1954). Social Comparison Theory. Die Wirksamkeit kognitiver Umstrukturierung ist in der psychologischen Literatur breit belegt.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "**Gedanken-Klima-Check (Grübeln, Stress und Körper):** (1) Ottaviani, C., Thayer, J. F., Verkuil, B. et al. (2016). Physiological concomitants of perseverative cognition: A systematic review and meta-analysis. *Psychological Bulletin*, 142(3), 231–259. [https://doi.org/10.1037/bul0000036](https://doi.org/10.1037/bul0000036) → Grübeln und Sorgen gehen mit höherem Blutdruck, höherem Puls und niedrigerer Herzratenvariabilität einher. (2) Zoccola, P. M. & Dickerson, S. S. (2012). Assessing the relationship between rumination and cortisol: A review. *Journal of Psychosomatic Research*, 73(1), 1–9. [https://doi.org/10.1016/j.jpsychores.2012.03.007](https://doi.org/10.1016/j.jpsychores.2012.03.007) → Akutes Grübeln hängt durchgängig mit höherem Cortisol zusammen und kann die Stressreaktion verlängern; Befunde zum Cortisol-Grundspiegel sind uneinheitlich. (3) Segerstrom, S. C. & Miller, G. E. (2004). Psychological stress and the human immune system: A meta-analytic study of 30 years of inquiry. *Psychological Bulletin*, 130(4), 601–630. [https://doi.org/10.1037/0033-2909.130.4.601](https://doi.org/10.1037/0033-2909.130.4.601) → Rund 300 Studien: Chronischer Stress geht mit einer Unterdrückung zellulärer und humoraler Immunfunktionen einher. **Hinweis:** Die Grenzen 5 % und 20 % im Check sind ein didaktisches Hilfsmittel, kein Diagnoseinstrument.",
           "url": null
         }
       ],

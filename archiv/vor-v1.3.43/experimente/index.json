@@ -1,0 +1,106 @@
+{
+  "experimente": [
+    {
+      "id": "atem-anker",
+      "titel": "Atem-Anker",
+      "dateien": [
+        "experimente/atem-anker/index.html",
+        "experimente/atem-anker/478.jpg",
+        "experimente/atem-anker/sigh.jpg"
+      ],
+      "bytes": 474847,
+      "kapitel": 7,
+      "deeplinks": {
+        "sigh": "#sigh",
+        "478": "#478"
+      }
+    },
+    {
+      "id": "der-realitaets-check",
+      "titel": "Der Realitäts-Check",
+      "dateien": [
+        "experimente/der-realitaets-check/index.html",
+        "experimente/der-realitaets-check/beobachter.webp"
+      ],
+      "bytes": 44137,
+      "kapitel": 4,
+      "deeplinks": {}
+    },
+    {
+      "id": "farbensuche",
+      "titel": "Farbensuche",
+      "dateien": [
+        "experimente/farbensuche/index.html",
+        "experimente/farbensuche/Focus-Experiment_Farbensuche.jpeg",
+        "experimente/farbensuche/synclabmusic-funny-music-478625.mp3"
+      ],
+      "bytes": 800235,
+      "kapitel": 1,
+      "deeplinks": {}
+    },
+    {
+      "id": "focus",
+      "titel": "Das Reaktions-Experiment (Pizza/Gorilla)",
+      "dateien": [
+        "experimente/focus/index.html"
+      ],
+      "bytes": 39092,
+      "kapitel": 1,
+      "deeplinks": {}
+    },
+    {
+      "id": "gedanken-klima",
+      "titel": "Gedanken-Klima-Check",
+      "dateien": [
+        "experimente/gedanken-klima/index.html"
+      ],
+      "kapitel": 3,
+      "deeplinks": {},
+      "bytes": 38770
+    },
+    {
+      "id": "gedanken-reframing",
+      "titel": "Gedanken-Experiment (Zitrone & Luftballon)",
+      "dateien": [
+        "experimente/gedanken-reframing/index.html",
+        "experimente/gedanken-reframing/audio1-zitrone.mp3",
+        "experimente/gedanken-reframing/audio2-hantel.mp3"
+      ],
+      "bytes": 3936051,
+      "kapitel": 3,
+      "deeplinks": {
+        "zitrone": "#zitrone",
+        "luftballon": "#luftballon"
+      }
+    },
+    {
+      "id": "glaubenssatz-detektor",
+      "titel": "Glaubenssatz-Detektor",
+      "dateien": [
+        "experimente/glaubenssatz-detektor/index.html"
+      ],
+      "bytes": 102756,
+      "kapitel": 5,
+      "deeplinks": {
+        "sammlung": "#sammlung"
+      }
+    },
+    {
+      "id": "kausalkette",
+      "titel": "Der Kreislauf",
+      "dateien": [
+        "experimente/kausalkette/index.html",
+        "experimente/kausalkette/kette-stufe-0.webp",
+        "experimente/kausalkette/kette-stufe-1.webp",
+        "experimente/kausalkette/kette-stufe-2.webp",
+        "experimente/kausalkette/kette-stufe-3.webp",
+        "experimente/kausalkette/kette-stufe-4.webp",
+        "experimente/kausalkette/kette-stufe-5.webp",
+        "experimente/kausalkette/kette-tuersteher.webp"
+      ],
+      "bytes": 291116,
+      "kapitel": 3,
+      "deeplinks": {}
+    }
+  ]
+}
