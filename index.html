@@ -565,6 +565,10 @@ details.acc.hilfe{border-color:rgba(125,211,192,.3)}
 .ablauf .ab-nr img.rbi{width:26px;height:26px;display:block}
 .ablauf .ab-nr svg.i{width:20px;height:20px;color:var(--brand-accent-soft)}
 .ein-mehr{margin:10px 0 18px}
+.ein-mehr:not([open]){animation:einpuls 1.5s ease-in-out infinite}
+@keyframes einpuls{0%,14%,80%,100%{border-color:var(--brand-line);box-shadow:none}34%,60%{border-color:rgba(249,115,22,.45);box-shadow:0 0 0 3px rgba(249,115,22,.10)}}
+details.acc.hilfe .hzus{margin-top:22px;padding-top:16px;border-top:1px solid var(--brand-line)}
+details.acc.hilfe .hzus h3{margin:0 0 8px;font-size:1.02rem}
 .fb .card h2{font-size:1.12rem;line-height:1.3;hyphens:manual;-webkit-hyphens:manual}
 .fb .qn{color:var(--brand-accent-soft);margin-right:2px}
 .fopts{display:grid;gap:10px}
@@ -760,7 +764,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.40';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.41';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1497,8 +1501,11 @@ function tbHilfe(T, pfad){
   const kt = Array.isArray(H.kontakte) && H.kontakte.length ? H.kontakte.map(c=>hb('phone', c.label||'Anrufen', c.nummer||c.tel||'', 'tel:'+String(c.tel||c.nummer||'').replace(/[^\d+]/g,''), false, true)).join('')
     : (tel?hb('phone','Telefonseelsorge anrufen', tel, 'tel:'+tel.replace(/[^\d+]/g,''), false, true):'');
   const lk = H.link && H.link.url ? hb('ext', H.link.label||'Website', H.link.text||H.link.url, H.link.url, true, false) : '';
+  /* v1.3.41: H.zusatz {titel, bloecke, link} – eigener Abschnitt unter den Nummern (Einführung: Traumaberatung) */
+  const Z = H.zusatz;
+  const zs = Z ? `<div class="hzus">${Z.titel?`<h3>${esc(Z.titel)}</h3>`:''}<div class="bl">${blocks(Z.bloecke||[],{path:(pfad||'k07/hilfe')+'/zusatz'})}</div>${Z.link&&Z.link.url?`<div class="hbs">${hb('ext', Z.link.label||'Website', Z.link.text||Z.link.url, Z.link.url, true, false)}</div>`:''}</div>` : '';
   /* spec/05 C2: zugeklapptes Akkordeon, Telefonseelsorge im Titel */
-  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:pfad||'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}</div></details>`;
+  return `<details class="acc hilfe"><summary>${ic('heart')}<span>${esc(H.titel||'Wenn’s mehr ist: Telefonseelsorge & Hilfe')}</span>${ic('down','chv')}</summary><div class="acb"><div class="bl">${blocks(bl,{path:pfad||'k07/hilfe'})}</div>${(kt||lk)?`<div class="hbs">${kt}${lk}</div>`:''}${zs}</div></details>`;
 }
 /* Tool-Zeile (Listen) */
 function tbZeile(k, T, t, von){

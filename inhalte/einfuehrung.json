@@ -14,11 +14,11 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Klarkommen ist ein interaktives Programm für mehr Halt, Orientierung und mentale Stärke. Statt leerer Motivationssprüche bekommst du echte Werkzeuge aus Psychologie und Hirnforschung, verpackt in Erlebnisse, die hängen bleiben."
+          "text": "Klarkommen ist ein interaktives Programm für mehr Halt, Orientierung und mentale Stärke. Statt leerer Motivationssprüche bekommst du echte Werkzeuge aus Psychologie und Hirnforschung, verpackt in Erlebnisse und Übungen, die hängen bleiben."
         },
         {
           "typ": "absatz",
-          "text": "In 12 Kapiteln gehst du vier Etappen: Augen öffnen, Blockaden lösen, Klarheit aufbauen, Kurs setzen. Die Kapitel bauen aufeinander auf."
+          "text": "In 12 Kapiteln gehst du durch vier Etappen: Augen öffnen, Blockaden lösen, Klarheit aufbauen, Kurs setzen. Die Kapitel bauen aufeinander auf."
         }
       ]
     },
@@ -31,20 +31,24 @@
           "text": "Ich bin Marco. Seit vielen Jahren begleite ich junge Menschen dabei, sich persönlich weiterzuentwickeln: als Resilienzcoach, systemischer Teamcoach und Sozialpädagoge, in Workshops, erlebnispädagogischen Outdoor-Trainings und als Lehrbeauftragter an Dualen Hochschulen. Dabei spreche ich regelmäßig vor ganz unterschiedlichem Publikum: in Seminar- und Workshopgruppen, bei Firmenevents und Teambuildings, manchmal vor über 100 Menschen."
         },
         {
+          "typ": "absatz",
+          "text": "Das war nicht immer so. Bei meinem Beruf klingt das vielleicht seltsam, aber …"
+        },
+        {
           "typ": "weiterlesen",
           "label": "Meine Geschichte weiterlesen",
           "bloecke": [
             {
               "typ": "absatz",
-              "text": "Das war nicht immer so. Bei meinem Beruf klingt das vielleicht seltsam, aber ich hatte früher riesige Angst, vor anderen zu sprechen. Selbst wenn nur fünf Leute vor mir saßen. Ich erinnere mich noch genau, wie ich starkes Herzklopfen bekam, wenn ich in einer Sitzung nur ein paar Worte sagen sollte. Klar denken oder frei sprechen? Keine Chance. Das hat mich unglaublich eingeschränkt und frustriert. Trotzdem war es für mich normal. Meine Überzeugung war: Manche können das, andere eben nicht. Also habe ich solche Situationen einfach gemieden."
+              "text": "… ich hatte früher riesige Angst, vor anderen zu sprechen. Selbst wenn nur fünf Leute vor mir saßen. Ich erinnere mich noch genau, wie ich starkes Herzklopfen bekam, wenn ich in einer Sitzung nur ein paar Worte sagen sollte. Klar denken oder frei sprechen? Keine Chance. Das hat mich unglaublich eingeschränkt und frustriert. Trotzdem war es für mich normal. Meine Überzeugung war: Manche können das, andere eben nicht. Also habe ich solche Situationen einfach gemieden."
             },
             {
               "typ": "absatz",
-              "text": "Ehrlich gesagt habe ich mich früher auch sonst ab und zu ziemlich lost gefühlt. Es fiel mir schwer, zu mir selbst zu stehen, große Entscheidungen zu treffen oder klare Ziele für mein Leben zu finden. Das war mir nicht immer bewusst. Aber vieles in meinem Leben fühlte sich stressig und eng an."
+              "text": "Ehrlich gesagt habe ich mich früher auch sonst ab und zu ziemlich lost gefühlt. Zu mir selbst zu stehen, große Entscheidungen zu treffen, klare Ziele für mein Leben zu finden: All das fiel mir schwer. Und das hatte Folgen. Beziehungen sind schmerzhaft zerbrochen, ich habe Assessment-Center verpatzt und berufliche Chancen vertan, dazu kamen chronische Magenbeschwerden. Vieles fühlte sich stressig und eng an. Dass das alles mit meinem inneren Zustand zusammenhing, war mir damals überhaupt nicht klar."
             },
             {
               "typ": "absatz",
-              "text": "Vielleicht verstehe ich deshalb Menschen so gut, die mit ähnlichen Herausforderungen oder mit Ängsten kämpfen. Und vielleicht liegen sie mir deshalb so sehr am Herzen. Ich weiß, wie es sich anfühlt, „Gefangener“ der eigenen einschränkenden Gefühle zu sein. Und ich durfte inzwischen den Weg in mehr Freiheit und Leichtigkeit finden."
+              "text": "Vielleicht liegen mir deshalb Menschen so sehr am Herzen, die mit ähnlichen Herausforderungen oder mit Ängsten kämpfen. Ich weiß, wie es sich anfühlt, „Gefangener“ der eigenen einschränkenden Gefühle zu sein. Inzwischen durfte ich den Weg in mehr Freiheit und Leichtigkeit finden. Sogar meine chronischen Magenbeschwerden sind weg, ganz ohne Medikamente."
             },
             {
               "typ": "absatz",
@@ -56,7 +60,7 @@
             },
             {
               "typ": "absatz",
-              "text": "Genau das soll Klarkommen anders machen. Es ist keine Zusammenfassung aller Bücher, sondern eine kleine Auswahl dessen, was mir selbst geholfen hat und was ich in meinen Workshops einsetze. Mit Übungen, Meditationen und Aufgaben, die du Schritt für Schritt wirklich umsetzt."
+              "text": "Genau das soll Klarkommen anders machen. Es ist keine Zusammenfassung aller Bücher, sondern eine gezielte Auswahl dessen, was mir selbst geholfen hat und was ich heute in meinen Workshops einsetze. Mit Übungen, Meditationen und Aufgaben, die du Schritt für Schritt wirklich umsetzt."
             },
             {
               "typ": "absatz",
@@ -105,7 +109,7 @@
           "typ": "station",
           "icon": "brainfact",
           "titel": "Brain-Fact",
-          "text": "Was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe. Dazu gibt es einen Merkzettel mit den Kernpunkten und Bildern zum schnellen Nachschlagen."
+          "text": "Erklärt die Fakten dahinter und was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe. Dazu gibt es einen Merkzettel mit den Kernpunkten und Bildern zum schnellen Nachschlagen."
         },
         {
           "typ": "station",
@@ -133,25 +137,25 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Du bestimmst das Tempo. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn erst durch Wiederholung kommt das Neue im Alltag an."
+          "text": "Du bestimmst das Tempo. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, kannst du auch springen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn erst durch Wiederholung kommt das Neue im Alltag an."
         },
         {
           "typ": "absatz",
-          "text": "Nicht jedes Kapitel wirkt bei dir gleich stark. Das ist normal. Klarkommen ist ein Werkzeugkoffer, auf den du immer wieder zurückgreifen kannst."
+          "text": "Nicht jedes Kapitel wirkt gleich stark. Das ist normal. Klarkommen ist ein Werkzeugkoffer, auf den du immer wieder zurückgreifen kannst."
         },
         {
           "typ": "absatz",
-          "text": "Tipp: Für Podcasts und Meditationen helfen Kopfhörer oder ein ruhiger Ort. Die Entspannungsübungen aus Kapitel 7 „Dein sicherer Ort“ kannst du jederzeit nutzen, egal wo du gerade stehst."
+          "text": "Tipp: Für Podcasts und Meditationen helfen Kopfhörer oder ein ruhiger Ort. Die Entspannungsübungen aus Kapitel 7 kannst du jederzeit nutzen, egal bei welchem Kapitel du gerade bist."
         }
       ]
     },
     {
       "id": "podcast",
-      "titel": "Zum Podcast",
+      "titel": "Zum Podcast und zu den Bildern",
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Im Podcast spricht Alex mit wechselnden Expert:innen über genau die Fragen, die du dir eventuell auch stellst. Alex und die Gäste sind erfunden, ihre Stimmen sind KI-erzeugt. Die Inhalte beruhen auf wissenschaftlichen Erkenntnissen."
+          "text": "Im Podcast spricht Alex mit wechselnden Expert:innen über Fragen, die du dir vielleicht auch stellst. Alex und die Gäste sind erfunden, ihre Stimmen sind KI-erzeugt. Die Inhalte sind echt: Sie beruhen auf wissenschaftlichen Erkenntnissen und auf meinen eigenen Erfahrungen. Auch die Illustrationen in Klarkommen sind mit KI erstellt."
         }
       ]
     },
@@ -167,9 +171,9 @@
           "typ": "liste",
           "geordnet": false,
           "punkte": [
-            "Einige Kapitel sind noch nicht fertig gegengeprüft und können sich noch verändern.",
-            "Die Podcasts überarbeite ich noch. Manche passen nicht mehr ganz zum aktuellen Text, und an einzelnen Stellen steckt noch ein Fehler drin. Im Zweifel gilt die Leseversion.",
-            "Auch einige Bilder werden noch ausgetauscht.",
+            "Manche Kapitel sind noch nicht ganz fertig gestaltet und können sich noch verändern.",
+            "Auch manche Podcasts überarbeite ich noch. Inhaltlich stimmen sie, an einzelnen Stellen weichen sie aber noch leicht von der Leseversion ab. Im Zweifel gilt die Leseversion.",
+            "Auch einige Bilder werden noch ausgetauscht oder kommen neu dazu.",
             "Neue Inhalte kommen automatisch, wenn du Klarkommen mit Internet öffnest. Siehst du trotzdem noch die alte Version? Schließ die App ganz und öffne sie neu oder zieh die Seite nach unten. Mehr dazu findest du in den Einstellungen unter [„Anleitungen“ › „App aktualisieren“](#/einstellungen/anl-update).",
             "Im Moment ist Klarkommen kostenlos und begleitet meine Workshops und die Testphase. Das öffentliche Hosting kann ich für ungefähr ein Jahr zusagen. Wenn du Klarkommen auch danach nutzen willst, [schreib mir kurz](#/ueber). Ich setze dich auf eine Liste, und falls die App umzieht oder nicht mehr öffentlich erreichbar ist, bekommst du kostenlos einen neuen Zugang."
           ]
@@ -190,7 +194,11 @@
             },
             {
               "typ": "absatz",
-              "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da, auch per Chat oder Mail. **Im Notfall: 112.**"
+              "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** der evangelischen und katholischen Kirche ist rund um die Uhr, anonym und kostenlos für dich da, unter 0800 111 0 111 oder 0800 111 0 222, auch per Chat oder Mail. Für Kinder und Jugendliche gibt es die Nummer gegen Kummer: 116 111 (Mo–Sa 14–20 Uhr)."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Im Notfall: 112.**"
             },
             {
               "typ": "absatz",
@@ -223,6 +231,20 @@
             "label": "Chat & Mail",
             "text": "telefonseelsorge.de",
             "url": "https://www.telefonseelsorge.de"
+          },
+          "zusatz": {
+            "titel": "Traumaberatung für Frauen",
+            "bloecke": [
+              {
+                "typ": "absatz",
+                "text": "Ganz transparent: Sophia Schuster ist meine Frau. Sie ist zertifizierte Traumapädagogin und traumazentrierte Fachberaterin und begleitet vor allem Frauen mit belastenden Erfahrungen. Viele kommen zu ihr, weil sie sonst lange auf einen Therapieplatz warten müssten. Ihre Beratung ist keine Therapie und wird selbst bezahlt. Ein erstes Infogespräch (15 Minuten) ist kostenlos."
+              }
+            ],
+            "link": {
+              "label": "Zur Website: kostenloses Infogespräch vereinbaren",
+              "text": "sophiaschuster.de",
+              "url": "https://www.sophiaschuster.de/"
+            }
           }
         }
       ]

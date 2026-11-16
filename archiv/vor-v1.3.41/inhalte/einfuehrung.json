@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "id": "einfuehrung",
+  "karte": {
+    "titel": "Bevor du startest: So funktioniert Klarkommen",
+    "unterzeile": "5 Minuten, die dir den Weg zeigen"
+  },
+  "titel": "Herzlich willkommen – so funktioniert Klarkommen",
+  "einleitung": "Schön, dass du da bist. Hier erfährst du in ein paar Minuten, wie Klarkommen funktioniert und wie du am meisten davon hast.",
+  "abschnitte": [
+    {
+      "id": "worum",
+      "titel": "Worum es geht",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Klarkommen ist ein interaktives Programm für mehr Halt, Orientierung und mentale Stärke. Statt leerer Motivationssprüche bekommst du echte Werkzeuge aus Psychologie und Hirnforschung, verpackt in Erlebnisse, die hängen bleiben."
+        },
+        {
+          "typ": "absatz",
+          "text": "In 12 Kapiteln gehst du vier Etappen: Augen öffnen, Blockaden lösen, Klarheit aufbauen, Kurs setzen. Die Kapitel bauen aufeinander auf."
+        }
+      ]
+    },
+    {
+      "id": "warum",
+      "titel": "Warum ich Klarkommen gebaut habe",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Ich bin Marco. Seit vielen Jahren begleite ich junge Menschen dabei, sich persönlich weiterzuentwickeln: als Resilienzcoach, systemischer Teamcoach und Sozialpädagoge, in Workshops, erlebnispädagogischen Outdoor-Trainings und als Lehrbeauftragter an Dualen Hochschulen. Dabei spreche ich regelmäßig vor ganz unterschiedlichem Publikum: in Seminar- und Workshopgruppen, bei Firmenevents und Teambuildings, manchmal vor über 100 Menschen."
+        },
+        {
+          "typ": "weiterlesen",
+          "label": "Meine Geschichte weiterlesen",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Das war nicht immer so. Bei meinem Beruf klingt das vielleicht seltsam, aber ich hatte früher riesige Angst, vor anderen zu sprechen. Selbst wenn nur fünf Leute vor mir saßen. Ich erinnere mich noch genau, wie ich starkes Herzklopfen bekam, wenn ich in einer Sitzung nur ein paar Worte sagen sollte. Klar denken oder frei sprechen? Keine Chance. Das hat mich unglaublich eingeschränkt und frustriert. Trotzdem war es für mich normal. Meine Überzeugung war: Manche können das, andere eben nicht. Also habe ich solche Situationen einfach gemieden."
+            },
+            {
+              "typ": "absatz",
+              "text": "Ehrlich gesagt habe ich mich früher auch sonst ab und zu ziemlich lost gefühlt. Es fiel mir schwer, zu mir selbst zu stehen, große Entscheidungen zu treffen oder klare Ziele für mein Leben zu finden. Das war mir nicht immer bewusst. Aber vieles in meinem Leben fühlte sich stressig und eng an."
+            },
+            {
+              "typ": "absatz",
+              "text": "Vielleicht verstehe ich deshalb Menschen so gut, die mit ähnlichen Herausforderungen oder mit Ängsten kämpfen. Und vielleicht liegen sie mir deshalb so sehr am Herzen. Ich weiß, wie es sich anfühlt, „Gefangener“ der eigenen einschränkenden Gefühle zu sein. Und ich durfte inzwischen den Weg in mehr Freiheit und Leichtigkeit finden."
+            },
+            {
+              "typ": "absatz",
+              "text": "Wie? Mit Hunderten Stunden Büchern, Podcasts und Vorträgen zu Psychologie, NLP, Hirnforschung und Persönlichkeitsentwicklung. Und mit ziemlich viel Ausprobieren und einfach Machen."
+            },
+            {
+              "typ": "absatz",
+              "text": "Bevor du jetzt denkst „Der spinnt doch“: Das allein hat mich nicht weitergebracht. Viele Bücher haben richtig starken Inhalt, manches war echt mindblowing. Aber am Ende blieb oft eine immer längere To-do-Liste mit Themen, die ich mir genauer anschauen und umsetzen wollte. Die Hürde zur echten Umsetzung war riesig. Ich stand mit dem Wissen und einem Gefühl der Überforderung allein da. Ich wusste, warum etwas wichtig ist, aber nicht, wie ich es morgen konkret mache. Heutzutage könntest du dir Millionen Podcasts anhören oder jede Frage einer KI stellen. Das Problem bleibt dasselbe: Wissen allein verändert nichts."
+            },
+            {
+              "typ": "absatz",
+              "text": "Genau das soll Klarkommen anders machen. Es ist keine Zusammenfassung aller Bücher, sondern eine kleine Auswahl dessen, was mir selbst geholfen hat und was ich in meinen Workshops einsetze. Mit Übungen, Meditationen und Aufgaben, die du Schritt für Schritt wirklich umsetzt."
+            },
+            {
+              "typ": "absatz",
+              "text": "Keine Esoterik: Die Inhalte stützen sich auf Psychologie und Hirnforschung. Mir persönlich sind mein Glaube und meine Beziehung zu Gott, wie die Bibel ihn beschreibt, sehr wichtig. In Klarkommen habe ich diese Themen aber bewusst weggelassen. Nur am Ende gibt es ein Bonus-Kapitel dazu, das du lesen oder einfach überspringen kannst."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kapitel",
+      "titel": "So funktioniert ein Kapitel",
+      "bloecke": [
+        {
+          "typ": "ablauf",
+          "stationen": [
+            {
+              "t": "Einstieg",
+              "icon": "einstieg"
+            },
+            {
+              "t": "Brain-Fact",
+              "icon": "brainfact"
+            },
+            {
+              "t": "Mind-Hack",
+              "icon": "mindhack"
+            },
+            {
+              "t": "Mission Alltag",
+              "icon": "mission"
+            },
+            {
+              "t": "Quellen",
+              "icon": "quellen"
+            }
+          ]
+        },
+        {
+          "typ": "station",
+          "icon": "einstieg",
+          "titel": "Einstieg",
+          "text": "Oft startest du mit einem kleinen Experiment oder einer Aufgabe. Du erlebst etwas, bevor du es erklärt bekommst."
+        },
+        {
+          "typ": "station",
+          "icon": "brainfact",
+          "titel": "Brain-Fact",
+          "text": "Was dabei in deinem Kopf passiert. Hör den Podcast oder wähle die Leseversion, beide erzählen dasselbe. Dazu gibt es einen Merkzettel mit den Kernpunkten und Bildern zum schnellen Nachschlagen."
+        },
+        {
+          "typ": "station",
+          "icon": "mindhack",
+          "titel": "Mind-Hack",
+          "text": "Ein konkretes Werkzeug, das du sofort ausprobieren kannst."
+        },
+        {
+          "typ": "station",
+          "icon": "mission",
+          "titel": "Mission Alltag",
+          "text": "Deine Aufgabe, damit das Neue im Alltag ankommt. Mal eine Übung über mehrere Tage, mal etwas, das du gleich erledigst."
+        },
+        {
+          "typ": "station",
+          "icon": "quellen",
+          "titel": "Quellen",
+          "text": "Die Studien und Bücher hinter dem Kapitel, falls du tiefer einsteigen willst."
+        }
+      ]
+    },
+    {
+      "id": "tempo",
+      "titel": "Dein Tempo",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Du bestimmst das Tempo. Am meisten bringt es, der Reihe nach vorzugehen. Wenn dich ein Thema gerade mehr zieht, darfst du auch springen. Wichtig ist nur: Zieh die Übungen wirklich durch, denn erst durch Wiederholung kommt das Neue im Alltag an."
+        },
+        {
+          "typ": "absatz",
+          "text": "Nicht jedes Kapitel wirkt bei dir gleich stark. Das ist normal. Klarkommen ist ein Werkzeugkoffer, auf den du immer wieder zurückgreifen kannst."
+        },
+        {
+          "typ": "absatz",
+          "text": "Tipp: Für Podcasts und Meditationen helfen Kopfhörer oder ein ruhiger Ort. Die Entspannungsübungen aus Kapitel 7 „Dein sicherer Ort“ kannst du jederzeit nutzen, egal wo du gerade stehst."
+        }
+      ]
+    },
+    {
+      "id": "podcast",
+      "titel": "Zum Podcast",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Im Podcast spricht Alex mit wechselnden Expert:innen über genau die Fragen, die du dir eventuell auch stellst. Alex und die Gäste sind erfunden, ihre Stimmen sind KI-erzeugt. Die Inhalte beruhen auf wissenschaftlichen Erkenntnissen."
+        }
+      ]
+    },
+    {
+      "id": "bau",
+      "titel": "Gut zu wissen: Klarkommen ist noch im Bau",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Klarkommen entsteht gerade, und du bist früh dabei. Deshalb ist noch nicht alles perfekt:"
+        },
+        {
+          "typ": "liste",
+          "geordnet": false,
+          "punkte": [
+            "Einige Kapitel sind noch nicht fertig gegengeprüft und können sich noch verändern.",
+            "Die Podcasts überarbeite ich noch. Manche passen nicht mehr ganz zum aktuellen Text, und an einzelnen Stellen steckt noch ein Fehler drin. Im Zweifel gilt die Leseversion.",
+            "Auch einige Bilder werden noch ausgetauscht.",
+            "Neue Inhalte kommen automatisch, wenn du Klarkommen mit Internet öffnest. Siehst du trotzdem noch die alte Version? Schließ die App ganz und öffne sie neu oder zieh die Seite nach unten. Mehr dazu findest du in den Einstellungen unter [„Anleitungen“ › „App aktualisieren“](#/einstellungen/anl-update).",
+            "Im Moment ist Klarkommen kostenlos und begleitet meine Workshops und die Testphase. Das öffentliche Hosting kann ich für ungefähr ein Jahr zusagen. Wenn du Klarkommen auch danach nutzen willst, [schreib mir kurz](#/ueber). Ich setze dich auf eine Liste, und falls die App umzieht oder nicht mehr öffentlich erreichbar ist, bekommst du kostenlos einen neuen Zugang."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wichtig",
+      "titel": "",
+      "bloecke": [
+        {
+          "typ": "hilfe",
+          "titel": "Keine Therapie: Wenn es dir richtig schlecht geht",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Klarkommen ist keine Therapie und ersetzt keine professionelle Hilfe. Alle Inhalte sind nach bestem Wissen erstellt, trotzdem können Fehler passieren."
+            },
+            {
+              "typ": "absatz",
+              "text": "Geht es dir gerade wirklich nicht gut? Sprich mit jemandem, dem du vertraust. Die **Telefonseelsorge** ist rund um die Uhr und kostenlos für dich da, auch per Chat oder Mail. **Im Notfall: 112.**"
+            },
+            {
+              "typ": "absatz",
+              "text": "Begleiten dich Ängste oder Druck dauerhaft, hol dir professionelle Unterstützung, zum Beispiel bei deiner Hausärztin, deinem Hausarzt oder einer psychologischen Beratungsstelle. Stärke zeigt sich auch darin, sich Unterstützung zu holen."
+            }
+          ],
+          "kontakte": [
+            {
+              "label": "Telefonseelsorge",
+              "nummer": "0800 111 0 111",
+              "tel": "08001110111"
+            },
+            {
+              "label": "Telefonseelsorge",
+              "nummer": "0800 111 0 222",
+              "tel": "08001110222"
+            },
+            {
+              "label": "Nummer gegen Kummer · Mo–Sa 14–20 Uhr",
+              "nummer": "116 111",
+              "tel": "116111"
+            },
+            {
+              "label": "Im Notfall",
+              "nummer": "112",
+              "tel": "112"
+            }
+          ],
+          "link": {
+            "label": "Chat & Mail",
+            "text": "telefonseelsorge.de",
+            "url": "https://www.telefonseelsorge.de"
+          }
+        }
+      ]
+    },
+    {
+      "id": "rueckmeldung",
+      "titel": "Deine Rückmeldung",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Ich freue mich über jede Rückmeldung: Was hat dir geholfen, was eher nicht? Ein Fehler aufgefallen oder hakt es technisch? Feedback und Kontakt findest du jederzeit unter „[Über Klarkommen](#/ueber)“ ganz unten in der App."
+        }
+      ]
+    },
+    {
+      "id": "losgehts",
+      "titel": "Los geht’s",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Du bist hier, weil du etwas verändern willst. Das ist schon der wichtigste Schritt. Alles Weitere ist Werkzeug, und das liegt jetzt vor dir. Starte mit [Kapitel 1: Fokus](#/k/01)."
+        }
+      ]
+    }
+  ]
+}
