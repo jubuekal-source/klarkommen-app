@@ -49,20 +49,28 @@
       "deeplinks": {}
     },
     {
+      "id": "gedanken-klima",
+      "titel": "Gedanken-Klima-Check",
+      "dateien": [
+        "experimente/gedanken-klima/index.html"
+      ],
+      "kapitel": 3,
+      "deeplinks": {},
+      "bytes": 38770
+    },
+    {
       "id": "gedanken-reframing",
-      "titel": "Gedanken-Experiment (Körperexperiment & Klima-Check)",
+      "titel": "Gedanken-Experiment (Zitrone & Luftballon)",
       "dateien": [
         "experimente/gedanken-reframing/index.html",
-        "experimente/gedanken-reframing/Abwaertsspirale-Wirbelwind.png",
         "experimente/gedanken-reframing/audio1-zitrone.mp3",
         "experimente/gedanken-reframing/audio2-hantel.mp3"
       ],
-      "bytes": 4125204,
+      "bytes": 3936051,
       "kapitel": 3,
       "deeplinks": {
         "zitrone": "#zitrone",
-        "luftballon": "#luftballon",
-        "klima": "#klima"
+        "luftballon": "#luftballon"
       }
     },
     {

@@ -23,19 +23,26 @@
           "text": "Nochmal gezielt ausprobieren"
         },
         {
-          "typ": "ueberschrift",
-          "text": "Gedanken-Klima-Check"
+          "typ": "experiment",
+          "id": "gedanken-reframing",
+          "anker": "zitrone",
+          "titel": "Zitronen-Experiment",
+          "text": "Kann ein reiner Gedanke deinen Körper steuern? Finde es heraus!"
+        },
+        {
+          "typ": "absatz",
+          "text": "**Zusammenfassung** Eine audio-geführte Visualisierung, die zeigt: Dein Gehirn reagiert auf eine intensive Vorstellung oft ähnlich wie auf die Realität. Der Effekt (Speichelfluss durch bloße Vorstellung) lässt sich bei vielen Menschen messen."
         },
         {
           "typ": "experiment",
           "id": "gedanken-reframing",
-          "anker": "klima",
-          "titel": "Gedanken-Klima-Check",
-          "text": "Wie viel deiner wachen Lebenszeit verbringst du wirklich im Stressmodus? Die Antwort wird dich überraschen."
+          "anker": "luftballon",
+          "titel": "Luftballon-Experiment",
+          "text": "Deine Gedanken bewegen deinen Körper. Stell dich hin und erlebe es selbst."
         },
         {
           "typ": "absatz",
-          "text": "**Zusammenfassung** Berechnet, wie viele Stunden, Tage und Jahre deiner Lebenszeit in negativen Gedanken und Stress-Content fließen — und macht das Ergebnis visuell greifbar."
+          "text": "**Zusammenfassung** Der ideomotorische Effekt: Allein durch Vorstellung hebt sich ein Arm und senkt sich der andere. Einfach nur durch Kopfkino. Das gleiche Prinzip, das bei Sorgen und Grübeln deinen ganzen Körper in den Stressmodus versetzt."
         }
       ],
       "lese": null
@@ -659,6 +666,14 @@
           "text": "Keine neue Übung. Stattdessen: eine Woche bewusste Sensibilisierung. Du weißt jetzt, wie mächtig deine Gedanken sind. Jetzt geht es darum, das im Alltag wirklich zu spüren."
         },
         {
+          "typ": "experiment",
+          "id": "gedanken-klima",
+          "expTyp": "werkzeug",
+          "start": "Klima-Check starten",
+          "titel": "Zuerst: Dein Gedanken-Klima-Check",
+          "text": "Wie viel deiner wachen Zeit fließt in Grübeln und in Inhalte, die dich stressen? Schieb zwei Regler und sieh, was daraus in 1, 5 oder 10 Jahren wird. Dauert ca. 3 Minuten."
+        },
+        {
           "typ": "akkordeon",
           "titel": "Medien-Audit (einmalig)",
           "bloecke": [
@@ -672,7 +687,7 @@
               "punkte": [
                 "Was ist das Erste, das du morgens auf deinem Handy siehst?",
                 "Was ist das Letzte, das du abends vor dem Einschlafen konsumierst?",
-                "Wie viel Zeit verbringst du täglich mit Nachrichten, Social Media und Serien?",
+                "Wie viel Zeit verbringst du täglich mit Nachrichten, Social Media und Serien, und wie viel davon tut dir gut?",
                 "Wie fühlst du dich typischerweise *nach* 30 Minuten Scrollen?",
                 "Wer schreibt gerade an deiner Gästeliste mit, um 23 Uhr?"
               ]
