@@ -1,0 +1,263 @@
+<!-- Einstiegs-Experiment „3 Sekunden, 5 Sätze“ (Klarkommen, Kapitel 5 – Einstieg)
+  v1.3.44 (16.11.2026): neu. Texte 1:1 aus Notion T05 (Sammeleintrag App-Bau, Endfassung Einstieg, Stand 14./16.11.2026).
+  Ablauf: Intro → 5 Satzanfänge (je ein Screen, keine Eingabe, 3-Sekunden-Ring als Impuls) → Auflösung → schnellsten Satz anhaken + freiwillig ergänzen.
+  Tempo: „In meinem Tempo“ (Standard, Weiter per Tipp) oder „Mit Timer“ (nach 3 s sanfter Wechsel, Zurück bleibt aktiv).
+  Speicher (nur auf dem Gerät): kk_k05_einstieg_notiz; zusätzlich ein Eintrag in „Meine Glaubenssätze“ des Detektors (kk_glaubenssaetze_v1, feste id g-einstieg-k05, Status Aufgespürt).
+-->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="dark">
+<title>3 Sekunden, 5 Sätze | Klarkommen</title>
+<link rel="stylesheet" href="../../fonts/fonts.css">
+<style>
+:root{color-scheme:dark;--bg-deep:#0f1923;--bg-card:#162230;--bg-input:#1c2e40;--accent:#f97316;--accent-soft:#fb923c;--accent-glow:rgba(249,115,22,.25);--healthy:#7dd3c0;--text-primary:#f1f5f9;--text-secondary:#94a3b8;--text-muted:#7b8aa0;--border:rgba(148,163,184,.18);--radius:16px;--kk-h:calc(44px + env(safe-area-inset-top,0px))}
+*{margin:0;padding:0;box-sizing:border-box}
+html{padding-top:var(--kk-h)}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg-deep);color:var(--text-primary);min-height:calc(100dvh - var(--kk-h));overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+#kk-bar{position:fixed;top:0;left:0;right:0;z-index:2147483000;height:var(--kk-h);padding:env(safe-area-inset-top,0px) 8px 0;display:flex;align-items:center;background:#0f1923;border-bottom:1px solid rgba(241,245,249,.12)}
+#kk-bar button{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 12px;color:#f1f5f9;font:600 15px/1 'DM Sans',system-ui,sans-serif}
+#kk-bar button:hover,#kk-bar button:focus-visible{color:var(--accent)}
+#kk-bar button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:8px}
+main{max-width:520px;margin:0 auto;padding:18px 18px 40px}
+.screen{display:none;min-height:calc(100dvh - var(--kk-h) - 58px);flex-direction:column}
+.screen.on{display:flex;animation:ein .35s ease}
+@keyframes ein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.5rem,6vw,1.9rem);letter-spacing:-.02em;line-height:1.2;margin:6px 0 14px;background:linear-gradient(135deg,var(--text-primary),var(--accent-soft));-webkit-background-clip:text;background-clip:text;color:transparent}
+p{color:var(--text-secondary);font-size:1.02rem;line-height:1.65;margin-bottom:.9rem}
+p strong{color:var(--text-primary)}
+figure{margin:.4rem 0 1.1rem}
+figure img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--border)}
+.btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;min-height:52px;padding:.9rem 1.4rem;border:2px solid var(--accent);border-radius:14px;background:rgba(249,115,22,.12);color:var(--text-primary);font:700 1.05rem 'Space Grotesk',sans-serif;cursor:pointer}
+.btn:active{background:rgba(249,115,22,.22)}
+.btn:focus-visible,.lnk:focus-visible,.seg button:focus-visible,.wahl label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.lnk{background:none;border:none;color:var(--text-muted);font:500 .92rem 'DM Sans',sans-serif;min-height:44px;padding:0 10px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.lnk:hover{color:var(--text-secondary)}
+.unten{margin-top:auto;padding-top:18px;display:flex;flex-direction:column;gap:6px}
+.zeile{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+/* Tempo-Schalter */
+.seg{display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:3px;margin-bottom:14px}
+.seg button{flex:1;min-height:40px;border:0;border-radius:9px;background:none;color:var(--text-secondary);font:600 .9rem 'DM Sans',sans-serif;cursor:pointer}
+.seg button[aria-pressed="true"]{background:rgba(249,115,22,.16);color:var(--text-primary);box-shadow:inset 0 0 0 1px rgba(249,115,22,.5)}
+/* Satz-Screens */
+.kopf{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+.zurueck{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:4px;min-height:44px;min-width:44px;color:var(--text-secondary);font:600 .92rem 'DM Sans',sans-serif}
+.zurueck[disabled]{opacity:.3;cursor:default}
+.zurueck:focus-visible{outline:2px solid var(--accent);border-radius:8px}
+.zaehler{color:var(--text-muted);font-size:.85rem;letter-spacing:.06em}
+.satzwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:10px 0;cursor:pointer}
+.ring{position:relative;width:96px;height:96px;margin-bottom:26px}
+.ring svg{width:96px;height:96px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5}
+.ring .bg{stroke:rgba(249,115,22,.15)}
+.ring .fg{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:264;stroke-dashoffset:264}
+.ring.lauf .fg{animation:ring 3s linear forwards}
+@keyframes ring{to{stroke-dashoffset:0}}
+.ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 1.5rem 'Space Grotesk',sans-serif;color:var(--accent)}
+.satz{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.55rem,7vw,2.1rem);line-height:1.3;color:var(--text-primary);max-width:20ch}
+.impuls{margin-top:18px;color:var(--text-secondary);font-size:.98rem}
+.hinweis{margin-top:8px;color:var(--text-muted);font-size:.88rem}
+/* Auflösung */
+.fuss{margin-top:6px;font-size:.8rem;line-height:1.55;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px}
+.karte{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:8px 0 14px}
+.karte h2{font:700 1.05rem 'Space Grotesk',sans-serif;margin-bottom:8px;color:var(--text-primary)}
+.wahl{list-style:none;display:flex;flex-direction:column;gap:8px;margin:10px 0 12px}
+.wahl label{display:flex;align-items:center;gap:12px;min-height:48px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--bg-input);cursor:pointer;color:var(--text-primary);font-size:1rem;line-height:1.35}
+.wahl input{position:absolute;opacity:0;width:1px;height:1px}
+.haken{flex:0 0 24px;width:24px;height:24px;border-radius:7px;border:2px solid rgba(148,163,184,.5);display:flex;align-items:center;justify-content:center}
+.haken svg{width:16px;height:16px;opacity:0}
+.wahl input:checked+.haken{border-color:var(--healthy);background:rgba(125,211,192,.15)}
+.wahl input:checked+.haken svg{opacity:1}
+.wahl input:checked~.txt{color:var(--healthy)}
+.ergaenz{display:none;margin-top:4px}
+.ergaenz.on{display:block}
+.ergaenz label{display:block;font-size:.92rem;color:var(--text-secondary);margin-bottom:6px}
+textarea{width:100%;min-height:84px;resize:vertical;padding:12px;border-radius:12px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font:1rem/1.5 'DM Sans',sans-serif}
+textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
+.privat{font-size:.86rem;color:var(--text-muted);margin:8px 0 0}
+.gespeichert{font-size:.86rem;color:var(--healthy);min-height:1.2em;margin-top:4px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (prefers-reduced-motion:reduce){.screen.on{animation:none}.ring.lauf .fg{animation:none;stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<div id="kk-bar"><button type="button" id="kk-back" aria-label="Zurück zur App"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück zur App</button></div>
+<div id="live" class="sr" aria-live="polite"></div>
+<main>
+  <!-- Intro -->
+  <section class="screen on" id="s-intro" aria-labelledby="t-intro">
+    <h1 id="t-intro">3 Sekunden, 5 Sätze</h1>
+    <p>Gleich siehst du fünf Satzanfänge. Ergänze jeden in Gedanken. Nicht nachdenken, nicht schön formulieren. Nimm das Erste, was kommt. Auch wenn es dir komisch vorkommt.</p>
+    <div class="unten">
+      <div class="seg" role="group" aria-label="Tempo">
+        <button type="button" data-tempo="eigen" aria-pressed="true">In meinem Tempo</button>
+        <button type="button" data-tempo="timer" aria-pressed="false">Mit Timer</button>
+      </div>
+      <button type="button" class="btn" id="b-start">Los geht’s</button>
+    </div>
+  </section>
+
+  <!-- Satz-Screen (ein Element, Inhalt wechselt) -->
+  <section class="screen" id="s-satz" aria-labelledby="satz">
+    <div class="kopf">
+      <button type="button" class="zurueck" id="b-zurueck" aria-label="Vorheriger Satz"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>Zurück</button>
+      <span class="zaehler" id="zaehler">1 / 5</span>
+    </div>
+    <div class="satzwrap" id="satzwrap">
+      <div class="ring" id="ring" aria-hidden="true"><svg viewBox="0 0 96 96"><circle class="bg" cx="48" cy="48" r="42"/><circle class="fg" cx="48" cy="48" r="42"/></svg><span id="ringzahl">3</span></div>
+      <div class="satz" id="satz"></div>
+      <p class="impuls">Nimm das Erste, was kommt.</p>
+      <p class="hinweis" id="hinweis">Du kannst jeden Satz überspringen.</p>
+    </div>
+    <div class="unten">
+      <button type="button" class="btn" id="b-weiter">Weiter</button>
+      <div class="zeile">
+        <button type="button" class="lnk" id="b-skip">Überspringen</button>
+        <button type="button" class="lnk" id="b-ende1">Experiment beenden</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Auflösung -->
+  <section class="screen" id="s-aufl" aria-labelledby="t-aufl">
+    <h1 id="t-aufl">Auflösung</h1>
+    <p><strong>Und? Welcher Satz war am schnellsten fertig?</strong></p>
+    <p>Schau ihn dir kurz an. Fühlt er sich an wie eine Meinung? Oder eher wie eine Tatsache, so nach dem Motto „ist halt so“?</p>
+    <p>Spannend ist nicht, was du geantwortet hast. Spannend ist, wie schnell die Antwort da war. Du musstest sie nicht erfinden. Sie lag schon bereit.</p>
+    <p>Solche fertigen Sätze über dich, andere und die Welt hat jeder Mensch. Manche tragen dich. Andere bremsen dich, ohne dass du es merkst. Genau um die geht es in diesem Kapitel.</p>
+    <div class="karte">
+      <h2 id="t-wahl">Halte dir den schnellsten Satz kurz fest</h2>
+      <p style="margin-bottom:0">Hak den Satzanfang an, der am schnellsten fertig war, und schreib ihn zu Ende.</p>
+      <ul class="wahl" id="wahl" role="radiogroup" aria-labelledby="t-wahl"></ul>
+      <div class="ergaenz" id="ergaenz">
+        <label for="notiz" id="notizlabel"></label>
+        <textarea id="notiz" maxlength="300" placeholder="… schreib ihn zu Ende (freiwillig)"></textarea>
+        <div class="gespeichert" id="gespeichert" role="status"></div>
+      </div>
+      <p class="privat">Deine Notiz bleibt nur auf deinem Gerät.</p>
+    </div>
+    <div class="unten">
+      <button type="button" class="btn" id="b-fertig">Zurück zur App</button>
+      <div class="zeile"><button type="button" class="lnk" id="b-nochmal">Nochmal von vorn</button></div>
+      <p class="fuss">Satzergänzung ist eine Methode aus der Psychologie (u. a. Rotter &amp; Rafferty, 1950; Branden, 1994). Das hier ist kein Test und keine Diagnose. Es zeigt dir nur, was dir gerade als Erstes einfällt.</p>
+    </div>
+  </section>
+</main>
+<script>
+(function(){
+'use strict';
+var SAETZE = ['„Leute wie ich …“','„Ich bin halt nicht der Typ für …“','„Wenn ich einen Fehler mache, …“','„Damit andere mich mögen, muss ich …“','„Erfolg haben Menschen, die …“'];
+var NOTIZ_KEY = 'kk_k05_einstieg_notiz', TEMPO_KEY = 'kk_k05_einstieg_tempo';
+var DET_KEY = 'kk_glaubenssaetze_v1', DET_ID = 'g-einstieg-k05';
+var reduziert = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+var $ = function(id){ return document.getElementById(id); };
+var idx = 0, tempo = 'eigen', tick = null, wechsel = null;
+
+function lies(k){ try { return window.localStorage.getItem(k); } catch(e){ return null; } }
+function schreib(k,v){ try { window.localStorage.setItem(k,v); } catch(e){} }
+function ansage(t){ var l=$('live'); l.textContent=''; setTimeout(function(){ l.textContent=t; },30); }
+
+function zeige(id){
+  ['s-intro','s-satz','s-aufl'].forEach(function(s){ $(s).classList.toggle('on', s===id); });
+  window.scrollTo(0,0);
+}
+function stopp(){ clearInterval(tick); clearTimeout(wechsel); tick = wechsel = null; }
+
+/* Tempo-Schalter */
+function setzeTempo(t){
+  tempo = (t==='timer') ? 'timer' : 'eigen';
+  document.querySelectorAll('.seg button').forEach(function(b){ b.setAttribute('aria-pressed', b.dataset.tempo===tempo ? 'true':'false'); });
+  schreib(TEMPO_KEY, tempo);
+}
+document.querySelectorAll('.seg button').forEach(function(b){ b.addEventListener('click', function(){ setzeTempo(b.dataset.tempo); }); });
+setzeTempo(lies(TEMPO_KEY));
+
+/* Satz-Screens */
+function zeigeSatz(i){
+  stopp(); idx = i;
+  $('satz').textContent = SAETZE[i];
+  $('zaehler').textContent = (i+1) + ' / 5';
+  $('hinweis').style.visibility = (i===0) ? 'visible' : 'hidden';
+  $('b-zurueck').disabled = (i===0);
+  zeige('s-satz');
+  ansage('Satz ' + (i+1) + ' von 5: ' + SAETZE[i]);
+  /* 3-Sekunden-Ring: Impuls, springt im Standard nicht weiter */
+  var r = $('ring'), z = 3; $('ringzahl').textContent = '3';
+  r.classList.remove('lauf'); void r.offsetWidth; r.classList.add('lauf');
+  tick = setInterval(function(){ z--; $('ringzahl').textContent = z>0 ? String(z) : ''; if(z<=0){ clearInterval(tick); tick=null; } }, 1000);
+  if (tempo==='timer') wechsel = setTimeout(weiter, 3000 + (reduziert ? 0 : 350));
+}
+function weiter(){ if (idx < SAETZE.length-1) zeigeSatz(idx+1); else aufloesung(); }
+$('b-start').addEventListener('click', function(){ zeigeSatz(0); });
+$('b-weiter').addEventListener('click', weiter);
+$('b-skip').addEventListener('click', weiter);
+$('satzwrap').addEventListener('click', weiter);
+$('b-zurueck').addEventListener('click', function(){ if (idx>0) zeigeSatz(idx-1); });
+$('b-ende1').addEventListener('click', function(){ stopp(); zurueck(); });
+
+/* Auflösung + Notiz */
+var notiz = (function(){ try { var o = JSON.parse(lies(NOTIZ_KEY)||'null'); return (o && typeof o==='object') ? o : {}; } catch(e){ return {}; } })();
+function baueWahl(){
+  var ul = $('wahl'); ul.innerHTML = '';
+  SAETZE.forEach(function(s,i){
+    var li = document.createElement('li'), lab = document.createElement('label'), inp = document.createElement('input');
+    inp.type='radio'; inp.name='schnellster'; inp.value=String(i); inp.checked = (notiz.satz===i);
+    var hk = document.createElement('span'); hk.className='haken'; hk.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#7dd3c0" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7"/></svg>';
+    var tx = document.createElement('span'); tx.className='txt'; tx.textContent = s;
+    lab.appendChild(inp); lab.appendChild(hk); lab.appendChild(tx); li.appendChild(lab); ul.appendChild(li);
+    inp.addEventListener('change', function(){ notiz.satz = i; speichere(); zeigeErgaenzung(true); });
+  });
+  zeigeErgaenzung(false);
+}
+function anfang(i){ return SAETZE[i].replace(/[„“]/g,'').replace(/\s*…\s*$/,'').trim(); }
+function zeigeErgaenzung(fokus){
+  var hat = typeof notiz.satz === 'number' && SAETZE[notiz.satz];
+  $('ergaenz').classList.toggle('on', !!hat);
+  if (!hat) return;
+  $('notizlabel').textContent = anfang(notiz.satz) + ' …';
+  $('notiz').value = notiz.text || '';
+  if (fokus) { try { $('notiz').focus({preventScroll:true}); $('ergaenz').scrollIntoView({block:'nearest', behavior: reduziert ? 'auto' : 'smooth'}); } catch(e){} }
+}
+var tSpeich = null;
+$('notiz').addEventListener('input', function(){
+  notiz.text = $('notiz').value; clearTimeout(tSpeich);
+  tSpeich = setTimeout(function(){ speichere(); $('gespeichert').textContent = 'Gespeichert.'; setTimeout(function(){ $('gespeichert').textContent=''; }, 1600); }, 500);
+});
+function speichere(){
+  notiz.datum = new Date().toISOString().slice(0,10);
+  schreib(NOTIZ_KEY, JSON.stringify(notiz));
+  inDenDetektor();
+}
+/* Notiz landet still in „Meine Glaubenssätze“ (Detektor), ein fester Eintrag, wird bei Änderung überschrieben */
+function inDenDetektor(){
+  if (typeof notiz.satz !== 'number') return;
+  var rest = String(notiz.text||'').trim();
+  if (!rest) return;   /* nur ein ganzer Satz kommt in die Sammlung */
+  var satz = anfang(notiz.satz) + ' ' + rest.replace(/^…\s*/,'');
+  if (!/[.!?…]$/.test(satz)) satz += '.';
+  try {
+    var arr = JSON.parse(lies(DET_KEY)||'[]'); if (!Array.isArray(arr)) arr = [];
+    var heute = notiz.datum, alt = null;
+    for (var i=0;i<arr.length;i++) if (arr[i] && arr[i].id===DET_ID) alt = arr[i];
+    if (alt){ alt.satz = satz; alt.geaendert = heute; }
+    else arr.push({ id:DET_ID, datum:heute, geaendert:heute, quelle:'eigen', status:'Aufgespürt', satz:satz, wahr:null, treffer:0, preis:[], preisText:'' });
+    schreib(DET_KEY, JSON.stringify(arr));
+  } catch(e){}
+}
+function aufloesung(){ stopp(); baueWahl(); zeige('s-aufl'); ansage('Auflösung'); }
+$('b-fertig').addEventListener('click', function(){ if (notiz.text !== undefined) speichere(); zurueck(); });
+$('b-nochmal').addEventListener('click', function(){ zeige('s-intro'); });
+
+function zurueck(){ stopp(); if (window.parent!==window){ parent.postMessage({kk:'zurueck'},'*'); } else { location.href='../../#/'; } }
+$('kk-back').addEventListener('click', zurueck);
+document.addEventListener('keydown', function(e){
+  if (!$('s-satz').classList.contains('on')) return;
+  if (e.key==='ArrowRight'){ e.preventDefault(); weiter(); }
+  if (e.key==='ArrowLeft' && idx>0){ e.preventDefault(); zeigeSatz(idx-1); }
+});
+})();
+</script>
+</body>
+</html>

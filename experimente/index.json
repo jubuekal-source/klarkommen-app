@@ -79,7 +79,7 @@
       "dateien": [
         "experimente/glaubenssatz-detektor/index.html"
       ],
-      "bytes": 102756,
+      "bytes": 103705,
       "kapitel": 5,
       "deeplinks": {
         "sammlung": "#sammlung"
@@ -100,6 +100,16 @@
       ],
       "bytes": 291116,
       "kapitel": 3,
+      "deeplinks": {}
+    },
+    {
+      "id": "satzanfaenge",
+      "titel": "3 Sekunden, 5 Sätze",
+      "dateien": [
+        "experimente/satzanfaenge/index.html"
+      ],
+      "bytes": 18312,
+      "kapitel": 5,
       "deeplinks": {}
     }
   ]

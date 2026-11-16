@@ -135,6 +135,7 @@ ul.preis li::before{content:'';position:absolute;left:0;top:.6em;width:6px;heigh
 .item .neu{font:600 1.02rem/1.4 var(--font-h);color:var(--text-primary);border-left:3px solid var(--healthy);padding-left:10px;overflow-wrap:anywhere}
 .stat{all:unset;box-sizing:border-box;cursor:pointer;flex:0 0 78px;min-width:44px;min-height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:8px 4px;border-left:1px solid var(--border);color:var(--text-secondary);font:600 11px/1.15 var(--font-h);text-align:center;touch-action:manipulation;overflow-wrap:anywhere}
 .stat[data-s="1"]{color:var(--accent-soft)}.stat[data-s="2"]{color:var(--healthy)}
+.stat span{white-space:nowrap;letter-spacing:-.01em}.stat[data-s="2"] span{font-size:10px}   /* v1.3.44: „Umgeschrieben“ passt ohne Trennung in 78 px */
 .item.blitz{animation:blitz 1s ease-out}
 @keyframes blitz{0%{box-shadow:0 0 0 2px var(--accent)}100%{box-shadow:0 0 0 2px transparent}}
 .fakten{display:grid;grid-template-columns:auto 1fr;gap:8px 16px;margin:0}
@@ -456,7 +457,9 @@ function areaById(id){ for (var i=0;i<AREAS.length;i++) if (AREAS[i].id===id) re
 
 /* Weg 2, Tiefenfrage 1: ausgewogen innen und außen */
 var SCHLIMMSTES = ['Dass ich meine Ziele nicht erreiche','Dass ich mich selbst enttäusche','Dass ich stehen bleibe, während andere weiterkommen','Dass ich versagt habe','Dass andere es mitbekommen','Dass ich jemanden enttäusche','Dass ich allein dastehe','Dass es nie anders wird'];
-var STATI = ['Aufgespürt','In Arbeit','Verwandelt'];
+var STATI = ['Aufgespürt','In Arbeit','Umgeschrieben'];
+/* v1.3.44: Status „Verwandelt“ heißt jetzt „Umgeschrieben“ (Marco, 16.11.2026). Alte gespeicherte Werte werden beim Laden umbenannt. */
+var STATUS_ALT = { 'Verwandelt': 'Umgeschrieben' };
 
 /* ===================== SPEICHER ===================== */
 var KEY = 'kk_glaubenssaetze_v1';
@@ -486,7 +489,7 @@ function norm(e){
     geaendert: str(e.geaendert) || str(e.datum),
     modus: 'solo',
     quelle: e.quelle === 'eigen' ? 'eigen' : 'detektor',
-    status: STATI.indexOf(e.status) >= 0 ? e.status : STATI[0],
+    status: STATI.indexOf(STATUS_ALT[e.status] || e.status) >= 0 ? (STATUS_ALT[e.status] || e.status) : STATI[0],
     cluster: cl,
     situation: str(e.situation),
     schlimmstes: str(e.schlimmstes),
@@ -522,7 +525,7 @@ function aendere(id, fn){
   speichereEintraege(l);
   return l[ix];
 }
-/* Sortierung: nicht verwandelte zuerst, darin Gewichtung absteigend, bei Gleichstand der neuere zuerst; Verwandelte am Ende */
+/* Sortierung: nicht umgeschriebene zuerst, darin Gewichtung absteigend, bei Gleichstand der neuere zuerst; Umgeschriebene am Ende */
 function sortiert(l){
   var a = l.map(function(e, i){ return { e:e, i:i }; });
   a.sort(function(x, y){
@@ -592,7 +595,7 @@ function svgIcon(ds, size){
 }
 function stiftIcon(){ return svgIcon(['M12 20h9','M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4z']); }
 function schlossIcon(){ return svgIcon(['M5 11h14v9a1 1 0 01-1 1H6a1 1 0 01-1-1z','M8 11V8a4 4 0 018 0v3']); }
-/* Status-Icons (Linien-SVG): Aufgespürt = Lupe, In Arbeit = Halbkreis, Verwandelt = Haken im Kreis */
+/* Status-Icons (Linien-SVG): Aufgespürt = Lupe, In Arbeit = Halbkreis, Umgeschrieben = Haken im Kreis */
 function statusIcon(s){
   var svg;
   if (s === STATI[1]){
@@ -1399,7 +1402,7 @@ function statusSeg(e, nachher){
     } }, s);
   }));
 }
-/* Status-Icon: Tippen schaltet Aufgespürt, In Arbeit, Verwandelt, Aufgespürt durch; öffnet die Karte nicht */
+/* Status-Icon: Tippen schaltet Aufgespürt, In Arbeit, Umgeschrieben, Aufgespürt durch; öffnet die Karte nicht */
 function statusKnopf(e){
   var ix = STATI.indexOf(e.status);
   return h('button', { type:'button', class:'stat', 'data-s':String(ix), 'data-stat':e.id,
@@ -1600,6 +1603,16 @@ function vBearbeiten(){
   zeichneK(false); wahrSync();
 }
 
+/* v1.3.44: Migration gespeicherter Statuswerte (Verwandelt → Umgeschrieben) einmal beim Start dauerhaft zurückschreiben */
+(function(){
+  try {
+    var r = window.localStorage.getItem(KEY); if (!r) return;
+    var a = JSON.parse(r); if (!Array.isArray(a)) return;
+    var geaendert = false;
+    a.forEach(function(e){ if (e && typeof e === 'object' && STATUS_ALT[e.status]){ e.status = STATUS_ALT[e.status]; geaendert = true; } });
+    if (geaendert) window.localStorage.setItem(KEY, JSON.stringify(a));
+  } catch(e){}
+})();
 updateKopf();
 /* Deep-Link: experimente/glaubenssatz-detektor/index.html#sammlung öffnet direkt die Sammlung; Zurück führt dann in die App */
 function ausHash(){

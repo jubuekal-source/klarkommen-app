@@ -1,5 +1,5 @@
 {
-  "version": 20,
+  "version": 21,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -466,9 +466,9 @@
       "dauer": null
     },
     {
-      "id": "bilder/k05/einstieg-3-sekunden",
-      "pfad": "medien/bilder/k05/einstieg-3-sekunden.webp",
-      "bytes": 113316,
+      "id": "bilder/k05/einstieg-3-sekunden-v2",
+      "pfad": "medien/bilder/k05/einstieg-3-sekunden-v2.webp",
+      "bytes": 91602,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null
@@ -493,6 +493,14 @@
       "id": "bilder/k05/glaubenssatz-detektor",
       "pfad": "medien/bilder/k05/glaubenssatz-detektor.webp",
       "bytes": 89728,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/mission-zu-zweit",
+      "pfad": "medien/bilder/k05/mission-zu-zweit.webp",
+      "bytes": 64558,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null

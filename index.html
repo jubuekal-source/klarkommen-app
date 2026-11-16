@@ -764,7 +764,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.43';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.45';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -772,13 +772,15 @@ const RUBRIK = {                         /* spec/00 §2.2 Reihenfolge Einstieg �
   einstieg:{label:'Einstieg', icon:'flask'},
   brainfact:{label:'Brain-Fact', icon:'bulb'},
   mindhack:{label:'Mind-Hack', icon:'wrench'},
+  werkzeug:{label:'Werkzeug', icon:'wrench', bild:'mindhack'},   /* v1.3.44: k05 – Glaubenssatz-Detektor an der Stelle des Mind-Hacks, goldenes Mind-Hack-Bild */
   mission:{label:'Mission Alltag', icon:'clip'},
   quellen:{label:'Quellen & Hintergrund', icon:'book'}
 };
 const RUBRIK_BILD = ['einstieg','brainfact','mindhack','mission','quellen'];   /* v1.3.3: goldene Illustrationen, brand/rubrik/ */
 function rubIcon(key, px){
   const rb = RUBRIK[key];
-  if(rb && RUBRIK_BILD.includes(key)) return `<img class="rbi" src="brand/rubrik/rubrik-${key}.webp" width="${px}" height="${px}" alt="" decoding="async">`;
+  const bk = (rb && rb.bild) || key;
+  if(rb && RUBRIK_BILD.includes(bk)) return `<img class="rbi" src="brand/rubrik/rubrik-${bk}.webp" width="${px}" height="${px}" alt="" decoding="async">`;
   return ic(rb ? rb.icon : 'chev');
 }
 /* v1.3.10: Zwischenüberschrift-Icons (Akkordeon-Feld "icon"), goldene WebP 56 px für 28 px Anzeige */
@@ -1193,7 +1195,7 @@ function blocks(arr, ctx){
         h += `<h2${b.id?` id="h-${esc(b.id)}"`:''}>${inl(b.text)}</h2>`; break;   /* v1.3.4: optionale id → Sprungziel (z. B. #/k/07/tool/safe-place?a=anker) */
       case 'liste': { const t = b.geordnet?'ol':'ul'; h += `<${t}>${(b.punkte||[]).map(p=>`<li>${inl(p)}</li>`).join('')}</${t}>`; break; }
       case 'checkliste': h += `<ul class="check">${(b.punkte||[]).map((p,i)=>{ const key=path+'/'+i; return `<li><label><input type="checkbox" data-check="${esc(key)}" ${D.checks[key]?'checked':''}><span class="bx">${ic('check')}</span><span>${inl(p)}</span></label></li>`; }).join('')}</ul>`; break;
-      case 'zitat': h += `<blockquote>${inl(b.text)}${b.quelle?`<cite>– ${inl(b.quelle)}</cite>`:''}</blockquote>`; break;
+      case 'zitat': h += `<blockquote>${inl(b.text).replace(/\n/g,'<br>')}${b.quelle?`<cite>– ${inl(b.quelle)}</cite>`:''}</blockquote>`; break;
       case 'callout': { const a = b.art||'tipp'; h += `<div class="call ${esc(a)}">${ic(a==='wichtig'?'warn':a==='info'?'info':'spark')}<p>${inl(b.text)}</p></div>`; break; }
       case 'bild': if(!b.src) break; h += `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" loading="lazy" decoding="async">${b.unterschrift?`<figcaption>${inl(b.unterschrift)}</figcaption>`:''}</figure>`; break;
       case 'audio': h += audioCard(b); break;
