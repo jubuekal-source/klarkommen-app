@@ -1,439 +1,499 @@
 {
- "schemaVersion": 1,
- "id": "k05",
- "slides": [
-  {
-   "id": "einstieg",
-   "rubrik": "einstieg",
-   "header": "medien/bilder/rubrik/einstieg-portal.webp",
-   "titel": "Dein Einstieg - ein Experiment",
-   "bloecke": [
+  "schemaVersion": 1,
+  "id": "k05",
+  "slides": [
     {
-     "typ": "bild",
-     "src": "medien/bilder/k05/einstieg-3-sekunden-v2.webp",
-     "alt": "Ein junger Mann sitzt auf einer Treppe und hält sich überrascht die Hand vor den Mund. Um seinen Kopf leuchten mehrere Sprechblasen voller Gekritzel."
+      "id": "einstieg",
+      "rubrik": "einstieg",
+      "header": "medien/bilder/rubrik/einstieg-portal.webp",
+      "titel": "Dein Einstieg: Eine Geschichte. Ein Experiment.",
+      "bloecke": [
+        {
+          "typ": "ueberschrift",
+          "text": "Die Kordel"
+        },
+        {
+          "typ": "absatz",
+          "text": "Eine kurze Geschichte, die vermutlich mehr mit dir zu tun hat, als du ahnst."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/parabel-elefant-kordel.webp",
+          "alt": "Ein ausgewachsener Elefantenbulle steht im Abendlicht der Savanne. Um sein Bein liegt eine dünne Kordel, die an einem kleinen Pflock im Boden befestigt ist."
+        },
+        {
+          "typ": "audio",
+          "id": "k05-kordel",
+          "titel": "Geschichte hören",
+          "art": "hoerspiel",
+          "status": "fertig"
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Geschichte lesen",
+          "icon": "buch",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Stell dir einen jungen Elefantenbullen vor, der im staubigen Abendlicht steht. Vor Monaten, als er noch ein winziges, unsicheres Kalb war, haben Menschen ihn mit einer schweren, kalten Eisenkette an einen tief im Boden versenkten Anker geschmiedet. Tag für Tag riss er an diesem Metall. Seine Muskeln brannten, die Haut an seinen Beinen schmerzte, und in jeder wachen Sekunde spürte er die unerbittliche Härte des Widerstands. In unzähligen schlaflosen Nächten brannte sich eine einzige, schmerzhafte Gewissheit in sein wachsendes Gehirn ein: *Jede Anstrengung ist sinnlos.*"
+            },
+            {
+              "typ": "absatz",
+              "text": "Heute ist er ein mächtiges, stolzes Tier. Seine Schultern ragen tonnenschwer in den Abendhimmel, und allein ein einziger seiner wuchtigen Schritte könnte Erdboden erzittern lassen. Die schwere Eisenkette von damals ist längst einer dünnen, scheuernden Kordel gewichen – ein Hauch von Nichts an seinem massiven Bein. Er könnte mit einer einzigen fließenden Bewegung in die Weite ziehen und frei sein. Doch er tut es nicht. Er steht reglos im selben Kreis. Nicht, weil die Kordel ihn hält, sondern weil in seinem Kopf ein unsichtbares, eisernes Gefängnis steht, das längst stärker geworden ist als jedes Seil der Welt."
+            }
+          ]
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "Wichtige Einordnung"
+        },
+        {
+          "typ": "absatz",
+          "text": "So, wie sie hier erzählt wird, ist die Geschichte eine Parabel: Ein ausgewachsener Bulle würde die Kordel einfach zerreißen und es nicht mal bemerken. Der Kern dahinter ist aber echt. In Teilen Asiens werden junge Elefanten mit Gewalt gezähmt: von der Mutter getrennt, festgebunden, geschlagen, bis sie aufgeben. Tierschützer haben diese traurige Praxis noch vor wenigen Jahren in Thailand heimlich gefilmt. Übrig bleibt ein Tier, das nicht mehr kämpft, obwohl es stärker ist als jeder Mensch neben ihm. Bei uns läuft das erstaunlich ähnlich: Das Seil von damals ist längst gerissen, aber der Kopf erinnert sich noch an die Kette."
+        },
+        {
+          "typ": "zitat",
+          "text": "**Das Seil hält den Elefanten nicht. Sein Glaube tut es.**"
+        },
+        {
+          "typ": "absatz",
+          "text": "Was für den Elefanten die Kordel ist, sind bei uns Menschen oft Sätze: alte Gewissheiten, die wir irgendwann gelernt haben und kaum noch prüfen. Probier aus, wie schnell deine kommen."
+        },
+        {
+          "typ": "experiment",
+          "id": "satzanfaenge",
+          "expTyp": "experiment",
+          "titel": "3 Sekunden, 5 Sätze",
+          "text": "Bevor es losgeht: ein kleines Experiment. Es dauert nicht mal eine Minute."
+        },
+        {
+          "typ": "absatz",
+          "text": "Dein schnellster Satz ist jetzt notiert. Vielleicht ist er harmlos. Vielleicht ist er aber auch so eine Kordel: dünn, alt und trotzdem stark genug, dich im selben Kreis zu halten. Im nächsten Teil schaust du dir an, wie so ein Satz auf deine Liste kommt und warum er dort so fest sitzt."
+        }
+      ],
+      "lese": null
     },
     {
-     "typ": "experiment",
-     "id": "satzanfaenge",
-     "expTyp": "experiment",
-     "titel": "3 Sekunden, 5 Sätze",
-     "text": "Bevor es losgeht: ein kleines Experiment. Es dauert nicht mal eine Minute."
+      "id": "brainfact",
+      "rubrik": "brainfact",
+      "header": "medien/bilder/rubrik/brainfact.webp",
+      "titel": "Brain-Fact: Die Sätze, die heimlich mitentscheiden",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Du kommst von einer Party nach Hause, liegst im Bett und spulst ein Gespräch noch mal ab. Und plötzlich ist er da, der Gedanke: „Warum hab ich das gesagt? Ich hab mich total blöd angestellt. Die findet mich jetzt bestimmt komisch.“ Forschende haben genau diesen Moment untersucht. Sie ließen Menschen, die sich nicht kannten, ein paar Minuten miteinander reden. Danach sollten beide sagen, wie sehr sie den anderen mochten und wie sehr sie glaubten, selbst gemocht zu werden. Das Ergebnis: Die meisten unterschätzten, wie sehr ihr Gegenüber sie mochte. Wer hat dir also das Gegenteil erzählt?"
+        },
+        {
+          "typ": "audio",
+          "id": "k05-podcast",
+          "titel": "Episode 5",
+          "art": "podcast",
+          "status": "in-produktion"
+        }
+      ],
+      "lese": [
+        {
+          "typ": "akkordeon",
+          "titel": "Von der Kette zur Gästeliste",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Beim Elefanten sitzt die Kette im Kopf. Bei dir sitzt sie an einer Stelle, die du schon kennst: auf der Gästeliste deines Türstehers aus Kapitel 1. Er lässt nur rein, was auf seiner Liste steht. Erinnerst du dich an diesen Morgen? Verschlafen, Tasse runtergefallen, und plötzlich steht „Heute läuft alles schief“ auf der Liste. Ab da passt jede rote Ampel ins Bild. Aber dieser Eintrag hält meist nur einen Tag. Nach einer Nacht Schlaf ist er wieder weg. Wiederholen sich solche Tage, kann aus vielen kleinen Momenten mit der Zeit etwas Festes werden."
+            },
+            {
+              "typ": "absatz",
+              "text": "Und dann gibt es Sätze, die bleiben. Zum Beispiel: „Das Leben ist schwer und unfair.“ So ein Satz entsteht nicht über Nacht, und er verschwindet auch nicht über Nacht. Oft steht er seit Jahren auf der Liste. Jeden Tag sammelt der Türsteher neue Beweise dafür. Und jeder Tag, an dem er die Beweise durchlässt, kann den Eintrag ein Stück fester machen. Irgendwann fühlt sich das nicht mehr an wie eine Sichtweise, sondern wie die Wahrheit."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Genau das ist ein Glaubenssatz.** Keine Laune für heute, sondern ein Eintrag, der schon lange auf deiner Gästeliste steht: dick nachgezogen, tausendmal gelesen, kaum noch wegzudenken. Eine tiefe Überzeugung über dich, über andere oder über die Welt, die sich anfühlt wie eine Tatsache."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k05/gaesteliste-titelbild-v2.webp",
+              "alt": "Vor einer angelehnten Clubtür steht ein Pult mit einer Gästeliste. Ein Eintrag in der Mitte ist fett und tief eingeschrieben."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Leise Sätze, laute Wirkung",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "„Aber ich hab doch gar keine Glaubenssätze?“ Gute Frage. Die meisten Glaubenssätze sagt niemand laut. Sie laufen leise mit: in deinen Reaktionen, in deinen Entscheidungen und vor allem in dem, was du gar nicht erst versuchst. Drei Szenen:"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Das Kompliment.** Jemand sagt: „Du hast das echt gut gemacht.“ Bevor du nachdenkst, kommt vielleicht schon: „Das hätte doch jeder hingekriegt.“ Wer hat da gerade gesprochen? Vielleicht ein Satz wie „Ich bin nichts Besonderes“."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Der Gruppenchat.** Du schreibst etwas in die Gruppe. Eine Stunde, zwei Stunden: nichts. Gelesen, keine Antwort. Im Kopf: „Die haben keinen Bock auf mich.“ Dass zwei gerade arbeiten und eine beim Sport ist? Kommt nicht auf die Liste."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Das Neue.** Freunde fragen, ob du mit zum Bouldern kommst. Oder im Seminar soll jemand die Präsentation übernehmen. Und ganz schnell ist er da: „Sorry, ich bin einfach nicht der Typ für so was.“ Woher weißt du das eigentlich?"
+            },
+            {
+              "typ": "absatz",
+              "text": "**Welche dieser drei Szenen kommt dir möglicherweise bekannt vor?**"
+            },
+            {
+              "typ": "absatz",
+              "text": "Das Fiese: Ein Glaubenssatz fühlt sich nicht an wie ein Satz. Er fühlt sich an wie „so bin ich halt“ oder „so ist es halt“. Du denkst nicht: „Ich glaube, ich bin nicht der Typ für so was.“ Du denkst: „Ich bin nicht der Typ für so was.“ Ohne „ich glaube“. Und was sich nicht wie eine Meinung anhört, prüfst du auch nicht."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Was so ein Satz aus einem Leben macht",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Vermutlich kennst du Menschen, bei denen das Leben immer leicht und einfach aussieht. Es scheint, als flöge ihnen alles zu. Sie stehen morgens voller Energie auf, haben gleichzeitig drei Projekte am Laufen, engagieren sich nebenbei ehrenamtlich und kriegen unfassbar viel gemanagt. In ihrer WhatsApp-Info findest du vielleicht Sprüche wie „Läuft bei mir“ oder „Das Leben ist eine Spielwiese“."
+            },
+            {
+              "typ": "absatz",
+              "text": "Und womöglich kennst du auch die andere Seite, von anderen oder vielleicht von dir selbst. Das Leben sieht alles andere als leicht aus, im Gegenteil. Man hat das Gefühl von ständigem Gegenwind, als habe sich die Welt gegen einen verschworen: die Chefin, der Nachbar, die Bahn… einfach das ganze System. Jeder Tag kostet unfassbar viel Energie und es scheint so, als wäre das Leben eine einzige Aneinanderreihung von Problemen. Entsprechend geprägt sind die Unterhaltungen dieser Menschen, bis hin zum WhatsApp-Status, zum Beispiel mit „Montag ist der Endgegner“."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k05/gegenpole-kampf-spielwiese.webp",
+              "alt": "Zweigeteiltes Bild: Links kämpft sich ein junger Mann gegen Wind und Regen einen Hügel hinauf, rechts steht derselbe Mann entspannt auf einer Wiese und lässt ein Papierflugzeug fliegen."
+            },
+            {
+              "typ": "absatz",
+              "text": "Klar, das sind zwei Extreme, und die meisten pendeln irgendwo dazwischen. Und doch lohnt sich eine Frage: Was, wenn hinter diesen zwei Leben nicht nur verschiedene Umstände stecken, sondern auch verschiedene Einträge auf der Gästeliste? Wer glaubt „Das Leben ist ein Kampf“, findet jeden Tag neue Beweise dafür. Wer glaubt „Ich krieg das schon hin“, findet die Beweise dafür auch."
+            },
+            {
+              "typ": "absatz",
+              "text": "Damit kein Missverständnis entsteht: Nicht alles, was dir passiert, liegt an deinen Glaubenssätzen. Krankheit, Verlust oder eine schwere Kindheit sucht sich niemand aus. Aber es lohnt sich, genau hinzuschauen, was davon wirklich Schicksal ist und was nur ein alter Satz, der sich wie Schicksal anfühlt."
+            },
+            {
+              "typ": "absatz",
+              "text": "Die Forschung macht hier Mut. Auf der Insel Kauai in Hawaii haben Forschende alle 698 Kinder des Jahrgangs 1955 über Jahrzehnte begleitet. 201 von ihnen wuchsen unter schweren Bedingungen auf: Armut, Streit in der Familie, kranke Eltern. Und doch wurden 72 dieser Kinder, also etwa ein Drittel, zu kompetenten, zuversichtlichen und fürsorglichen Erwachsenen (Werner, 1993). Was vielen von ihnen half: mindestens eine Bezugsperson, oft Großeltern, eine Tante oder ein Onkel, die bedingungslos zu ihnen hielt, und die Überzeugung, selbst etwas bewirken zu können. Ein harter Start entscheidet also nicht alles."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie beeinflusst, was du dir zutraust und wofür du dich entscheidest. Und deine Entscheidungen formen, wie dein Leben aussieht.**"
+            },
+            {
+              "typ": "einwand",
+              "titel": "Für Neugierige: Was Langzeitstudien noch zeigen",
+              "icon": "search",
+              "bloecke": [
+                {
+                  "typ": "absatz",
+                  "text": "Nicht jede dieser Studien beweist Ursache und Wirkung. Das Muster aber ist deutlich."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Großbritannien, 1980.** Über 11.000 Zehnjährige beantworten Fragen dazu, wie viel sie selbst in der Hand haben. Zwanzig Jahre später werden 7.551 von ihnen wieder befragt. Wer als Kind mehr Kontrolle bei sich sah, war mit 30 seltener übergewichtig und seltener psychisch belastet. Auch dann, wenn man Intelligenz, Bildung und Einkommen herausrechnet (Gale et al., 2008)."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Ohio, USA.** Menschen mit einem freundlichen Bild vom Älterwerden lebten im Schnitt rund siebeneinhalb Jahre länger als Menschen mit einem düsteren. Die Forschenden verfolgten sie über bis zu 23 Jahre (Levy et al., 2002)."
+                },
+                {
+                  "typ": "absatz",
+                  "text": "**Über 4.500 Menschen aus 48 Berufen.** Forschende suchten, ob ein düsteres Weltbild irgendwo hilft. Von über 1.800 Zusammenhängen, die sie fanden, sprachen nur sechs dafür. Wer die Welt eher als guten Ort sah, war dagegen deutlich seltener niedergeschlagen (Clifton & Meindl, 2022)."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Woher kommen die?",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Die kurze Antwort kennst du schon. In Kapitel 2 ging es um deinen Hühnerstall: Menschen um dich herum haben dir Etiketten mitgegeben, und manche kleben noch. In Kapitel 3 hast du gesehen: Was du oft hörst, fühlt sich wahr an, egal ob es von zu Hause, aus dem Freundeskreis oder aus deinem Feed kommt."
+            },
+            {
+              "typ": "absatz",
+              "text": "Die Quellen sind vielfältig: deine Eltern und deine Familie, Freunde, Schule und Lehrkräfte, die Gesellschaft, in der du aufwächst. Dazu kommen Prägungen aus Religion und Tradition, und zwar auch bei Menschen, die sich selbst gar nicht für gläubig halten. Ein Satz wie „Erst die Arbeit, dann das Vergnügen“ oder „Man muss sich alles verdienen“ kann aus so einer Tradition stammen, auch wenn ihn heute niemand mehr so nennt."
+            },
+            {
+              "typ": "absatz",
+              "text": "Und dann sind da deine eigenen Erfahrungen. Wer als Kind vor der Klasse ausgelacht wurde, zieht daraus vielleicht den Schluss: „Wenn ich mich zeige, blamiere ich mich.“ Die Erfahrung war echt. Der Schluss daraus muss es nicht sein. Genau wie beim Elefanten: Er kam damals wirklich nicht los. Falsch ist nur, dass das heute noch gilt."
+            },
+            {
+              "typ": "absatz",
+              "text": "Und dann ist da noch dein Feed. Er redet jeden Tag mit, und er lernt mit: Wobei du hängen bleibst, davon zeigt er dir mehr. Wer oft bei perfekten Körpern stoppt, bekommt schnell noch mehr davon zu sehen. Viele Glaubenssätze sind genau das: Sätze, die so lange wiederholt wurden, bis sie sich anfühlen wie deine eigenen."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Warum der Satz bleibt, obwohl du es besser weißt",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "„Aber wenn ich merke, dass ein Satz nicht stimmt, ist er doch weg?“ Leider nein."
+            },
+            {
+              "typ": "absatz",
+              "text": "Wissen schützt nicht automatisch. Das gilt sogar für deinen Feed: In Experimenten waren junge Frauen nach idealisierten Instagram-Bildern unzufriedener mit ihrem Körper, junge Männer nach Bildern von muskulösen Influencern mit freiem Oberkörper ebenso. Bei den Frauen wurde zusätzlich getestet, ob ein Hinweis wie „Dieses Bild wurde bearbeitet“ hilft. Er half nicht. Alle wussten, dass die Bilder geschönt sind. Gewirkt haben sie trotzdem. Genau so ticken Glaubenssätze."
+            }
+          ]
+        },
+        {
+          "typ": "akkordeon",
+          "titel": "Die gute Nachricht",
+          "bloecke": [
+            {
+              "typ": "absatz",
+              "text": "Ein Glaubenssatz ist kein Urteil über dich. Er ist ein Eintrag auf einer Liste. Und Einträge kann man lesen. Die Forschung zeigt dazu etwas Ermutigendes: Wer genau erklärt bekommt, wie ein falscher Eindruck hängen bleibt, wird ihn deutlich leichter wieder los (Ross, Lepper & Hubbard, 1975). Hinschauen und Verstehen machen also bereits einen Unterschied."
+            },
+            {
+              "typ": "bild",
+              "src": "medien/bilder/k05/gaesteliste-im-kopf-v2.webp",
+              "alt": "Eine junge Frau steht am Absperrseil vor einer Clubtür. Der Türsteher hält eine Gästeliste, auf der ein Eintrag fett hervorsticht."
+            },
+            {
+              "typ": "absatz",
+              "text": "Der erste Schritt ist deshalb nicht, den Satz sofort zu ändern. Der erste Schritt ist, ihn zu finden. Solange er unsichtbar mitläuft, entscheidet er mit. Sobald du ihn siehst, kannst du prüfen: Stimmt das eigentlich? Und was kostet er mich? Ein Beispiel: „Ich bin halt nicht der Typ für so was.“ Der Satz erspart dir einen wackligen Moment an der Boulderwand. Und er kostet dich vielleicht die Abende mit deinen Freunden, ein Hobby, das dir Spaß gemacht hätte, und irgendwann die Einladung, weil keiner mehr fragt."
+            },
+            {
+              "typ": "absatz",
+              "text": "**Was glaubst du eigentlich über das Leben, wenn du ehrlich zu dir bist?** Genau das findest du im nächsten Schritt heraus."
+            }
+          ]
+        }
+      ],
+      "merkzettel": [
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/parabel-elefant-kordel.webp",
+          "alt": "Ein ausgewachsener Elefantenbulle steht im Abendlicht der Savanne. Um sein Bein liegt eine dünne Kordel, die an einem kleinen Pflock im Boden befestigt ist."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Das Seil hält den Elefanten nicht. Sein Glaube tut es.** Viele Grenzen sind veraltet: Die Kette von damals ist weg, aber der Kopf erinnert sich noch an sie."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/gaesteliste-titelbild-v2.webp",
+          "alt": "Vor einer angelehnten Clubtür steht ein Pult mit einer Gästeliste. Ein Eintrag in der Mitte ist fett und tief eingeschrieben."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Glaubenssatz = ein Eintrag, der schon lange auf deiner Gästeliste steht.** Eine Tageserwartung wie „Heute läuft alles schief“ ist nach einer Nacht Schlaf meist vorbei. Ein Glaubenssatz wie „Das Leben ist schwer und unfair“ steht seit Jahren auf der Liste. Dein Türsteher sammelt jeden Tag Beweise dafür, bis sich der Satz anfühlt wie eine Tatsache."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Glaubenssätze sagt man selten laut.** Sie laufen leise mit: in Reaktionen („Das hätte doch jeder hingekriegt“), in Deutungen („Die haben eh keinen Bock auf mich“) und in dem, was du gar nicht erst versuchst („Ich bin halt nicht der Typ für so was“)."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/gegenpole-kampf-spielwiese.webp",
+          "alt": "Zweigeteiltes Bild: Links kämpft sich ein junger Mann gegen Wind und Regen einen Hügel hinauf, rechts steht derselbe Mann entspannt auf einer Wiese und lässt ein Papierflugzeug fliegen."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Sie prägen mit, wie dein Leben aussieht.** Nicht allein, denn manches kann niemand beeinflussen. Aber deine Liste beeinflusst, was du dir zutraust und wofür du dich entscheidest."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Woher sie kommen:** aus Familie, Freundeskreis, Schule und Gesellschaft, aus Religion und Tradition, aus deinem Feed und aus eigenen Erfahrungen, die du damals auf deine Weise gedeutet hast. Was du oft hörst und siehst, fühlt sich wahr an."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Warum sie bleiben:** Erwartungen färben, was du wahrnimmst, und Wissen allein schützt nicht. Du weißt, dass die Bilder in deinem Feed bearbeitet sind, und trotzdem können sie dich unzufriedener mit deinem Körper machen."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Die gute Nachricht:** Ein Glaubenssatz ist kein Urteil über dich, sondern ein Eintrag. Und Einträge kann man lesen. Der erste Schritt: den Satz finden, in deinen eigenen Worten, und sehen, was er dich kostet. Kosten heißt: was du wegen des Satzes tust oder lässt und was dir dadurch entgeht. Genau das machst du im Glaubenssatz-Detektor."
+        }
+      ]
+    },
+    {
+      "id": "werkzeug",
+      "rubrik": "werkzeug",
+      "header": "medien/bilder/rubrik/mindhack.webp",
+      "titel": "Dein Werkzeug: der Glaubenssatz-Detektor",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "Der Detektor gibt keine Diagnose und ist auch kein Selbsttest. Er ist eher eine Taschenlampe für deine Gästeliste. Du suchst einen Satz, der wirklich deiner ist, und schaust dir an, was er dich kostet. Mit „kosten“ ist gemeint: was du wegen des Satzes tust oder lässt und was dir dadurch entgeht."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/glaubenssatz-detektor.webp",
+          "alt": "Eine junge Frau leuchtet in einem dunklen Steinflur mit einer Taschenlampe auf eine alte Messingplakette, an der ein kleines leeres Preisschild hängt."
+        },
+        {
+          "typ": "experiment",
+          "id": "glaubenssatz-detektor",
+          "expTyp": "werkzeug",
+          "titel": "Der Glaubenssatz-Detektor",
+          "text": "Im Detektor gehst du Sätze oder Alltagssituationen durch und spürst nach, was bei dir anschlägt. Das dauert ungefähr 10 Minuten. Am Ende hast du einen Satz gefunden, der wirklich deiner ist, und siehst, was er dich kostet. Du kannst Glaubenssätze auch ohne ihn entdecken. Der Detektor hilft dir, den ersten ins Licht zu holen.",
+          "start": "Detektor starten"
+        },
+        {
+          "typ": "xlink",
+          "id": "glaubenssatz-detektor",
+          "anker": "sammlung",
+          "titel": "Meine Glaubenssätze",
+          "text": "Deine gesammelten Sätze ansehen und gewichten"
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "mission",
+      "rubrik": "mission",
+      "header": "medien/bilder/rubrik/mission-alltag.webp",
+      "titel": "Mission Alltag: Auf frischer Tat ertappt",
+      "bloecke": [
+        {
+          "typ": "absatz",
+          "text": "**Das Ziel:** Im Detektor hast du deinen Satz in Ruhe gefunden. Im Alltag meldet er sich aber nicht mit Namen, sondern als Stich, als Rückzieher oder als schlechte Laune aus dem Nichts. Bei dieser Mission ertappst du ihn eine Woche lang auf frischer Tat. Du musst ihn dabei weder widerlegen noch ändern, du schreibst nur auf, wann und wie er auftaucht. Die Methode stammt aus der kognitiven Verhaltenstherapie: Albert Ellis und Aaron Beck haben dafür das kurze Gedankenprotokoll entwickelt, David Burns die Frage nach unten aus Schritt 3."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Was du brauchst:** eine Notiz auf dem Handy oder einen Zettel, etwa zwei Minuten pro Fund und sieben Tage."
+        },
+        {
+          "typ": "bild",
+          "src": "medien/bilder/k05/mission-alltag-ertappt.webp",
+          "alt": "Eine junge Frau mit Dutt und grünem Hoodie sitzt im Bus im Abendlicht und schaut lächelnd auf ihr Handy."
+        },
+        {
+          "typ": "ueberschrift",
+          "text": "**So geht's**"
+        },
+        {
+          "typ": "absatz",
+          "text": "==1.== **Notiz anlegen (1 Minute).** Schreib oben deinen Satz aus dem Detektor hin. Hast du noch keinen, lass die Zeile frei. Darunter kommt für jeden Fund ein kurzer Eintrag."
+        },
+        {
+          "typ": "absatz",
+          "text": "==2.== **Ertappen (etwa 2 Minuten pro Fund).** Dein Signal ist ein spürbarer Stimmungswechsel: Du wirst plötzlich angespannt, gekränkt oder mutlos, oder du ziehst dich zurück. Frag dich dann: **„Was ist mir gerade durch den Kopf gegangen?“** Schreib so bald wie möglich drei Zeilen auf:"
+        },
+        {
+          "typ": "liste",
+          "geordnet": false,
+          "punkte": [
+            "**A wie Auslöser:** Was ist passiert? (Gruppenchat, seit zwei Stunden keine Antwort)",
+            "**B wie Bewertung:** Was habe ich in dem Moment gedacht, möglichst wörtlich? („Die haben keinen Bock auf mich.“)",
+            "**C wie Konsequenz:** Wie habe ich mich gefühlt, und was habe ich getan oder gelassen? (traurig, Handy weggelegt, nichts mehr geschrieben)"
+          ]
+        },
+        {
+          "typ": "absatz",
+          "text": "==3.== **Einmal tiefer fragen (1 Minute).** Nimm den Gedanken aus Zeile B und frag: **„Wenn das stimmt, was würde das über mich sagen?“** Schreib die Antwort darunter. Oft taucht dabei ein Satz auf, der dir aus dem Detektor bekannt vorkommt."
+        },
+        {
+          "typ": "absatz",
+          "text": "==4.== **Wochenblick (5 Minuten).** Lies am Ende der Woche alle Einträge hintereinander. Welcher Satz taucht am häufigsten auf, und in welchen Situationen meldet er sich? Markiere, was dich am meisten überrascht. Zeigt sich ein Satz, der noch nicht in deiner Sammlung steht, leg ihn unter „Meine Glaubenssätze“ ab."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Wenn es zu schwer wird:** Zieht dich ein Eintrag stark runter, hör für diesen Tag auf. Hält das Gefühl an, sprich mit jemandem, dem du vertraust, oder mit einer Beratungsstelle."
+        },
+        {
+          "typ": "absatz",
+          "text": "**Warum eine Woche?** Wie in Kapitel 1: Eine Woche ist der Start, kein Ziel. Ein Glaubenssatz, der seit Jahren auf der Liste steht, zeigt sich nicht an einem einzigen Abend. Jeder Eintrag macht ihn ein Stück sichtbarer, und vermutlich bemerkst du ihn mit der Zeit schon im Moment selbst und nicht erst hinterher. Deine Einträge nimmst du mit in Kapitel 6, dort geht es ans Umschreiben."
+        }
+      ],
+      "lese": null
+    },
+    {
+      "id": "quellen",
+      "rubrik": "quellen",
+      "header": "medien/bilder/rubrik/quellen.webp",
+      "titel": "Quellen & Hintergrund",
+      "bloecke": [
+        {
+          "typ": "quelle",
+          "text": "Beck, A. T., Rush, A. J., Shaw, B. F., & Emery, G. (1979). *Cognitive therapy of depression.* Guilford Press.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Boothby, E. J., Cooney, G., Sandstrom, G. M., & Clark, M. S. (2018). The liking gap in conversations: Do people like us more than we think? *Psychological Science, 29*(11), 1742–1756.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Branden, N. (1994). *The six pillars of self-esteem.* Bantam.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Burns, D. D. (1980). *Feeling good: The new mood therapy.* William Morrow.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Clifton, J. D. W., & Meindl, P. (2022). Parents think—incorrectly—that teaching their children that the world is a bad place is likely best for them. *The Journal of Positive Psychology.*",
+          "url": "https://doi.org/10.1080/17439760.2021.2016907"
+        },
+        {
+          "typ": "quelle",
+          "text": "Ellis, A. (1962). *Reason and emotion in psychotherapy.* Lyle Stuart.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Fardouly, J., & Holland, E. (2018). Social media is not real life: The effect of attaching disclaimer-type labels to idealized social media images on women’s body image and mood. *New Media & Society, 20*(11), 4311–4328.",
+          "url": "https://doi.org/10.1177/1461444818771083"
+        },
+        {
+          "typ": "quelle",
+          "text": "Fazio, L. K., Brashier, N. M., Payne, B. K., & Marsh, E. J. (2015). Knowledge does not protect against illusory truth. *Journal of Experimental Psychology: General, 144*(5), 993–1002.",
+          "url": "https://doi.org/10.1037/xge0000098"
+        },
+        {
+          "typ": "quelle",
+          "text": "Gale, C. R., Batty, G. D., & Deary, I. J. (2008). Locus of control at age 10 years and health outcomes and behaviors at age 30 years: The 1970 British Cohort Study. *Psychosomatic Medicine, 70*(4), 397–403.",
+          "url": "https://doi.org/10.1097/PSY.0b013e31816a719e"
+        },
+        {
+          "typ": "quelle",
+          "text": "Korotitsch, W. J., & Nelson-Gray, R. O. (1999). An overview of self-monitoring research in assessment and treatment. *Psychological Assessment, 11*(4), 415–425.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Levy, B. R., Slade, M. D., Kunkel, S. R., & Kasl, S. V. (2002). Longevity increased by positive self-perceptions of aging. *Journal of Personality and Social Psychology, 83*(2), 261–270.",
+          "url": "https://doi.org/10.1037/0022-3514.83.2.261"
+        },
+        {
+          "typ": "quelle",
+          "text": "Ross, L., Lepper, M. R., & Hubbard, M. (1975). Perseverance in self-perception and social perception: Biased attributional processes in the debriefing paradigm. *Journal of Personality and Social Psychology, 32*(5), 880–892.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Rotter, J. B., & Rafferty, J. E. (1950). *Manual: The Rotter Incomplete Sentences Blank, College Form.* New York: The Psychological Corporation.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Tiggemann, M., & Anderberg, I. (2020). Muscles and bare chests on Instagram: The effect of influencers’ fashion and fitspiration images on men’s body image. *Body Image, 35*, 237–244.",
+          "url": "https://doi.org/10.1016/j.bodyim.2020.10.001"
+        },
+        {
+          "typ": "quelle",
+          "text": "Tiggemann, M., Brown, Z., Zaccardo, M., & Thomas, N. (2017). “Warning: This image has been digitally altered”: The effect of disclaimer labels added to fashion magazine shoots on women’s body dissatisfaction. *Body Image, 21*, 107–113.",
+          "url": null
+        },
+        {
+          "typ": "quelle",
+          "text": "Werner, E. E. (1993). Risk, resilience, and recovery: Perspectives from the Kauai Longitudinal Study. *Development and Psychopathology, 5*(4), 503–515.",
+          "url": "https://doi.org/10.1017/S095457940000612X"
+        },
+        {
+          "typ": "quelle",
+          "text": "World Animal Protection (2020). Undercover-Aufnahmen aus Thailand (2018–2020) zum gewaltsamen Zähmen junger Elefanten, dort „the crush“ genannt.",
+          "url": null
+        }
+      ],
+      "lese": null
     }
-   ],
-   "lese": null
-  },
-  {
-   "id": "brainfact",
-   "rubrik": "brainfact",
-   "header": "medien/bilder/rubrik/brainfact.webp",
-   "titel": "Brain-Fact: Die Sätze, die heimlich mitentscheiden",
-   "bloecke": [
-    {
-     "typ": "absatz",
-     "text": "Du kommst von einer Party nach Hause, liegst im Bett und spulst ein Gespräch noch mal ab. Warum hast du das gesagt? Die fand dich bestimmt komisch. Forschende haben genau diesen Moment untersucht. Das Ergebnis: Die meisten unterschätzen, wie sehr ihr Gegenüber sie mochte. Wer hat dir also das Gegenteil erzählt?"
-    },
-    {
-     "typ": "audio",
-     "id": "k05-podcast",
-     "titel": "Episode 5",
-     "art": "podcast",
-     "status": "in-produktion"
-    }
-   ],
-   "lese": [
-    {
-     "typ": "akkordeon",
-     "titel": "Und wie fühlt sich dein Leben an?",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "Vielleicht kennst du Menschen, bei denen das Leben irgendwie leichter aussieht. Sie stehen morgens mit Energie auf, haben drei Projekte am Laufen, engagieren sich nebenbei und kriegen erstaunlich viel gemanagt. In ihrer WhatsApp-Info steht dann vielleicht so etwas wie „Läuft bei mir“ oder „Das Leben ist ein Spiel“."
-      },
-      {
-       "typ": "absatz",
-       "text": "Und vielleicht kennst du auch die andere Seite, bei anderen oder an manchen Tagen bei dir selbst. Tage, an denen du dich nur durchkämpfst und abends platt ins Bett fällst. An denen es sich anfühlt, als würde alles gegen dich laufen: die Chefin, die Bahn, das System. Manche verpacken das in Humor und teilen Sprüche wie „Montag ist der Endgegner“. Humor kann Frust tatsächlich abfedern (Martin et al., 2003). Spannender ist eine andere Frage: Worauf fällt dein Blick, ganz automatisch, wenn du an deine letzte Woche denkst?"
-      },
-      {
-       "typ": "bild",
-       "src": "medien/bilder/k05/gegenpole-kampf-spielwiese.webp",
-       "alt": "Zweigeteiltes Bild: Links kämpft sich ein junger Mann gegen Wind und Regen einen Hügel hinauf, rechts steht derselbe Mann entspannt auf einer Wiese und lässt ein Papierflugzeug fliegen."
-      },
-      {
-       "typ": "absatz",
-       "text": "Klar, das sind zwei Extreme, und die meisten pendeln irgendwo dazwischen. Natürlich spielen auch Umstände mit: Geld, Gesundheit, Familie. Aber da ist noch etwas, das spürbar mitbestimmt, wo sich jemand wiederfindet: die Sätze, die jemand über sich und die Welt glaubt. Und die reichen weiter, als man denkt."
-      },
-      {
-       "typ": "absatz",
-       "text": "Ein paar Fälle aus der Forschung:"
-      },
-      {
-       "typ": "liste",
-       "geordnet": false,
-       "punkte": [
-        "**Großbritannien, 1980.** Über 11.000 Zehnjährige beantworten Fragen dazu, wie viel sie selbst in der Hand haben. Zwanzig Jahre später werden 7.551 von ihnen wieder befragt. Wer als Kind mehr Kontrolle bei sich sah, war mit 30 seltener übergewichtig und seltener psychisch belastet. Auch dann, wenn man Intelligenz, Bildung und Einkommen herausrechnet (Gale et al., 2008).",
-        "**Ohio, USA.** Menschen mit einem freundlichen Bild vom Älterwerden lebten im Schnitt rund siebeneinhalb Jahre länger als Menschen mit einem düsteren. Die Forschenden verfolgten sie über bis zu 23 Jahre (Levy et al., 2002).",
-        "**Derselbe Milchshake, zweimal getrunken.** Einmal stand „üppig, 620 Kalorien“ drauf, einmal „leicht, 140 Kalorien“. Das Hungerhormon Ghrelin im Blut reagierte unterschiedlich, je nachdem, was die Leute zu trinken glaubten (Crum et al., 2011).",
-        "**Über 4.500 Menschen aus 48 Berufen.** Forschende suchten, ob ein düsteres Weltbild irgendwo hilft. Von über 1.800 Zusammenhängen, die sie fanden, sprachen nur sechs dafür. Wer die Welt eher als guten Ort sah, war dagegen deutlich seltener niedergeschlagen (Clifton & Meindl, 2022)."
-       ]
-      },
-      {
-       "typ": "absatz",
-       "text": "Nicht jede dieser Studien beweist Ursache und Wirkung. Das Muster aber ist deutlich. Und es wirft eine Frage auf: Was wäre, wenn hinter manchem Ärger mit Geld auch ein Satz steckt wie „Geld ist nichts für Leute wie mich“? Was wäre, wenn sich in einer Beziehung etwas bewegt, sobald du einen alten Satz darüber findest? Und was würde sich ändern, wenn du so einen Satz nicht mehr einfach glaubst?"
-      },
-      {
-       "typ": "absatz",
-       "text": "**Und du? Was glaubst du eigentlich über das Leben, wenn dich niemand fragt?**"
-      }
-     ]
-    },
-    {
-     "typ": "akkordeon",
-     "titel": "Von einem Tag zu einem Leben",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "Erinnerst du dich an deinen Türsteher aus Kapitel 1? Er lässt nur rein, was auf seiner Gästeliste steht. Da war dieser Morgen: verschlafen, Tasse runtergefallen, und plötzlich steht „Heute läuft alles schief“ auf der Liste. Ab da passt jede rote Ampel ins Bild. Aber dieser Eintrag hält meist nur einen Tag. Nach einer Nacht Schlaf ist er wieder weg. Und was, wenn sich solche Tage wiederholen? Dann kann aus vielen kleinen Momenten mit der Zeit etwas Festes werden."
-      },
-      {
-       "typ": "absatz",
-       "text": "Und dann gibt es Sätze, die bleiben. Zum Beispiel: „Das Leben ist schwer und unfair.“ So ein Satz entsteht nicht über Nacht, und er verschwindet auch nicht über Nacht. Oft steht er seit Jahren auf der Liste. Jeden Tag sammelt der Türsteher neue Beweise dafür. Und jeder Tag, an dem er vor allem das Schiefe durchlässt, kann den Eintrag ein Stück fester machen. Wie so ein Satz überhaupt auf die Liste kommt, schauen wir uns gleich noch an. Irgendwann fühlt sich das nicht mehr an wie eine Sichtweise, sondern wie die Wahrheit."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Genau das ist ein Glaubenssatz.** Keine Laune für heute, sondern ein Eintrag, der schon lange auf deiner Liste steht. Ein Satz über dich, über andere oder über die Welt, der sich anfühlt wie eine Tatsache."
-      },
-      {
-       "typ": "bild",
-       "src": "medien/bilder/k05/gaesteliste-im-kopf.webp",
-       "alt": "Eine junge Frau steht am Absperrseil vor einer Clubtür. Der Türsteher hält eine Gästeliste, auf der ein Eintrag dick und dunkel hervorsticht."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie beeinflusst, was du dir zutraust und wofür du dich entscheidest. Und deine Entscheidungen formen, wie dein Leben aussieht.**"
-      },
-      {
-       "typ": "absatz",
-       "text": "Ein bekannter Spruch bringt es auf den Punkt:"
-      },
-      {
-       "typ": "zitat",
-       "text": "**Achte auf deine Gedanken, denn sie werden zu Worten.**\n**Achte auf deine Worte, denn sie werden zu Handlungen.**\n**Achte auf deine Handlungen, denn sie werden zu Gewohnheiten.**\n**Achte auf deine Gewohnheiten, denn sie werden zu deinem Charakter.**\n**Achte auf deinen Charakter, denn er wird zu deinem Schicksal.**",
-       "quelle": "Verfasser unbekannt"
-      }
-     ]
-    },
-    {
-     "typ": "akkordeon",
-     "titel": "Leise Sätze, laute Wirkung",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "„Aber ich hab doch gar keine Glaubenssätze?“ Gute Frage. Die meisten Glaubenssätze sagt niemand laut. Sie laufen leise mit: in deinen Reaktionen, in deinen Entscheidungen und vor allem in dem, was du gar nicht erst versuchst. Drei Szenen:"
-      },
-      {
-       "typ": "absatz",
-       "text": "**Das Kompliment.** Jemand sagt: „Du hast das echt gut gemacht.“ Bevor du nachdenkst, kommt schon: „Das hätte doch jeder hingekriegt.“ Wer hat da gerade gesprochen? Vielleicht ein Satz wie „Ich bin nichts Besonderes“."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Der Gruppenchat.** Du schreibst etwas in die Gruppe. Eine Stunde, zwei Stunden: nichts. Gelesen, keine Antwort. Im Kopf: „Die haben keinen Bock auf mich.“ Dass zwei gerade arbeiten und eine beim Sport ist? Kommt nicht auf die Liste."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Das Neue.** Freunde fragen, ob du mit zum Bouldern kommst. Oder ob du im Seminar die Präsentation übernimmst. Und ganz schnell: „Nee, ich bin halt nicht der Typ für so was.“ Woher weißt du das eigentlich? Hast du es je ausprobiert?"
-      },
-      {
-       "typ": "absatz",
-       "text": "**Welche der drei Szenen hast du in den letzten Wochen erlebt?**"
-      },
-      {
-       "typ": "absatz",
-       "text": "Das Fiese: Ein Glaubenssatz fühlt sich nicht an wie ein Satz. Er fühlt sich an wie „so bin ich halt“ oder „so ist es halt“. Du denkst nicht: „Ich glaube, ich bin nicht der Typ für so was.“ Du denkst: „Ich bin nicht der Typ für so was.“ Ohne „ich glaube“. Und was sich nicht wie eine Meinung anhört, prüfst du auch nicht."
-      }
-     ]
-    },
-    {
-     "typ": "akkordeon",
-     "titel": "Woher kommen die?",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "Die kurze Antwort kennst du schon. In Kapitel 2 ging es um deinen Hühnerstall: Menschen um dich herum haben dir Etiketten mitgegeben, und manche kleben noch. In Kapitel 3 hast du gesehen: Was du oft hörst, fühlt sich wahr an, egal ob es von zu Hause, aus dem Freundeskreis oder aus deinem Feed kommt. Viele Glaubenssätze sind genau das: Sätze, die so lange wiederholt wurden, bis sie sich anfühlen wie deine eigenen."
-      },
-      {
-       "typ": "absatz",
-       "text": "Und dann ist da noch dein Feed. Er redet jeden Tag mit, und er lernt mit: Wobei du hängen bleibst, davon zeigt er dir mehr. Wer oft bei perfekten Körpern stoppt, bekommt schnell noch mehr davon zu sehen. Experimente zeigen, was das mit uns macht: Junge Frauen waren nach idealisierten Instagram-Bildern unzufriedener mit ihrem Körper (Fardouly & Holland, 2018). Jungen Männern ging es nach Fotos von muskulösen Influencern genauso (Tiggemann & Anderberg, 2020). Und jetzt wird es spannend: Ein Hinweis wie „Dieses Bild wurde bearbeitet“ änderte daran nichts (Tiggemann et al., 2017; Fardouly & Holland, 2018). Alle wussten, dass die Bilder geschönt sind. Gewirkt haben sie trotzdem."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Welchen Satz über dich hast du so oft gehört, dass du ihn heute selbst sagst?**"
-      }
-     ]
-    },
-    {
-     "typ": "akkordeon",
-     "titel": "Warum der Satz bleibt, obwohl du es besser weißt",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "„Aber wenn ich merke, dass ein Satz nicht stimmt, ist er doch weg?“ Leider nicht ganz so einfach."
-      },
-      {
-       "typ": "absatz",
-       "text": "In einem bekannten Experiment bekamen Studierende kurze persönliche Briefe vorgelegt. Einige hatten echte Menschen in einer echten Lebenslage geschrieben, andere hatte das Forschungsteam nachgeahmt. Die Aufgabe: herausfinden, welche Briefe echt sind. Wie gut man darin ist, kann man selbst kaum einschätzen. Danach hörten die einen: „Richtig gut, fast alles richtig.“ Die anderen: „Ziemlich schwach.“ Diese Rückmeldung war ausgedacht, vorher festgelegt, völlig unabhängig von ihrer echten Leistung. Das wurde ihnen danach ausdrücklich erklärt. Trotzdem schätzten sich die „Guten“ weiter besser ein als die „Schwachen“, etwa bei der Frage, wie gut sie so eine Aufgabe beim nächsten Mal lösen würden (Ross, Lepper & Hubbard, 1975). Die Grundlage war weg. Der Eindruck blieb ein Stück stehen."
-      },
-      {
-       "typ": "absatz",
-       "text": "Willst du dich selbst ertappen? November 1951, ein Football-Spiel in den USA: Princeton gegen Dartmouth. Ein hartes Spiel, Princetons Star verlässt den Platz mit gebrochener Nase, ein Dartmouth-Spieler mit gebrochenem Bein. Danach zeigen zwei Psychologen Studierenden beider Unis denselben Film vom Spiel und lassen sie jedes Foul notieren. Die Princeton-Leute sehen bei Dartmouth fast zehn Fouls, beim eigenen Team rund vier. Die Dartmouth-Leute sehen bei beiden Teams etwa gleich viele (Hastorf & Cantril, 1954). Derselbe Film. Zwei völlig verschiedene Spiele. Die Erwartung hat mitgeguckt."
-      },
-      {
-       "typ": "absatz",
-       "text": "Das gibt es nicht nur beim Sport. In einem Versuch probierten Erwachsene denselben Wein zweimal, einmal mit hohem, einmal mit niedrigem Preis. Der „teure“ schmeckte ihnen besser (Plassmann et al., 2008)."
-      },
-      {
-       "typ": "absatz",
-       "text": "Und jetzt denk an das nächste Spiel deines Teams, ob Bundesliga oder Kreisliga. Der Schiri pfeift gegen euch, und sofort meldet sich in dir: „Klar, der pfeift wieder alles gegen uns.“ Obwohl du gerade gelesen hast, wie das läuft."
-      },
-      {
-       "typ": "absatz",
-       "text": "Genau so ticken Glaubenssätze. Wissen schützt nicht automatisch. In Versuchen fühlten sich falsche Aussagen nach Wiederholung etwas wahrer an, selbst wenn die Leute es eigentlich besser wussten (Fazio et al., 2015). Der Effekt war klein. Aber er war da."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Welchen Satz über dich weißt du im Kopf längst besser, und trotzdem lebst du nach ihm?**"
-      }
-     ]
-    },
-    {
-     "typ": "akkordeon",
-     "titel": "Die gute Nachricht",
-     "bloecke": [
-      {
-       "typ": "absatz",
-       "text": "Hawaii, 1955. Auf der Insel Kauai beginnt eine Studie, die über 40 Jahre laufen wird. Forschende begleiten alle 698 Kinder, die in diesem Jahr dort geboren werden. 201 von ihnen starten unter schweren Bedingungen: Armut, Streit in der Familie, kranke Eltern. Die Erwartung war klar: Diese Kinder werden es schwer haben. Für viele traf das zu. Aber etwa jedes dritte wurde zu einem selbstbewussten, fähigen Erwachsenen, der sich um andere kümmert (Werner, 1993). Was diesen Kindern half, war unter anderem ein Mensch, der an sie glaubte, und ein zuversichtlicher Blick aufs Leben. Der Start war hart. Wie die Geschichte ausging, hat er nicht allein entschieden."
-      },
-      {
-       "typ": "absatz",
-       "text": "Ein Glaubenssatz ist kein Urteil über dich. Er ist ein Eintrag auf einer Liste. Und Einträge kann man lesen. Im Experiment von 1975 gab es dazu einen interessanten Teil: Wer genau erklärt bekam, *wie* so ein Eindruck hängen bleibt, bei dem verschwand er meist weitgehend. Hinschauen und Verstehen machen also einen Unterschied."
-      },
-      {
-       "typ": "absatz",
-       "text": "Der erste Schritt ist deshalb nicht, den Satz sofort zu ändern. Der erste Schritt ist, ihn zu finden. In deinen eigenen Worten, schwarz auf weiß. Solange er unsichtbar mitläuft, entscheidet er mit. Sobald du ihn siehst, kannst du ihn befragen: Stimmt das eigentlich? Und was kostet er mich? Ein Beispiel: „Ich bin halt nicht der Typ für so was.“ Der Satz erspart dir einen wackligen Moment an der Boulderwand. Und er kostet dich vielleicht die Abende mit deinen Freunden, ein Hobby, das dir Spaß gemacht hätte, und irgendwann die Einladung, weil keiner mehr fragt."
-      },
-      {
-       "typ": "absatz",
-       "text": "**Was würdest du nächste Woche anders machen, wenn dieser eine Satz nicht mehr auf deiner Liste stünde?**"
-      },
-      {
-       "typ": "absatz",
-       "text": "Genau dafür gibt es jetzt den Glaubenssatz-Detektor. Kein Test, keine Diagnose. Eher eine Taschenlampe für deine Gästeliste. Du suchst einen Satz, der wirklich deiner ist, und schaust dir an, was er dich kostet. Mit „kosten“ ist gemeint: was du wegen des Satzes tust oder lässt und was dir dadurch entgeht. Ein Beispiel: Jemand glaubt „Sich selbstständig zu machen ist viel zu riskant.“ Vielleicht hätte er das Zeug zu etwas Eigenem, und sein Herz schlägt längst dafür. Trotzdem bleibt er Jahr für Jahr in einem Job, unter dem er leidet. Der Satz schützt ihn vor einem Risiko. Und er kostet ihn womöglich genau das, wofür sein Herz schlägt."
-      }
-     ]
-    }
-   ],
-   "merkzettel": [
-    {
-     "typ": "bild",
-     "src": "medien/bilder/k05/gaesteliste-titelbild.webp",
-     "alt": "Vor einer angelehnten Clubtür steht ein Pult mit einer Gästeliste. Ein Eintrag in der Mitte ist dick und dunkel nachgezogen."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Glaubenssatz = ein Eintrag, der schon lange auf deiner Gästeliste steht.** Eine Tageserwartung wie „Heute läuft alles schief“ ist nach einer Nacht Schlaf meist vorbei. Ein Glaubenssatz wie „Das Leben ist schwer und unfair“ bleibt seit Jahren stehen. Dein Türsteher sammelt jeden Tag Beweise dafür. Irgendwann fühlt sich der Satz an wie eine Tatsache."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Glaubenssätze sagt man selten laut.** Sie laufen leise mit: in Reaktionen („Das hätte doch jeder hingekriegt“), in Deutungen („Die haben eh keinen Bock auf mich“) und in dem, was du gar nicht erst versuchst („Ich bin halt nicht der Typ für so was“)."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Sie prägen mit, wie leicht oder schwer sich das Leben anfühlt.** Nicht allein, aber spürbar, und weiter, als man denkt: Langzeitstudien zeigen Zusammenhänge mit Gesundheit, Lebensdauer und Wohlbefinden. Ein düsteres Weltbild hilft dabei fast nie."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Woher sie kommen:** aus deinem Hühnerstall (Kapitel 2), aus Wiederholung (Kapitel 3) und aus deinem Feed. Was du oft hörst und siehst, fühlt sich wahr an. Bilder wirken sogar dann, wenn du weißt, dass sie bearbeitet sind."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Warum sie bleiben:** Ein Eindruck bleibt oft ein Stück stehen, selbst wenn seine Grundlage widerlegt ist. Erwartungen färben, was du wahrnimmst. Und Wissen schützt nicht automatisch. Du weißt jetzt, dass Fans dasselbe Spiel völlig verschieden sehen, und beim nächsten Pfiff gegen dein Team meldet sich trotzdem das alte Gefühl."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Die gute Nachricht:** Ein Glaubenssatz ist kein Urteil über dich, sondern ein Eintrag. Selbst ein harter Start entscheidet nicht alles: Auf Kauai wurde etwa jedes dritte Kind aus schwierigen Verhältnissen trotzdem ein starker Erwachsener. Einträge kann man lesen. Der erste Schritt: den Satz finden, in deinen eigenen Worten, und sehen, was er dich kostet. Kosten heißt: was du wegen des Satzes tust oder lässt und was dir dadurch entgeht. Genau das machst du im Glaubenssatz-Detektor."
-    }
-   ]
-  },
-  {
-   "id": "werkzeug",
-   "rubrik": "werkzeug",
-   "header": "medien/bilder/rubrik/mindhack.webp",
-   "titel": "Werkzeug: Glaubenssatz-Detektor",
-   "bloecke": [
-    {
-     "typ": "bild",
-     "src": "medien/bilder/k05/glaubenssatz-detektor.webp",
-     "alt": "Eine junge Frau leuchtet in einem dunklen Steinflur mit einer Taschenlampe auf eine alte Messingplakette, an der ein kleines leeres Preisschild hängt."
-    },
-    {
-     "typ": "experiment",
-     "id": "glaubenssatz-detektor",
-     "expTyp": "werkzeug",
-     "titel": "Der Glaubenssatz-Detektor",
-     "text": "Im Detektor gehst du Sätze oder Alltagssituationen durch und spürst nach, was bei dir anschlägt. Das dauert ungefähr 10 Minuten und du machst es für dich allein. Am Ende hast du einen Satz gefunden, der wirklich deiner ist, und siehst, was er dich kostet.",
-     "start": "Detektor starten"
-    },
-    {
-     "typ": "xlink",
-     "id": "glaubenssatz-detektor",
-     "anker": "sammlung",
-     "titel": "Meine Glaubenssätze",
-     "text": "Deine gesammelten Sätze ansehen und gewichten"
-    },
-    {
-     "typ": "absatz",
-     "text": "Du hast ihn gefunden. Das ist schon ein echter Schritt. In Kapitel 6 bringst du deinen Satz ins Wanken und baust Schritt für Schritt einen neuen. Dein Satz wartet dort auf dich."
-    }
-   ],
-   "lese": null
-  },
-  {
-   "id": "mission",
-   "rubrik": "mission",
-   "header": "medien/bilder/rubrik/mission-alltag.webp",
-   "titel": "Mission Alltag: Zu zweit",
-   "bloecke": [
-    {
-     "typ": "bild",
-     "src": "medien/bilder/k05/mission-zu-zweit.webp",
-     "alt": "Zwei Freunde um die Zwanzig, jede und jeder an einem eigenen Ort, verbunden durch einen leuchtenden Faden mit sieben Lichtpunkten, am Ende schickt sie ihm eine kurze Nachricht."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Das Ziel:** Ein Glaubenssatz versteckt sich gern. Ein vertrauter Mensch sieht manchmal, was du selbst übersiehst. Bei dieser Mission schaut ihr gemeinsam hin, ohne zu bewerten und ohne gute Ratschläge."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Was du brauchst:** eine Person, der du vertraust (Freundin, Partner, Bruder, Mitbewohnerin), ca. 15–20 Minuten, einen ruhigen Ort."
-    },
-    {
-     "typ": "ueberschrift",
-     "text": "**So geht's**"
-    },
-    {
-     "typ": "liste",
-     "geordnet": true,
-     "punkte": [
-      "**Satz wählen (2 Minuten).** Jede und jeder sucht sich einen Satz aus, der beim Lesen oder im Detektor angeschlagen hat. Nur einen, den du teilen willst. Du entscheidest, wie viel du erzählst.",
-      "**Erzählen und fragen (je ca. 5 Minuten).** Person A sagt ihren Satz laut und erzählt eine Situation, in der er sich zuletzt gemeldet hat. Dann fragt A: **„Kennst du das von mir?“** B antwortet ehrlich und freundlich: Wo hast du das bei A schon bemerkt? Und wo erlebst du A ganz anders?",
-      "**Spiegeln, nicht lösen (2 Minuten).** B fasst in eigenen Worten zusammen, was angekommen ist: „Ich habe gehört, dass …“ Keine Bewertung, keine Tipps, kein „Ach, das stimmt doch gar nicht“. Danach tauscht ihr die Rollen.",
-      "**Kurz zusammen (3 Minuten).** Jede und jeder sagt einen Satz: „Was hat mich überrascht?“ Dann verabredet ihr euch für die nächsten sieben Tage: Beide achten darauf, wo sich der eigene Satz im Alltag meldet. Am Ende der Woche schickt ihr euch eine kurze Nachricht: „Gemerkt habe ich ihn bei …“"
-     ]
-    },
-    {
-     "typ": "absatz",
-     "text": "**Gerade niemand da?** Sprich deinen Satz und eine Situation als Sprachnachricht ein oder schreib beides auf. Schick es einer vertrauten Person, wenn es passt, mit der Frage: „Kennst du das von mir?“ Oder heb es auf und teile es später."
-    },
-    {
-     "typ": "absatz",
-     "text": "**Warum eine Woche?** Wie in Kapitel 1: Eine Woche ist der Start, kein Ziel. Ein Glaubenssatz, der seit Jahren auf der Liste steht, braucht mehr als einen Abend. Bleib dran, Schritt für Schritt. Jedes Mal, wenn du ihn bemerkst, wird er ein Stück sichtbarer. In Kapitel 6 geht es dann ans Umschreiben."
-    }
-   ],
-   "lese": null
-  },
-  {
-   "id": "quellen",
-   "rubrik": "quellen",
-   "header": "medien/bilder/rubrik/quellen.webp",
-   "titel": "Quellen & Hintergrund: Glaubenssätze",
-   "bloecke": [
-    {
-     "typ": "quelle",
-     "text": "Boothby, E. J., Cooney, G., Sandstrom, G. M., & Clark, M. S. (2018). The liking gap in conversations: Do people like us more than we think? *Psychological Science, 29*(11), 1742–1756.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Branden, N. (1994). *The six pillars of self-esteem.* Bantam.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Clifton, J. D. W., & Meindl, P. (2022). Parents think—incorrectly—that teaching their children that the world is a bad place is likely best for them. *The Journal of Positive Psychology.*",
-     "url": "https://doi.org/10.1080/17439760.2021.2016907"
-    },
-    {
-     "typ": "quelle",
-     "text": "Crum, A. J., Corbin, W. R., Brownell, K. D., & Salovey, P. (2011). Mind over milkshakes: Mindsets, not just nutrients, determine ghrelin response. *Health Psychology, 30*(4), 424–429.",
-     "url": "https://doi.org/10.1037/a0023467"
-    },
-    {
-     "typ": "quelle",
-     "text": "Fardouly, J., & Holland, E. (2018). Social media is not real life: The effect of attaching disclaimer-type labels to idealized social media images on women’s body image and mood. *New Media & Society, 20*(11), 4311–4328.",
-     "url": "https://doi.org/10.1177/1461444818771083"
-    },
-    {
-     "typ": "quelle",
-     "text": "Fazio, L. K., Brashier, N. M., Payne, B. K., & Marsh, E. J. (2015). Knowledge does not protect against illusory truth. *Journal of Experimental Psychology: General, 144*(5), 993–1002.",
-     "url": "https://doi.org/10.1037/xge0000098"
-    },
-    {
-     "typ": "quelle",
-     "text": "Gale, C. R., Batty, G. D., & Deary, I. J. (2008). Locus of control at age 10 years and health outcomes and behaviors at age 30 years: The 1970 British Cohort Study. *Psychosomatic Medicine, 70*(4), 397–403.",
-     "url": "https://doi.org/10.1097/PSY.0b013e31816a719e"
-    },
-    {
-     "typ": "quelle",
-     "text": "Hastorf, A. H., & Cantril, H. (1954). They saw a game: A case study. *Journal of Abnormal and Social Psychology, 49*(1), 129–134.",
-     "url": "https://doi.org/10.1037/h0057880"
-    },
-    {
-     "typ": "quelle",
-     "text": "Levy, B. R., Slade, M. D., Kunkel, S. R., & Kasl, S. V. (2002). Longevity increased by positive self-perceptions of aging. *Journal of Personality and Social Psychology, 83*(2), 261–270.",
-     "url": "https://doi.org/10.1037/0022-3514.83.2.261"
-    },
-    {
-     "typ": "quelle",
-     "text": "Martin, R. A., Puhlik-Doris, P., Larsen, G., Gray, J., & Weir, K. (2003). Individual differences in uses of humor and their relation to psychological well-being: Development of the Humor Styles Questionnaire. *Journal of Research in Personality, 37*(1), 48–75.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Plassmann, H., O’Doherty, J., Shiv, B., & Rangel, A. (2008). Marketing actions can modulate neural representations of experienced pleasantness. *Proceedings of the National Academy of Sciences, 105*(3), 1050–1054.",
-     "url": "https://doi.org/10.1073/pnas.0706929105"
-    },
-    {
-     "typ": "quelle",
-     "text": "Ross, L., Lepper, M. R., & Hubbard, M. (1975). Perseverance in self-perception and social perception: Biased attributional processes in the debriefing paradigm. *Journal of Personality and Social Psychology, 32*(5), 880–892.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Rotter, J. B., & Rafferty, J. E. (1950). *Manual: The Rotter Incomplete Sentences Blank, College Form.* New York: The Psychological Corporation.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Tiggemann, M., & Anderberg, I. (2020). Muscles and bare chests on Instagram: The effect of influencers’ fashion and fitspiration images on men’s body image. *Body Image, 35*, 237–244.",
-     "url": "https://doi.org/10.1016/j.bodyim.2020.10.001"
-    },
-    {
-     "typ": "quelle",
-     "text": "Tiggemann, M., Brown, Z., Zaccardo, M., & Thomas, N. (2017). “Warning: This image has been digitally altered”: The effect of disclaimer labels added to fashion magazine shoots on women’s body dissatisfaction. *Body Image, 21*, 107–113.",
-     "url": null
-    },
-    {
-     "typ": "quelle",
-     "text": "Werner, E. E. (1993). Risk, resilience, and recovery: Perspectives from the Kauai Longitudinal Study. *Development and Psychopathology, 5*(4), 503–515.",
-     "url": "https://doi.org/10.1017/S095457940000612X"
-    },
-    {
-     "typ": "quelle",
-     "text": "Zitat „Achte auf deine Gedanken …“: Herkunft unklar, oft Lao-Tse, dem Talmud oder Margaret Thatchers Vater zugeschrieben; früheste nah übereinstimmende Fassung 1977 (Frank Outlaw) laut Quote Investigator,",
-     "url": "https://quoteinvestigator.com/2013/01/10/watch-your-thoughts/"
-    }
-   ],
-   "lese": null
-  }
- ]
+  ]
 }

@@ -1,4 +1,5 @@
 <!-- Einstiegs-Experiment „3 Sekunden, 5 Sätze“ (Klarkommen, Kapitel 5 – Einstieg)
+  17.11.2026 (Kapitel-5-Überarbeitung): Bild einstieg-3-sekunden-v3 direkt unter der Überschrift der Intro-Seite; „Überspringen“ (Erklärtext + Funktion) und „Experiment beenden“ entfernt (Weiter-Tap und „Zurück zur App“ oben links bleiben).
   v1.3.44 (16.11.2026): neu. Texte 1:1 aus Notion T05 (Sammeleintrag App-Bau, Endfassung Einstieg, Stand 14./16.11.2026).
   Ablauf: Intro → 5 Satzanfänge (je ein Screen, keine Eingabe, 3-Sekunden-Ring als Impuls) → Auflösung → schnellsten Satz anhaken + freiwillig ergänzen.
   Tempo: „In meinem Tempo“ (Standard, Weiter per Tipp) oder „Mit Timer“ (nach 3 s sanfter Wechsel, Zurück bleibt aktiv).
@@ -58,7 +59,6 @@ figure img{display:block;width:100%;height:auto;border-radius:14px;border:1px so
 .ring span{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 1.5rem 'Space Grotesk',sans-serif;color:var(--accent)}
 .satz{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(1.55rem,7vw,2.1rem);line-height:1.3;color:var(--text-primary);max-width:20ch}
 .impuls{margin-top:18px;color:var(--text-secondary);font-size:.98rem}
-.hinweis{margin-top:8px;color:var(--text-muted);font-size:.88rem}
 /* Auflösung */
 .fuss{margin-top:6px;font-size:.8rem;line-height:1.55;color:var(--text-muted);border-top:1px solid var(--border);padding-top:12px}
 .karte{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin:8px 0 14px}
@@ -89,6 +89,7 @@ textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
   <!-- Intro -->
   <section class="screen on" id="s-intro" aria-labelledby="t-intro">
     <h1 id="t-intro">3 Sekunden, 5 Sätze</h1>
+    <figure><img src="einstieg-3-sekunden-v3.webp" width="1024" height="1024" alt="Ein junger Mann sitzt auf einer Treppe und hält sich überrascht die Hand vor den Mund. Um seinen Kopf leuchten mehrere Sprechblasen voller Gekritzel."></figure>
     <p>Gleich siehst du fünf Satzanfänge. Ergänze jeden in Gedanken. Nicht nachdenken, nicht schön formulieren. Nimm das Erste, was kommt. Auch wenn es dir komisch vorkommt.</p>
     <div class="unten">
       <div class="seg" role="group" aria-label="Tempo">
@@ -109,14 +110,9 @@ textarea:focus{outline:2px solid var(--accent);outline-offset:1px}
       <div class="ring" id="ring" aria-hidden="true"><svg viewBox="0 0 96 96"><circle class="bg" cx="48" cy="48" r="42"/><circle class="fg" cx="48" cy="48" r="42"/></svg><span id="ringzahl">3</span></div>
       <div class="satz" id="satz"></div>
       <p class="impuls">Nimm das Erste, was kommt.</p>
-      <p class="hinweis" id="hinweis">Du kannst jeden Satz überspringen.</p>
     </div>
     <div class="unten">
       <button type="button" class="btn" id="b-weiter">Weiter</button>
-      <div class="zeile">
-        <button type="button" class="lnk" id="b-skip">Überspringen</button>
-        <button type="button" class="lnk" id="b-ende1">Experiment beenden</button>
-      </div>
     </div>
   </section>
 
@@ -179,7 +175,6 @@ function zeigeSatz(i){
   stopp(); idx = i;
   $('satz').textContent = SAETZE[i];
   $('zaehler').textContent = (i+1) + ' / 5';
-  $('hinweis').style.visibility = (i===0) ? 'visible' : 'hidden';
   $('b-zurueck').disabled = (i===0);
   zeige('s-satz');
   ansage('Satz ' + (i+1) + ' von 5: ' + SAETZE[i]);
@@ -192,10 +187,8 @@ function zeigeSatz(i){
 function weiter(){ if (idx < SAETZE.length-1) zeigeSatz(idx+1); else aufloesung(); }
 $('b-start').addEventListener('click', function(){ zeigeSatz(0); });
 $('b-weiter').addEventListener('click', weiter);
-$('b-skip').addEventListener('click', weiter);
 $('satzwrap').addEventListener('click', weiter);
 $('b-zurueck').addEventListener('click', function(){ if (idx>0) zeigeSatz(idx-1); });
-$('b-ende1').addEventListener('click', function(){ stopp(); zurueck(); });
 
 /* Auflösung + Notiz */
 var notiz = (function(){ try { var o = JSON.parse(lies(NOTIZ_KEY)||'null'); return (o && typeof o==='object') ? o : {}; } catch(e){ return {}; } })();

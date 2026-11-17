@@ -764,7 +764,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.45';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.47';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -784,8 +784,8 @@ function rubIcon(key, px){
   return ic(rb ? rb.icon : 'chev');
 }
 /* v1.3.10: Zwischenüberschrift-Icons (Akkordeon-Feld "icon"), goldene WebP 56 px für 28 px Anzeige */
-const ZW_ICON = {kette:'brand/icons/zw-kettenglied.webp', anker:'brand/icons/zw-anker.webp', wegweiser:'brand/icons/zw-wegweiser.webp'};
-const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung'};
+const ZW_ICON = {kette:'brand/icons/zw-kettenglied.webp', anker:'brand/icons/zw-anker.webp', wegweiser:'brand/icons/zw-wegweiser.webp', buch:'brand/icons/zw-buch.webp'};
+const AUDIO_ART = {podcast:'Podcast', meditation:'Meditation', uebung:'Übung', hoerspiel:'Hörspiel „Die Kordel“'};
 
 /* Linien-Icons (Skill §10.2): stroke currentColor, 1.7 px */
 const IC = {
@@ -1210,7 +1210,7 @@ function blocks(arr, ctx){
           h += `<${tg} class="${lz===1?'lzh':'lzs'}"${b.id?` id="h-${esc(b.id)}"`:''}>${ico}<span>${esc(b.titel)}</span></${tg}>` + blocks(b.bloecke, {...ctx, path, lz});
           break; }
         h += `<details class="acc"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ZW_ICON[b.icon]?`<img class="zbi" src="${ZW_ICON[b.icon]}" width="28" height="28" alt="" decoding="async">`:ic('chev')}<span>${esc(b.titel)}</span>${ic('down','chv')}</summary><div class="acb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;
-      case 'einwand': h += `<details class="einw"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ic('chat')}<span>${esc(b.titel||'')}</span>${ic('down','chv')}</summary><div class="ewb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;   /* v1.3.18: Einwand-Knopf (k03 Leseversion „informiert bleiben“) */
+      case 'einwand': h += `<details class="einw"${b.id?` id="h-${esc(b.id)}"`:''}><summary>${ic(b.icon||'chat')}<span>${esc(b.titel||'')}</span>${ic('down','chv')}</summary><div class="ewb bl">${blocks(b.bloecke, {...ctx, path})}</div></details>`; break;   /* v1.3.18: Einwand-Knopf (k03 Leseversion „informiert bleiben“) */
       case 'link': { /* Nachtrag 04.11.: externe Link-Karte (nur Link, nichts wird vorgeladen) */
         if(!/^https:\/\//.test(b.url||'')) break;
         h += `<div class="exp lnk"><div class="art">${ic('play')} ${esc(b.art||'Link')}</div><h3>${esc(b.titel||b.url)}</h3>${b.hinweis?`<p>${inl(b.hinweis)}</p>`:''}<a class="btn sec block" href="${esc(b.url)}" target="_blank" rel="noopener noreferrer">${ic('ext')} ${esc(b.label||'Link öffnen')}</a>${b.online?`<p class="hint lnk-on">${ic('info')} ${esc(b.online)}</p>`:''}</div>`; break; }

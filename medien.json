@@ -1,5 +1,5 @@
 {
-  "version": 21,
+  "version": 23,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -95,14 +95,6 @@
       "bytes": 82166,
       "typ": "bild",
       "kapitel": "k04",
-      "dauer": null
-    },
-    {
-      "id": "bilder/cover/k05",
-      "pfad": "medien/bilder/cover/k05.webp",
-      "bytes": 156804,
-      "typ": "bild",
-      "kapitel": "k05",
       "dauer": null
     },
     {
@@ -458,30 +450,6 @@
       "dauer": null
     },
     {
-      "id": "bilder/k05/gaesteliste-titelbild",
-      "pfad": "medien/bilder/k05/gaesteliste-titelbild.webp",
-      "bytes": 145424,
-      "typ": "bild",
-      "kapitel": "k05",
-      "dauer": null
-    },
-    {
-      "id": "bilder/k05/einstieg-3-sekunden-v2",
-      "pfad": "medien/bilder/k05/einstieg-3-sekunden-v2.webp",
-      "bytes": 91602,
-      "typ": "bild",
-      "kapitel": "k05",
-      "dauer": null
-    },
-    {
-      "id": "bilder/k05/gaesteliste-im-kopf",
-      "pfad": "medien/bilder/k05/gaesteliste-im-kopf.webp",
-      "bytes": 122304,
-      "typ": "bild",
-      "kapitel": "k05",
-      "dauer": null
-    },
-    {
       "id": "bilder/k05/gegenpole-kampf-spielwiese",
       "pfad": "medien/bilder/k05/gegenpole-kampf-spielwiese.webp",
       "bytes": 125886,
@@ -498,12 +466,52 @@
       "dauer": null
     },
     {
-      "id": "bilder/k05/mission-zu-zweit",
-      "pfad": "medien/bilder/k05/mission-zu-zweit.webp",
-      "bytes": 64558,
+      "id": "bilder/cover/k05",
+      "pfad": "medien/bilder/cover/k05-v2.webp",
+      "bytes": 113706,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null
+    },
+    {
+      "id": "bilder/k05/gaesteliste-titelbild-v2",
+      "pfad": "medien/bilder/k05/gaesteliste-titelbild-v2.webp",
+      "bytes": 113706,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/gaesteliste-im-kopf-v2",
+      "pfad": "medien/bilder/k05/gaesteliste-im-kopf-v2.webp",
+      "bytes": 99348,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/mission-alltag-ertappt",
+      "pfad": "medien/bilder/k05/mission-alltag-ertappt.webp",
+      "bytes": 69508,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "bilder/k05/parabel-elefant-kordel",
+      "pfad": "medien/bilder/k05/parabel-elefant-kordel.webp",
+      "bytes": 136602,
+      "typ": "bild",
+      "kapitel": "k05",
+      "dauer": null
+    },
+    {
+      "id": "k05-kordel",
+      "pfad": "medien/audio/k05-kordel.mp3",
+      "bytes": 2102796,
+      "typ": "audio",
+      "kapitel": "k05",
+      "dauer": "1:28"
     }
   ]
 }

@@ -38,7 +38,7 @@
       "bloecke": [
         {
           "typ": "absatz",
-          "text": "Warum fällt dir ein bestimmtes Auto plötzlich überall auf, sobald du darüber nachdenkst? Alex und Lena gehen der Frage nach, was in deinem Kopf mitentscheidet, was du überhaupt bemerkst."
+          "text": "Warum fällt dir ein bestimmtes Auto oder ein bestimmter Schuh plötzlich überall auf, sobald du darüber nachdenkst? Alex und Lena gehen der Frage nach, was in deinem Kopf mitentscheidet, was du überhaupt bemerkst."
         },
         {
           "typ": "audio",
@@ -132,7 +132,7 @@
         },
         {
           "typ": "zitat",
-          "text": "Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie formt, wie du dein Leben siehst.",
+          "text": "Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie formt, wie du dein Leben siehst und welche Entscheidungen du triffst.",
           "quelle": null
         },
         {
@@ -214,6 +214,11 @@
           "src": "medien/bilder/k01/confirmation-bias.webp",
           "alt": "Mann mit Lupe vor einer Wand voller Bilder: Die Lupe hebt nur die Warnsignale hervor. Nicht die Wahrheit, unsere Wahrheit.",
           "unterschrift": null
+        },
+        {
+          "typ": "zitat",
+          "text": "Deine Gästeliste entscheidet nicht nur, was dir heute auffällt. Sie formt, wie du dein Leben siehst und welche Entscheidungen du triffst.",
+          "quelle": null
         },
         {
           "typ": "absatz",

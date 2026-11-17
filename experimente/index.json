@@ -34,7 +34,7 @@
         "experimente/farbensuche/Focus-Experiment_Farbensuche.jpeg",
         "experimente/farbensuche/synclabmusic-funny-music-478625.mp3"
       ],
-      "bytes": 800235,
+      "bytes": 800895,
       "kapitel": 1,
       "deeplinks": {}
     },
@@ -106,9 +106,10 @@
       "id": "satzanfaenge",
       "titel": "3 Sekunden, 5 Sätze",
       "dateien": [
-        "experimente/satzanfaenge/index.html"
+        "experimente/satzanfaenge/index.html",
+        "experimente/satzanfaenge/einstieg-3-sekunden-v3.webp"
       ],
-      "bytes": 18312,
+      "bytes": 641434,
       "kapitel": 5,
       "deeplinks": {}
     }
