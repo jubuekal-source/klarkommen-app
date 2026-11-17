@@ -467,8 +467,8 @@
     },
     {
       "id": "bilder/cover/k05",
-      "pfad": "medien/bilder/cover/k05-v2.webp",
-      "bytes": 113706,
+      "pfad": "medien/bilder/cover/k05.webp",
+      "bytes": 156804,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null

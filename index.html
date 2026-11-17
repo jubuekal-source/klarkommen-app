@@ -764,7 +764,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.47';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.48';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1145,7 +1145,8 @@ function progHtml(){
   return `<div class="prog${fertig||beg?'':' leer'}" id="prog" role="img" aria-label="${txt}"><div class="pbar">${seg}</div><div class="pt">${txt}</div></div>`;
 }
 /* spec/00 §2.2 – nächstes freies Kapitel */
-function naechstesKapitel(k){ const i = KAP.indexOf(k); return KAP.slice(i+1).find(kapFrei) || null; }
+/* v1.3.48: immer das direkt folgende Kapitel (auch gesperrt, dann öffnet die Karte das Sperr-Sheet wie in der Übersicht); der unnummerierte Bonus am Ende zählt nur, wenn frei */
+function naechstesKapitel(k){ const i = KAP.indexOf(k); const n = KAP[i+1]; return (n && (n.nr || kapFrei(n))) ? n : null; }
 /* spec/01 §C.4 – Kapitelseite */
 async function renderKapitel(app, r){
   const k = kapFromRoute(r.kap);
@@ -1181,7 +1182,8 @@ async function renderKapitel(app, r){
 function naechstWeiter(k, fertig){
   const n = naechstesKapitel(k); const fa = fertig ? ' data-fertig' : '';
   if(!n) return `<a class="weiter end" href="#/" data-endcard${fa}><span class="k"><span class="l">Geschafft</span><div class="n">Zurück zu deiner Reise</div></span><span class="go">${ic('home')}</span></a>`;
-  return `<a class="weiter end" href="#/k/${kapRouteId(n)}" data-endcard${fa}><span class="k"><span class="l">Nächstes Kapitel</span><div class="n">${n.nr?`Kapitel ${n.nr}: `:''}${esc(n.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
+  const sp = kapFrei(n) ? '' : ` data-act="sperre" data-kap="${n.id}"`;
+  return `<a class="weiter end" href="#/k/${kapRouteId(n)}"${sp} data-endcard${fa}><span class="k"><span class="l">Nächstes Kapitel</span><div class="n">${n.nr?`Kapitel ${n.nr}: `:''}${esc(n.titel)}</div></span><span class="go">${ic('right')}</span></a>`;
 }
 /* spec/01 §B – Blöcke rendern */
 function blocks(arr, ctx){
@@ -2036,7 +2038,7 @@ document.addEventListener('click', async e=>{
   if(xa){ sessionStorageSet('kk_xtitel', xa.dataset.xtitel||''); sessionStorageSet('kk_xkey', xa.dataset.xkey||''); sessionStorageSet('kk_xback', location.hash||'#/'); prevHash = location.hash; }
   const el = e.target.closest('[data-act]'); if(!el) return;
   const act = el.dataset.act;
-  if(act==='sperre'){ const k = kapById(el.dataset.kap); if(k) openSperre(k); }
+  if(act==='sperre'){ e.preventDefault(); const k = kapById(el.dataset.kap); if(k) openSperre(k); }
   else if(act==='zug-ok'){ const inp = document.getElementById('inZug'); const msg = await zugEinloesen(inp ? inp.value : ''); toast(msg); if(/^Freigeschaltet/.test(msg)) route(); }
   else if(act==='zug-weg'){
     const c = ZUG.aktiv.find(x=>x.hash===el.dataset.h); if(!c) return;
