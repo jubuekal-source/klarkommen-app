@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -468,7 +468,7 @@
     {
       "id": "bilder/cover/k05",
       "pfad": "medien/bilder/cover/k05.webp",
-      "bytes": 156804,
+      "bytes": 185513,
       "typ": "bild",
       "kapitel": "k05",
       "dauer": null
