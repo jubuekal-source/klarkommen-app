@@ -44,20 +44,189 @@
           "text": "Jetzt schau dir dieses kurze Video an"
         },
         {
-          "typ": "absatz",
-          "text": "*Kleine Warnung: Das Video nimmt sich kreative Freiheiten mit dem Ende. Die echte Geschichte geht anders aus – dazu gleich mehr im Podcast.*"
-        },
-        {
-          "typ": "link",
-          "url": "https://www.youtube.com/watch?v=3oBcfM9Yi_g",
+          "typ": "video",
+          "src": "medien/Video/k02-adler-huhn-web.mp4",
+          "poster": "medien/bilder/k02/adler-huhn-poster.webp",
+          "titel": "Die Geschichte vom Adler und dem Huhn",
           "art": "Video",
-          "titel": "Erkenne dein Potential – Die Geschichte vom Adler und dem Huhn",
-          "label": "Video auf YouTube ansehen",
-          "hinweis": "Dieses Video ist nicht von Klarkommen, sondern von Dany Danza.",
-          "online": "nur online verfügbar"
+          "dauer": "5:30",
+          "hinweis": "Wir haben die bekannte Parabel etwas abgewandelt."
         }
       ],
-      "lese": null
+      "lese": [
+        {
+          "typ": "absatz",
+          "text": "Ganz hinten im Garten, dort, wo das Gras nie gemäht wird, lag eines Nachmittags ein Ei. Größer als jedes Hühnerei. Schwer wie ein Stein. Braun gesprenkelt."
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Bauer drehte es in seinen Händen. So eins hatte er noch nie gesehen."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Können wir's essen?\", fragte sein Sohn."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Erst, wenn wir wissen, wer so ein Ei legt.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Dann legen wir es einer Henne ins Nest\", sagte die jüngste Tochter. „Wenn es schlüpft, sehen wir's ja.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "So machten sie es. Die Henne plusterte sich auf und schob das fremde Ei unter ihre Federn. Doch schon wenige Tage später hatte die Familie es vergessen."
+        },
+        {
+          "typ": "absatz",
+          "text": "Wochen später, an einem kühlen Morgen, knackte die Schale. Heraus kroch ein Küken, das anders war. Dunkler. Größer. Mit Füßen, viel zu kräftig für einen Hühnerhof."
+        },
+        {
+          "typ": "absatz",
+          "text": "Es fraß alles. Körner, Würmer, Brotreste. Dann sah es die Henne an, mit hellen, wachen Augen."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Gehen wir jetzt jagen?\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Jagen?\", gluckste die Henne. „Wie denn?\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Na, von oben. Fliegend!\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Schau mal, Kleiner. Hühner fliegen nicht. Wir scharren. Wir picken. Und wir bleiben, wo wir hingehören.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Eines Mittags fiel ein Schatten über den Hof. Die Hühner duckten sich ins Stroh. Nur der junge Vogel hob den Kopf. Hoch über ihm kreiste ein großer Vogel. Kein Flügelschlag. Nur Wind."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Wer ist das?\", flüsterte er."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Der Adler. Der König der Vögel.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Wär's nicht herrlich, auch so zu fliegen?\""
+        },
+        {
+          "typ": "absatz",
+          "text": "„Vergiss es. Wir sind Hühner.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Manchmal, wenn keiner hinsah, hob er die Flügel ein Stück. Spürte, wie der Wind darunter griff. Dann hörte er das Picken der anderen. Und ließ die Flügel wieder sinken."
+        },
+        {
+          "typ": "absatz",
+          "text": "An einem Herbsttag kam ein Fremder auf den Hof. Ein Naturforscher, mit Fernglas und schweren Stiefeln. Er blieb stehen. Lange. Dann ging er langsam auf den großen, dunklen Vogel zu."
+        },
+        {
+          "typ": "absatz",
+          "text": "„Du bist kein Huhn\", sagte er leise. „Du bist ein Adler.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Er hob ihn hoch, so hoch er konnte. „Flieg!\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Vogel spürte den Wind. Sein Herz schlug schnell. Dann sah er nach unten. Zu den Hühnern, zu den Körnern, zu allem, was er kannte. Und sprang hinunter."
+        },
+        {
+          "typ": "absatz",
+          "text": "Am nächsten Morgen kam der Mann wieder. Diesmal trug er ihn auf das Dach der Scheune. „Du gehörst nach oben. Breite deine Flügel aus.\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Unten gackerten die Hühner: „Komm runter! Du fällst! Du bist einer von uns!\""
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Vogel zitterte. Und flatterte zurück in den Hof."
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Mann sah ihm lange nach. „Ich komme wieder\", sagte er."
+        },
+        {
+          "typ": "absatz",
+          "text": "Doch er kam nicht rechtzeitig."
+        },
+        {
+          "typ": "absatz",
+          "text": "Ein paar Wochen später wetzte der Bauer das Messer. Es war Schlachttag. Ein Huhn nach dem anderen. Und dann auch er."
+        },
+        {
+          "typ": "absatz",
+          "text": "Am Abend stand er als Braten auf dem Tisch. Doch niemand mochte ihn. Das Fleisch war zäh. Es schmeckte nicht nach Huhn."
+        },
+        {
+          "typ": "absatz",
+          "text": "Wie auch. Er war nie ein Huhn gewesen. Er war ein Adler. Er hätte über den Bergen kreisen können. Frei. Und so hoch, dass der Hof nur noch ein Punkt gewesen wäre. Aber er starb, ohne es je zu erfahren."
+        },
+        {
+          "typ": "absatz",
+          "text": "Moment. Spulen wir zurück. Zu dem Morgen, an dem der Naturforscher wiederkam."
+        },
+        {
+          "typ": "absatz",
+          "text": "Es ist noch dunkel, als der Mann den Vogel unter seine Jacke nimmt. Er trägt ihn aus dem Hof, weg vom Gackern, weg vom Stroh. Den Berg hinauf. Schritt für Schritt. Der Vogel spürt das Herz des Mannes schlagen. Und sein eigenes."
+        },
+        {
+          "typ": "absatz",
+          "text": "Oben ist es kalt. Der Wind zerrt an den Federn. Unter ihnen liegt das Tal, noch grau. Der Hof ist nur ein kleiner Fleck."
+        },
+        {
+          "typ": "absatz",
+          "text": "Der Mann setzt ihn auf einen Felsen. Er sagt nichts mehr. Er wartet."
+        },
+        {
+          "typ": "absatz",
+          "text": "Dann geht die Sonne auf. Das Licht fällt auf die Felsen, auf die Federn. Und zum ersten Mal sieht der Vogel, wie sie glänzen. Golden."
+        },
+        {
+          "typ": "absatz",
+          "text": "Er hebt die Flügel. So wie damals im Hof. Der Wind greift darunter."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und diesmal lässt er sie nicht sinken."
+        },
+        {
+          "typ": "absatz",
+          "text": "Er stößt sich ab. Fällt. Einen Herzschlag lang nur Fallen."
+        },
+        {
+          "typ": "absatz",
+          "text": "Dann trägt ihn der Wind."
+        },
+        {
+          "typ": "absatz",
+          "text": "Er steigt. Höher. Immer höher. Er zieht seine Kreise über dem Tal. Kein Flügelschlag. Nur Wind."
+        },
+        {
+          "typ": "absatz",
+          "text": "Unten auf dem Hof fällt ein Schatten über das Stroh. Eine alte Henne hebt den Kopf. Und sieht ihm lange nach."
+        },
+        {
+          "typ": "absatz",
+          "text": "Manchmal sagt dir jemand, wer du bist. Glauben musst du es selbst."
+        },
+        {
+          "typ": "absatz",
+          "text": "Und herausfinden kannst du es nur auf eine Art: Breite die Flügel aus."
+        }
+      ]
     },
     {
       "id": "brainfact",

@@ -1,5 +1,5 @@
 {
-  "version": 24,
+  "version": 25,
   "dateien": [
     {
       "id": "k01-5sinne-shift",
@@ -512,6 +512,22 @@
       "typ": "audio",
       "kapitel": "k05",
       "dauer": "1:28"
+    },
+    {
+      "id": "k02-adler-huhn-video",
+      "pfad": "medien/Video/k02-adler-huhn-web.mp4",
+      "bytes": 19236909,
+      "typ": "video",
+      "kapitel": "k02",
+      "dauer": "5:30"
+    },
+    {
+      "id": "bilder/k02/adler-huhn-poster",
+      "pfad": "medien/bilder/k02/adler-huhn-poster.webp",
+      "bytes": 75494,
+      "typ": "bild",
+      "kapitel": "k02",
+      "dauer": null
     }
   ]
 }

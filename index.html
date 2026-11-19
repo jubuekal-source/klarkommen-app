@@ -297,6 +297,19 @@ input[type=range].seek::-webkit-slider-runnable-track{height:5px;border-radius:3
 input[type=range].seek::-moz-range-track{height:5px;border-radius:3px;background:linear-gradient(90deg,var(--brand-accent) var(--p),rgba(148,163,184,.25) var(--p))}
 input[type=range].seek::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:#fff;margin-top:-6.5px;box-shadow:0 2px 8px rgba(0,0,0,.4)}
 input[type=range].seek::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:none}
+.audio.vid .vwrap{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9}
+.audio.vid video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+.audio.vid .vplay{position:absolute;inset:0;margin:auto;width:76px;height:76px;border-radius:50%;background:var(--brand-accent);color:#1a0d03;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px -6px rgba(0,0,0,.7)}
+.audio.vid .vplay svg.i{width:34px;height:34px}
+.audio.vid.on .vplay{display:none}
+.audio.vid .vfs{position:absolute;right:8px;bottom:8px;width:40px;height:40px;border-radius:10px;background:rgba(0,0,0,.55);color:#fff;display:flex;align-items:center;justify-content:center}
+.audio.vid .vfs svg.i{width:20px;height:20px}
+.audio.vid .ctl .play.sm{width:46px;height:46px;border-radius:50%;background:var(--brand-accent);color:#1a0d03;display:flex;align-items:center;justify-content:center;flex:none}
+.audio.vid .ctl .play.sm svg.i{width:22px;height:22px}
+.audio.vid .ctl .play.sm .pa{display:none}
+.audio.vid.on .ctl .play.sm .pl{display:none} .audio.vid.on .ctl .play.sm .pa{display:block}
+.audio.vid .ctl{flex-wrap:wrap}
+.audio.vid .ctl .tl{flex:1 1 100%;order:5}
 .audio.prod{display:flex;gap:14px;align-items:center;background:var(--brand-card)}
 .audio.prod .play{background:var(--brand-card-2);color:var(--brand-text-2);box-shadow:none;border:1px dashed var(--brand-line-2)}
 /* Experiment-Karte */
@@ -764,7 +777,7 @@ details.acc.anl .acb .btn{margin:4px 0 10px}
 /* ================================================================
    1. Konstanten, Icons
    ================================================================ */
-const APP_VERSION = '1.3.49';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
+const APP_VERSION = '1.3.51';            /* spec/01 – bei jedem Update hochzählen (auch VERSION in sw.js) */
 const LS_KEY = 'klarkommen_daten';       /* Skill §2.4: Namensraum ohne Jahreszahl */
 const IDB_NAME = 'klarkommen', IDB_STORE = 'bilder';
 const MEDIEN_CACHE = 'kk-medien-r3';   /* muss zu MEDIEN in sw.js passen */
@@ -1201,6 +1214,7 @@ function blocks(arr, ctx){
       case 'callout': { const a = b.art||'tipp'; h += `<div class="call ${esc(a)}">${ic(a==='wichtig'?'warn':a==='info'?'info':'spark')}<p>${inl(b.text)}</p></div>`; break; }
       case 'bild': if(!b.src) break; h += `<figure><img src="${esc(b.src)}" alt="${esc(b.alt||'')}" loading="lazy" decoding="async">${b.unterschrift?`<figcaption>${inl(b.unterschrift)}</figcaption>`:''}</figure>`; break;
       case 'audio': h += audioCard(b); break;
+      case 'video': h += videoCard(b); break;   /* v1.3.50: eigenes Video (Kap. 2) mit Play, ±15 s, Zeitleiste, Vollbild */
       case 'experiment': {
         /* spec/03: mehrere Experimente direkt nacheinander → eine Serien-Karte (z. B. Kap. 1 Einstieg: focus, farbensuche, Pizza) */
         let serie = Array.isArray(b.reihe) ? b.reihe.map(x=>({typ:'experiment', ...x})) : [b];
@@ -1240,6 +1254,19 @@ function audioCard(b){
       <div class="tl"><input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position"><div class="times"><span class="cur">0:00</span><span class="dur">${esc(m.dauer||'')}</span></div></div>
       <button class="skip" data-act="ff" aria-label="15 Sekunden vor">${ic('ff')}<span>15</span></button></div>
     <audio preload="none" src="${esc(m.pfad)}"></audio></div>`;
+}
+/* v1.3.50: Video-Karte – gleiche Steuerung wie die Audio-Karte (Play/Pause, 15 s zurück/vor, Zeitleiste), dazu Tippen aufs Bild = Play/Pause und Vollbild. Liegt in medien.json → „Offline speichern“ lädt es mit. */
+function videoCard(b){
+  if(!b.src) return '';
+  return `<div class="audio vid" data-audio="${esc(b.src)}">
+    <div class="vwrap"><video data-act="play" preload="metadata" playsinline poster="${esc(b.poster||'')}" src="${esc(b.src)}" aria-label="${esc(b.titel||'Video')}"></video>
+      <button class="vplay" data-act="play" aria-label="Video abspielen">${ic('play','pl')}</button>
+      <button class="vfs" data-act="fs" aria-label="Vollbild">${ic('ext')}</button></div>
+    <div class="meta" style="margin-top:12px"><div class="art">${ic('play')} ${esc(b.art||'Video')}</div><div class="at">${esc(b.titel||'')}</div><div class="sub">${b.hinweis?`<span>${esc(b.hinweis)}</span>`:''}<span class="off" hidden>${ic('check')} offline gespeichert</span></div></div>
+    <div class="ctl"><button class="skip" data-act="rw" aria-label="15 Sekunden zurück">${ic('rw')}<span>15</span></button>
+      <button class="play sm" data-act="play" aria-label="Abspielen">${ic('play','pl')}${ic('pause','pa')}</button>
+      <button class="skip" data-act="ff" aria-label="15 Sekunden vor">${ic('ff')}<span>15</span></button>
+      <div class="tl"><input type="range" class="seek" min="0" max="1000" value="0" step="1" aria-label="Position"><div class="times"><span class="cur">0:00</span><span class="dur">${esc(b.dauer||'')}</span></div></div></div></div>`;
 }
 /* spec/01 §C.5 – Slide */
 async function renderSlide(app, r){
@@ -1774,24 +1801,25 @@ let audioCur = null;
 function stopAudio(){ document.querySelectorAll('.audio audio').forEach(a=>{ try{ a.pause(); }catch(e){} }); audioCur = null; }
 function initAudios(root){
   root.querySelectorAll('.audio[data-audio]').forEach(card=>{
-    const a = card.querySelector('audio'), seek = card.querySelector('.seek'), cur = card.querySelector('.cur'), dur = card.querySelector('.dur');
+    const a = card.querySelector('audio,video'), seek = card.querySelector('.seek'), cur = card.querySelector('.cur'), dur = card.querySelector('.dur');
     let dragging = false;
     const upd = ()=>{ if(!dragging && a.duration){ const v = a.currentTime/a.duration*1000; seek.value = v; seek.style.setProperty('--p', (v/10)+'%'); } cur.textContent = fmtT(a.currentTime); };
     a.addEventListener('timeupdate', upd);
     a.addEventListener('loadedmetadata', ()=>{ if(isFinite(a.duration)) dur.textContent = fmtT(a.duration); upd(); });
-    a.addEventListener('play', ()=>{ card.classList.add('on'); card.querySelector('.play').setAttribute('aria-label','Pause'); });
-    a.addEventListener('pause', ()=>{ card.classList.remove('on'); card.querySelector('.play').setAttribute('aria-label','Abspielen'); });
+    a.addEventListener('play', ()=>{ card.classList.add('on'); card.querySelectorAll('.play').forEach(x=>x.setAttribute('aria-label','Pause')); });
+    a.addEventListener('pause', ()=>{ card.classList.remove('on'); card.querySelectorAll('.play').forEach(x=>x.setAttribute('aria-label','Abspielen')); });
     a.addEventListener('ended', ()=>{ a.currentTime = 0; upd(); });
-    a.addEventListener('error', ()=>toast('Audio konnte nicht geladen werden. Bist du offline? Dann vorher „Offline speichern“ nutzen.'));
+    a.addEventListener('error', ()=>toast(a.tagName==='VIDEO' ? 'Video konnte nicht geladen werden. Bist du offline? Dann vorher „Offline speichern“ nutzen.' : 'Audio konnte nicht geladen werden. Bist du offline? Dann vorher „Offline speichern“ nutzen.'));
     seek.addEventListener('input', ()=>{ dragging = true; seek.style.setProperty('--p', (seek.value/10)+'%'); if(a.duration) cur.textContent = fmtT(seek.value/1000*a.duration); });
     seek.addEventListener('change', ()=>{ dragging = false; if(a.duration) a.currentTime = seek.value/1000*a.duration; });
     istOffline(a.getAttribute('src')).then(ok=>{ const o = card.querySelector('.off'); if(o) o.hidden = !ok; });
   });
 }
 function audioAct(card, act){
-  const a = card.querySelector('audio');
+  const a = card.querySelector('audio,video');
+  if(act==='fs'){ const f = a.requestFullscreen||a.webkitRequestFullscreen; if(f) f.call(a); else if(a.webkitEnterFullscreen) a.webkitEnterFullscreen(); return; }
   if(act==='play'){
-    if(a.paused){ document.querySelectorAll('.audio audio').forEach(x=>{ if(x!==a) x.pause(); }); a.play().catch(e=>{ console.warn(e); toast('Abspielen nicht möglich.'); }); audioCur = a; }
+    if(a.paused){ document.querySelectorAll('.audio audio,.audio video').forEach(x=>{ if(x!==a) x.pause(); }); a.play().catch(e=>{ console.warn(e); toast('Abspielen nicht möglich.'); }); audioCur = a; }
     else a.pause();
   }
   if(act==='rw') a.currentTime = Math.max(0, a.currentTime-15);
@@ -2048,7 +2076,7 @@ document.addEventListener('click', async e=>{
   }
   else if(act==='sperre-anfragen'){ closeDlg(document.getElementById('dlgSperre')); location.hash = '#/ueber'; }
   else if(act==='dlg-zu'){ closeDlg(el.closest('dialog')); }
-  else if(act==='play'||act==='rw'||act==='ff'){ audioAct(el.closest('.audio'), act); }
+  else if(act==='play'||act==='rw'||act==='ff'||act==='fs'){ audioAct(el.closest('.audio'), act); }
   else if(act==='x-zurueck'){ xSchliessen(); }
   else if(act==='tb-zurueck'){ e.preventDefault(); if(tbVonUebersicht && history.length>1) history.back(); else location.hash = el.getAttribute('href'); }   /* spec/07 T6: kein doppelter Verlaufseintrag */
   /* spec/04 §10: Titel-Test */
